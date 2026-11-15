@@ -41,11 +41,23 @@ msgid "The device and its graphs were created."
 msgstr ""
 
 #: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr ""
+
+#: hpcsched_clusters.php
 msgid "The cluster was mapped to the device."
 msgstr ""
 
 #: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr ""
+
+#: hpcsched_clusters.php
 msgid "Missing graphs were added."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr ""
 
 #: hpcsched_clusters.php
@@ -262,6 +274,11 @@ msgstr ""
 
 #: lib/ClustersPage.php
 msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr ""
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
 msgstr ""
 
 #: lib/ClustersPage.php
@@ -685,10 +702,6 @@ msgid "Pending Reasons: %s"
 msgstr ""
 
 #: lib/OverviewPage.php
-msgid "No jobs snapshot has been collected yet."
-msgstr ""
-
-#: lib/OverviewPage.php
 msgid "Family"
 msgstr ""
 
@@ -731,6 +744,34 @@ msgstr ""
 
 #: lib/OverviewPage.php
 msgid "None. Every node maps to a known state."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
 msgstr ""
 
 #: lib/Pages.php
@@ -971,45 +1012,4 @@ msgstr ""
 
 #: setup.php
 msgid "Management"
-msgstr ""
-
-#: hpcsched_clusters.php
-msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
-msgstr ""
-
-#: hpcsched_clusters.php
-msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
-msgstr ""
-
-#: hpcsched_clusters.php
-msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
-msgstr ""
-
-#: lib/ClustersPage.php
-#, php-format
-msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
-msgstr ""
-
-#: lib/OverviewPage.php
-msgid "No nodes snapshot has been collected yet, so the node states are unknown."
-msgstr ""
-
-#: lib/OverviewPage.php
-#, php-format
-msgid "Jobs snapshot taken %s (%s), current."
-msgstr ""
-
-#: lib/OverviewPage.php
-#, php-format
-msgid "Nodes snapshot taken %s (%s), current."
-msgstr ""
-
-#: lib/OverviewPage.php
-#, php-format
-msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
-msgstr ""
-
-#: lib/OverviewPage.php
-#, php-format
-msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
 msgstr ""
