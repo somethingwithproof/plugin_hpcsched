@@ -70,7 +70,7 @@ jobs:
           php -l "$f"
         done
         # The Slurm client stand-ins and the live cluster scripts are POSIX sh.
-        sh -n tests/fixtures/bin/squeue tests/fixtures/bin/prlimit tests/slurm-live/*.sh
+        sh -n tests/fixtures/bin/squeue tests/fixtures/bin/prlimit tests/slurm-live/*.sh tests/slurm-live/bin/squeue
         dash -n tests/fixtures/bin/squeue
         dash -n tests/fixtures/bin/prlimit
 
@@ -508,12 +508,15 @@ jobs:
         docker exec slurmctld sh /tmp/states.sh
 
     # The token never reaches a command line or the log: it goes from
-    # scontrol into a curl header file that only this user can read.
+    # scontrol into a token file for the plugin and a curl header file, both
+    # readable only by this user.
     - name: Mint a slurmrestd token
       run: |
         set -euo pipefail
         umask 077
-        tok=$(docker exec slurmctld scontrol token lifespan=900 | sed -n 's/^SLURM_JWT=//p')
+        mkdir -p "$RUNNER_TEMP/hpcsched-tokens"
+        docker exec slurmctld scontrol token lifespan=900 > "$RUNNER_TEMP/hpcsched-tokens/live.token"
+        tok=$(sed -n 's/^SLURM_JWT=//p' "$RUNNER_TEMP/hpcsched-tokens/live.token")
         echo "::add-mask::$tok"
         printf 'X-SLURM-USER-TOKEN: %s\n' "$tok" > "$RUNNER_TEMP/jwt-header"
         for _ in $(seq 1 30); do
@@ -531,6 +534,12 @@ jobs:
 
     - name: Assert through the plugin's parser
       run: php plugin/tests/slurm-live/check.php "$GITHUB_WORKSPACE/plugin" "$RUNNER_TEMP/slurm-out"
+
+    # The plugin's own transports, built from a cluster record as the reader
+    # builds them: the client commands through docker exec into slurmctld,
+    # and slurmrestd on loopback with the token file.
+    - name: Collect a snapshot with the plugin's transports
+      run: php plugin/tests/slurm-live/collect.php "$GITHUB_WORKSPACE/plugin" "$RUNNER_TEMP/slurm-out" "$RUNNER_TEMP/hpcsched-tokens/live.token"
 
     - name: Tear the cluster down
       if: always()
