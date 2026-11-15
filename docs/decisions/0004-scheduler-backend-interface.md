@@ -4,7 +4,7 @@ Status: Accepted (2026-11-14)
 
 ## Context
 
-Sites run Slurm, PBS Pro, OpenPBS, and LSF. The Cacti organization hosts LSF-related plugins (plugin_lsflog, plugin_cjobs), and their overlap with this plugin is unconfirmed. Writing the first backend against Slurm output would bake Slurm's vocabulary into storage, templates, and pages.
+Sites run Slurm, PBS Pro, OpenPBS, and LSF. The Cacti organization hosts LSF-related plugins (plugin_lsflog, plugin_cjobs). Their overlap with this plugin was unconfirmed when this record was written; milestone 1 read them (2026-11-15) and found no overlap in function: both attach to LSF RTM's `grid` plugin and tables, and plugin_cjobs has a write path to the scheduler ([prior-art.md](../research/prior-art.md)). Writing the first backend against Slurm output would bake Slurm's vocabulary into storage, templates, and pages.
 
 ## Decision
 
