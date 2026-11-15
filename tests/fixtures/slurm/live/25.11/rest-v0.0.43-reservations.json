@@ -1,0 +1,116 @@
+{
+  "reservations": [
+    {
+      "accounts": "",
+      "burst_buffer": "",
+      "core_count": 14,
+      "core_specializations": [
+      ],
+      "end_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794763775
+      },
+      "features": "",
+      "flags": [
+        "MAINT",
+        "SPEC_NODES"
+      ],
+      "groups": "",
+      "licenses": "",
+      "max_start_delay": 0,
+      "name": "maint_c6",
+      "node_count": 1,
+      "node_list": "c6",
+      "partition": "",
+      "purge_completed": {
+        "time": {
+          "set": true,
+          "infinite": false,
+          "number": 300
+        }
+      },
+      "start_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794756575
+      },
+      "watts": {
+      },
+      "tres": "cpu=14",
+      "users": "root"
+    },
+    {
+      "accounts": "",
+      "burst_buffer": "",
+      "core_count": 14,
+      "core_specializations": [
+      ],
+      "end_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794846575
+      },
+      "features": "",
+      "flags": [
+        "SPEC_NODES"
+      ],
+      "groups": "",
+      "licenses": "",
+      "max_start_delay": 0,
+      "name": "future_c3",
+      "node_count": 1,
+      "node_list": "c3",
+      "partition": "",
+      "purge_completed": {
+        "time": {
+          "set": true,
+          "infinite": false,
+          "number": 300
+        }
+      },
+      "start_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794842975
+      },
+      "watts": {
+      },
+      "tres": "cpu=14",
+      "users": "root"
+    }
+  ],
+  "last_update": {
+    "set": true,
+    "infinite": false,
+    "number": 1794756575
+  },
+  "meta": {
+    "plugin": {
+      "type": "openapi\/slurmctld",
+      "name": "Slurm OpenAPI slurmctld",
+      "data_parser": "data_parser\/v0.0.43",
+      "accounting_storage": "accounting_storage\/slurmdbd"
+    },
+    "client": {
+      "source": "slurmrestd:6820(fd:10)",
+      "user": "root",
+      "group": "root"
+    },
+    "command": [
+    ],
+    "slurm": {
+      "version": {
+        "major": "25",
+        "micro": "8",
+        "minor": "11"
+      },
+      "release": "25.11.8",
+      "cluster": "linux"
+    }
+  },
+  "errors": [
+  ],
+  "warnings": [
+  ]
+}
