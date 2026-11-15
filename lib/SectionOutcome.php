@@ -20,15 +20,24 @@
 namespace Somethingwithproof\Hpcsched;
 
 final readonly class SectionOutcome {
+	/**
+	 * @param bool $unchanged a completed conditional read that found nothing
+	 *                        changed: the stored rows stay and count as read now
+	 */
 	public function __construct(
 		public SectionState $state,
 		public ?ErrorClass $error = null,
 		public int $records = 0,
+		public bool $unchanged = false,
 	) {
 	}
 
 	public static function completed(int $records): self {
 		return new self(SectionState::Completed, null, $records);
+	}
+
+	public static function unchanged(int $records): self {
+		return new self(SectionState::Completed, null, $records, true);
 	}
 
 	public static function failed(ErrorClass $error): self {

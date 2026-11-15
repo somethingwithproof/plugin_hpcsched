@@ -53,7 +53,7 @@ final class SnapshotRepository {
 
 			$section = Section::from($name);
 
-			if ($outcome->state === SectionState::Completed) {
+			if ($outcome->state === SectionState::Completed && !$outcome->unchanged) {
 				$ok = $this->replace($clusterId, $section, $snapshot, $stamps) && $this->inTransaction();
 
 				// The node counts are the nodes section's, so they are
@@ -81,9 +81,26 @@ final class SnapshotRepository {
 	}
 
 	/**
+	 * The cluster's stored section records, which the reader passes to the
+	 * backend for conditional reads.
+	 *
+	 * @return array<string, SectionRecord> section value => record
+	 */
+	public function sections(int $clusterId): array {
+		return (new SeriesRepository($this->connection))->sections($clusterId);
+	}
+
+	/**
 	 * @param array{int, int, int} $stamps observed, ingested, interval
 	 */
 	private function section(int $clusterId, Section $section, SectionOutcome $outcome, int $now, array $stamps): bool {
+		// Nothing changed since the last read: the rows stay, and so do their
+		// ingestion time and count, but the data is current as of this run.
+		if ($outcome->unchanged) {
+			return db_execute_prepared('UPDATE plugin_hpcsched_section SET state = ?, error_class = \'\', attempted_at = ?, observed_at = ?, collect_interval = ? WHERE cluster_id = ? AND section = ?',
+				[$outcome->state->value, $now, $stamps[0], $stamps[2], $clusterId, $section->value], true, $this->connection) !== false;
+		}
+
 		if ($outcome->state === SectionState::Completed) {
 			return db_execute_prepared('INSERT INTO plugin_hpcsched_section (cluster_id, section, state, error_class, attempted_at, records, observed_at, ingested_at, collect_interval)
 				VALUES (?, ?, ?, \'\', ?, ?, ?, ?, ?)

@@ -21,9 +21,11 @@ namespace Somethingwithproof\Hpcsched\Tests;
 
 use Somethingwithproof\Hpcsched\ErrorClass;
 use Somethingwithproof\Hpcsched\Section;
+use Somethingwithproof\Hpcsched\SectionRecord;
 use Somethingwithproof\Hpcsched\SlurmTransport;
 use Somethingwithproof\Hpcsched\Transport;
 use Somethingwithproof\Hpcsched\TransportError;
+use Somethingwithproof\Hpcsched\Unchanged;
 
 // Test code: refuse to run from a web request.
 PHP_SAPI === 'cli' || exit(1);
@@ -36,10 +38,18 @@ final class StubTransport implements SlurmTransport {
 	/** @var list<string> */
 	public array $fetched = [];
 
+	/** @var array<string, int> section value => update_time sent */
+	public array $since = [];
+
 	/**
-	 * @param array<string, string|ErrorClass> $answers section value => JSON or error
+	 * @param array<string, string|ErrorClass> $answers     section value => JSON or error
+	 * @param array<string, int>               $conditional section value => update_time to ask for; such a read answers Unchanged
 	 */
-	public function __construct(private readonly array $answers, private readonly float $delay = 0.0) {
+	public function __construct(private readonly array $answers, private readonly float $delay = 0.0, private readonly array $conditional = []) {
+	}
+
+	public function since(Section $section, ?SectionRecord $previous, string $release, int $now): int {
+		return $this->conditional[$section->value] ?? 0;
 	}
 
 	public function transport(): Transport {
@@ -50,8 +60,14 @@ final class StubTransport implements SlurmTransport {
 		return 'v0.0.43';
 	}
 
-	public function fetch(Section $section, string $dataParser, float $deadline): string {
+	public function fetch(Section $section, string $dataParser, float $deadline, int $since = 0): string {
 		$this->fetched[] = $section->value;
+
+		if ($since > 0) {
+			$this->since[$section->value] = $since;
+
+			throw new Unchanged();
+		}
 
 		if ($this->delay > 0) {
 			usleep((int) ($this->delay * 1e6));

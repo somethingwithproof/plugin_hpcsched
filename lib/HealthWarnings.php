@@ -88,7 +88,7 @@ final class HealthWarnings {
 
 		if ($run->release !== '' && !DataParser::releaseSupported($run->release)) {
 			$out[] = __('The scheduler reports Slurm %s, which is not a supported release (%s).', $run->release, implode(', ', DataParser::SUPPORTED_RELEASES), 'hpcsched');
-		} elseif ($run->release !== '' && !DataParser::shippedBy($run->release, $settings->dataParser)) {
+		} elseif ($cluster->transport === Transport::Commands && $run->release !== '' && !DataParser::shippedBy($run->release, $settings->dataParser)) {
 			$out[] = __('The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings.', $run->release, $settings->dataParser, 'hpcsched');
 		}
 

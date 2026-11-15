@@ -69,9 +69,13 @@ it('warns about an interval below the poller, an overrun, an unsupported release
 		->and($text)->toContain('stale');
 });
 
-it('warns when a cluster reports a release that does not ship the chosen data parser', function () {
-	$run = static fn (string $release): ClusterRun => new ClusterRun(1, outcome: RunOutcome::Completed, release: $release, memoryLimited: true, tokenState: TokenState::Ok);
-	$for = static fn (string $parser, string $release): string => implode("\n", HealthWarnings::for(hpcsched_rest_config(), $run($release), Freshness::Current, Settings::fromRow(['hpcsched_data_parser' => $parser]), 60, 100000));
+it('warns when a cluster on client commands reports a release that does not ship the chosen data parser', function () {
+	$run      = static fn (string $release): ClusterRun => new ClusterRun(1, outcome: RunOutcome::Completed, release: $release, memoryLimited: true, tokenState: TokenState::Ok);
+	$commands = new Cluster(1, 'demo', 1, AdminState::Enabled, Transport::Commands, 60);
+	$for      = static fn (string $parser, string $release, ?Cluster $cluster = null): string => implode("\n", HealthWarnings::for($cluster ?? $commands, $run($release), Freshness::Current, Settings::fromRow(['hpcsched_data_parser' => $parser]), 60, 100000));
+
+	// slurmrestd clusters discover their parser, so the setting is not theirs.
+	expect($for('v0.0.45', '25.11.2', hpcsched_rest_config()))->not->toContain('does not ship');
 
 	expect($for('v0.0.45', '25.11.2'))->toContain('Slurm 25.11.2, which does not ship the data parser v0.0.45')
 		->and($for('v0.0.44', '25.05.4'))->toContain('does not ship the data parser v0.0.44')

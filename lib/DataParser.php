@@ -22,7 +22,7 @@ namespace Somethingwithproof\Hpcsched;
 /**
  * The Slurm data parser the plugin pins, chosen in Settings from the
  * versions below. v0.0.43 is the default because every supported release
- * (25.05, 25.11, 26.05; decision #8, provisional) ships it, so one setting
+ * (25.05, 25.11, 26.05; ADR 0013) ships it, so one setting
  * serves a mixed site and an upgraded client package cannot change the shape
  * under the plugin (docs/research/slurm-client-output.md). SchedMD removes
  * v0.0.43 in 27.05, so a site on 25.11 or later can move to a newer parser
@@ -49,6 +49,39 @@ final class DataParser {
 
 	public static function supported(string $version): bool {
 		return in_array($version, self::VERSIONS, true);
+	}
+
+	/**
+	 * The supported versions, newest first: the order slurmrestd discovery
+	 * tries them in (REQ-REST-002).
+	 *
+	 * @return list<string>
+	 */
+	public static function newestFirst(): array {
+		return array_reverse(self::VERSIONS);
+	}
+
+	/**
+	 * The newest supported version a supported release ships, or null for a
+	 * release the plugin does not support.
+	 */
+	public static function newestShippedBy(string $release): ?string {
+		foreach (self::newestFirst() as $version) {
+			if (self::shippedBy($release, $version)) {
+				return $version;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Whether a release is the given supported major release or a later
+	 * one, for example "26.05.5" against "26.05". An unparsable release
+	 * answers false.
+	 */
+	public static function atLeast(string $release, string $major): bool {
+		return preg_match('/^(\d{2})\.(\d{2})(?:\.|$)/', $release, $m) === 1 && version_compare($m[1] . '.' . $m[2], $major, '>=');
 	}
 
 	/**

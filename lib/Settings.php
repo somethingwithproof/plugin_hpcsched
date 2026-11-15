@@ -246,7 +246,7 @@ final readonly class Settings {
 			],
 			'hpcsched_data_parser' => [
 				'friendly_name' => __('Data Parser', 'hpcsched'),
-				'description'   => __('Slurm data parser for every call, through client commands and slurmrestd alike. Choose one that every cluster\'s release ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it.', 'hpcsched'),
+				'description'   => __('Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which.', 'hpcsched'),
 				'method'        => 'drop_array',
 				'array'         => array_combine(DataParser::VERSIONS, DataParser::VERSIONS),
 				'default'       => DataParser::DEFAULT_VERSION,

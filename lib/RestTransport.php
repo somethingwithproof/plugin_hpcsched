@@ -29,10 +29,22 @@ namespace Somethingwithproof\Hpcsched;
  * (docs/research/slurmrestd.md). The allowlist only limits the plugin's own
  * requests; it does not restrict slurmrestd.
  *
- * update_time is never sent: slurmrestd answers 304 when nothing changed,
- * and the plugin wants a whole snapshot every run. A 304 anyway is recorded
- * as not_modified with the section failed, so the previous data stays and
- * is never read as empty.
+ * The data parser is discovered from the daemon (REQ-REST-002): the newest
+ * supported version whose ping/ path it serves, tried newest first. A 404
+ * costs no controller call, and a 200 one ping. The reader passes the
+ * parser of the cluster's last completed run as $cached, so discovery runs
+ * on the first run, after a run that did not complete (a 404 among them),
+ * and when the release the daemon reports ships a newer supported parser.
+ * The setting in Settings applies to client commands only.
+ *
+ * update_time is sent only where an unchanged answer is unambiguous
+ * (REQ-REST-005, since()): /nodes/ from 26.05, which answers 304 with an
+ * empty body. A 304 to that request leaves the stored rows as they are and
+ * counts as a fresh read. /jobs/ answers an unchanged request with 200, a
+ * warning, and no jobs, which would read as an empty queue; partitions and
+ * reservations have no unchanged answer; shares take no update_time. A 304
+ * to a request without update_time is recorded as not_modified with the
+ * section failed, so the previous data stays and is never read as empty.
  */
 final class RestTransport implements SlurmTransport {
 	/**
@@ -46,7 +58,23 @@ final class RestTransport implements SlurmTransport {
 		'shares'       => '/slurm/{p}/shares',
 	];
 
+	/** Discovery's path: one read-only ping of the controllers. */
+	public const PING = '/slurm/{p}/ping/';
+
+	/** The first release whose /nodes/ answers an unchanged request with 304. */
+	public const CONDITIONAL_NODES_FROM = '26.05';
+
+	/**
+	 * A conditional read is used only while the stored node rows are younger
+	 * than this. On 26.05 the 304 follows node changes only, so a node moved
+	 * between partitions without other change would keep its old partitions;
+	 * a full read at least this often bounds that.
+	 */
+	public const FULL_READ_SECONDS = 600;
+
 	private int $calls = 0;
+
+	private string $parser = '';
 
 	public function __construct(
 		private readonly HttpTransport $http,
@@ -54,7 +82,7 @@ final class RestTransport implements SlurmTransport {
 		private readonly string $user,
 		private readonly Token $token,
 		private readonly float $callTimeout,
-		private readonly string $dataParser = DataParser::DEFAULT_VERSION,
+		private readonly string $cached = '',
 	) {
 	}
 
@@ -63,7 +91,11 @@ final class RestTransport implements SlurmTransport {
 	}
 
 	public function dataParser(float $deadline): string {
-		return $this->dataParser;
+		if ($this->parser === '') {
+			$this->parser = DataParser::supported($this->cached) ? $this->cached : $this->discover($deadline);
+		}
+
+		return $this->parser;
 	}
 
 	public function calls(): int {
@@ -83,7 +115,7 @@ final class RestTransport implements SlurmTransport {
 			return false;
 		}
 
-		foreach (self::PATHS as $template) {
+		foreach (array_merge(self::PATHS, [self::PING]) as $template) {
 			if ($path === str_replace('{p}', $dataParser, $template)) {
 				return true;
 			}
@@ -92,7 +124,26 @@ final class RestTransport implements SlurmTransport {
 		return false;
 	}
 
-	public function fetch(Section $section, string $dataParser, float $deadline): string {
+	/**
+	 * The update_time to send for a section, or 0 for an unconditional read.
+	 * Only /nodes/ from 26.05, after a completed read whose rows are younger
+	 * than FULL_READ_SECONDS. The time is the previous observation less the
+	 * clock skew the freshness rules allow, so a change the controller
+	 * stamped just before the previous read is never taken as old.
+	 */
+	public function since(Section $section, ?SectionRecord $previous, string $release, int $now): int {
+		if ($section !== Section::Nodes || $previous === null || $previous->state !== SectionState::Completed || !DataParser::atLeast($release, self::CONDITIONAL_NODES_FROM)) {
+			return 0;
+		}
+
+		if ($previous->observedAt <= 0 || $now - $previous->ingestedAt > self::FULL_READ_SECONDS) {
+			return 0;
+		}
+
+		return max(0, $previous->observedAt - FreshnessEvaluator::SKEW_ALLOWANCE);
+	}
+
+	public function fetch(Section $section, string $dataParser, float $deadline, int $since = 0): string {
 		if (!DataParser::supported($dataParser)) {
 			throw new TransportError(ErrorClass::Config, 'data parser');
 		}
@@ -103,6 +154,38 @@ final class RestTransport implements SlurmTransport {
 			throw new TransportError(ErrorClass::Refused, 'path not on the allowlist');
 		}
 
+		$response = $this->get($path, $deadline, $since > 0 ? ['update_time' => $since] : []);
+
+		if ($response->status === 304 && $since > 0) {
+			throw new Unchanged();
+		}
+
+		return $response->status === 200 ? $response->body : throw self::error($response->status);
+	}
+
+	/**
+	 * The newest supported data parser the daemon serves.
+	 */
+	private function discover(float $deadline): string {
+		foreach (DataParser::newestFirst() as $version) {
+			$status = $this->get(str_replace('{p}', $version, self::PING), $deadline)->status;
+
+			if ($status === 200) {
+				return $version;
+			}
+
+			if ($status !== 404) {
+				throw self::error($status);
+			}
+		}
+
+		throw new TransportError(ErrorClass::Config, 'slurmrestd serves none of the data parsers ' . implode(', ', DataParser::VERSIONS));
+	}
+
+	/**
+	 * @param array<string, int> $query
+	 */
+	private function get(string $path, float $deadline, array $query = []): HttpResponse {
 		$headers = ['X-SLURM-USER-TOKEN' => $this->token->secret->reveal()];
 
 		if ($this->user !== '') {
@@ -115,17 +198,18 @@ final class RestTransport implements SlurmTransport {
 
 		$this->calls++;
 
-		$response = $this->http->get(new HttpRequest($this->endpoint, $this->endpoint->basePath . $path, $headers), min($deadline, microtime(true) + $this->callTimeout));
+		return $this->http->get(new HttpRequest($this->endpoint, $this->endpoint->basePath . $path, $headers, $query), min($deadline, microtime(true) + $this->callTimeout));
+	}
 
+	private static function error(int $status): TransportError {
 		return match (true) {
-			$response->status === 200 => $response->body,
-			$response->status === 304 => throw new TransportError(ErrorClass::NotModified, '304'),
-			$response->status === 401 => throw new TransportError(ErrorClass::Credential, '401'),
-			$response->status === 403 => throw new TransportError(ErrorClass::Access, '403'),
-			$response->status === 404 => throw new TransportError(ErrorClass::Config, '404: the data parser or endpoint is not offered'),
-			$response->status === 429 => throw new TransportError(ErrorClass::RateLimited, '429'),
-			$response->status === 502, $response->status === 503, $response->status === 504 => throw new TransportError(ErrorClass::Unreachable, (string) $response->status),
-			default                   => throw new TransportError(ErrorClass::Failed, (string) $response->status),
+			$status === 304 => new TransportError(ErrorClass::NotModified, '304'),
+			$status === 401 => new TransportError(ErrorClass::Credential, '401'),
+			$status === 403 => new TransportError(ErrorClass::Access, '403'),
+			$status === 404 => new TransportError(ErrorClass::Config, '404: the data parser or endpoint is not offered'),
+			$status === 429 => new TransportError(ErrorClass::RateLimited, '429'),
+			$status === 502, $status === 503, $status === 504 => new TransportError(ErrorClass::Unreachable, (string) $status),
+			default         => new TransportError(ErrorClass::Failed, (string) $status),
 		};
 	}
 }

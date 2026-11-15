@@ -26,12 +26,20 @@ namespace Somethingwithproof\Hpcsched;
  * class and keeps no data, so a failure is never read as an empty section
  * (REQ-BACKEND-003). After a rate limit or a refused credential the rest of
  * the run is not attempted, since every later call would meet the same
- * answer and add load.
+ * answer and add load. A conditional read that finds nothing changed
+ * completes its section with no data and is marked unchanged; the snapshot
+ * write keeps that section's stored rows.
  */
 final class SlurmBackend implements Backend {
+	/**
+	 * @param array<string, SectionRecord> $previous the cluster's stored section records, for conditional reads
+	 * @param string                       $release  the release the scheduler reported on the last run
+	 */
 	public function __construct(
 		private readonly SlurmTransport $transport,
 		private readonly Clock $clock,
+		private readonly array $previous = [],
+		private readonly string $release = '',
 	) {
 	}
 
@@ -64,8 +72,11 @@ final class SlurmBackend implements Backend {
 				continue;
 			}
 
+			$stored = $this->previous[$section->value] ?? null;
+			$since  = $this->transport->since($section, $stored, $this->release, $this->clock->now());
+
 			try {
-				$doc     = SlurmJson::decode($this->transport->fetch($section, $parser, $deadline));
+				$doc     = SlurmJson::decode($this->transport->fetch($section, $parser, $deadline, $since));
 				$release = $release !== '' ? $release : SlurmJson::release($doc);
 
 				$parsed = match ($section) {
@@ -80,6 +91,10 @@ final class SlurmBackend implements Backend {
 
 				$data[$section->value]     = $parsed;
 				$outcomes[$section->value] = SectionOutcome::completed($parsed instanceof JobTally ? $parsed->total() : count($parsed));
+			} catch (Unchanged) {
+				// Only a conditional read answers Unchanged, and only after a
+				// completed one, so the stored rows are the scheduler's.
+				$outcomes[$section->value] = SectionOutcome::unchanged($stored->records ?? 0);
 			} catch (TransportError $e) {
 				$outcomes[$section->value] = SectionOutcome::failed($e->errorClass);
 				$stop                      = $e->errorClass->backsOff() || $e->errorClass === ErrorClass::Credential;
