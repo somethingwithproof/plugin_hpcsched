@@ -69,14 +69,22 @@ function unique_nodes(array $rows): array {
  */
 function match_nodes(array $nodes, array $devices): array {
 	// Index devices once per key, so cost is linear in nodes plus devices.
+	// Each bucket keeps at most two distinct ids: two already mean ambiguous,
+	// so a heavily duplicated key cannot make the per-node work grow with it.
 	$byHost = $byDesc = $byShort = [];
+	$add = static function (array &$index, string $key, int $id): void {
+		$bucket = $index[$key] ?? [];
+		if (count($bucket) < 2 && !in_array($id, $bucket, true)) {
+			$index[$key][] = $id;
+		}
+	};
 	foreach ($devices as $d) {
 		$h = norm((string) $d['hostname']);
-		$byHost[$h][] = $d['id'];
-		$byDesc[norm((string) $d['description'])][] = $d['id'];
+		$add($byHost, $h, $d['id']);
+		$add($byDesc, norm((string) $d['description']), $d['id']);
 		$s = short_label($h);
 		if ($s !== null) {
-			$byShort[$s][] = $d['id'];
+			$add($byShort, $s, $d['id']);
 		}
 	}
 
@@ -151,6 +159,23 @@ foreach ([1000, 10000] as $n) {
 	$ms = (hrtime(true) - $t0) / 1e6;
 	$proposed = count(array_filter($res, static fn(array $c): bool => $c['state'] === 'proposed'));
 	printf("timing: %d nodes x %d devices: %.1f ms, %d proposed (PHP %s)\n", $n, $n, $ms, $proposed, PHP_VERSION);
+}
+
+// Collision-heavy case: every node and every device shares one hostname.
+// Work must stay linear in nodes plus devices, and every node is ambiguous.
+$n = 10000;
+$nodes = $devices = [];
+for ($i = 0; $i < $n; $i++) {
+	$nodes[] = ['name' => sprintf('c%05d', $i), 'hostname' => 'shared', 'address' => 'shared'];
+	$devices[] = ['id' => $i + 1, 'hostname' => 'shared', 'description' => 'shared'];
+}
+$t0 = hrtime(true);
+$res = match_nodes(unique_nodes($nodes), $devices);
+$ms = (hrtime(true) - $t0) / 1e6;
+$amb = count(array_filter($res, static fn(array $c): bool => $c['state'] === 'ambiguous'));
+printf("timing: collision-heavy %d nodes x %d devices on one hostname: %.1f ms, %d ambiguous\n", $n, $n, $ms, $amb);
+if ($amb !== $n) {
+	$fail++;
 }
 
 exit($fail > 0 ? 1 : 0);

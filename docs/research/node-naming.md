@@ -2,7 +2,7 @@
 
 Research for [#24](https://github.com/somethingwithproof/plugin_hpcsched/issues/24), run 2026-11-15. Question: which naming relationships between scheduler nodes and Cacti devices exist in practice, and what fixtures reproduce them?
 
-**Result.** An offline prototype and a fixture set are committed at `tests/node-matching/` (`php run.php`, no database, no Cacti code, no network). It implements four matching tiers and two group rules, passes all 12 fixture expectations over 11 cases, and matched 10,000 nodes against 10,000 devices in about 14 milliseconds on PHP 8.5.12 (three runs, 14.2 to 14.4 ms; 1,000 by 1,000 took 1.2 ms), so the quadratic-cost risk in the plan does not apply once devices are indexed by key. What the documents settle: the scheduler offers three names per node and Slurm permits all the divergences the plan lists. What no document or fixture can settle is how real sites name devices; the issue asks pilots about that, and it is *live*. The fixtures use synthetic names only.
+**Result.** An offline prototype and a fixture set are committed at `tests/node-matching/` (`php run.php`, no database, no Cacti code, no network). It implements four matching tiers and two group rules, passes all 12 fixture expectations over 11 cases plus a collision-heavy scale case, and matched 10,000 nodes against 10,000 devices in about 17 milliseconds on PHP 8.5.12 (three runs, 16.2 to 17.2 ms; 1,000 by 1,000 took 1.4 ms), and a collision-heavy case in about 10 ms, so the quadratic-cost risk in the plan does not apply once devices are indexed by key. What the documents settle: the scheduler offers three names per node and Slurm permits all the divergences the plan lists. What no document or fixture can settle is how real sites name devices; the issue asks pilots about that, and it is *live*. The fixtures use synthetic names only.
 
 ## Method
 
@@ -53,8 +53,11 @@ Timing, from the prototype (hrtime around the matching call, one process, cold, 
 
 | Nodes by devices | Time | Proposed |
 |---|---|---|
-| 1,000 by 1,000 | 1.2 ms | 1,000 |
-| 10,000 by 10,000 | 14.2 to 14.4 ms | 10,000 |
+| 1,000 by 1,000 | 1.4 ms | 1,000 proposed |
+| 10,000 by 10,000 | 16.2 to 17.2 ms (three runs) | 10,000 proposed |
+| 10,000 by 10,000, all sharing one hostname | 9.5 to 9.8 ms (three runs) | 10,000 ambiguous |
+
+Each index bucket keeps at most two distinct device ids, since two already make a node ambiguous; without that bound a key shared by many devices would make the work grow with the number of duplicates (a review finding, fixed).
 
 This measures only the in-memory step. Loading 10,000 devices from the Cacti database and rendering 10,000 proposals are not included.
 
