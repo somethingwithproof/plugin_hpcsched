@@ -37,11 +37,6 @@ require_once($config['base_path'] . '/plugins/hpcsched/setup.php');
 
 ini_set('max_execution_time', '0');
 
-// A large queue is decoded in memory; the limit is raised, never lowered.
-if (function_exists('ini_parse_quantity') && (int) ini_get('memory_limit') !== -1 && ini_parse_quantity((string) ini_get('memory_limit')) < 1073741824) {
-	ini_set('memory_limit', '1024M');
-}
-
 $hpcsched_cluster = 0;
 $hpcsched_force   = false;
 
@@ -92,14 +87,47 @@ if ($hpcsched_row === null || !$hpcsched_row->enabled() || $hpcsched_row->poller
 }
 
 $hpcsched_interval = hpcsched_poller_interval();
+$hpcsched_settings = hpcsched_settings();
+
+// A large queue is decoded in memory. The limit is raised to the Reader
+// Memory setting, never lowered, and the answer size is fitted to the limit
+// the reader actually got, so a large answer fails as too large instead of
+// exhausting memory.
+$hpcsched_limit = hpcsched_memory_limit();
+
+if ($hpcsched_limit !== -1 && $hpcsched_limit < $hpcsched_settings->readerMemoryMib * 1048576) {
+	ini_set('memory_limit', $hpcsched_settings->readerMemoryMib . 'M');
+	$hpcsched_limit = hpcsched_memory_limit();
+}
+
+$hpcsched_fitted = $hpcsched_settings->withMemoryLimit($hpcsched_limit);
+
+if ($hpcsched_fitted->fittedOutputMib() < $hpcsched_settings->maxOutputMib) {
+	cacti_log('WARNING: The HPC scheduler reader allows answers up to ' . $hpcsched_fitted->fittedOutputMib() . ' MiB, less than the Maximum Answer Size of ' . $hpcsched_settings->maxOutputMib . ' MiB, to fit its memory limit', false, 'HPCSCHED');
+}
 
 if (!register_process_start('hpcsched', 'reader', $hpcsched_cluster, $hpcsched_row->budget($hpcsched_interval) + 120)) {
 	cacti_log('NOTE: A reader for cluster ' . $hpcsched_cluster . ' is already running', false, 'HPCSCHED', POLLER_VERBOSITY_MEDIUM);
 	exit(0);
 }
 
+$hpcsched_holder = 'reader-' . getmypid() . '-' . bin2hex(random_bytes(4));
+
+// Running out of memory is a fatal error: no finally block runs, so the run
+// would never be recorded and the process slot would stay taken. The
+// shutdown function gets a little memory back and records the failure.
+register_shutdown_function(function () use ($hpcsched_cluster, $hpcsched_holder, $hpcsched_clock) {
+	$error = error_get_last();
+
+	if (is_array($error) && $error['type'] === E_ERROR && strpos($error['message'], 'Allowed memory size') === 0) {
+		$limit = hpcsched_memory_limit();
+		ini_set('memory_limit', $limit === -1 ? '-1' : (string) ($limit + 134217728));
+		hpcsched_record_memory_failure($hpcsched_cluster, $hpcsched_holder, $hpcsched_clock);
+	}
+});
+
 try {
-	$hpcsched_run = hpcsched_reader(hpcsched_settings(), '', $hpcsched_clock)->run($hpcsched_row, $hpcsched_interval);
+	$hpcsched_run = hpcsched_reader($hpcsched_fitted, $hpcsched_holder, $hpcsched_clock)->run($hpcsched_row, $hpcsched_interval);
 } finally {
 	unregister_process('hpcsched', 'reader', $hpcsched_cluster);
 }

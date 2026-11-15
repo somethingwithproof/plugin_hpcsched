@@ -53,6 +53,10 @@ final class HealthPage {
 
 		$warnings = [];
 
+		foreach (HealthWarnings::global($this->settings) as $warning) {
+			$warnings[] = [__('All clusters', 'hpcsched'), $warning];
+		}
+
 		foreach ($clusters as $cluster) {
 			$run    = $runs[$cluster->id] ?? null;
 			$values = ClusterValues::of($cluster, $sections[$cluster->id] ?? [], [], [], $this->evaluator, $this->pollerInterval);

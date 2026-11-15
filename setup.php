@@ -359,6 +359,33 @@ function hpcsched_poller_interval(): int {
  * The production reader for one cluster. Scheduler access goes through the
  * two transports only; nothing else in the plugin builds one.
  */
+/**
+ * The PHP memory limit in bytes, or -1 for none.
+ */
+function hpcsched_memory_limit(): int {
+	$limit = (string) ini_get('memory_limit');
+
+	return $limit === '' || $limit === '-1' ? -1 : (int) ini_parse_quantity($limit);
+}
+
+/**
+ * Records a reader run that ran out of memory, called from the reader's
+ * shutdown function, where finally blocks have not run. It records the
+ * failure while the lease is still held, then frees the lease and Cacti's
+ * process slot, so the health page shows the cause instead of a run that
+ * never ended.
+ */
+function hpcsched_record_memory_failure(int $cluster_id, string $holder, \Somethingwithproof\Hpcsched\Clock $clock): void {
+	$runs = new \Somethingwithproof\Hpcsched\RunRepository(false, $clock);
+	$now  = $clock->now();
+
+	$runs->finish(new \Somethingwithproof\Hpcsched\ClusterRun($cluster_id, finishedAt: $now, outcome: \Somethingwithproof\Hpcsched\RunOutcome::Failed, error: \Somethingwithproof\Hpcsched\ErrorClass::Memory, lastFailure: $now), $holder);
+	$runs->release($cluster_id, $holder);
+	unregister_process('hpcsched', 'reader', $cluster_id);
+
+	cacti_log('ERROR: The HPC scheduler reader for cluster ' . $cluster_id . ' ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings', false, 'HPCSCHED');
+}
+
 function hpcsched_reader(\Somethingwithproof\Hpcsched\Settings $settings, string $holder = '', ?\Somethingwithproof\Hpcsched\Clock $clock = null, ?string $ca_file = null): \Somethingwithproof\Hpcsched\Reader {
 	$clock = $clock ?? new \Somethingwithproof\Hpcsched\SystemClock();
 

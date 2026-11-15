@@ -17,6 +17,8 @@
  * more details.
  */
 
+use Somethingwithproof\Hpcsched\FixedClock;
+use Somethingwithproof\Hpcsched\HealthWarnings;
 use Somethingwithproof\Hpcsched\Pages;
 use Somethingwithproof\Hpcsched\Schema;
 use Somethingwithproof\Hpcsched\Settings;
@@ -29,6 +31,40 @@ it('applies documented defaults to settings that were never saved', function () 
 		->and($settings->callTimeout)->toBe(Settings::DEFAULT_CALL_TIMEOUT)
 		->and($settings->maxOutputBytes())->toBe(Settings::DEFAULT_MAX_OUTPUT * 1048576)
 		->and($settings->keepTablesOnUninstall)->toBeTrue();
+});
+
+it('fits the answer size to the reader memory and warns when the setting is larger', function () {
+	$fit = static fn (array $row): Settings => Settings::fromRow($row);
+
+	expect($fit([])->fittedOutputMib())->toBe(64)
+		->and($fit(['hpcsched_max_output' => '128'])->fittedOutputMib())->toBe(80)
+		->and($fit(['hpcsched_max_output' => '128'])->maxOutputBytes())->toBe(80 * 1048576)
+		->and($fit(['hpcsched_max_output' => '128', 'hpcsched_reader_memory' => '2048'])->fittedOutputMib())->toBe(128)
+		->and($fit(['hpcsched_max_output' => '1024', 'hpcsched_reader_memory' => '100'])->readerMemoryMib)->toBe(Settings::DEFAULT_READER_MEMORY)
+		->and($fit(['hpcsched_max_output' => '1024', 'hpcsched_reader_memory' => '256'])->fittedOutputMib())->toBe(16)
+		->and($fit([])->withMemoryLimit(512 * 1048576)->fittedOutputMib())->toBe(37)
+		->and($fit([])->withMemoryLimit(-1))->toEqual($fit([]))
+		->and($fit([])->withMemoryLimit(4096 * 1048576))->toEqual($fit([]))
+		->and(HealthWarnings::global($fit([])))->toBe([])
+		->and(implode('', HealthWarnings::global($fit(['hpcsched_max_output' => '128']))))->toContain('Maximum Answer Size is 128 MiB')
+		->and(implode('', HealthWarnings::global($fit(['hpcsched_max_output' => '128']))))->toContain('the reader allows 80 MiB');
+});
+
+it('records a run that ran out of memory and frees its lease and process slot', function () {
+	$GLOBALS['__hpcsched_db_exec']      = [];
+	$GLOBALS['__hpcsched_log']          = [];
+	$GLOBALS['__hpcsched_unregistered'] = [];
+
+	hpcsched_record_memory_failure(3, 'reader-1-ab', new FixedClock(100000));
+
+	$sql = array_column($GLOBALS['__hpcsched_db_exec'], 'sql');
+
+	expect($sql[0])->toContain('UPDATE plugin_hpcsched_run SET finished_at')
+		->and($GLOBALS['__hpcsched_db_exec'][0]['params'])->toContain('memory')
+		->and($GLOBALS['__hpcsched_db_exec'][0]['params'])->toContain('failed')
+		->and($sql[1])->toContain('SET lease_expires = 0')
+		->and($GLOBALS['__hpcsched_unregistered'])->toBe([['hpcsched', 'reader', 3]])
+		->and(json_encode($GLOBALS['__hpcsched_log']))->toContain('ran out of memory');
 });
 
 it('turns the memory limit off only when the prlimit path was saved empty', function () {

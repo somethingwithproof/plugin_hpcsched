@@ -36,6 +36,7 @@ enum ErrorClass: string {
 	case NotModified = 'not_modified';
 	case Refused     = 'refused';
 	case Failed      = 'failed';
+	case Memory      = 'memory';
 
 	public function message(): string {
 		return match ($this) {
@@ -50,6 +51,7 @@ enum ErrorClass: string {
 			self::NotModified => __('the server answered 304 to a request that was not conditional; previous data kept', 'hpcsched'),
 			self::Refused     => __('the plugin refused a call outside its allowlist', 'hpcsched'),
 			self::Failed      => __('the call failed', 'hpcsched'),
+			self::Memory      => __('the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings', 'hpcsched'),
 		};
 	}
 

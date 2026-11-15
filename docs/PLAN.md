@@ -410,6 +410,8 @@ Disabling the plugin stops jobs and leaves devices, graphs, and Maint schedules 
 
 Capacity is stated in clusters, nodes, jobs, and series. Fixtures cover 1,000 and 10,000 nodes and 10,000 and 100,000 jobs on documented hardware.
 
+**Milestone 2: memory.** Decoding a JSON answer took about 10 times its text size in PHP arrays for synthetic job records with Slurm's shape (PHP 8.5, measured locally); with the text itself the reader budgets 12 times. The answer size the reader allows is the smaller of Maximum Answer Size and (Collection Memory - 64 MiB) / 12, and the health page warns when the configured size is larger. With the 1024 MiB default that is 80 MiB per answer, which a 100,000 job queue with full records may exceed; the section then fails as too large rather than reporting zero. A run that runs out of memory anyway is recorded as failed with the memory error class by a shutdown function.
+
 Series arithmetic for one cluster with 50 partitions and 15 reason families, from the template design (not measured):
 
 - Per partition, four RRD files (jobs by state, pending by reason, nodes by state, utilization) holding 25 values in total with 11 reason families (29 with 15; the family count is decision #12), so 200 RRD files and 1,250 (or 1,450) values for 50 partitions, plus a handful of cluster-level files. Revision 1 said about 31 values and 1,550, which the plan's own lists do not reproduce.

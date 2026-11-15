@@ -237,6 +237,10 @@ msgstr ""
 msgid "the call failed"
 msgstr ""
 
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr ""
+
 #: lib/Format.php lib/OverviewPage.php
 msgid "Never"
 msgstr ""
@@ -318,6 +322,10 @@ msgid "Slurm"
 msgstr ""
 
 #: lib/HealthPage.php
+msgid "All clusters"
+msgstr ""
+
+#: lib/HealthPage.php
 msgid "Warnings"
 msgstr ""
 
@@ -351,6 +359,11 @@ msgstr ""
 
 #: lib/HealthPage.php
 msgid "Section"
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
 msgstr ""
 
 #: lib/HealthWarnings.php
@@ -612,7 +625,15 @@ msgid "Maximum Answer Size"
 msgstr ""
 
 #: lib/Settings.php
-msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed."
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr ""
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr ""
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
 msgstr ""
 
 #: lib/Settings.php

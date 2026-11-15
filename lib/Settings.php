@@ -44,6 +44,7 @@ final readonly class Settings {
 		'hpcsched_data_parser',
 		'hpcsched_token_dirs',
 		'hpcsched_rest_hosts',
+		'hpcsched_reader_memory',
 	];
 
 	public const DEFAULT_SQUEUE        = '/usr/bin/squeue';
@@ -52,7 +53,18 @@ final readonly class Settings {
 	public const DEFAULT_PRLIMIT       = '/usr/bin/prlimit';
 	public const DEFAULT_CHILD_MEMORY  = 2048;
 	public const DEFAULT_CALL_TIMEOUT  = 30;
-	public const DEFAULT_MAX_OUTPUT    = 128;
+	public const DEFAULT_MAX_OUTPUT    = 64;
+	public const DEFAULT_READER_MEMORY = 1024;
+
+	/**
+	 * Memory one MiB of scheduler answer needs in the reader: the text
+	 * itself plus its decoded arrays, which measured about 10 times the text
+	 * for job records shaped like Slurm's, with headroom.
+	 */
+	public const DECODE_RATIO = 12;
+
+	/** MiB the reader keeps for everything other than one decoded answer. */
+	public const MEMORY_RESERVE = 64;
 	public const DEFAULT_TOKEN_WARNING = 3600;
 
 	public function __construct(
@@ -70,6 +82,7 @@ final readonly class Settings {
 		public array $tokenDirs = [],
 		/** @var list<string> */
 		public array $restHosts = [],
+		public int $readerMemoryMib = self::DEFAULT_READER_MEMORY,
 	) {
 	}
 
@@ -96,7 +109,31 @@ final readonly class Settings {
 			dataParser: DataParser::supported(Row::string($row, 'hpcsched_data_parser')) ? Row::string($row, 'hpcsched_data_parser') : DataParser::DEFAULT_VERSION,
 			tokenDirs: self::directories(Row::string($row, 'hpcsched_token_dirs')),
 			restHosts: self::hosts(Row::string($row, 'hpcsched_rest_hosts')),
+			readerMemoryMib: min(Row::int($row, 'hpcsched_reader_memory', self::DEFAULT_READER_MEMORY, 256), 65536),
 		);
+	}
+
+	/**
+	 * The answer size the reader actually allows: the configured maximum,
+	 * lowered so one decoded answer fits in the reader memory with the
+	 * reserve left over. A run that cannot fit an answer fails that section
+	 * as too large instead of running out of memory.
+	 */
+	public function fittedOutputMib(): int {
+		return max(1, min($this->maxOutputMib, intdiv($this->readerMemoryMib - self::MEMORY_RESERVE, self::DECODE_RATIO)));
+	}
+
+	/**
+	 * A copy for a reader whose memory limit, in bytes (-1 for none), is
+	 * lower than the configured reader memory, as when the limit could not
+	 * be raised.
+	 */
+	public function withMemoryLimit(int $bytes): self {
+		if ($bytes < 0 || $bytes >= $this->readerMemoryMib * 1048576) {
+			return $this;
+		}
+
+		return new self($this->squeue, $this->scontrol, $this->sshare, $this->prlimit, $this->childMemoryMib, $this->callTimeout, $this->maxOutputMib, $this->tokenWarning, $this->keepTablesOnUninstall, $this->dataParser, $this->tokenDirs, $this->restHosts, intdiv($bytes, 1048576));
 	}
 
 	/**
@@ -156,7 +193,7 @@ final readonly class Settings {
 	}
 
 	public function maxOutputBytes(): int {
-		return $this->maxOutputMib * 1048576;
+		return $this->fittedOutputMib() * 1048576;
 	}
 
 	/**
@@ -222,7 +259,8 @@ final readonly class Settings {
 				'method'        => 'spacer',
 			],
 			'hpcsched_call_timeout'  => $number(__('Call Timeout', 'hpcsched'), __('Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either.', 'hpcsched'), self::DEFAULT_CALL_TIMEOUT, 2, 300),
-			'hpcsched_max_output'    => $number(__('Maximum Answer Size', 'hpcsched'), __('MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed.', 'hpcsched'), self::DEFAULT_MAX_OUTPUT, 1, 1024),
+			'hpcsched_max_output'    => $number(__('Maximum Answer Size', 'hpcsched'), __('MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger.', 'hpcsched'), self::DEFAULT_MAX_OUTPUT, 1, 1024),
+			'hpcsched_reader_memory' => $number(__('Collection Memory', 'hpcsched'), __('MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB.', 'hpcsched'), self::DEFAULT_READER_MEMORY, 256, 65536),
 			'hpcsched_prlimit'       => $path(__('prlimit', 'hpcsched'), __('Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns.', 'hpcsched'), self::DEFAULT_PRLIMIT),
 			'hpcsched_child_memory'  => $number(__('Command Memory Limit', 'hpcsched'), __('MiB of address space each client command may use, through prlimit.', 'hpcsched'), self::DEFAULT_CHILD_MEMORY, 64, 65536),
 			'hpcsched_header_credentials' => [

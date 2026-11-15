@@ -181,5 +181,11 @@ $GLOBALS['config'] = [
 	'is_web'       => false,
 ];
 
+if (!function_exists('unregister_process')) {
+	function unregister_process($tasktype, $taskname, $taskid = 0, $pid = 0) {
+		$GLOBALS['__hpcsched_unregistered'][] = [$tasktype, $taskname, $taskid];
+	}
+}
+
 require_once dirname(__DIR__) . '/setup.php';
 require_once dirname(__DIR__) . '/include/autoload.php';

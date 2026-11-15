@@ -26,6 +26,21 @@ namespace Somethingwithproof\Hpcsched;
  */
 final class HealthWarnings {
 	/**
+	 * Warnings that concern every cluster, from the settings alone.
+	 *
+	 * @return list<string>
+	 */
+	public static function global(Settings $settings): array {
+		$out = [];
+
+		if ($settings->fittedOutputMib() < $settings->maxOutputMib) {
+			$out[] = __('Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings.', $settings->maxOutputMib, $settings->readerMemoryMib, $settings->fittedOutputMib(), 'hpcsched');
+		}
+
+		return $out;
+	}
+
+	/**
 	 * @return list<string>
 	 */
 	public static function for(Cluster $cluster, ?ClusterRun $run, Freshness $freshness, Settings $settings, int $pollerInterval, int $now): array {
