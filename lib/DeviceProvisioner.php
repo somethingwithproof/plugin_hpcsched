@@ -111,13 +111,15 @@ final class DeviceProvisioner {
 	}
 
 	/**
-	 * Create a device for a cluster that has none and attach the plugin's
-	 * objects. Returns the new device id, or 0 with the reason logged.
+	 * Create a device for a cluster that has none, or whose device no longer
+	 * exists, and attach the plugin's objects. Returns the new device id, or
+	 * 0 with the reason logged. When another request mapped the cluster
+	 * first, the device made here is removed again.
 	 */
 	public function create(Cluster $cluster, bool $partitionGraphs): int {
 		$templateId = $this->objects->deviceTemplateId();
 
-		if ($templateId === 0 || $cluster->hostId > 0) {
+		if ($templateId === 0 || ($cluster->hostId > 0 && $this->objects->device($cluster->hostId) !== null)) {
 			return 0;
 		}
 
@@ -133,8 +135,9 @@ final class DeviceProvisioner {
 			return 0;
 		}
 
-		if (!$this->clusters->mapHost($cluster->id, $hostId)) {
-			Log::error(sprintf('Device %d was created for cluster %d but could not be mapped', $hostId, $cluster->id));
+		if (!$this->clusters->mapHost($cluster->id, $hostId, $cluster->hostId)) {
+			api_device_remove($hostId);
+			Log::error(sprintf('Cluster %d was mapped by another request; device %d created for it was removed again', $cluster->id, $hostId));
 
 			return 0;
 		}
@@ -149,7 +152,7 @@ final class DeviceProvisioner {
 	 * The device's own settings, poller included, are left alone.
 	 */
 	public function map(Cluster $cluster, int $hostId, bool $partitionGraphs): bool {
-		if ($this->objects->device($hostId) === null || !$this->clusters->mapHost($cluster->id, $hostId)) {
+		if ($this->objects->device($hostId) === null || !$this->clusters->mapHost($cluster->id, $hostId, $cluster->hostId)) {
 			return false;
 		}
 

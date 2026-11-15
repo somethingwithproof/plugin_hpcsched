@@ -121,13 +121,13 @@ switch ($hpcsched_action) {
 		if ($hpcsched_devices->refusal() !== null) {
 			raise_message('hpcsched_device', $hpcsched_devices->refusal(), MESSAGE_LEVEL_ERROR);
 		} elseif ($hpcsched_action === 'create_device') {
-			$hpcsched_ok = $hpcsched_cluster->hostId === 0 && $hpcsched_devices->create($hpcsched_cluster, $hpcsched_graphs) > 0;
-			raise_message('hpcsched_device', $hpcsched_ok ? __('The device and its graphs were created.', 'hpcsched') : __('The device was not created. See the Cacti log.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
+			$hpcsched_ok = $hpcsched_access->unmapped($hpcsched_cluster) && $hpcsched_devices->create($hpcsched_cluster, $hpcsched_graphs) > 0;
+			raise_message('hpcsched_device', $hpcsched_ok ? __('The device and its graphs were created.', 'hpcsched') : __('The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
 		} elseif ($hpcsched_action === 'map_device') {
 			$hpcsched_host = (int) get_filter_request_var('host_id');
-			$hpcsched_ok   = $hpcsched_cluster->hostId === 0 && $hpcsched_access->device($hpcsched_host) && $hpcsched_devices->map($hpcsched_cluster, $hpcsched_host, $hpcsched_graphs);
-			raise_message('hpcsched_device', $hpcsched_ok ? __('The cluster was mapped to the device.', 'hpcsched') : __('The cluster was not mapped: the device does not exist, is not allowed to you, or already carries another cluster.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
-		} elseif ($hpcsched_cluster->hostId > 0) {
+			$hpcsched_ok   = $hpcsched_access->unmapped($hpcsched_cluster) && $hpcsched_access->device($hpcsched_host) && $hpcsched_devices->map($hpcsched_cluster, $hpcsched_host, $hpcsched_graphs);
+			raise_message('hpcsched_device', $hpcsched_ok ? __('The cluster was mapped to the device.', 'hpcsched') : __('The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
+		} elseif ($hpcsched_cluster->hostId > 0 && !$hpcsched_access->orphaned($hpcsched_cluster)) {
 			$hpcsched_devices->attach($hpcsched_cluster->id, $hpcsched_cluster->hostId, $hpcsched_graphs);
 			raise_message('hpcsched_device', __('Missing graphs were added.', 'hpcsched'), MESSAGE_LEVEL_INFO);
 		}
@@ -136,8 +136,8 @@ switch ($hpcsched_action) {
 		exit;
 	case 'unmap_device':
 		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
-		$hpcsched_clusters->mapHost($hpcsched_cluster->id, 0);
-		raise_message('hpcsched_device', __('The cluster was unmapped. The device and its graphs were kept.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		$hpcsched_ok      = $hpcsched_clusters->mapHost($hpcsched_cluster->id, 0, $hpcsched_cluster->hostId);
+		raise_message('hpcsched_device', $hpcsched_ok ? __('The cluster was unmapped. The device and its graphs were kept.', 'hpcsched') : __('The cluster was not unmapped: it was changed by someone else since the page was opened.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
 		header('Location: hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id);
 		exit;
 	case 'reindex_device':

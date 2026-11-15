@@ -163,6 +163,10 @@ final class ClustersPage {
 			return;
 		}
 
+		if ($cluster->hostId > 0) {
+			print '<tr><td class="textWarning">' . html_escape(__('The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping.', $cluster->hostId, 'hpcsched')) . '</td></tr>';
+		}
+
 		print '<tr><td><strong>' . html_escape(__('Creating a device adds:', 'hpcsched')) . '</strong></td></tr>';
 
 		foreach ($this->provisioner->plan($cluster, 0, true) as $line) {

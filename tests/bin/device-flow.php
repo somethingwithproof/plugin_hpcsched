@@ -196,6 +196,13 @@ try {
 	$provisioner->attach($cluster_id, $host_id, true);
 	flow_expect((int) db_fetch_cell_prepared('SELECT COUNT(*) FROM graph_local WHERE host_id = ?', array($host_id)) === 16, 'adding missing graphs again adds none');
 
+	// A request that loaded the cluster before it was mapped loses the race:
+	// the mapping stays, and the device it made is removed again.
+	$stale   = \Somethingwithproof\Hpcsched\Cluster::fromRow(array_merge(db_fetch_row_prepared('SELECT * FROM plugin_hpcsched_cluster WHERE id = ?', array($cluster_id)), array('host_id' => 0)));
+	$devices = (int) db_fetch_cell('SELECT COUNT(*) FROM host');
+	flow_expect($stale !== null && $provisioner->create($stale, false) === 0 && $clusters->get($cluster_id)->hostId === $host_id && (int) db_fetch_cell('SELECT COUNT(*) FROM host') === $devices, 'a create based on a stale cluster fails, keeps the mapping, and leaves no device behind');
+	flow_expect(!$clusters->mapHost($cluster_id, 0, 0) && $clusters->get($cluster_id)->hostId === $host_id, 'a mapping change based on a stale cluster changes nothing');
+
 	// Script server answers.
 	$cluster = flow_pairs(ss_hpcsched_cluster($host_id));
 	flow_expect(count($cluster) === 33 && $cluster['pending'] === '63' && $cluster['held'] === '1' && $cluster['running'] === '2' && $cluster['r_assoc'] === '50' && $cluster['cpus_alloc'] === '72' && $cluster['cpus_total'] === '384' && $cluster['cpu_util_pct'] === '18.75' && $cluster['node_util_pct'] === '25' && $cluster['n_drained'] === '2' && is_numeric($cluster['age']), 'the cluster input answers the fixture values');
@@ -251,6 +258,12 @@ try {
 	$deleted = $host_id;
 	$host_id = 0;
 	flow_expect($clusters->get($cluster_id) !== null && $clusters->get($cluster_id)->hostId === 0 && $clusters->findByHost($deleted) === null, 'deleting the device keeps the cluster and unmaps it');
+
+	// A device deleted while the hook could not run leaves the cluster mapped
+	// to a device that is gone; creating a device replaces that mapping.
+	db_execute_prepared('UPDATE plugin_hpcsched_cluster SET host_id = ? WHERE id = ?', array($deleted, $cluster_id));
+	$host_id = $provisioner->create($clusters->get($cluster_id), false);
+	flow_expect($host_id > 0 && $host_id !== $deleted && $clusters->get($cluster_id)->hostId === $host_id, 'a cluster whose device no longer exists gets a new device');
 } finally {
 	foreach (isset($others) ? $others : array() as $other) {
 		db_execute_prepared("UPDATE plugin_hpcsched_cluster SET admin_state = 'enabled' WHERE id = ?", array($other));

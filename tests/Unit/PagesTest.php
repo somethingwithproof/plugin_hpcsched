@@ -134,14 +134,40 @@ describe('device permissions (REQ-SEC-001, REQ-SEC-002)', function () {
 			->and($access->device(30))->toBeFalse();
 	});
 
-	it('treats a cluster whose device no longer exists as unmapped, so it cannot be lost to everyone', function () {
-		$cluster = (new ClusterRepository(false, new FixedClock(100000)))->all()[2];
-		$gone    = new DeviceAccess(static fn (int $id): bool => false, static fn (int $id): bool => $id !== 30);
-		$there   = new DeviceAccess(static fn (int $id): bool => false, static fn (int $id): bool => true);
+	it('leaves a cluster whose device no longer exists to administrators, who can give it a device again', function () {
+		$clusters = (new ClusterRepository(false, new FixedClock(100000)))->all();
+		$cluster  = $clusters[2];
+		$gone     = new DeviceAccess(static fn (int $id): bool => false, static fn (int $id): bool => $id !== 30, true);
+		$viewer   = new DeviceAccess(static fn (int $id): bool => false, static fn (int $id): bool => $id !== 30);
+		$there    = new DeviceAccess(static fn (int $id): bool => false, static fn (int $id): bool => true, true);
 
 		expect($gone->cluster($cluster))->toBeTrue()
+			->and($gone->orphaned($cluster))->toBeTrue()
+			->and($gone->unmapped($cluster))->toBeTrue()
+			->and($gone->device(30))->toBeFalse()
+			// No device permission is left to check, so the View realm alone does not see it.
+			->and($viewer->cluster($cluster))->toBeFalse()
+			->and($viewer->unmapped($cluster))->toBeFalse()
+			// A device that exists but is denied keeps the cluster hidden, administrators included.
 			->and($there->cluster($cluster))->toBeFalse()
-			->and($gone->device(30))->toBeFalse();
+			->and($there->unmapped($cluster))->toBeFalse()
+			->and($gone->unmapped($clusters[0]))->toBeTrue()
+			->and($gone->unmapped($clusters[1]))->toBeFalse();
+	});
+
+	it('offers Create Device and Map Device for a cluster whose device no longer exists, and says why', function () {
+		$clock = new FixedClock(100000);
+		$GLOBALS['__hpcsched_db_rows']['WHERE hash = ?'] = [['id' => 9]];
+		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_partition'] = [];
+		$GLOBALS['__hpcsched_db_rows']['FROM graph_local'] = [['n' => 0]];
+		$GLOBALS['__hpcsched_db_rows']['FROM host_snmp_query'] = [['n' => 0]];
+		$GLOBALS['__hpcsched_db_rows']['ORDER BY description, id'] = [['id' => 40, 'description' => 'spare']];
+		$html = hpcsched_render(fn () => hpcsched_clusters_page($clock, hpcsched_access(40))->renderDevice((new ClusterRepository(false, $clock))->all()[2]));
+
+		expect($html)->toContain('still mapped to device 30, which no longer exists')
+			->and($html)->toContain('value="create_device"')
+			->and($html)->toContain('value="map_device"')
+			->and($html)->not->toContain('unmap_device');
 	});
 
 	it('leaves clusters on denied devices out of the list, the export, the overview, and the health page', function () {

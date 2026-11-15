@@ -41,15 +41,7 @@ msgid "The device and its graphs were created."
 msgstr ""
 
 #: hpcsched_clusters.php
-msgid "The device was not created. See the Cacti log."
-msgstr ""
-
-#: hpcsched_clusters.php
 msgid "The cluster was mapped to the device."
-msgstr ""
-
-#: hpcsched_clusters.php
-msgid "The cluster was not mapped: the device does not exist, is not allowed to you, or already carries another cluster."
 msgstr ""
 
 #: hpcsched_clusters.php
@@ -992,4 +984,20 @@ msgstr ""
 
 #: setup.php
 msgid "Management"
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
 msgstr ""

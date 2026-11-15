@@ -400,7 +400,8 @@ function hpcsched_device_access(): \Somethingwithproof\Hpcsched\DeviceAccess {
 		},
 		function (int $host_id) use ($objects): bool {
 			return $objects->device($host_id) !== null;
-		}
+		},
+		api_plugin_user_realm_auth('hpcsched_clusters.php') === true
 	);
 }
 

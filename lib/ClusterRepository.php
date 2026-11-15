@@ -66,10 +66,20 @@ final class ClusterRepository {
 	/**
 	 * Map a cluster to a device, unless another cluster has that device: a
 	 * device carries one cluster's graphs. 0 unmaps.
+	 *
+	 * A compare-and-set: the mapping changes only while the stored device is
+	 * still $expected, the one the request loaded, so of two requests that
+	 * loaded the same cluster only one wins and the other gets false.
 	 */
-	public function mapHost(int $id, int $hostId): bool {
-		$ok = db_execute_prepared('UPDATE plugin_hpcsched_cluster SET host_id = ?, updated_at = GREATEST(updated_at + 1, ?)
-			WHERE id = ? AND (? = 0 OR NOT EXISTS (SELECT 1 FROM (SELECT id FROM plugin_hpcsched_cluster WHERE host_id = ? AND id <> ?) AS other))', [$hostId, $this->clock->now(), $id, $hostId, $hostId, $id], true, $this->connection);
+	public function mapHost(int $id, int $hostId, int $expected): bool {
+		$ok = db_execute_prepared(
+			'UPDATE plugin_hpcsched_cluster SET host_id = ?, updated_at = GREATEST(updated_at + 1, ?)
+			WHERE id = ? AND host_id = ?
+			AND (? = 0 OR NOT EXISTS (SELECT 1 FROM (SELECT id FROM plugin_hpcsched_cluster WHERE host_id = ? AND id <> ?) AS other))',
+			[$hostId, $this->clock->now(), $id, $expected, $hostId, $hostId, $id],
+			true,
+			$this->connection
+		);
 
 		return $ok !== false && db_affected_rows($this->connection) === 1;
 	}

@@ -31,15 +31,22 @@ namespace Somethingwithproof\Hpcsched;
  * changes it, before any write, mapping, reindex, or provisioning; mapping
  * also checks the device it maps to. Lists, the export, and the health page
  * show only clusters that pass.
+ *
+ * A cluster still mapped to a device that no longer exists (deleted while
+ * the plugin's device_remove hook could not run) has no device permission
+ * left to check. It is left to users with the Admin realm, who can see it
+ * and give it a device again; the View realm does not see it.
  */
 final class DeviceAccess {
 	/**
 	 * @param \Closure(int): bool      $deviceAllowed Cacti's is_device_allowed() for the current user
 	 * @param \Closure(int): bool|null $deviceExists  whether the device is still in Cacti
+	 * @param bool                     $admin         whether the user has the Admin realm
 	 */
 	public function __construct(
 		private readonly \Closure $deviceAllowed,
 		private readonly ?\Closure $deviceExists = null,
+		private readonly bool $admin = false,
 	) {
 	}
 
@@ -47,11 +54,6 @@ final class DeviceAccess {
 		return $hostId > 0 && ($this->deviceAllowed)($hostId) === true;
 	}
 
-	/**
-	 * A cluster whose device was deleted while the plugin's device_remove
-	 * hook could not run (the plugin disabled) counts as unmapped, so it
-	 * cannot become invisible to everyone.
-	 */
 	public function cluster(?Cluster $cluster): bool {
 		if ($cluster === null) {
 			return false;
@@ -61,7 +63,23 @@ final class DeviceAccess {
 			return true;
 		}
 
-		return $this->deviceExists !== null && ($this->deviceExists)($cluster->hostId) === false;
+		return $this->admin && $this->orphaned($cluster);
+	}
+
+	/**
+	 * Whether the cluster's device was deleted while the plugin's
+	 * device_remove hook could not run (the plugin disabled).
+	 */
+	public function orphaned(Cluster $cluster): bool {
+		return $cluster->hostId > 0 && $this->deviceExists !== null && ($this->deviceExists)($cluster->hostId) === false;
+	}
+
+	/**
+	 * Whether a device may be created for the cluster or mapped to it: it
+	 * has none, or (for an administrator) the one it had is gone.
+	 */
+	public function unmapped(Cluster $cluster): bool {
+		return $cluster->hostId === 0 || ($this->admin && $this->orphaned($cluster));
 	}
 
 	/**
