@@ -1,0 +1,13 @@
+{
+    "_fixture": "synthetic: a response whose errors list is not empty",
+    "jobs": [],
+    "errors": [
+        {
+            "description": "Unable to query jobs",
+            "error_number": 1007,
+            "error": "Access\/permission denied",
+            "source": "fixture"
+        }
+    ],
+    "warnings": []
+}

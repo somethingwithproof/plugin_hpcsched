@@ -1,0 +1,178 @@
+{
+    "_fixture": "synthetic fixture for Slurm 26.05.0, data parser v0.0.43; written from the parser field names in docs/research/slurm-client-output.md, not captured from a cluster",
+    "nodes": [
+        {
+            "name": "n01",
+            "hostname": "n01",
+            "address": "10.0.0.1",
+            "state": [
+                "IDLE"
+            ],
+            "reason": "",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 0
+            },
+            "partitions": "batch",
+            "cpus": 64,
+            "alloc_cpus": 0
+        },
+        {
+            "name": "n02",
+            "hostname": "n02",
+            "address": "10.0.0.2",
+            "state": [
+                "ALLOCATED"
+            ],
+            "reason": "",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 0
+            },
+            "partitions": "batch",
+            "cpus": 64,
+            "alloc_cpus": 64
+        },
+        {
+            "name": "n03",
+            "hostname": "n03",
+            "address": "10.0.0.3",
+            "state": [
+                "DOWN",
+                "DRAIN",
+                "NOT_RESPONDING"
+            ],
+            "reason": "bad DIMM <b>",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 1794700000
+            },
+            "partitions": "batch",
+            "cpus": 64,
+            "alloc_cpus": 0
+        },
+        {
+            "name": "n04",
+            "hostname": "n04",
+            "address": "10.0.0.4",
+            "state": [
+                "MIXED",
+                "DRAIN"
+            ],
+            "reason": "maintenance",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 1794700100
+            },
+            "partitions": "batch,gpu",
+            "cpus": 64,
+            "alloc_cpus": 8
+        },
+        {
+            "name": "g01",
+            "hostname": "g01",
+            "address": "10.0.1.1",
+            "state": [
+                "IDLE",
+                "DRAIN"
+            ],
+            "reason": "firmware",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 1794700200
+            },
+            "partitions": "gpu",
+            "cpus": 32,
+            "alloc_cpus": 0
+        },
+        {
+            "name": "g02",
+            "hostname": "g02",
+            "address": "10.0.1.2",
+            "state": [
+                "IDLE",
+                "POWERED_DOWN"
+            ],
+            "reason": "",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 0
+            },
+            "partitions": "gpu",
+            "cpus": 32,
+            "alloc_cpus": 0
+        },
+        {
+            "name": "g03",
+            "hostname": "g03",
+            "address": "10.0.1.3",
+            "state": [
+                "IDLE",
+                "MAINTENANCE",
+                "RESERVED"
+            ],
+            "reason": "",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 0
+            },
+            "partitions": "gpu",
+            "cpus": 32,
+            "alloc_cpus": 0
+        },
+        {
+            "name": "g04",
+            "hostname": "g04",
+            "address": "10.0.1.4",
+            "state": [
+                "FUTURE_STATE_X"
+            ],
+            "reason": "",
+            "reason_changed_at": {
+                "set": true,
+                "infinite": false,
+                "number": 0
+            },
+            "partitions": "gpu",
+            "cpus": 32,
+            "alloc_cpus": 0
+        }
+    ],
+    "last_update": {
+        "set": true,
+        "infinite": false,
+        "number": 1794790000
+    },
+    "meta": {
+        "plugin": {
+            "type": "openapi/slurmctld",
+            "name": "Slurm OpenAPI slurmctld",
+            "data_parser": "data_parser/v0.0.43",
+            "accounting_storage": ""
+        },
+        "client": {
+            "source": "fixture",
+            "user": "cactiread",
+            "group": "cactiread"
+        },
+        "command": [],
+        "slurm": {
+            "version": {
+                "major": "26",
+                "micro": "0",
+                "minor": "05"
+            },
+            "release": "26.05.0",
+            "cluster": "demo"
+        }
+    },
+    "errors": [],
+    "warnings": []
+}

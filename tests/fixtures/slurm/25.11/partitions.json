@@ -1,0 +1,65 @@
+{
+    "_fixture": "synthetic fixture for Slurm 25.11.2, data parser v0.0.43; written from the parser field names in docs/research/slurm-client-output.md, not captured from a cluster",
+    "partitions": [
+        {
+            "name": "batch",
+            "partition": {
+                "state": [
+                    "UP"
+                ]
+            },
+            "nodes": {
+                "total": 4,
+                "configured": "n[01-04]"
+            },
+            "cpus": {
+                "total": 256
+            }
+        },
+        {
+            "name": "gpu",
+            "partition": {
+                "state": [
+                    "UP"
+                ]
+            },
+            "nodes": {
+                "total": 5,
+                "configured": "n04,g[01-04]"
+            },
+            "cpus": {
+                "total": 192
+            }
+        }
+    ],
+    "last_update": {
+        "set": true,
+        "infinite": false,
+        "number": 1794790000
+    },
+    "meta": {
+        "plugin": {
+            "type": "openapi/slurmctld",
+            "name": "Slurm OpenAPI slurmctld",
+            "data_parser": "data_parser/v0.0.43",
+            "accounting_storage": ""
+        },
+        "client": {
+            "source": "fixture",
+            "user": "cactiread",
+            "group": "cactiread"
+        },
+        "command": [],
+        "slurm": {
+            "version": {
+                "major": "25",
+                "micro": "2",
+                "minor": "11"
+            },
+            "release": "25.11.2",
+            "cluster": "demo"
+        }
+    },
+    "errors": [],
+    "warnings": []
+}

@@ -1,0 +1,57 @@
+#!/bin/sh
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+# SPDX-License-Identifier: GPL-2.0-or-later
+#
+# This file is part of plugin_hpcsched, a plugin for Cacti.
+# https://github.com/somethingwithproof/plugin_hpcsched
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+# more details.
+
+# Stand-in for a Slurm client command in tests; it never contacts a cluster.
+# The file SLURM_CONF names holds the scenario on line 1 and the fixture
+# directory on line 2. squeue, scontrol, and sshare are this one script.
+set -u
+
+scenario=$(sed -n 1p "$SLURM_CONF")
+dir=$(sed -n 2p "$SLURM_CONF")
+
+case "$(basename "$0")" in
+	squeue) section=jobs ;;
+	sshare) section=shares ;;
+	*)
+		case "${3:-}" in
+			node) section=nodes ;;
+			partition) section=partitions ;;
+			reservation) section=reservations ;;
+			*) echo "unexpected scontrol arguments" >&2; exit 2 ;;
+		esac
+		;;
+esac
+
+# Every call records its argument vector and environment, one value per line.
+printf '%s\n' "$(basename "$0")" "$@" >> "$dir/calls.txt"
+env | sort > "$dir/env-$section.txt"
+
+case "$scenario" in
+	ok) exec cat "$dir/$section.json" ;;
+	hang) exec sleep 30 ;;
+	flood) exec cat /dev/zero ;;
+	unreachable) echo "squeue: error: Unable to contact slurm controller (connect failure)" >&2; exit 1 ;;
+	ratelimit) echo "error: Rate limit exceeded, please retry momentarily" >&2; exit 1 ;;
+	parser) echo "error: data_parser plugin v0.0.43 output not supported" >&2; exit 1 ;;
+	stderr-secret) echo "SLURM_JWT=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjF9.c2ln leaked" >&2; exit 1 ;;
+	fail-jobs) [ "$section" = jobs ] && { echo "boom" >&2; exit 1; }; exec cat "$dir/$section.json" ;;
+	# Kills the reader that started it once the jobs section is read, so the
+	# run dies part way with its lease held. prlimit execs the command, so
+	# the parent is the reader itself.
+	kill-reader) [ "$section" = nodes ] && { kill -9 "$PPID"; sleep 5; }; exec cat "$dir/$section.json" ;;
+	*) echo "unknown scenario" >&2; exit 2 ;;
+esac

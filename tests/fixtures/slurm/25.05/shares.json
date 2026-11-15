@@ -1,0 +1,116 @@
+{
+    "_fixture": "synthetic fixture for Slurm 25.05.4, data parser v0.0.43; written from the parser field names in docs/research/slurm-client-output.md, not captured from a cluster",
+    "shares": {
+        "shares": [
+            {
+                "id": 1,
+                "cluster": "demo",
+                "name": "root",
+                "parent": "",
+                "partition": "",
+                "shares_normalized": 1,
+                "shares": 1,
+                "usage_normalized": 1,
+                "usage": 5000000,
+                "effective_usage": 1,
+                "fairshare": {
+                    "factor": 0.5,
+                    "level": 1
+                },
+                "type": [
+                    "ASSOCIATION"
+                ]
+            },
+            {
+                "id": 2,
+                "cluster": "demo",
+                "name": "physics",
+                "parent": "root",
+                "partition": "",
+                "shares_normalized": 0.5,
+                "shares": 1,
+                "usage_normalized": 0.75,
+                "usage": 3750000,
+                "effective_usage": 0.75,
+                "fairshare": {
+                    "factor": 0.25,
+                    "level": 0.6667
+                },
+                "type": [
+                    "ASSOCIATION"
+                ]
+            },
+            {
+                "id": 3,
+                "cluster": "demo",
+                "name": "alice",
+                "parent": "physics",
+                "partition": "",
+                "shares_normalized": 1,
+                "shares": 1,
+                "usage_normalized": 0.75,
+                "usage": 3750000,
+                "effective_usage": 0.75,
+                "fairshare": {
+                    "factor": 0.25,
+                    "level": 1
+                },
+                "type": [
+                    "USER"
+                ]
+            },
+            {
+                "id": 4,
+                "cluster": "demo",
+                "name": "chem",
+                "parent": "root",
+                "partition": "",
+                "shares_normalized": 0.5,
+                "shares": 1,
+                "usage_normalized": {
+                    "set": false,
+                    "infinite": false,
+                    "number": 0
+                },
+                "usage": 0,
+                "effective_usage": 0,
+                "fairshare": {
+                    "factor": 1,
+                    "level": {
+                        "set": false,
+                        "infinite": true,
+                        "number": 0
+                    }
+                },
+                "type": [
+                    "ASSOCIATION"
+                ]
+            }
+        ]
+    },
+    "meta": {
+        "plugin": {
+            "type": "openapi/slurmctld",
+            "name": "Slurm OpenAPI slurmctld",
+            "data_parser": "data_parser/v0.0.43",
+            "accounting_storage": ""
+        },
+        "client": {
+            "source": "fixture",
+            "user": "cactiread",
+            "group": "cactiread"
+        },
+        "command": [],
+        "slurm": {
+            "version": {
+                "major": "25",
+                "micro": "4",
+                "minor": "05"
+            },
+            "release": "25.05.4",
+            "cluster": "demo"
+        }
+    },
+    "errors": [],
+    "warnings": []
+}

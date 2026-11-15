@@ -1,0 +1,29 @@
+; SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+; SPDX-License-Identifier: GPL-2.0-or-later
+;
+; This file is part of plugin_hpcsched, a plugin for Cacti.
+; https://github.com/somethingwithproof/plugin_hpcsched
+;
+; This program is free software; you can redistribute it and/or modify it
+; under the terms of the GNU General Public License as published by the Free
+; Software Foundation; either version 2 of the License, or (at your option)
+; any later version.
+;
+; This program is distributed in the hope that it will be useful, but WITHOUT
+; ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+; FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+; more details.
+
+; remote_poller:1 is what lets poller_bottom, and so the reader, run on a
+; remote collector (lib/plugins.php gates poller_bottom on it alone).
+; remote_collect:1 affects only hooks this plugin does not register; it is
+; declared as plugin_pfs does, so the collector role is stated either way.
+[info]
+name = hpcsched
+version = 0.1.0-dev
+longname = HPC Scheduler
+author = "Thomas Vincent (somethingwithproof)"
+email = thomasvincent@gmail.com
+homepage = https://github.com/somethingwithproof/plugin_hpcsched
+compat = 1.2.31
+capabilities = online_view:1, online_mgmt:1, offline_view:0, offline_mgmt:0, remote_collect:1, remote_poller:1

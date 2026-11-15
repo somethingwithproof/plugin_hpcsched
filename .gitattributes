@@ -1,2 +1,11 @@
 * text=auto eol=lf
 *.rrd binary
+
+# Development only: left out of release archives (git archive). The test
+# scripts also refuse to run outside the command line.
+/tests export-ignore
+/.github export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml export-ignore
+/phpunit-integration.xml export-ignore
+/.editorconfig export-ignore
