@@ -1,6 +1,6 @@
 # Cacti 1.2 HPC Scheduler Plugin Plan
 
-Status: proposal, revision 2 (2026-11-15). Revision 2 adds the documentation and source results of milestone 1 ([research index](#milestone-1-research-status)); items that need a cluster, accounts, or a remote collector are marked *live* and are not done. Nothing described here as a plugin capability exists yet. Statements about Slurm, Cacti core, Maint, and Thold describe upstream behavior and cite the document or source file that was checked, with the checked version or commit. Anything not checked is listed as an assumption and tracked as a research issue. Owner and estimates are not assigned; milestone 1 produces the estimates.
+Status: in development, plan revision 2 (2026-11-15). Revision 2 adds the documentation and source results of milestone 1 ([research index](#milestone-1-research-status)); items that need a cluster, accounts, or a remote collector are marked *live* and are not done. Nothing described here as a plugin capability is published yet. Statements about Slurm, Cacti core, Maint, and Thold describe upstream behavior and cite the document or source file that was checked, with the checked version or commit. Anything not checked is listed as an assumption and tracked as a research issue. Owner and estimates are not assigned; milestone 1 produces the estimates.
 
 `plugin_hpcsched` brings the state of an HPC batch scheduler into Cacti 1.2: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization, as ordinary Cacti devices, data sources, and graphs. Slurm is the first backend. PBS Pro, OpenPBS, and LSF are later backends behind the same interface. The plugin is read-only toward the scheduler.
 
@@ -548,4 +548,4 @@ Not scheduled; revisited after phase 1:
 
 ## Upstream process
 
-This repository holds the proposal and tracks its requirements as GitHub issues and milestones. Before code is proposed for the Cacti organization, open an issue there describing the problem, the phase plan, and the open decisions, and ask maintainers about the repository, name, test harness, and plugin-marked devices. Maint changes are proposed as issues on the Maint repository first, then as separate pull requests there. No Thold change is needed.
+This repository holds the plan and tracks its requirements as GitHub issues and milestones. Before code is proposed for the Cacti organization, open an issue there describing the problem, the phase plan, and the open decisions, and ask maintainers about the repository, name, test harness, and plugin-marked devices. Maint changes are proposed as issues on the Maint repository first, then as separate pull requests there. No Thold change is needed.
