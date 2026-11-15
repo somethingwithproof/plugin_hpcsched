@@ -16,7 +16,9 @@ Each cluster is assigned to one Cacti poller. That poller runs the reader and se
 - A cluster behind a separate network needs a full Cacti remote collector on that network.
 - Remote CLI jobs must state which database they write and handle the `offline` and `recovery` connection modes.
 - `remote_agent` authorizes callers by address, not cryptographically. Documentation requires https and a restricted poller network.
-- The plugin's `INFO` capabilities must match the hooks it needs on remote pollers; milestone 1 confirms which capabilities `poller_bottom` requires at 1.2.31.
+- The plugin's `INFO` capabilities must match the hooks it needs on remote pollers. Milestone 1 confirmed in source (2026-11-15, `release/1.2.31` and `1.2.x` at `e2d5c25`) that `poller_bottom` requires `remote_poller:1`, so the plugin declares that and not `remote_collect:1`; the `remote_agent` and `replicate_out` hooks are not capability-gated. A run on a real collector is still needed ([cacti-core.md](../research/cacti-core.md)).
+- `remote_agent` needs at least two enabled pollers, and on `1.2.x` authorizes by the TCP peer address, so a proxy in front of a collector must be registered as the poller.
+- Correction to the context above: core replicates only `plugin_config`, `plugin_hooks`, and `plugin_realms`; a plugin's own tables replicate only through the plugin's `replicate_out` callback.
 
 ## Alternatives rejected
 

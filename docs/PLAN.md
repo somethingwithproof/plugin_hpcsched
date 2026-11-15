@@ -1,6 +1,6 @@
 # Cacti 1.2 HPC Scheduler Plugin Plan
 
-Status: proposal, revision 1 (2026-11-14). Nothing described here as a plugin capability exists yet. Statements about Slurm, Cacti core, Maint, and Thold describe upstream behavior and cite the document or source file that was checked, with the checked version or commit. Anything not checked is listed as an assumption and tracked as a research issue. Owner and estimates are not assigned; milestone 1 produces the estimates.
+Status: proposal, revision 2 (2026-11-15). Revision 2 adds the documentation and source results of milestone 1 ([research index](#milestone-1-research-status)); items that need a cluster, accounts, or a remote collector are marked *live* and are not done. Nothing described here as a plugin capability exists yet. Statements about Slurm, Cacti core, Maint, and Thold describe upstream behavior and cite the document or source file that was checked, with the checked version or commit. Anything not checked is listed as an assumption and tracked as a research issue. Owner and estimates are not assigned; milestone 1 produces the estimates.
 
 `plugin_hpcsched` brings the state of an HPC batch scheduler into Cacti 1.2: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization, as ordinary Cacti devices, data sources, and graphs. Slurm is the first backend. PBS Pro, OpenPBS, and LSF are later backends behind the same interface. The plugin is read-only toward the scheduler.
 
@@ -11,7 +11,7 @@ Cluster administrators who run Cacti already graph the nodes: CPU, memory, netwo
 1. **Why is work not starting?** A queue can grow because resources are busy, because association or QOS limits are reached, because jobs are held, because of a dependency, or because nodes are drained. Slurm records a reason per pending job. Without it next to the node graphs, an operator sees full queues and idle nodes and cannot tell which is the cause.
 2. **Which nodes are out of service on purpose?** Drained nodes and maintenance reservations are planned absences. Thold does not know that, so it alerts on devices an administrator has already taken out of the queue, and administrators then create Maint schedules by hand.
 
-The Cacti organization hosts LSF-related plugins (`plugin_lsflog`, `plugin_cjobs`, `plugin_gridgmgmt`), and no Slurm plugin was found there (checked 2026-11-14). Whether the LSF plugins overlap with this plugin's later LSF backend is a research issue.
+The Cacti organization hosts LSF-related plugins (`plugin_lsflog`, `plugin_cjobs`, `plugin_gridgmgmt`), and no Slurm plugin was found there (checked 2026-11-14). Milestone 1 read all three: they attach to LSF RTM's `grid` plugin and tables, none graphs queue or node state, `plugin_cjobs` kills jobs (a write path this plugin does not have), and `plugin_gridgmgmt` is an empty repository. No overlap with the Slurm scope, and none that argues for a different name ([prior-art.md](research/prior-art.md)).
 
 The plugin closes these gaps by collecting one cached snapshot per cluster, graphing it through Cacti's own graph engine, and publishing values as polled data sources so Thold works unchanged. It maps scheduler nodes onto the Cacti devices that already exist, and it can place drained nodes and maintenance reservations into Maint. It reuses Cacti's permissions, remote data collectors, Thold, and Maint rather than building parallel versions.
 
@@ -58,7 +58,11 @@ Each phase ships to users. Later phases are re-estimated after the phase before 
 - Background work: `exec_background()` and `register_process_start()` ([lib/poller.php](https://github.com/Cacti/cacti/blob/release/1.2.31/lib/poller.php)).
 - Remote collectors: `call_remote_data_collector()` ([lib/functions.php](https://github.com/Cacti/cacti/blob/release/1.2.31/lib/functions.php)) and the `remote_agent` hook ([remote_agent.php](https://github.com/Cacti/cacti/blob/release/1.2.31/remote_agent.php)).
 
-Milestone 1 records any difference on the current `1.2.x` branch, whose in-development version is 1.2.32.
+Milestone 1 re-checked each signature at `release/1.2.31` and at `1.2.x` commit `e2d5c25` (2026-11-11): all match ([cacti-core.md](research/cacti-core.md)). Differences that matter:
+
+- `api_plugin_register_hook()` and `api_plugin_register_realm()` work only when the calling function's name contains `install`, `upgrade`, or `setup`, so call them from `plugin_hpcsched_install()` and `_upgrade()` directly, not from a class method.
+- `api_plugin_db_table_create()` skips an existing table on 1.2.31 and refreshes its schema on `1.2.x`; migrations do not depend on either.
+- `exec_background()` takes one executable path (the PHP binary) and an argument array; `1.2.x` shell-quotes the path, 1.2.31 does not; it reports no error when it cannot start. `register_process_start()` records the calling process, so the reader child calls it; it kills a holder past its timeout and returns true without mutual exclusion when the `processes` table is missing.
 
 **PHP.** The plugin requires PHP 8.2 or later, matching the Cacti 1.2.x floor. The `1.2.x` branch declares `"php": ">=8.2"` and pins Composer resolution to `platform.php: 8.2.0` ([branch composer.json](https://github.com/Cacti/cacti/blob/1.2.x/composer.json), [Cacti/cacti#8569](https://github.com/Cacti/cacti/pull/8569)). Release 1.2.31 declares `"php": ">=8.0"` ([release composer.json](https://github.com/Cacti/cacti/blob/release/1.2.31/composer.json)), so a 1.2.31 site can run PHP 8.0 or 8.1. Because Cacti includes plugin files on every request, a parse error in a plugin breaks the whole Cacti UI. Therefore ([ADR 0007](decisions/0007-php-82-floor-with-80-parse-guard.md)):
 
@@ -80,13 +84,15 @@ Code loaded after the check may use PHP language features through 8.2: `readonly
 | v0.0.44 | 25.11 | 27.11 |
 | v0.0.45 | 26.05 | 28.05 |
 
-The guide states that a parser's content stays the same between releases and that a new version is added for each major release. From the table, `v0.0.42` is present in 24.11, 25.05, 25.11, and 26.05, and is the only parser common to all four. Whether a given command or daemon accepts that parser, and whether older releases are worth supporting, is milestone 1 work.
+The guide states that a parser's content stays the same between releases and that a new version is added for each major release. Milestone 1 read the plugin directories at the newest tag of each release (24.11.7, 25.05.9, 25.11.9, 26.05.6) and the 26.11 release candidate: the table above matches source ([slurm-releases.md](research/slurm-releases.md)). Two corrections follow. `v0.0.42` is present in 24.11 to 26.05 but already absent from the 26.11 candidate, so the parser common to 25.05, 25.11, 26.05, and 26.11 is `v0.0.43` (removal scheduled 27.05); the plugin pins `v0.0.43` if 25.05 stays supported. The 26.11 candidate adds `v0.0.46`, which the lifecycle table does not list yet. All five client commands accept `--json` from 23.11 to 26.05, and `--json=list` prints the parsers a client has; an unpinned `--json` follows the client's own default, so the plugin always names a parser ([slurm-client-output.md](research/slurm-client-output.md)).
 
-**Plugin metadata.** `INFO` declares `compat = 1.2.31`. Its `capabilities` line must include whatever the plugin's hooks need on remote pollers. In `lib/plugins.php` at 1.2.31, the table of hooks for remote pollers lists `poller_bottom` as requiring `remote_poller` and `poller_output` as requiring `remote_collect`, so the final capability set is a milestone 1 item. `INFO` names the project's own homepage and author; it does not take its fields from other plugins.
+SchedMD's upgrade page gives end-of-support dates of May 2026 (24.11), November 2026 (25.05), May 2027 (25.11), and, for 26.05, "November 2028 (18 months)", which contradicts its own 18-month rule and is unverified. Distribution packages lag: Enterprise Linux 9 carries 22.05, Ubuntu 24.04 carries 23.11, Debian 13 carries 24.11, Enterprise Linux 10 and OpenHPC 4.2 carry 26.05. For those sites the format-output path is the only one that does not depend on a parser version; whether `--json` works at all on 22.05 was not checked.
+
+**Plugin metadata.** `INFO` declares `compat = 1.2.31`. Its `capabilities` line must include whatever the plugin's hooks need on remote pollers. In `lib/plugins.php` at 1.2.31, the table of hooks for remote pollers lists `poller_bottom` as requiring `remote_poller` and `poller_output` as requiring `remote_collect`, so the capability set is settled by milestone 1: `capabilities = online_view:1, online_mgmt:1, offline_view:0, offline_mgmt:0, remote_collect:0, remote_poller:1`. `remote_poller:1` lets `poller_bottom` run the reader on a remote collector; `remote_collect:1` is needed only for `poller_output` and `poller_top`, which the plugin does not hook. The `remote_agent` and `replicate_out` hooks are not capability-gated. Whether a collector runs the hook as described is *live* ([cacti-core.md](research/cacti-core.md)). `INFO` names the project's own homepage and author; it does not take its fields from other plugins.
 
 ## Upstream behavior the design depends on
 
-Each row is a milestone 1 test, because a change in any of them changes the design. "Checked" means the source was read on 2026-11-14 at the version shown. Slurm documentation was read from slurm.schedmd.com, which presents release 26.05. A row is not a test result for any Slurm release.
+Each row is a milestone 1 test, because a change in any of them changes the design. "Checked" means the source was read on 2026-11-14 or 2026-11-15 at the version shown. Slurm documentation was read from slurm.schedmd.com, which presents release 26.05; Slurm source was read at release tags (see [slurm-releases.md](research/slurm-releases.md)). Revision 2 adds a **Milestone 1 result** note after each table. No row is a test result for a running Slurm release; what needs a cluster is marked *live* in the research files.
 
 **Slurm client commands**
 
@@ -103,6 +109,16 @@ Each row is a milestone 1 test, because a change in any of them changes the desi
 | `scontrol show hostnames` expands a hostlist expression to one name per line. | The plugin can avoid parsing hostlists in PHP. | [scontrol](https://slurm.schedmd.com/scontrol.html) |
 | The `MAINT` reservation flag is "Maintenance mode, receives special accounting treatment" and lets a reservation use resources already in another reservation. Nodes in such a reservation show the MAINT state or `$` suffix. | A `MAINT` reservation is the explicit signal of planned maintenance. | [scontrol](https://slurm.schedmd.com/scontrol.html), [sinfo](https://slurm.schedmd.com/sinfo.html) |
 
+**Milestone 1 result (Slurm client commands).**
+
+- JSON options: confirmed for all five commands, 23.11 to 26.05. `sinfo --json` returns a sinfo-specific shape, not the nodes endpoint's; `squeue --only-job-state --json` returns only job id, array ids, and state, so it cannot give partition or reason ([slurm-client-output.md](research/slurm-client-output.md)).
+- `%T` loses information: a node that is DOWN and drained prints DRAINED; MAINT replaces the base state on idle nodes. The plugin reads the JSON `state` array for the drain flag, the maintenance flag, and DOWN together with DRAIN ([slurm-states-reasons.md](research/slurm-states-reasons.md)).
+- `squeue` combines pending array elements on one line unless `-r` is given; a pending array counts as its task count.
+- Reasons: 218 enum entries and 216 distinct strings at 26.05; a prefix rule maps all of them to the eleven families below. The documentation page omits 23 strings present in source and its wildcard `Max*PerAccount` does not match the `Max*RunMinsPer(Account|User)` group. Two enum values share the string `AssocMaxBBMinutesPerJob`. Match on the source list and prefix rules, not on the page.
+- `sshare` `LevelFS` is present in source at 24.11, 25.05, 25.11, and 26.05; Fair Tree is the default priority flag ([accounting.md](research/accounting.md)).
+- The reservation record of a recurring reservation always carries its current or next window; floating reservations never repeat; the node MAINT flag is set only while a `MAINT` reservation is active ([slurm-reservations.md](research/slurm-reservations.md)).
+- Still *live*: captured fixtures per release, JSON value types, multi-partition pending-job shape, delimiter safety of node reasons, and JSON versus format-output cost at 10,000 and 100,000 jobs.
+
 **Slurm configuration and visibility**
 
 | Fact | Consequence | Source |
@@ -111,7 +127,7 @@ Each row is a milestone 1 test, because a change in any of them changes the desi
 | `PrivateData` can hide jobs, nodes, partitions, reservations, usage, and accounts from regular users; `SlurmUser` and root always see everything. `scontrol show node` and `show partition` require Privileged and `show reservation` requires Privileged or Access when `PrivateData` restricts them. | The plugin's Slurm account may see less than it needs. The account recipe and health page must say what is hidden. | [slurm.conf](https://slurm.schedmd.com/slurm.conf.html), [scontrol](https://slurm.schedmd.com/scontrol.html) |
 | Per-user RPC rate limiting is enabled by `SlurmctldParameters=rl_enable`, with defaults `rl_bucket_size=30`, `rl_refill_rate=2`, `rl_refill_period=1`. It was added in 23.02. Clients are told to back off. | The plugin must back off when told to, and its call count must stay far below the refill rate. | [slurm.conf](https://slurm.schedmd.com/slurm.conf.html), [high throughput guide](https://slurm.schedmd.com/high_throughput.html) |
 | `MaxJobCount` defaults to 10000 jobs in memory, and completed jobs stay for `MinJobAge` (default 300 seconds). | The queue the plugin sees is bounded by the controller's memory settings. | [slurm.conf](https://slurm.schedmd.com/slurm.conf.html) |
-| Slurm 25.11 added `MetricsType=metrics/openmetrics`, serving `/metrics/jobs`, `/metrics/nodes`, `/metrics/partitions`, `/metrics/scheduler`, and `/metrics/jobs-users-accts` from `slurmctld`. The guide advises 60 to 120 second scrape intervals and warns against storing the user and account endpoint. | A cheaper source for counts exists on 25.11 and later. It is research, because it may lack pending reasons. | [metrics guide](https://slurm.schedmd.com/metrics.html) |
+| Slurm 25.11 added `MetricsType=metrics/openmetrics`, serving `/metrics/jobs`, `/metrics/nodes`, `/metrics/partitions`, `/metrics/scheduler`, and `/metrics/jobs-users-accts` from `slurmctld`. The guide advises 60 to 120 second scrape intervals and warns against storing the user and account endpoint. | A cheaper source for counts exists on 25.11 and later. Milestone 1 confirmed from source that it has no pending reason metric (only one per-partition counter for the node-limit reason), so it cannot replace the reader; it stays research ([controller-load.md](research/controller-load.md)). | [metrics guide](https://slurm.schedmd.com/metrics.html) |
 
 **slurmrestd**
 
@@ -120,22 +136,22 @@ Each row is a milestone 1 test, because a change in any of them changes the desi
 | `slurmrestd` is stateless and synchronous with the controller. The guide strongly encourages a caching proxy between it and clients. `--max-connections` defaults to 124, and each connection can cause one RPC. | The plugin calls it once per cycle and respects timeouts. | [REST API details](https://slurm.schedmd.com/rest.html), [slurmrestd](https://slurm.schedmd.com/slurmrestd.html) |
 | JWT authentication uses the headers `X-SLURM-USER-NAME` and `X-SLURM-USER-TOKEN`, needs `AuthAltTypes=auth/jwt` in `slurm.conf` and `slurmdbd.conf`, and tokens from `scontrol token` last 1800 seconds unless `lifespan=` is given. | Token rotation is an operator task. | [JWT](https://slurm.schedmd.com/jwt.html), [REST quick start](https://slurm.schedmd.com/rest_quickstart.html) |
 | "The power to create JWTs is the power of root on a cluster." `slurmrestd` must not run as root or `SlurmUser`. It listens on TCP (`:6820` in the quick start) or UNIX sockets. | The plugin never creates tokens ([ADR 0009](decisions/0009-credentials-by-file-or-munge-never-minted.md)). | [JWT](https://slurm.schedmd.com/jwt.html), [slurmrestd](https://slurm.schedmd.com/slurmrestd.html) |
-| The API is not designed to be internet facing. The REST details page says only unencrypted HTTP is supported and recommends a TLS-wrapping proxy, while the slurmrestd man page describes native TLS through the `tls/s2n` plugin and `https://` listeners. | The two pages disagree; which releases support native TLS is a research item. The plugin verifies TLS where used and documents network placement. | [REST API details](https://slurm.schedmd.com/rest.html), [slurmrestd](https://slurm.schedmd.com/slurmrestd.html) |
+| The API is not designed to be internet facing. The REST details page says only unencrypted HTTP is supported and recommends a TLS-wrapping proxy, while the slurmrestd man page describes native TLS through the `tls/s2n` plugin and `https://` listeners. | The two pages disagree. Source and the man page show native TLS from 25.05 (with the optional s2n library at build time); the REST details page is out of date. The plugin verifies TLS where used and documents network placement. | [REST API details](https://slurm.schedmd.com/rest.html), [slurmrestd](https://slurm.schedmd.com/slurmrestd.html) |
 | Each cluster needs its own `slurmrestd`. | One cluster per endpoint setting. | [REST quick start](https://slurm.schedmd.com/rest_quickstart.html) |
-| `GET /slurm/{version}/nodes` takes `update_time` and returns 304 with an empty body when nothing changed; other endpoints that accept `update_time` return 200 with a warning. | The transport must not treat a 304 as an empty result. | [REST API details](https://slurm.schedmd.com/rest.html) |
-| The v0.0.45 reference lists `GET` on `/slurm/v0.0.45/jobs/`, `jobs/state/`, `nodes/`, `partitions/`, `reservations/`, `shares`, `diag/`, `ping/`, and `GET /slurmdb/v0.0.45/jobs/`, and also lists POST and DELETE endpoints that change state. | The plugin uses a GET-only allowlist. A token for a user who can modify state is more power than the plugin needs. | [REST API reference](https://slurm.schedmd.com/rest_api.html) |
+| `GET /slurm/{version}/nodes` takes `update_time` and returns 304 with an empty body when nothing changed; other endpoints that accept `update_time` return 200 with a warning. **Milestone 1:** the 304 exists in source only from 26.05; on 24.11, 25.05, and 25.11 the nodes handler has no such branch, and jobs returns 200 with a warning at all releases checked. | The transport must not treat a 304 as an empty result, and the first release does not use `update_time`. | [REST API details](https://slurm.schedmd.com/rest.html), [slurmrestd.md](research/slurmrestd.md) |
+| The v0.0.45 reference lists `GET` on `/slurm/v0.0.45/jobs/`, `jobs/state/`, `nodes/`, `partitions/`, `reservations/`, `shares`, `diag/`, `ping/`, and `GET /slurmdb/v0.0.45/jobs/`, and also lists POST and DELETE endpoints that change state. | **Milestone 1:** the reference also lists two GET routes that change state: `GET /slurm/v0.0.NN/reconfigure/` (calls `slurm_reconfigure()`, at all releases checked) and, on 26.05, `GET /slurm/v0.0.NN/job/{job_id}/requeue`. A method rule is not enough, so the plugin uses an exact path-and-method allowlist (the nine paths named in this row, GET only, parser fixed by configuration) and refuses everything else in code. A token for a user who can modify state is more power than the plugin needs. | [REST API reference](https://slurm.schedmd.com/rest_api.html), [slurmrestd.md](research/slurmrestd.md) |
 
 **Cacti core 1.2.31**
 
 | Fact | Consequence | Source |
 |---|---|---|
-| `exec_background()` joins an argument array after escaping each element with `cacti_escapeshellarg()`; a string argument has `&`, `;`, and `|` stripped. `register_process_start()` registers a process by type, name, and id, and refuses when a live process holds it. | One reader per cluster, started with an argument array. | `lib/poller.php` |
-| `api_plugin_run_plugin_hook()` on a poller with `poller_id` above 1 runs a hook only when the plugin's `INFO` capabilities satisfy the hook's required capabilities. `poller_bottom` requires `remote_poller:1`; `poller_output` requires `remote_collect:1`. | A plugin declaring only `remote_collect:1` may not run `poller_bottom` on a remote collector. Milestone 1 tests this. | `lib/plugins.php` |
-| `remote_agent.php` dispatches unknown actions to the `remote_agent` plugin hook. Callers are authorized when their address matches an enabled poller's IP, or a poller hostname that resolves to it. | Plugin actions on a collector use Cacti's existing, address-based authorization. | `remote_agent.php` |
+| `exec_background()` joins an argument array after escaping each element with `cacti_escapeshellarg()`; a string argument has `&`, `;`, and `|` stripped. `register_process_start()` registers a process by type, name, and id, and refuses when a live process holds it. **Milestone 1:** it records the calling process, kills a holder past its timeout, and returns true when the `processes` table is missing; `exec_background()` takes one executable path and reports no error when it cannot start. | One reader per cluster, started with an argument array from `poller_bottom`; the reader child calls `register_process_start()` with a timeout above its time budget. | `lib/poller.php`, [cacti-core.md](research/cacti-core.md) |
+| `api_plugin_run_plugin_hook()` on a poller with `poller_id` above 1 runs a hook only when the plugin's `INFO` capabilities satisfy the hook's required capabilities. `poller_bottom` requires `remote_poller:1`; `poller_output` requires `remote_collect:1`. | **Milestone 1: confirmed in source.** A plugin declaring only `remote_collect:1` does not run `poller_bottom` on a remote collector. The plugin declares `remote_poller:1` and not `remote_collect:1` (see Plugin metadata). Hooks called through `api_plugin_hook_function`, including `remote_agent`, `replicate_out`, `device_remove`, and `api_device_save`, are not gated. Collector behavior is *live*. | `lib/plugins.php` |
+| `remote_agent.php` dispatches unknown actions to the `remote_agent` plugin hook. Callers are authorized when their address matches an enabled poller's IP, or a poller hostname whose reverse and forward DNS both match the caller; at least two enabled pollers must exist. **Milestone 1:** on `1.2.x` the address is the TCP peer (`REMOTE_ADDR`), not a forwarded header, so a proxy must be registered as the poller. | Plugin actions on a collector use Cacti's existing, address-based authorization. | `remote_agent.php`, [cacti-core.md](research/cacti-core.md) |
 | `call_remote_data_collector()` accepts only a relative path beginning with `/` and refuses `://`, `@`, and `../`. | Plugin actions are plain relative requests. | `lib/functions.php` |
 | On a poller with `poller_id` above 1, `include/global.php` sets the connection mode to `recovery` while the local `poller_output_boost` table holds rows, `offline` when the main database cannot be reached, and `online` otherwise; web requests use the main database when online. | Remote jobs must state which database they write and work in both modes. | `include/global.php` |
-| `api_device_save()` takes `$poller_id`, `$site_id`, and `$external_id`; the `host` table has `external_id varchar(40)` with an index. `AVAIL_NONE` is 0. | Cluster devices can be assigned to a poller with no availability check. `external_id` is a candidate matching key but is short. | `lib/api_device.php`, `cacti.sql`, `include/global_constants.php` |
-| Script server data queries are defined by XML in `resource/script_server/` with `|path_cacti|` script paths. | Query XML ships with the plugin and is installed with it. | `resource/script_server/host_disk.xml` |
+| `api_device_save()` takes `$poller_id`, `$site_id`, and `$external_id`; the `host` table has `external_id varchar(40)` with an index. `AVAIL_NONE` is 0. **Milestone 1:** a device template has no availability field (`host_template` holds id, hash, name, class); availability is `host.availability_method`, set per device. `external_id` is not unique. | The cluster device is saved with `availability_method` 0 through `api_device_save()` and a `poller_id`. `external_id` is a candidate matching key but is short and not unique. | `lib/api_device.php`, `cacti.sql`, `include/global_constants.php` |
+| Script server data queries are defined by XML in `resource/script_server/` with `|path_cacti|` script paths. | Query XML ships with the plugin and is installed with it. **Milestone 1:** the index and query steps run the script as a CLI process; only polling uses the persistent script server, so the script needs both entry points. A removed index marks its data sources orphaned and deletes them only if the query XML sets `index_orphan_removal`; new indexes appear on reindex. | `resource/script_server/host_disk.xml`, [cacti-core.md](research/cacti-core.md) |
 | `device_remove` and `api_device_save` hooks run when devices are removed or saved. | Mapping consistency hooks exist. | `lib/api_device.php` |
 
 **Maint and Thold** (plugin_maint `develop` at `9422c7a`, plugin_thold `develop` at `dc76952`)
@@ -144,25 +160,25 @@ Each row is a milestone 1 test, because a change in any of them changes the desi
 |---|---|---|
 | Maint stores schedules in `plugin_maint_schedules` (`enabled`, `name`, `mtype`, `stime`, `etime`, `minterval`) and device assignments in `plugin_maint_hosts` (`type`, `host`, `schedule`). Type 1 is a Cacti device. `mtype` 1 is one-time; 2 is recurring with a whole-day `minterval`. | Plugin-owned one-time schedules are expressible as plain rows. | [plugin_maint includes](https://github.com/Cacti/plugin_maint/blob/9422c7a4ce9916d0f0edf88b93afb194e0675b4a/includes/functions.php) |
 | `plugin_maint_check_host()` matches `plugin_maint_hosts` rows for the type and the device id, or `host = 0`, then evaluates each schedule against `stime <= now < etime`. | An end time in the near future makes suppression lapse by default. | same |
-| Thold calls `plugin_maint_check_cacti_host()` directly, guarded by `api_plugin_is_enabled('maint')` and `function_exists()`. It does not call the `is_device_in_maintenance` hook that Maint registers. | A second plugin cannot join suppression through that hook. | plugin_thold `includes/polling.php` (lines 640 and 783) and `includes/functions.php` (line 3432) |
+| Thold calls `plugin_maint_check_cacti_host()` directly, guarded by `api_plugin_is_enabled('maint')` and `function_exists()`. It does not call the `is_device_in_maintenance` hook that Maint registers. | A second plugin cannot join suppression through that hook. **Milestone 1:** core calls the same function directly from `lib/snmpagent.php` (no caller of the hook exists in core at either ref); released Thold 1.8.2 calls it without the `function_exists()` guard; the check queries the database on every call with no cache, requires `enabled = 'on'`, and rewrites recurring (`mtype` 2) rows, so a plugin owns only `mtype` 1 rows ([maint-thold.md](research/maint-thold.md)). | plugin_thold `includes/polling.php` (lines 640 and 783) and `includes/functions.php` (line 3432) |
 | Maint has no function for creating a schedule; its pages write the rows. | Automatic maintenance is either direct row writes or an upstream Maint change ([ADR 0008](decisions/0008-maintenance-through-owned-expiring-schedules.md)). | plugin_maint `maint.php` |
-| Maint declares `remote_collect:0`; Thold declares `remote_collect:1`. | Where suppression is evaluated for a Thold run on a remote collector is not established. | plugin `INFO` files |
+| Maint declares `remote_collect:0`; Thold declares `remote_collect:1`. | **Milestone 1:** neither plugin registers `replicate_out`, and core replicates only `plugin_config`, `plugin_hooks`, and `plugin_realms`, so no code read puts Maint's tables on a collector. Suppression for a Thold run on a collector is expected not to work and is *live*. | plugin `INFO` files, [maint-thold.md](research/maint-thold.md) |
 
-**Assumptions to confirm in milestone 1.** These are not facts yet.
+**Assumptions to confirm in milestone 1.** These were not facts at revision 1. Status at revision 2:
 
-- JSON field names and types for jobs, nodes, partitions, and reservations on each release, and how job state, node state, and flags are represented.
-- That `--json=<data_parser>` accepts the form the plugin will use on each command and release.
-- That a node in several partitions repeats in per-node `sinfo` output, and how to count unique nodes.
-- Which Slurm releases support native TLS in `slurmrestd`.
-- Payload size and run time of `--json` versus format output at 100,000 jobs.
-- What a token for a Slurm user with no association can and cannot do through `slurmrestd`.
-- `scontrol show reservation` output fields and how a recurring reservation reports its next window.
-- Controller cost per call at the planned job and node counts.
-- `sacct` load on `slurmdbd` for bounded windows.
-- Whether the metrics plugin exposes pending reasons.
-- Behavior of the plugin's `INFO` capabilities on a remote collector.
-- Whether Maint's tables exist and are current on a remote collector.
-- Everything about PBS Pro, OpenPBS, and LSF output and authentication.
+- JSON field names and types for jobs, nodes, partitions, and reservations on each release, and how job state, node state, and flags are represented. *Names confirmed in source; types and captured output are live.*
+- That `--json=<data_parser>` accepts the form the plugin will use on each command and release. *Confirmed in source for all five commands, 23.11 to 26.05.*
+- That a node in several partitions repeats in per-node `sinfo` output, and how to count unique nodes. *Confirmed (docs); count by node name or use the nodes response.*
+- Which Slurm releases support native TLS in `slurmrestd`. *25.05 and later, when built with s2n.*
+- Payload size and run time of `--json` versus format output at 100,000 jobs. *Live.*
+- What a token for a Slurm user with no association can and cannot do through `slurmrestd`. *Live.*
+- `scontrol show reservation` output fields and how a recurring reservation reports its next window. *Next window confirmed in source; captured output is live.*
+- Controller cost per call at the planned job and node counts. *Live; RPC counts per cycle are known.*
+- `sacct` load on `slurmdbd` for bounded windows. *Live.*
+- Whether the metrics plugin exposes pending reasons. *No (source).*
+- Behavior of the plugin's `INFO` capabilities on a remote collector. *Settled in source; collector run is live.*
+- Whether Maint's tables exist and are current on a remote collector. *No code replicates them; live.*
+- Everything about PBS Pro, OpenPBS, and LSF output and authentication. *Not part of this pass.*
 
 ## Architecture
 
@@ -215,7 +231,7 @@ One reader per cluster makes a fixed set of calls per interval and writes one sn
 3. Reservations (phase 2): from `scontrol show reservation` or the reservations endpoint.
 4. Shares (phase 3): from `sshare` or the shares endpoint.
 
-The number of calls does not depend on job, node, or series counts. At a 60 second interval the plugin makes about 2 to 4 RPCs per minute in phases 1 and 2. That is far below the documented per-user token refill of 2 per second, but the cost of each call, which grows with the number of jobs and nodes, is what milestone 1 measures. The interval has a floor chosen from those measurements.
+The number of calls does not depend on job, node, or series counts. Through `slurmrestd`, phase 1 is four controller RPCs per cycle (jobs; nodes, which makes two; partitions), phase 2 five, phase 3 six, from the handlers' source ([controller-load.md](research/controller-load.md)). At a 60 second interval that is 4 to 5 RPCs per minute in phases 1 and 2. That is far below the documented per-user token refill of 2 per second, but the cost of each call, which grows with the number of jobs and nodes, is what milestone 1 measures. The interval has a floor chosen from those measurements. Until the load test (*live*) replaces them, the provisional values are a 60 second default, a 30 second floor, and a time budget of half the interval; they are starting points, not findings.
 
 **Transports.** The Slurm backend separates fetching from parsing.
 
@@ -241,8 +257,8 @@ Raw state and reason strings are kept beside the normalized values so a Slurm re
 
 | Object | Created from | Notes |
 |---|---|---|
-| Cluster device | "HPC Scheduler Cluster" device template, availability None, assigned to the poller that runs the reader | Created on administrator confirmation; carries the cluster-wide graphs |
-| Data queries | Script server queries indexed by partition and by reason family | Index sets follow the snapshot; Cacti's reindex path adds and removes series |
+| Cluster device | "HPC Scheduler Cluster" device template; the device is saved with `availability_method` 0 (a device template has no availability field) and the `poller_id` of the poller that runs the reader | Created on administrator confirmation; carries the cluster-wide graphs |
+| Data queries | Script server queries indexed by partition and by reason family | Index sets follow the snapshot; new indexes appear on reindex, and removed ones become orphans that are deleted only if the query XML sets `index_orphan_removal` |
 | Data templates | Jobs by state, pending by reason family, nodes by state, partition utilization, cluster `age` | One RRD per template per index |
 | Graph templates | One per data template, plus stacked overviews | Graph permissions apply as for any Cacti graph |
 | Node data template (phase 2) | "HPC Scheduler Node" on mapped devices | State code, drain flag, down flag, `age` |
@@ -255,7 +271,7 @@ Whether the cluster device is visible everywhere or hidden from device lists is 
 
 Phase 2 links scheduler nodes to Cacti devices ([ADR 0005](decisions/0005-map-nodes-to-existing-devices.md)).
 
-**Keys.** The scheduler side offers node name, node hostname, and node address. The Cacti side offers device `hostname`, `description`, and `external_id` (limited to 40 characters). The proposed order is hostname, then address, then description, with an administrator-defined rule layer on top. The decision issue finalizes it after fixtures are built.
+**Keys.** The scheduler side offers node name, node hostname, and node address. The Cacti side offers device `hostname`, `description`, and `external_id` (limited to 40 characters). The proposed order is hostname, then address, then description, then a low-confidence short-name tier, with an administrator-defined rule layer on top. An offline prototype and 11 fixture cases support the order ([node-naming.md](research/node-naming.md), `tests/node-matching/`); real site naming is *live*. The decision issue finalizes it.
 
 **Rules.**
 
@@ -266,7 +282,7 @@ Phase 2 links scheduler nodes to Cacti devices ([ADR 0005](decisions/0005-map-no
 - Unmapped nodes are visible only to administrators.
 - Hostlist expressions are not parsed in PHP. Per-node output (`sinfo -N`, the nodes endpoint) already lists nodes one at a time.
 
-**Cost.** The matching step is quadratic if done naively. Fixtures include 10,000 nodes against 10,000 devices, and the implementation indexes devices by each key.
+**Cost.** The matching step is quadratic if done naively. With devices indexed by each key, the prototype matched 10,000 nodes against 10,000 devices in about 14 milliseconds (in memory, PHP 8.5.12); loading devices and rendering proposals are not included. Node names must be cast to strings where they key arrays, because PHP turns a name such as `10` into an integer key.
 
 ## Measurement state
 
@@ -291,7 +307,7 @@ Graphs are Cacti graphs. Trees, zoom, time spans, permissions, and export work a
 - Nodes by normalized state: idle, allocated, mixed, drained, down, maintenance or reserved, other.
 - Partition utilization as allocated over total CPUs, and as allocated over total nodes.
 
-**Counting rules.** A node in several partitions is counted once in cluster totals and once per partition. A pending job submitted to several partitions is counted once in cluster totals and once per partition it targets. Array tasks are counted per the research result. The rule for whether drained and down nodes stay in the utilization denominator is chosen with milestone 1 and shown on the graph template.
+**Counting rules.** A node in several partitions is counted once in cluster totals and once per partition. A pending job submitted to several partitions is counted once in cluster totals and once per partition it targets. A pending array contributes its task count (`squeue` collapses pending array elements unless `-r` is given; the metrics plugin adds the array count); held jobs are pending jobs whose reason is `JobHeldAdmin` or `JobHeldUser`. The rule for whether drained and down nodes stay in the utilization denominator is chosen with milestone 1 and shown on the graph template.
 
 **Plugin pages.** The cluster overview shows the latest snapshot and its age. The pending reason page lists raw reasons with counts and affected partitions. Job IDs appear only for administrators and only up to a row limit. A node page (phase 2) shows state, reason, reason time, and the mapped device.
 
@@ -300,8 +316,8 @@ Graphs are Cacti graphs. Trees, zoom, time spans, permissions, and export work a
 Pending reasons are the plugin's main differentiator, and they are the place where series counts can grow without bound ([ADR 0010](decisions/0010-bound-series-cardinality.md)).
 
 - The raw reason is stored per job count, not per job.
-- Reasons are grouped into a fixed family set with an Other bucket. The starting set, to be confirmed by research and the reason decision: Priority, Resources, Dependency, Association limits, QOS limits, Held, Reservation, Node availability, Partition limits, Begin time, Other.
-- The Slurm reason list changes between releases, and a reason can be wildcard-named. Families are matched by name pattern, with a fixture test that every reason on the documented list maps to a family and an unknown reason maps to Other.
+- Reasons are grouped into a fixed family set with an Other bucket. The set, confirmed against source at 24.11, 25.05, 25.11, 26.05, and the 26.11 candidate: Priority, Resources, Dependency, Association limits, QOS limits, Held, Reservation, Node availability, Partition limits, Begin time, Other. A draft prefix rule maps all 216 distinct reason strings at 26.05 (Association limits 61, QOS limits 109, Other 25; counts per family are in [slurm-states-reasons.md](research/slurm-states-reasons.md)). The decision on splitting Other is #12.
+- The Slurm reason list changes between releases (two to four names differ across 24.11 to 26.11) and the documentation page omits 23 strings present in source. Families are matched by name pattern and prefix, with a fixture test that every reason in the source list at each supported release maps to a family and an unknown reason maps to Other.
 - Reason attribution is the scheduler's: a job reports only the reason found by the last scheduling method that examined it. The documentation says so, so operators do not read the breakdown as a complete cause analysis.
 - No series exist for users or jobs. Per-job detail is a plugin page for administrators.
 
@@ -333,11 +349,11 @@ The constraint is that Thold calls Maint's check function directly, so the only 
 
 - Create ordinary one-time schedules for devices with a confirmed mapping, named with a fixed prefix and recorded in a plugin table. The plugin changes only schedules it created.
 - *Drained nodes.* The end time is a short window (for example two collection intervals) that the reader extends each cycle while the node stays drained. When the node returns, the schedule ends at the next cycle. If the reader stops, the schedule expires and alerts resume. This is deliberate: a dead reader must not silence alerts for a node indefinitely.
-- *Reservations.* The window is the reservation's start and end for each member node's device, updated or ended when the reservation changes. Recurring reservations are handled only as far as milestone 1 research shows the output allows; otherwise they are excluded and listed on the health page.
-- *States.* DRAIN and DRAINED are the proposed default. DOWN is off by default, because a node going down unplanned is what Thold should report. Reason-text filters let administrators exclude drains that mean a fault.
+- *Reservations.* The window is the reservation's `start_time` and `end_time` for each member node's device, re-read each cycle and updated or ended when the reservation changes. Source shows that a recurring reservation's record carries its current or next window (it is advanced by an hour, day, weekday step, weekend step, or week after each window), so recurring `MAINT` reservations are handled by the same rule. Floating reservations (`TIME_FLOAT`) have no fixed window and are excluded and listed on the health page; the schedule count per device is bounded because an hourly reservation creates up to 24 windows a day ([slurm-reservations.md](research/slurm-reservations.md)). The node `MAINT` flag is set only while a window is active and is not used to plan ahead.
+- *States.* DRAIN and DRAINED are the proposed default; the drain flag is read from the JSON `state` array, because `%T` prints DRAINED for a node that is both DOWN and drained. DOWN is off by default, because a node going down unplanned is what Thold should report. Reason-text filters let administrators exclude drains that mean a fault.
 - Every create, extend, and end is written to an audit table.
 
-Whether the plugin writes Maint's rows or calls a Maint function is a decision for Maint's maintainers. Direct writes couple the plugin to Maint's schema. Measurements continue during maintenance; only notifications are suppressed.
+Whether the plugin writes Maint's rows or calls a Maint function is a decision for Maint's maintainers. Direct writes couple the plugin to Maint's schema. Direct writes work today if a schedule row has `enabled = 'on'`, `mtype` 1, `stime` before `etime`, and one `plugin_maint_hosts` row `(1, device id, schedule id)`; Maint's check reads the database on every call and rewrites only recurring rows ([maint-thold.md](research/maint-thold.md), which also holds a draft proposal for a Maint function). Measurements continue during maintenance; only notifications are suppressed.
 
 ## Accounting and fair-share
 
@@ -354,7 +370,8 @@ Phase 3 ([ADR 0006](decisions/0006-use-cacti-remote-collectors.md)). A cluster r
 - The reader on each poller handles only clusters assigned to it and writes its snapshot to the collector's local database.
 - Values reach the main server through the normal poller output path. In `offline` and `recovery` modes the plugin reports stale data, not healthy data.
 - The main server reads collector health on demand through read-only `remote_agent` actions that take only a cluster ID.
-- Maint declares `remote_collect:0`, so phase 2 maintenance on remote clusters is research (where Thold runs and where Maint's tables live).
+- Maint declares `remote_collect:0` and no code read replicates its tables to a collector, so phase 2 maintenance on remote clusters is out of scope until a live run shows where Thold evaluates suppression ([maint-thold.md](research/maint-thold.md)).
+- The plugin's `INFO` declares `remote_poller:1` so `poller_bottom` runs on the collector. `remote_agent` needs at least two enabled pollers, and on `1.2.x` it authorizes by TCP peer address.
 
 `remote_agent` authorizes callers by address. The documentation requires https between pollers and a restricted network.
 
@@ -395,9 +412,9 @@ Capacity is stated in clusters, nodes, jobs, and series. Fixtures cover 1,000 an
 
 Series arithmetic for one cluster with 50 partitions and 15 reason families, from the template design (not measured):
 
-- Per partition, four RRD files (jobs by state, pending by reason, nodes by state, utilization) holding about 31 values in total, so 200 RRD files and about 1,550 values for 50 partitions, plus a handful of cluster-level files.
+- Per partition, four RRD files (jobs by state, pending by reason, nodes by state, utilization) holding 25 values in total with 11 reason families (29 with 15; the family count is decision #12), so 200 RRD files and 1,250 (or 1,450) values for 50 partitions, plus a handful of cluster-level files. Revision 1 said about 31 values and 1,550, which the plan's own lists do not reproduce.
 - Per-node series exist only for mapped nodes, with one RRD of 4 values each: 10,000 mapped nodes add 10,000 RRD files and 40,000 values to poll.
-- Controller calls: 2 to 4 per cycle, independent of the above.
+- Controller calls: 4 to 6 per cycle through `slurmrestd`, independent of the above.
 
 Engineering targets, to be measured, not demonstrated:
 
@@ -449,6 +466,20 @@ Phase 2 needs a security review covering mapping input, writes to Maint's tables
 | 5. Nodes and maintenance | 2 | Mapping engine and UI, node data source, maintenance for drains and reservations, audit, security review | Drain and MAINT reservation suppress the right devices and lapse when collection stops; review complete |
 | 6. Accounting, fair-share, and remote collectors | 3 | Fair-share series, bounded `sacct` statistics, remote collector support, `remote_agent` actions, security review | Offline, recovery, and slurmdbd-unavailable scenarios correct; review complete |
 
+**Estimates for phases 1 to 3** (production lines of PHP, from the measured size of plugin_smokeping at 14,932 and plugin_cloudflare at 10,479 lines; tests ran at 0.8 to 1.9 times production lines in those two; details and gates in [estimates.md](research/estimates.md)):
+
+| Milestone | Production lines | Gates outside the code |
+|---|---|---|
+| 2. Foundation | 5,500 to 7,500 | harness choice (#11); decisions #7 and #8 |
+| 3. Cluster graphs and pending reasons | 2,500 to 3,500, plus template XML | decision #12; live series-count run (#25) |
+| 4. Phase 1 release | 500 to 1,000 | a Slurm test cluster and pilots |
+| 5. Nodes and maintenance | 2,000 to 3,000 | decision #13 with Maint's maintainers; security review |
+| 6. Accounting, fair-share, remote collectors | 1,500 to 2,500 | remote collector test bed; `slurmdbd` with history; security review |
+| Phase 1 (2 to 4) | 8,500 to 12,000 | |
+| Milestones 2 to 6 | 12,000 to 17,500 | |
+
+No calendar duration is claimed: the comparison plugins' commit spans measure assisted writing against reachable services, and this plugin's longest steps are the gates above.
+
 ## Open decisions
 
 | Decision | Options | Needed before | Decided by |
@@ -461,6 +492,12 @@ Phase 2 needs a security review covering mapping input, writes to Maint's tables
 | Pending reason families | Fixed families (proposed); per raw reason; operator-defined | Milestone 3 | Reason research |
 | Maintenance mechanism | Direct rows (proposed); Maint function; none | Milestone 5 | Maint maintainers |
 | Fair-share account selection | Chosen list plus top-N (proposed); all; top-level only | Milestone 6 | sshare research |
+
+Evidence for the decisions milestone 1 feeds (the decisions themselves are the owner's):
+
+- **Default transport (#7).** Both transports produce the snapshot. Source shows the REST path needs an exact-path allowlist and supports TLS only from 25.05; the client-command path needs no credential handling and works on packaged releases older than the REST parsers. The load comparison is *live*, so no transport is shown to be cheaper.
+- **Supported releases (#8).** SchedMD's own end-of-support dates leave 25.11 and 26.05 supported, 25.05 ending this month, and 24.11 unsupported. `v0.0.43` is the one parser common to 25.05, 25.11, 26.05, and the 26.11 candidate.
+- **Node matching (#9).** Hostname, address, description, then a low-confidence short-name tier with ambiguity left unmapped passed the 11 fixture cases; `external_id` alone is not supported (40 characters, not unique).
 
 ## Risks
 
@@ -475,6 +512,28 @@ Phase 2 needs a security review covering mapping input, writes to Maint's tables
 | Slurm output changes between releases | Parser breaks | Pinned data parser, fixtures per release, unknown-state fallback |
 | Node names do not match devices | Wrong device suppressed | Explicit mapping, no silent resolution, ambiguity stays unmapped |
 | Volunteer capacity | Later phases stall | Each phase ships on its own |
+
+## Milestone 1 research status
+
+Documentation and source work for milestone 1 was done on 2026-11-15. Nothing was run against a Slurm cluster, a Cacti remote collector, or any account. Each file lists its own *live* checks.
+
+| Issue | Research file | Done from documents and source | Needs live work |
+|---|---|---|---|
+| [#15](https://github.com/somethingwithproof/plugin_hpcsched/issues/15) | [slurm-releases.md](research/slurm-releases.md) | release and parser matrix, TLS, metrics, packages, support dates | per-package `slurmrestd -d list`, s2n build |
+| [#16](https://github.com/somethingwithproof/plugin_hpcsched/issues/16) | [slurm-client-output.md](research/slurm-client-output.md) | JSON options, field names, counting rules, parsing rules | captured fixtures, JSON types, JSON versus format cost |
+| [#17](https://github.com/somethingwithproof/plugin_hpcsched/issues/17) | [slurmrestd.md](research/slurmrestd.md) | endpoints, allowlist, headers, 304, TLS, `PrivateData` code paths | visibility per role, no-association token, failure modes |
+| [#18](https://github.com/somethingwithproof/plugin_hpcsched/issues/18) | [controller-load.md](research/controller-load.md) | RPC counts, limits, metrics content | all load measurements; interval and floor are provisional |
+| [#19](https://github.com/somethingwithproof/plugin_hpcsched/issues/19) | [slurm-states-reasons.md](research/slurm-states-reasons.md) | state and reason mapping, family rules, drift across releases | captured output |
+| [#20](https://github.com/somethingwithproof/plugin_hpcsched/issues/20) | [slurm-reservations.md](research/slurm-reservations.md) | recurrence behavior, window rule | fixture set, `PrivateData` |
+| [#21](https://github.com/somethingwithproof/plugin_hpcsched/issues/21) | [accounting.md](research/accounting.md) | `sshare` fields, `sacct` windows | `slurmdbd` load |
+| [#22](https://github.com/somethingwithproof/plugin_hpcsched/issues/22) | [cacti-core.md](research/cacti-core.md) | signatures, hooks, capability set, process and reindex behavior | collector run, reindex run |
+| [#23](https://github.com/somethingwithproof/plugin_hpcsched/issues/23) | [maint-thold.md](research/maint-thold.md) | Maint and Thold behavior, row recipe, proposal draft | collector suppression, end to end |
+| [#24](https://github.com/somethingwithproof/plugin_hpcsched/issues/24) | [node-naming.md](research/node-naming.md) | fixtures and prototype, timing | pilot site naming |
+| [#25](https://github.com/somethingwithproof/plugin_hpcsched/issues/25) | [series-scale.md](research/series-scale.md) | arithmetic and data model | all timing |
+| [#26](https://github.com/somethingwithproof/plugin_hpcsched/issues/26) | [prior-art.md](research/prior-art.md) | organization plugins read; searches | maintainer and pilot questions |
+| [#27](https://github.com/somethingwithproof/plugin_hpcsched/issues/27) | [estimates.md](research/estimates.md) | ranges from measured lines | re-check after live work |
+
+Decisions #7 (default transport), #8 (supported releases), and #9 (node matching) are not made here; the evidence is in the files above and summarized under Open decisions.
 
 ## Research
 
