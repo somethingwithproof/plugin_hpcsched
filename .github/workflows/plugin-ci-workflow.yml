@@ -31,6 +31,9 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  # Weekly, for the Slurm release that is built from source (slurm-live).
+  schedule:
+    - cron: '17 5 * * 1'
 
 permissions:
   contents: read
@@ -66,8 +69,8 @@ jobs:
         for f in *.php include/*.php locales/*.php scripts/*.php tests/bin/*.php; do
           php -l "$f"
         done
-        # The Slurm client stand-ins the tests run are POSIX sh.
-        sh -n tests/fixtures/bin/squeue tests/fixtures/bin/prlimit
+        # The Slurm client stand-ins and the live cluster scripts are POSIX sh.
+        sh -n tests/fixtures/bin/squeue tests/fixtures/bin/prlimit tests/slurm-live/*.sh
         dash -n tests/fixtures/bin/squeue
         dash -n tests/fixtures/bin/prlimit
 
@@ -414,6 +417,127 @@ jobs:
           exit 1
         fi
 
+  # A real Slurm cluster (MariaDB, slurmdbd, slurmctld, slurmrestd, six
+  # dynamic CPU nodes) from giovtorres/slurm-docker-cluster. states.sh
+  # creates the node states, a maintenance reservation, and the jobs the
+  # plugin must classify; fetch.sh captures the commands and REST paths the
+  # plugin reads, for every data parser the release serves; assert.sh checks
+  # the raw JSON and check.php the plugin's parser on it. The recorded
+  # captures in tests/fixtures/slurm/live come from these steps.
+  #
+  # 26.05.5 uses the published image, pinned by digest, and runs on every
+  # change. 25.11.8 has no published image (the registry stops at 25.11.4);
+  # its build takes about eight minutes before the cluster starts, so it
+  # runs on pushes to main, weekly, and on request, not on pull requests.
+  slurm-live:
+    name: Slurm ${{ matrix.slurm }} live cluster
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    strategy:
+      fail-fast: false
+      matrix:
+        slurm: ${{ fromJSON(github.event_name == 'pull_request' && '["26.05.5"]' || '["26.05.5", "25.11.8"]') }}
+
+    env:
+      COMPOSE_PROJECT_NAME: slurmci
+      SLURM_VERSION: ${{ matrix.slurm }}
+      SLURM_IMAGE: ${{ matrix.slurm == '26.05.5' && 'giovtorres/slurm-docker-cluster@sha256:947fca3c27d78abcdf97f21639e3483a2d6c0569ec812cb514e9cdf2526e0d90' || '' }}
+
+    steps:
+    - name: Checkout hpcsched plugin
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+        path: plugin
+
+    # Release 3.0.2, pinned by commit.
+    - name: Checkout slurm-docker-cluster
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+        repository: giovtorres/slurm-docker-cluster
+        ref: 9001503b42e7277c7ff45c08aeecdb6427474d68
+        path: slurm-cluster
+
+    - name: Install PHP 8.2
+      uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+      with:
+        php-version: '8.2'
+        coverage: none
+
+    - name: Get the Slurm image
+      working-directory: slurm-cluster
+      run: |
+        set -euo pipefail
+        if [ -n "$SLURM_IMAGE" ]; then
+          docker pull "$SLURM_IMAGE"
+          docker tag "$SLURM_IMAGE" "slurm-docker-cluster:$SLURM_VERSION"
+        else
+          docker build \
+            --build-arg "SLURM_VERSION=$SLURM_VERSION" \
+            --build-arg GPU_ENABLE=false --build-arg IS_WSL=false \
+            -t "slurm-docker-cluster:$SLURM_VERSION" .
+        fi
+        # The compose file names MariaDB by tag only; pin its digest.
+        cat > "$RUNNER_TEMP/compose.pin.yml" <<'PIN'
+        services:
+          mysql:
+            image: mariadb:12@sha256:4ebbcf100a3ba320766dfa0e1af008df12261301db6ef72798c7650f70794aed
+        PIN
+
+    # Workers go up one at a time: the image's entrypoint takes a node name
+    # from the DNS entries of lower-numbered replicas and exits when they do
+    # not resolve yet, so starting six at once leaves only some running.
+    - name: Start the cluster with six nodes
+      working-directory: slurm-cluster
+      run: |
+        set -euo pipefail
+        c="docker compose -f docker-compose.yml -f $RUNNER_TEMP/compose.pin.yml"
+        CPU_WORKER_COUNT=1 $c up -d --no-build mysql slurmdbd slurmctld slurmrestd cpu-worker
+        for n in 2 3 4 5 6; do
+          CPU_WORKER_COUNT=$n $c up -d --no-build --no-recreate --scale cpu-worker=$n cpu-worker
+          sleep 6
+        done
+        $c ps
+
+    - name: Create node states, a reservation, and jobs
+      run: |
+        set -euo pipefail
+        docker cp plugin/tests/slurm-live/states.sh slurmctld:/tmp/states.sh
+        docker exec slurmctld sh /tmp/states.sh
+
+    # The token never reaches a command line or the log: it goes from
+    # scontrol into a curl header file that only this user can read.
+    - name: Mint a slurmrestd token
+      run: |
+        set -euo pipefail
+        umask 077
+        tok=$(docker exec slurmctld scontrol token lifespan=900 | sed -n 's/^SLURM_JWT=//p')
+        echo "::add-mask::$tok"
+        printf 'X-SLURM-USER-TOKEN: %s\n' "$tok" > "$RUNNER_TEMP/jwt-header"
+        for _ in $(seq 1 30); do
+          curl -fsS -o /dev/null -H "@$RUNNER_TEMP/jwt-header" -H 'X-SLURM-USER-NAME: root' http://127.0.0.1:6820/openapi/v3 && exit 0
+          sleep 2
+        done
+        echo "slurmrestd did not answer" >&2
+        exit 1
+
+    - name: Capture command and REST output
+      run: sh plugin/tests/slurm-live/fetch.sh "$RUNNER_TEMP/slurm-out" "$RUNNER_TEMP/jwt-header"
+
+    - name: Assert node states, partitions, and pending reasons in the raw JSON
+      run: sh plugin/tests/slurm-live/assert.sh "$RUNNER_TEMP/slurm-out"
+
+    - name: Assert through the plugin's parser
+      run: php plugin/tests/slurm-live/check.php "$GITHUB_WORKSPACE/plugin" "$RUNNER_TEMP/slurm-out"
+
+    - name: Tear the cluster down
+      if: always()
+      working-directory: slurm-cluster
+      run: |
+        docker compose -f docker-compose.yml -f "$RUNNER_TEMP/compose.pin.yml" down -v || true
+
   workflow-lint:
     name: Workflow lint
     runs-on: ubuntu-latest
@@ -449,6 +573,7 @@ jobs:
       - entry-point-lint
       - integration-test
       - php-guard
+      - slurm-live
       - workflow-lint
       - reuse
     runs-on: ubuntu-latest
