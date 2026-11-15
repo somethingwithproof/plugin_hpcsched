@@ -368,6 +368,11 @@ msgstr ""
 
 #: lib/HealthWarnings.php
 #, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
 msgid "The collection interval is below the %d second floor."
 msgstr ""
 

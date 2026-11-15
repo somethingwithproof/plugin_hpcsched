@@ -301,6 +301,14 @@ function hpcsched_poller_bottom(): void {
 		return;
 	}
 
+	// The repositories use the default database connection, which on a
+	// remote data collector is its local database, not the main one. Remote
+	// collection is phase 3; until then nothing is started there, and the
+	// health page lists every cluster assigned to a remote poller.
+	if (!hpcsched_on_main_poller()) {
+		return;
+	}
+
 	if (!function_exists('exec_background')) {
 		include_once($config['library_path'] . '/poller.php');
 	}
@@ -359,6 +367,16 @@ function hpcsched_poller_interval(): int {
  * The production reader for one cluster. Scheduler access goes through the
  * two transports only; nothing else in the plugin builds one.
  */
+/**
+ * Whether this process runs on the main poller, the only one whose default
+ * database connection is the main Cacti database.
+ */
+function hpcsched_on_main_poller(): bool {
+	global $config;
+
+	return (int) ($config['poller_id'] ?? 1) === 1;
+}
+
 /**
  * The PHP memory limit in bytes, or -1 for none.
  */

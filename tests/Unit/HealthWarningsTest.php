@@ -81,6 +81,14 @@ it('warns when a cluster reports a release that does not ship the chosen data pa
 		->and($for('v0.0.45', '24.11.6'))->not->toContain('does not ship');
 });
 
+it('says a cluster on a remote poller is not collected in this release', function () {
+	$remote = new Cluster(1, 'demo', 3, AdminState::Enabled, Transport::Commands, 60);
+
+	expect(hpcsched_warnings($remote, null))->toContain('Assigned to poller 3, a remote data collector')
+		->and(hpcsched_warnings($remote, null))->toContain('phase 3')
+		->and(hpcsched_warnings(new Cluster(1, 'demo', 1, AdminState::Enabled, Transport::Commands, 60), null))->not->toContain('remote data collector');
+});
+
 it('flags plain HTTP to a loopback slurmrestd, and a cluster never collected', function () {
 	expect(hpcsched_warnings(hpcsched_rest_config('http://127.0.0.1:6820'), null))->toContain('plain HTTP')
 		->and(hpcsched_warnings(hpcsched_rest_config(), null))->toContain('No reader run');

@@ -67,6 +67,28 @@ it('records a run that ran out of memory and frees its lease and process slot', 
 		->and(json_encode($GLOBALS['__hpcsched_log']))->toContain('ran out of memory');
 });
 
+it('starts no reader and reads no plugin table on a remote data collector', function () {
+	$GLOBALS['__hpcsched_db_exec'] = [];
+	$GLOBALS['__hpcsched_db_rows'] = [];
+	$GLOBALS['__hpcsched_log']     = [];
+	$GLOBALS['__hpcsched_db_reads'] = [];
+	$GLOBALS['config']['poller_id'] = 2;
+
+	try {
+		expect(hpcsched_on_main_poller())->toBeFalse();
+
+		hpcsched_poller_bottom();
+
+		expect($GLOBALS['__hpcsched_db_exec'])->toBe([])
+			->and($GLOBALS['__hpcsched_db_reads'])->toBe([])
+			->and($GLOBALS['__hpcsched_log'])->toBe([]);
+	} finally {
+		$GLOBALS['config']['poller_id'] = 1;
+	}
+
+	expect(hpcsched_on_main_poller())->toBeTrue();
+});
+
 it('turns the memory limit off only when the prlimit path was saved empty', function () {
 	expect(Settings::fromRow(['hpcsched_prlimit' => ''])->prlimit)->toBe('')
 		->and(Settings::fromRow(['hpcsched_prlimit' => 'relative'])->prlimit)->toBe(Settings::DEFAULT_PRLIMIT);

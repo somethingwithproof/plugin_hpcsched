@@ -46,6 +46,10 @@ final class HealthWarnings {
 	public static function for(Cluster $cluster, ?ClusterRun $run, Freshness $freshness, Settings $settings, int $pollerInterval, int $now): array {
 		$out = [];
 
+		if ($cluster->pollerId !== 1) {
+			$out[] = __('Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller.', $cluster->pollerId, 'hpcsched');
+		}
+
 		if ($cluster->interval < Cluster::MIN_INTERVAL) {
 			$out[] = __('The collection interval is below the %d second floor.', Cluster::MIN_INTERVAL, 'hpcsched');
 		}

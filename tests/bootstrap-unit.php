@@ -80,6 +80,8 @@ $GLOBALS['__hpcsched_db_exec'] = [];
 $GLOBALS['__hpcsched_db_rows'] = [];
 
 function hpcsched_test_rows(string $sql): mixed {
+	$GLOBALS['__hpcsched_db_reads'][] = $sql;
+
 	foreach ($GLOBALS['__hpcsched_db_rows'] as $needle => $rows) {
 		if (str_contains($sql, $needle)) {
 			return $rows;

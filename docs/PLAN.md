@@ -369,6 +369,8 @@ Phase 3 ([ADR 0006](decisions/0006-use-cacti-remote-collectors.md)). A cluster r
 - Plugin configuration tables replicate to remote collectors through the `replicate_out` hook.
 - The reader on each poller handles only clusters assigned to it and writes its snapshot to the collector's local database.
 - Values reach the main server through the normal poller output path. In `offline` and `recovery` modes the plugin reports stale data, not healthy data.
+
+**Milestone 2: main poller only.** The repositories use Cacti's default database connection, which on a remote data collector is the collector's local database, and no plugin table is replicated yet. So the `poller_bottom` hook starts nothing on a poller other than 1, the reader refuses there with a logged reason before reading any plugin table, and the health page warns for every cluster assigned to another poller. A cluster can still be assigned to one, so the registry does not need editing when phase 3 adds remote collection.
 - The main server reads collector health on demand through read-only `remote_agent` actions that take only a cluster ID.
 - Maint declares `remote_collect:0` and no code read replicates its tables to a collector, so phase 2 maintenance on remote clusters is out of scope until a live run shows where Thold evaluates suppression ([maint-thold.md](research/maint-thold.md)).
 - The plugin's `INFO` declares `remote_poller:1` so `poller_bottom` runs on the collector. `remote_agent` needs at least two enabled pollers, and on `1.2.x` it authorizes by TCP peer address.
