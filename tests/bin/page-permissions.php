@@ -189,7 +189,7 @@ perm_expect($code === 200 && is_array($data) && count($data['clusters']) === 1 &
 perm_expect((int) db_fetch_cell('SELECT COUNT(*) FROM plugin_hpcsched_run') === 0 && (int) db_fetch_cell('SELECT COUNT(*) FROM plugin_hpcsched_section') === 0, 'no page view ran a reader');
 
 // Test scripts refuse a web request before doing anything.
-foreach (array('tests/Support/fake-slurmrestd.php', 'tests/bin/lifecycle.php', 'tests/bin/reader-flow.php', 'tests/Support/make-certs.php') as $script) {
+foreach (array('tests/Support/fake-slurmrestd.php', 'tests/bin/lifecycle.php', 'tests/bin/reader-flow.php', 'tests/Support/make-certs.php', 'tests/bin/build-templates.php', 'tests/bin/device-flow.php', 'tests/bin/device-permissions.php') as $script) {
 	list(, $body) = perm_http($base . $script, $jar);
 	perm_expect($body === '', "$script does nothing when requested over the web");
 }

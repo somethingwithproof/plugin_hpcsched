@@ -63,7 +63,7 @@ jobs:
       run: |
         set -euo pipefail
         php -v
-        for f in *.php include/*.php locales/*.php tests/bin/*.php; do
+        for f in *.php include/*.php locales/*.php scripts/*.php tests/bin/*.php; do
           php -l "$f"
         done
         # The Slurm client stand-ins the tests run are POSIX sh.
@@ -239,9 +239,35 @@ jobs:
           sleep 1
         done
         php plugins/hpcsched/tests/bin/page-permissions.php http://127.0.0.1:8080/cacti/
+        php plugins/hpcsched/tests/bin/device-permissions.php http://127.0.0.1:8080/cacti/
         if grep -E "Fatal error|Warning:|Uncaught" "$RUNNER_TEMP/php-server.log"; then
           exit 1
         fi
+
+    # Creates a cluster device from the shipped templates, polls it with
+    # Cacti's poller, and compares the RRD files with the fixtures. It
+    # provokes the refusal of a foreign data query file, which the plugin
+    # logs as an error, so its log is set aside like the integration tests'.
+    - name: Check the cluster device flow
+      working-directory: cacti
+      env:
+        HPCSCHED_TEST_DATABASE: disposable
+      run: |
+        php plugins/hpcsched/tests/bin/device-flow.php
+        cat log/cacti.log >> log/integration.log
+        : > log/cacti.log
+
+    # The export is rebuilt from the builder and must match the shipped
+    # file, so the two cannot drift. 1.2.31 only: the export is what that
+    # release writes.
+    - name: Check the template export is current
+      if: matrix.cacti == 'release/1.2.31'
+      working-directory: cacti
+      env:
+        HPCSCHED_TEST_DATABASE: disposable
+      run: |
+        php plugins/hpcsched/tests/bin/build-templates.php "$RUNNER_TEMP/hpcsched-templates.xml"
+        diff -u plugins/hpcsched/templates/hpcsched-templates.xml "$RUNNER_TEMP/hpcsched-templates.xml"
 
     - name: Check Cacti log for errors
       if: always()
