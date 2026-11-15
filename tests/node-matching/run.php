@@ -25,6 +25,9 @@
 
 declare(strict_types=1);
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 const TIER_HOSTNAME    = 1; // node hostname == device hostname
 const TIER_ADDRESS     = 2; // node address == device hostname
 const TIER_DESCRIPTION = 3; // node name or hostname == device description

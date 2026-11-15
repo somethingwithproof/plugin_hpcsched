@@ -25,6 +25,9 @@ use Somethingwithproof\Hpcsched\SlurmTransport;
 use Somethingwithproof\Hpcsched\Transport;
 use Somethingwithproof\Hpcsched\TransportError;
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /**
  * A SlurmTransport that answers from strings or error classes, for backend
  * and reader tests.

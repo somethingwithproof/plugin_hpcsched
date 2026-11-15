@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Proves the PHP 8.2 guard against a real Cacti install, on whatever PHP runs
  * this script. Run from the Cacti root as the poller user:

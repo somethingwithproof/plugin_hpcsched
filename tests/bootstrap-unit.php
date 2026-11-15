@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Unit test bootstrap. Stubs the few Cacti helpers the plugin calls, so the
  * suite needs no database or Cacti checkout. Each stub records its calls in

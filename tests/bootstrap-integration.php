@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Integration bootstrap. The tests drive Cacti in separate PHP processes, as
  * plugins.php and the CLI tools do, so nothing from Cacti is loaded here.

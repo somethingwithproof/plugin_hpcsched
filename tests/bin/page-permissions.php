@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Page permissions and POST-only actions over HTTP. Logs in to a running
  * Cacti as three users and checks each plugin page:
@@ -184,6 +187,12 @@ $data = json_decode($export, true);
 perm_expect($code === 200 && is_array($data) && count($data['clusters']) === 1 && $data['clusters'][0]['token_file'] === $tokenPath && strpos($export, 'eyJ') === false, 'the export holds the token file path and no token');
 
 perm_expect((int) db_fetch_cell('SELECT COUNT(*) FROM plugin_hpcsched_run') === 0 && (int) db_fetch_cell('SELECT COUNT(*) FROM plugin_hpcsched_section') === 0, 'no page view ran a reader');
+
+// Test scripts refuse a web request before doing anything.
+foreach (array('tests/Support/fake-slurmrestd.php', 'tests/bin/lifecycle.php', 'tests/bin/reader-flow.php', 'tests/Support/make-certs.php') as $script) {
+	list(, $body) = perm_http($base . $script, $jar);
+	perm_expect($body === '', "$script does nothing when requested over the web");
+}
 
 unlink($jar);
 

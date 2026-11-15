@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Pest configuration. Bootstraps are named by phpunit.xml.
  */

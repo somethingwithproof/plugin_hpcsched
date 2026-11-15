@@ -23,6 +23,9 @@ use Somethingwithproof\Hpcsched\HttpRequest;
 use Somethingwithproof\Hpcsched\HttpResponse;
 use Somethingwithproof\Hpcsched\HttpTransport;
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /**
  * An HttpTransport that answers from memory and records each request, for
  * reader and credential tests that need no socket.

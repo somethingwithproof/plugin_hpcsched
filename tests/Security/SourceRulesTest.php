@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Source rules from docs/PLAN.md "Code structure" and ADR 0004 that a parser
  * can check. The PHP 8.0 parse of the entry points themselves is proven by the
@@ -342,5 +345,47 @@ it('never logs or prints what a scheduler sent', function () {
 		foreach ($calls[1] as $arguments) {
 			expect($arguments)->not->toMatch('/->(stdout|stderr|body|reason)\b|\$(stdout|stderr|body|json|doc)\b/', $file);
 		}
+	}
+});
+
+it('keeps every test script outside tests/Unit command line only', function () {
+	$files    = [];
+	$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(hpcsched_root() . '/tests', FilesystemIterator::SKIP_DOTS));
+
+	foreach ($iterator as $file) {
+		$relative = substr($file->getPathname(), strlen(hpcsched_root()) + 1);
+
+		if ($file->getExtension() === 'php' && !str_starts_with($relative, 'tests/Unit/')) {
+			$files[] = $relative;
+		}
+	}
+
+	expect($files)->not->toBeEmpty();
+
+	foreach ($files as $relative) {
+		// The first statement after any declare, namespace, and use
+		// statements must be the guard, before any other code runs.
+		$tokens = array_values(array_filter(PhpToken::tokenize((string) file_get_contents(hpcsched_root() . '/' . $relative)), static fn (PhpToken $t): bool => !$t->isIgnorable()));
+		$i      = 0;
+
+		while (isset($tokens[$i]) && ($tokens[$i]->is([T_DECLARE, T_NAMESPACE, T_USE]))) {
+			while (isset($tokens[$i]) && $tokens[$i]->text !== ';') {
+				$i++;
+			}
+
+			$i++;
+		}
+
+		$statement = implode(' ', array_map(static fn (PhpToken $t): string => $t->text, array_slice($tokens, $i, 9)));
+
+		expect($statement)->toBe("PHP_SAPI === 'cli' || exit ( 1 ) ;", $relative);
+	}
+});
+
+it('keeps tests and other development files out of release archives', function () {
+	$attributes = (string) file_get_contents(hpcsched_root() . '/.gitattributes');
+
+	foreach (['/tests', '/.github', '/phpstan.neon', '/phpunit.xml', '/phpunit-integration.xml', '/.editorconfig'] as $path) {
+		expect($attributes)->toMatch('#^' . preg_quote($path, '#') . '\s+export-ignore$#m', $path);
 	}
 });

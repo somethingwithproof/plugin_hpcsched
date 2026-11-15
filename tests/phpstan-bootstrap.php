@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 // Constants core defines at runtime, so PHPStan can resolve them without a database.
 $cacti_root = rtrim((string) getenv('CACTI_PATH'), '/');
 

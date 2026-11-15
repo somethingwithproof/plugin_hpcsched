@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Reader flow against the installed Cacti database, included by
  * tests/bin/lifecycle.php (action reader_flow). Both transports run against

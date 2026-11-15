@@ -17,6 +17,9 @@
  * more details.
  */
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 /*
  * Adapted from plugin_cloud's transport spike. Writes the test certificates into <dir>:
  *   ca.pem        test CA the client trusts

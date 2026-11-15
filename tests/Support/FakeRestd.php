@@ -19,6 +19,9 @@
 
 namespace Somethingwithproof\Hpcsched\Tests;
 
+// Test code: refuse to run from a web request.
+PHP_SAPI === 'cli' || exit(1);
+
 require_once __DIR__ . '/Scratch.php';
 
 /**
