@@ -1,0 +1,120 @@
+{
+  "reservations": [
+    {
+      "accounts": "",
+      "burst_buffer": "",
+      "core_count": 14,
+      "core_specializations": [
+      ],
+      "end_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794762665
+      },
+      "features": "",
+      "flags": [
+        "MAINT",
+        "SPEC_NODES"
+      ],
+      "groups": "",
+      "licenses": "",
+      "max_start_delay": 0,
+      "name": "maint_c6",
+      "node_count": 1,
+      "node_list": "c6",
+      "partition": "",
+      "purge_completed": {
+        "time": {
+          "set": true,
+          "infinite": false,
+          "number": 300
+        }
+      },
+      "start_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794755465
+      },
+      "watts": {
+      },
+      "tres": "cpu=14",
+      "users": "root"
+    },
+    {
+      "accounts": "",
+      "burst_buffer": "",
+      "core_count": 14,
+      "core_specializations": [
+      ],
+      "end_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794845465
+      },
+      "features": "",
+      "flags": [
+        "SPEC_NODES"
+      ],
+      "groups": "",
+      "licenses": "",
+      "max_start_delay": 0,
+      "name": "future_c3",
+      "node_count": 1,
+      "node_list": "c3",
+      "partition": "",
+      "purge_completed": {
+        "time": {
+          "set": true,
+          "infinite": false,
+          "number": 300
+        }
+      },
+      "start_time": {
+        "set": true,
+        "infinite": false,
+        "number": 1794841865
+      },
+      "watts": {
+      },
+      "tres": "cpu=14",
+      "users": "root"
+    }
+  ],
+  "last_update": {
+    "set": true,
+    "infinite": false,
+    "number": 1794755480
+  },
+  "meta": {
+    "plugin": {
+      "type": "",
+      "name": "",
+      "data_parser": "data_parser\/v0.0.43",
+      "accounting_storage": "accounting_storage\/slurmdbd"
+    },
+    "client": {
+      "source": "",
+      "user": "root",
+      "group": "root"
+    },
+    "command": [
+      "scontrol",
+      "--json=v0.0.43",
+      "show",
+      "reservation"
+    ],
+    "slurm": {
+      "version": {
+        "major": "26",
+        "micro": "5",
+        "minor": "05"
+      },
+      "release": "26.05.5",
+      "cluster": "linux"
+    }
+  },
+  "errors": [
+  ],
+  "warnings": [
+  ]
+}

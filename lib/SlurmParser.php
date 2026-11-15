@@ -44,6 +44,10 @@ final class SlurmParser {
 				throw new TransportError(ErrorClass::Malformed, 'job without a state');
 			}
 
+			if (JobState::finished($states)) {
+				continue;
+			}
+
 			$reason = SlurmJson::string($job, 'state_reason');
 			$state  = JobState::of($states, $reason);
 			$tasks  = SlurmJson::string($job, 'array_task_string');

@@ -39,6 +39,8 @@ The next collection reads the new file. Generating tokens with `scontrol token` 
 
 **Alerting.** Thold can alert on any of these data sources; set Thold durations to at least one collection interval, and alert on `age` to catch a stopped reader. The end-to-end Thold check is milestone 4.
 
+**Tested against real Slurm output.** CI starts a six-node Slurm cluster in containers (26.05.5 on every change, 25.11.8 built from source on pushes to `main`, weekly, and on request) and checks node states, the maintenance reservation, pending reasons, and arrays as the plugin parses them, then collects from that cluster with the plugin's own command and `slurmrestd` transports. Older releases are covered only by synthetic fixtures. The reader has still not run against a production cluster.
+
 **Permissions.** A cluster on a device is shown, exported, and changed only for users Cacti allows that device, on every plugin page; mapping a device also needs permission for the target device. A cluster without a device is visible to everyone with the plugin realm. A cluster still mapped to a device that was deleted while the plugin was disabled is shown only to users with the HPC Scheduler Admin realm, who can create or map a device for it. Graph access is Cacti's own.
 
 ## Why

@@ -91,3 +91,17 @@ No output was captured. Payload size and run time of JSON versus format output a
 | #16 | Set a node reason containing `\|`, a newline, and a quote; capture `sinfo -N -o` and JSON | whether `%E` is safe in delimited output |
 | #16 | Create a partition named with each character Slurm allows | whether partition names can contain the delimiter |
 | #16 | Run a newer client against an older daemon and the reverse, with an explicit parser | what a mismatched pairing prints |
+
+### Results from the milestone 3 live cluster
+
+Run 2026-11-15 on slurm-docker-cluster 3.0.2 (26.05.5 from the published image, 25.11.8 built from source), six dynamic nodes, on arm64; the same steps are the `slurm-live` CI job, and the captures are in `tests/fixtures/slurm/live`. Not covered: a job in two partitions, a 100 task array, the size and time comparison at scale, partition name characters, and mismatched client and daemon releases.
+
+| Observation | Releases | Consequence |
+|---|---|---|
+| `sinfo -o %T` prints `drained` for a node that is DOWN and DRAIN; the JSON `state` array keeps both | 26.05.5, 25.11.8 | node state comes from JSON, which the plugin already does |
+| A node reason containing `\|` adds a field to `sinfo -o '%N\|%T\|%E\|%P'` output | both | reasons come from JSON |
+| squeue JSON gives a pending array as one record with `array_task_string` (`1-12`, `1-6%2`); `squeue -r` prints one line per task | both | the task count rule in ADR 0011 holds |
+| slurmrestd's jobs endpoint also lists COMPLETED, FAILED, and CANCELLED jobs that slurmctld still keeps; `squeue --json` lists only unfinished ones | both | the parser drops finished jobs, so both transports count the same jobs |
+| `DYNAMIC_NORM` is set on every dynamic node | both | ignored when classifying state |
+| A maintenance reservation is active at once, but on 25.11.8 the node gained `RESERVED` and `MAINTENANCE` only after several minutes (26.05.5 had them at capture time) | 25.11.8 | the live check waits for the flags with a bound and otherwise accepts the active MAINT reservation; the 25.11 capture shows the node still idle |
+| Data parsers served: v0.0.42 to v0.0.45 on 26.05.5; v0.0.42 to v0.0.44 over REST on 25.11.8, whose client also lists v0.0.41 | both | the default v0.0.43 works on both; v0.0.45 is 26.05 only, as the health page warns |

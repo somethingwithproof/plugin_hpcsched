@@ -32,6 +32,23 @@ enum JobState: string {
 	case Other      = 'other';
 
 	/**
+	 * Base states of a job that has ended. squeue leaves these out by
+	 * default, but slurmrestd's jobs endpoint still lists such jobs while
+	 * slurmctld keeps them (MinJobAge), so both transports drop them to
+	 * count the same jobs. A job still completing is not finished.
+	 */
+	private const FINISHED = ['BOOT_FAIL', 'CANCELLED', 'COMPLETED', 'DEADLINE', 'FAILED', 'NODE_FAIL', 'OUT_OF_MEMORY', 'PREEMPTED', 'TIMEOUT'];
+
+	/**
+	 * @param list<string> $state the JSON job_state array (base state and flags)
+	 */
+	public static function finished(array $state): bool {
+		$set = array_map(static fn (string $s): string => strtoupper(trim($s)), $state);
+
+		return !in_array('COMPLETING', $set, true) && array_intersect($set, self::FINISHED) !== [];
+	}
+
+	/**
 	 * @param list<string> $state the JSON job_state array (base state and flags)
 	 */
 	public static function of(array $state, string $reason): self {
