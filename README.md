@@ -69,7 +69,7 @@ Out of scope: any scheduler write path (submit, cancel, hold, drain, resume), a 
 |---|---|
 | Cacti | 1.2.31 or later, no core patches |
 | PHP | 8.2 or later; `setup.php` stays parseable on 8.0 so an unsupported runtime gets a refusal instead of a broken Cacti UI |
-| Slurm | Provisionally 25.05, 25.11, and 26.05 (decision #8 is open). The data parser is a setting: v0.0.43 by default, which SchedMD removes in 27.05, or v0.0.44 or v0.0.45 on releases that ship them |
+| Slurm | 25.05, 25.11, and 26.05, the three latest releases ([ADR 0013](docs/decisions/0013-three-latest-slurm-releases.md)); 25.11 and 26.05 are tested against a live cluster, 25.05 against fixtures only. Client commands are the default transport ([ADR 0012](docs/decisions/0012-client-commands-default-transport.md)) and use the data parser setting: v0.0.43 by default, which SchedMD removes in 27.05, or v0.0.44 or v0.0.45 on releases that ship them. slurmrestd clusters discover the newest parser the daemon serves |
 | Thold, Maint | No Thold change; Maint integration is a proposal that needs Maint maintainers' agreement |
 
 ## Design
