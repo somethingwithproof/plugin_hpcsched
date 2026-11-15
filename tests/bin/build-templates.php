@@ -455,6 +455,12 @@ if ($removed !== 1) {
 	exit(1);
 }
 
+// Cacti stores "no right axis format" as NULL or 0 depending on how the row
+// was written, and exports them as '' or 0. Both mean none; writing it empty
+// keeps the export the same whether it is built on an empty database or
+// rebuilt after an import.
+$xml = str_replace('<right_axis_format>0</right_axis_format>', '<right_axis_format></right_axis_format>', $xml);
+
 $file = isset($argv[1]) ? $argv[1] : $config['base_path'] . '/plugins/hpcsched/templates/hpcsched-templates.xml';
 
 file_put_contents($file, $xml);

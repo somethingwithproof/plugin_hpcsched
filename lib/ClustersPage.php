@@ -21,10 +21,12 @@ namespace Somethingwithproof\Hpcsched;
 
 /**
  * HPC Clusters (HPC Scheduler Admin realm, REQ-UI-003): the cluster list,
- * the edit form, and the export. Every action that changes state is a POST
- * form that csrf-magic signs. Every stored string is escaped where it is
- * printed. The form takes a token file path, never a token, and the export
- * holds no credential. Nothing here contacts a scheduler.
+ * the edit form, the device page, and the export. Every action that changes
+ * state is a POST form that csrf-magic signs. Every stored string is escaped
+ * where it is printed. The form takes a token file path, never a token, and
+ * the export holds no credential. Clusters on a device the user may not see
+ * are left out of the list and the export (DeviceAccess). Nothing here
+ * contacts a scheduler.
  */
 final class ClustersPage {
 	public const FILE = 'hpcsched_clusters.php';
@@ -32,22 +34,26 @@ final class ClustersPage {
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly PollerRepository $pollers,
+		private readonly DeviceAccess $access,
+		private readonly CactiObjectRepository $objects,
+		private readonly DeviceProvisioner $provisioner,
 	) {
 	}
 
 	public function renderList(): void {
 		$pollers  = $this->pollers->names();
-		$clusters = $this->clusters->all();
+		$clusters = $this->access->clusters($this->clusters->all());
 
 		html_start_box(__('HPC Clusters', 'hpcsched'), '100%', '', '3', 'center', self::FILE . '?action=edit');
-		print Format::header([__('Name', 'hpcsched'), __('Poller', 'hpcsched'), __('Transport', 'hpcsched'), __('Interval', 'hpcsched'), __('Sections', 'hpcsched'), __('State', 'hpcsched'), __('Actions', 'hpcsched')]);
+		print Format::header([__('Name', 'hpcsched'), __('Poller', 'hpcsched'), __('Transport', 'hpcsched'), __('Interval', 'hpcsched'), __('Sections', 'hpcsched'), __('State', 'hpcsched'), __('Device', 'hpcsched'), __('Actions', 'hpcsched')]);
 
 		if ($clusters === []) {
-			print '<tr><td colspan="7"><em>' . html_escape(__('No clusters configured yet.', 'hpcsched')) . '</em></td></tr>';
+			print '<tr><td colspan="8"><em>' . html_escape(__('No clusters configured yet.', 'hpcsched')) . '</em></td></tr>';
 		}
 
 		foreach ($clusters as $cluster) {
 			$toggle = $cluster->enabled() ? ['disable', __('Disable', 'hpcsched')] : ['enable', __('Enable', 'hpcsched')];
+			$device = $this->objects->device($cluster->hostId);
 
 			print '<tr class="tableRow">'
 				. '<td><a class="linkEditMain" href="' . html_escape(self::FILE . '?action=edit&id=' . $cluster->id) . '">' . html_escape($cluster->name) . '</a></td>'
@@ -56,6 +62,7 @@ final class ClustersPage {
 				. '<td>' . html_escape(__('%d seconds', $cluster->interval, 'hpcsched')) . '</td>'
 				. '<td>' . html_escape(implode(', ', array_map(static fn (Section $s): string => $s->label(), $cluster->sections()))) . '</td>'
 				. '<td>' . html_escape($cluster->adminState->value) . '</td>'
+				. '<td><a href="' . html_escape(self::FILE . '?action=device&id=' . $cluster->id) . '">' . html_escape($device === null ? __('None', 'hpcsched') : $device['description']) . '</a></td>'
 				. '<td>' . $this->actionForm($toggle[0], $cluster->id, $toggle[1]) . ' ' . $this->actionForm('delete', $cluster->id, __('Delete', 'hpcsched')) . '</td>'
 				. '</tr>';
 		}
@@ -119,6 +126,77 @@ final class ClustersPage {
 	}
 
 	/**
+	 * The cluster's device: what creating or mapping one adds, before it is
+	 * done (REQ-OBJ-002, REQ-OBJ-006), or the mapped device and what can be
+	 * done to it. The caller has checked DeviceAccess for the cluster.
+	 */
+	public function renderDevice(Cluster $cluster): void {
+		$refusal = $this->provisioner->refusal();
+		$device  = $this->objects->device($cluster->hostId);
+
+		html_start_box(__('Device for Cluster: %s', html_escape($cluster->name), 'hpcsched'), '100%', '', '3', 'center', '');
+
+		if ($refusal !== null) {
+			print '<tr><td class="textError">' . html_escape($refusal) . '</td></tr>';
+			html_end_box();
+
+			return;
+		}
+
+		if ($device !== null) {
+			print '<tr><td>' . html_escape(__('Mapped to device %s (id %d). Its graphs follow Cacti\'s device and graph permissions.', $device['description'], $device['id'], 'hpcsched')) . '</td></tr>';
+
+			print '<tr><td><strong>' . html_escape(__('Adding the missing graphs adds:', 'hpcsched')) . '</strong></td></tr>';
+
+			foreach ($this->provisioner->plan($cluster, $device['id'], true) as $line) {
+				print '<tr><td>' . html_escape($line) . '</td></tr>';
+			}
+
+			print '<tr><td>'
+				. $this->actionForm('attach_device', $cluster->id, __('Add Missing Graphs', 'hpcsched'), ['partition_graphs' => 'on']) . ' '
+				. $this->actionForm('reindex_device', $cluster->id, __('Reindex Partitions', 'hpcsched')) . ' '
+				. $this->actionForm('unmap_device', $cluster->id, __('Unmap', 'hpcsched'))
+				. '</td></tr>';
+			print '<tr><td><small>' . html_escape(__('Unmapping keeps the device, its graphs, and their history.', 'hpcsched')) . '</small></td></tr>';
+			html_end_box();
+
+			return;
+		}
+
+		print '<tr><td><strong>' . html_escape(__('Creating a device adds:', 'hpcsched')) . '</strong></td></tr>';
+
+		foreach ($this->provisioner->plan($cluster, 0, true) as $line) {
+			print '<tr><td>' . html_escape($line) . '</td></tr>';
+		}
+
+		print '<tr><td><small>' . html_escape(__('Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out.', 'hpcsched')) . '</small></td></tr>';
+		print '<tr><td><form method="post" action="' . html_escape(self::FILE) . '">'
+			. '<input type="hidden" name="action" value="create_device"><input type="hidden" name="id" value="' . $cluster->id . '">'
+			. '<label><input type="checkbox" name="partition_graphs" value="on" checked> ' . html_escape(__('Also create the partition graphs', 'hpcsched')) . '</label> '
+			. '<input type="submit" class="ui-button" value="' . html_escape(__('Create Device', 'hpcsched')) . '">'
+			. '</form></td></tr>';
+
+		$mapped  = array_values(array_filter(array_map(static fn (Cluster $c): int => $c->hostId, $this->clusters->all())));
+		$devices = array_filter($this->objects->mappableDevices($mapped), fn (int $id): bool => $this->access->device($id), ARRAY_FILTER_USE_KEY);
+
+		if ($devices !== []) {
+			print '<tr><td><form method="post" action="' . html_escape(self::FILE) . '">'
+				. '<input type="hidden" name="action" value="map_device"><input type="hidden" name="id" value="' . $cluster->id . '">'
+				. '<label for="host_id">' . html_escape(__('Or map an existing device', 'hpcsched')) . '</label> <select id="host_id" name="host_id">';
+
+			foreach ($devices as $id => $description) {
+				print '<option value="' . $id . '">' . html_escape($description) . '</option>';
+			}
+
+			print '</select> <label><input type="checkbox" name="partition_graphs" value="on" checked> ' . html_escape(__('Also create the partition graphs', 'hpcsched')) . '</label> '
+				. '<input type="submit" class="ui-button" value="' . html_escape(__('Map Device', 'hpcsched')) . '">'
+				. '</form></td></tr>';
+		}
+
+		html_end_box();
+	}
+
+	/**
 	 * The cluster configuration as data for the export download. Token file
 	 * paths only; no token is ever in the plugin's tables to export.
 	 *
@@ -141,14 +219,24 @@ final class ClustersPage {
 				'token_file'           => $c->tokenFile,
 				'collect_reservations' => $c->reservations,
 				'collect_shares'       => $c->shares,
-			], $this->clusters->all()),
+				'host_id'              => $c->hostId,
+			], $this->access->clusters($this->clusters->all())),
 		];
 	}
 
-	private function actionForm(string $action, int $id, string $label): string {
+	/**
+	 * @param array<string, string> $extra more hidden fields
+	 */
+	private function actionForm(string $action, int $id, string $label, array $extra = []): string {
+		$hidden = '';
+
+		foreach ($extra as $name => $value) {
+			$hidden .= '<input type="hidden" name="' . html_escape($name) . '" value="' . html_escape($value) . '">';
+		}
+
 		return '<form method="post" action="' . html_escape(self::FILE) . '" style="display:inline">'
 			. '<input type="hidden" name="action" value="' . html_escape($action) . '">'
-			. '<input type="hidden" name="id" value="' . $id . '">'
+			. '<input type="hidden" name="id" value="' . $id . '">' . $hidden
 			. '<input type="submit" class="ui-button" value="' . html_escape($label) . '">'
 			. '</form>';
 	}

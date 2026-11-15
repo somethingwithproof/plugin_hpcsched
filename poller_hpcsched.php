@@ -139,6 +139,12 @@ try {
 	unregister_process('hpcsched', 'reader', $hpcsched_cluster);
 }
 
+// A partition added, removed, or renamed reaches the cluster device through
+// Cacti's reindex; its index count check alone misses a rename (ADR 0011).
+if ($hpcsched_row->hostId > 0 && $hpcsched_run->outcome !== \Somethingwithproof\Hpcsched\RunOutcome::Failed && hpcsched_provisioner()->reindexIfChanged($hpcsched_row)) {
+	cacti_log('NOTE: The partitions of cluster ' . $hpcsched_cluster . ' changed; its device was reindexed', false, 'HPCSCHED', POLLER_VERBOSITY_MEDIUM);
+}
+
 cacti_log(sprintf('STATS: Cluster:%d Outcome:%s Calls:%d Time:%.2f', $hpcsched_cluster, $hpcsched_run->outcome->value, $hpcsched_run->calls, (float) $hpcsched_run->duration), false, 'HPCSCHED', POLLER_VERBOSITY_MEDIUM);
 
 exit(0);

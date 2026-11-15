@@ -27,6 +27,7 @@ const HPCSCHED_TABLES = [
 	'plugin_hpcsched_cluster',
 	'plugin_hpcsched_job_count',
 	'plugin_hpcsched_node',
+	'plugin_hpcsched_node_count',
 	'plugin_hpcsched_partition',
 	'plugin_hpcsched_reservation',
 	'plugin_hpcsched_run',
@@ -34,7 +35,7 @@ const HPCSCHED_TABLES = [
 	'plugin_hpcsched_share',
 ];
 
-const HPCSCHED_HOOKS = ['config_arrays', 'config_settings', 'draw_navigation_text', 'poller_bottom'];
+const HPCSCHED_HOOKS = ['config_arrays', 'config_settings', 'device_remove', 'draw_navigation_text', 'poller_bottom'];
 
 const HPCSCHED_T = 1800000000;
 
@@ -51,7 +52,7 @@ it('installs fresh with tracked tables, hooks, and both realms, leaving the plug
 
 	expect($state['plugin']['status'])->toEqual('4')
 		->and($state['plugin']['version'])->toEqual(HPCSCHED_VERSION)
-		->and($state['schema'])->toEqual('1')
+		->and($state['schema'])->toEqual('2')
 		->and(array_keys($state['tables']))->toBe(HPCSCHED_TABLES)
 		->and($state['tracked'])->toBe(HPCSCHED_TABLES)
 		->and(array_keys($state['hooks']))->toBe(HPCSCHED_HOOKS)
@@ -122,7 +123,7 @@ it('finishes an upgrade that was interrupted after creating only some tables', f
 	expect($state['result'])->toBeTrue()
 		->and(array_keys($state['tables']))->toBe(HPCSCHED_TABLES)
 		->and($state['tables']['plugin_hpcsched_cluster'])->toBe(1)
-		->and($state['schema'])->toEqual('1')
+		->and($state['schema'])->toEqual('2')
 		->and($state['plugin']['version'])->toEqual(HPCSCHED_VERSION);
 });
 
@@ -134,7 +135,45 @@ it('does not advance past a migration that did not run', function () {
 	expect($stopped['result'])->toBeTrue()
 		->and($stopped['schema'])->toEqual('0');
 
-	expect(lifecycle('upgrade')['schema'])->toEqual('1');
+	expect(lifecycle('upgrade')['schema'])->toEqual('2');
+});
+
+it('upgrades a schema 1 install, adding the device column and the node counts, keeping its clusters', function () {
+	lifecycle('install');
+	lifecycle('seed');
+	lifecycle('make_schema_1');
+	lifecycle('set_schema', '1');
+	lifecycle('set_version', '0.0');
+
+	expect(lifecycle('state')['columns'])->not->toContain('host_id');
+
+	$state = lifecycle('upgrade');
+
+	expect($state['result'])->toBeTrue()
+		->and($state['schema'])->toEqual('2')
+		->and(array_keys($state['tables']))->toBe(HPCSCHED_TABLES)
+		->and($state['tracked'])->toBe(HPCSCHED_TABLES)
+		->and($state['tables']['plugin_hpcsched_cluster'])->toBe(1)
+		->and($state['columns'])->toContain('host_id');
+});
+
+it('imports the templates and the query file on install, and a reinstall creates no Cacti object (REQ-OBJ-001)', function () {
+	$first = lifecycle('install');
+
+	expect($first['templates_current'])->toBeTrue()
+		->and($first['query_file'])->toBeTrue();
+
+	$uninstalled = lifecycle('uninstall');
+
+	// The query file the plugin wrote goes; the templates are the site's.
+	expect($uninstalled['query_file'])->toBeFalse()
+		->and($uninstalled['templates'])->toBe($first['templates']);
+
+	$again = lifecycle('install');
+
+	expect($again['templates_current'])->toBeTrue()
+		->and($again['templates'])->toBe($first['templates'])
+		->and(lifecycle('upgrade')['templates'])->toBe($first['templates']);
 });
 
 it('refuses a schema newer than the code and leaves the recorded version alone', function () {

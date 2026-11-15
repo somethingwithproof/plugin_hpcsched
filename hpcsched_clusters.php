@@ -17,12 +17,18 @@
  * more details.
  */
 
+
 /*
  * HPC Clusters (HPC Scheduler Admin realm). This file must parse on PHP 8.0:
  * Cacti may include it on an unsupported runtime, and hpcsched_page_start()
  * refuses there before any plugin class loads. Request values are read
  * through Cacti's request helpers and validated by ClusterInput before
  * anything is stored. Nothing here contacts a scheduler.
+ *
+ * Every action that loads an existing cluster checks Cacti's device
+ * permission for the cluster's device first (DeviceAccess), and mapping also
+ * checks the device it maps to, so an administrator of the plugin allowed
+ * one device cannot see or change a cluster on another.
  */
 
 chdir('../../');
@@ -33,25 +39,40 @@ if (!hpcsched_page_start()) {
 	exit;
 }
 
-hpcsched_require_post('hpcsched_clusters.php', array('save', 'delete', 'enable', 'disable'));
+hpcsched_require_post('hpcsched_clusters.php', array('save', 'delete', 'enable', 'disable', 'create_device', 'map_device', 'attach_device', 'unmap_device', 'reindex_device'));
 
 $hpcsched_clock    = new \Somethingwithproof\Hpcsched\SystemClock();
 $hpcsched_clusters = new \Somethingwithproof\Hpcsched\ClusterRepository(false, $hpcsched_clock);
 $hpcsched_pollers  = new \Somethingwithproof\Hpcsched\PollerRepository(false);
-$hpcsched_page     = new \Somethingwithproof\Hpcsched\ClustersPage($hpcsched_clusters, $hpcsched_pollers);
+$hpcsched_access   = hpcsched_device_access();
+$hpcsched_devices  = hpcsched_provisioner();
+$hpcsched_page     = new \Somethingwithproof\Hpcsched\ClustersPage($hpcsched_clusters, $hpcsched_pollers, $hpcsched_access, new \Somethingwithproof\Hpcsched\CactiObjectRepository(false), $hpcsched_devices);
 $hpcsched_action   = (string) get_nfilter_request_var('action');
+
+/**
+ * The cluster a request names, or back to the list when it does not exist
+ * or its device is not allowed to this user.
+ */
+function hpcsched_cluster_request(\Somethingwithproof\Hpcsched\ClusterRepository $clusters, \Somethingwithproof\Hpcsched\DeviceAccess $access): \Somethingwithproof\Hpcsched\Cluster {
+	$cluster = $clusters->get((int) get_filter_request_var('id'));
+
+	if (!$access->cluster($cluster)) {
+		if ($cluster !== null) {
+			raise_message('hpcsched_denied', __('You do not have permission for the device of that cluster.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+		}
+
+		header('Location: hpcsched_clusters.php');
+		exit;
+	}
+
+	return $cluster;
+}
 
 switch ($hpcsched_action) {
 	case 'save':
 		$hpcsched_id       = (int) get_filter_request_var('id');
-		$hpcsched_existing = $hpcsched_id > 0 ? $hpcsched_clusters->get($hpcsched_id) : null;
-
-		if ($hpcsched_id > 0 && $hpcsched_existing === null) {
-			header('Location: hpcsched_clusters.php');
-			exit;
-		}
-
-		$hpcsched_input = array();
+		$hpcsched_existing = $hpcsched_id > 0 ? hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access) : null;
+		$hpcsched_input    = array();
 
 		foreach (array('name', 'poller_id', 'collect_interval', 'enabled', 'collect_reservations', 'collect_shares', 'transport', 'slurm_conf', 'rest_url', 'rest_user', 'token_file', 'updated_at') as $hpcsched_field) {
 			$hpcsched_input[$hpcsched_field] = (string) get_nfilter_request_var($hpcsched_field);
@@ -77,21 +98,66 @@ switch ($hpcsched_action) {
 		exit;
 	case 'enable':
 	case 'disable':
-		$hpcsched_clusters->setState((int) get_filter_request_var('id'), $hpcsched_action === 'enable' ? \Somethingwithproof\Hpcsched\AdminState::Enabled : \Somethingwithproof\Hpcsched\AdminState::Disabled);
+		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
+		$hpcsched_clusters->setState($hpcsched_cluster->id, $hpcsched_action === 'enable' ? \Somethingwithproof\Hpcsched\AdminState::Enabled : \Somethingwithproof\Hpcsched\AdminState::Disabled);
 		header('Location: hpcsched_clusters.php');
 		exit;
 	case 'delete':
-		if ($hpcsched_clusters->delete((int) get_filter_request_var('id'))) {
-			raise_message('hpcsched_deleted', __('The cluster and its cached snapshot were deleted. The scheduler was not contacted.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
+
+		if ($hpcsched_clusters->delete($hpcsched_cluster->id)) {
+			raise_message('hpcsched_deleted', __('The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted.', 'hpcsched'), MESSAGE_LEVEL_INFO);
 		}
 
 		header('Location: hpcsched_clusters.php');
+		exit;
+	case 'create_device':
+	case 'map_device':
+	case 'attach_device':
+		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
+		$hpcsched_graphs  = get_nfilter_request_var('partition_graphs') === 'on';
+		$hpcsched_back    = 'hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id;
+
+		if ($hpcsched_devices->refusal() !== null) {
+			raise_message('hpcsched_device', $hpcsched_devices->refusal(), MESSAGE_LEVEL_ERROR);
+		} elseif ($hpcsched_action === 'create_device') {
+			$hpcsched_ok = $hpcsched_cluster->hostId === 0 && $hpcsched_devices->create($hpcsched_cluster, $hpcsched_graphs) > 0;
+			raise_message('hpcsched_device', $hpcsched_ok ? __('The device and its graphs were created.', 'hpcsched') : __('The device was not created. See the Cacti log.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
+		} elseif ($hpcsched_action === 'map_device') {
+			$hpcsched_host = (int) get_filter_request_var('host_id');
+			$hpcsched_ok   = $hpcsched_cluster->hostId === 0 && $hpcsched_access->device($hpcsched_host) && $hpcsched_devices->map($hpcsched_cluster, $hpcsched_host, $hpcsched_graphs);
+			raise_message('hpcsched_device', $hpcsched_ok ? __('The cluster was mapped to the device.', 'hpcsched') : __('The cluster was not mapped: the device does not exist, is not allowed to you, or already carries another cluster.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
+		} elseif ($hpcsched_cluster->hostId > 0) {
+			$hpcsched_devices->attach($hpcsched_cluster->id, $hpcsched_cluster->hostId, $hpcsched_graphs);
+			raise_message('hpcsched_device', __('Missing graphs were added.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		}
+
+		header('Location: ' . $hpcsched_back);
+		exit;
+	case 'unmap_device':
+		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
+		$hpcsched_clusters->mapHost($hpcsched_cluster->id, 0);
+		raise_message('hpcsched_device', __('The cluster was unmapped. The device and its graphs were kept.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		header('Location: hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id);
+		exit;
+	case 'reindex_device':
+		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
+		$hpcsched_devices->reindex($hpcsched_cluster->hostId);
+		raise_message('hpcsched_device', __('The partitions were reindexed from the snapshot.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		header('Location: hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id);
+		exit;
+	case 'device':
+		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
+
+		top_header();
+		$hpcsched_page->renderDevice($hpcsched_cluster);
+		bottom_footer();
 		exit;
 	case 'edit':
 		$hpcsched_id = (int) get_filter_request_var('id');
 
 		top_header();
-		$hpcsched_page->renderEdit($hpcsched_id > 0 ? $hpcsched_clusters->get($hpcsched_id) : null);
+		$hpcsched_page->renderEdit($hpcsched_id > 0 ? hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access) : null);
 		bottom_footer();
 		exit;
 	case 'export':

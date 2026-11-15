@@ -42,6 +42,7 @@ final class Schema {
 		'config_settings'      => 'hpcsched_config_settings',
 		'draw_navigation_text' => 'hpcsched_draw_navigation_text',
 		'poller_bottom'        => 'hpcsched_poller_bottom',
+		'device_remove'        => 'hpcsched_device_remove',
 	];
 
 	private const PLUGIN  = 'hpcsched';

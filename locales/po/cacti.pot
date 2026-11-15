@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr ""
+
+#: hpcsched_clusters.php
 msgid "Name: another cluster already uses this name."
 msgstr ""
 
@@ -29,7 +33,44 @@ msgid "The cluster was saved."
 msgstr ""
 
 #: hpcsched_clusters.php
-msgid "The cluster and its cached snapshot were deleted. The scheduler was not contacted."
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The device was not created. See the Cacti log."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, or already carries another cluster."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr ""
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr ""
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
 msgstr ""
 
 #: lib/ClusterInput.php
@@ -87,6 +128,10 @@ msgid "Actions"
 msgstr ""
 
 #: lib/ClustersPage.php
+msgid "Device"
+msgstr ""
+
+#: lib/ClustersPage.php
 msgid "Interval"
 msgstr ""
 
@@ -130,6 +175,10 @@ msgstr ""
 #: lib/ClustersPage.php
 #, php-format
 msgid "%d seconds"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "None"
 msgstr ""
 
 #: lib/ClustersPage.php
@@ -191,6 +240,94 @@ msgstr ""
 
 #: lib/ClustersPage.php
 msgid "Save"
+msgstr ""
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr ""
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr ""
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
 msgstr ""
 
 #: lib/ErrorClass.php
@@ -338,6 +475,22 @@ msgid "No warnings."
 msgstr ""
 
 #: lib/HealthPage.php
+msgid "Templates"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr ""
+
+#: lib/HealthPage.php
 msgid "Snapshot Sections"
 msgstr ""
 
@@ -359,6 +512,15 @@ msgstr ""
 
 #: lib/HealthPage.php
 msgid "Section"
+msgstr ""
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
 msgstr ""
 
 #: lib/HealthWarnings.php
@@ -501,6 +663,10 @@ msgstr ""
 msgid "Collected"
 msgstr ""
 
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr ""
+
 #: lib/OverviewPage.php lib/Section.php
 msgid "Nodes"
 msgstr ""
@@ -510,7 +676,82 @@ msgid "No clusters are collected yet."
 msgstr ""
 
 #: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr ""
+
+#: lib/OverviewPage.php
 msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), %s."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "current"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "stale: the counts below are the last ones collected"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr ""
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr ""
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
 msgstr ""
 
 #: lib/Pages.php
@@ -559,14 +800,6 @@ msgstr ""
 
 #: lib/ReasonFamily.php
 msgid "Node availability"
-msgstr ""
-
-#: lib/Section.php
-msgid "Jobs"
-msgstr ""
-
-#: lib/Section.php
-msgid "Partitions"
 msgstr ""
 
 #: lib/Section.php
@@ -695,6 +928,16 @@ msgstr ""
 
 #: lib/Settings.php
 msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr ""
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr ""
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
 msgstr ""
 
 #: lib/TokenState.php

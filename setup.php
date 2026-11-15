@@ -160,10 +160,15 @@ function plugin_hpcsched_upgrade(bool $grant = false): bool {
 		return false;
 	}
 
-	$info   = plugin_hpcsched_version();
-	$schema = new \Somethingwithproof\Hpcsched\Schema(false);
+	$info      = plugin_hpcsched_version();
+	$schema    = new \Somethingwithproof\Hpcsched\Schema(false);
+	$templates = hpcsched_template_installer();
 
-	if ($schema->isCurrent() && $schema->recordedPluginVersion() === $info['version'] && $schema->hooksRegistered()) {
+	// A template install that failed for this template version is retried
+	// only from the Plugins page or the health page, not on every request.
+	$templatesSettled = $templates->isCurrent() || ($templates->failure() !== '' && !$grant);
+
+	if ($schema->isCurrent() && $schema->recordedPluginVersion() === $info['version'] && $schema->hooksRegistered() && $templatesSettled) {
 		return true;
 	}
 
@@ -174,6 +179,12 @@ function plugin_hpcsched_upgrade(bool $grant = false): bool {
 	$schema->trackTables();
 
 	hpcsched_setup_hooks($grant);
+
+	// A missing template only stops device provisioning, which the health
+	// page reports; the plugin's pages and reader still work.
+	if (!$templates->isCurrent() && ($grant || $templates->failure() === '')) {
+		$templates->install();
+	}
 
 	$schema->recordPluginVersion($info['version'], $info['author'], $info['homepage']);
 
@@ -222,11 +233,12 @@ function hpcsched_uninstall_stop(): void {
 }
 
 /**
- * Uninstall never contacts a scheduler (REQ-LIFE-004). This release creates
- * no Cacti device, data source, graph, or Maint schedule, so there is
- * nothing of core's to remove. Core drops the tracked plugin tables
- * afterwards unless the administrator left "Keep Plugin Tables on
- * Uninstall" checked, which is the default.
+ * Uninstall never contacts a scheduler (REQ-LIFE-004). It removes only the
+ * data query file the plugin wrote and nobody changed; the templates,
+ * cluster devices, data sources, and graphs stay, because they are the
+ * site's once created. Core drops the tracked plugin tables afterwards
+ * unless the administrator left "Keep Plugin Tables on Uninstall" checked,
+ * which is the default.
  */
 function plugin_hpcsched_uninstall(): void {
 	if (!hpcsched_boot()) {
@@ -237,6 +249,8 @@ function plugin_hpcsched_uninstall(): void {
 	}
 
 	$schema = new \Somethingwithproof\Hpcsched\Schema(false);
+
+	hpcsched_template_installer()->uninstall();
 
 	if (hpcsched_settings()->keepTablesOnUninstall) {
 		if (!$schema->untrackTables()) {
@@ -355,6 +369,68 @@ function hpcsched_due_clusters(int $poller_id): array {
 		new \Somethingwithproof\Hpcsched\RunRepository(false, $clock),
 		$clock
 	))->due($poller_id, hpcsched_poller_interval());
+}
+
+function hpcsched_template_installer(): \Somethingwithproof\Hpcsched\TemplateInstaller {
+	global $config;
+
+	return new \Somethingwithproof\Hpcsched\TemplateInstaller(__DIR__, $config['base_path'], new \Somethingwithproof\Hpcsched\CactiObjectRepository(false));
+}
+
+function hpcsched_provisioner(): \Somethingwithproof\Hpcsched\DeviceProvisioner {
+	global $config;
+
+	return new \Somethingwithproof\Hpcsched\DeviceProvisioner(
+		new \Somethingwithproof\Hpcsched\ClusterRepository(false, new \Somethingwithproof\Hpcsched\SystemClock()),
+		new \Somethingwithproof\Hpcsched\SeriesRepository(false),
+		new \Somethingwithproof\Hpcsched\CactiObjectRepository(false),
+		$config['base_path']
+	);
+}
+
+/**
+ * Cacti's device permission for the user of this request.
+ */
+function hpcsched_device_access(): \Somethingwithproof\Hpcsched\DeviceAccess {
+	$objects = new \Somethingwithproof\Hpcsched\CactiObjectRepository(false);
+
+	return new \Somethingwithproof\Hpcsched\DeviceAccess(
+		function (int $host_id): bool {
+			return is_device_allowed($host_id) === true;
+		},
+		function (int $host_id) use ($objects): bool {
+			return $objects->device($host_id) !== null;
+		}
+	);
+}
+
+/**
+ * device_remove hook: a deleted device no longer carries a cluster. The
+ * cluster and its snapshot stay, and other devices are untouched.
+ *
+ * @param mixed $host_ids
+ * @return mixed
+ */
+function hpcsched_device_remove($host_ids) {
+	if (!hpcsched_boot()) {
+		return $host_ids;
+	}
+
+	$ids = array();
+
+	foreach (is_array($host_ids) ? $host_ids : array($host_ids) as $id) {
+		if (is_numeric($id) && (int) $id > 0) {
+			$ids[] = (int) $id;
+		}
+	}
+
+	$count = (new \Somethingwithproof\Hpcsched\ClusterRepository(false, new \Somethingwithproof\Hpcsched\SystemClock()))->unmapHosts($ids);
+
+	if ($count > 0) {
+		\Somethingwithproof\Hpcsched\Log::info(sprintf('%d clusters lost their device when it was deleted; they can be given a device again from HPC Clusters', $count));
+	}
+
+	return $host_ids;
 }
 
 /**
