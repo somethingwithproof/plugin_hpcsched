@@ -1,0 +1,684 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Thomas Vincent
+# This file is distributed under the same license as the hpcsched package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. The scheduler was not contacted."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr ""
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr ""
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Actions"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr ""
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "State"
+msgstr ""
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr ""
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr ""
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr ""
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr ""
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr ""
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr ""
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr ""
+
+#: lib/Format.php lib/OverviewPage.php
+msgid "Never"
+msgstr ""
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr ""
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr ""
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr ""
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr ""
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr ""
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr ""
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr ""
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr ""
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr ""
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr ""
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr ""
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr ""
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr ""
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr ""
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr ""
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr ""
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr ""
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr ""
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr ""
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr ""
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr ""
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr ""
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr ""
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr ""
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr ""
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr ""
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr ""
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr ""
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr ""
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr ""
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr ""
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr ""
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr ""
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr ""
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr ""
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr ""
+
+#: lib/Section.php
+msgid "Jobs"
+msgstr ""
+
+#: lib/Section.php
+msgid "Partitions"
+msgstr ""
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr ""
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with a pinned data parser."
+msgstr ""
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr ""
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr ""
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr ""
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr ""
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed."
+msgstr ""
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr ""
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr ""
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr ""
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr ""
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr ""
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr ""
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr ""
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr ""
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr ""
+
+#: lib/TokenState.php
+msgid "owned by a user other than the poller user"
+msgstr ""
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr ""
+
+#: lib/TokenState.php
+msgid "refused: not a regular file, a symbolic link, writable by others, or too large"
+msgstr ""
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr ""
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr ""
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr ""
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr ""
+
+#: setup.php
+msgid "Management"
+msgstr ""
