@@ -67,7 +67,7 @@ function hpcsched_rest_cluster(Scratch $scratch): Cluster {
  * @param array<string, HttpResponse> $responses
  */
 function hpcsched_reader_for(array $responses, FixedClock $clock): Reader {
-	return new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow([]), new CommandRunner(), new StubHttp($responses)), $clock, 'test');
+	return new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), new StubHttp($responses)), $clock, 'test');
 }
 
 /**
@@ -182,11 +182,23 @@ it('backs off after a rate limit, doubling up to ten minutes', function () {
 		->and($run->backoffUntil)->toBe(200000 + Reader::BACKOFF_MAX);
 });
 
+it('refuses a slurmrestd host that is not on the host list and contacts nobody', function () {
+	$http    = new StubHttp(hpcsched_fixture_responses());
+	$clock   = new FixedClock(100000);
+	$GLOBALS['__hpcsched_db_rows'] = ['FROM plugin_hpcsched_run WHERE cluster_id = ? AND holder' => [['c' => 1]]];
+	$settings = Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir(), 'hpcsched_rest_hosts' => 'other.example.org']);
+	$run      = (new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports($settings, new CommandRunner(), $http), $clock, 'test'))->run(hpcsched_rest_cluster($this->scratch), 60);
+
+	expect($http->requests)->toBe([])
+		->and($run->outcome)->toBe(RunOutcome::Failed)
+		->and($run->error)->toBe(ErrorClass::Config);
+});
+
 it('records a refused token file and contacts nobody', function () {
 	$cluster = new Cluster(1, 'demo', 1, AdminState::Enabled, Transport::Rest, 60, restUrl: 'https://slurm.example.org', tokenFile: $this->scratch->file('token', 'x', 0666));
 	$http    = new StubHttp([]);
 	$clock   = new FixedClock(100000);
-	$run     = (new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow([]), new CommandRunner(), $http), $clock, 'test'))->run($cluster, 60);
+	$run     = (new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), $http), $clock, 'test'))->run($cluster, 60);
 
 	expect($http->requests)->toBe([])
 		->and($run->error)->toBe(ErrorClass::Credential)

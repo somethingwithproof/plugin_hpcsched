@@ -32,7 +32,9 @@ final class Scratch {
 			throw new \RuntimeException('cannot create scratch directory');
 		}
 
-		$this->dir = $base;
+		// Canonical, so token file checks that refuse a path through a
+		// symbolic link (such as macOS /var) accept the scratch directory.
+		$this->dir = (string) realpath($base);
 	}
 
 	public function file(string $name, string $content, int $mode = 0600): string {
@@ -53,7 +55,8 @@ final class Scratch {
 	}
 
 	private static function delete(string $path): void {
-		if (is_link($path) || is_file($path)) {
+		// Anything that is not a real directory: files, links, and FIFOs.
+		if (is_link($path) || (file_exists($path) && !is_dir($path))) {
 			unlink($path);
 
 			return;

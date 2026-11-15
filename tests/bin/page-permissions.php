@@ -157,6 +157,13 @@ list(, $form) = perm_http($base . 'hpcsched_clusters.php?action=edit', $jar);
 list(, $refused) = perm_http($base . 'hpcsched_clusters.php', $jar, array('__csrf_magic' => perm_token($form)) + $cluster);
 perm_expect(strpos($refused, 'plain http:// is accepted only for a loopback address') !== false && strpos($refused, 'Token File:') !== false && (int) db_fetch_cell('SELECT COUNT(*) FROM plugin_hpcsched_cluster') === 0, 'unsafe cluster values are refused');
 
+// A token file outside the token directories set in Settings is refused.
+db_execute("REPLACE INTO settings (name, value) VALUES ('hpcsched_token_dirs', '/etc/cacti/hpcsched')");
+$outside = array('rest_url' => 'https://slurm.example.org:6820', 'token_file' => '/etc/passwd') + $cluster;
+list(, $form) = perm_http($base . 'hpcsched_clusters.php?action=edit', $jar);
+list(, $refused) = perm_http($base . 'hpcsched_clusters.php', $jar, array('__csrf_magic' => perm_token($form)) + $outside);
+perm_expect(strpos($refused, 'must be inside one of the token file directories') !== false && (int) db_fetch_cell('SELECT COUNT(*) FROM plugin_hpcsched_cluster') === 0, 'a token file outside the token directories is refused');
+
 $tokenPath = '/etc/cacti/hpcsched/probe-' . bin2hex(random_bytes(4));
 $cluster   = array('rest_url' => 'https://slurm.example.org:6820', 'token_file' => $tokenPath) + $cluster;
 

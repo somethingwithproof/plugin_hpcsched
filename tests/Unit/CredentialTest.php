@@ -58,14 +58,14 @@ function hpcsched_token_state(Scratch $scratch, int $mode, string $content = HPC
 	$path = $scratch->file('token', $content, $mode);
 
 	try {
-		return TokenFile::read($path)->state;
+		return TokenFile::read($path, [$scratch->dir])->state;
 	} catch (CredentialError $e) {
 		return 'refused:' . $e->state->value;
 	}
 }
 
 it('reads a token readable only by the poller user, with its expiry', function () {
-	$token = TokenFile::read($this->scratch->file('token', HPCSCHED_FIXTURE_TOKEN . "\n", 0600));
+	$token = TokenFile::read($this->scratch->file('token', HPCSCHED_FIXTURE_TOKEN . "\n", 0600), [$this->scratch->dir]);
 
 	expect($token->state)->toBe(TokenState::Ok)
 		->and($token->secret->reveal())->toBe(HPCSCHED_FIXTURE_TOKEN)
@@ -73,7 +73,7 @@ it('reads a token readable only by the poller user, with its expiry', function (
 });
 
 it('reads the SLURM_JWT= form scontrol token prints', function () {
-	expect(TokenFile::read($this->scratch->file('token', 'SLURM_JWT=' . HPCSCHED_FIXTURE_TOKEN . "\n", 0600))->secret->reveal())->toBe(HPCSCHED_FIXTURE_TOKEN);
+	expect(TokenFile::read($this->scratch->file('token', 'SLURM_JWT=' . HPCSCHED_FIXTURE_TOKEN . "\n", 0600), [$this->scratch->dir])->secret->reveal())->toBe(HPCSCHED_FIXTURE_TOKEN);
 });
 
 it('warns for group or world read and refuses others writing (REQ-CRED-003)', function (int $mode, TokenState|string $expected) {
@@ -93,7 +93,7 @@ it('refuses a symbolic link, a missing file, a relative path, and an empty or mu
 
 	$state = function (string $path): string {
 		try {
-			TokenFile::read($path);
+			TokenFile::read($path, [$this->scratch->dir]);
 
 			return 'read';
 		} catch (CredentialError $e) {
@@ -107,6 +107,83 @@ it('refuses a symbolic link, a missing file, a relative path, and an empty or mu
 		->and($state($this->scratch->file('empty', "\n", 0600)))->toBe('empty')
 		->and($state($this->scratch->file('two', "a\nb\n", 0600)))->toBe('empty')
 		->and($state($this->scratch->dir))->toBe('refused');
+});
+
+it('refuses a token file outside the token directories, or any when none are set', function () {
+	$path  = $this->scratch->file('token', HPCSCHED_FIXTURE_TOKEN, 0600);
+	$other = new Scratch();
+
+	try {
+		$refusal = function (array $dirs) use ($path): string {
+			try {
+				TokenFile::read($path, $dirs);
+
+				return 'read';
+			} catch (CredentialError $e) {
+				return $e->state->value . ': ' . $e->getMessage();
+			}
+		};
+
+		expect($refusal([$other->dir]))->toBe('refused: the token file is not inside a token file directory set in Settings')
+			->and($refusal([]))->toBe('refused: no token file directories are set in Settings')
+			->and($refusal([$this->scratch->dir . '-sibling']))->toStartWith('refused:')
+			->and($refusal(['/']))->toStartWith('refused:')
+			->and($refusal([dirname($this->scratch->dir)]))->toBe('read')
+			->and($refusal([$other->dir, $this->scratch->dir]))->toBe('read');
+	} finally {
+		$other->remove();
+	}
+});
+
+it('refuses a token file reached through a symbolic link to its directory', function () {
+	$this->scratch->file('real/token', HPCSCHED_FIXTURE_TOKEN, 0600);
+	symlink($this->scratch->dir . '/real', $this->scratch->dir . '/linked');
+
+	try {
+		TokenFile::read($this->scratch->dir . '/linked/token', [$this->scratch->dir]);
+		$state = 'read';
+	} catch (CredentialError $e) {
+		$state = $e->getMessage();
+	}
+
+	expect($state)->toBe('the token file path passes through a symbolic link');
+});
+
+it('refuses a FIFO without waiting for a writer', function () {
+	$fifo = $this->scratch->dir . '/token';
+
+	if (!function_exists('posix_mkfifo') || !posix_mkfifo($fifo, 0600)) {
+		$this->markTestSkipped('posix_mkfifo is not available');
+	}
+
+	$started = microtime(true);
+
+	try {
+		TokenFile::read($fifo, [$this->scratch->dir]);
+		$state = 'read';
+	} catch (CredentialError $e) {
+		$state = $e->state->value;
+	}
+
+	expect($state)->toBe('refused')
+		->and(microtime(true) - $started)->toBeLessThan(2.0);
+});
+
+it('refuses a token file owned by another user', function () {
+	$path = (string) realpath('/etc/hosts');
+
+	if ($path === '' || !function_exists('posix_geteuid') || fileowner($path) === posix_geteuid()) {
+		$this->markTestSkipped('needs a readable file owned by another user');
+	}
+
+	try {
+		TokenFile::read($path, [dirname($path)]);
+		$state = 'read';
+	} catch (CredentialError $e) {
+		$state = $e->state->value;
+	}
+
+	expect($state)->toBe('owner');
 });
 
 it('reads no expiry from a token that is not a JWT', function () {
@@ -150,7 +227,7 @@ it('leaves no token text in the database statements or the log after a run (REQ-
 
 	$GLOBALS['__hpcsched_db_rows'] = ['FROM plugin_hpcsched_run WHERE cluster_id = ? AND holder' => [['c' => 1]]];
 
-	$run = (new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow([]), new CommandRunner(), $http), $clock, 'test'))->run($cluster, 60);
+	$run = (new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), $http), $clock, 'test'))->run($cluster, 60);
 
 	$written = json_encode($GLOBALS['__hpcsched_db_exec']) . json_encode($GLOBALS['__hpcsched_log']);
 

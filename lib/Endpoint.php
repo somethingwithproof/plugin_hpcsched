@@ -71,6 +71,22 @@ final readonly class Endpoint {
 		return new self($tls, $host, $parts['port'] ?? ($tls ? 443 : 80), $path);
 	}
 
+	/**
+	 * Whether the host and port are on an administrator's allowlist of
+	 * host or host:port entries (Settings::hosts). An empty list allows any.
+	 *
+	 * @param list<string> $hosts
+	 */
+	public function permittedBy(array $hosts): bool {
+		if ($hosts === []) {
+			return true;
+		}
+
+		$host = str_contains($this->host, ':') ? '[' . $this->host . ']' : $this->host;
+
+		return in_array($host, $hosts, true) || in_array($host . ':' . $this->port, $hosts, true);
+	}
+
 	public static function loopback(string $host): bool {
 		return $host === 'localhost' || $host === '::1' || preg_match('/^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $host) === 1;
 	}

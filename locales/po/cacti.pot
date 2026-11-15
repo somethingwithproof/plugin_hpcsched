@@ -54,6 +54,10 @@ msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller d
 msgstr ""
 
 #: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr ""
+
+#: lib/ClusterInput.php
 msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
 msgstr ""
 
@@ -63,6 +67,15 @@ msgstr ""
 
 #: lib/ClusterInput.php
 msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr ""
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr ""
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
 msgstr ""
 
 #: lib/ClustersPage.php lib/Pages.php
@@ -623,6 +636,22 @@ msgid "slurmrestd Credentials"
 msgstr ""
 
 #: lib/Settings.php
+msgid "Token File Directories"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr ""
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr ""
+
+#: lib/Settings.php
 msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
 msgstr ""
 
@@ -655,7 +684,7 @@ msgid "readable by every user on the poller; restrict it to the poller user (chm
 msgstr ""
 
 #: lib/TokenState.php
-msgid "owned by a user other than the poller user"
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
 msgstr ""
 
 #: lib/TokenState.php
@@ -663,7 +692,7 @@ msgid "missing or not readable by the poller user"
 msgstr ""
 
 #: lib/TokenState.php
-msgid "refused: not a regular file, a symbolic link, writable by others, or too large"
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
 msgstr ""
 
 #: lib/TokenState.php

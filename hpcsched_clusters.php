@@ -57,7 +57,7 @@ switch ($hpcsched_action) {
 			$hpcsched_input[$hpcsched_field] = (string) get_nfilter_request_var($hpcsched_field);
 		}
 
-		$hpcsched_parsed = \Somethingwithproof\Hpcsched\ClusterInput::parse($hpcsched_input, $hpcsched_existing, $hpcsched_pollers->names());
+		$hpcsched_parsed = \Somethingwithproof\Hpcsched\ClusterInput::parse($hpcsched_input, $hpcsched_existing, $hpcsched_pollers->names(), hpcsched_settings());
 		$hpcsched_errors = $hpcsched_parsed->errors;
 
 		if ($hpcsched_parsed->valid() && $hpcsched_clusters->nameTaken($hpcsched_parsed->name, $hpcsched_id)) {

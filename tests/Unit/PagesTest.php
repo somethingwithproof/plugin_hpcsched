@@ -97,10 +97,14 @@ it('exports the configuration without a token and with markup escaped', function
 		->and($export)->not->toContain('<script>');
 });
 
+function hpcsched_form_settings(string $dirs = '/etc/cacti', string $hosts = ''): Settings {
+	return Settings::fromRow(['hpcsched_token_dirs' => $dirs, 'hpcsched_rest_hosts' => $hosts]);
+}
+
 it('validates the cluster form and keeps a deleted poller selected', function () {
 	$existing = new Cluster(4, 'demo', 7, AdminState::Enabled, Transport::Commands, 60);
-	$ok       = ClusterInput::parse(['name' => 'demo', 'poller_id' => '7', 'collect_interval' => '60', 'transport' => 'commands', 'enabled' => 'on'], $existing, [1 => 'Main']);
-	$moved    = ClusterInput::parse(['name' => 'demo', 'poller_id' => '9', 'collect_interval' => '60', 'transport' => 'commands'], $existing, [1 => 'Main']);
+	$ok       = ClusterInput::parse(['name' => 'demo', 'poller_id' => '7', 'collect_interval' => '60', 'transport' => 'commands', 'enabled' => 'on'], $existing, [1 => 'Main'], hpcsched_form_settings());
+	$moved    = ClusterInput::parse(['name' => 'demo', 'poller_id' => '9', 'collect_interval' => '60', 'transport' => 'commands'], $existing, [1 => 'Main'], hpcsched_form_settings());
 
 	expect($ok->valid())->toBeTrue()
 		->and($ok->pollerId)->toBe(7)
@@ -111,7 +115,7 @@ it('validates the cluster form and keeps a deleted poller selected', function ()
 it('rejects unsafe names, paths, URLs, and intervals', function (array $input, string $field) {
 	$base = ['name' => 'demo', 'poller_id' => '1', 'collect_interval' => '60', 'transport' => 'rest', 'rest_url' => 'https://slurm.example.org', 'token_file' => '/etc/cacti/token'];
 
-	expect(ClusterInput::parse($input + $base, null, [1 => 'Main'])->errors)->toHaveKey($field);
+	expect(ClusterInput::parse($input + $base, null, [1 => 'Main'], hpcsched_form_settings())->errors)->toHaveKey($field);
 })->with([
 	[['name' => '-rf'], 'name'],
 	[['name' => 'a b'], 'name'],
@@ -125,10 +129,34 @@ it('rejects unsafe names, paths, URLs, and intervals', function (array $input, s
 	[['rest_user' => 'bad user'], 'rest_user'],
 	[['token_file' => 'token'], 'token_file'],
 	[['token_file' => ''], 'token_file'],
+	[['token_file' => '/etc/passwd'], 'token_file'],
+	[['token_file' => '/etc/cacti-other/token'], 'token_file'],
+	[['token_file' => '/etc/cacti/../shadow'], 'token_file'],
 ]);
 
+it('accepts a REST cluster only inside the token directories and on the host list from Settings', function () {
+	$input = ['name' => 'demo', 'poller_id' => '1', 'collect_interval' => '60', 'transport' => 'rest', 'rest_url' => 'https://slurm.example.org:6820', 'token_file' => '/etc/cacti/hpcsched/token'];
+	$parse = static fn (Settings $settings, array $override = []): array => ClusterInput::parse($override + $input, null, [1 => 'Main'], $settings)->errors;
+
+	expect($parse(hpcsched_form_settings()))->toBe([])
+		->and($parse(hpcsched_form_settings(''))['token_file'])->toContain('no token file directories are set')
+		->and($parse(hpcsched_form_settings('/etc/cacti', 'slurm.example.org')))->toBe([])
+		->and($parse(hpcsched_form_settings('/etc/cacti', 'slurm.example.org:6820')))->toBe([])
+		->and($parse(hpcsched_form_settings('/etc/cacti', 'slurm.example.org:443')))->toHaveKey('rest_url')
+		->and($parse(hpcsched_form_settings('/etc/cacti', 'other.example.org')))->toHaveKey('rest_url')
+		->and($parse(hpcsched_form_settings('/etc/cacti', 'other.example.org, [::1]:6820'), ['rest_url' => 'http://[::1]:6820']))->toBe([])
+		->and($parse(hpcsched_form_settings('/etc/cacti', 'slurm.example.org'), ['rest_url' => 'https://10.0.0.5:6820']))->toHaveKey('rest_url');
+});
+
+it('parses the token directories and host list conservatively', function () {
+	expect(Settings::directories("/etc/cacti/, /srv/tokens\n relative / /a/../b /etc//x"))->toBe(['/etc/cacti', '/srv/tokens'])
+		->and(Settings::hosts('Slurm.Example.org:6820 bad_host [::1] 10.0.0.5:99999999 x:y'))->toBe(['slurm.example.org:6820', '[::1]'])
+		->and(Settings::fromRow([])->tokenDirs)->toBe([])
+		->and(Settings::fromRow([])->restHosts)->toBe([]);
+});
+
 it('clears REST fields when the cluster uses client commands', function () {
-	$parsed = ClusterInput::parse(['name' => 'demo', 'poller_id' => '1', 'collect_interval' => '60', 'transport' => 'commands', 'rest_url' => 'http://evil.example.org', 'token_file' => 'x'], null, [1 => 'Main']);
+	$parsed = ClusterInput::parse(['name' => 'demo', 'poller_id' => '1', 'collect_interval' => '60', 'transport' => 'commands', 'rest_url' => 'http://evil.example.org', 'token_file' => 'x'], null, [1 => 'Main'], hpcsched_form_settings());
 
 	expect($parsed->valid())->toBeTrue()
 		->and($parsed->restUrl)->toBe('')

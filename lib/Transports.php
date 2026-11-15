@@ -41,7 +41,12 @@ final class Transports {
 		}
 
 		$endpoint = Endpoint::parse($cluster->restUrl);
-		$token    = TokenFile::read($cluster->tokenFile);
+
+		if (!$endpoint->permittedBy($this->settings->restHosts)) {
+			throw new TransportError(ErrorClass::Config, 'host not on the slurmrestd host list in Settings');
+		}
+
+		$token = TokenFile::read($cluster->tokenFile, $this->settings->tokenDirs);
 
 		$redactor->add($token->secret);
 

@@ -24,6 +24,11 @@ namespace Somethingwithproof\Hpcsched;
  * (REQ-UI-003). Paths name files on the poller that runs a cluster's reader.
  * No setting holds a credential: a slurmrestd token is read from the file a
  * cluster names, at use time (REQ-CRED-002).
+ *
+ * These settings live on Cacti's own Settings page, which needs Cacti's
+ * Settings permission, not the plugin's Admin realm. The token directories
+ * and the slurmrestd host allowlist bound what a cluster definition, which
+ * the Admin realm edits, can point the reader at.
  */
 final readonly class Settings {
 	public const NAMES = [
@@ -37,6 +42,8 @@ final readonly class Settings {
 		'hpcsched_token_warning',
 		'hpcsched_uninstall_keep_tables',
 		'hpcsched_data_parser',
+		'hpcsched_token_dirs',
+		'hpcsched_rest_hosts',
 	];
 
 	public const DEFAULT_SQUEUE        = '/usr/bin/squeue';
@@ -59,6 +66,10 @@ final readonly class Settings {
 		public int $tokenWarning,
 		public bool $keepTablesOnUninstall,
 		public string $dataParser = DataParser::DEFAULT_VERSION,
+		/** @var list<string> */
+		public array $tokenDirs = [],
+		/** @var list<string> */
+		public array $restHosts = [],
 	) {
 	}
 
@@ -83,7 +94,65 @@ final readonly class Settings {
 			tokenWarning: min(Row::int($row, 'hpcsched_token_warning', self::DEFAULT_TOKEN_WARNING, 0), 604800),
 			keepTablesOnUninstall: array_key_exists('hpcsched_uninstall_keep_tables', $row) ? Row::bool($row, 'hpcsched_uninstall_keep_tables') : true,
 			dataParser: DataParser::supported(Row::string($row, 'hpcsched_data_parser')) ? Row::string($row, 'hpcsched_data_parser') : DataParser::DEFAULT_VERSION,
+			tokenDirs: self::directories(Row::string($row, 'hpcsched_token_dirs')),
+			restHosts: self::hosts(Row::string($row, 'hpcsched_rest_hosts')),
 		);
+	}
+
+	/**
+	 * Absolute directories, separated by commas or white space. An entry
+	 * that is not a plain absolute path is dropped, never widened, and the
+	 * root directory is not accepted.
+	 *
+	 * @return list<string>
+	 */
+	public static function directories(string $value): array {
+		$out = [];
+
+		foreach (preg_split('/[\s,]+/', $value, -1, PREG_SPLIT_NO_EMPTY) ?: [] as $entry) {
+			$entry = rtrim($entry, '/');
+
+			if ($entry !== '' && self::pathAcceptable($entry)) {
+				$out[] = $entry;
+			}
+		}
+
+		return array_values(array_unique($out));
+	}
+
+	/**
+	 * slurmrestd hosts, as host or host:port, separated by commas or white
+	 * space, lower case. An entry that is not a plain host name, IPv4
+	 * address, or bracketed IPv6 address with an optional port is dropped.
+	 *
+	 * @return list<string>
+	 */
+	public static function hosts(string $value): array {
+		$out = [];
+
+		foreach (preg_split('/[\s,]+/', strtolower($value), -1, PREG_SPLIT_NO_EMPTY) ?: [] as $entry) {
+			if (preg_match('/^([a-z0-9.-]{1,253}|\[[0-9a-f:.]{2,45}\])(:[0-9]{1,5})?$/', $entry) === 1) {
+				$out[] = $entry;
+			}
+		}
+
+		return array_values(array_unique($out));
+	}
+
+	/**
+	 * Whether a token file path lies inside one of the token directories, by
+	 * its text. The reader checks the resolved path again when it opens the
+	 * file; this check is for the cluster form, which may run on another
+	 * host than the poller.
+	 */
+	public function tokenPathAllowed(string $path): bool {
+		foreach ($this->tokenDirs as $dir) {
+			if (str_starts_with($path, $dir . '/') && !str_contains(substr($path, strlen($dir)), '/../')) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public function maxOutputBytes(): int {
@@ -159,6 +228,22 @@ final readonly class Settings {
 			'hpcsched_header_credentials' => [
 				'friendly_name' => __('slurmrestd Credentials', 'hpcsched'),
 				'method'        => 'spacer',
+			],
+			'hpcsched_token_dirs' => [
+				'friendly_name' => __('Token File Directories', 'hpcsched'),
+				'description'   => __('Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd.', 'hpcsched'),
+				'method'        => 'textbox',
+				'default'       => '',
+				'max_length'    => '1024',
+				'size'          => '60',
+			],
+			'hpcsched_rest_hosts' => [
+				'friendly_name' => __('slurmrestd Hosts', 'hpcsched'),
+				'description'   => __('Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host.', 'hpcsched'),
+				'method'        => 'textbox',
+				'default'       => '',
+				'max_length'    => '1024',
+				'size'          => '60',
 			],
 			'hpcsched_token_warning' => $number(__('Token Expiry Warning', 'hpcsched'), __('Seconds before a token expires when the health page starts to warn, if the token carries an expiry time.', 'hpcsched'), self::DEFAULT_TOKEN_WARNING, 0, 604800),
 			'hpcsched_header_uninstall' => [

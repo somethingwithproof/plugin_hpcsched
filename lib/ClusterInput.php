@@ -56,7 +56,7 @@ final readonly class ClusterInput {
 	 * @param array<string, string> $input
 	 * @param array<int, string>    $pollers poller id => name
 	 */
-	public static function parse(array $input, ?Cluster $existing, array $pollers): self {
+	public static function parse(array $input, ?Cluster $existing, array $pollers, Settings $settings): self {
 		$errors    = [];
 		$name      = trim($input['name'] ?? '');
 		$poller    = Row::int($input, 'poller_id', 0, 1);
@@ -91,7 +91,9 @@ final readonly class ClusterInput {
 
 		if ($transport === Transport::Rest) {
 			try {
-				Endpoint::parse($url);
+				if (!Endpoint::parse($url)->permittedBy($settings->restHosts)) {
+					$errors['rest_url'] = __('slurmrestd URL: this host and port are not on the slurmrestd host list in Settings.', 'hpcsched');
+				}
 			} catch (TransportError) {
 				$errors['rest_url'] = __('slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address.', 'hpcsched');
 			}
@@ -102,6 +104,10 @@ final readonly class ClusterInput {
 
 			if (!TokenFile::pathAcceptable($token)) {
 				$errors['token_file'] = __('Token File: enter the absolute path of the token file on the poller. The token itself is never entered here.', 'hpcsched');
+			} elseif ($settings->tokenDirs === []) {
+				$errors['token_file'] = __('Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler.', 'hpcsched');
+			} elseif (!$settings->tokenPathAllowed($token)) {
+				$errors['token_file'] = __('Token File: the file must be inside one of the token file directories set in Settings (%s).', implode(', ', $settings->tokenDirs), 'hpcsched');
 			}
 		} else {
 			$url   = '';

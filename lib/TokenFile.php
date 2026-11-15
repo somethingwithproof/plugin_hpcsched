@@ -22,15 +22,19 @@ namespace Somethingwithproof\Hpcsched;
 /**
  * Reads a slurmrestd token from the file a cluster names (ADR 0009).
  *
- * The path must be absolute, the file a regular file and not a symbolic
- * link, not writable by anyone but its owner, and small. The file is opened
- * once and every check after the link test is made on that open handle, so a
- * file swapped between check and read is not read. A file other users can
- * read is still used, because refusing it would stop collection over a
- * permission the administrator can fix, but the state is recorded and the
- * health page warns (REQ-CRED-003). The check pattern is plugin_cloud's
- * SecureFile.
- *
+ * The file must lie inside one of the token directories an administrator
+ * set on Cacti's Settings page, be reached without a symbolic link in its
+ * directory path, be a regular file and not a link, belong to the poller's
+ * effective user, be writable by no one else, and be small. The directory
+ * path is resolved once when the file is checked; the guarantee holds as
+ * long as the token directories are writable only by root and the poller
+ * user, as the setting asks. The file is opened without blocking, so a FIFO
+ * put in its place cannot stall the reader, and every check after the link
+ * test is made on the open handle, which must be the same file the link
+ * test saw. A file the group or other users can read is still used, because
+ * refusing it would stop collection over a permission the administrator can
+ * fix, but the state is recorded and the health page warns (REQ-CRED-003).
+ * The check pattern is plugin_cloud's SecureFile.
  * The file holds the token itself, or SLURM_JWT=<token> as `scontrol token`
  * prints it.
  */
@@ -42,14 +46,34 @@ final class TokenFile {
 	}
 
 	/**
+	 * @param list<string> $directories absolute token directories (Settings::directories)
+	 *
 	 * @throws CredentialError
 	 */
-	public static function read(string $path): Token {
+	public static function read(string $path, array $directories): Token {
 		if (!self::pathAcceptable($path)) {
 			throw new CredentialError(TokenState::Missing, 'the token file path is not an absolute path');
 		}
 
+		if ($directories === []) {
+			throw new CredentialError(TokenState::Refused, 'no token file directories are set in Settings');
+		}
+
 		clearstatcache(true, $path);
+
+		$parent = realpath(dirname($path));
+
+		if ($parent === false) {
+			throw new CredentialError(TokenState::Missing, 'the token file does not exist or cannot be read');
+		}
+
+		if ($parent !== dirname($path)) {
+			throw new CredentialError(TokenState::Refused, 'the token file path passes through a symbolic link');
+		}
+
+		if (!self::inside($parent, $directories)) {
+			throw new CredentialError(TokenState::Refused, 'the token file is not inside a token file directory set in Settings');
+		}
 
 		$link = is_link($path) || file_exists($path) ? @lstat($path) : false;
 
@@ -57,12 +81,13 @@ final class TokenFile {
 			throw new CredentialError(TokenState::Missing, 'the token file does not exist or cannot be read');
 		}
 
-		// Checked before opening too: opening a FIFO without a writer blocks.
 		if (($link['mode'] & 0170000) !== 0100000) {
 			throw new CredentialError(TokenState::Refused, 'the token file is a symbolic link or not a regular file');
 		}
 
-		$handle = is_readable($path) ? @fopen($path, 'rb') : false;
+		// "n" opens with O_NONBLOCK: a FIFO swapped in after lstat() opens at
+		// once instead of waiting for a writer, and fstat() below refuses it.
+		$handle = is_readable($path) ? @fopen($path, 'rbn') : false;
 
 		if ($handle === false) {
 			throw new CredentialError(TokenState::Missing, 'the token file does not exist or cannot be read');
@@ -73,6 +98,12 @@ final class TokenFile {
 
 			if ($stat === false || ($stat['mode'] & 0170000) !== 0100000 || $stat['dev'] !== $link['dev'] || $stat['ino'] !== $link['ino']) {
 				throw new CredentialError(TokenState::Refused, 'the token file changed while it was checked');
+			}
+
+			$uid = function_exists('posix_geteuid') ? posix_geteuid() : null;
+
+			if ($uid === null || $stat['uid'] !== $uid) {
+				throw new CredentialError(TokenState::Owner, 'the token file is not owned by the poller user');
 			}
 
 			if (($stat['mode'] & 0022) !== 0) {
@@ -108,16 +139,32 @@ final class TokenFile {
 	}
 
 	/**
+	 * Whether a resolved directory is one of the token directories or below
+	 * one. Each configured directory is resolved too, so it may itself be
+	 * given through a link.
+	 *
+	 * @param list<string> $directories
+	 */
+	private static function inside(string $dir, array $directories): bool {
+		foreach ($directories as $allowed) {
+			$real = realpath($allowed);
+
+			if ($real !== false && $real !== '/' && ($dir === $real || str_starts_with($dir, $real . '/'))) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param array<array-key, int> $stat
 	 */
 	private static function state(array $stat): TokenState {
-		$uid = function_exists('posix_geteuid') ? posix_geteuid() : null;
-
 		return match (true) {
-			($stat['mode'] & 0004) !== 0             => TokenState::WorldReadable,
-			($stat['mode'] & 0040) !== 0             => TokenState::GroupReadable,
-			$uid !== null && $stat['uid'] !== $uid   => TokenState::Owner,
-			default                                  => TokenState::Ok,
+			($stat['mode'] & 0004) !== 0 => TokenState::WorldReadable,
+			($stat['mode'] & 0040) !== 0 => TokenState::GroupReadable,
+			default                      => TokenState::Ok,
 		};
 	}
 

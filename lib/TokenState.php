@@ -38,7 +38,7 @@ enum TokenState: string {
 	 * Whether the token was read and used.
 	 */
 	public function usable(): bool {
-		return in_array($this, [self::Ok, self::GroupReadable, self::WorldReadable, self::Owner], true);
+		return in_array($this, [self::Ok, self::GroupReadable, self::WorldReadable], true);
 	}
 
 	public function message(): string {
@@ -47,9 +47,9 @@ enum TokenState: string {
 			self::Ok            => __('readable only by the poller user', 'hpcsched'),
 			self::GroupReadable => __('readable by the file group; restrict it to the poller user (chmod 600)', 'hpcsched'),
 			self::WorldReadable => __('readable by every user on the poller; restrict it to the poller user (chmod 600)', 'hpcsched'),
-			self::Owner         => __('owned by a user other than the poller user', 'hpcsched'),
+			self::Owner         => __('refused: owned by a user other than the poller user (chown it to the poller user)', 'hpcsched'),
 			self::Missing       => __('missing or not readable by the poller user', 'hpcsched'),
-			self::Refused       => __('refused: not a regular file, a symbolic link, writable by others, or too large', 'hpcsched'),
+			self::Refused       => __('refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason', 'hpcsched'),
 			self::Empty         => __('empty', 'hpcsched'),
 		};
 	}

@@ -56,6 +56,8 @@ try {
 		db_execute_prepared('REPLACE INTO settings (name, value) VALUES (?, ?)', array($flow_name, $flow_bin . '/' . $flow_bin_name));
 	}
 
+	db_execute_prepared("REPLACE INTO settings (name, value) VALUES ('hpcsched_token_dirs', ?)", array($flow_scratch->dir));
+
 	$flow_insert = 'INSERT INTO plugin_hpcsched_cluster (name, poller_id, admin_state, transport, collect_interval, slurm_conf, rest_url, rest_user, token_file, collect_reservations, collect_shares) VALUES (?, ?, ?, ?, 60, ?, ?, ?, ?, 1, 1)';
 
 	db_execute_prepared($flow_insert, array('cmd', 1, 'enabled', 'commands', $flow_conf, '', '', ''));
