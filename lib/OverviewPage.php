@@ -49,10 +49,10 @@ final class OverviewPage {
 	}
 
 	public function render(): void {
-		$now      = $this->clock->now();
-		$sections = $this->view->sections();
-		$jobs     = $this->view->jobStates();
-		$nodes    = $this->view->nodeStates();
+		$now = $this->clock->now();
+
+		[$sections, $jobs, $nodes] = $this->view->consistent(fn (): array => [$this->view->sections(), $this->view->jobStates(), $this->view->nodeStates()]);
+
 		$clusters = array_values(array_filter($this->access->clusters($this->clusters->all()), static fn (Cluster $c): bool => $c->enabled()));
 
 		html_start_box(__('HPC Scheduler', 'hpcsched'), '100%', '', '3', 'center', '');
@@ -97,19 +97,15 @@ final class OverviewPage {
 	 * checked DeviceAccess for the cluster.
 	 */
 	public function renderReasons(Cluster $cluster): void {
-		$now     = $this->clock->now();
-		$record  = $this->view->sections()[$cluster->id][Section::Jobs->value] ?? null;
-		$usable  = ClusterValues::usable($cluster, $this->view->sections()[$cluster->id] ?? [], Section::Jobs, $this->evaluator, $this->pollerInterval);
-		$listed  = $this->view->reasons($cluster->id, self::ROW_LIMIT);
-		$unknown = $this->view->otherNodes($cluster->id, self::ROW_LIMIT);
+		[$sections, $listed, $unknown] = $this->view->consistent(fn (): array => [
+			$this->view->sections()[$cluster->id] ?? [],
+			$this->view->reasons($cluster->id, self::ROW_LIMIT),
+			$this->view->otherNodes($cluster->id, self::ROW_LIMIT),
+		]);
 
 		html_start_box(__('Pending Reasons: %s', html_escape($cluster->name), 'hpcsched'), '100%', '', '3', 'center', '');
 
-		$observed = $record->observedAt ?? 0;
-
-		print '<tr><td colspan="4">' . html_escape($observed > 0
-			? __('Jobs snapshot taken %s (%s), %s.', date('Y-m-d H:i:s', $observed), Format::age($observed, $now), $usable ? __('current', 'hpcsched') : __('stale: the counts below are the last ones collected', 'hpcsched'), 'hpcsched')
-			: __('No jobs snapshot has been collected yet.', 'hpcsched')) . '</td></tr>';
+		print '<tr><td colspan="4">' . $this->snapshotLine($cluster, $sections, Section::Jobs) . '</td></tr>';
 
 		print Format::header([__('Reason', 'hpcsched'), __('Family', 'hpcsched'), __('Jobs', 'hpcsched'), __('Partitions', 'hpcsched')]);
 
@@ -129,10 +125,13 @@ final class OverviewPage {
 
 		print '<p><small>' . html_escape(__('Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason.', 'hpcsched')) . '</small></p>';
 
+		$nodesObserved = ($sections[Section::Nodes->value] ?? null)->observedAt ?? 0;
+
 		html_start_box(__('Nodes in Unknown States', 'hpcsched'), '100%', '', '3', 'center', '');
+		print '<tr><td colspan="3">' . $this->snapshotLine($cluster, $sections, Section::Nodes) . '</td></tr>';
 		print Format::header($this->admin ? [__('Slurm State', 'hpcsched'), __('Nodes', 'hpcsched'), __('Names', 'hpcsched')] : [__('Slurm State', 'hpcsched'), __('Nodes', 'hpcsched')]);
 
-		if ($unknown === []) {
+		if ($unknown === [] && $nodesObserved > 0) {
 			print '<tr><td colspan="3"><em>' . html_escape(__('None. Every node maps to a known state.', 'hpcsched')) . '</em></td></tr>';
 		}
 
@@ -147,5 +146,33 @@ final class OverviewPage {
 		}
 
 		html_end_box();
+	}
+
+	/**
+	 * When a section's rows were observed and whether they are current, as
+	 * one escaped line.
+	 *
+	 * @param array<string, SectionRecord> $sections section value => record
+	 */
+	private function snapshotLine(Cluster $cluster, array $sections, Section $section): string {
+		$now      = $this->clock->now();
+		$observed = ($sections[$section->value] ?? null)->observedAt ?? 0;
+		$jobs     = $section === Section::Jobs;
+
+		if ($observed <= 0) {
+			return html_escape($jobs ? __('No jobs snapshot has been collected yet.', 'hpcsched') : __('No nodes snapshot has been collected yet, so the node states are unknown.', 'hpcsched'));
+		}
+
+		$taken   = date('Y-m-d H:i:s', $observed);
+		$age     = Format::age($observed, $now);
+		$current = ClusterValues::usable($cluster, $sections, $section, $this->evaluator, $this->pollerInterval);
+
+		if ($current) {
+			return html_escape($jobs ? __('Jobs snapshot taken %s (%s), current.', $taken, $age, 'hpcsched') : __('Nodes snapshot taken %s (%s), current.', $taken, $age, 'hpcsched'));
+		}
+
+		return '<span class="textWarning">' . html_escape($jobs
+			? __('Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected.', $taken, $age, 'hpcsched')
+			: __('Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected.', $taken, $age, 'hpcsched')) . '</span>';
 	}
 }

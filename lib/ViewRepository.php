@@ -28,6 +28,35 @@ final class ViewRepository {
 	}
 
 	/**
+	 * Run several reads against one snapshot of the tables. The reader
+	 * replaces a cluster's rows in one transaction; separate reads outside
+	 * one could pair one snapshot's counts with another's observation time.
+	 * Under REPEATABLE READ (InnoDB's default, set here for the transaction
+	 * in case the server's differs) every read in the transaction sees the
+	 * tables as of its first read. When no transaction can be started the
+	 * reads run as they are.
+	 *
+	 * @template T
+	 *
+	 * @param \Closure(): T $read
+	 *
+	 * @return T
+	 */
+	public function consistent(\Closure $read): mixed {
+		db_execute_prepared('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ', [], true, $this->connection);
+
+		$started = db_begin_transaction($this->connection);
+
+		try {
+			return $read();
+		} finally {
+			if ($started) {
+				db_commit_transaction($this->connection);
+			}
+		}
+	}
+
+	/**
 	 * @return array<int, array<string, SectionRecord>> cluster id => section value => record
 	 */
 	public function sections(): array {

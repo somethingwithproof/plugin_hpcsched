@@ -685,19 +685,6 @@ msgid "Pending Reasons: %s"
 msgstr ""
 
 #: lib/OverviewPage.php
-#, php-format
-msgid "Jobs snapshot taken %s (%s), %s."
-msgstr ""
-
-#: lib/OverviewPage.php
-msgid "current"
-msgstr ""
-
-#: lib/OverviewPage.php
-msgid "stale: the counts below are the last ones collected"
-msgstr ""
-
-#: lib/OverviewPage.php
 msgid "No jobs snapshot has been collected yet."
 msgstr ""
 
@@ -999,5 +986,30 @@ msgid "The cluster was not unmapped: it was changed by someone else since the pa
 msgstr ""
 
 #: lib/ClustersPage.php
+#, php-format
 msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr ""
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr ""
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
 msgstr ""

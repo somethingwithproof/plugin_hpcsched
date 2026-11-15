@@ -227,6 +227,31 @@ describe('pending reasons view (REQ-REASON-003 to REQ-REASON-006, REQ-NODEAGG-00
 			->and($html)->toContain('Jobs snapshot taken');
 	});
 
+	it('gives the node table its own snapshot time and freshness, and reads everything in one transaction', function () {
+		$clock = new FixedClock(100000);
+		$page  = fn (): string => hpcsched_render(fn () => (new OverviewPage(new ClusterRepository(false, $clock), new ViewRepository(false), new FreshnessEvaluator($clock), $clock, 60, hpcsched_access()))->renderReasons((new ClusterRepository(false, $clock))->get(1)));
+
+		// Nodes never collected: unknown, not "every node maps to a known state".
+		$GLOBALS['__hpcsched_db_rows']['GROUP BY raw_state'] = [];
+		$GLOBALS['__hpcsched_db_exec']                      = [];
+		$html                                               = $page();
+
+		expect($html)->toContain('No nodes snapshot has been collected yet')
+			->and($html)->not->toContain('Every node maps to a known state')
+			->and(array_column($GLOBALS['__hpcsched_db_exec'], 'sql'))->toBe(['SET TRANSACTION ISOLATION LEVEL REPEATABLE READ', 'BEGIN', 'COMMIT']);
+
+		// Nodes kept from an older collection whose last attempt failed.
+		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section'][1]['observed_at']      = 99000;
+		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section'][1]['collect_interval'] = 60;
+		$html                                                                                 = $page();
+
+		expect($html)->toContain('Jobs snapshot taken ' . date('Y-m-d H:i:s', 99990))
+			->and($html)->toContain('current.')
+			->and($html)->toContain('<span class="textWarning">Nodes snapshot taken ' . date('Y-m-d H:i:s', 99000))
+			->and($html)->toContain('the nodes below are the last ones collected')
+			->and($html)->toContain('Every node maps to a known state');
+	});
+
 	it('names nodes in unknown states only for the Admin realm, and limits the rows it asks for', function () {
 		$clock = new FixedClock(100000);
 		$GLOBALS['__hpcsched_db_reads'] = [];
