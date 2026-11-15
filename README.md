@@ -1,8 +1,8 @@
 # plugin_hpcsched
 
-A proposed Cacti 1.2 plugin that graphs the state of an HPC batch scheduler next to the devices Cacti already monitors: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization. Slurm is the first backend. Thold alerts on the resulting data sources, and Maint can be driven by drained nodes and maintenance reservations.
+A Cacti 1.2 plugin that graphs the state of an HPC batch scheduler next to the devices Cacti already monitors: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization. Slurm is the first backend. Thold alerts on the resulting data sources, and Maint can be driven by drained nodes and maintenance reservations.
 
-> **Status: proposal, milestone 1 research merged.** This repository contains no plugin code yet. Milestone 1 confirmed the design against documentation and upstream source (PR #68); the results, with sources, are in [docs/research/](docs/research/), and [docs/PLAN.md](docs/PLAN.md) is at revision 2. Checks that need a Slurm cluster remain open in each research page's live-checks table. Nothing below describes shipped behavior.
+> **Status: in development.** Milestone 1 research is merged; milestone 2 (foundation) is in progress. Plugin code is not published here yet. Milestone 1 confirmed the design against documentation and upstream source (PR #68); the results, with sources, are in [docs/research/](docs/research/), and [docs/PLAN.md](docs/PLAN.md) is at revision 2. Checks that need a Slurm cluster remain open in each research page's live-checks table. Nothing below describes shipped behavior.
 
 ## Why
 
