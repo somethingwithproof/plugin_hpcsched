@@ -17,7 +17,6 @@
  * more details.
  */
 
-
 use Somethingwithproof\Hpcsched\ClusterRepository;
 use Somethingwithproof\Hpcsched\ClusterSeries;
 use Somethingwithproof\Hpcsched\FixedClock;
