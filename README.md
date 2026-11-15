@@ -51,7 +51,7 @@ Out of scope: any scheduler write path (submit, cancel, hold, drain, resume), a 
 |---|---|
 | Cacti | 1.2.31 or later, no core patches |
 | PHP | 8.2 or later; `setup.php` stays parseable on 8.0 so an unsupported runtime gets a refusal instead of a broken Cacti UI |
-| Slurm | Provisionally 25.05, 25.11, and 26.05 with data parser v0.0.43 (decision #8 is open) |
+| Slurm | Provisionally 25.05, 25.11, and 26.05 (decision #8 is open). The data parser is a setting: v0.0.43 by default, which SchedMD removes in 27.05, or v0.0.44 or v0.0.45 on releases that ship them |
 | Thold, Maint | No Thold change; Maint integration is a proposal that needs Maint maintainers' agreement |
 
 ## Design

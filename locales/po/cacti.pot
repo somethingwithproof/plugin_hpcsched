@@ -384,6 +384,11 @@ msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
 msgstr ""
 
 #: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr ""
+
+#: lib/HealthWarnings.php
 msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
 msgstr ""
 
@@ -546,7 +551,15 @@ msgid "Slurm Client Commands"
 msgstr ""
 
 #: lib/Settings.php
-msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with a pinned data parser."
+msgid "Data Parser"
+msgstr ""
+
+#: lib/Settings.php
+msgid "Slurm data parser for every call, through client commands and slurmrestd alike. Choose one that every cluster's release ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it."
+msgstr ""
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
 msgstr ""
 
 #: lib/Settings.php

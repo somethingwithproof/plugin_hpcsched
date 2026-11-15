@@ -69,6 +69,18 @@ it('warns about an interval below the poller, an overrun, an unsupported release
 		->and($text)->toContain('stale');
 });
 
+it('warns when a cluster reports a release that does not ship the chosen data parser', function () {
+	$run = static fn (string $release): ClusterRun => new ClusterRun(1, outcome: RunOutcome::Completed, release: $release, memoryLimited: true, tokenState: TokenState::Ok);
+	$for = static fn (string $parser, string $release): string => implode("\n", HealthWarnings::for(hpcsched_rest_config(), $run($release), Freshness::Current, Settings::fromRow(['hpcsched_data_parser' => $parser]), 60, 100000));
+
+	expect($for('v0.0.45', '25.11.2'))->toContain('Slurm 25.11.2, which does not ship the data parser v0.0.45')
+		->and($for('v0.0.44', '25.05.4'))->toContain('does not ship the data parser v0.0.44')
+		->and($for('v0.0.44', '25.11.2'))->toBe('')
+		->and($for('v0.0.45', '26.05.1'))->toBe('')
+		->and($for('v0.0.43', '25.05.4'))->toBe('')
+		->and($for('v0.0.45', '24.11.6'))->not->toContain('does not ship');
+});
+
 it('flags plain HTTP to a loopback slurmrestd, and a cluster never collected', function () {
 	expect(hpcsched_warnings(hpcsched_rest_config('http://127.0.0.1:6820'), null))->toContain('plain HTTP')
 		->and(hpcsched_warnings(hpcsched_rest_config(), null))->toContain('No reader run');

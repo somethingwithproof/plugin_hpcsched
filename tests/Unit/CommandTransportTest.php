@@ -36,8 +36,8 @@ function hpcsched_bin(string $name): string {
 	return dirname(__DIR__) . '/fixtures/bin/' . $name;
 }
 
-function hpcsched_settings_for(bool $prlimit = true, int $timeout = 5, int $maxMib = 8): Settings {
-	return new Settings(hpcsched_bin('squeue'), hpcsched_bin('scontrol'), hpcsched_bin('sshare'), $prlimit ? hpcsched_bin('prlimit') : '', 2048, $timeout, $maxMib, 3600, true);
+function hpcsched_settings_for(bool $prlimit = true, int $timeout = 5, int $maxMib = 8, string $parser = 'v0.0.43'): Settings {
+	return new Settings(hpcsched_bin('squeue'), hpcsched_bin('scontrol'), hpcsched_bin('sshare'), $prlimit ? hpcsched_bin('prlimit') : '', 2048, $timeout, $maxMib, 3600, true, $parser);
 }
 
 function hpcsched_scenario(Scratch $scratch, string $scenario): string {
@@ -86,6 +86,18 @@ it('runs each section with its fixed argument vector under prlimit', function ()
 		->and(array_unique(file($this->scratch->dir . '/prlimit.txt', FILE_IGNORE_NEW_LINES)))->toBe(['--as=' . (2048 * 1048576)])
 		->and($transport->calls())->toBe(5)
 		->and($transport->memoryLimited())->toBeTrue();
+});
+
+it('passes the data parser chosen in settings and refuses one outside the supported set', function () {
+	$conf      = hpcsched_scenario($this->scratch, 'ok');
+	$transport = new CommandTransport(new CommandRunner(), hpcsched_settings_for(parser: 'v0.0.45'), $conf);
+
+	$transport->fetch(Section::Nodes, $transport->dataParser(microtime(true) + 10), microtime(true) + 10);
+
+	expect(file($this->scratch->dir . '/calls.txt', FILE_IGNORE_NEW_LINES))->toBe(['scontrol', '--json=v0.0.45', 'show', 'node'])
+		->and(hpcsched_error(fn () => $transport->fetch(Section::Jobs, 'v0.0.42', microtime(true) + 10)))->toBe(ErrorClass::Config)
+		->and(hpcsched_error(fn () => $transport->fetch(Section::Jobs, '--version', microtime(true) + 10)))->toBe(ErrorClass::Config)
+		->and($transport->calls())->toBe(1);
 });
 
 it('gives commands only PATH, LC_ALL, and SLURM_CONF from the environment', function () {

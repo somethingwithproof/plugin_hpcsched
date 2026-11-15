@@ -42,6 +42,18 @@ it('drops tables on uninstall only after the box was cleared and saved', functio
 		->and(Settings::fromRow(['hpcsched_uninstall_keep_tables' => 'on'])->keepTablesOnUninstall)->toBeTrue();
 });
 
+it('accepts only a supported data parser and defaults to v0.0.43', function (mixed $stored, string $expected) {
+	expect(Settings::fromRow(['hpcsched_data_parser' => $stored])->dataParser)->toBe($expected);
+})->with([
+	['v0.0.44', 'v0.0.44'],
+	['v0.0.45', 'v0.0.45'],
+	['v0.0.42', 'v0.0.43'],
+	['v0.0.46', 'v0.0.43'],
+	['--json', 'v0.0.43'],
+	['', 'v0.0.43'],
+	[null, 'v0.0.43'],
+]);
+
 it('bounds numeric settings', function (string $name, mixed $stored, string $property, int $expected) {
 	expect(Settings::fromRow([$name => $stored])->{$property})->toBe($expected);
 })->with([

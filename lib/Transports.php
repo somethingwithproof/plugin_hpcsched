@@ -45,6 +45,6 @@ final class Transports {
 
 		$redactor->add($token->secret);
 
-		return new RestTransport($this->http, $endpoint, $cluster->restUser, $token, (float) $this->settings->callTimeout);
+		return new RestTransport($this->http, $endpoint, $cluster->restUser, $token, (float) $this->settings->callTimeout, $this->settings->dataParser);
 	}
 }

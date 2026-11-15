@@ -54,6 +54,7 @@ final class RestTransport implements SlurmTransport {
 		private readonly string $user,
 		private readonly Token $token,
 		private readonly float $callTimeout,
+		private readonly string $dataParser = DataParser::DEFAULT_VERSION,
 	) {
 	}
 
@@ -62,7 +63,7 @@ final class RestTransport implements SlurmTransport {
 	}
 
 	public function dataParser(float $deadline): string {
-		return DataParser::VERSION;
+		return $this->dataParser;
 	}
 
 	public function calls(): int {
@@ -75,8 +76,13 @@ final class RestTransport implements SlurmTransport {
 
 	/**
 	 * Whether a path is one the plugin may request, for the parser given.
+	 * Only a supported parser has paths, and each is matched exactly.
 	 */
 	public static function allowed(string $path, string $dataParser): bool {
+		if (!DataParser::supported($dataParser)) {
+			return false;
+		}
+
 		foreach (self::PATHS as $template) {
 			if ($path === str_replace('{p}', $dataParser, $template)) {
 				return true;
@@ -87,7 +93,7 @@ final class RestTransport implements SlurmTransport {
 	}
 
 	public function fetch(Section $section, string $dataParser, float $deadline): string {
-		if (preg_match('/^v\d\.\d\.\d{1,3}$/', $dataParser) !== 1) {
+		if (!DataParser::supported($dataParser)) {
 			throw new TransportError(ErrorClass::Config, 'data parser');
 		}
 

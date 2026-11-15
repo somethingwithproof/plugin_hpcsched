@@ -19,6 +19,7 @@
 
 require_once dirname(__DIR__) . '/Support/FakeRestd.php';
 
+use Somethingwithproof\Hpcsched\DataParser;
 use Somethingwithproof\Hpcsched\Endpoint;
 use Somethingwithproof\Hpcsched\ErrorClass;
 use Somethingwithproof\Hpcsched\RestTransport;
@@ -38,8 +39,8 @@ use Somethingwithproof\Hpcsched\TransportError;
 
 const HPCSCHED_TEST_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjQxMDI0NDQ4MDAsInN1biI6ImNhY3RpIn0.c2lnbmF0dXJl';
 
-function hpcsched_rest(FakeRestd $server, string $scenario = 'ok', int $maxBytes = 8388608, ?string $ca = null): RestTransport {
-	return new RestTransport(new SocketTransport($maxBytes, 2.0, $ca ?? ($server->mode === 'tls' ? $server->ca() : null)), Endpoint::parse($server->url()), $scenario, new Token(new Secret(HPCSCHED_TEST_TOKEN), TokenState::Ok, 0), 5.0);
+function hpcsched_rest(FakeRestd $server, string $scenario = 'ok', int $maxBytes = 8388608, ?string $ca = null, string $parser = DataParser::DEFAULT_VERSION): RestTransport {
+	return new RestTransport(new SocketTransport($maxBytes, 2.0, $ca ?? ($server->mode === 'tls' ? $server->ca() : null)), Endpoint::parse($server->url()), $scenario, new Token(new Secret(HPCSCHED_TEST_TOKEN), TokenState::Ok, 0), 5.0, $parser);
 }
 
 function hpcsched_rest_error(callable $call): ?ErrorClass {
@@ -137,9 +138,38 @@ it('allows only the read paths, never reconfigure, requeue, or a query string', 
 	['/slurm/v0.0.42/jobs/', false],
 ]);
 
+it('keeps the allowlist exact for each supported data parser and empty for any other', function (string $parser, string $path, bool $allowed) {
+	expect(RestTransport::allowed($path, $parser))->toBe($allowed);
+})->with([
+	['v0.0.45', '/slurm/v0.0.45/jobs/', true],
+	['v0.0.45', '/slurm/v0.0.45/shares', true],
+	['v0.0.44', '/slurm/v0.0.44/nodes/', true],
+	['v0.0.45', '/slurm/v0.0.43/jobs/', false],
+	['v0.0.45', '/slurm/v0.0.45/reconfigure/', false],
+	['v0.0.42', '/slurm/v0.0.42/jobs/', false],
+	['v0.0.46', '/slurm/v0.0.46/jobs/', false],
+	['', '/slurm//jobs/', false],
+	['v0.0.43/../v0.0.45', '/slurm/v0.0.43/../v0.0.45/jobs/', false],
+]);
+
+it('requests the paths of the data parser it was given and refuses one outside the supported set', function () {
+	$before    = count($GLOBALS['__hpcsched_plain']->requests());
+	$transport = hpcsched_rest($GLOBALS['__hpcsched_plain'], parser: 'v0.0.45');
+
+	expect($transport->dataParser(microtime(true) + 10))->toBe('v0.0.45');
+
+	$transport->fetch(Section::Jobs, 'v0.0.45', microtime(true) + 10);
+
+	expect(array_column(array_slice($GLOBALS['__hpcsched_plain']->requests(), $before), 'target'))->toBe(['/slurm/v0.0.45/jobs/'])
+		->and(hpcsched_rest_error(fn () => $transport->fetch(Section::Jobs, 'v0.0.42', microtime(true) + 10)))->toBe(ErrorClass::Config)
+		->and(count($GLOBALS['__hpcsched_plain']->requests()))->toBe($before + 1);
+});
+
 it('sends no update_time and no request outside the allowlist', function () {
 	foreach (array_merge($GLOBALS['__hpcsched_tls']->requests(), $GLOBALS['__hpcsched_plain']->requests()) as $request) {
-		expect(RestTransport::allowed($request['target'], 'v0.0.43'))->toBeTrue($request['target'])
+		$parser = explode('/', $request['target'])[2] ?? '';
+
+		expect(RestTransport::allowed($request['target'], $parser))->toBeTrue($request['target'])
 			->and($request['method'])->toBe('GET');
 	}
 });

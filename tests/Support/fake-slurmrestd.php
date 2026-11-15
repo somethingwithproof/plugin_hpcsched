@@ -22,7 +22,8 @@
  *
  *   php fake-slurmrestd.php <tls|plain> <port> <fixture dir> <log file> [pem]
  *
- * Serves the fixture files of the v0.0.43 read endpoints. The request's
+ * Serves the fixture files at the read endpoints of every data parser the
+ * plugin supports (the same synthetic body for each). The request's
  * X-SLURM-USER-NAME selects a scenario, so one server covers every case.
  * Each request line and whether a token header arrived are appended to the
  * log, never the token itself. Sequential on purpose: the client runs one
@@ -42,13 +43,17 @@ if ($server === false) {
 	exit(1);
 }
 
-$routes = [
-	'/slurm/v0.0.43/jobs/'         => 'jobs',
-	'/slurm/v0.0.43/nodes/'        => 'nodes',
-	'/slurm/v0.0.43/partitions/'   => 'partitions',
-	'/slurm/v0.0.43/reservations/' => 'reservations',
-	'/slurm/v0.0.43/shares'        => 'shares',
-];
+$routes = [];
+
+foreach (['v0.0.43', 'v0.0.44', 'v0.0.45'] as $parser) {
+	$routes += [
+		"/slurm/$parser/jobs/"         => 'jobs',
+		"/slurm/$parser/nodes/"        => 'nodes',
+		"/slurm/$parser/partitions/"   => 'partitions',
+		"/slurm/$parser/reservations/" => 'reservations',
+		"/slurm/$parser/shares"        => 'shares',
+	];
+}
 
 function respond($conn, int $status, string $body, string $extra = ''): void {
 	@fwrite($conn, "HTTP/1.1 $status X\r\nConnection: close\r\nContent-Type: application/json\r\n$extra" . 'Content-Length: ' . strlen($body) . "\r\n\r\n" . $body);

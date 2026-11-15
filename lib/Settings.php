@@ -36,6 +36,7 @@ final readonly class Settings {
 		'hpcsched_max_output',
 		'hpcsched_token_warning',
 		'hpcsched_uninstall_keep_tables',
+		'hpcsched_data_parser',
 	];
 
 	public const DEFAULT_SQUEUE        = '/usr/bin/squeue';
@@ -57,6 +58,7 @@ final readonly class Settings {
 		public int $maxOutputMib,
 		public int $tokenWarning,
 		public bool $keepTablesOnUninstall,
+		public string $dataParser = DataParser::DEFAULT_VERSION,
 	) {
 	}
 
@@ -80,6 +82,7 @@ final readonly class Settings {
 			maxOutputMib: min(Row::int($row, 'hpcsched_max_output', self::DEFAULT_MAX_OUTPUT, 1), 1024),
 			tokenWarning: min(Row::int($row, 'hpcsched_token_warning', self::DEFAULT_TOKEN_WARNING, 0), 604800),
 			keepTablesOnUninstall: array_key_exists('hpcsched_uninstall_keep_tables', $row) ? Row::bool($row, 'hpcsched_uninstall_keep_tables') : true,
+			dataParser: DataParser::supported(Row::string($row, 'hpcsched_data_parser')) ? Row::string($row, 'hpcsched_data_parser') : DataParser::DEFAULT_VERSION,
 		);
 	}
 
@@ -135,7 +138,14 @@ final readonly class Settings {
 				'friendly_name' => __('Slurm Client Commands', 'hpcsched'),
 				'method'        => 'spacer',
 			],
-			'hpcsched_squeue'   => $path(__('squeue', 'hpcsched'), __('Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with a pinned data parser.', 'hpcsched'), self::DEFAULT_SQUEUE),
+			'hpcsched_data_parser' => [
+				'friendly_name' => __('Data Parser', 'hpcsched'),
+				'description'   => __('Slurm data parser for every call, through client commands and slurmrestd alike. Choose one that every cluster\'s release ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it.', 'hpcsched'),
+				'method'        => 'drop_array',
+				'array'         => array_combine(DataParser::VERSIONS, DataParser::VERSIONS),
+				'default'       => DataParser::DEFAULT_VERSION,
+			],
+			'hpcsched_squeue'   => $path(__('squeue', 'hpcsched'), __('Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above.', 'hpcsched'), self::DEFAULT_SQUEUE),
 			'hpcsched_scontrol' => $path(__('scontrol', 'hpcsched'), __('Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token.', 'hpcsched'), self::DEFAULT_SCONTROL),
 			'hpcsched_sshare'   => $path(__('sshare', 'hpcsched'), __('Absolute path to sshare, used only for clusters that collect fair-share.', 'hpcsched'), self::DEFAULT_SSHARE),
 			'hpcsched_header_limits' => [

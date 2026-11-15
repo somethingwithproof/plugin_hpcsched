@@ -62,7 +62,7 @@ final class CommandTransport implements SlurmTransport {
 	}
 
 	public function dataParser(float $deadline): string {
-		return DataParser::VERSION;
+		return $this->settings->dataParser;
 	}
 
 	public function calls(): int {
@@ -95,6 +95,10 @@ final class CommandTransport implements SlurmTransport {
 
 		if (!Settings::pathAcceptable($path)) {
 			throw new TransportError(ErrorClass::Config, $binary . ' path');
+		}
+
+		if (!DataParser::supported($dataParser)) {
+			throw new TransportError(ErrorClass::Config, 'data parser');
 		}
 
 		$argv = array_merge([$path], array_map(static fn (string $a): string => str_replace('{p}', $dataParser, $a), $args));
