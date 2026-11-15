@@ -258,7 +258,7 @@ it('reads both transports into a snapshot with states, stamps, and no token in s
 		->and($r['due_after'])->toBeTrue();
 });
 
-it('keeps a failed section\'s rows and their time, and ages a stopped reader into unknown', function () {
+it('keeps a failed section\'s rows and their time without serving them, and ages a stopped reader into unknown', function () {
 	lifecycle('install');
 
 	$r = lifecycle('reader_flow')['result'];
@@ -267,7 +267,9 @@ it('keeps a failed section\'s rows and their time, and ages a stopped reader int
 		->and($r['sections2']['jobs'])->toBe(['failed', 'failed', HPCSCHED_T])
 		->and($r['sections2']['nodes'])->toBe(['completed', '', HPCSCHED_T + 60])
 		->and($r['jobs2'])->toBeGreaterThan(0)
-		->and($r['values_delayed'])->toMatchArray(['freshness' => 'delayed', 'age' => 160, 'pending' => 63, 'nodes' => 8])
+		// The failed jobs section is U although its rows are only delayed;
+		// the completed nodes section is still served.
+		->and($r['values_delayed'])->toMatchArray(['freshness' => 'delayed', 'age' => 160, 'pending' => null, 'held' => null, 'nodes' => 8])
 		->and($r['values_stale'])->toMatchArray(['freshness' => 'stale', 'pending' => null, 'nodes' => null])
 		->and($r['values_stale']['age'])->toBeGreaterThan($r['values_delayed']['age']);
 });
