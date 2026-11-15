@@ -39,7 +39,7 @@ The next collection reads the new file. Generating tokens with `scontrol token` 
 
 **Alerting.** Thold can alert on any of these data sources; set Thold durations to at least one collection interval, and alert on `age` to catch a stopped reader. The end-to-end Thold check is milestone 4.
 
-**Permissions.** A cluster on a device is shown, exported, and changed only for users Cacti allows that device, on every plugin page; mapping a device also needs permission for the target device. A cluster without a device is visible to everyone with the plugin realm. Graph access is Cacti's own.
+**Permissions.** A cluster on a device is shown, exported, and changed only for users Cacti allows that device, on every plugin page; mapping a device also needs permission for the target device. A cluster without a device is visible to everyone with the plugin realm. A cluster still mapped to a device that was deleted while the plugin was disabled is shown only to users with the HPC Scheduler Admin realm, who can create or map a device for it. Graph access is Cacti's own.
 
 ## Why
 
