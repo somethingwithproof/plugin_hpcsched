@@ -120,6 +120,21 @@ it('keeps account associations only from the shares response, and unset values a
 		->and($shares[2]->effectiveUsage)->toBe(0.0);
 })->with('releases');
 
+it('keeps only rows typed as associations, dropping untyped and user rows', function () {
+	$row = static fn (string $name, mixed $type): array => ['name' => $name, 'partition' => '', 'parent' => 'root', 'usage' => 1, 'usage_normalized' => 0.5, 'effective_usage' => 0.5, 'fairshare' => ['factor' => 0.5, 'level' => 1.0]] + ($type === null ? [] : ['type' => $type]);
+	$doc = ['shares' => ['shares' => [
+		$row('physics', ['ASSOCIATION']),
+		$row('alice', null),
+		$row('bob', []),
+		$row('carol', ['USER']),
+		$row('dave', ['USER', 'ASSOCIATION']),
+		$row('erin', ['OTHER']),
+		$row('chem', ['association']),
+	]], 'meta' => []];
+
+	expect(array_map(static fn ($s): string => $s->account, SlurmParser::shares($doc)))->toBe(['physics', 'chem']);
+});
+
 it('fails a broken response instead of reading it as empty', function (string $file, string $section, ErrorClass $class) {
 	$parse = function () use ($file, $section): void {
 		$doc = SlurmJson::decode((string) file_get_contents(dirname(__DIR__) . "/fixtures/slurm/broken/$file.json"));

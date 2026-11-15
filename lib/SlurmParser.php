@@ -177,7 +177,10 @@ final class SlurmParser {
 			$type = array_map('strtoupper', SlurmJson::strings($row, 'type'));
 			$name = SlurmJson::string($row, 'name');
 
-			if (in_array('USER', $type, true) || $name === '') {
+			// Only rows that say they are associations are kept. A row with no
+			// type, any other type, or the USER flag could carry a user name,
+			// and user names never reach the share table.
+			if (!in_array('ASSOCIATION', $type, true) || in_array('USER', $type, true) || $name === '') {
 				continue;
 			}
 
