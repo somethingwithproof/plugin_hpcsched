@@ -25,7 +25,7 @@ Both plugins' `main` branches are old (Maint 1.0, Thold 1.0.3) and are not the l
 | `mtype` 1 one-time, 2 recurring with whole-day `minterval` | [functions.php `plugin_maint_check_schedule()` from line 122](https://github.com/Cacti/plugin_maint/blob/9422c7a4ce9916d0f0edf88b93afb194e0675b4a/includes/functions.php#L122): case 1 is `stime <= now < etime`; case 2 requires `minterval` positive and a multiple of 86400, else logs a warning and stays inactive | confirmed |
 | Schedule must have `enabled = 'on'` | same function: `WHERE enabled = 'on' AND id = ?` | **added**: a row written with `enabled = ''` or `1` never matches |
 | A recurring schedule's times are rewritten by the check | same function, `UPDATE plugin_maint_schedules SET stime, etime` when `etime < now` | **added**: only `mtype` 1 rows are safe for another plugin to own |
-| The check has no cache | no static or option cache in `plugin_maint_check_host()` or `_check_schedule()`; two prepared queries per call | confirmed by reading; behavior under load *live* |
+| The check has no cache | no static or option cache in `plugin_maint_check_host()` or `_check_schedule()`; one query for the device's assignments, then one schedule query for each assigned schedule until one is active (a device with three future schedules costs four queries) | confirmed by reading; behavior under load *live* |
 | Maint's own pages write rows with `sql_save()` on schedules and `REPLACE INTO plugin_maint_hosts` | [maint.php lines 234, 297 to 300](https://github.com/Cacti/plugin_maint/blob/9422c7a4ce9916d0f0edf88b93afb194e0675b4a/maint.php#L234); a form check rejects `stime >= etime` (lines 225 to 231) | confirmed |
 | Maint has no function for creating a schedule | the only `sql_save` and `REPLACE INTO` sites are in `maint.php`; `includes/functions.php` has only check functions | confirmed |
 | Maint registers `is_device_in_maintenance` | [setup.php line 83](https://github.com/Cacti/plugin_maint/blob/9422c7a4ce9916d0f0edf88b93afb194e0675b4a/setup.php#L83) | confirmed |
@@ -71,4 +71,4 @@ Not filed. For the owner to post on the Maint repository after the maintainers a
 | #23 | Let the schedule's `etime` pass and breach again | expiry restores alerts |
 | #23 | Insert a row with `enabled = ''` | confirms `on` is required |
 | #23 | On a remote collector with Thold and Maint enabled, create a schedule on the main server and breach a threshold on a collector-polled device | whether suppression works on a collector |
-| #23 | Time `plugin_maint_check_cacti_host()` with 10,000 `plugin_maint_hosts` rows | per-check cost |
+| #23 | Time `plugin_maint_check_cacti_host()` with 10,000 `plugin_maint_hosts` rows, including devices with 1, 3, and 10 assigned schedules | per-check cost and its growth with schedules per device |
