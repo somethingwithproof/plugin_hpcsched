@@ -21,10 +21,11 @@ namespace Somethingwithproof\Hpcsched;
 
 /**
  * Cluster configuration rows. Deleting a cluster deletes its run record and
- * cached snapshot in one transaction; nothing is sent to the scheduler.
+ * cached snapshot in one transaction, and leaves its Cacti device and graphs
+ * alone; nothing is sent to the scheduler.
  */
 final class ClusterRepository {
-	private const SNAPSHOT_TABLES = ['plugin_hpcsched_run', 'plugin_hpcsched_section', 'plugin_hpcsched_job_count', 'plugin_hpcsched_node', 'plugin_hpcsched_partition', 'plugin_hpcsched_reservation', 'plugin_hpcsched_share'];
+	private const SNAPSHOT_TABLES = ['plugin_hpcsched_run', 'plugin_hpcsched_section', 'plugin_hpcsched_job_count', 'plugin_hpcsched_node', 'plugin_hpcsched_node_count', 'plugin_hpcsched_partition', 'plugin_hpcsched_reservation', 'plugin_hpcsched_share'];
 
 	public function __construct(private readonly \PDO|false $connection, private readonly Clock $clock) {
 	}
@@ -50,6 +51,46 @@ final class ClusterRepository {
 		$row = Row::one(db_fetch_row_prepared('SELECT * FROM plugin_hpcsched_cluster WHERE id = ?', [$id], true, $this->connection));
 
 		return $row === null ? null : Cluster::fromRow($row);
+	}
+
+	public function findByHost(int $hostId): ?Cluster {
+		if ($hostId <= 0) {
+			return null;
+		}
+
+		$row = Row::one(db_fetch_row_prepared('SELECT * FROM plugin_hpcsched_cluster WHERE host_id = ? ORDER BY id LIMIT 1', [$hostId], true, $this->connection));
+
+		return $row === null ? null : Cluster::fromRow($row);
+	}
+
+	/**
+	 * Map a cluster to a device, unless another cluster has that device: a
+	 * device carries one cluster's graphs. 0 unmaps.
+	 */
+	public function mapHost(int $id, int $hostId): bool {
+		$ok = db_execute_prepared('UPDATE plugin_hpcsched_cluster SET host_id = ?, updated_at = GREATEST(updated_at + 1, ?)
+			WHERE id = ? AND (? = 0 OR NOT EXISTS (SELECT 1 FROM (SELECT id FROM plugin_hpcsched_cluster WHERE host_id = ? AND id <> ?) AS other))', [$hostId, $this->clock->now(), $id, $hostId, $hostId, $id], true, $this->connection);
+
+		return $ok !== false && db_affected_rows($this->connection) === 1;
+	}
+
+	/**
+	 * Forget deleted devices. Returns the number of clusters unmapped.
+	 *
+	 * @param list<int> $hostIds
+	 */
+	public function unmapHosts(array $hostIds): int {
+		$hostIds = array_values(array_filter($hostIds, static fn (int $id): bool => $id > 0));
+
+		if ($hostIds === []) {
+			return 0;
+		}
+
+		$ok = db_execute_prepared('UPDATE plugin_hpcsched_cluster SET host_id = 0, updated_at = GREATEST(updated_at + 1, ?) WHERE host_id IN (' . implode(', ', array_fill(0, count($hostIds), '?')) . ')', array_merge([$this->clock->now()], $hostIds), true, $this->connection);
+
+		$count = $ok === false ? 0 : db_affected_rows($this->connection);
+
+		return is_int($count) ? $count : 0;
 	}
 
 	public function nameTaken(string $name, int $exceptId): bool {

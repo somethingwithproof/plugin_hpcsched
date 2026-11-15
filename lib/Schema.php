@@ -35,7 +35,7 @@ namespace Somethingwithproof\Hpcsched;
  * schedule, or contacts the scheduler.
  */
 final class Schema {
-	public const VERSION = 1;
+	public const VERSION = 2;
 
 	public const HOOKS = [
 		'config_arrays'        => 'hpcsched_config_arrays',
@@ -155,7 +155,28 @@ final class Schema {
 	private function migrations(): array {
 		return [
 			1 => fn (): bool => $this->createTables(self::tables()),
+			// Milestone 3: the cluster's Cacti device and the node counts the
+			// data inputs read. A fresh install already has both from
+			// migration 1, which uses the current definitions.
+			2 => fn (): bool => $this->createTables(array_intersect_key(self::tables(), ['plugin_hpcsched_node_count' => true])) && $this->addHostColumn(),
 		];
+	}
+
+	/**
+	 * Added with ALTER TABLE rather than api_plugin_db_add_column(), which
+	 * records the column for core to drop on uninstall, also when the
+	 * administrator chose to keep the tables.
+	 */
+	private function addHostColumn(): bool {
+		if (!$this->columnExists('plugin_hpcsched_cluster', 'host_id')) {
+			db_execute_prepared("ALTER TABLE plugin_hpcsched_cluster ADD COLUMN host_id int(10) unsigned NOT NULL DEFAULT '0' AFTER poller_id, ADD KEY host_id (host_id)", [], true, $this->connection);
+		}
+
+		return $this->columnExists('plugin_hpcsched_cluster', 'host_id');
+	}
+
+	private function columnExists(string $table, string $column): bool {
+		return db_fetch_cell_prepared('SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?', [$table, $column], '', true, $this->connection) > 0;
 	}
 
 	/**
@@ -208,6 +229,7 @@ final class Schema {
 					$id('id') + ['auto_increment' => true],
 					$text('name', 64),
 					$id('poller_id') + ['default' => '1'],
+					$int('host_id'),
 					$text('admin_state', 16, 'enabled'),
 					$text('transport', 16, 'commands'),
 					$int('collect_interval') + ['default' => (string) Cluster::DEFAULT_INTERVAL],
@@ -222,7 +244,7 @@ final class Schema {
 				],
 				'primary'     => 'id',
 				'unique_keys' => [['name' => 'name', 'columns' => ['name']]],
-				'keys'        => [['name' => 'poller_id', 'columns' => ['poller_id']]],
+				'keys'        => [['name' => 'poller_id', 'columns' => ['poller_id']], ['name' => 'host_id', 'columns' => ['host_id']]],
 			],
 			// One row per cluster: the reader lease and the last run.
 			'plugin_hpcsched_run' => $innodb + [
@@ -280,6 +302,19 @@ final class Schema {
 					...$stamps,
 				],
 				'unique_keys' => [['name' => 'cluster_count', 'columns' => ['cluster_id', 'partition_name', 'kind', 'name']]],
+			],
+			// Node and CPU counts per partition (NodeTally), written with
+			// the nodes section; partition '' is the cluster.
+			'plugin_hpcsched_node_count' => $innodb + [
+				'comment' => 'Node and CPU counts by partition',
+				'columns' => [
+					$id('cluster_id'),
+					$text('partition_name', 64),
+					$text('name', 16),
+					$int('value'),
+					...$stamps,
+				],
+				'unique_keys' => [['name' => 'cluster_count', 'columns' => ['cluster_id', 'partition_name', 'name']]],
 			],
 			'plugin_hpcsched_node' => $innodb + [
 				'comment' => 'Scheduler nodes with normalized and raw state',

@@ -23,7 +23,9 @@ namespace Somethingwithproof\Hpcsched;
  * One scheduler cluster as an administrator configured it. Nothing here is a
  * command line: binaries come from the global settings and the argument
  * vectors are fixed in CommandTransport. The token file is a path; the token
- * itself is read at use time and never stored (REQ-CRED-002).
+ * itself is read at use time and never stored (REQ-CRED-002). A cluster
+ * mapped to a Cacti device (hostId) belongs to that device for permissions
+ * (DeviceAccess).
  */
 final readonly class Cluster {
 	public const NAME_PATTERN = '/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/';
@@ -48,6 +50,7 @@ final readonly class Cluster {
 		public bool $reservations = false,
 		public bool $shares = false,
 		public int $updatedAt = 0,
+		public int $hostId = 0,
 	) {
 	}
 
@@ -80,6 +83,7 @@ final readonly class Cluster {
 			reservations: Row::bool($row, 'collect_reservations'),
 			shares: Row::bool($row, 'collect_shares'),
 			updatedAt: Row::int($row, 'updated_at', 0, 0),
+			hostId: Row::int($row, 'host_id', 0, 0),
 		);
 	}
 

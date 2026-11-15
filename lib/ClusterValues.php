@@ -71,20 +71,14 @@ final readonly class ClusterValues {
 			default          => $evaluator->evaluate($oldest, $interval),
 		};
 
-		$usable = static function (Section $section) use ($sections, $evaluator, $interval): bool {
-			$record = $sections[$section->value] ?? null;
-
-			return $record !== null && $evaluator->evaluate($record->observedAt, max($interval, $record->interval))->usable();
-		};
-
 		$values = [];
-		$jobsOk = $usable(Section::Jobs);
+		$jobsOk = self::usable($cluster, $sections, Section::Jobs, $evaluator, $pollerInterval);
 
 		foreach (self::JOB_VALUES as $name) {
 			$values[$name] = $jobsOk ? ($jobs[$name] ?? 0) : null;
 		}
 
-		$nodesOk = $usable(Section::Nodes);
+		$nodesOk = self::usable($cluster, $sections, Section::Nodes, $evaluator, $pollerInterval);
 		$values += [
 			'nodes_total'     => $nodesOk ? array_sum(array_diff_key($nodes, ['drain_flag' => 0])) : null,
 			'nodes_down'      => $nodesOk ? ($nodes[NodeState::Down->value] ?? 0) : null,
@@ -95,5 +89,17 @@ final readonly class ClusterValues {
 		];
 
 		return new self($freshness, $oldest === null ? null : $evaluator->age($oldest), $values);
+	}
+
+	/**
+	 * Whether a section's stored rows may be served: current or delayed on
+	 * the longer of the cluster's interval and the one they were collected on.
+	 *
+	 * @param array<string, SectionRecord> $sections section value => record
+	 */
+	public static function usable(Cluster $cluster, array $sections, Section $section, FreshnessEvaluator $evaluator, int $pollerInterval): bool {
+		$record = $sections[$section->value] ?? null;
+
+		return $record !== null && $evaluator->evaluate($record->observedAt, max($cluster->effectiveInterval($pollerInterval), $record->interval))->usable();
 	}
 }

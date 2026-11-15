@@ -357,6 +357,22 @@ function hpcsched_due_clusters(int $poller_id): array {
 	))->due($poller_id, hpcsched_poller_interval());
 }
 
+/**
+ * The answerer behind scripts/ss_hpcsched_cluster.php and
+ * scripts/ss_hpcsched_partitions.php.
+ */
+function hpcsched_cluster_series(): \Somethingwithproof\Hpcsched\ClusterSeries {
+	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
+
+	return new \Somethingwithproof\Hpcsched\ClusterSeries(
+		new \Somethingwithproof\Hpcsched\ClusterRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\SeriesRepository(false),
+		new \Somethingwithproof\Hpcsched\FreshnessEvaluator($clock),
+		$clock,
+		hpcsched_poller_interval()
+	);
+}
+
 function hpcsched_poller_interval(): int {
 	$interval = (int) read_config_option('poller_interval');
 
