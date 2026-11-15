@@ -241,17 +241,42 @@ describe('cluster and partition data inputs (REQ-OBJ-005, REQ-QUEUE-001 to REQ-Q
 			->and(series_answerer()->partitions(42, 'get', 'running', 'batch'))->toBe('U');
 	});
 
-	it('keeps serving nodes when only the jobs section failed', function () {
+	it('serves U for a section whose last attempt failed, and keeps serving the others', function () {
 		series_tables(10, 'failed');
 		$pairs = series_pairs(series_answerer()->cluster(42));
 
-		// A failed section keeps its rows and their observation time, so it
-		// is served until it turns stale; a section never collected is U.
-		expect($pairs['pending'])->toBe('63')->and($pairs['n_idle'])->toBe('1');
+		// A failed attempt keeps the previous rows and their observation
+		// time; those are not served as current.
+		expect($pairs['pending'])->toBe('U')
+			->and($pairs['r_priority'])->toBe('U')
+			->and($pairs['n_idle'])->toBe('1')
+			->and($pairs['age'])->toBe('10')
+			->and(series_answerer()->partitions(42, 'get', 'pending', 'batch'))->toBe('U');
 
 		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section'] = array_slice($GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section'], 1);
 		$pairs = series_pairs(series_answerer()->cluster(42));
 
 		expect($pairs['pending'])->toBe('U')->and($pairs['n_idle'])->toBe('1');
+	});
+
+	it('works out age and freshness again on every answer from the cache', function () {
+		// Delayed at 170 s on a 60 s interval; stale after 180 s.
+		series_tables(170);
+		$clock  = new FixedClock(SERIES_T);
+		$series = new ClusterSeries(new ClusterRepository(false, $clock), new SeriesRepository(false), new FreshnessEvaluator($clock), $clock, 60);
+		$first  = series_pairs($series->cluster(42));
+
+		// Inside the cache window the tables are not read again: a fresh
+		// snapshot stored now is picked up only by a later read.
+		series_tables(-10);
+		$clock->advance(20);
+		$second = series_pairs($series->cluster(42));
+
+		expect($first['pending'])->toBe('63')
+			->and($first['age'])->toBe('170')
+			->and($second['pending'])->toBe('U')
+			->and($second['n_idle'])->toBe('U')
+			->and($second['age'])->toBe('190')
+			->and($series->partitions(42, 'get', 'pending', 'batch'))->toBe('U');
 	});
 });

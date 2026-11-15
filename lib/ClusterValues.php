@@ -24,8 +24,10 @@ namespace Somethingwithproof\Hpcsched;
  * and the data input will serve them (REQ-STATE-001, REQ-STATE-003).
  *
  * The cluster's snapshot age is the age of its oldest configured section.
- * A value whose section is stale or was never collected is null (U), never
- * zero; age stays numeric once anything was collected. Rendering a page
+ * A value whose section is stale, was never collected, or whose last
+ * attempt did not complete is null (U), never zero: a failed attempt keeps
+ * the previous rows and their observation time, and those are not served
+ * as current. Age stays numeric once anything was collected. Rendering a page
  * reads stored observation times only, so a page view is never an
  * observation (REQ-STATE-005).
  */
@@ -92,14 +94,17 @@ final readonly class ClusterValues {
 	}
 
 	/**
-	 * Whether a section's stored rows may be served: current or delayed on
-	 * the longer of the cluster's interval and the one they were collected on.
+	 * Whether a section's stored rows may be served: its last attempt
+	 * completed, and they are current or delayed on the longer of the
+	 * cluster's interval and the one they were collected on.
 	 *
 	 * @param array<string, SectionRecord> $sections section value => record
 	 */
 	public static function usable(Cluster $cluster, array $sections, Section $section, FreshnessEvaluator $evaluator, int $pollerInterval): bool {
 		$record = $sections[$section->value] ?? null;
 
-		return $record !== null && $evaluator->evaluate($record->observedAt, max($cluster->effectiveInterval($pollerInterval), $record->interval))->usable();
+		return $record !== null
+			&& $record->state === SectionState::Completed
+			&& $evaluator->evaluate($record->observedAt, max($cluster->effectiveInterval($pollerInterval), $record->interval))->usable();
 	}
 }

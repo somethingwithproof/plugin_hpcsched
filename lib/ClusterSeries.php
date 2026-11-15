@@ -42,7 +42,13 @@ final class ClusterSeries {
 	/** The script server answers a whole poll cycle from one process. */
 	private const CACHE_SECONDS = 30;
 
-	/** @var array<int, array{at: int, cluster: ?Cluster, partitions: list<string>, values: array<string, array<string, ?float>>, age: ?int}> */
+	/**
+	 * The stored rows per device, read at most once per CACHE_SECONDS.
+	 * Freshness and age are worked out from them on every answer, so a
+	 * section that turns stale inside that window answers U at once.
+	 *
+	 * @var array<int, array{at: int, cluster: ?Cluster, sections: array<string, SectionRecord>, partitions: list<string>, jobs: array<string, array<string, int>>, nodes: array<string, array<string, int>>}>
+	 */
 	private array $cache = [];
 
 	public function __construct(
@@ -109,9 +115,39 @@ final class ClusterSeries {
 	}
 
 	/**
-	 * @return array{at: int, cluster: ?Cluster, partitions: list<string>, values: array<string, array<string, ?float>>, age: ?int}
+	 * @return array{partitions: list<string>, values: array<string, array<string, ?float>>, age: ?int}
 	 */
 	private function load(int $hostId): array {
+		$raw  = $this->rows($hostId);
+		$data = ['partitions' => $raw['partitions'], 'values' => [], 'age' => null];
+
+		if ($raw['cluster'] === null) {
+			return $data;
+		}
+
+		$cluster  = $raw['cluster'];
+		$sections = $raw['sections'];
+		$jobsOk   = ClusterValues::usable($cluster, $sections, Section::Jobs, $this->evaluator, $this->pollerInterval);
+		$nodesOk  = ClusterValues::usable($cluster, $sections, Section::Nodes, $this->evaluator, $this->pollerInterval);
+
+		$data['age'] = ClusterValues::of($cluster, $sections, [], [], $this->evaluator, $this->pollerInterval)->age;
+
+		foreach (array_merge([''], $raw['partitions']) as $partition) {
+			$data['values']["p:$partition"] = Series::values($jobsOk, $nodesOk, $raw['jobs']["p:$partition"] ?? [], $raw['nodes']["p:$partition"] ?? []);
+		}
+
+		return $data;
+	}
+
+	/**
+	 * The device's stored rows, from the cache while it is younger than
+	 * CACHE_SECONDS. Counts are read only for a section usable at read
+	 * time: one that is not cannot become usable again until the next
+	 * collection, which a later read picks up.
+	 *
+	 * @return array{at: int, cluster: ?Cluster, sections: array<string, SectionRecord>, partitions: list<string>, jobs: array<string, array<string, int>>, nodes: array<string, array<string, int>>}
+	 */
+	private function rows(int $hostId): array {
 		$now = $this->clock->now();
 
 		if (isset($this->cache[$hostId]) && $now >= $this->cache[$hostId]['at'] && $now - $this->cache[$hostId]['at'] < self::CACHE_SECONDS) {
@@ -119,24 +155,16 @@ final class ClusterSeries {
 		}
 
 		$cluster = $this->clusters->findByHost($hostId);
-		$data    = ['at' => $now, 'cluster' => $cluster, 'partitions' => [], 'values' => [], 'age' => null];
+		$raw     = ['at' => $now, 'cluster' => $cluster, 'sections' => [], 'partitions' => [], 'jobs' => [], 'nodes' => []];
 
 		if ($cluster !== null) {
-			$sections = $this->series->sections($cluster->id);
-			$jobsOk   = ClusterValues::usable($cluster, $sections, Section::Jobs, $this->evaluator, $this->pollerInterval);
-			$nodesOk  = ClusterValues::usable($cluster, $sections, Section::Nodes, $this->evaluator, $this->pollerInterval);
-			$jobs     = $jobsOk ? $this->series->jobs($cluster->id) : [];
-			$nodes    = $nodesOk ? $this->series->nodes($cluster->id) : [];
-
-			$data['partitions'] = $this->series->partitions($cluster->id);
-			$data['age']        = ClusterValues::of($cluster, $sections, [], [], $this->evaluator, $this->pollerInterval)->age;
-
-			foreach (array_merge([''], $data['partitions']) as $partition) {
-				$data['values']["p:$partition"] = Series::values($jobsOk, $nodesOk, $jobs["p:$partition"] ?? [], $nodes["p:$partition"] ?? []);
-			}
+			$raw['sections']   = $this->series->sections($cluster->id);
+			$raw['partitions'] = $this->series->partitions($cluster->id);
+			$raw['jobs']       = ClusterValues::usable($cluster, $raw['sections'], Section::Jobs, $this->evaluator, $this->pollerInterval) ? $this->series->jobs($cluster->id) : [];
+			$raw['nodes']      = ClusterValues::usable($cluster, $raw['sections'], Section::Nodes, $this->evaluator, $this->pollerInterval) ? $this->series->nodes($cluster->id) : [];
 		}
 
-		return $this->cache[$hostId] = $data;
+		return $this->cache[$hostId] = $raw;
 	}
 
 	/**
