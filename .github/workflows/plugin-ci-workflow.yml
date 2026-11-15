@@ -247,15 +247,20 @@ jobs:
     # Creates a cluster device from the shipped templates, polls it with
     # Cacti's poller, and compares the RRD files with the fixtures. It
     # provokes the refusal of a foreign data query file, which the plugin
-    # logs as an error, so its log is set aside like the integration tests'.
+    # logs as an error, so the lines it adds are set aside like the
+    # integration tests' log. The lines before it stay in cacti.log for
+    # the final check.
     - name: Check the cluster device flow
       working-directory: cacti
       env:
         HPCSCHED_TEST_DATABASE: disposable
       run: |
+        touch log/cacti.log
+        before=$(wc -l < log/cacti.log)
         php plugins/hpcsched/tests/bin/device-flow.php
-        cat log/cacti.log >> log/integration.log
-        : > log/cacti.log
+        tail -n "+$((before + 1))" log/cacti.log >> log/integration.log
+        head -n "$before" log/cacti.log > "$RUNNER_TEMP/cacti-before-device-flow.log"
+        cat "$RUNNER_TEMP/cacti-before-device-flow.log" > log/cacti.log
 
     # The export is rebuilt from the builder and must match the shipped
     # file, so the two cannot drift. 1.2.31 only: the export is what that
