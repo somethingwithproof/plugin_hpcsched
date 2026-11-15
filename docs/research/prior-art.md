@@ -25,7 +25,7 @@ Realms: lsflog registers one realm through `api_plugin_register_realm('lsflog', 
 | Source | Result |
 |---|---|
 | GitHub repository search `cacti slurm`, `cacti slurm template`, `cacti sinfo`, `org:Cacti slurm` | zero results other than this proposal repository |
-| Web search for a Slurm template for Cacti on the Cacti forums | no Slurm template; the closest result is a forum thread asking about Sun Grid Engine whose reply suggests Ganglia ([forum thread, found through a third-party proxy copy of the Cacti forums](https://proxy.dubbot.com/https:/forums.cacti.net/viewtopic.php?p=110887)) |
+| Web search for a Slurm template for Cacti on the Cacti forums | no Slurm template; the closest result is a forum thread asking about Sun Grid Engine whose reply suggests Ganglia ([forum thread](https://forums.cacti.net/viewtopic.php?p=110887)) |
 | Web search for a GitHub Slurm plugin or script for Cacti | none; results are for other stacks: [slurm-monitoring-public](https://github.imc.re/bethgelab/slurm-monitoring-public) (Telegraf, InfluxDB, Grafana), [ganglia-slurm](https://awesome.ecosyste.ms/projects/github.com%2Faaronjackson%2Fganglia-slurm), [SlurmUtil](https://github.com/flatironinstitute/SlurmUtil) |
 
 Absence from search is not proof; private repositories, mailing-list attachments, and forum archives were not searched in depth. Status: no prior art found, unverified beyond the listed searches.
