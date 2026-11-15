@@ -139,7 +139,7 @@ final class TemplateInstaller {
 		$written = $this->written();
 		$target  = $this->queryTarget();
 
-		if ($written !== null && $target !== null && is_file($target) && hash_file('sha256', $target) === $written) {
+		if ($written !== null && $target !== null && !is_link($target) && is_file($target) && hash_file('sha256', $target) === $written) {
 			@unlink($target);
 		}
 
@@ -190,6 +190,16 @@ final class TemplateInstaller {
 	}
 
 	/**
+	 * Copy the data query file into Cacti's resource tree.
+	 *
+	 * Ownership is recorded only for a file this method wrote: a file that is
+	 * already there with the right content, for example one an administrator
+	 * copied by hand, is used but not recorded, so uninstall never removes
+	 * it. A file is replaced only when the plugin wrote it and nobody changed
+	 * it since. The destination must not be a symbolic link, dangling or not;
+	 * the file is written to a temporary file in the same directory and
+	 * renamed into place, and rename() replaces a path without following it.
+	 *
 	 * @return string|null the reason, or null when the file is in place
 	 */
 	private function installQueryFile(): ?string {
@@ -201,16 +211,18 @@ final class TemplateInstaller {
 			return sprintf('The data query file %s cannot be installed: the source or the Cacti resource directory is missing', self::QUERY_FILE);
 		}
 
+		clearstatcache(true, $target);
+
+		if (is_link($target)) {
+			return sprintf('%s is a symbolic link; it was left as it is. Replace it with a copy of plugins/hpcsched/resource/script_server/%s', $target, self::QUERY_FILE);
+		}
+
 		$want = (string) hash_file('sha256', $source);
 
-		if (is_file($target)) {
-			$have = (string) hash_file('sha256', $target);
+		if (file_exists($target)) {
+			$have = is_file($target) ? (string) hash_file('sha256', $target) : '';
 
 			if ($have === $want) {
-				if ($written !== $want) {
-					set_config_option(self::FILES_SETTING, $want);
-				}
-
 				return null;
 			}
 
@@ -219,13 +231,45 @@ final class TemplateInstaller {
 			}
 		}
 
-		if (!is_writable(dirname($target)) || @copy($source, $target) === false || hash_file('sha256', $target) !== $want) {
+		if (!$this->writeQueryFile($source, $target, $want)) {
 			return sprintf('Could not write %s. Copy plugins/hpcsched/resource/script_server/%s there as the web server user, then install the templates again from the health page', $target, self::QUERY_FILE);
 		}
 
 		set_config_option(self::FILES_SETTING, $want);
 
 		return null;
+	}
+
+	/**
+	 * Write $source to $target through a temporary file in the target's
+	 * directory, checking the copy's hash before the rename.
+	 */
+	private function writeQueryFile(string $source, string $target, string $want): bool {
+		$dir = dirname($target);
+
+		if (!is_dir($dir) || !is_writable($dir)) {
+			return false;
+		}
+
+		// tempnam() falls back to the system temporary directory when it
+		// cannot create the file here, and a rename from there is not atomic.
+		$temp = @tempnam($dir, '.hpcsched-');
+
+		if ($temp === false || realpath(dirname($temp)) !== realpath($dir)) {
+			if (is_string($temp)) {
+				@unlink($temp);
+			}
+
+			return false;
+		}
+
+		$ok = @copy($source, $temp) && hash_file('sha256', $temp) === $want && @chmod($temp, 0644) && @rename($temp, $target);
+
+		if (!$ok) {
+			@unlink($temp);
+		}
+
+		return $ok;
 	}
 
 	/**
