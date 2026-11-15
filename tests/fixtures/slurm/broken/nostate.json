@@ -1,0 +1,10 @@
+{
+    "_fixture": "synthetic: a node record without a state",
+    "nodes": [
+        {
+            "name": "n01"
+        }
+    ],
+    "errors": [],
+    "warnings": []
+}

@@ -1,0 +1,204 @@
+{
+    "_fixture": "synthetic fixture for Slurm 25.11.2, data parser v0.0.43; written from the parser field names in docs/research/slurm-client-output.md, not captured from a cluster",
+    "shares": {
+        "shares": [
+            {
+                "id": 1,
+                "cluster": "demo",
+                "name": "root",
+                "parent": "",
+                "partition": "",
+                "shares_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "shares": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "usage_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "usage": 5000000,
+                "effective_usage": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "fairshare": {
+                    "factor": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 0.5
+                    },
+                    "level": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 1
+                    }
+                },
+                "type": [
+                    "ASSOCIATION"
+                ]
+            },
+            {
+                "id": 2,
+                "cluster": "demo",
+                "name": "physics",
+                "parent": "root",
+                "partition": "",
+                "shares_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0.5
+                },
+                "shares": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "usage_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0.75
+                },
+                "usage": 3750000,
+                "effective_usage": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0.75
+                },
+                "fairshare": {
+                    "factor": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 0.25
+                    },
+                    "level": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 0.6667
+                    }
+                },
+                "type": [
+                    "ASSOCIATION"
+                ]
+            },
+            {
+                "id": 3,
+                "cluster": "demo",
+                "name": "alice",
+                "parent": "physics",
+                "partition": "",
+                "shares_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "shares": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "usage_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0.75
+                },
+                "usage": 3750000,
+                "effective_usage": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0.75
+                },
+                "fairshare": {
+                    "factor": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 0.25
+                    },
+                    "level": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 1
+                    }
+                },
+                "type": [
+                    "USER"
+                ]
+            },
+            {
+                "id": 4,
+                "cluster": "demo",
+                "name": "chem",
+                "parent": "root",
+                "partition": "",
+                "shares_normalized": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0.5
+                },
+                "shares": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 1
+                },
+                "usage_normalized": {
+                    "set": false,
+                    "infinite": false,
+                    "number": 0
+                },
+                "usage": 0,
+                "effective_usage": {
+                    "set": true,
+                    "infinite": false,
+                    "number": 0
+                },
+                "fairshare": {
+                    "factor": {
+                        "set": true,
+                        "infinite": false,
+                        "number": 1
+                    },
+                    "level": {
+                        "set": false,
+                        "infinite": true,
+                        "number": 0
+                    }
+                },
+                "type": [
+                    "ASSOCIATION"
+                ]
+            }
+        ]
+    },
+    "meta": {
+        "plugin": {
+            "type": "openapi/slurmctld",
+            "name": "Slurm OpenAPI slurmctld",
+            "data_parser": "data_parser/v0.0.43",
+            "accounting_storage": ""
+        },
+        "client": {
+            "source": "fixture",
+            "user": "cactiread",
+            "group": "cactiread"
+        },
+        "command": [],
+        "slurm": {
+            "version": {
+                "major": "25",
+                "micro": "2",
+                "minor": "11"
+            },
+            "release": "25.11.2",
+            "cluster": "demo"
+        }
+    },
+    "errors": [],
+    "warnings": []
+}

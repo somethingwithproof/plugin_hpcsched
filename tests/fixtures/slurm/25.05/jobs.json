@@ -1,0 +1,143 @@
+{
+    "_fixture": "synthetic fixture for Slurm 25.05.4, data parser v0.0.43; written from the parser field names in docs/research/slurm-client-output.md, not captured from a cluster",
+    "jobs": [
+        {
+            "job_id": 101,
+            "name": "secret-project-a",
+            "user_name": "alice",
+            "account": "physics",
+            "job_state": [
+                "RUNNING"
+            ],
+            "state_reason": "None",
+            "partition": "batch",
+            "array_task_string": "",
+            "array_task_id": 0
+        },
+        {
+            "job_id": 102,
+            "name": "b",
+            "user_name": "bob",
+            "account": "chem",
+            "job_state": [
+                "RUNNING"
+            ],
+            "state_reason": "None",
+            "partition": "gpu",
+            "array_task_string": ""
+        },
+        {
+            "job_id": 103,
+            "name": "c",
+            "user_name": "carol",
+            "account": "chem",
+            "job_state": [
+                "PENDING"
+            ],
+            "state_reason": "Priority",
+            "partition": "batch,gpu",
+            "array_task_string": ""
+        },
+        {
+            "job_id": 104,
+            "name": "d",
+            "user_name": "dave",
+            "account": "physics",
+            "job_state": [
+                "PENDING"
+            ],
+            "state_reason": "Resources",
+            "partition": "batch",
+            "array_task_string": "0-9%2",
+            "array_job_id": 104
+        },
+        {
+            "job_id": 105,
+            "name": "e",
+            "user_name": "erin",
+            "account": "physics",
+            "job_state": [
+                "PENDING"
+            ],
+            "state_reason": "JobHeldUser",
+            "partition": "batch",
+            "array_task_string": ""
+        },
+        {
+            "job_id": 106,
+            "name": "f",
+            "user_name": "frank",
+            "account": "bio",
+            "job_state": [
+                "PENDING"
+            ],
+            "state_reason": "QOSMaxJobsPerUserLimit",
+            "partition": "gpu",
+            "array_task_string": ""
+        },
+        {
+            "job_id": 107,
+            "name": "g",
+            "user_name": "grace",
+            "account": "bio",
+            "job_state": [
+                "PENDING"
+            ],
+            "state_reason": "ReqNodeNotAvail, UnavailableNodes:n[03-04]",
+            "partition": "batch",
+            "array_task_string": ""
+        },
+        {
+            "job_id": 108,
+            "name": "h",
+            "user_name": "heidi",
+            "account": "bio",
+            "job_state": [
+                "RUNNING",
+                "COMPLETING"
+            ],
+            "state_reason": "None",
+            "partition": "batch",
+            "array_task_string": ""
+        },
+        {
+            "job_id": 109,
+            "name": "i",
+            "user_name": "ivan",
+            "account": "bio",
+            "job_state": [
+                "PENDING"
+            ],
+            "state_reason": "AssocGrpCpuLimit",
+            "partition": "batch",
+            "array_task_string": "1-99:2"
+        }
+    ],
+    "last_backfill": 0,
+    "last_update": 1794790000,
+    "meta": {
+        "plugin": {
+            "type": "openapi/slurmctld",
+            "name": "Slurm OpenAPI slurmctld",
+            "data_parser": "data_parser/v0.0.43",
+            "accounting_storage": ""
+        },
+        "client": {
+            "source": "fixture",
+            "user": "cactiread",
+            "group": "cactiread"
+        },
+        "command": [],
+        "slurm": {
+            "version": {
+                "major": "25",
+                "micro": "4",
+                "minor": "05"
+            },
+            "release": "25.05.4",
+            "cluster": "demo"
+        }
+    },
+    "errors": [],
+    "warnings": []
+}

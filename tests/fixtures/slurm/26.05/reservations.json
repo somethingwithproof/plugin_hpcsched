@@ -1,0 +1,70 @@
+{
+    "_fixture": "synthetic fixture for Slurm 26.05.0, data parser v0.0.43; written from the parser field names in docs/research/slurm-client-output.md, not captured from a cluster",
+    "reservations": [
+        {
+            "name": "maint_n01",
+            "flags": [
+                "MAINT",
+                "IGNORE_JOBS"
+            ],
+            "node_list": "n[01-02]",
+            "start_time": {
+                "set": true,
+                "infinite": false,
+                "number": 1794800000
+            },
+            "end_time": {
+                "set": true,
+                "infinite": false,
+                "number": 1794803600
+            }
+        },
+        {
+            "name": "float",
+            "flags": [
+                "TIME_FLOAT"
+            ],
+            "node_list": "g01",
+            "start_time": {
+                "set": true,
+                "infinite": false,
+                "number": 1794700000
+            },
+            "end_time": {
+                "set": true,
+                "infinite": false,
+                "number": 1794703600
+            }
+        }
+    ],
+    "last_update": {
+        "set": true,
+        "infinite": false,
+        "number": 1794790000
+    },
+    "meta": {
+        "plugin": {
+            "type": "openapi/slurmctld",
+            "name": "Slurm OpenAPI slurmctld",
+            "data_parser": "data_parser/v0.0.43",
+            "accounting_storage": ""
+        },
+        "client": {
+            "source": "fixture",
+            "user": "cactiread",
+            "group": "cactiread"
+        },
+        "command": [],
+        "slurm": {
+            "version": {
+                "major": "26",
+                "micro": "0",
+                "minor": "05"
+            },
+            "release": "26.05.0",
+            "cluster": "demo"
+        }
+    },
+    "errors": [],
+    "warnings": []
+}
