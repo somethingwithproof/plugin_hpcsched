@@ -109,6 +109,14 @@ switch ($action) {
 		db_execute('DROP TABLE IF EXISTS `' . preg_replace('/[^a-z_]/', '', $argument) . '`');
 
 		break;
+	case 'make_schema_1':
+		// What a schema 1 install has: no device column and no node count
+		// table, which core never recorded either.
+		db_execute('ALTER TABLE plugin_hpcsched_cluster DROP KEY host_id, DROP COLUMN host_id');
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_node_count');
+		db_execute("DELETE FROM plugin_db_changes WHERE plugin = 'hpcsched' AND `table` = 'plugin_hpcsched_node_count'");
+
+		break;
 	case 'seed':
 		// A cluster row, so table drops and keeps are visible.
 		db_execute("INSERT INTO plugin_hpcsched_cluster (name, poller_id, admin_state, transport, collect_interval) VALUES ('seed', 1, 'enabled', 'commands', 60)");
@@ -165,7 +173,23 @@ foreach (db_fetch_assoc("SELECT TABLE_NAME AS t FROM information_schema.TABLES W
 	$tables[$row['t']] = (int) db_fetch_cell('SELECT COUNT(*) FROM `' . $row['t'] . '`');
 }
 
+// Cacti objects the template import creates, counted by table, and
+// whether the installer finds them all and the query file in place.
+$templates = array();
+
+foreach (array('host_template', 'data_input', 'data_input_fields', 'data_template', 'data_template_rrd', 'graph_templates', 'graph_templates_item', 'snmp_query', 'snmp_query_graph', 'snmp_query_graph_rrd') as $table) {
+	$templates[$table] = (int) db_fetch_cell("SELECT COUNT(*) FROM `$table`");
+}
+
+include_once($config['base_path'] . '/plugins/hpcsched/setup.php');
+
+$columns = array_column(db_fetch_assoc("SELECT COLUMN_NAME AS c FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'plugin_hpcsched_cluster' ORDER BY ORDINAL_POSITION"), 'c');
+
 print json_encode(array(
+	'templates' => $templates,
+	'templates_current' => hpcsched_boot() && hpcsched_template_installer()->isCurrent(),
+	'query_file' => is_file($config['base_path'] . '/resource/script_server/hpcsched_partitions.xml'),
+	'columns' => $columns,
 	'result'  => $result,
 	'output'  => $output,
 	'plugin'  => db_fetch_row("SELECT status, version FROM plugin_config WHERE directory = 'hpcsched'"),

@@ -1,0 +1,185 @@
+<interface>
+	<name>HPC Scheduler Partitions</name>
+	<description>Partitions of a scheduler cluster, answered from the HPC Scheduler plugin snapshot</description>
+	<script_path>|path_cacti|/plugins/hpcsched/scripts/ss_hpcsched_partitions.php</script_path>
+	<script_function>ss_hpcsched_partitions</script_function>
+	<script_server>php</script_server>
+	<arg_prepend>|host_id|</arg_prepend>
+	<arg_index>index</arg_index>
+	<arg_query>query</arg_query>
+	<arg_get>get</arg_get>
+	<arg_num_indexes>num_indexes</arg_num_indexes>
+	<output_delimiter>!</output_delimiter>
+	<index_order>hpcPartition</index_order>
+	<index_order_type>alphabetic</index_order_type>
+	<index_title_format>|chosen_order_field|</index_title_format>
+	<index_orphan_removal>true</index_orphan_removal>
+
+	<fields>
+		<hpcPartition>
+			<name>Partition</name>
+			<direction>input</direction>
+			<query_name>name</query_name>
+		</hpcPartition>
+		<pending>
+			<name>Pending Jobs (eligible)</name>
+			<direction>output</direction>
+			<query_name>pending</query_name>
+		</pending>
+		<held>
+			<name>Held Jobs</name>
+			<direction>output</direction>
+			<query_name>held</query_name>
+		</held>
+		<running>
+			<name>Running Jobs</name>
+			<direction>output</direction>
+			<query_name>running</query_name>
+		</running>
+		<completing>
+			<name>Completing Jobs</name>
+			<direction>output</direction>
+			<query_name>completing</query_name>
+		</completing>
+		<jobs_other>
+			<name>Jobs in Other States</name>
+			<direction>output</direction>
+			<query_name>jobs_other</query_name>
+		</jobs_other>
+		<r_priority>
+			<name>Pending Jobs: Priority</name>
+			<direction>output</direction>
+			<query_name>r_priority</query_name>
+		</r_priority>
+		<r_resources>
+			<name>Pending Jobs: Resources</name>
+			<direction>output</direction>
+			<query_name>r_resources</query_name>
+		</r_resources>
+		<r_dependency>
+			<name>Pending Jobs: Dependency</name>
+			<direction>output</direction>
+			<query_name>r_dependency</query_name>
+		</r_dependency>
+		<r_held>
+			<name>Pending Jobs: Held</name>
+			<direction>output</direction>
+			<query_name>r_held</query_name>
+		</r_held>
+		<r_begin_time>
+			<name>Pending Jobs: Begin time</name>
+			<direction>output</direction>
+			<query_name>r_begin_time</query_name>
+		</r_begin_time>
+		<r_reservation>
+			<name>Pending Jobs: Reservation</name>
+			<direction>output</direction>
+			<query_name>r_reservation</query_name>
+		</r_reservation>
+		<r_assoc>
+			<name>Pending Jobs: Association limits</name>
+			<direction>output</direction>
+			<query_name>r_assoc</query_name>
+		</r_assoc>
+		<r_qos>
+			<name>Pending Jobs: QOS limits</name>
+			<direction>output</direction>
+			<query_name>r_qos</query_name>
+		</r_qos>
+		<r_partition>
+			<name>Pending Jobs: Partition limits</name>
+			<direction>output</direction>
+			<query_name>r_partition</query_name>
+		</r_partition>
+		<r_node>
+			<name>Pending Jobs: Node availability</name>
+			<direction>output</direction>
+			<query_name>r_node</query_name>
+		</r_node>
+		<r_other>
+			<name>Pending Jobs: Other</name>
+			<direction>output</direction>
+			<query_name>r_other</query_name>
+		</r_other>
+		<n_idle>
+			<name>Idle Nodes</name>
+			<direction>output</direction>
+			<query_name>n_idle</query_name>
+		</n_idle>
+		<n_allocated>
+			<name>Allocated Nodes</name>
+			<direction>output</direction>
+			<query_name>n_allocated</query_name>
+		</n_allocated>
+		<n_mixed>
+			<name>Mixed Nodes</name>
+			<direction>output</direction>
+			<query_name>n_mixed</query_name>
+		</n_mixed>
+		<n_drained>
+			<name>Drained or Draining Nodes</name>
+			<direction>output</direction>
+			<query_name>n_drained</query_name>
+		</n_drained>
+		<n_down>
+			<name>Down Nodes</name>
+			<direction>output</direction>
+			<query_name>n_down</query_name>
+		</n_down>
+		<n_maint>
+			<name>Maintenance or Reserved Nodes</name>
+			<direction>output</direction>
+			<query_name>n_maint</query_name>
+		</n_maint>
+		<n_powered_down>
+			<name>Powered Down Nodes</name>
+			<direction>output</direction>
+			<query_name>n_powered_down</query_name>
+		</n_powered_down>
+		<n_other>
+			<name>Nodes in Other States</name>
+			<direction>output</direction>
+			<query_name>n_other</query_name>
+		</n_other>
+		<cpus_alloc>
+			<name>Allocated CPUs</name>
+			<direction>output</direction>
+			<query_name>cpus_alloc</query_name>
+		</cpus_alloc>
+		<cpus_idle>
+			<name>Idle CPUs</name>
+			<direction>output</direction>
+			<query_name>cpus_idle</query_name>
+		</cpus_idle>
+		<cpus_other>
+			<name>Unavailable CPUs</name>
+			<direction>output</direction>
+			<query_name>cpus_other</query_name>
+		</cpus_other>
+		<cpus_total>
+			<name>Total CPUs</name>
+			<direction>output</direction>
+			<query_name>cpus_total</query_name>
+		</cpus_total>
+		<cpu_util_pct>
+			<name>CPU Utilization (percent)</name>
+			<direction>output</direction>
+			<query_name>cpu_util_pct</query_name>
+		</cpu_util_pct>
+		<node_util_pct>
+			<name>Node Utilization (percent)</name>
+			<direction>output</direction>
+			<query_name>node_util_pct</query_name>
+		</node_util_pct>
+		<nodes_alloc>
+			<name>Nodes with Allocated CPUs</name>
+			<direction>output</direction>
+			<query_name>nodes_alloc</query_name>
+		</nodes_alloc>
+		<nodes_total>
+			<name>Total Nodes</name>
+			<direction>output</direction>
+			<query_name>nodes_total</query_name>
+		</nodes_total>
+	</fields>
+</interface>

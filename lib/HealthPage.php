@@ -35,6 +35,8 @@ final class HealthPage {
 		private readonly FreshnessEvaluator $evaluator,
 		private readonly Clock $clock,
 		private readonly int $pollerInterval,
+		private readonly DeviceAccess $access,
+		private readonly TemplateInstaller $templates,
 	) {
 	}
 
@@ -42,7 +44,7 @@ final class HealthPage {
 		$now      = $this->clock->now();
 		$runs     = $this->runs->all();
 		$sections = $this->view->sections();
-		$clusters = $this->clusters->all();
+		$clusters = $this->access->clusters($this->clusters->all());
 
 		html_start_box(__('Clusters', 'hpcsched'), '100%', '', '3', 'center', '');
 		print Format::header([__('Cluster', 'hpcsched'), __('State', 'hpcsched'), __('Freshness', 'hpcsched'), __('Last Run', 'hpcsched'), __('Outcome', 'hpcsched'), __('Duration', 'hpcsched'), __('Calls', 'hpcsched'), __('Slurm', 'hpcsched'), __('Transport', 'hpcsched'), __('Parser', 'hpcsched'), __('Last Success', 'hpcsched')]);
@@ -54,6 +56,10 @@ final class HealthPage {
 		$warnings = [];
 
 		foreach (HealthWarnings::global($this->settings) as $warning) {
+			$warnings[] = [__('All clusters', 'hpcsched'), $warning];
+		}
+
+		foreach ($this->templateProblems() as $warning) {
 			$warnings[] = [__('All clusters', 'hpcsched'), $warning];
 		}
 
@@ -95,6 +101,12 @@ final class HealthPage {
 
 		html_end_box();
 
+		html_start_box(__('Templates', 'hpcsched'), '100%', '', '3', 'center', '');
+		print '<tr><td>' . html_escape($this->templates->isCurrent() ? __('The device, data, and graph templates and the partition data query are installed.', 'hpcsched') : __('The templates are not installed or not current, so cluster devices cannot be created. See the warnings above.', 'hpcsched')) . '</td>'
+			. '<td><form method="post" action="hpcsched_health.php"><input type="hidden" name="action" value="install_templates">'
+			. '<input type="submit" class="ui-button" value="' . html_escape(__('Install Templates', 'hpcsched')) . '"></form></td></tr>';
+		html_end_box();
+
 		html_start_box(__('Snapshot Sections', 'hpcsched'), '100%', '', '3', 'center', '');
 		print Format::header([__('Cluster', 'hpcsched'), __('Section', 'hpcsched'), __('Last Attempt', 'hpcsched'), __('State', 'hpcsched'), __('Error', 'hpcsched'), __('Records', 'hpcsched'), __('Data Age', 'hpcsched'), __('Freshness', 'hpcsched')]);
 
@@ -116,5 +128,28 @@ final class HealthPage {
 		}
 
 		html_end_box();
+	}
+
+	/**
+	 * @return list<string>
+	 */
+	private function templateProblems(): array {
+		$problems = [];
+
+		if ($this->templates->failure() !== '') {
+			$problems[] = __('The last template install failed: %s', $this->templates->failure(), 'hpcsched');
+		}
+
+		if (!$this->templates->present()) {
+			$problems[] = __('Some HPC Scheduler templates are missing from Cacti. Install them below.', 'hpcsched');
+		}
+
+		$file = $this->templates->queryFileProblem();
+
+		if ($file !== null) {
+			$problems[] = $file;
+		}
+
+		return $problems;
 	}
 }

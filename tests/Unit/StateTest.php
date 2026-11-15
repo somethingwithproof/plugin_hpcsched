@@ -177,6 +177,39 @@ describe('job state and reasons', function () {
 		['', ReasonFamily::Other],
 	]);
 
+	// ADR 0011: the counts per family of every distinct reason string in
+	// Slurm source, which docs/research/slurm-states-reasons.md recorded.
+	it('maps every reason in Slurm source at each release to the documented family', function (string $release, array $counts) {
+		$fixture = json_decode((string) file_get_contents(dirname(__DIR__) . '/fixtures/slurm/reasons.json'), true);
+		$tally   = [];
+
+		foreach ($fixture['reasons'][$release] as $reason) {
+			$family         = ReasonFamily::of($reason)->value;
+			$tally[$family] = ($tally[$family] ?? 0) + 1;
+		}
+
+		ksort($tally);
+		ksort($counts);
+
+		expect($tally)->toBe($counts);
+	})->with([
+		'24.11' => ['24.11', ['priority' => 1, 'resources' => 2, 'dependency' => 2, 'held' => 3, 'begin_time' => 1, 'reservation' => 3, 'assoc' => 61, 'qos' => 109, 'partition' => 5, 'node' => 3, 'other' => 26]],
+		'25.05' => ['25.05', ['priority' => 1, 'resources' => 2, 'dependency' => 2, 'held' => 3, 'begin_time' => 1, 'reservation' => 3, 'assoc' => 61, 'qos' => 109, 'partition' => 5, 'node' => 3, 'other' => 25]],
+		'25.11' => ['25.11', ['priority' => 1, 'resources' => 3, 'dependency' => 2, 'held' => 3, 'begin_time' => 1, 'reservation' => 3, 'assoc' => 61, 'qos' => 109, 'partition' => 5, 'node' => 3, 'other' => 25]],
+		'26.05' => ['26.05', ['priority' => 1, 'resources' => 3, 'dependency' => 2, 'held' => 3, 'begin_time' => 1, 'reservation' => 3, 'assoc' => 61, 'qos' => 109, 'partition' => 5, 'node' => 3, 'other' => 25]],
+		'26.11' => ['26.11', ['priority' => 1, 'resources' => 3, 'dependency' => 2, 'held' => 3, 'begin_time' => 1, 'reservation' => 3, 'assoc' => 61, 'qos' => 109, 'partition' => 6, 'node' => 3, 'other' => 26]],
+	]);
+
+	it('keeps every source reason a counter key as it is, so the page lists it by its own name', function () {
+		$fixture = json_decode((string) file_get_contents(dirname(__DIR__) . '/fixtures/slurm/reasons.json'), true);
+
+		foreach ($fixture['reasons'] as $reasons) {
+			foreach ($reasons as $reason) {
+				expect(Reasons::name($reason))->toBe($reason);
+			}
+		}
+	});
+
 	it('keeps family codes within the 19 characters of an RRD data source name', function () {
 		foreach (ReasonFamily::cases() as $family) {
 			expect(strlen($family->value))->toBeLessThanOrEqual(19);

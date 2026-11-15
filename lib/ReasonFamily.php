@@ -20,11 +20,11 @@
 namespace Somethingwithproof\Hpcsched;
 
 /**
- * Pending reason families (ADR 0010; the final set is decision #12). The
- * draft rules from docs/research/slurm-states-reasons.md map every reason
- * string in source at 24.11 to the 26.11 candidate; anything else is Other,
- * with the raw string kept. Values are short codes because Cacti data source
- * names are limited to 19 characters.
+ * Pending reason families (ADR 0010, ADR 0011). The rules map every reason
+ * string in Slurm source from 24.11 to the 26.11 candidate
+ * (tests/fixtures/slurm/reasons.json); anything else is Other, with the raw
+ * string kept. Values are short codes because Cacti data source names are
+ * limited to 19 characters.
  */
 enum ReasonFamily: string {
 	case Priority    = 'priority';

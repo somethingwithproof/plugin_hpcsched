@@ -21,10 +21,39 @@ namespace Somethingwithproof\Hpcsched;
 
 /**
  * Read-only queries the pages use. Counts only: no page in this release
- * shows a job, user, or account (REQ-UI-004).
+ * shows a job, user, or account (REQ-UI-004, REQ-REASON-006).
  */
 final class ViewRepository {
 	public function __construct(private readonly \PDO|false $connection) {
+	}
+
+	/**
+	 * Run several reads against one snapshot of the tables. The reader
+	 * replaces a cluster's rows in one transaction; separate reads outside
+	 * one could pair one snapshot's counts with another's observation time.
+	 * Under REPEATABLE READ (InnoDB's default, set here for the transaction
+	 * in case the server's differs) every read in the transaction sees the
+	 * tables as of its first read. When no transaction can be started the
+	 * reads run as they are.
+	 *
+	 * @template T
+	 *
+	 * @param \Closure(): T $read
+	 *
+	 * @return T
+	 */
+	public function consistent(\Closure $read): mixed {
+		db_execute_prepared('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ', [], true, $this->connection);
+
+		$started = db_begin_transaction($this->connection);
+
+		try {
+			return $read();
+		} finally {
+			if ($started) {
+				db_commit_transaction($this->connection);
+			}
+		}
 	}
 
 	/**
@@ -76,5 +105,59 @@ final class ViewRepository {
 		}
 
 		return $out;
+	}
+
+	/**
+	 * Raw pending reasons of a cluster with their job counts, most jobs
+	 * first, at most $limit of them, and the partitions each affects.
+	 *
+	 * @return array{reasons: list<array{name: string, jobs: int, partitions: list<string>}>, more: bool}
+	 */
+	public function reasons(int $clusterId, int $limit): array {
+		$rows = Row::rows(db_fetch_assoc_prepared("SELECT name, jobs FROM plugin_hpcsched_job_count WHERE cluster_id = ? AND kind = 'reason' AND partition_name = '' ORDER BY jobs DESC, name LIMIT " . ($limit + 1), [$clusterId], true, $this->connection));
+		$more = count($rows) > $limit;
+		$out  = [];
+
+		foreach (array_slice($rows, 0, $limit) as $row) {
+			$out['r:' . Row::string($row, 'name')] = ['name' => Row::string($row, 'name'), 'jobs' => Row::int($row, 'jobs', 0, 0), 'partitions' => []];
+		}
+
+		if ($out !== []) {
+			$names = array_map(static fn (array $r): string => $r['name'], array_values($out));
+
+			foreach (Row::rows(db_fetch_assoc_prepared("SELECT name, partition_name FROM plugin_hpcsched_job_count WHERE cluster_id = ? AND kind = 'reason' AND partition_name <> '' AND name IN (" . implode(', ', array_fill(0, count($names), '?')) . ') ORDER BY partition_name', array_merge([$clusterId], $names), true, $this->connection)) as $row) {
+				$key = 'r:' . Row::string($row, 'name');
+
+				if (isset($out[$key])) {
+					$out[$key]['partitions'][] = Row::string($row, 'partition_name');
+				}
+			}
+		}
+
+		return ['reasons' => array_values($out), 'more' => $more];
+	}
+
+	/**
+	 * Nodes in a state the plugin does not know (normalized Other), grouped
+	 * by the raw state Slurm reported (REQ-NODEAGG-002).
+	 *
+	 * @return list<array{state: string, nodes: int, names: list<string>}>
+	 */
+	public function otherNodes(int $clusterId, int $limit): array {
+		$out = [];
+
+		foreach (Row::rows(db_fetch_assoc_prepared("SELECT raw_state, COUNT(*) AS nodes FROM plugin_hpcsched_node WHERE cluster_id = ? AND state = 'other' GROUP BY raw_state ORDER BY nodes DESC, raw_state LIMIT " . $limit, [$clusterId], true, $this->connection)) as $row) {
+			$out['s:' . Row::string($row, 'raw_state')] = ['state' => Row::string($row, 'raw_state'), 'nodes' => Row::int($row, 'nodes', 0, 0), 'names' => []];
+		}
+
+		foreach (Row::rows(db_fetch_assoc_prepared("SELECT name, raw_state FROM plugin_hpcsched_node WHERE cluster_id = ? AND state = 'other' ORDER BY name LIMIT " . $limit, [$clusterId], true, $this->connection)) as $row) {
+			$key = 's:' . Row::string($row, 'raw_state');
+
+			if (isset($out[$key])) {
+				$out[$key]['names'][] = Row::string($row, 'name');
+			}
+		}
+
+		return array_values($out);
 	}
 }

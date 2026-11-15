@@ -1,6 +1,6 @@
 # Cacti 1.2 HPC Scheduler Plugin Plan
 
-Status: in development, plan revision 2 (2026-11-15). Revision 2 adds the documentation and source results of milestone 1 ([research index](#milestone-1-research-status)); items that need a cluster, accounts, or a remote collector are marked *live* and are not done. Milestone 2 (foundation) is merged on `main`: the lifecycle and PHP guard, realms and settings, the cluster registry, both Slurm transports, the per-poller reader, and the overview and health pages; where the build differs from this plan, the text says "Milestone 2 diverges". Milestone 3 and later are not done: no Cacti device, data source, graph, Thold or Maint integration exists, and there is no release. Statements about Slurm, Cacti core, Maint, and Thold describe upstream behavior and cite the document or source file that was checked, with the checked version or commit. Anything not checked is listed as an assumption and tracked as a research issue. Owner and estimates are not assigned; milestone 1 produces the estimates.
+Status: in development, plan revision 2 (2026-11-15). Revision 2 adds the documentation and source results of milestone 1 ([research index](#milestone-1-research-status)); items that need a cluster, accounts, or a remote collector are marked *live* and are not done. Milestone 2 (foundation) is merged on `main`: the lifecycle and PHP guard, realms and settings, the cluster registry, both Slurm transports, the per-poller reader, and the overview and health pages; where the build differs from this plan, the text says "Milestone 2 diverges". Milestone 3 (cluster graphs and pending reasons) adds the templates, the cluster device, the cluster and partition graphs, the pending reasons view, device permissions, and synthetic performance measurements; where it differs from this plan, the text says so. Milestone 4 and later are not done: Thold has not been tested end to end, no Maint integration exists, and there is no release. Statements about Slurm, Cacti core, Maint, and Thold describe upstream behavior and cite the document or source file that was checked, with the checked version or commit. Anything not checked is listed as an assumption and tracked as a research issue. Owner and estimates are not assigned; milestone 1 produces the estimates.
 
 `plugin_hpcsched` brings the state of an HPC batch scheduler into Cacti 1.2: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization, as ordinary Cacti devices, data sources, and graphs. Slurm is the first backend. PBS Pro, OpenPBS, and LSF are later backends behind the same interface. The plugin is read-only toward the scheduler.
 
@@ -257,13 +257,13 @@ Raw state and reason strings are kept beside the normalized values so a Slurm re
 
 | Object | Created from | Notes |
 |---|---|---|
-| Cluster device | "HPC Scheduler Cluster" device template; the device is saved with `availability_method` 0 (a device template has no availability field) and the `poller_id` of the poller that runs the reader | Created on administrator confirmation; carries the cluster-wide graphs |
-| Data queries | Script server queries indexed by partition and by reason family | Index sets follow the snapshot; new indexes appear on reindex, and removed ones become orphans that are deleted only if the query XML sets `index_orphan_removal` |
-| Data templates | Jobs by state, pending by reason family, nodes by state, partition utilization, cluster `age` | One RRD per template per index |
-| Graph templates | One per data template, plus stacked overviews | Graph permissions apply as for any Cacti graph |
+| Cluster device | "HPC Scheduler Cluster" device template; the device is saved with `availability_method` 0 (a device template has no availability field), the `poller_id` of the cluster, and a host name in the reserved `.invalid` domain, so nothing ever contacts it | Created, or an existing device mapped, from the cluster's device page after it shows what will be added; carries the cluster-wide graphs. Deleting the device unmaps the cluster and keeps it |
+| Data query | One script server query, "HPC Scheduler Partitions", indexed by partition name | Reason families are values, not indexes ([ADR 0011](decisions/0011-pending-reason-families-and-counting.md)). The reader reindexes when the snapshot's partitions differ from the device's indexes, which catches a rename that Cacti's index count check misses. The query sets `index_orphan_removal`, so a removed partition stops being polled; its graphs stay |
+| Data templates | "HPC Scheduler Cluster Values" (every cluster value plus `age`, from one script server input), and one per partition graph: Jobs, Pending Reasons, Nodes, CPUs, Utilization | Cacti creates an RRD with only the items a graph draws, so each graph has its own data source: six per cluster and five per partition |
+| Graph templates | Cluster: Jobs, Pending Reasons, Nodes, CPUs, Utilization, Snapshot Age. Partition: the same five | Graph permissions apply as for any Cacti graph; partition graphs are created with the device, and partitions added later get theirs from New Graphs |
 | Node data template (phase 2) | "HPC Scheduler Node" on mapped devices | State code, drain flag, down flag, `age` |
 
-Templates ship as Cacti template XML and are imported with `import_xml_data()` at install and upgrade, matched by hash so re-imports update rather than duplicate. Data query XML is installed under `resource/script_server/`, the location core uses for its own script server queries. The sibling plugin `plugin_cloudflare` follows the same pattern, with one device per account and the tunnels as data query indexes.
+Templates ship as Cacti template XML (`templates/hpcsched-templates.xml`, rebuilt by `tests/bin/build-templates.php`) and are imported with `import_xml_data()` at install and upgrade, matched by hash so re-imports update rather than duplicate. Data query XML is copied to `resource/script_server/`, the location core uses for its own script server queries, with its sha256 recorded; a file there the plugin did not write, or one changed since, is never overwritten, and the health page says why the install stopped. Uninstall removes the file only if it is unchanged and keeps the templates and graphs. The sibling plugin `plugin_cloudflare` follows the same pattern, with one device per account and the tunnels as data query indexes.
 
 Whether the cluster device is visible everywhere or hidden from device lists is an open decision for Cacti maintainers. The proposal is a template-marked device that appears like any other.
 
@@ -304,19 +304,22 @@ Graphs are Cacti graphs. Trees, zoom, time spans, permissions, and export work a
 
 - Jobs by state: pending (eligible), held, running, completing, other. Held jobs are shown apart from eligible pending jobs, because the Slurm metrics guide notes that its pending count includes held jobs.
 - Pending jobs by reason family.
-- Nodes by normalized state: idle, allocated, mixed, drained, down, maintenance or reserved, other.
-- Partition utilization as allocated over total CPUs, and as allocated over total nodes.
+- Nodes by normalized state: idle, allocated, mixed, drained (drained and draining), down, maintenance or reserved, powered down, other.
+- CPUs as allocated, idle, and other, following `sinfo`'s `%C`: other is the unallocated CPUs of nodes that cannot take work.
+- Utilization as allocated over total CPUs, and as nodes with allocated CPUs over total nodes.
 
-**Counting rules.** A node in several partitions is counted once in cluster totals and once per partition. A pending job submitted to several partitions is counted once in cluster totals and once per partition it targets. A pending array contributes its task count (`squeue` collapses pending array elements unless `-r` is given; the metrics plugin adds the array count); held jobs are pending jobs whose reason is `JobHeldAdmin` or `JobHeldUser`. The rule for whether drained and down nodes stay in the utilization denominator is chosen with milestone 1 and shown on the graph template.
+Each partition has 32 values in 5 RRD files; the cluster has the same 32 plus `age` in 6.
 
-**Plugin pages.** The cluster overview shows the latest snapshot and its age. The pending reason page lists raw reasons with counts and affected partitions. Job IDs appear only for administrators and only up to a row limit. A node page (phase 2) shows state, reason, reason time, and the mapped device.
+**Counting rules.** A node in several partitions is counted once in cluster totals and once per partition. A pending job submitted to several partitions is counted once in cluster totals and once per partition it targets. A pending array contributes its task count (`squeue` collapses pending array elements unless `-r` is given; the metrics plugin adds the array count); held jobs are pending jobs whose reason is `JobHeldAdmin` or `JobHeldUser`. Drained, down, and other unavailable nodes stay in the utilization denominator, so lost capacity shows as lower utilization; the Utilization graph template says so in a comment line.
+
+**Plugin pages.** The cluster overview shows the latest snapshot and its age. The pending reason page lists raw reasons with their family, job counts, and affected partitions, up to 200 rows, with the snapshot time; it also lists nodes in states the plugin does not know by raw state, with node names for the Admin realm only. Milestone 3 shows no job IDs; per-job detail is left for a later milestone. Every plugin page and action follows Cacti's device permission for the cluster's device. A node page (phase 2) shows state, reason, reason time, and the mapped device.
 
 ## Pending reasons
 
 Pending reasons are the plugin's main differentiator, and they are the place where series counts can grow without bound ([ADR 0010](decisions/0010-bound-series-cardinality.md)).
 
 - The raw reason is stored per job count, not per job.
-- Reasons are grouped into a fixed family set with an Other bucket. The set, confirmed against source at 24.11, 25.05, 25.11, 26.05, and the 26.11 candidate: Priority, Resources, Dependency, Association limits, QOS limits, Held, Reservation, Node availability, Partition limits, Begin time, Other. A draft prefix rule maps all 216 distinct reason strings at 26.05 (Association limits 61, QOS limits 109, Other 25; counts per family are in [slurm-states-reasons.md](research/slurm-states-reasons.md)). The decision on splitting Other is #12.
+- Reasons are grouped into a fixed family set with an Other bucket. The set, confirmed against source at 24.11, 25.05, 25.11, 26.05, and the 26.11 candidate: Priority, Resources, Dependency, Association limits, QOS limits, Held, Reservation, Node availability, Partition limits, Begin time, Other. A draft prefix rule maps all 216 distinct reason strings at 26.05 (Association limits 61, QOS limits 109, Other 25; counts per family are in [slurm-states-reasons.md](research/slurm-states-reasons.md)). [ADR 0011](decisions/0011-pending-reason-families-and-counting.md) decides #12: the eleven families, Other unsplit, with the raw reasons listed on the pending reason page.
 - The Slurm reason list changes between releases (two to four names differ across 24.11 to 26.11) and the documentation page omits 23 strings present in source. Families are matched by name pattern and prefix, with a fixture test that every reason in the source list at each supported release maps to a family and an unknown reason maps to Other.
 - Reason attribution is the scheduler's: a job reports only the reason found by the last scheduling method that examined it. The documentation says so, so operators do not read the breakdown as a complete cause analysis.
 - No series exist for users or jobs. Per-job detail is a plugin page for administrators.
@@ -333,7 +336,7 @@ Every value an operator may alert on is a polled data source ([ADR 0002](decisio
 | `age` | Seconds since the cluster's last successful snapshot | Always numeric once collected |
 | Node state code, drain flag, down flag (phase 2) | Per mapped node | `U` |
 
-Thold thresholds and Maint device schedules work on these with no change to either plugin.
+Thold thresholds and Maint device schedules work on these with no change to either plugin. Milestone 3 ships the data sources Thold reads, cluster and per partition; the end-to-end Thold test (fire and recover on a fixture cluster) is milestone 4.
 
 Stated limits:
 
@@ -414,7 +417,20 @@ Capacity is stated in clusters, nodes, jobs, and series. Fixtures cover 1,000 an
 
 **Milestone 2: memory.** Decoding a JSON answer took about 10 times its text size in PHP arrays for synthetic job records with Slurm's shape (PHP 8.5, measured locally); with the text itself the reader budgets 12 times. The answer size the reader allows is the smaller of Maximum Answer Size and (Collection Memory - 64 MiB) / 12, and the health page warns when the configured size is larger. With the 1024 MiB default that is 80 MiB per answer, which a 100,000 job queue with full records may exceed; the section then fails as too large rather than reporting zero. A run that runs out of memory anyway is recorded as failed with the memory error class by a shutdown function.
 
-Series arithmetic for one cluster with 50 partitions and 15 reason families, from the template design (not measured):
+**Milestone 3: measured on synthetic snapshots** (#47). `tests/bin/perf.php` builds snapshots with 8 partitions, the 25.11 fixture shape, and a fixed seed, sends them through the stand-in client commands and the full reader, creates a cluster device with every partition graphed, and times one script server poll cycle and the two plugin pages. Median of three runs, on one machine: an Apple M3 Max laptop running OrbStack (14 CPUs, 16 GiB for the Linux VM), PHP 8.2.35 in the `cloud-ci:8.2` container, MariaDB 11.8.9 in a second container, 2026-11-15. Other hardware, a remote database, or real `squeue` answers (which carry many more fields per job) will give different numbers; treat these as the shape of the cost, not a capacity guarantee.
+
+| Nodes | Jobs | Answer MiB (jobs, nodes) | Parse ms | Reader run ms | Rows written | Reader peak MiB | Script server cycle ms (calls) | Overview ms | Reasons view ms |
+|---|---|---|---|---|---|---|---|---|---|
+| 1,000 | 10,000 | 2.2, 0.2 | 29 | 87 | 1,395 | 21 | 1 (262) | 1 | 1 |
+| 1,000 | 100,000 | 22.1, 0.2 | 362 | 413 | 1,395 | 210 | 1 (262) | 1 | 1 |
+| 10,000 | 10,000 | 2.2, 2.0 | 61 | 206 | 10,395 | 29 | 1 (262) | 6 | 2 |
+| 10,000 | 100,000 | 22.1, 2.0 | 347 | 503 | 10,395 | 210 | 1 (262) | 10 | 2 |
+
+What this shows: job count drives decode time and memory (about 9.5 times the answer size at 100,000 jobs, inside the 12 times budget), and node count drives the rows written, since every node is stored; the job tables hold counts, not jobs. The script server answers a full cycle (6 cluster calls and 32 per partition) from one snapshot read, so its cost does not grow with jobs or nodes; the cycle figure excludes Cacti's own script server process and poller overhead, which the plugin does not control. Both pages stay far below the two second target. Not measured: a real 100,000 job `squeue` answer, the Cacti poller cycle with many cluster devices, and Cacti's own pages at these series counts.
+
+Series arithmetic, revised with the milestone 3 templates: 32 values in 5 RRD files per partition, plus 33 values (with `age`) in 6 files per cluster, so 50 partitions are 256 RRD files and 1,633 values per cluster, and 1,606 script server calls per poll.
+
+Series arithmetic for one cluster with 50 partitions and 15 reason families, from the template design (revision 2, before milestone 3; kept for the record):
 
 - Per partition, four RRD files (jobs by state, pending by reason, nodes by state, utilization) holding 25 values in total with 11 reason families (29 with 15; the family count is decision #12), so 200 RRD files and 1,250 (or 1,450) values for 50 partitions, plus a handful of cluster-level files. Revision 1 said about 31 values and 1,550, which the plan's own lists do not reproduce.
 - Per-node series exist only for mapped nodes, with one RRD of 4 values each: 10,000 mapped nodes add 10,000 RRD files and 40,000 values to poll.
@@ -493,7 +509,7 @@ No calendar duration is claimed: the comparison plugins' commit spans measure as
 | Node matching keys | Hostname, address, description with rules (proposed); `external_id` only; rules only | Milestone 5 | Naming fixtures and core confirmation |
 | Repository and name | `Cacti/plugin_hpcsched` (proposed), `Cacti/plugin_slurm`, community plugin | Before any code is published | Cacti maintainers |
 | Test harness | Whatever maintained plugins use | Milestone 2 | Cacti maintainers |
-| Pending reason families | Fixed families (proposed); per raw reason; operator-defined | Milestone 3 | Reason research |
+| Pending reason families | Decided: eleven fixed families, Other unsplit ([ADR 0011](decisions/0011-pending-reason-families-and-counting.md)) | Milestone 3 | Reason research |
 | Maintenance mechanism | Direct rows (proposed); Maint function; none | Milestone 5 | Maint maintainers |
 | Fair-share account selection | Chosen list plus top-N (proposed); all; top-level only | Milestone 6 | sshare research |
 

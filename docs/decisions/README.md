@@ -14,5 +14,6 @@ Each record captures one architecture decision: its context, the decision, its c
 | [0008](0008-maintenance-through-owned-expiring-schedules.md) | Create maintenance through plugin-owned, expiring Maint schedules | Proposed |
 | [0009](0009-credentials-by-file-or-munge-never-minted.md) | Read scheduler credentials from the host, never store or mint them | Accepted |
 | [0010](0010-bound-series-cardinality.md) | Bound the number of RRD series the plugin creates | Accepted |
+| [0011](0011-pending-reason-families-and-counting.md) | Group pending reasons into eleven fixed families and fix the counting rules | Accepted |
 
 Open decisions are tracked as issues labelled `type: decision`.

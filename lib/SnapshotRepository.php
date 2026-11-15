@@ -55,6 +55,15 @@ final class SnapshotRepository {
 
 			if ($outcome->state === SectionState::Completed) {
 				$ok = $this->replace($clusterId, $section, $snapshot, $stamps) && $this->inTransaction();
+
+				// The node counts are the nodes section's, so they are
+				// replaced with it and never outlive it.
+				if ($ok && $section === Section::Nodes) {
+					$ok = $this->write($clusterId, 'plugin_hpcsched_node_count', ['partition_name', 'name', 'value'], array_map(
+						static fn (array $r): array => [$r['partition'], $r['name'], $r['value']],
+						NodeTally::rows($snapshot->nodes ?? [])
+					), $stamps);
+				}
 			}
 
 			$ok = $ok && $this->section($clusterId, $section, $outcome, $now, $stamps) && $this->inTransaction();
@@ -114,6 +123,17 @@ final class SnapshotRepository {
 			)],
 		};
 
+		return $this->write($clusterId, $table, $columns, $rows, $stamps);
+	}
+
+	/**
+	 * Replace every row of a cluster in one table.
+	 *
+	 * @param list<string>                      $columns
+	 * @param list<list<int|string|float|null>> $rows
+	 * @param array{int, int, int}              $stamps
+	 */
+	private function write(int $clusterId, string $table, array $columns, array $rows, array $stamps): bool {
 		if (db_execute_prepared("DELETE FROM $table WHERE cluster_id = ?", [$clusterId], true, $this->connection) === false) {
 			return false;
 		}
