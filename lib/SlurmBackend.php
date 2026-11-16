@@ -73,6 +73,14 @@ final class SlurmBackend implements Backend {
 			}
 
 			$stored = $this->previous[$section->value] ?? null;
+
+			// An edit can point this cluster at another controller. A read
+			// observed before that edit cannot validate the new endpoint's
+			// rows, even if that endpoint answers a conditional read with 304.
+			if ($stored !== null && $stored->observedAt <= $cluster->updatedAt) {
+				$stored = null;
+			}
+
 			$since  = $this->transport->since($section, $stored, $this->release, $this->clock->now());
 
 			try {

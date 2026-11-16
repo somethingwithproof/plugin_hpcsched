@@ -281,6 +281,23 @@ it('collects a 10,000 node, 100,000 job snapshot within the time budget (REQ-REA
 });
 
 describe('discovered parser and conditional reads (REQ-REST-002, REQ-REST-005)', function () {
+	it('reads nodes unconditionally after a cluster configuration edit', function (int $editedAt) {
+		$clock = new FixedClock(100000);
+		$GLOBALS['__hpcsched_db_rows']['SELECT * FROM plugin_hpcsched_run WHERE cluster_id'] = [['cluster_id' => 1, 'outcome' => 'completed', 'transport' => 'rest', 'data_parser' => 'v0.0.45', 'slurm_release' => '26.05.3']];
+		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section WHERE cluster_id'] = [
+			['cluster_id' => 1, 'section' => 'nodes', 'state' => 'completed', 'observed_at' => 99940, 'ingested_at' => 99970, 'records' => 8, 'collect_interval' => 60],
+		];
+		$cluster = new Cluster(1, 'edited', 1, AdminState::Enabled, Transport::Rest, 60, restUrl: 'https://slurm.example.org', tokenFile: $this->scratch->file('token', 'opaque', 0600), updatedAt: $editedAt);
+		$http = new StubHttp(hpcsched_fixture_responses());
+		$reader = new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), $http), $clock, 'test');
+		$run = $reader->run($cluster, 60);
+		$nodes = array_values(array_filter($http->requests, static fn ($r): bool => str_ends_with($r->path, '/nodes/')));
+
+		expect($run->outcome)->toBe(RunOutcome::Completed)
+			->and($nodes[0]->query)->toBe([])
+			->and(hpcsched_sql())->toContain('DELETE FROM plugin_hpcsched_node WHERE cluster_id = ?');
+	})->with([99940, 99950, 99980]);
+
 	it('trusts the parser of the last completed slurmrestd run only while its release ships no newer one', function () {
 		$run = static fn (string $parser, string $release, RunOutcome $outcome = RunOutcome::Completed, string $transport = 'rest'): ClusterRun => new ClusterRun(1, outcome: $outcome, release: $release, transport: $transport, dataParser: $parser);
 
