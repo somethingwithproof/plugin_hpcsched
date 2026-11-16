@@ -301,7 +301,7 @@ describe('discovered parser and conditional reads (REQ-REST-002, REQ-REST-005)',
 
 	it('keeps the node rows on a 304 to a conditional read and counts the section as read now', function () {
 		$clock = new FixedClock(100000);
-		$GLOBALS['__hpcsched_db_rows']['SELECT * FROM plugin_hpcsched_run WHERE cluster_id'] = [['cluster_id' => 1, 'outcome' => 'completed', 'transport' => 'rest', 'data_parser' => 'v0.0.45', 'slurm_release' => '26.05.0']];
+		$GLOBALS['__hpcsched_db_rows']['SELECT * FROM plugin_hpcsched_run WHERE cluster_id'] = [['cluster_id' => 1, 'outcome' => 'completed', 'transport' => 'rest', 'data_parser' => 'v0.0.45', 'slurm_release' => '26.05.3']];
 		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section WHERE cluster_id'] = [
 			['cluster_id' => 1, 'section' => 'nodes', 'state' => 'completed', 'attempted_at' => 99940, 'records' => 8, 'observed_at' => 99940, 'ingested_at' => 99940, 'collect_interval' => 60],
 		];

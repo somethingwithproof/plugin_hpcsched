@@ -251,12 +251,18 @@ describe('data parser discovery (REQ-REST-002)', function () {
 });
 
 describe('conditional reads (REQ-REST-005)', function () {
-	it('asks /nodes/ for changes only on 26.05 and later, after a recent completed read', function () {
+	it('asks /nodes/ for changes only on 26.05.3 and later, after a recent completed read', function () {
 		$t = hpcsched_rest($GLOBALS['__hpcsched_plain']);
 
 		expect($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.5', 100000))->toBe(99940 - 120)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.3', 100000))->toBe(99820)
 			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.11.0', 100000))->toBe(99820)
-			// No 304 for /nodes/ before 26.05.
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.11.0rc1', 100000))->toBe(99820)
+			// Before 26.05.3 an unchanged /nodes/ answer is an error, not a 304,
+			// and a node change with unchanged partitions is an HTTP 500.
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.2', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.0', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05', 100000))->toBe(0)
 			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '25.11.8', 100000))->toBe(0)
 			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '', 100000))->toBe(0)
 			// Jobs answer 200 with no jobs when unchanged; the others have no unchanged answer.

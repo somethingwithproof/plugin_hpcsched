@@ -76,12 +76,16 @@ final class DataParser {
 	}
 
 	/**
-	 * Whether a release is the given supported major release or a later
-	 * one, for example "26.05.5" against "26.05". An unparsable release
-	 * answers false.
+	 * Whether a release is the given release or a later one, for example
+	 * "26.05.5" against "26.05.3". A release without a patch level counts
+	 * as its .0, and an unparsable release answers false.
 	 */
-	public static function atLeast(string $release, string $major): bool {
-		return preg_match('/^(\d{2})\.(\d{2})(?:\.|$)/', $release, $m) === 1 && version_compare($m[1] . '.' . $m[2], $major, '>=');
+	public static function atLeast(string $release, string $version): bool {
+		if (preg_match('/^(\d{2})\.(\d{2})(?:\.(\d+))?(?:[^\d.]|$)/', $release, $m) !== 1) {
+			return false;
+		}
+
+		return version_compare($m[1] . '.' . $m[2] . '.' . ($m[3] ?? '0'), $version, '>=');
 	}
 
 	/**

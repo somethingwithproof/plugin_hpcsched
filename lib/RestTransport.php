@@ -38,8 +38,8 @@ namespace Somethingwithproof\Hpcsched;
  * The setting in Settings applies to client commands only.
  *
  * update_time is sent only where an unchanged answer is unambiguous
- * (REQ-REST-005, since()): /nodes/ from 26.05, which answers 304 with an
- * empty body. A 304 to that request leaves the stored rows as they are and
+ * (REQ-REST-005, since()): /nodes/ from 26.05.3, which answers 304 with
+ * an empty body. A 304 to that request leaves the stored rows as they are and
  * counts as a fresh read. /jobs/ answers an unchanged request with 200, a
  * warning, and no jobs, which would read as an empty queue; partitions and
  * reservations have no unchanged answer; shares take no update_time. A 304
@@ -61,8 +61,13 @@ final class RestTransport implements SlurmTransport {
 	/** Discovery's path: one read-only ping of the controllers. */
 	public const PING = '/slurm/{p}/ping/';
 
-	/** The first release whose /nodes/ answers an unchanged request with 304. */
-	public const CONDITIONAL_NODES_FROM = '26.05';
+	/**
+	 * The first release whose /nodes/ answers an unchanged request with 304.
+	 * Before 26.05.3 the handler treats an unchanged answer as a failure,
+	 * and passes update_time to its partition read too, so a node change
+	 * with unchanged partitions fails with HTTP 500 (fixed in 26.05.3).
+	 */
+	public const CONDITIONAL_NODES_FROM = '26.05.3';
 
 	/**
 	 * A conditional read is used only while the stored node rows are younger
@@ -126,13 +131,17 @@ final class RestTransport implements SlurmTransport {
 
 	/**
 	 * The update_time to send for a section, or 0 for an unconditional read.
-	 * Only /nodes/ from 26.05, after a completed read whose rows are younger
+	 * Only /nodes/ from 26.05.3, after a completed read whose rows are younger
 	 * than FULL_READ_SECONDS. The time is the previous observation less the
 	 * clock skew the freshness rules allow, so a change the controller
 	 * stamped just before the previous read is never taken as old.
 	 */
 	public function since(Section $section, ?SectionRecord $previous, string $release, int $now): int {
-		if ($section !== Section::Nodes || $previous === null || $previous->state !== SectionState::Completed || !DataParser::atLeast($release, self::CONDITIONAL_NODES_FROM)) {
+		if ($section !== Section::Nodes || $previous === null || $previous->state !== SectionState::Completed) {
+			return 0;
+		}
+
+		if (!DataParser::atLeast($release, self::CONDITIONAL_NODES_FROM)) {
 			return 0;
 		}
 

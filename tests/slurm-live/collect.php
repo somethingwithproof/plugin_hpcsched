@@ -77,10 +77,12 @@ use Somethingwithproof\Hpcsched\Settings;
 use Somethingwithproof\Hpcsched\SlurmBackend;
 use Somethingwithproof\Hpcsched\SlurmJson;
 use Somethingwithproof\Hpcsched\SlurmParser;
+use Somethingwithproof\Hpcsched\SlurmTransport;
 use Somethingwithproof\Hpcsched\Snapshot;
 use Somethingwithproof\Hpcsched\SocketTransport;
 use Somethingwithproof\Hpcsched\SystemClock;
 use Somethingwithproof\Hpcsched\Transports;
+use Somethingwithproof\Hpcsched\Unchanged;
 
 $failed = 0;
 $check  = function (string $label, bool $pass, mixed $got = null) use (&$failed): void {
@@ -148,15 +150,8 @@ $cluster = static fn (string $transport): ?Cluster => Cluster::fromRow([
 	'rest_url' => 'http://127.0.0.1:6820', 'rest_user' => 'root', 'token_file' => $tokenFile, 'collect_reservations' => 1, 'collect_shares' => 1,
 ]);
 
-/*
- * One collection as the reader runs it: the transport from
- * Transports::for() with the previous run (whose parser a slurmrestd
- * cluster reuses), and the stored sections and release that decide a
- * conditional read.
- *
- * @param array<string, SectionRecord> $sections
- */
-$collect = static function (string $transport, string $parser, ?ClusterRun $previous = null, array $sections = [], string $release = '') use ($bin, $tokenFile, $cluster): Snapshot {
+// Build the real transport with the same settings and parser cache as the reader.
+$transportFor = static function (string $transport, string $parser, ?ClusterRun $previous = null) use ($bin, $tokenFile, $cluster): SlurmTransport {
 	$settings = Settings::fromRow([
 		'hpcsched_squeue'      => "$bin/squeue",
 		'hpcsched_scontrol'    => "$bin/scontrol",
@@ -173,9 +168,14 @@ $collect = static function (string $transport, string $parser, ?ClusterRun $prev
 		throw new RuntimeException('cluster record');
 	}
 
-	$for = (new Transports($settings, new CommandRunner(), new SocketTransport($settings->maxOutputBytes())))->for($record, new Redactor(), $token, $previous);
+	return (new Transports($settings, new CommandRunner(), new SocketTransport($settings->maxOutputBytes())))->for($record, new Redactor(), $token, $previous);
+};
 
-	return (new SlurmBackend($for, new SystemClock(), $sections, $release))->collect($record, microtime(true) + 120);
+/** @param array<string, SectionRecord> $sections */
+$collect = static function (string $transport, string $parser, ?ClusterRun $previous = null, array $sections = [], string $release = '') use ($transportFor, $cluster): Snapshot {
+	$for = $transportFor($transport, $parser, $previous);
+
+	return (new SlurmBackend($for, new SystemClock(), $sections, $release))->collect($cluster($transport), microtime(true) + 120);
 };
 
 $compare = static function (string $label, Snapshot $snapshot, string $parser) use ($check, $load, $nodes, $names, $sameNodes): void {
@@ -223,34 +223,36 @@ if ($newest !== null) {
 	$compare("discovered $newest rest", $found, $newest);
 	$check('the discovered parser is the newest one the release ships', $found->dataParser === DataParser::newestShippedBy($found->release), [$found->release, $found->dataParser]);
 
-	// Conditional nodes read (REQ-REST-005): on 26.05 and later a read with
-	// update_time after a whole read answers 304 when no node changed since,
-	// and the rows are kept; earlier releases are read whole. update_time is
-	// the whole read's start less the skew allowance, and the controller
-	// compares it with its last node change, so a change in that window (the
-	// states script's last ones, a late flag) means 200. A 26.05 cluster gets
-	// tries 30 seconds apart until the window has passed.
+	// The normal conditional read keeps the production skew allowance.
+	// Controller updates inside that window legitimately return 200, even
+	// when the node states visible here have not changed.
 	$conditional = DataParser::atLeast($found->release, RestTransport::CONDITIONAL_NODES_FROM);
 	$previous    = new ClusterRun(1, outcome: RunOutcome::Completed, release: $found->release, transport: 'rest', dataParser: $found->dataParser);
-	$tries       = $conditional ? 2 + intdiv(FreshnessEvaluator::SKEW_ALLOWANCE, 30) : 1;
-	$unchanged   = false;
-
-	$try         = 0;
-
-	do {
-		if ($try > 0) {
-			sleep(30);
-		}
-
-		$whole     = $collect('rest', DataParser::DEFAULT_VERSION, $previous);
-		$sections  = ['nodes' => new SectionRecord(1, Section::Nodes, SectionState::Completed, null, $whole->startedAt, count($whole->nodes ?? []), $whole->startedAt, time(), 60)];
-		$again     = $collect('rest', DataParser::DEFAULT_VERSION, $previous, $sections, $found->release);
-		$outcome   = $again->outcome(Section::Nodes);
-		$unchanged = $outcome->state === SectionState::Completed && $outcome->unchanged;
-	} while (!$unchanged && ++$try < $tries);
+	$whole       = $collect('rest', DataParser::DEFAULT_VERSION, $previous);
+	$sections    = ['nodes' => new SectionRecord(1, Section::Nodes, SectionState::Completed, null, $whole->startedAt, count($whole->nodes ?? []), $whole->startedAt, time(), 60)];
+	$again       = $collect('rest', DataParser::DEFAULT_VERSION, $previous, $sections, $found->release);
+	$outcome     = $again->outcome(Section::Nodes);
+	$unchanged   = $outcome->unchanged;
+	$kept        = $again->nodes === null && $outcome->records === count($whole->nodes ?? []);
+	$refreshed   = $sameNodes($nodes($again->nodes), $nodes($whole->nodes));
 
 	if ($conditional) {
-		$check("$found->release answers an unchanged conditional nodes read with 304, kept as read", $unchanged && $again->nodes === null && $outcome->records === count($whole->nodes ?? []), [$outcome->state->value, $outcome->unchanged, $outcome->error?->value]);
+		$check("$found->release conditional nodes read retains or refreshes the rows", $outcome->state === SectionState::Completed && ($unchanged ? $kept : $refreshed), [$outcome->state->value, $unchanged, $outcome->error?->value]);
+
+		// Exercise the real 304 response separately with a cutoff ahead of
+		// the controller clock. This protocol probe is never persisted as a
+		// snapshot. ReaderTest covers preserving stored rows on that response;
+		// the normal collection above never advances its cutoff this way.
+		$transport = $transportFor('rest', DataParser::DEFAULT_VERSION, $previous);
+		$notModified = false;
+
+		try {
+			$transport->fetch(Section::Nodes, $found->dataParser, microtime(true) + 30, time() + FreshnessEvaluator::SKEW_ALLOWANCE);
+		} catch (Unchanged) {
+			$notModified = true;
+		}
+
+		$check("$found->release maps a live HTTP 304 to Unchanged", $notModified);
 	} else {
 		$check("$found->release reads nodes whole, with no update_time", !$unchanged && $outcome->state === SectionState::Completed && $sameNodes($nodes($again->nodes), $nodes($whole->nodes)), [$outcome->state->value, $outcome->unchanged]);
 	}
