@@ -22,6 +22,7 @@ require_once dirname(__DIR__) . '/Support/StubHttp.php';
 
 use Somethingwithproof\Hpcsched\AdminState;
 use Somethingwithproof\Hpcsched\Cluster;
+use Somethingwithproof\Hpcsched\ClusterRun;
 use Somethingwithproof\Hpcsched\ClusterRepository;
 use Somethingwithproof\Hpcsched\CommandRunner;
 use Somethingwithproof\Hpcsched\ErrorClass;
@@ -67,6 +68,10 @@ function hpcsched_rest_cluster(Scratch $scratch): Cluster {
  * @param array<string, HttpResponse> $responses
  */
 function hpcsched_reader_for(array $responses, FixedClock $clock): Reader {
+	// Discovery's first ping, for the newest parser, answers unless a test
+	// says otherwise.
+	$responses += ['/ping/' => new HttpResponse(200, [], '{}')];
+
 	return new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), new StubHttp($responses)), $clock, 'test');
 }
 
@@ -98,7 +103,8 @@ it('writes a whole snapshot in one transaction and records the run', function ()
 
 	expect($run->outcome)->toBe(RunOutcome::Completed)
 		->and($run->release)->toBe('26.05.0')
-		->and($run->calls)->toBe(5)
+		// One discovery ping and five sections.
+		->and($run->calls)->toBe(6)
 		->and($run->lastSuccess)->toBe(100000)
 		->and(array_count_values($sql)['BEGIN'])->toBe(1)
 		->and(array_count_values($sql)['COMMIT'])->toBe(1)
@@ -268,8 +274,75 @@ it('collects a 10,000 node, 100,000 job snapshot within the time budget (REQ-REA
 	}
 
 	expect($run->outcome)->toBe(RunOutcome::Completed)
-		->and($run->calls)->toBe(3)
+		->and($run->calls)->toBe(4)
 		->and($run->overran)->toBeFalse()
 		->and($run->duration)->toBeLessThan((float) $cluster->budget(60))
 		->and($nodeRows)->toBe(10000);
+});
+
+describe('discovered parser and conditional reads (REQ-REST-002, REQ-REST-005)', function () {
+	it('reads nodes unconditionally after the REST endpoint changes', function (int $editedAt) {
+		$clock = new FixedClock(100000);
+		$GLOBALS['__hpcsched_db_rows']['SELECT * FROM plugin_hpcsched_run WHERE cluster_id'] = [['cluster_id' => 1, 'outcome' => 'completed', 'transport' => 'rest', 'data_parser' => 'v0.0.45', 'slurm_release' => '26.05.3']];
+		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section WHERE cluster_id'] = [
+			['cluster_id' => 1, 'section' => 'nodes', 'state' => 'completed', 'observed_at' => 99940, 'ingested_at' => 99970, 'records' => 8, 'collect_interval' => 60],
+		];
+		$cluster = new Cluster(1, 'edited', 1, AdminState::Enabled, Transport::Rest, 60, restUrl: 'https://new-slurm.example.org', tokenFile: $this->scratch->file('token', 'opaque', 0600), updatedAt: $editedAt);
+		$http = new StubHttp(hpcsched_fixture_responses());
+		$reader = new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), $http), $clock, 'test');
+		$run = $reader->run($cluster, 60);
+		$nodes = array_values(array_filter($http->requests, static fn ($r): bool => str_ends_with($r->path, '/nodes/')));
+
+		expect($run->outcome)->toBe(RunOutcome::Completed)
+			->and($nodes[0]->query)->toBe([])
+			->and($nodes[0]->endpoint->host)->toBe('new-slurm.example.org')
+			->and(hpcsched_sql())->toContain('DELETE FROM plugin_hpcsched_node WHERE cluster_id = ?');
+	})->with([99940, 99950, 99980]);
+
+	it('trusts the parser of the last completed slurmrestd run only while its release ships no newer one', function () {
+		$run = static fn (string $parser, string $release, RunOutcome $outcome = RunOutcome::Completed, string $transport = 'rest'): ClusterRun => new ClusterRun(1, outcome: $outcome, release: $release, transport: $transport, dataParser: $parser);
+
+		expect(Transports::cachedParser(null))->toBe('')
+			->and(Transports::cachedParser($run('v0.0.45', '26.05.5')))->toBe('v0.0.45')
+			->and(Transports::cachedParser($run('v0.0.44', '25.11.8')))->toBe('v0.0.44')
+			->and(Transports::cachedParser($run('v0.0.43', '25.05.4')))->toBe('v0.0.43')
+			// Upgraded to a release that ships a newer parser: discover again.
+			->and(Transports::cachedParser($run('v0.0.44', '26.05.5')))->toBe('')
+			// A run that did not complete, a 404 among the causes: discover again.
+			->and(Transports::cachedParser($run('v0.0.45', '26.05.5', RunOutcome::Partial)))->toBe('')
+			->and(Transports::cachedParser($run('v0.0.45', '26.05.5', RunOutcome::Failed)))->toBe('')
+			->and(Transports::cachedParser($run('v0.0.43', '26.05.5', transport: 'commands')))->toBe('')
+			->and(Transports::cachedParser($run('v0.0.42', '25.11.8')))->toBe('')
+			// A release the plugin does not know keeps the parser that worked.
+			->and(Transports::cachedParser($run('v0.0.45', '27.05.0')))->toBe('v0.0.45');
+	});
+
+	it('keeps the node rows on a 304 to a conditional read and counts the section as read now', function () {
+		$clock = new FixedClock(100000);
+		$GLOBALS['__hpcsched_db_rows']['SELECT * FROM plugin_hpcsched_run WHERE cluster_id'] = [['cluster_id' => 1, 'outcome' => 'completed', 'transport' => 'rest', 'data_parser' => 'v0.0.45', 'slurm_release' => '26.05.3']];
+		$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section WHERE cluster_id'] = [
+			['cluster_id' => 1, 'section' => 'nodes', 'state' => 'completed', 'attempted_at' => 99940, 'records' => 8, 'observed_at' => 99940, 'ingested_at' => 99940, 'collect_interval' => 60],
+		];
+		$responses          = hpcsched_fixture_responses();
+		$responses['/nodes/'] = new HttpResponse(304, [], '');
+		$http               = new StubHttp($responses);
+		$reader             = new Reader(new RunRepository(false, $clock), new SnapshotRepository(false), new Transports(Settings::fromRow(['hpcsched_token_dirs' => sys_get_temp_dir()]), new CommandRunner(), $http), $clock, 'test');
+		$run                = $reader->run(hpcsched_rest_cluster($this->scratch), 60);
+		$sql                = hpcsched_sql();
+		$nodes              = array_values(array_filter($http->requests, static fn ($r): bool => str_ends_with($r->path, '/nodes/')));
+		$update             = array_values(array_filter($GLOBALS['__hpcsched_db_exec'], static fn (array $st): bool => str_starts_with($st['sql'], 'UPDATE plugin_hpcsched_section SET state')));
+
+		expect($run->outcome)->toBe(RunOutcome::Completed)
+			->and($run->dataParser)->toBe('v0.0.45')
+			// The cached parser: no ping.
+			->and(array_filter($http->requests, static fn ($r): bool => str_ends_with($r->path, '/ping/')))->toBe([])
+			->and($nodes[0]->path)->toBe('/slurm/v0.0.45/nodes/')
+			->and($nodes[0]->query)->toBe(['update_time' => 99940 - 120])
+			->and($run->calls)->toBe(5)
+			// The node rows and their counts are not touched; the other sections are replaced.
+			->and(array_filter($sql, static fn (string $q): bool => str_contains($q, 'plugin_hpcsched_node ') || str_contains($q, 'plugin_hpcsched_node_count')))->toBe([])
+			->and(in_array('DELETE FROM plugin_hpcsched_job_count WHERE cluster_id = ?', $sql, true))->toBeTrue()
+			->and($update)->toHaveCount(1)
+			->and($update[0]['params'])->toBe(['completed', 100000, 100000, 60, 1, 'nodes']);
+	});
 });

@@ -20,8 +20,8 @@
 namespace Somethingwithproof\Hpcsched;
 
 /**
- * Reads Slurm through its client commands, the default transport (decision
- * #7, provisional). Authentication is the poller host's own munge or
+ * Reads Slurm through its client commands, the default transport (ADR
+ * 0012). Authentication is the poller host's own munge or
  * auth/slurm setup; no credential passes through the plugin.
  *
  * Every argument vector is fixed here: the binary is an absolute path from
@@ -125,7 +125,14 @@ final class CommandTransport implements SlurmTransport {
 		return $env;
 	}
 
-	public function fetch(Section $section, string $dataParser, float $deadline): string {
+	/**
+	 * The client commands have no conditional read.
+	 */
+	public function since(Section $section, ?SectionRecord $previous, string $release, int $now): int {
+		return 0;
+	}
+
+	public function fetch(Section $section, string $dataParser, float $deadline, int $since = 0): string {
 		if ($this->slurmConf !== '' && !Settings::pathAcceptable($this->slurmConf)) {
 			throw new TransportError(ErrorClass::Config, 'slurm.conf path');
 		}

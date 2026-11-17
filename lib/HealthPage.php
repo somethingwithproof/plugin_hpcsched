@@ -77,7 +77,7 @@ final class HealthPage {
 				(string) ($run->calls ?? 0),
 				($run->release ?? '') === '' ? '-' : (string) $run?->release,
 				$cluster->transport->label(),
-				($run->dataParser ?? '') === '' ? '-' : (string) $run?->dataParser,
+				self::parser($cluster, $run),
 				Format::age($run->lastSuccess ?? 0, $now),
 			]);
 
@@ -151,5 +151,19 @@ final class HealthPage {
 		}
 
 		return $problems;
+	}
+
+	/**
+	 * The data parser of the last run: the Settings choice for client
+	 * commands, the one discovered from the daemon for slurmrestd.
+	 */
+	private static function parser(Cluster $cluster, ?ClusterRun $run): string {
+		$parser = $run->dataParser ?? '';
+
+		if ($parser === '') {
+			return '-';
+		}
+
+		return $cluster->transport === Transport::Rest ? __('%s, discovered', $parser, 'hpcsched') : $parser;
 	}
 }

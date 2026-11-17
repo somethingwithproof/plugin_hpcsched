@@ -26,11 +26,13 @@ namespace Somethingwithproof\Hpcsched;
 final readonly class HttpRequest {
 	/**
 	 * @param array<string, string> $headers
+	 * @param array<string, int>    $query   name => non-negative integer, the only query values the plugin sends
 	 */
 	public function __construct(
 		public Endpoint $endpoint,
 		public string $path,
 		public array $headers = [],
+		public array $query = [],
 	) {
 	}
 }

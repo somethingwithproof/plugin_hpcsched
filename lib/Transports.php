@@ -35,7 +35,7 @@ final class Transports {
 	 * @throws TransportError for a REST cluster whose URL is not allowed
 	 * @throws CredentialError for a REST cluster whose token file is refused
 	 */
-	public function for(Cluster $cluster, Redactor $redactor, ?Token &$token = null): SlurmTransport {
+	public function for(Cluster $cluster, Redactor $redactor, ?Token &$token = null, ?ClusterRun $previous = null): SlurmTransport {
 		if ($cluster->transport === Transport::Commands) {
 			return new CommandTransport($this->runner, $this->settings, $cluster->slurmConf);
 		}
@@ -50,6 +50,23 @@ final class Transports {
 
 		$redactor->add($token->secret);
 
-		return new RestTransport($this->http, $endpoint, $cluster->restUser, $token, (float) $this->settings->callTimeout, $this->settings->dataParser);
+		return new RestTransport($this->http, $endpoint, $cluster->restUser, $token, (float) $this->settings->callTimeout, self::cachedParser($previous));
+	}
+
+	/**
+	 * The data parser discovered on the cluster's last run, while it can
+	 * still be trusted: that run read slurmrestd and completed, and the
+	 * release it reported ships no newer supported parser. Otherwise ''
+	 * (discover again), so a 404 or an upgraded daemon leads to a fresh
+	 * discovery on the next run (REQ-REST-002).
+	 */
+	public static function cachedParser(?ClusterRun $previous): string {
+		if ($previous === null || $previous->transport !== Transport::Rest->value || $previous->outcome !== RunOutcome::Completed || !DataParser::supported($previous->dataParser)) {
+			return '';
+		}
+
+		$newest = DataParser::newestShippedBy($previous->release);
+
+		return $newest === null || $newest === $previous->dataParser ? $previous->dataParser : '';
 	}
 }

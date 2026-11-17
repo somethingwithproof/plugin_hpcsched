@@ -537,7 +537,8 @@ jobs:
 
     # The plugin's own transports, built from a cluster record as the reader
     # builds them: the client commands through docker exec into slurmctld,
-    # and slurmrestd on loopback with the token file.
+    # and slurmrestd on loopback with the token file. It also checks parser
+    # discovery and, on 26.05, a conditional nodes read that answers 304.
     - name: Collect a snapshot with the plugin's transports
       run: php plugin/tests/slurm-live/collect.php "$GITHUB_WORKSPACE/plugin" "$RUNNER_TEMP/slurm-out" "$RUNNER_TEMP/hpcsched-tokens/live.token"
 

@@ -21,7 +21,7 @@ namespace Somethingwithproof\Hpcsched;
 
 /**
  * How a cluster's scheduler is read. Client commands are the default
- * (decision #7, provisional); slurmrestd is the configurable alternative.
+ * (ADR 0012); slurmrestd is the configurable alternative.
  */
 enum Transport: string {
 	case Commands = 'commands';

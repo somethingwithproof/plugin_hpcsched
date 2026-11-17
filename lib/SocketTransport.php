@@ -49,9 +49,21 @@ final class SocketTransport implements HttpTransport {
 			throw new TransportError(ErrorClass::Refused, 'path');
 		}
 
+		$query = [];
+
+		foreach ($request->query as $name => $value) {
+			if (preg_match('/^[a-z_]+$/', $name) !== 1 || $value < 0) {
+				throw new TransportError(ErrorClass::Refused, 'query');
+			}
+
+			$query[] = $name . '=' . $value;
+		}
+
+		$target = $request->path . ($query === [] ? '' : '?' . implode('&', $query));
+
 		// A CR or LF in a name or value would let a caller inject headers or
 		// a second request.
-		$raw = 'GET ' . $request->path . " HTTP/1.1\r\nHost: " . $endpoint->hostHeader() . "\r\nConnection: close\r\nAccept: application/json\r\n";
+		$raw = 'GET ' . $target . " HTTP/1.1\r\nHost: " . $endpoint->hostHeader() . "\r\nConnection: close\r\nAccept: application/json\r\n";
 
 		foreach ($request->headers as $name => $value) {
 			if (preg_match('/^[!#$%&\'*+.^_`|~0-9A-Za-z-]+$/', $name) !== 1 || preg_match('/[\r\n\x00]/', $value) === 1) {

@@ -21,16 +21,20 @@ require_once dirname(__DIR__) . '/Support/FakeRestd.php';
 
 use Somethingwithproof\Hpcsched\DataParser;
 use Somethingwithproof\Hpcsched\Endpoint;
+use Somethingwithproof\Hpcsched\HttpRequest;
 use Somethingwithproof\Hpcsched\ErrorClass;
 use Somethingwithproof\Hpcsched\RestTransport;
 use Somethingwithproof\Hpcsched\Secret;
 use Somethingwithproof\Hpcsched\Section;
+use Somethingwithproof\Hpcsched\SectionRecord;
+use Somethingwithproof\Hpcsched\SectionState;
 use Somethingwithproof\Hpcsched\SlurmJson;
 use Somethingwithproof\Hpcsched\SocketTransport;
 use Somethingwithproof\Hpcsched\Tests\FakeRestd;
 use Somethingwithproof\Hpcsched\Token;
 use Somethingwithproof\Hpcsched\TokenState;
 use Somethingwithproof\Hpcsched\TransportError;
+use Somethingwithproof\Hpcsched\Unchanged;
 
 /*
  * The slurmrestd transport against tests/Support/fake-slurmrestd.php on a
@@ -39,8 +43,15 @@ use Somethingwithproof\Hpcsched\TransportError;
 
 const HPCSCHED_TEST_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjQxMDI0NDQ4MDAsInN1biI6ImNhY3RpIn0.c2lnbmF0dXJl';
 
-function hpcsched_rest(FakeRestd $server, string $scenario = 'ok', int $maxBytes = 8388608, ?string $ca = null, string $parser = DataParser::DEFAULT_VERSION): RestTransport {
-	return new RestTransport(new SocketTransport($maxBytes, 2.0, $ca ?? ($server->mode === 'tls' ? $server->ca() : null)), Endpoint::parse($server->url()), $scenario, new Token(new Secret(HPCSCHED_TEST_TOKEN), TokenState::Ok, 0), 5.0, $parser);
+/**
+ * $cached is the parser of the cluster's last completed run; '' discovers.
+ */
+function hpcsched_rest(FakeRestd $server, string $scenario = 'ok', int $maxBytes = 8388608, ?string $ca = null, string $cached = DataParser::DEFAULT_VERSION): RestTransport {
+	return new RestTransport(new SocketTransport($maxBytes, 2.0, $ca ?? ($server->mode === 'tls' ? $server->ca() : null)), Endpoint::parse($server->url()), $scenario, new Token(new Secret(HPCSCHED_TEST_TOKEN), TokenState::Ok, 0), 5.0, $cached);
+}
+
+function hpcsched_nodes_record(string $state = 'completed', int $observed = 99940, int $ingested = 99940): SectionRecord {
+	return new SectionRecord(1, Section::Nodes, SectionState::from($state), null, $observed, 8, $observed, $ingested, 60);
 }
 
 function hpcsched_rest_error(callable $call): ?ErrorClass {
@@ -130,6 +141,8 @@ it('allows only the read paths, never reconfigure, requeue, or a query string', 
 })->with([
 	['/slurm/v0.0.43/jobs/', true],
 	['/slurm/v0.0.43/shares', true],
+	['/slurm/v0.0.43/ping/', true],
+	['/slurm/v0.0.43/diag/', false],
 	['/slurm/v0.0.43/reconfigure/', false],
 	['/slurm/v0.0.43/job/1/requeue', false],
 	['/slurm/v0.0.43/jobs/?update_time=1', false],
@@ -152,9 +165,9 @@ it('keeps the allowlist exact for each supported data parser and empty for any o
 	['v0.0.43/../v0.0.45', '/slurm/v0.0.43/../v0.0.45/jobs/', false],
 ]);
 
-it('requests the paths of the data parser it was given and refuses one outside the supported set', function () {
+it('requests the paths of the cached data parser and refuses one outside the supported set', function () {
 	$before    = count($GLOBALS['__hpcsched_plain']->requests());
-	$transport = hpcsched_rest($GLOBALS['__hpcsched_plain'], parser: 'v0.0.45');
+	$transport = hpcsched_rest($GLOBALS['__hpcsched_plain'], cached: 'v0.0.45');
 
 	expect($transport->dataParser(microtime(true) + 10))->toBe('v0.0.45');
 
@@ -190,4 +203,104 @@ it('accepts https anywhere and plain http only to loopback', function (string $u
 	['ftp://slurm.example.org', false],
 	['https://slurm example.org', false],
 	['', false],
+]);
+
+describe('data parser discovery (REQ-REST-002)', function () {
+	it('picks the newest supported parser the daemon serves, with one ping when that is the newest', function () {
+		$server    = $GLOBALS['__hpcsched_plain'];
+		$before    = count($server->requests());
+		$transport = hpcsched_rest($server, 'ok', cached: '');
+
+		expect($transport->dataParser(microtime(true) + 10))->toBe('v0.0.45')
+			->and($transport->dataParser(microtime(true) + 10))->toBe('v0.0.45')
+			->and(array_column(array_slice($server->requests(), $before), 'target'))->toBe(['/slurm/v0.0.45/ping/'])
+			->and($transport->calls())->toBe(1);
+	});
+
+	it('falls back newest first through the supported list', function () {
+		$server    = $GLOBALS['__hpcsched_plain'];
+		$before    = count($server->requests());
+		$transport = hpcsched_rest($server, 'only43', cached: '');
+
+		expect($transport->dataParser(microtime(true) + 10))->toBe('v0.0.43')
+			->and(array_column(array_slice($server->requests(), $before), 'target'))->toBe(['/slurm/v0.0.45/ping/', '/slurm/v0.0.44/ping/', '/slurm/v0.0.43/ping/']);
+	});
+
+	it('fails as configuration when the daemon serves no supported parser, and stops at a refused credential', function () {
+		$server = $GLOBALS['__hpcsched_plain'];
+		$before = count($server->requests());
+
+		expect(hpcsched_rest_error(fn () => hpcsched_rest($server, 'noparsers', cached: '')->dataParser(microtime(true) + 10)))->toBe(ErrorClass::Config);
+
+		$middle = count($server->requests());
+
+		expect($middle - $before)->toBe(3)
+			->and(hpcsched_rest_error(fn () => hpcsched_rest($server, 'unauth', cached: '')->dataParser(microtime(true) + 10)))->toBe(ErrorClass::Credential)
+			->and(count($server->requests()) - $middle)->toBe(1);
+	});
+
+	it('uses a cached parser without asking the daemon', function () {
+		$server    = $GLOBALS['__hpcsched_plain'];
+		$before    = count($server->requests());
+		$transport = hpcsched_rest($server, 'ok', cached: 'v0.0.44');
+
+		expect($transport->dataParser(microtime(true) + 10))->toBe('v0.0.44')
+			->and(count($server->requests()))->toBe($before)
+			->and($transport->calls())->toBe(0);
+	});
+});
+
+describe('conditional reads (REQ-REST-005)', function () {
+	it('asks /nodes/ for changes only on 26.05.3 and later, after a recent completed read', function () {
+		$t = hpcsched_rest($GLOBALS['__hpcsched_plain']);
+
+		expect($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.5', 100000))->toBe(99940 - 120)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.3', 100000))->toBe(99820)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.11.0', 100000))->toBe(99820)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.11.0rc1', 100000))->toBe(99820)
+			// Before 26.05.3 an unchanged /nodes/ answer is an error, not a 304,
+			// and a node change with unchanged partitions is an HTTP 500.
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.2', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05.0', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '26.05', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '25.11.8', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(), '', 100000))->toBe(0)
+			// Jobs answer 200 with no jobs when unchanged; the others have no unchanged answer.
+			->and($t->since(Section::Jobs, hpcsched_nodes_record(), '26.05.5', 100000))->toBe(0)
+			->and($t->since(Section::Partitions, hpcsched_nodes_record(), '26.05.5', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, null, '26.05.5', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record('failed'), '26.05.5', 100000))->toBe(0)
+			// Rows older than the full-read bound are read whole.
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(ingested: 100000 - RestTransport::FULL_READ_SECONDS - 1), '26.05.5', 100000))->toBe(0)
+			->and($t->since(Section::Nodes, hpcsched_nodes_record(ingested: 100000 - RestTransport::FULL_READ_SECONDS), '26.05.5', 100000))->toBe(99820);
+	});
+
+	it('sends update_time as a query and takes a 304 as unchanged, not as empty', function () {
+		$server = $GLOBALS['__hpcsched_plain'];
+		$before = count($server->requests());
+		$t      = hpcsched_rest($server, 'nodes304', cached: 'v0.0.45');
+		$caught = null;
+
+		try {
+			$t->fetch(Section::Nodes, 'v0.0.45', microtime(true) + 10, 99820);
+		} catch (Unchanged $e) {
+			$caught = $e;
+		}
+
+		$whole = $t->fetch(Section::Nodes, 'v0.0.45', microtime(true) + 10);
+
+		expect($caught)->toBeInstanceOf(Unchanged::class)
+			->and(count(SlurmJson::decode($whole)['nodes']))->toBe(8)
+			->and(array_column(array_slice($server->requests(), $before), 'target'))->toBe(['/slurm/v0.0.45/nodes/?update_time=99820', '/slurm/v0.0.45/nodes/']);
+	});
+});
+
+it('builds a query only from a lowercase name and a non-negative integer', function (string $name, int $value) {
+	$request = new HttpRequest(Endpoint::parse($GLOBALS['__hpcsched_plain']->url()), '/slurm/v0.0.45/nodes/', [], [$name => $value]);
+
+	expect(hpcsched_rest_error(fn () => (new SocketTransport(1048576, 2.0))->get($request, microtime(true) + 5)))->toBe(ErrorClass::Refused);
+})->with([
+	'separator in the name' => ['update_time&x', 1],
+	'space in the name'     => ['update time', 1],
+	'negative value'        => ['update_time', -1],
 ]);

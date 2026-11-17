@@ -279,8 +279,10 @@ it('reads slurmrestd on loopback, records a group-readable token, and keeps data
 
 	$r = lifecycle('reader_flow')['result'];
 
-	expect($r['rest1'])->toBe(['outcome' => 'completed', 'error' => null, 'calls' => 5, 'release' => '25.11.2', 'limited' => true, 'token' => 'group_readable'])
-		->and($r['requests1'])->toBe(['/slurm/v0.0.43/jobs/', '/slurm/v0.0.43/nodes/', '/slurm/v0.0.43/partitions/', '/slurm/v0.0.43/reservations/', '/slurm/v0.0.43/shares'])
+	// One discovery ping finds the newest parser the fake serves; the fake
+	// reports 25.11, so no read is conditional.
+	expect($r['rest1'])->toBe(['outcome' => 'completed', 'error' => null, 'calls' => 6, 'release' => '25.11.2', 'limited' => true, 'token' => 'group_readable'])
+		->and($r['requests1'])->toBe(['/slurm/v0.0.45/ping/', '/slurm/v0.0.45/jobs/', '/slurm/v0.0.45/nodes/', '/slurm/v0.0.45/partitions/', '/slurm/v0.0.45/reservations/', '/slurm/v0.0.45/shares'])
 		->and($r['rest2'])->toMatchArray(['outcome' => 'failed', 'error' => 'credential', 'calls' => 1])
 		->and($r['nodes2'])->toBe(8)
 		->and($r['token_found'])->toBeFalse();

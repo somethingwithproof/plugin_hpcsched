@@ -55,6 +55,7 @@ foreach (['v0.0.43', 'v0.0.44', 'v0.0.45'] as $parser) {
 		"/slurm/$parser/partitions/"   => 'partitions',
 		"/slurm/$parser/reservations/" => 'reservations',
 		"/slurm/$parser/shares"        => 'shares',
+		"/slurm/$parser/ping/"         => 'ping',
 	];
 }
 
@@ -99,12 +100,26 @@ while (time() < $deadline) {
 
 	$scenario = $headers['x-slurm-user-name'] ?? 'ok';
 	$token    = $headers['x-slurm-user-token'] ?? '';
-	$section  = $routes[$target] ?? null;
+	[$path]   = explode('?', $target, 2);
+	$section  = $routes[$path] ?? null;
+	$parser   = explode('/', $path)[2] ?? '';
+
+	// Served data parsers: every one by default, only v0.0.43 (a 25.05
+	// daemon), or none the plugin supports.
+	if (($scenario === 'only43' && $parser !== 'v0.0.43') || $scenario === 'noparsers') {
+		$section = null;
+	}
 
 	file_put_contents($logFile, json_encode(['method' => $method, 'target' => $target, 'token' => $token !== '', 'token_sha' => hash('sha256', $token)]) . "\n", FILE_APPEND);
 
 	if ($method !== 'GET' || $section === null) {
 		respond($conn, 404, '{"errors":[{"error":"Unable to find requested URL"}]}');
+	} elseif ($section === 'ping' && in_array($scenario, ['ok', 'only43', 'nodes304'], true)) {
+		respond($conn, 200, '{"pings":[{"hostname":"ctl","pinged":"UP"}]}');
+	} elseif ($scenario === 'nodes304' && $section === 'nodes' && str_contains($target, '?update_time=')) {
+		// 26.05: /nodes/ with update_time answers 304 and no body when
+		// nothing changed.
+		@fwrite($conn, "HTTP/1.1 304 Not Modified\r\nConnection: close\r\nContent-Length: 0\r\n\r\n");
 	} else {
 		match ($scenario) {
 			'notmodified' => @fwrite($conn, "HTTP/1.1 304 Not Modified\r\nConnection: close\r\nContent-Length: 40\r\n\r\n"),

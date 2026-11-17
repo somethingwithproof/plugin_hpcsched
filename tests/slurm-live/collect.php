@@ -62,19 +62,27 @@ if (!function_exists('cacti_log')) {
 }
 
 use Somethingwithproof\Hpcsched\Cluster;
+use Somethingwithproof\Hpcsched\ClusterRun;
 use Somethingwithproof\Hpcsched\CommandRunner;
 use Somethingwithproof\Hpcsched\DataParser;
+use Somethingwithproof\Hpcsched\FreshnessEvaluator;
 use Somethingwithproof\Hpcsched\NodeRecord;
 use Somethingwithproof\Hpcsched\Redactor;
+use Somethingwithproof\Hpcsched\RestTransport;
+use Somethingwithproof\Hpcsched\RunOutcome;
 use Somethingwithproof\Hpcsched\Section;
+use Somethingwithproof\Hpcsched\SectionRecord;
 use Somethingwithproof\Hpcsched\SectionState;
 use Somethingwithproof\Hpcsched\Settings;
 use Somethingwithproof\Hpcsched\SlurmBackend;
 use Somethingwithproof\Hpcsched\SlurmJson;
 use Somethingwithproof\Hpcsched\SlurmParser;
+use Somethingwithproof\Hpcsched\SlurmTransport;
+use Somethingwithproof\Hpcsched\Snapshot;
 use Somethingwithproof\Hpcsched\SocketTransport;
 use Somethingwithproof\Hpcsched\SystemClock;
 use Somethingwithproof\Hpcsched\Transports;
+use Somethingwithproof\Hpcsched\Unchanged;
 
 $failed = 0;
 $check  = function (string $label, bool $pass, mixed $got = null) use (&$failed): void {
@@ -137,49 +145,116 @@ $bin     = $root . '/tests/slurm-live/bin';
 
 $check('the release serves a data parser the plugin supports', $parsers !== [], $parsers);
 
-foreach ($parsers as $parser) {
-	$transports = ['commands'];
+$cluster = static fn (string $transport): ?Cluster => Cluster::fromRow([
+	'id' => 1, 'name' => 'live', 'poller_id' => 1, 'admin_state' => 'enabled', 'transport' => $transport, 'collect_interval' => 60,
+	'rest_url' => 'http://127.0.0.1:6820', 'rest_user' => 'root', 'token_file' => $tokenFile, 'collect_reservations' => 1, 'collect_shares' => 1,
+]);
 
-	if (in_array($parser, $rest, true)) {
-		$transports[] = 'rest';
+// Build the real transport with the same settings and parser cache as the reader.
+$transportFor = static function (string $transport, string $parser, ?ClusterRun $previous = null) use ($bin, $tokenFile, $cluster): SlurmTransport {
+	$settings = Settings::fromRow([
+		'hpcsched_squeue'      => "$bin/squeue",
+		'hpcsched_scontrol'    => "$bin/scontrol",
+		'hpcsched_sshare'      => "$bin/sshare",
+		// prlimit would limit docker, not the client in the container.
+		'hpcsched_prlimit'     => '',
+		'hpcsched_data_parser' => $parser,
+		'hpcsched_token_dirs'  => dirname($tokenFile),
+	]);
+	$record = $cluster($transport);
+	$token  = null;
+
+	if ($record === null) {
+		throw new RuntimeException('cluster record');
 	}
 
-	foreach ($transports as $transport) {
-		$settings = Settings::fromRow([
-			'hpcsched_squeue'      => "$bin/squeue",
-			'hpcsched_scontrol'    => "$bin/scontrol",
-			'hpcsched_sshare'      => "$bin/sshare",
-			// prlimit would limit docker, not the client in the container.
-			'hpcsched_prlimit'     => '',
-			'hpcsched_data_parser' => $parser,
-			'hpcsched_token_dirs'  => dirname($tokenFile),
-		]);
-		$cluster = Cluster::fromRow([
-			'id' => 1, 'name' => 'live', 'poller_id' => 1, 'admin_state' => 'enabled', 'transport' => $transport, 'collect_interval' => 60,
-			'rest_url' => 'http://127.0.0.1:6820', 'rest_user' => 'root', 'token_file' => $tokenFile, 'collect_reservations' => 1, 'collect_shares' => 1,
-		]);
-		$label = "$parser $transport";
+	return (new Transports($settings, new CommandRunner(), new SocketTransport($settings->maxOutputBytes())))->for($record, new Redactor(), $token, $previous);
+};
 
-		if ($cluster === null) {
-			$check("$label cluster record", false);
+/** @param array<string, SectionRecord> $sections */
+$collect = static function (string $transport, string $parser, ?ClusterRun $previous = null, array $sections = [], string $release = '') use ($transportFor, $cluster): Snapshot {
+	$for = $transportFor($transport, $parser, $previous);
 
-			continue;
+	return (new SlurmBackend($for, new SystemClock(), $sections, $release))->collect($cluster($transport), microtime(true) + 120);
+};
+
+$compare = static function (string $label, Snapshot $snapshot, string $parser) use ($check, $load, $nodes, $names, $sameNodes): void {
+	foreach (Section::cases() as $section) {
+		$outcome = $snapshot->outcome($section);
+		$check("$label $section->value completed", $outcome->state === SectionState::Completed, $outcome->error?->value);
+	}
+
+	$check("$label data parser", $snapshot->dataParser === $parser, $snapshot->dataParser);
+	$check("$label jobs match the capture", $snapshot->jobs?->rows() === SlurmParser::jobs($load("squeue.$parser.json"))->rows(), $snapshot->jobs?->rows());
+	$check("$label nodes match the capture", $sameNodes($nodes($snapshot->nodes), $nodes(SlurmParser::nodes($load("scontrol-node.$parser.json")))), $nodes($snapshot->nodes));
+	$check("$label partitions match the capture", $names($snapshot->partitions) === $names(SlurmParser::partitions($load("scontrol-partition.$parser.json"))), $names($snapshot->partitions));
+	$check("$label reservations match the capture", $names($snapshot->reservations) === $names(SlurmParser::reservations($load("scontrol-reservation.$parser.json"))), $names($snapshot->reservations));
+	$check("$label fair-share rows", count($snapshot->shares ?? []) >= 3, count($snapshot->shares ?? []));
+};
+
+// Every served parser through each transport. A slurmrestd run is given
+// the parser as the one its last completed run used (with no release, so
+// the cache is kept), so every served parser is read, not just the newest.
+foreach ($parsers as $parser) {
+	$compare("$parser commands", $collect('commands', $parser), $parser);
+
+	if (in_array($parser, $rest, true)) {
+		$compare("$parser rest", $collect('rest', $parser, new ClusterRun(1, outcome: RunOutcome::Completed, transport: 'rest', dataParser: $parser)), $parser);
+	}
+}
+
+// Discovery (REQ-REST-002): with no previous run, the newest supported
+// parser the daemon serves.
+$newest = null;
+
+foreach (DataParser::newestFirst() as $version) {
+	if (in_array($version, $rest, true)) {
+		$newest = $version;
+
+		break;
+	}
+}
+
+$check('slurmrestd serves a data parser the plugin supports', $newest !== null, $rest);
+
+if ($newest !== null) {
+	$found = $collect('rest', DataParser::DEFAULT_VERSION);
+
+	$compare("discovered $newest rest", $found, $newest);
+	$check('the discovered parser is the newest one the release ships', $found->dataParser === DataParser::newestShippedBy($found->release), [$found->release, $found->dataParser]);
+
+	// The normal conditional read keeps the production skew allowance.
+	// Controller updates inside that window legitimately return 200, even
+	// when the node states visible here have not changed.
+	$conditional = DataParser::atLeast($found->release, RestTransport::CONDITIONAL_NODES_FROM);
+	$previous    = new ClusterRun(1, outcome: RunOutcome::Completed, release: $found->release, transport: 'rest', dataParser: $found->dataParser);
+	$whole       = $collect('rest', DataParser::DEFAULT_VERSION, $previous);
+	$sections    = ['nodes' => new SectionRecord(1, Section::Nodes, SectionState::Completed, null, $whole->startedAt, count($whole->nodes ?? []), $whole->startedAt, time(), 60)];
+	$again       = $collect('rest', DataParser::DEFAULT_VERSION, $previous, $sections, $found->release);
+	$outcome     = $again->outcome(Section::Nodes);
+	$unchanged   = $outcome->unchanged;
+	$kept        = $again->nodes === null && $outcome->records === count($whole->nodes ?? []);
+	$refreshed   = $sameNodes($nodes($again->nodes), $nodes($whole->nodes));
+
+	if ($conditional) {
+		$check("$found->release conditional nodes read retains or refreshes the rows", $outcome->state === SectionState::Completed && ($unchanged ? $kept : $refreshed), [$outcome->state->value, $unchanged, $outcome->error?->value]);
+
+		// Exercise the real 304 response separately with a cutoff ahead of
+		// the controller clock. This protocol probe is never persisted as a
+		// snapshot. ReaderTest covers preserving stored rows on that response;
+		// the normal collection above never advances its cutoff this way.
+		$transport = $transportFor('rest', DataParser::DEFAULT_VERSION, $previous);
+		$notModified = false;
+
+		try {
+			$transport->fetch(Section::Nodes, $found->dataParser, microtime(true) + 30, time() + FreshnessEvaluator::SKEW_ALLOWANCE);
+		} catch (Unchanged) {
+			$notModified = true;
 		}
 
-		$backend  = new SlurmBackend((new Transports($settings, new CommandRunner(), new SocketTransport($settings->maxOutputBytes())))->for($cluster, new Redactor()), new SystemClock());
-		$snapshot = $backend->collect($cluster, microtime(true) + 120);
-
-		foreach (Section::cases() as $section) {
-			$outcome = $snapshot->outcome($section);
-			$check("$label $section->value completed", $outcome->state === SectionState::Completed, $outcome->error?->value);
-		}
-
-		$check("$label data parser", $snapshot->dataParser === $parser, $snapshot->dataParser);
-		$check("$label jobs match the capture", $snapshot->jobs?->rows() === SlurmParser::jobs($load("squeue.$parser.json"))->rows(), $snapshot->jobs?->rows());
-		$check("$label nodes match the capture", $sameNodes($nodes($snapshot->nodes), $nodes(SlurmParser::nodes($load("scontrol-node.$parser.json")))), $nodes($snapshot->nodes));
-		$check("$label partitions match the capture", $names($snapshot->partitions) === $names(SlurmParser::partitions($load("scontrol-partition.$parser.json"))), $names($snapshot->partitions));
-		$check("$label reservations match the capture", $names($snapshot->reservations) === $names(SlurmParser::reservations($load("scontrol-reservation.$parser.json"))), $names($snapshot->reservations));
-		$check("$label fair-share rows", count($snapshot->shares ?? []) >= 3, count($snapshot->shares ?? []));
+		$check("$found->release maps a live HTTP 304 to Unchanged", $notModified);
+	} else {
+		$check("$found->release reads nodes whole, with no update_time", !$unchanged && $outcome->state === SectionState::Completed && $sameNodes($nodes($again->nodes), $nodes($whole->nodes)), [$outcome->state->value, $outcome->unchanged]);
 	}
 }
 

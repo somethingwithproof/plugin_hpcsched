@@ -68,9 +68,9 @@ final class Reader {
 		$state    = TokenState::None;
 
 		try {
-			$transport = $this->transports->for($cluster, $redactor, $token);
+			$transport = $this->transports->for($cluster, $redactor, $token, $previous);
 			$state     = $token->state ?? TokenState::None;
-			$snapshot  = (new SlurmBackend($transport, $this->clock))->collect($cluster, $deadline);
+			$snapshot  = (new SlurmBackend($transport, $this->clock, $this->snapshots->sections($cluster->id), $previous->release))->collect($cluster, $deadline);
 			$limited   = $transport->memoryLimited();
 		} catch (TransportError $e) {
 			$snapshot = $this->failed($cluster, $e->errorClass);

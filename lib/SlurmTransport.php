@@ -38,11 +38,20 @@ interface SlurmTransport {
 	public function dataParser(float $deadline): string;
 
 	/**
-	 * The raw JSON document for one section.
+	 * The update_time for a conditional read of a section, given its stored
+	 * record and the release the scheduler last reported, or 0 to read it
+	 * whole.
+	 */
+	public function since(Section $section, ?SectionRecord $previous, string $release, int $now): int;
+
+	/**
+	 * The raw JSON document for one section. With $since above 0 the read
+	 * is conditional.
 	 *
 	 * @throws TransportError
+	 * @throws Unchanged when a conditional read found nothing changed
 	 */
-	public function fetch(Section $section, string $dataParser, float $deadline): string;
+	public function fetch(Section $section, string $dataParser, float $deadline, int $since = 0): string;
 
 	/**
 	 * Scheduler calls made so far, for the run record.
