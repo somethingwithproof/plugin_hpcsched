@@ -391,7 +391,7 @@ Plugin code is object-oriented wherever Cacti's plugin contract allows it. No ma
 - Classes in `lib/*.php` under the `Somethingwithproof\Hpcsched` namespace (milestone 2; the plan earlier named `Cacti\HpcSched`, which would claim the Cacti project's vendor name for an independent plugin), one per file, loaded by a small autoloader registered after the PHP check. No runtime Composer dependency. Files stay at depth 2 or less because the gettext build scans only that deep (to be confirmed against current Cacti build scripts).
 - Settings use the `config_settings` hook. Logging uses `cacti_log()` with an `HPCSCHED` tag. Forms rely on csrf-magic.
 - Strings use the `hpcsched` text domain, with a `locales/` directory and POT file.
-- Realms: "HPC Scheduler View" and "HPC Scheduler Admin".
+- Realms: "HPC Scheduler View", "HPC Scheduler Operator" and "HPC Scheduler Admin".
 
 | Kind | Examples | Notes |
 |---|---|---|
@@ -450,7 +450,7 @@ The setup screen shows the number of data sources and RRD files an import will c
 
 | Boundary | Control |
 |---|---|
-| Browser to Cacti | Cacti session, csrf-magic, two realms, device and graph permissions, prepared queries, contextual escaping |
+| Browser to Cacti | Cacti session, csrf-magic, three realms, device and graph permissions, prepared queries, contextual escaping |
 | Cacti poller to Slurm client commands | Argument arrays, no shell, fixed command and option allowlist, no operator input in commands, timeouts and size limits, no `sudo`, no elevated user |
 | Cacti poller to slurmrestd | GET-only path allowlist, TLS verification on, token from a file with owner-only permissions, token never logged, timeouts and size limits |
 | Scheduler account | A dedicated, least-privilege Slurm account; the plugin documents what it must see and what `PrivateData` hides |

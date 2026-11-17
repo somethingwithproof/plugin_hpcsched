@@ -77,6 +77,18 @@ msgstr ""
 msgid "The templates were not installed: %s"
 msgstr ""
 
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr ""
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr ""
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr ""
+
 #: lib/ClusterInput.php
 msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
 msgstr ""
@@ -127,7 +139,7 @@ msgstr ""
 msgid "HPC Clusters"
 msgstr ""
 
-#: lib/ClustersPage.php
+#: lib/ClustersPage.php lib/OperatorPage.php
 msgid "Actions"
 msgstr ""
 
@@ -151,7 +163,7 @@ msgstr ""
 msgid "Sections"
 msgstr ""
 
-#: lib/ClustersPage.php lib/HealthPage.php
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
 msgid "State"
 msgstr ""
 
@@ -387,7 +399,7 @@ msgstr ""
 msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
 msgstr ""
 
-#: lib/Format.php lib/OverviewPage.php
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
 msgid "Never"
 msgstr ""
 
@@ -669,6 +681,42 @@ msgstr ""
 msgid "Powered down"
 msgstr ""
 
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr ""
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr ""
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr ""
+
 #: lib/OverviewPage.php lib/Pages.php setup.php
 msgid "HPC Scheduler"
 msgstr ""
@@ -777,6 +825,10 @@ msgstr ""
 #: lib/OverviewPage.php
 #, php-format
 msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr ""
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
 msgstr ""
 
 #: lib/Pages.php

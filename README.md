@@ -1,10 +1,36 @@
+<!-- translations:start -->
+[English](README.md) | [简体中文](docs/i18n/zh-CN/README.md) | [हिन्दी](docs/i18n/hi-IN/README.md) | [Español (España)](docs/i18n/es-ES/README.md) | [Español (Latinoamérica)](docs/i18n/es-419/README.md) | [العربية](docs/i18n/ar-SA/README.md)
+<!-- translations:end -->
+
 # plugin_hpcsched
 
 A Cacti 1.2 plugin that graphs the state of an HPC batch scheduler next to the devices Cacti already monitors: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization. Slurm is the first backend. Thold alerts on the resulting data sources, and Maint can be driven by drained nodes and maintenance reservations.
 
-> **Status: in development, no release yet.** Milestone 2 (foundation) is merged on `main`, and this branch adds milestone 3 (cluster graphs and pending reasons). The code installs, upgrades, and uninstalls through Cacti's plugin API and refuses PHP below 8.2. It keeps a registry of Slurm clusters, each assigned to one Cacti poller. A background reader on the main poller collects one snapshot per cluster per interval, either by running `squeue`, `scontrol`, and `sshare` with `--json` or by reading `slurmrestd` over HTTPS, and stores job counts by state and pending reason, node states, partitions, reservations, and fair-share usage with their freshness. The plugin ships Cacti templates and, on an administrator's confirmation, creates or maps one Cacti device per cluster with graphs of jobs by state, pending jobs by reason family, nodes by state, CPUs, and utilization, for the cluster and for each partition, plus the snapshot age. A read-only overview page shows counts per cluster with their freshness and a pending reasons view per cluster, and an admin-only health page shows what each collection returned and whether the templates are installed. Every page and action follows Cacti's device permissions. The data sources are ones Thold can alert on, but no Thold or Maint integration has been tested yet; that is milestone 4 and later. The test suite runs against stand-in Slurm commands and a stand-in `slurmrestd` with synthetic data. It has not run against a real Slurm cluster. Below the operator notes, this README describes the design, not shipped behavior.
+> **Status: in development, no release yet.** Milestone 2 (foundation) is merged on `main`, and this branch adds milestone 3 (cluster graphs and pending reasons). The code installs, upgrades, and uninstalls through Cacti's plugin API and refuses PHP below 8.2. It keeps a registry of Slurm clusters, each assigned to one Cacti poller. A background reader on the main poller collects one snapshot per cluster per interval, either by running `squeue`, `scontrol`, and `sshare` with `--json` or by reading `slurmrestd` over HTTPS, and stores job counts by state and pending reason, node states, partitions, reservations, and fair-share usage with their freshness. The plugin ships Cacti templates and, on an administrator's confirmation, creates or maps one Cacti device per cluster with graphs of jobs by state, pending jobs by reason family, nodes by state, CPUs, and utilization, for the cluster and for each partition, plus the snapshot age. A read-only overview page shows counts per cluster with their freshness and a pending reasons view per cluster, and an admin-only health page shows what each collection returned and whether the templates are installed. Every page and action follows Cacti's device permissions. The data sources are ones Thold can alert on, but no Thold or Maint integration has been tested yet; that is milestone 4 and later. The test suite covers synthetic Slurm commands and `slurmrestd` responses, and CI also exercises a real six-node Slurm cluster in containers as described below. The reader has not run against a production cluster. Below the operator notes, this README describes the design, not shipped behavior.
 
 This is an independent project and is not affiliated with the Cacti project.
+
+## Access roles
+
+| Realm | Access |
+| --- | --- |
+| HPC Scheduler View | Existing monitoring pages. |
+| HPC Scheduler Operator | Monitoring plus the Operations page and personal triage acknowledgments. |
+| HPC Scheduler Admin | Operator access plus the existing configuration and administrative actions. |
+
+After copying upgrade files, open the Plugins page as an administrator to register
+the new realm. Assign the Operator realm explicitly under **Configuration > Users** or user groups.
+Upgrades retain the existing View and Admin realm IDs and grants. Admin access
+inherits Operator access, and Operator access inherits View access on each request;
+this does not add stored grants to users or groups. Plugin settings also require
+HPC Scheduler Admin access in addition to Cacti's Settings permission.
+
+Cacti device permissions still limit the rows and actions available to each user; unmapped objects require an administrator.
+Credentials, configuration, mapping, deletion and other administrative changes
+remain in the administrative pages. Acknowledgments last only in the current
+user's session, for at most one hour and only while the same observation remains
+fresh. New or changed observations invalidate them. They never mark a failed
+measurement healthy or suppress alerts.
 
 ## Operator notes for milestone 2
 
