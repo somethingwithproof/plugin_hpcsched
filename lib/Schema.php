@@ -38,6 +38,7 @@ final class Schema {
 	public const VERSION = 2;
 
 	public const HOOKS = [
+		'auth_alternate_realms' => 'hpcsched_auth_alternate_realms',
 		'config_arrays'        => 'hpcsched_config_arrays',
 		'config_settings'      => 'hpcsched_config_settings',
 		'draw_navigation_text' => 'hpcsched_draw_navigation_text',

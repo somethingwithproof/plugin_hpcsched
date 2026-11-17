@@ -30,6 +30,7 @@ namespace Somethingwithproof\Hpcsched;
  * account name (REQ-UI-004).
  */
 final class Pages {
+	public const OPERATOR = ['hpcsched_operator.php'];
 	public const VIEW  = ['hpcsched.php'];
 	public const ADMIN = ['hpcsched_clusters.php', 'hpcsched_health.php'];
 
@@ -38,6 +39,7 @@ final class Pages {
 	 */
 	public static function realms(): array {
 		return [
+			['name' => __('HPC Scheduler Operator', 'hpcsched'), 'files' => self::OPERATOR],
 			['name' => __('HPC Scheduler View', 'hpcsched'), 'files' => self::VIEW],
 			['name' => __('HPC Scheduler Admin', 'hpcsched'), 'files' => self::ADMIN],
 		];
@@ -47,7 +49,7 @@ final class Pages {
 	 * @return list<string>
 	 */
 	public static function files(): array {
-		return array_merge(self::VIEW, self::ADMIN);
+		return array_merge(self::VIEW, self::ADMIN, self::OPERATOR);
 	}
 
 	/**
@@ -58,6 +60,7 @@ final class Pages {
 	 */
 	public static function menu(): array {
 		return [
+			'hpcsched_operator.php' => __('HPC Scheduler Operations', 'hpcsched'),
 			'hpcsched.php'          => __('HPC Scheduler', 'hpcsched'),
 			'hpcsched_clusters.php' => __('HPC Clusters', 'hpcsched'),
 			'hpcsched_health.php'   => __('HPC Scheduler Health', 'hpcsched'),

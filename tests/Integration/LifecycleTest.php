@@ -35,7 +35,7 @@ const HPCSCHED_TABLES = [
 	'plugin_hpcsched_share',
 ];
 
-const HPCSCHED_HOOKS = ['config_arrays', 'config_settings', 'device_remove', 'draw_navigation_text', 'poller_bottom'];
+const HPCSCHED_HOOKS = ['auth_alternate_realms', 'config_arrays', 'config_settings', 'device_remove', 'draw_navigation_text', 'poller_bottom'];
 
 const HPCSCHED_T = 1800000000;
 
@@ -47,7 +47,7 @@ afterAll(function () {
 	lifecycle('reset');
 });
 
-it('installs fresh with tracked tables, hooks, and both realms, leaving the plugin disabled', function () {
+it('installs fresh with tracked tables, hooks, and three realms, leaving the plugin disabled', function () {
 	$state = lifecycle('install');
 
 	expect($state['plugin']['status'])->toEqual('4')
@@ -57,8 +57,9 @@ it('installs fresh with tracked tables, hooks, and both realms, leaving the plug
 		->and($state['tracked'])->toBe(HPCSCHED_TABLES)
 		->and(array_keys($state['hooks']))->toBe(HPCSCHED_HOOKS)
 		->and($state['realms'])->toEqual([
-			'hpcsched.php'                              => 'HPC Scheduler View',
+			'hpcsched.php' => 'HPC Scheduler View',
 			'hpcsched_clusters.php,hpcsched_health.php' => 'HPC Scheduler Admin',
+			'hpcsched_operator.php' => 'HPC Scheduler Operator',
 		])
 		->and($state['admin'])->toBe(2);
 });
@@ -107,7 +108,7 @@ it('re-registers hooks and realms that went missing, active while the plugin is 
 	expect($state['result'])->toBeTrue()
 		->and(array_keys($state['hooks']))->toBe(HPCSCHED_HOOKS)
 		->and(array_values(array_unique(array_map('strval', $state['hooks']))))->toBe(['1'])
-		->and($state['realms'])->toHaveCount(2);
+		->and($state['realms'])->toHaveCount(3);
 });
 
 it('finishes an upgrade that was interrupted after creating only some tables', function () {
@@ -233,7 +234,7 @@ it('grants realms on install but never on a repair a viewer triggers', function 
 	expect(lifecycle('install')['admin'])->toBe(2);
 
 	$repair = lifecycle('repair_as_viewer');
-	expect($repair['realms'])->toHaveCount(2)
+	expect($repair['realms'])->toHaveCount(3)
 		->and($repair['result'])->toBe(['viewer_realms' => 0]);
 });
 
@@ -314,4 +315,24 @@ it('leaves the previous snapshot when a run is killed mid-read, and the next run
 		->and($r['while_leased']['calls'])->toBe(3)
 		->and($r['after_expiry'])->toBe(['outcome' => 'completed', 'calls' => 3])
 		->and($r['final']['observed'])->toBe(HPCSCHED_T + 290);
+});
+
+it('preserves old grants and resolves the three roles through Cacti including groups', function () {
+	lifecycle('install');
+	lifecycle('enable');
+	$roles = lifecycle('operator_roles')['result'];
+	expect($roles['ids_preserved'])->toBeTrue()
+		->and($roles['viewer_grants'])->toBe([$roles['expected_view']])
+		->and($roles['hook_enabled'])->toBe(1)
+		->and($roles['viewer'])->toBe([true, false, false])
+		->and($roles['operator'])->toBe([true, true, false])
+		->and($roles['admin'])->toBe([true, true, true])
+		->and($roles['revoked'])->toBe([false, false, false])
+		->and($roles['group_operator'])->toBe([true, true, false])
+		->and($roles['disabled_group'])->toBe([false, false, false])
+		->and($roles['first_request']['viewer'])->toBe([[true, true, true], [true, false, true], [false, false, true]])
+		->and($roles['first_request']['operator'])->toBe([[true, true, true], [true, true, true], [false, false, true]])
+		->and($roles['first_request']['admin'])->toBe([[true, true, true], [true, true, true], [false, true, true]])
+		->and($roles['first_request']['revoked'])->toBe([false, false, false])
+		->and($roles['disabled_user'])->toBe([false, false, false]);
 });

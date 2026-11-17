@@ -1,0 +1,1070 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-17 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: zh-CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "您无权访问该集群的设备。"
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "名称：另一个集群已使用此名称。"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "未保存集群：表单打开后其他人已修改集群，或写入失败。请重新打开并再次修改。"
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "已保存集群。"
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "已删除集群及其缓存快照。设备和图表已保留。未连接调度器。"
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "已创建设备及其图表。"
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "未创建设备：集群已有设备、页面打开后其他人修改了集群，或 Cacti 拒绝了创建请求。请查看 Cacti 日志。"
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "已将集群映射到设备。"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "未映射集群：设备不存在、您无权访问、设备已承载另一个集群，或页面打开后其他人修改了集群。"
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "已添加缺失的图表。"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "未取消集群映射：页面打开后其他人已修改集群。"
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "已取消集群映射。设备及其图表已保留。"
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "已根据快照重新索引分区。"
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "已安装 HPC Scheduler 模板。"
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "未安装模板：%s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "监控视图"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "无法读取观测结果。请联系管理员检查插件日志。"
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "在概览中检查等待原因类别和快照时效性。凭据、集群映射和维护策略请交由管理员处理。"
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "名称：使用 1 至 64 个字母、数字、点、连字符或下划线，且以字母或数字开头。"
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "采集器：选择列出的采集器之一。"
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "采集间隔：输入 %d 至 %d 的整数秒数。"
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "传输方式：选择列出的传输方式之一。"
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf：输入绝对路径，或留空以使用采集器默认值。"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL：此主机和端口不在设置中的 slurmrestd 主机列表中。"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL：输入不含用户名、查询参数或片段的 https:// URL；仅环回地址允许使用明文 http://。"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd 用户：最多使用 64 个字母、数字、点、连字符或下划线；使用用户令牌时可留空。"
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "令牌文件：输入采集器上令牌文件的绝对路径。此处从不输入令牌本身。"
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "令牌文件：尚未设置令牌文件目录。请让 Cacti 管理员在“设置 > HPC Scheduler”下设置。"
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "令牌文件：文件必须位于设置中指定的令牌文件目录之一（%s）内。"
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "HPC 集群"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "操作"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "设备"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "间隔"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "名称"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "采集器"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "部分"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "状态"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "传输方式"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "尚未配置集群。"
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "禁用"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "启用"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "已删除的采集器 %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d 秒"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "无"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "删除"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "导出"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "在卸载并删除插件表之前，将集群配置下载为 JSON。文件包含令牌文件路径，绝不包含令牌。"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "集群：%s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "新建集群"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "采集间隔（秒）"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "已启用"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "采集预留"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "采集公平份额（仅账户）"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "slurm.conf 路径（可选）"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd 用户（可选）"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "采集器上的令牌文件"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "客户端命令使用“设置 > HPC Scheduler”下指定的二进制文件及采集器用户自身的 Slurm 身份验证；可选的 slurm.conf 路径用于选择集群。slurmrestd 字段仅在使用该传输方式时生效。令牌文件必须仅可由采集器用户读取；插件每次运行时读取文件，绝不存储令牌。"
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "保存"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "集群的设备：%s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "已映射到设备 %s（ID %d）。其图表遵循 Cacti 的设备和图表权限。"
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "添加缺失图表将添加："
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "添加缺失图表"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "重新索引分区"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "取消映射"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "取消映射会保留设备、图表及其历史记录。"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "集群仍映射到已不存在的设备 %d。创建或映射设备将替换该映射。"
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "创建设备将添加："
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "如果不创建分区图表，则只创建集群图表，并省略上述分区的数据源和调用。"
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "同时创建分区图表"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "创建设备"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "或映射现有设备"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "映射设备"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "未安装 HPC Scheduler 模板。请从健康状态页面安装。"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "设备“%s”，使用 %s 设备模板，由采集器 %d 采集，可用性检查已关闭。"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "数据查询“%s”，索引当前已知的 %d 个分区。"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d 个集群图表，每个具有独立的“%s”数据源。"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d 个分区图表，每个分区 %d 个，每个图表具有独立数据源。"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "总计：%d 个数据源、%d 个 RRD 文件，以及每次采集 %d 次脚本服务器调用。之后添加的分区可从“新建图表”页面创建图表。"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "由 HPC Scheduler 插件为集群 %s 创建。数值来自插件快照；主机名为保留名称，永远不会连接该主机。"
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "配置：路径、URL 或设置缺失或不被允许"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "无法连接调度器"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "调用超出允许时间，已停止"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "响应超出允许大小，已丢弃"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "无法使用固定版本的数据解析器解析响应"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "调度器拒绝了凭据"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "调度器账户无权查看此数据（PrivateData 或权限限制）"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "控制器要求客户端退避（速率限制）"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "服务器对无条件请求返回 304；已保留先前数据"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "插件拒绝了允许列表之外的调用"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "调用失败"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "读取器内存不足；请在设置中降低“最大响应大小”或提高“采集内存”"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "从未"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d 秒前"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d 分钟前"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d 小时前"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d 天前"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "当前有效"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "延迟"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "已过期"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "从未采集"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "集群"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "调用"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "集群"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "持续时间"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "时效性"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "上次运行"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "上次成功"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "结果"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "解析器"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "所有集群"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "警告"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "警告"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "无警告。"
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "模板"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "已安装设备、数据、图表模板及分区数据查询。"
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "模板未安装或不是最新版本，因此无法创建集群设备。请查看上方警告。"
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "安装模板"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "快照部分"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "数据年龄"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "错误"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "上次尝试"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "记录"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "部分"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "上次模板安装失败：%s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Cacti 中缺少部分 HPC Scheduler 模板。请在下方安装。"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s，已发现"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "最大响应大小为 %d MiB，但该大小的响应解码后无法放入 %d MiB 的采集内存；读取器允许 %d MiB。请在设置中提高采集内存或降低最大响应大小。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "已分配给采集器 %d（远程数据采集器）。此版本仅在主采集器上采集，因此不会采集此集群；远程采集计划在第 3 阶段实现。请将其分配给主采集器。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "采集间隔低于 %d 秒的下限。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "采集间隔 %d 秒短于采集器间隔 %d 秒；实际每 %d 秒采集一次数据。"
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "通过环回地址上的明文 HTTP 访问 slurmrestd；令牌未加密地经过本地网络协议栈。"
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "此集群尚无已完成的读取器运行。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "令牌文件：%s。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "令牌已于 %s 过期。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "令牌将在 %d 分钟后过期。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "上次运行耗尽了 %d 秒的时间预算；部分内容未采集。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "调度器报告的 Slurm 版本为 %s，不在支持的版本（%s）中。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "调度器报告的 Slurm 版本为 %s，未提供设置中选择的数据解析器 %s。"
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "客户端命令未设置内存限制；请在设置中配置 prlimit 路径。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "上次错误：%s。"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "触发速率限制后暂停采集 %d 秒。"
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "数据已过期；图表和告警将其视为未知。"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "等待中"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "已保留"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "运行中"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "正在完成"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "其他"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "空闲"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "已分配"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "混合"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "已排空"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "正在排空"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "已断开"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "维护"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "已预留"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "已断电"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "查看下方记录的观测结果。确认记录仅对当前会话中的您有效，在观测结果变化时失效，且不会抑制告警或更改健康状态。"
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "HPC Scheduler 运维"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "调查"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "对象"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "观测时间（UTC）"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "未知或已过期"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "已确认；健康状态未改变。"
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "确认"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "您有权访问的设备暂无观测结果。"
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "已采集"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "详情"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "节点"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "尚未采集任何集群。"
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "等待原因"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "图表"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "短横线表示插件没有该值的当前数据：该部分失败、已过期或从未采集。等待任务不包括被保留的任务。“已排空”统计所有带 drain 标志的节点，包括同时处于 down 状态的节点。"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "等待原因：%s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "类别"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "任务"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "分区"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "原因"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "无等待任务。"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "仅列出任务数最多的 %d 个原因。"
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "每个任务按调度器最近检查的原因归类，该原因不一定是阻止任务运行的唯一因素。属于多个分区的任务在此处计一次，在其指定的每个分区中各计一次。被保留任务按其保留原因列出。"
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "状态未知的节点"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "名称"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Slurm 状态"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "无。所有节点均映射到已知状态。"
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "尚未采集任务快照。"
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "尚未采集节点快照，因此节点状态未知。"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "任务快照采集于 %s（%s），当前有效。"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "节点快照采集于 %s（%s），当前有效。"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "任务快照采集于 %s（%s），当前无效：快照已过期或上次采集失败，下方计数为上次采集的值。"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "节点快照采集于 %s（%s），当前无效：快照已过期或上次采集失败，下方节点为上次采集的结果。"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "HPC Scheduler 操作员"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "HPC Scheduler 查看"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "HPC Scheduler 管理"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "HPC Scheduler 健康状态"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "优先级"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "资源"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "依赖项"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "开始时间"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "预留"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "关联限制"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "QOS 限制"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "分区限制"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "节点可用性"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "预留"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "公平份额"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Slurm 客户端命令"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "数据解析器"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "客户端命令的 Slurm 数据解析器。请选择通过客户端命令读取的每个集群版本均提供的解析器：v0.0.43 包含于 25.05、25.11 和 26.05，并在 27.05 移除；v0.0.44 要求 25.11 或更高版本；v0.0.45 要求 26.05 或更高版本。如果集群报告的版本不包含所选解析器，健康状态页面会发出警告。通过 slurmrestd 读取的集群忽略此设置，使用守护进程提供的这些解析器中最新的版本，并在健康状态页面显示所用版本。"
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "每个通过客户端命令读取集群的采集器上 squeue 的绝对路径。插件仅以 squeue --all --json 配合上述数据解析器运行。"
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "scontrol 的绝对路径。插件仅运行 scontrol --json show node、show partition 和 show reservation；绝不运行 update、reconfigure 或 token。"
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "sshare 的绝对路径，仅用于采集公平份额的集群。"
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "限制"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "调用超时"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "每次调度器调用可运行的秒数，超时后停止并将其部分记为失败。调用也绝不会超过读取器的时间预算。"
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "最大响应大小"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "每次调度器调用可返回的 MiB 数。更大的响应将丢弃，其部分记为失败。解码约需响应大小的 12 倍内存，因此读取器最多允许 (采集内存 - 64) / 12 MiB；设置值更大时健康状态页面会发出警告。"
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "采集内存"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "每次采集运行将 PHP 内存限制提高到的 MiB 数（绝不降低已有上限）。默认 1024 可容纳最大 80 MiB 的响应。"
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "prlimit（util-linux）的绝对路径，用于限制每个客户端命令的地址空间。留空则不限制命令内存；健康状态页面会相应警告。"
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "命令内存限制"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "每个客户端命令通过 prlimit 可使用的地址空间 MiB 数。"
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "slurmrestd 凭据"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "令牌文件目录"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "采集器上允许存放 slurmrestd 令牌文件的绝对目录，以逗号或空格分隔。集群只能指定其中的文件，文件必须属于采集器用户，且路径不得经过符号链接。每个目录仅允许 root 和采集器用户写入。留空表示没有集群能使用 slurmrestd。"
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "slurmrestd 主机"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "可选。集群允许使用的 slurmrestd 主机，以 host 或 host:port 格式填写，用逗号或空格分隔。不带端口的条目允许该主机上的任意端口。留空允许任意主机。"
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "如果令牌包含过期时间，健康状态页面在其过期前多少秒开始警告。"
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "令牌过期警告"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "卸载"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "卸载时保留插件表"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "选中时，卸载插件会保留集群和快照。不选中则在卸载时删除；请先从“HPC 集群”导出集群。本版本不创建 Cacti 设备或 Maint 计划，任何情况下都不会连接调度器。"
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "数据查询文件 %s 未安装在 Cacti 的 resource/script_server 目录中。"
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Cacti 的 resource/script_server 目录中的数据查询文件 %s 与插件提供的文件不同。"
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "仅采集器用户可读"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "文件所属组可读；请将权限限制为采集器用户（chmod 600）"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "采集器上的所有用户可读；请将权限限制为采集器用户（chmod 600）"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "已拒绝：所有者不是采集器用户（请用 chown 将其所有权设为采集器用户）"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "文件缺失或采集器用户无法读取"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "已拒绝：文件位于设置中的令牌文件目录之外、经过符号链接、不是普通文件、其他用户可写，或文件过大；日志中记录具体原因"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "空"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Slurm 客户端命令"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "HPC Scheduler 插件要求 PHP %s 或更高版本。此服务器运行 PHP %s，因此未安装或启用插件。"
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "HPC Scheduler 插件未启用。"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "HPC Scheduler 插件要求 PHP %s 或更高版本。"
+
+#: setup.php
+msgid "Management"
+msgstr "管理"
