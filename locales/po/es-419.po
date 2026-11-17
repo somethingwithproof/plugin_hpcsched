@@ -665,7 +665,7 @@ msgstr "Drenando"
 
 #: lib/NodeState.php lib/OverviewPage.php
 msgid "Down"
-msgstr "Inactivo"
+msgstr "Caído"
 
 #: lib/NodeState.php
 msgid "Maintenance"

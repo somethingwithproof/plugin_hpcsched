@@ -304,8 +304,16 @@ function hpcsched_config_settings(): void {
  * @return array<string, mixed>
  */
 function hpcsched_draw_navigation_text($nav) {
+	global $current_user;
+
 	if (!hpcsched_boot()) {
 		return $nav;
+	}
+
+	// Settings definitions first load before cookie or Basic login is restored.
+	// Navigation runs after authentication, before settings tabs are rendered.
+	if (get_current_page() === 'settings.php' && (PHP_SAPI === 'cli' || ($current_user['enabled'] ?? '') === 'on')) {
+		hpcsched_config_settings();
 	}
 
 	return array_merge($nav, \Somethingwithproof\Hpcsched\Pages::navigation());
