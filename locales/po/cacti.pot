@@ -73,11 +73,19 @@ msgid "The cluster was unmapped. The device and its graphs were kept."
 msgstr ""
 
 #: hpcsched_clusters.php
-msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgid "The partitions were reindexed from the snapshot."
 msgstr ""
 
 #: hpcsched_clusters.php
-msgid "The partitions were reindexed from the snapshot."
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
 msgstr ""
 
 #: hpcsched_health.php

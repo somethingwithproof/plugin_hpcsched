@@ -71,12 +71,20 @@ msgid "The cluster was unmapped. The device and its graphs were kept."
 msgstr "فُك ربط العنقود. احتُفظ بالجهاز ورسومه."
 
 #: hpcsched_clusters.php
-msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
-msgstr "لم تُعد فهرسة الأقسام: ليس للعنقود جهاز، أو لم يعد جهازه موجودًا."
-
-#: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."
 msgstr "أُعيدت فهرسة الأقسام من اللقطة."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "لم تُعد فهرسة الأقسام: الجهاز معطّل أو متوقف، لذلك تخطّى Cacti استعلام بياناته."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "لم تُعد فهرسة الأقسام: تعذّر على Cacti تشغيل استعلام البيانات. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "لم تُعد فهرسة الأقسام: ليس للعنقود جهاز، أو لم يعد جهازه موجودًا."
 
 #: hpcsched_health.php
 msgid "The HPC Scheduler templates are installed."

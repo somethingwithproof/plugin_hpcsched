@@ -148,8 +148,22 @@ switch ($hpcsched_action) {
 		exit;
 	case 'reindex_device':
 		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
-		$hpcsched_ok      = $hpcsched_cluster->hostId > 0 && !$hpcsched_access->orphaned($hpcsched_cluster) && $hpcsched_devices->reindex($hpcsched_cluster->hostId);
-		raise_message('hpcsched_device', $hpcsched_ok ? __('The partitions were reindexed from the snapshot.', 'hpcsched') : __('The partitions were not reindexed: the cluster has no device, or its device no longer exists.', 'hpcsched'), $hpcsched_ok ? MESSAGE_LEVEL_INFO : MESSAGE_LEVEL_ERROR);
+		$hpcsched_result  = $hpcsched_cluster->hostId > 0 && !$hpcsched_access->orphaned($hpcsched_cluster) ? $hpcsched_devices->reindex($hpcsched_cluster->hostId) : \Somethingwithproof\Hpcsched\ReindexResult::NotRun;
+
+		switch ($hpcsched_result) {
+			case \Somethingwithproof\Hpcsched\ReindexResult::Completed:
+				raise_message('hpcsched_device', __('The partitions were reindexed from the snapshot.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+				break;
+			case \Somethingwithproof\Hpcsched\ReindexResult::Skipped:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				break;
+			case \Somethingwithproof\Hpcsched\ReindexResult::Failed:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: Cacti could not run the data query. See the Cacti log.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				break;
+			default:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: the cluster has no device, or its device no longer exists.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+		}
+
 		header('Location: hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id);
 		exit;
 	case 'device':

@@ -71,12 +71,20 @@ msgid "The cluster was unmapped. The device and its graphs were kept."
 msgstr "Se ha desvinculado el clúster. Se han conservado el dispositivo y sus gráficos."
 
 #: hpcsched_clusters.php
-msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
-msgstr "No se reindexaron las particiones: el clúster no tiene dispositivo o su dispositivo ya no existe."
-
-#: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."
 msgstr "Se han reindexado las particiones a partir de la instantánea."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "No se reindexaron las particiones: el dispositivo está deshabilitado o inactivo, por lo que Cacti omitió su consulta de datos."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "No se reindexaron las particiones: Cacti no pudo ejecutar la consulta de datos. Consulte el registro de Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "No se reindexaron las particiones: el clúster no tiene dispositivo o su dispositivo ya no existe."
 
 #: hpcsched_health.php
 msgid "The HPC Scheduler templates are installed."

@@ -249,6 +249,12 @@ try {
 	flow_expect($change(array('batch', 'devel', 'gpu')) && $indexes() === array('batch', 'devel', 'gpu'), 'a renamed partition is reindexed although the index count is the same');
 	flow_expect(!$provisioner->reindexIfChanged($clusters->get($cluster_id)), 'no reindex runs while the partitions are unchanged');
 
+	// Cacti returns true for a query it skips, so a disabled device is reported as skipped.
+	db_execute_prepared("UPDATE host SET disabled = 'on' WHERE id = ?", array($host_id));
+	$skipped = $provisioner->reindex($host_id);
+	db_execute_prepared("UPDATE host SET disabled = '' WHERE id = ?", array($host_id));
+	flow_expect($skipped === \Somethingwithproof\Hpcsched\ReindexResult::Skipped && $provisioner->reindex($host_id) === \Somethingwithproof\Hpcsched\ReindexResult::Completed, 'a reindex of a disabled device is reported as skipped, and of an enabled one as completed');
+
 	$gpu_graphs = (int) db_fetch_cell_prepared("SELECT COUNT(*) FROM graph_local WHERE host_id = ? AND snmp_index = 'gpu'", array($host_id));
 	flow_expect($change(array('batch')) && $indexes() === array('batch'), 'a removed partition leaves the indexes');
 	flow_expect((int) db_fetch_cell_prepared("SELECT COUNT(*) FROM poller_item AS pi INNER JOIN data_local AS dl ON dl.id = pi.local_data_id WHERE dl.host_id = ? AND dl.snmp_index = 'gpu'", array($host_id)) === 0 && (int) db_fetch_cell_prepared("SELECT COUNT(*) FROM graph_local WHERE host_id = ? AND snmp_index = 'gpu'", array($host_id)) === $gpu_graphs && $gpu_graphs === 5, 'the removed partition is no longer polled and its graphs stay');

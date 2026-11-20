@@ -194,7 +194,7 @@ final class DeviceProvisioner {
 	/**
 	 * Run Cacti's reindex when the device's partition indexes differ from
 	 * the snapshot's, which Cacti's own index count check misses for a
-	 * renamed partition (ADR 0011). Returns whether a reindex ran.
+	 * renamed partition (ADR 0011). Returns whether a reindex completed.
 	 */
 	public function reindexIfChanged(Cluster $cluster): bool {
 		$queryId = $this->objects->queryId();
@@ -207,26 +207,28 @@ final class DeviceProvisioner {
 			return false;
 		}
 
-		$this->reindex($cluster->hostId);
-
-		return true;
+		return $this->reindex($cluster->hostId) === ReindexResult::Completed;
 	}
 
 	/**
-	 * Returns whether a reindex ran: it does not for a cluster without a
-	 * device or before the plugin's data query exists.
+	 * Cacti returns true for a query it skips on a disabled or down device
+	 * and false when it fails, so the skip is checked first and the core
+	 * result is otherwise passed on.
 	 */
-	public function reindex(int $hostId): bool {
+	public function reindex(int $hostId): ReindexResult {
 		$queryId = $this->objects->queryId();
 
 		if ($hostId <= 0 || $queryId <= 0) {
-			return false;
+			return ReindexResult::NotRun;
+		}
+
+		if ($this->objects->queriesSkipped($hostId)) {
+			return ReindexResult::Skipped;
 		}
 
 		$this->includeCore();
-		run_data_query($hostId, $queryId);
 
-		return true;
+		return run_data_query($hostId, $queryId) === false ? ReindexResult::Failed : ReindexResult::Completed;
 	}
 
 	public function description(Cluster $cluster): string {
