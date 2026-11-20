@@ -31,6 +31,10 @@ msgid "The cluster was saved."
 msgstr "क्लस्टर सहेज दिया गया।"
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "क्लस्टर की स्थिति नहीं बदली: लिखना विफल रहा। Cacti लॉग देखें।"
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr "क्लस्टर और उसका कैश किया गया स्नैपशॉट हटा दिए गए। उसका डिवाइस और ग्राफ़ रखे गए। शेड्यूलर से संपर्क नहीं किया गया।"
 
@@ -55,12 +59,20 @@ msgid "Missing graphs were added."
 msgstr "अनुपस्थित ग्राफ़ जोड़ दिए गए।"
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "ग्राफ़ नहीं जोड़े गए: क्लस्टर के पास डिवाइस नहीं है, या उसका डिवाइस अब मौजूद नहीं है।"
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr "क्लस्टर की मैपिंग नहीं हटाई गई: पृष्ठ खुलने के बाद किसी और ने इसे बदल दिया।"
 
 #: hpcsched_clusters.php
 msgid "The cluster was unmapped. The device and its graphs were kept."
 msgstr "क्लस्टर की मैपिंग हटा दी गई। डिवाइस और उसके ग्राफ़ रखे गए।"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "पार्टिशन दोबारा इंडेक्स नहीं हुए: क्लस्टर के पास डिवाइस नहीं है, या उसका डिवाइस अब मौजूद नहीं है।"
 
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."

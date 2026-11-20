@@ -31,6 +31,10 @@ msgid "The cluster was saved."
 msgstr "حُفظ العنقود."
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "لم تتغير حالة العنقود: فشلت الكتابة. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr "حُذف العنقود ولقطته المؤقتة. احتُفظ بجهازه ورسومه. لم يُتصل بالمُجدول."
 
@@ -55,12 +59,20 @@ msgid "Missing graphs were added."
 msgstr "أُضيفت الرسوم المفقودة."
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "لم تُضف رسوم بيانية: ليس للعنقود جهاز، أو لم يعد جهازه موجودًا."
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr "لم يُفك ربط العنقود: غيّره شخص آخر منذ فتح الصفحة."
 
 #: hpcsched_clusters.php
 msgid "The cluster was unmapped. The device and its graphs were kept."
 msgstr "فُك ربط العنقود. احتُفظ بالجهاز ورسومه."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "لم تُعد فهرسة الأقسام: ليس للعنقود جهاز، أو لم يعد جهازه موجودًا."
 
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."

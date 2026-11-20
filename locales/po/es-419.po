@@ -31,6 +31,10 @@ msgid "The cluster was saved."
 msgstr "Se ha guardado el clúster."
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "No se cambió el estado del clúster: falló la escritura. Consulte el registro de Cacti."
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr "Se han eliminado el clúster y su instantánea en caché. Se han conservado su dispositivo y sus gráficos. No se contactó con el planificador."
 
@@ -55,12 +59,20 @@ msgid "Missing graphs were added."
 msgstr "Se han añadido los gráficos que faltaban."
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "No se agregaron gráficos: el clúster no tiene dispositivo o su dispositivo ya no existe."
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr "No se ha desvinculado el clúster: alguien lo modificó después de abrir la página."
 
 #: hpcsched_clusters.php
 msgid "The cluster was unmapped. The device and its graphs were kept."
 msgstr "Se ha desvinculado el clúster. Se han conservado el dispositivo y sus gráficos."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "No se reindexaron las particiones: el clúster no tiene dispositivo o su dispositivo ya no existe."
 
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."

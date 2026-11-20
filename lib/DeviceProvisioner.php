@@ -212,13 +212,21 @@ final class DeviceProvisioner {
 		return true;
 	}
 
-	public function reindex(int $hostId): void {
+	/**
+	 * Returns whether a reindex ran: it does not for a cluster without a
+	 * device or before the plugin's data query exists.
+	 */
+	public function reindex(int $hostId): bool {
 		$queryId = $this->objects->queryId();
 
-		if ($hostId > 0 && $queryId > 0) {
-			$this->includeCore();
-			run_data_query($hostId, $queryId);
+		if ($hostId <= 0 || $queryId <= 0) {
+			return false;
 		}
+
+		$this->includeCore();
+		run_data_query($hostId, $queryId);
+
+		return true;
 	}
 
 	public function description(Cluster $cluster): string {

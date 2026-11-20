@@ -132,8 +132,8 @@ final class ClusterRepository {
 		return $ok && db_affected_rows($this->connection) === 1 ? $input->id : 0;
 	}
 
-	public function setState(int $id, AdminState $state): void {
-		db_execute_prepared('UPDATE plugin_hpcsched_cluster SET admin_state = ?, updated_at = GREATEST(updated_at + 1, ?) WHERE id = ?', [$state->value, $this->clock->now(), $id], true, $this->connection);
+	public function setState(int $id, AdminState $state): bool {
+		return db_execute_prepared('UPDATE plugin_hpcsched_cluster SET admin_state = ?, updated_at = GREATEST(updated_at + 1, ?) WHERE id = ?', [$state->value, $this->clock->now(), $id], true, $this->connection) !== false;
 	}
 
 	public function delete(int $id): bool {
