@@ -84,7 +84,7 @@ msgstr "पार्टिशन दोबारा इंडेक्स नह
 
 #: hpcsched_clusters.php
 msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
-msgstr "पार्टिशन दोबारा इंडेक्स नहीं हुए: HPC Scheduler डेटा क्वेरी इंस्टॉल नहीं है। हेल्थ पेज से टेम्पलेट इंस्टॉल करें।"
+msgstr "पार्टिशन दोबारा इंडेक्स नहीं हुए: HPC Scheduler डेटा क्वेरी स्थापित नहीं है। स्वास्थ्य पृष्ठ से टेम्पलेट स्थापित करें।"
 
 #: hpcsched_clusters.php
 msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
