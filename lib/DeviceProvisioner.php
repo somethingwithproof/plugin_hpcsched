@@ -212,14 +212,21 @@ final class DeviceProvisioner {
 
 	/**
 	 * Cacti returns true for a query it skips on a disabled or down device
-	 * and false when it fails, so the skip is checked first and the core
-	 * result is otherwise passed on.
+	 * and false when it fails, so the device state is read before the call
+	 * and again after it: run_data_query() reads the state itself, and a
+	 * device disabled in between would otherwise be reported as completed.
+	 * The core call gives no other signal, so the check narrows that window
+	 * without closing it.
 	 */
 	public function reindex(int $hostId): ReindexResult {
+		if ($hostId <= 0) {
+			return ReindexResult::NotRun;
+		}
+
 		$queryId = $this->objects->queryId();
 
-		if ($hostId <= 0 || $queryId <= 0) {
-			return ReindexResult::NotRun;
+		if ($queryId <= 0) {
+			return ReindexResult::NoQuery;
 		}
 
 		if ($this->objects->queriesSkipped($hostId)) {
@@ -228,7 +235,11 @@ final class DeviceProvisioner {
 
 		$this->includeCore();
 
-		return run_data_query($hostId, $queryId) === false ? ReindexResult::Failed : ReindexResult::Completed;
+		if (run_data_query($hostId, $queryId) === false) {
+			return ReindexResult::Failed;
+		}
+
+		return $this->objects->queriesSkipped($hostId) ? ReindexResult::Skipped : ReindexResult::Completed;
 	}
 
 	public function description(Cluster $cluster): string {

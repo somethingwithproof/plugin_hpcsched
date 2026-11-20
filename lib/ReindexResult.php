@@ -26,8 +26,10 @@ namespace Somethingwithproof\Hpcsched;
  * detected from the device row before the call.
  */
 enum ReindexResult {
-	/** No device, or the plugin's data query does not exist yet. */
+	/** No device to reindex. */
 	case NotRun;
+	/** The plugin's data query does not exist yet. */
+	case NoQuery;
 	/** The device is disabled or down, so Cacti skipped the query. */
 	case Skipped;
 	/** Cacti ran the query and reported failure, for example a silent remote collector. */

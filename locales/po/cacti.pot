@@ -85,6 +85,10 @@ msgid "The partitions were not reindexed: Cacti could not run the data query. Se
 msgstr ""
 
 #: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr ""
+
+#: hpcsched_clusters.php
 msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
 msgstr ""
 

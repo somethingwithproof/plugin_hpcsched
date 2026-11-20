@@ -83,6 +83,10 @@ msgid "The partitions were not reindexed: Cacti could not run the data query. Se
 msgstr "未重新索引分区：Cacti 无法运行数据查询。请参阅 Cacti 日志。"
 
 #: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "未重新索引分区：未安装 HPC Scheduler 数据查询。请从健康状态页面安装模板。"
+
+#: hpcsched_clusters.php
 msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
 msgstr "未重新索引分区：集群没有设备，或其设备已不存在。"
 

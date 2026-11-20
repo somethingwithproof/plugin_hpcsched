@@ -160,8 +160,15 @@ switch ($hpcsched_action) {
 			case \Somethingwithproof\Hpcsched\ReindexResult::Failed:
 				raise_message('hpcsched_device', __('The partitions were not reindexed: Cacti could not run the data query. See the Cacti log.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
 				break;
+			case \Somethingwithproof\Hpcsched\ReindexResult::NoQuery:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				break;
 			default:
-				raise_message('hpcsched_device', __('The partitions were not reindexed: the cluster has no device, or its device no longer exists.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				raise_message(
+					'hpcsched_device',
+					__('The partitions were not reindexed: the cluster has no device, or its device no longer exists.', 'hpcsched'),
+					MESSAGE_LEVEL_ERROR
+				);
 		}
 
 		header('Location: hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id);
