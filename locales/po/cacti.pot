@@ -33,6 +33,10 @@ msgid "The cluster was saved."
 msgstr ""
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr ""
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr ""
 
@@ -57,6 +61,10 @@ msgid "Missing graphs were added."
 msgstr ""
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr ""
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr ""
 
@@ -66,6 +74,22 @@ msgstr ""
 
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr ""
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
 msgstr ""
 
 #: hpcsched_health.php

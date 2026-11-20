@@ -79,6 +79,17 @@ final class CactiObjectRepository {
 	}
 
 	/**
+	 * Whether Cacti's run_data_query() skips this device: it returns true
+	 * without running the query for a disabled device or one that is down
+	 * (HOST_DOWN is 1).
+	 */
+	public function queriesSkipped(int $hostId): bool {
+		$row = Row::one(db_fetch_row_prepared('SELECT status, disabled FROM host WHERE id = ?', [$hostId], true, $this->connection));
+
+		return $row !== null && (Row::int($row, 'status', 0, 1) === 1 || Row::string($row, 'disabled') === 'on');
+	}
+
+	/**
 	 * Devices a cluster may be mapped to: every device not already mapped.
 	 *
 	 * @param list<int> $mapped host ids already in use

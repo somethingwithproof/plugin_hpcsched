@@ -31,6 +31,10 @@ msgid "The cluster was saved."
 msgstr "已保存集群。"
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "未更改集群状态：写入失败。请查看 Cacti 日志。"
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr "已删除集群及其缓存快照。设备和图表已保留。未连接调度器。"
 
@@ -55,6 +59,10 @@ msgid "Missing graphs were added."
 msgstr "已添加缺失的图表。"
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "未添加图表：集群没有设备，或其设备已不存在。"
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr "未取消集群映射：页面打开后其他人已修改集群。"
 
@@ -65,6 +73,22 @@ msgstr "已取消集群映射。设备及其图表已保留。"
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."
 msgstr "已根据快照重新索引分区。"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "未重新索引分区：设备已禁用或已宕机，因此 Cacti 跳过了其数据查询。"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "未重新索引分区：Cacti 无法运行数据查询。请参阅 Cacti 日志。"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "未重新索引分区：未安装 HPC Scheduler 数据查询。请从健康状态页面安装模板。"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "未重新索引分区：集群没有设备，或其设备已不存在。"
 
 #: hpcsched_health.php
 msgid "The HPC Scheduler templates are installed."

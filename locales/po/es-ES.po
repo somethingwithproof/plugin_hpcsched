@@ -31,6 +31,10 @@ msgid "The cluster was saved."
 msgstr "Se ha guardado el clúster."
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "No se ha cambiado el estado del clúster: falló la escritura. Consulte el registro de Cacti."
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr "Se han eliminado el clúster y su instantánea en caché. Se han conservado su dispositivo y sus gráficos. No se contactó con el planificador."
 
@@ -55,6 +59,10 @@ msgid "Missing graphs were added."
 msgstr "Se han añadido los gráficos que faltaban."
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "No se han añadido gráficos: el clúster no tiene dispositivo o su dispositivo ya no existe."
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr "No se ha desvinculado el clúster: alguien lo modificó después de abrir la página."
 
@@ -65,6 +73,22 @@ msgstr "Se ha desvinculado el clúster. Se han conservado el dispositivo y sus g
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."
 msgstr "Se han reindexado las particiones a partir de la instantánea."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "No se han reindexado las particiones: el dispositivo está deshabilitado o inactivo, por lo que Cacti omitió su consulta de datos."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "No se han reindexado las particiones: Cacti no pudo ejecutar la consulta de datos. Consulte el registro de Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "No se han reindexado las particiones: la consulta de datos de HPC Scheduler no está instalada. Instale las plantillas desde la página de estado."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "No se han reindexado las particiones: el clúster no tiene dispositivo o su dispositivo ya no existe."
 
 #: hpcsched_health.php
 msgid "The HPC Scheduler templates are installed."

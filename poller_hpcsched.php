@@ -133,10 +133,19 @@ register_shutdown_function(function () use ($hpcsched_cluster, $hpcsched_holder,
 	}
 });
 
+$hpcsched_run = null;
+
 try {
 	$hpcsched_run = hpcsched_reader($hpcsched_fitted, $hpcsched_holder, $hpcsched_clock)->run($hpcsched_row, $hpcsched_interval);
+} catch (\Somethingwithproof\Hpcsched\DatabaseError $e) {
+	// exit() would skip the finally block, so exit after it has run.
+	cacti_log('ERROR: The HPC scheduler reader for cluster ' . $hpcsched_cluster . ' stopped on a database error: ' . $e->getMessage(), false, 'HPCSCHED');
 } finally {
 	unregister_process('hpcsched', 'reader', $hpcsched_cluster);
+}
+
+if ($hpcsched_run === null) {
+	exit(1);
 }
 
 // A partition added, removed, or renamed reaches the cluster device through

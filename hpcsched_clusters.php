@@ -99,7 +99,11 @@ switch ($hpcsched_action) {
 	case 'enable':
 	case 'disable':
 		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
-		$hpcsched_clusters->setState($hpcsched_cluster->id, $hpcsched_action === 'enable' ? \Somethingwithproof\Hpcsched\AdminState::Enabled : \Somethingwithproof\Hpcsched\AdminState::Disabled);
+
+		if (!$hpcsched_clusters->setState($hpcsched_cluster->id, $hpcsched_action === 'enable' ? \Somethingwithproof\Hpcsched\AdminState::Enabled : \Somethingwithproof\Hpcsched\AdminState::Disabled)) {
+			raise_message('hpcsched_state', __('The cluster state was not changed: the write failed. See the Cacti log.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+		}
+
 		header('Location: hpcsched_clusters.php');
 		exit;
 	case 'delete':
@@ -130,6 +134,8 @@ switch ($hpcsched_action) {
 		} elseif ($hpcsched_cluster->hostId > 0 && !$hpcsched_access->orphaned($hpcsched_cluster)) {
 			$hpcsched_devices->attach($hpcsched_cluster->id, $hpcsched_cluster->hostId, $hpcsched_graphs);
 			raise_message('hpcsched_device', __('Missing graphs were added.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		} else {
+			raise_message('hpcsched_device', __('No graphs were added: the cluster has no device, or its device no longer exists.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
 		}
 
 		header('Location: ' . $hpcsched_back);
@@ -142,8 +148,29 @@ switch ($hpcsched_action) {
 		exit;
 	case 'reindex_device':
 		$hpcsched_cluster = hpcsched_cluster_request($hpcsched_clusters, $hpcsched_access);
-		$hpcsched_devices->reindex($hpcsched_cluster->hostId);
-		raise_message('hpcsched_device', __('The partitions were reindexed from the snapshot.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+		$hpcsched_result  = $hpcsched_cluster->hostId > 0 && !$hpcsched_access->orphaned($hpcsched_cluster) ? $hpcsched_devices->reindex($hpcsched_cluster->hostId) : \Somethingwithproof\Hpcsched\ReindexResult::NotRun;
+
+		switch ($hpcsched_result) {
+			case \Somethingwithproof\Hpcsched\ReindexResult::Completed:
+				raise_message('hpcsched_device', __('The partitions were reindexed from the snapshot.', 'hpcsched'), MESSAGE_LEVEL_INFO);
+				break;
+			case \Somethingwithproof\Hpcsched\ReindexResult::Skipped:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				break;
+			case \Somethingwithproof\Hpcsched\ReindexResult::Failed:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: Cacti could not run the data query. See the Cacti log.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				break;
+			case \Somethingwithproof\Hpcsched\ReindexResult::NoQuery:
+				raise_message('hpcsched_device', __('The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page.', 'hpcsched'), MESSAGE_LEVEL_ERROR);
+				break;
+			default:
+				raise_message(
+					'hpcsched_device',
+					__('The partitions were not reindexed: the cluster has no device, or its device no longer exists.', 'hpcsched'),
+					MESSAGE_LEVEL_ERROR
+				);
+		}
+
 		header('Location: hpcsched_clusters.php?action=device&id=' . $hpcsched_cluster->id);
 		exit;
 	case 'device':

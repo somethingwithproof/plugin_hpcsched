@@ -31,6 +31,10 @@ msgid "The cluster was saved."
 msgstr "حُفظ العنقود."
 
 #: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "لم تتغير حالة العنقود: فشلت الكتابة. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
 msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
 msgstr "حُذف العنقود ولقطته المؤقتة. احتُفظ بجهازه ورسومه. لم يُتصل بالمُجدول."
 
@@ -55,6 +59,10 @@ msgid "Missing graphs were added."
 msgstr "أُضيفت الرسوم المفقودة."
 
 #: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "لم تُضف رسوم بيانية: ليس للعنقود جهاز، أو لم يعد جهازه موجودًا."
+
+#: hpcsched_clusters.php
 msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
 msgstr "لم يُفك ربط العنقود: غيّره شخص آخر منذ فتح الصفحة."
 
@@ -65,6 +73,22 @@ msgstr "فُك ربط العنقود. احتُفظ بالجهاز ورسومه."
 #: hpcsched_clusters.php
 msgid "The partitions were reindexed from the snapshot."
 msgstr "أُعيدت فهرسة الأقسام من اللقطة."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "لم تُعد فهرسة الأقسام: الجهاز معطّل أو متوقف، لذلك تخطّى Cacti استعلام بياناته."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "لم تُعد فهرسة الأقسام: تعذّر على Cacti تشغيل استعلام البيانات. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "لم تُعد فهرسة الأقسام: استعلام بيانات HPC Scheduler غير مثبّت. ثبّت القوالب من صفحة الحالة الصحية."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "لم تُعد فهرسة الأقسام: ليس للعنقود جهاز، أو لم يعد جهازه موجودًا."
 
 #: hpcsched_health.php
 msgid "The HPC Scheduler templates are installed."
