@@ -25,7 +25,7 @@ inherits Operator access, and Operator access inherits View access on each reque
 this does not add stored grants to users or groups. Plugin settings also require
 HPC Scheduler Admin access in addition to Cacti's Settings permission.
 
-Cacti device permissions still limit the rows and actions available to each user; unmapped objects require an administrator.
+Cacti device permissions still limit the rows and actions available to each user; a cluster without a device is listed on the administrative pages for every user with the plugin realm, but not in the operator views, which list only clusters mapped to a device.
 Credentials, configuration, mapping, deletion and other administrative changes
 remain in the administrative pages. Acknowledgments last only in the current
 user's session, for at most one hour and only while the same observation remains

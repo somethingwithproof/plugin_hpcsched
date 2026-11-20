@@ -1,4 +1,4 @@
-<!-- Source: README.md; SHA256: d5c640066f5b2621b57497556f3c9a2fa9226804df633dceda3224538767760c -->
+<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
 
 <!-- translations:start -->
 [English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية](../ar-SA/README.md)
@@ -24,7 +24,7 @@ Este proyecto es independiente y no está afiliado al proyecto Cacti.
 
 Después de copiar los archivos de actualización, abra la página Complementos como administrador para registrar el nuevo permiso. Asigne expresamente Operator en **Configuración > Usuarios** o en los grupos de usuarios. Las actualizaciones conservan los identificadores y las concesiones de View y Admin. En cada petición, Admin hereda el acceso Operator y Operator hereda View; esto no añade concesiones almacenadas a usuarios ni grupos. Los ajustes del complemento también requieren HPC Scheduler Admin, además del permiso Ajustes de Cacti.
 
-Los permisos de dispositivos de Cacti siguen limitando las filas y acciones disponibles para cada usuario; los objetos sin asociación requieren un administrador. Credenciales, configuración, asociaciones, eliminación y otros cambios administrativos permanecen en las páginas administrativas. Los acuses solo duran en la sesión del usuario actual, como máximo una hora y mientras la misma observación siga vigente. Las observaciones nuevas o modificadas los invalidan. Nunca marcan como correcta una medición fallida ni suprimen alertas.
+Los permisos de dispositivos de Cacti siguen limitando las filas y acciones disponibles para cada usuario; un clúster sin dispositivo aparece en las páginas administrativas para todo usuario con el permiso del complemento, pero no en las páginas de operaciones, que solo muestran los clústeres asociados a un dispositivo. Credenciales, configuración, asociaciones, eliminación y otros cambios administrativos permanecen en las páginas administrativas. Los acuses solo duran en la sesión del usuario actual, como máximo una hora y mientras la misma observación siga vigente. Las observaciones nuevas o modificadas los invalidan. Nunca marcan como correcta una medición fallida ni suprimen alertas.
 
 <a id="operator-notes-for-milestone-2"></a>
 ## Notas para operadores del hito 2
