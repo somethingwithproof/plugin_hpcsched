@@ -54,6 +54,13 @@ final class Reader {
 
 		try {
 			return $this->runLeased($cluster, $budget, $interval);
+		} catch (DatabaseError $e) {
+			// The lease is still held here, so the failure can be recorded
+			// for the health page before the caller logs it and exits.
+			$now = $this->clock->now();
+			$this->runs->finish(new ClusterRun($cluster->id, finishedAt: $now, outcome: RunOutcome::Failed, error: ErrorClass::Failed, lastFailure: $now), $this->holder);
+
+			throw $e;
 		} finally {
 			$this->runs->release($cluster->id, $this->holder);
 		}

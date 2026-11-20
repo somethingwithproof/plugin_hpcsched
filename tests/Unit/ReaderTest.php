@@ -27,6 +27,7 @@ use Somethingwithproof\Hpcsched\ClusterRepository;
 use Somethingwithproof\Hpcsched\CommandRunner;
 use Somethingwithproof\Hpcsched\ErrorClass;
 use Somethingwithproof\Hpcsched\FixedClock;
+use Somethingwithproof\Hpcsched\DatabaseError;
 use Somethingwithproof\Hpcsched\HttpResponse;
 use Somethingwithproof\Hpcsched\Reader;
 use Somethingwithproof\Hpcsched\RunOutcome;
@@ -163,6 +164,21 @@ it('writes nothing when the transaction ends part way, leaving the previous snap
 	expect(in_array('COMMIT', $sql, true))->toBeFalse()
 		->and($run->outcome)->toBe(RunOutcome::Failed)
 		->and($run->error)->toBe(ErrorClass::Failed);
+});
+
+it('records a failed run and rethrows when a database read fails mid-run', function () {
+	$clock = new FixedClock(100000);
+	// The previous section rows cannot be read.
+	$GLOBALS['__hpcsched_db_rows']['FROM plugin_hpcsched_section WHERE cluster_id'] = false;
+
+	expect(fn () => hpcsched_reader_for(hpcsched_fixture_responses(), $clock)->run(hpcsched_rest_cluster($this->scratch), 60))
+		->toThrow(DatabaseError::class);
+
+	$finish = array_values(array_filter($GLOBALS['__hpcsched_db_exec'], fn (array $s): bool => str_contains($s['sql'], 'SET finished_at')));
+
+	expect($finish)->toHaveCount(1)
+		->and($finish[0]['params'])->toContain('failed')
+		->and(array_column($GLOBALS['__hpcsched_db_exec'], 'sql'))->toContain('UPDATE plugin_hpcsched_run SET lease_expires = 0 WHERE cluster_id = ? AND holder = ?');
 });
 
 it('refuses a run while another holds the lease', function () {
