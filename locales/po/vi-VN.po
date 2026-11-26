@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: vi-VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Bạn không có quyền đối với thiết bị của cụm đó."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Tên: một cụm khác đã sử dụng tên này."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Cụm chưa được lưu: cụm đã bị người khác thay đổi kể từ khi biểu mẫu được mở, hoặc việc ghi bị lỗi. Hãy mở lại và thực hiện lại thay đổi."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Cụm đã được lưu."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Trạng thái cụm chưa được thay đổi: việc ghi bị lỗi. Xem nhật ký Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Cụm và ảnh chụp nhanh được lưu trong bộ nhớ đệm của nó đã bị xóa. Thiết bị và biểu đồ của nó vẫn được giữ lại. Trình lập lịch đã không được liên hệ."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Thiết bị và các biểu đồ của nó đã được tạo."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Thiết bị chưa được tạo: cụm đã có thiết bị, cụm đã bị người khác thay đổi kể từ khi trang được mở, hoặc Cacti đã từ chối. Xem nhật ký Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Cụm đã được ánh xạ tới thiết bị."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Cụm chưa được ánh xạ: thiết bị không tồn tại, không được phép đối với bạn, đã gắn với một cụm khác, hoặc cụm đã bị người khác thay đổi kể từ khi trang được mở."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Các biểu đồ bị thiếu đã được thêm."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Không có biểu đồ nào được thêm: cụm không có thiết bị, hoặc thiết bị của nó không còn tồn tại."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Cụm chưa được hủy ánh xạ: cụm đã bị người khác thay đổi kể từ khi trang được mở."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Cụm đã được hủy ánh xạ. Thiết bị và các biểu đồ của nó vẫn được giữ lại."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Các phân vùng đã được lập chỉ mục lại từ ảnh chụp nhanh."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Các phân vùng chưa được lập chỉ mục lại: thiết bị đang bị tắt hoặc ngừng hoạt động, vì vậy Cacti đã bỏ qua truy vấn dữ liệu của nó."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Các phân vùng chưa được lập chỉ mục lại: Cacti không thể chạy truy vấn dữ liệu. Xem nhật ký Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Các phân vùng chưa được lập chỉ mục lại: truy vấn dữ liệu HPC Scheduler chưa được cài đặt. Hãy cài đặt các mẫu từ trang tình trạng."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Các phân vùng chưa được lập chỉ mục lại: cụm không có thiết bị, hoặc thiết bị của nó không còn tồn tại."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Các mẫu HPC Scheduler đã được cài đặt."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Các mẫu chưa được cài đặt: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Chế độ xem giám sát"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Không thể đọc các quan sát. Hãy yêu cầu quản trị viên kiểm tra nhật ký plugin."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Kiểm tra các nhóm lý do đang chờ và độ mới của ảnh chụp nhanh trên trang tổng quan. Chuyển thông tin xác thực, ánh xạ cụm và chính sách bảo trì lên quản trị viên."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Tên: sử dụng từ 1 đến 64 chữ cái, chữ số, dấu chấm, dấu gạch ngang hoặc dấu gạch dưới, bắt đầu bằng chữ cái hoặc chữ số."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: chọn một trong các poller được liệt kê."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Khoảng thời gian thu thập: nhập số giây nguyên từ %d đến %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Phương thức truyền tải: chọn một trong các phương thức truyền tải được liệt kê."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: nhập đường dẫn tuyệt đối, hoặc để trống để dùng giá trị mặc định của trình thăm dò."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "URL slurmrestd: máy chủ và cổng này không nằm trong danh sách máy chủ slurmrestd trong Cài đặt."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "URL slurmrestd: nhập một URL https:// không có tên người dùng, chuỗi truy vấn hoặc phân đoạn; http:// thuần chỉ được chấp nhận cho địa chỉ loopback."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Người dùng slurmrestd: sử dụng tối đa 64 chữ cái, chữ số, dấu chấm, dấu gạch ngang hoặc dấu gạch dưới, hoặc để trống để dùng mã thông báo người dùng."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Tệp mã thông báo: nhập đường dẫn tuyệt đối của tệp mã thông báo trên trình thăm dò. Bản thân mã thông báo không bao giờ được nhập tại đây."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Tệp mã thông báo: chưa có thư mục tệp mã thông báo nào được thiết lập. Hãy yêu cầu quản trị viên Cacti thiết lập chúng trong Cài đặt, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Tệp mã thông báo: tệp phải nằm bên trong một trong các thư mục tệp mã thông báo được thiết lập trong Cài đặt (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Cụm HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Thao tác"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Thiết bị"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Khoảng thời gian"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Tên"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Các phần"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Trạng thái"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Truyền tải"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Chưa có cụm nào được cấu hình."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Tắt"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Bật"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Trình thăm dò đã xóa %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d giây"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Không có"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Xóa"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Xuất"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Tải xuống cấu hình cụm dưới dạng JSON trước khi gỡ cài đặt làm xóa các bảng của plugin. Tệp này chỉ chứa đường dẫn tệp mã thông báo, không bao giờ chứa mã thông báo."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Cụm: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Cụm mới"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Khoảng thời gian thu thập (giây)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Đã bật"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Thu thập đặt chỗ"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Thu thập chia sẻ công bằng (chỉ tài khoản)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Đường dẫn slurm.conf (tùy chọn)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "URL slurmrestd"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Người dùng slurmrestd (tùy chọn)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Tệp mã thông báo trên trình thăm dò"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Các lệnh máy khách sử dụng tệp nhị phân được thiết lập trong Cài đặt > HPC Scheduler và xác thực Slurm riêng của người dùng trình thăm dò; đường dẫn slurm.conf tùy chọn dùng để chọn cụm. Các trường slurmrestd chỉ được sử dụng với phương thức truyền tải đó. Tệp mã thông báo chỉ được phép cho người dùng trình thăm dò đọc; plugin đọc tệp này ở mỗi lần chạy và không bao giờ lưu trữ mã thông báo."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Lưu"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Thiết bị cho cụm: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Đã ánh xạ tới thiết bị %s (id %d). Các biểu đồ của nó tuân theo quyền thiết bị và biểu đồ của Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Việc thêm các biểu đồ bị thiếu sẽ thêm:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Thêm biểu đồ bị thiếu"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Lập chỉ mục lại phân vùng"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Hủy ánh xạ"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Việc hủy ánh xạ vẫn giữ lại thiết bị, các biểu đồ và lịch sử của chúng."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Cụm vẫn đang được ánh xạ tới thiết bị %d, thiết bị này không còn tồn tại. Việc tạo hoặc ánh xạ một thiết bị sẽ thay thế ánh xạ đó."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Việc tạo một thiết bị sẽ thêm:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Nếu không có biểu đồ phân vùng, chỉ các biểu đồ cụm được tạo, còn các nguồn dữ liệu và lệnh gọi cho các phân vùng ở trên sẽ bị bỏ qua."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Cũng tạo các biểu đồ phân vùng"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Tạo thiết bị"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Hoặc ánh xạ một thiết bị hiện có"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Ánh xạ thiết bị"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Các mẫu HPC Scheduler chưa được cài đặt. Hãy cài đặt chúng từ trang tình trạng."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Một thiết bị \"%s\" từ mẫu thiết bị %s, được thăm dò bởi trình thăm dò %d, với kiểm tra tính khả dụng đã tắt."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Truy vấn dữ liệu \"%s\", đang lập chỉ mục %d phân vùng hiện biết."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d biểu đồ cụm, mỗi biểu đồ có nguồn dữ liệu \"%s\" riêng."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d biểu đồ phân vùng, %d cho mỗi phân vùng, mỗi biểu đồ có nguồn dữ liệu riêng."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Tổng cộng: %d nguồn dữ liệu và %d tệp RRD, và %d lệnh gọi máy chủ tập lệnh mỗi lần thăm dò. Các phân vùng được thêm sau sẽ nhận biểu đồ từ trang Biểu đồ mới."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Được tạo bởi plugin HPC Scheduler cho cụm %s. Các giá trị của nó đến từ ảnh chụp nhanh của plugin; tên máy chủ là tên dành riêng và không bao giờ được liên hệ."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "cấu hình: một đường dẫn, URL hoặc cài đặt bị thiếu hoặc không được phép"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "không thể liên hệ được với trình lập lịch"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "lệnh gọi mất nhiều thời gian hơn mức cho phép và đã bị dừng"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "phản hồi lớn hơn mức cho phép và đã bị loại bỏ"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "không thể phân tích cú pháp phản hồi bằng trình phân tích dữ liệu đã ghim"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "trình lập lịch đã từ chối thông tin xác thực"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "tài khoản trình lập lịch có thể không được xem dữ liệu này (PrivateData hoặc quyền)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "bộ điều khiển đã yêu cầu các máy khách tạm dừng (giới hạn tốc độ)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "máy chủ đã trả lời 304 cho một yêu cầu không có điều kiện; dữ liệu trước đó được giữ lại"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "plugin đã từ chối một lệnh gọi nằm ngoài danh sách cho phép của nó"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "lệnh gọi thất bại"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "trình đọc hết bộ nhớ; hãy giảm Kích thước phản hồi tối đa hoặc tăng Bộ nhớ thu thập trong Cài đặt"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Chưa bao giờ"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d giây trước"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d phút trước"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d giờ trước"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d ngày trước"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Hiện tại"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Bị trễ"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Cũ"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Chưa từng thu thập"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Các cụm"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Lệnh gọi"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Cụm"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Thời lượng"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Độ mới"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Lần chạy cuối"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Lần thành công cuối"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Kết quả"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Trình phân tích"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Tất cả các cụm"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Cảnh báo"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Cảnh báo"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Không có cảnh báo."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Các mẫu"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Các mẫu thiết bị, dữ liệu và biểu đồ cùng truy vấn dữ liệu phân vùng đã được cài đặt."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Các mẫu chưa được cài đặt hoặc chưa phải bản mới nhất, nên không thể tạo thiết bị cụm. Xem các cảnh báo ở trên."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Cài đặt mẫu"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Các phần ảnh chụp nhanh"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Tuổi dữ liệu"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Lỗi"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Lần thử cuối"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Bản ghi"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Phần"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Lần cài đặt mẫu cuối cùng thất bại: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Một số mẫu HPC Scheduler bị thiếu trong Cacti. Hãy cài đặt chúng bên dưới."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, đã phát hiện"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Kích thước phản hồi tối đa là %d MiB, nhưng phản hồi đã giải mã có kích thước đó không vừa với Bộ nhớ thu thập là %d MiB; trình đọc cho phép %d MiB. Hãy tăng Bộ nhớ thu thập hoặc giảm Kích thước phản hồi tối đa trong Cài đặt."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Đã gán cho trình thăm dò %d, một trình thu thập dữ liệu từ xa. Bản phát hành này chỉ thu thập trên trình thăm dò chính, vì vậy cụm không được thu thập; việc thu thập từ xa được lên kế hoạch cho giai đoạn 3. Hãy gán nó cho trình thăm dò chính."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Khoảng thời gian thu thập thấp hơn mức tối thiểu %d giây."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Khoảng thời gian thu thập %d giây ngắn hơn khoảng thời gian trình thăm dò %d giây; dữ liệu được thu thập mỗi %d giây."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "slurmrestd được truy cập qua HTTP thuần trên địa chỉ loopback; mã thông báo đi qua ngăn xếp mạng cục bộ mà không được mã hóa."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Chưa có lần chạy trình đọc nào hoàn tất cho cụm này."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Tệp mã thông báo: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Mã thông báo đã hết hạn %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Mã thông báo hết hạn sau %d phút."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Lần chạy cuối đã sử dụng toàn bộ ngân sách thời gian %d giây; một số phần chưa được thu thập."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Trình lập lịch báo cáo Slurm %s, đây không phải là bản phát hành được hỗ trợ (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Trình lập lịch báo cáo Slurm %s, phiên bản này không đi kèm trình phân tích dữ liệu %s đã chọn trong Cài đặt."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Các lệnh máy khách đã chạy mà không có giới hạn bộ nhớ; hãy đặt đường dẫn prlimit trong Cài đặt."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Lỗi cuối cùng: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Việc thu thập bị tạm dừng trong %d giây sau khi gặp giới hạn tốc độ."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Dữ liệu đã cũ; biểu đồ và cảnh báo đọc nó là không xác định."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Đang chờ"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Đang giữ"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Đang chạy"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Đang hoàn tất"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Khác"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Nhàn rỗi"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Đã cấp phát"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Hỗn hợp"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Đã rút cạn"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Đang rút cạn"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Ngừng hoạt động"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Bảo trì"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Đã đặt trước"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Đã tắt nguồn"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Xem lại các quan sát đã ghi nhận bên dưới. Xác nhận chỉ áp dụng riêng cho phiên này, hết hạn khi các quan sát thay đổi và không bao giờ ẩn cảnh báo hay thay đổi tình trạng."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Vận hành HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Điều tra"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Đối tượng"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Quan sát lúc (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Không xác định hoặc cũ"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Đã xác nhận; tình trạng không thay đổi."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Xác nhận"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Không có quan sát nào cho các thiết bị bạn có quyền truy cập."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Đã thu thập"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Chi tiết"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Các nút"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Chưa có cụm nào được thu thập."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Lý do đang chờ"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Biểu đồ"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Dấu gạch ngang có nghĩa là plugin không có dữ liệu hiện tại cho giá trị đó: phần này đã thất bại, đã cũ hoặc chưa từng được thu thập. Đang chờ không bao gồm các tác vụ đang giữ. Đã rút cạn đếm mọi nút có cờ drain, bao gồm cả các nút cũng đang ngừng hoạt động."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Lý do đang chờ: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Nhóm"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Tác vụ"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Phân vùng"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Lý do"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Không có tác vụ đang chờ nào."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Chỉ liệt kê %d lý do có nhiều tác vụ nhất."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Mỗi tác vụ được tính theo lý do cuối cùng mà trình lập lịch đã kiểm tra cho tác vụ đó, vốn không nhất thiết là yếu tố duy nhất giữ tác vụ lại. Một tác vụ nằm trong nhiều phân vùng được tính một lần ở đây và một lần ở mỗi phân vùng mà nó chỉ định. Các tác vụ bị giữ được liệt kê kèm theo lý do giữ."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Nút ở trạng thái không xác định"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Tên"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Trạng thái Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Không có. Mọi nút đều ánh xạ tới một trạng thái đã biết."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Chưa thu thập bản chụp nhanh tác vụ nào."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Chưa thu thập bản chụp nhanh nút nào, vì vậy trạng thái của các nút chưa được xác định."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Bản chụp nhanh tác vụ được lấy vào %s (%s), hiện hành."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Bản chụp nhanh nút được lấy vào %s (%s), hiện hành."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Bản chụp nhanh tác vụ được lấy vào %s (%s), không còn hiện hành: dữ liệu đã cũ hoặc lần thu thập cuối cùng đã thất bại, và các số đếm bên dưới là dữ liệu thu thập được ở lần cuối."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Bản chụp nhanh nút được lấy vào %s (%s), không còn hiện hành: dữ liệu đã cũ hoặc lần thu thập cuối cùng đã thất bại, và các nút bên dưới là dữ liệu thu thập được ở lần cuối."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Người vận hành Trình lập lịch HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Xem Trình lập lịch HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Quản trị Trình lập lịch HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Tình trạng Trình lập lịch HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Độ ưu tiên"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Tài nguyên"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Phụ thuộc"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Thời gian bắt đầu"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Đặt trước"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Giới hạn liên kết"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Giới hạn QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Giới hạn phân vùng"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Tính khả dụng của nút"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Đặt trước"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Chia sẻ công bằng"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Lệnh máy khách Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Trình phân tích dữ liệu"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Trình phân tích dữ liệu Slurm cho các lệnh máy khách. Hãy chọn phiên bản có trong bản phát hành của mọi cụm được đọc qua lệnh máy khách: v0.0.43 có trong 25.05, 25.11 và 26.05 và bị loại bỏ ở 27.05; v0.0.44 yêu cầu 25.11 trở lên; v0.0.45 yêu cầu 26.05 trở lên. Trang tình trạng sẽ cảnh báo khi một cụm báo cáo bản phát hành không có trình phân tích đó. Các cụm được đọc qua slurmrestd sẽ bỏ qua thiết lập này: chúng sử dụng phiên bản mới nhất trong số này mà trình nền phục vụ, và trang tình trạng sẽ hiển thị phiên bản nào đang dùng."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Đường dẫn tuyệt đối tới squeue trên mỗi trình thăm dò đọc cụm thông qua lệnh máy khách. Plugin chỉ chạy lệnh này dưới dạng squeue --all --json với trình phân tích dữ liệu ở trên."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Đường dẫn tuyệt đối tới scontrol. Plugin chỉ chạy scontrol --json show node, show partition và show reservation; không bao giờ chạy update, reconfigure hay token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Đường dẫn tuyệt đối tới sshare, chỉ dùng cho các cụm thu thập dữ liệu chia sẻ công bằng."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Giới hạn"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Thời gian chờ cuộc gọi"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Số giây một cuộc gọi tới trình lập lịch có thể kéo dài trước khi bị dừng và phần tương ứng được ghi nhận là thất bại. Một cuộc gọi cũng không bao giờ chạy quá ngân sách thời gian của trình đọc."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Kích thước phản hồi tối đa"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "Số MiB mà một cuộc gọi trình lập lịch có thể trả về. Phản hồi lớn hơn sẽ bị loại bỏ và phần tương ứng được ghi nhận là thất bại. Việc giải mã cần khoảng 12 lần kích thước phản hồi, vì vậy trình đọc sử dụng tối đa (Collection Memory - 64) / 12 MiB và trang tình trạng sẽ cảnh báo khi giá trị này lớn hơn."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Bộ nhớ thu thập"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "Số MiB bộ nhớ PHP mà mỗi lượt thu thập sẽ nâng giới hạn lên mức đó (không bao giờ hạ thấp giới hạn). Giá trị mặc định 1024 phù hợp với phản hồi lên tới 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Đường dẫn tuyệt đối tới prlimit (util-linux), dùng để giới hạn không gian địa chỉ của mỗi lệnh máy khách. Để trống để chạy lệnh không giới hạn bộ nhớ; khi đó trang tình trạng sẽ cảnh báo."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Giới hạn bộ nhớ lệnh"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "Số MiB không gian địa chỉ mà mỗi lệnh máy khách có thể sử dụng thông qua prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Thông tin xác thực slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Thư mục tệp mã thông báo"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Các thư mục tuyệt đối trên các trình thăm dò có thể chứa tệp mã thông báo slurmrestd, phân cách bằng dấu phẩy hoặc dấu cách. Một cụm chỉ có thể chỉ định tệp mã thông báo nằm trong một trong các thư mục đó, thuộc sở hữu của người dùng trình thăm dò và truy cập không qua liên kết tượng trưng. Giữ mỗi thư mục chỉ có quyền ghi bởi root và người dùng trình thăm dò. Để trống nghĩa là không cụm nào có thể sử dụng slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Máy chủ slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Tùy chọn. Các máy chủ slurmrestd mà một cụm có thể chỉ định, ở dạng host hoặc host:port, phân cách bằng dấu phẩy hoặc dấu cách. Mục không có cổng cho phép mọi cổng trên máy chủ đó. Để trống cho phép mọi máy chủ."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Số giây trước khi mã thông báo hết hạn mà trang tình trạng bắt đầu cảnh báo, nếu mã thông báo có thời gian hết hạn."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Cảnh báo hết hạn mã thông báo"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Gỡ cài đặt"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Giữ các bảng của plugin khi gỡ cài đặt"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Khi được chọn, việc gỡ cài đặt plugin sẽ giữ lại các cụm và bản chụp nhanh của nó. Bỏ chọn để quá trình gỡ cài đặt xóa chúng; hãy xuất các cụm trước từ mục HPC Clusters. Plugin không tạo thiết bị Cacti hay lịch bảo trì (Maint) nào trong bản phát hành này, và trình lập lịch cũng không bao giờ bị liên hệ theo cả hai cách."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Tệp truy vấn dữ liệu %s chưa được cài đặt trong thư mục resource/script_server của Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Tệp truy vấn dữ liệu %s trong thư mục resource/script_server của Cacti khác với tệp mà plugin đi kèm."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "chỉ người dùng trình thăm dò mới đọc được"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "nhóm của tệp có thể đọc được; hãy giới hạn chỉ cho người dùng trình thăm dò (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "mọi người dùng trên trình thăm dò đều đọc được; hãy giới hạn chỉ cho người dùng trình thăm dò (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "bị từ chối: thuộc sở hữu của người dùng khác với người dùng trình thăm dò (hãy chown tệp cho người dùng trình thăm dò)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "bị thiếu hoặc người dùng trình thăm dò không đọc được"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "bị từ chối: nằm ngoài các thư mục tệp mã thông báo được đặt trong Settings, truy cập qua liên kết tượng trưng, không phải tệp thông thường, người khác có quyền ghi hoặc quá lớn; nhật ký ghi rõ lý do"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "trống"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Lệnh máy khách Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Plugin Trình lập lịch HPC yêu cầu PHP %s trở lên. Máy chủ này đang chạy PHP %s, vì vậy plugin chưa được cài đặt hoặc bật."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Plugin Trình lập lịch HPC chưa được bật."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Plugin Trình lập lịch HPC yêu cầu PHP %s trở lên."
+
+#: setup.php
+msgid "Management"
+msgstr "Quản lý"
