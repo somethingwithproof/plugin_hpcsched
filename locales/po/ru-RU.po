@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ru-RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "У вас нет разрешения на доступ к устройству этого кластера."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Имя: другой кластер уже использует это имя."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Кластер не был сохранён: он был изменён кем-то другим с момента открытия формы, или запись завершилась ошибкой. Откройте форму снова и повторите изменение."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Кластер сохранён."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Состояние кластера не изменено: запись завершилась ошибкой. См. журнал Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Кластер и его кэшированный снимок удалены. Его устройство и графики сохранены. Обращение к планировщику не выполнялось."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Устройство и его графики созданы."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Устройство не было создано: у кластера уже есть устройство, кластер был изменён кем-то другим с момента открытия страницы, или Cacti отклонил операцию. См. журнал Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Кластер сопоставлен с устройством."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Кластер не был сопоставлен: устройство не существует, недоступно вам, уже привязано к другому кластеру или кластер был изменён кем-то другим с момента открытия страницы."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Недостающие графики добавлены."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Графики не добавлены: у кластера нет устройства, или его устройство больше не существует."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Привязка кластера не снята: он был изменён кем-то другим с момента открытия страницы."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Привязка кластера снята. Устройство и его графики сохранены."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Разделы переиндексированы из снимка."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Разделы не переиндексированы: устройство отключено или недоступно, поэтому Cacti пропустил его запрос данных."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Разделы не переиндексированы: Cacti не смог выполнить запрос данных. См. журнал Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Разделы не переиндексированы: запрос данных HPC Scheduler не установлен. Установите шаблоны со страницы состояния."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Разделы не переиндексированы: у кластера нет устройства, или его устройство больше не существует."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Шаблоны HPC Scheduler установлены."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Шаблоны не установлены: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Представление мониторинга"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Не удалось прочитать наблюдения. Попросите администратора проверить журнал плагина."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Проверьте семейства причин ожидания и актуальность снимков на странице обзора. Вопросы по учётным данным, сопоставлению кластеров и политике обслуживания передавайте администратору."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Имя: используйте от 1 до 64 букв, цифр, точек, дефисов или знаков подчёркивания, начиная с буквы или цифры."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Опросчик: выберите один из перечисленных опросчиков."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Интервал сбора: введите целое число секунд от %d до %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Транспорт: выберите один из перечисленных транспортов."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: введите абсолютный путь или оставьте поле пустым, чтобы использовать значение поллера по умолчанию."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "URL slurmrestd: этот узел и порт отсутствуют в списке узлов slurmrestd в настройках."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "URL slurmrestd: введите URL https:// без имени пользователя, строки запроса или фрагмента; обычный http:// принимается только для адреса обратной петли (loopback)."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Пользователь slurmrestd: используйте не более 64 букв, цифр, точек, дефисов или знаков подчёркивания, либо оставьте поле пустым для пользовательского токена."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Файл токена: введите абсолютный путь к файлу токена на поллере. Сам токен здесь никогда не вводится."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Файл токена: каталоги файлов токенов ещё не заданы. Попросите администратора Cacti задать их в разделе «Настройки» -> «HPC Scheduler»."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Файл токена: файл должен находиться в одном из каталогов файлов токенов, заданных в настройках (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Кластеры HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Действия"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Устройство"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Интервал"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Имя"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Опросчик"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Секции"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Состояние"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Транспорт"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Кластеры ещё не настроены."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Отключить"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Включить"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Удалённый поллер %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d сек."
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Нет"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Удалить"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Экспорт"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Скачайте конфигурацию кластеров в формате JSON перед удалением плагина, которое удалит его таблицы. Она содержит пути к файлам токенов, но никогда сам токен."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Кластер: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Новый кластер"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Интервал сбора (секунды)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Включено"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Собирать резервирования"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Собирать Fair-share (только учётные записи)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Путь к slurm.conf (необязательно)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "URL slurmrestd"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Пользователь slurmrestd (необязательно)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Файл токена на поллере"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Клиентские команды используют исполняемые файлы, заданные в «Настройки > HPC Scheduler», и собственную аутентификацию Slurm пользователя поллера; необязательный путь slurm.conf выбирает кластер. Поля slurmrestd используются только с этим транспортом. Файл токена должен быть доступен для чтения только пользователю поллера; плагин считывает его при каждом запуске и никогда не сохраняет токен."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Сохранить"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Устройство для кластера: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Сопоставлено с устройством %s (id %d). Его графики подчиняются разрешениям Cacti на устройства и графики."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Добавление недостающих графиков добавит:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Добавить недостающие графики"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Переиндексировать разделы"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Снять привязку"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Снятие привязки сохраняет устройство, его графики и их историю."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Кластер всё ещё сопоставлен с устройством %d, которое больше не существует. Создание или сопоставление устройства заменит эту привязку."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Создание устройства добавит:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Без графиков разделов создаются только графики кластера, а источники данных и вызовы для указанных выше разделов опускаются."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Также создать графики разделов"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Создать устройство"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Или сопоставить существующее устройство"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Сопоставить устройство"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Шаблоны HPC Scheduler не установлены. Установите их со страницы состояния."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Устройство «%s» по шаблону устройства %s, опрашиваемое поллером %d, с отключёнными проверками доступности."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Запрос данных «%s», индексирующий %d известных на данный момент разделов."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d графиков кластера, каждый со своим источником данных «%s»."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d графиков разделов, по %d для каждого раздела, каждый со своим источником данных."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Всего: %d источников данных, %d файлов RRD и %d вызовов сервера скриптов за один опрос. Для разделов, добавленных позже, графики создаются на странице «Новые графики»."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Создано плагином HPC Scheduler для кластера %s. Его значения поступают из снимка плагина; имя узла является зарезервированным именем, к которому никогда не выполняется обращение."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "конфигурация: путь, URL или параметр отсутствует либо не разрешён"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "не удалось связаться с планировщиком"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "вызов выполнялся дольше допустимого времени и был остановлен"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "ответ превысил допустимый размер и был отброшен"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "не удалось разобрать ответ с помощью закреплённого парсера данных"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "планировщик отклонил учётные данные"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "учётная запись планировщика не имеет доступа к этим данным (PrivateData или разрешения)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "контроллер попросил клиентов снизить частоту запросов (ограничение скорости)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "сервер ответил кодом 304 на запрос, который не был условным; предыдущие данные сохранены"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "плагин отклонил вызов вне списка разрешённых"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "вызов завершился ошибкой"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "средству чтения не хватило памяти; уменьшите «Максимальный размер ответа» или увеличьте «Память для сбора данных» в настройках"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Никогда"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d сек. назад"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d мин. назад"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d ч. назад"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d дн. назад"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Актуально"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Задержка"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Устарело"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Сбор не выполнялся"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Кластеры"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Вызовы"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Кластер"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Длительность"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Актуальность"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Последний запуск"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Последний успех"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Результат"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Парсер"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Все кластеры"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Предупреждения"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Предупреждений нет."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Шаблоны"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Шаблоны устройства, данных и графиков, а также запрос данных разделов установлены."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Шаблоны не установлены или устарели, поэтому устройства кластеров не могут быть созданы. См. предупреждения выше."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Установить шаблоны"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Секции снимка"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Возраст данных"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Ошибка"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Последняя попытка"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Записи"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Секция"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Последняя установка шаблонов завершилась ошибкой: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Некоторые шаблоны HPC Scheduler отсутствуют в Cacti. Установите их ниже."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, обнаружено"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Максимальный размер ответа составляет %d MiB, но декодированный ответ такого размера не помещается в память для сбора данных (%d MiB); средство чтения допускает %d MiB. Увеличьте память для сбора данных или уменьшите максимальный размер ответа в настройках."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Назначен поллеру %d — удалённому сборщику данных. Этот выпуск выполняет сбор только на основном поллере, поэтому данные кластера не собираются; удалённый сбор запланирован на этап 3. Назначьте его основному поллеру."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Интервал сбора ниже минимального порога в %d с."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Интервал сбора (%d с) короче интервала поллера (%d с); данные собираются каждые %d с."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "Доступ к slurmrestd выполняется по обычному HTTP через адрес обратной петли (loopback); токен передаётся по локальному сетевому стеку в незашифрованном виде."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Для этого кластера ещё не завершился ни один запуск средства чтения."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Файл токена: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Срок действия токена истёк %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Срок действия токена истекает через %d мин."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Последний запуск израсходовал весь бюджет времени (%d с); некоторые секции не были собраны."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Планировщик сообщает версию Slurm %s, которая не является поддерживаемым выпуском (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Планировщик сообщает версию Slurm %s, в которой отсутствует выбранный в настройках парсер данных %s."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Клиентские команды запускались без ограничения памяти; укажите путь к prlimit в настройках."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Последняя ошибка: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Сбор данных приостановлен на %d с после срабатывания ограничения скорости."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Данные устарели; графики и оповещения интерпретируют их как неизвестные."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "В ожидании"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "На удержании"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Выполняются"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Завершаются"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Прочие"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Простаивают"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Выделены"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Смешанные"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Выведены"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Выводятся"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Не работает"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Обслуживание"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Зарезервированы"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Выключены"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Просмотрите зафиксированные ниже наблюдения. Подтверждения привязаны только к текущему сеансу, сбрасываются при изменении наблюдений и никогда не подавляют оповещения и не изменяют состояние работоспособности."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Операции HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Расследование"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Объект"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Наблюдалось (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Неизвестно или устарело"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Подтверждено; состояние без изменений."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Подтвердить"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Для доступных вам устройств наблюдения отсутствуют."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Собрано"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Подробности"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Узлы"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Данные ни по одному кластеру ещё не собраны."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Причины ожидания"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Графики"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Прочерк означает, что у плагина нет актуальных данных для этого значения: произошёл сбой секции, данные устарели или никогда не собирались. «В ожидании» не включает удерживаемые задания. «Выведены» учитывает каждый узел с флагом drain, включая узлы, которые также недоступны."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Причины ожидания: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Семейство"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Задания"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Разделы"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Причина"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Нет ожидающих заданий."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Перечислены только %d причин с наибольшим числом заданий."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Каждое задание учитывается по последней причине, которую проверил для него планировщик, даже если это не единственное, что его сдерживает. Задание, указанное для нескольких разделов, учитывается здесь один раз и по одному разу в каждом указанном разделе. Удержанные задания перечислены с указанием причины удержания."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Узлы в неизвестных состояниях"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Имена"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Состояние Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Нет. Каждый узел сопоставлен с известным состоянием."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Снимок заданий ещё не собран."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Снимок узлов ещё не собран, поэтому состояния узлов неизвестны."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Снимок заданий создан %s (%s), актуален."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Снимок узлов создан %s (%s), актуален."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Снимок заданий создан %s (%s), не актуален: он устарел или последний сбор завершился с ошибкой, и приведённые ниже счётчики соответствуют последнему собранному снимку."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Снимок узлов создан %s (%s), не актуален: он устарел или последний сбор завершился с ошибкой, и приведённые ниже узлы соответствуют последнему собранному снимку."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Оператор планировщика HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Просмотр планировщика HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Администрирование планировщика HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Состояние планировщика HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Приоритет"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Зависимость"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Время начала"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Резервирование"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Ограничения ассоциации"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Ограничения QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Ограничения раздела"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Доступность узлов"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Резервирования"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Справедливое распределение (Fair-share)"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Клиентские команды Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Парсер данных"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Парсер данных Slurm для клиентских команд. Выберите версию, входящую в выпуск каждого кластера, опрашиваемого через клиентские команды: v0.0.43 присутствует в 25.05, 25.11 и 26.05 и удалена в 27.05; v0.0.44 требует 25.11 или новее; v0.0.45 требует 26.05 или новее. Страница состояния выводит предупреждение, если кластер сообщает о выпуске без этого парсера. Кластеры, опрашиваемые через slurmrestd, игнорируют этот параметр: они используют новейший из поддерживаемых демоном парсеров, а страница состояния показывает, какой именно."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Абсолютный путь к squeue на каждом поллере, опрашивающем кластер через клиентские команды. Плагин запускает её только как squeue --all --json с указанным выше парсером данных."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Абсолютный путь к scontrol. Плагин запускает только scontrol --json show node, show partition и show reservation; никогда не вызывает update, reconfigure или token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Абсолютный путь к sshare, используется только для кластеров, собирающих статистику fair-share."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Ограничения"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Таймаут вызова"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Время в секундах, которое может выполняться один вызов планировщика до его остановки и записи раздела как завершившегося с ошибкой. Вызов также никогда не выходит за пределы бюджета времени модуля чтения."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Максимальный размер ответа"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "Максимальный размер ответа одного вызова планировщика в МиБ. Более крупный ответ отбрасывается, а соответствующий раздел помечается как завершившийся с ошибкой. Для декодирования требуется примерно в 12 раз больше памяти, чем размер ответа, поэтому модуль чтения использует не более (Память для сбора - 64) / 12 МиБ, и страница состояния предупреждает, если это значение больше."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Память для сбора"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "Объём памяти PHP в МиБ, до которого каждый запуск сбора повышает свой предел (он никогда не понижается). Значение по умолчанию 1024 подходит для ответов до 80 МиБ."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Абсолютный путь к prlimit (util-linux), используемый для ограничения адресного пространства каждой клиентской команды. Оставьте пустым для запуска команд без ограничения памяти; в этом случае страница состояния выведет предупреждение."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Лимит памяти команды"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "Объём адресного пространства в МиБ, который может использовать каждая клиентская команда через prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Учётные данные slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Каталоги файлов токенов"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Абсолютные пути к каталогам на поллерах, в которых могут храниться файлы токенов slurmrestd, разделённые запятыми или пробелами. Кластер может указывать только файл токена внутри одного из этих каталогов, принадлежащий пользователю поллера и доступный без использования символической ссылки. Права на запись в каждый каталог должны быть только у root и пользователя поллера. Пустое значение означает, что ни один кластер не может использовать slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Хосты slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Необязательно. Хосты slurmrestd, которые может указывать кластер, в формате host или host:port, разделённые запятыми или пробелами. Запись без порта разрешает любой порт на этом хосте. Пустое значение разрешает любой хост."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Количество секунд до истечения срока действия токена, за которое страница состояния начинает выводить предупреждение, если токен содержит время истечения."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Предупреждение об истечении срока токена"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Удаление"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Сохранять таблицы плагина при удалении"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Если флажок установлен, удаление плагина сохранит его кластеры и снимки. Снимите флажок, чтобы при удалении они были удалены; предварительно экспортируйте кластеры из раздела «Кластеры HPC». В этом выпуске плагин не создаёт устройства Cacti или расписания обслуживания (Maint), и в любом случае обращение к планировщику не выполняется."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Файл запроса данных %s не установлен в каталоге Cacti resource/script_server."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Файл запроса данных %s в каталоге Cacti resource/script_server отличается от поставляемого с плагином."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "доступен для чтения только пользователю поллера"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "доступен для чтения группе файла; ограничьте доступ только пользователем поллера (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "доступен для чтения любому пользователю на поллере; ограничьте доступ только пользователем поллера (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "отклонён: владельцем является пользователь, отличный от пользователя поллера (выполните chown на пользователя поллера)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "отсутствует или недоступен для чтения пользователю поллера"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "отклонён: находится вне каталогов файлов токенов, указанных в настройках, доступен через символическую ссылку, не является обычным файлом, доступен для записи другим пользователям или слишком велик; причина указана в журнале"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "пусто"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Клиентские команды Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Для плагина планировщика HPC требуется PHP %s или новее. На этом сервере работает PHP %s, поэтому плагин не был установлен или включён."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Плагин планировщика HPC не включён."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Для плагина планировщика HPC требуется PHP %s или новее."
+
+#: setup.php
+msgid "Management"
+msgstr "Управление"
