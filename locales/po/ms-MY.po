@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ms-MY\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Anda tidak mempunyai kebenaran untuk peranti kluster itu."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Nama: kluster lain sudah menggunakan nama ini."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Kluster tidak disimpan: ia telah diubah oleh orang lain sejak borang dibuka, atau penulisan gagal. Buka semula dan ulangi perubahan tersebut."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Kluster telah disimpan."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Keadaan kluster tidak diubah: penulisan gagal. Lihat log Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Kluster dan syot kilat dalam cache telah dipadamkan. Peranti dan grafnya dikekalkan. Penjadual tidak dihubungi."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Peranti dan grafnya telah dicipta."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Peranti tidak dicipta: kluster sudah mempunyai peranti, ia telah diubah oleh orang lain sejak halaman dibuka, atau Cacti menolaknya. Lihat log Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Kluster telah dipetakan ke peranti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Kluster tidak dipetakan: peranti tidak wujud, tidak dibenarkan untuk anda, sudah membawa kluster lain, atau kluster telah diubah oleh orang lain sejak halaman dibuka."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Graf yang tiada telah ditambah."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Tiada graf ditambah: kluster tidak mempunyai peranti, atau perantinya tidak lagi wujud."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Kluster tidak dinyahpetakan: ia telah diubah oleh orang lain sejak halaman dibuka."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Kluster telah dinyahpetakan. Peranti dan grafnya dikekalkan."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Partisi telah diindeks semula daripada syot kilat."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Partisi tidak diindeks semula: peranti dinyahdayakan atau tidak dapat dicapai, jadi Cacti melangkau kueri datanya."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Partisi tidak diindeks semula: Cacti tidak dapat menjalankan kueri data. Lihat log Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Partisi tidak diindeks semula: kueri data Penjadual HPC tidak dipasang. Pasang templat daripada halaman kesihatan."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Partisi tidak diindeks semula: kluster tidak mempunyai peranti, atau perantinya tidak lagi wujud."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Templat Penjadual HPC telah dipasang."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Templat tidak dipasang: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Paparan pemantauan"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Pemerhatian tidak dapat dibaca. Minta pentadbir menyemak log pemalam."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Periksa keluarga sebab tertunda dan kesegaran syot kilat pada gambaran keseluruhan. Eskalasi kelayakan, pemetaan kluster dan dasar penyelenggaraan kepada pentadbir."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Nama: gunakan 1 hingga 64 huruf, digit, titik, sempang atau garis bawah, bermula dengan huruf atau digit."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: pilih salah satu poller yang disenaraikan."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Selang Pengumpulan: masukkan saat bulat dari %d hingga %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Pengangkutan: pilih satu daripada pengangkutan yang disenaraikan."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: masukkan laluan mutlak, atau biarkan kosong untuk menggunakan lalai poller."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "URL slurmrestd: hos dan port ini tiada dalam senarai hos slurmrestd di Tetapan."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "URL slurmrestd: masukkan URL https:// tanpa nama pengguna, kueri atau serpihan; http:// biasa hanya diterima untuk alamat gelung balik."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Pengguna slurmrestd: gunakan paling banyak 64 huruf, digit, titik, sempang atau garis bawah, atau biarkan kosong untuk token pengguna."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Fail Token: masukkan laluan mutlak fail token pada poller. Token itu sendiri tidak pernah dimasukkan di sini."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Fail Token: belum ada direktori fail token ditetapkan. Minta pentadbir Cacti menetapkannya di bawah Tetapan, Penjadual HPC."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Fail Token: fail mesti berada di dalam salah satu direktori fail token yang ditetapkan dalam Tetapan (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Kluster HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Tindakan"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Peranti"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Selang"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Nama"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Bahagian"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Keadaan"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Pengangkutan"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Belum ada kluster dikonfigurasikan."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Lumpuhkan"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Dayakan"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Poller %d dipadamkan"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d saat"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Tiada"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Padam"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Eksport"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Muat turun konfigurasi kluster sebagai JSON sebelum penyahpasangan yang menggugurkan jadual pemalam. Ia mengandungi laluan fail token, bukan token."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Kluster: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Kluster Baharu"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Selang Pengumpulan (saat)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Didayakan"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Kumpul Tempahan"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Kumpul Perkongsian Saksama (akaun sahaja)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Laluan slurm.conf (pilihan)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "URL slurmrestd"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Pengguna slurmrestd (pilihan)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Fail Token pada Poller"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Perintah klien menggunakan binari yang ditetapkan di bawah Tetapan > Penjadual HPC dan pengesahan Slurm pengguna poller sendiri; laluan slurm.conf pilihan memilih kluster. Medan slurmrestd hanya digunakan dengan pengangkutan tersebut. Fail token mestilah hanya boleh dibaca oleh pengguna poller; pemalam membacanya pada setiap larian dan tidak pernah menyimpan token."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Simpan"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Peranti untuk Kluster: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Dipetakan ke peranti %s (id %d). Grafnya mengikut kebenaran peranti dan graf Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Menambah graf yang tiada akan menambah:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Tambah Graf yang Tiada"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Indeks Semula Partisi"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Nyahpeta"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Penyahpetaan mengekalkan peranti, graf dan sejarahnya."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Kluster masih dipetakan ke peranti %d, yang tidak lagi wujud. Mencipta atau memetakan peranti akan menggantikan pemetaan tersebut."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Mencipta peranti akan menambah:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Tanpa graf partisi, hanya graf kluster dicipta, dan sumber data serta panggilan untuk partisi di atas dikecualikan."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Cipta juga graf partisi"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Cipta Peranti"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Atau petakan peranti sedia ada"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Petakan Peranti"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Templat Penjadual HPC tidak dipasang. Pasang templat tersebut daripada halaman kesihatan."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Peranti \"%s\" daripada templat peranti %s, ditinjau oleh poller %d, dengan semakan ketersediaan dimatikan."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Kueri data \"%s\", mengindeks %d partisi yang diketahui sekarang."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d graf kluster, setiap satunya dengan sumber data \"%s\" tersendiri."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d graf partisi, %d untuk setiap partisi, setiap satunya dengan sumber data tersendiri."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Secara keseluruhan: %d sumber data dan %d fail RRD, serta %d panggilan pelayan skrip bagi setiap tinjauan. Partisi yang ditambah kemudian mendapat graf daripada halaman Graf Baharu."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Dicipta oleh pemalam Penjadual HPC untuk kluster %s. Nilainya datang daripada syot kilat pemalam; nama hos ialah nama terpelihara yang tidak pernah dihubungi."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "konfigurasi: laluan, URL atau tetapan tiada atau tidak dibenarkan"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "penjadual tidak dapat dihubungi"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "panggilan mengambil masa lebih lama daripada yang dibenarkan dan telah dihentikan"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "jawapan lebih besar daripada yang dibenarkan dan telah dibuang"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "jawapan tidak dapat dihuraikan dengan penghurai data yang disematkan"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "penjadual menolak kelayakan tersebut"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "akaun penjadual mungkin tidak dibenarkan melihat data ini (PrivateData atau kebenaran)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "pengawal meminta klien mengundur sementara (had kadar)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "pelayan menjawab 304 kepada permintaan yang bukan bersyarat; data sebelumnya dikekalkan"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "pemalam menolak panggilan di luar senarai dibenarkannya"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "panggilan gagal"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "pembaca kehabisan memori; turunkan Saiz Jawapan Maksimum atau naikkan Memori Pengumpulan dalam Tetapan"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Tidak pernah"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d saat lalu"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d minit lalu"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d jam lalu"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d hari lalu"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Semasa"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Tertunda"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Lapuk"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Tidak pernah dikumpul"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Kluster"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Panggilan"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Kluster"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Tempoh"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Kesegaran"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Larian Terakhir"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Kejayaan Terakhir"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Keputusan"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Penghurai"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Semua kluster"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Amaran"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Amaran"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Tiada amaran."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Templat"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Templat peranti, data dan graf serta kueri data partisi telah dipasang."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Templat tidak dipasang atau bukan yang terkini, jadi peranti kluster tidak dapat dicipta. Lihat amaran di atas."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Pasang Templat"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Bahagian Syot Kilat"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Umur Data"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Ralat"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Percubaan Terakhir"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Rekod"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Bahagian"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Pemasangan templat terakhir gagal: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Sesetengah templat Penjadual HPC tiada dalam Cacti. Pasangkannya di bawah."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, ditemui"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Saiz Jawapan Maksimum ialah %d MiB, tetapi jawapan yang dinyahkod sebesar itu tidak muat dalam Memori Pengumpulan sebanyak %d MiB; pembaca membenarkan %d MiB. Naikkan Memori Pengumpulan atau turunkan Saiz Jawapan Maksimum dalam Tetapan."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Ditugaskan kepada poller %d, pengumpul data jauh. Keluaran ini hanya mengumpul pada poller utama, jadi kluster tidak dikumpul; pengumpulan jauh dirancang untuk fasa 3. Tugaskannya kepada poller utama."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Selang pengumpulan berada di bawah had minimum %d saat."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Selang pengumpulan selama %d saat adalah lebih pendek daripada selang poller selama %d saat; data dikumpul setiap %d saat."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "slurmrestd dicapai melalui HTTP biasa pada alamat gelung balik; token merentasi tindanan rangkaian tempatan tanpa penyulitan."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Belum ada larian pembaca yang selesai untuk kluster ini."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Fail token: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Token telah tamat tempoh %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Token akan tamat tempoh dalam %d minit."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Larian terakhir menggunakan keseluruhan bajet masanya selama %d saat; beberapa bahagian tidak dikumpul."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Penjadual melaporkan Slurm %s, yang bukan keluaran yang disokong (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Penjadual melaporkan Slurm %s, yang tidak menyertakan penghurai data %s yang dipilih dalam Tetapan."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Perintah klien dijalankan tanpa had memori; tetapkan laluan prlimit dalam Tetapan."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Ralat terakhir: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Pengumpulan dijeda selama %d saat selepas had kadar."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Data telah lapuk; graf dan makluman membacanya sebagai tidak diketahui."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Tertunda"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Ditahan"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Berjalan"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Sedang Selesai"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Lain-lain"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Melahu"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Diperuntukkan"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Bercampur"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Dikosongkan"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Sedang Dikosongkan"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Tidak boleh dicapai"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Penyelenggaraan"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Ditempah"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Dimatikan kuasa"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Semak pemerhatian yang direkodkan di bawah. Pengakuan adalah peribadi untuk sesi ini, tamat tempoh apabila pemerhatian berubah, dan tidak sekali-kali menyekat amaran atau mengubah kesihatan."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Operasi Penjadual HPC"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Siasatan"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Objek"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Diperhatikan (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Tidak diketahui atau lapuk"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Diakui; kesihatan tidak berubah."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Akui"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Tiada pemerhatian tersedia untuk peranti yang boleh anda akses."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "Penjadual HPC"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Dikutip"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Butiran"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Nod"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Belum ada kluster yang dikumpul."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Sebab tertunda"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Graf"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Sengkang bermaksud pemalam tiada data semasa untuk nilai tersebut: bahagian gagal, telah lapuk atau tidak pernah dikumpul. Tertunda mengecualikan tugas yang ditahan. Dikosongkan mengira setiap nod dengan bendera pengosongan, termasuk nod yang juga tidak dapat dicapai."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Sebab Tertunda: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Keluarga"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Tugas"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Partisi"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Sebab"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Tiada kerja tertangguh."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Hanya %d sebab dengan bilangan kerja terbanyak disenaraikan."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Setiap kerja dikira di bawah sebab terakhir yang diperiksa oleh penjadual baginya, yang tidak semestinya menjadi satu-satunya perkara yang menahannya. Kerja dalam beberapa partisi dikira sekali di sini dan sekali dalam setiap partisi yang dinamakannya. Kerja yang ditahan disenaraikan dengan sebab penahanannya."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Nod dalam Keadaan Tidak Diketahui"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Nama"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Keadaan Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Tiada. Setiap nod dipetakan ke keadaan yang diketahui."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Tiada syot kilat kerja telah dikumpulkan lagi."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Tiada syot kilat nod telah dikumpulkan lagi, jadi keadaan nod tidak diketahui."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Syot kilat kerja diambil pada %s (%s), terkini."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Syot kilat nod diambil pada %s (%s), terkini."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Syot kilat kerja diambil pada %s (%s), bukan terkini: ia lapuk atau pengumpulan terakhir gagal, dan kiraan di bawah ialah kiraan terakhir yang dikumpulkan."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Syot kilat nod diambil pada %s (%s), bukan terkini: ia lapuk atau pengumpulan terakhir gagal, dan nod di bawah ialah nod terakhir yang dikumpulkan."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Pengendali Penjadual HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Paparan Penjadual HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Pentadbir Penjadual HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Kesihatan Penjadual HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Keutamaan"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Sumber"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Kebergantungan"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Masa mula"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Tempahan"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Had perkaitan"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Had QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Had partisi"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Ketersediaan nod"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Tempahan"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Perkongsian adil"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Perintah Klien Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Penghurai Data"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Penghurai data Slurm untuk perintah klien. Pilih versi yang disertakan oleh keluaran setiap kluster yang dibaca melalui perintah klien: v0.0.43 terdapat dalam 25.05, 25.11 dan 26.05 serta dialih keluar dalam 27.05; v0.0.44 memerlukan 25.11 atau lebih baharu; v0.0.45 memerlukan 26.05 atau lebih baharu. Halaman kesihatan akan memberi amaran apabila kluster melaporkan keluaran tanpanya. Kluster yang dibaca melalui slurmrestd mengabaikan tetapan ini: ia menggunakan versi terbaharu antara yang disediakan oleh daemon, dan halaman kesihatan menunjukkan versi yang digunakan."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Laluan mutlak ke squeue pada setiap pengumpul yang membaca kluster melalui perintah klien. Pemalam hanya menjalankannya sebagai squeue --all --json dengan penghurai data di atas."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Laluan mutlak ke scontrol. Pemalam hanya menjalankan scontrol --json show node, show partition, dan show reservation; tidak sekali-kali update, reconfigure, atau token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Laluan mutlak ke sshare, hanya digunakan untuk kluster yang mengumpulkan perkongsian adil."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Had"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Tamat Masa Panggilan"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Saat yang boleh diambil oleh satu panggilan penjadual sebelum ia dihentikan dan bahagiannya direkodkan sebagai gagal. Panggilan juga tidak pernah berjalan melebihi belanjawan masa pembaca."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Saiz Jawapan Maksimum"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB yang boleh dikembalikan oleh satu panggilan penjadual. Jawapan yang lebih besar dibuang dan bahagiannya direkodkan sebagai gagal. Penyahkodan memerlukan kira-kira 12 kali saiz jawapan, jadi pembaca menggunakan selebih-lebihnya (Memori Pengumpulan - 64) / 12 MiB dan halaman kesihatan akan memberi amaran apabila nilai ini lebih besar."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Memori Pengumpulan"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "MiB memori PHP yang dinaikkan hadnya oleh setiap larian pengumpulan (ia tidak pernah menurunkan had). Nilai lalai 1024 muat untuk jawapan sehingga 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Laluan mutlak ke prlimit (util-linux), digunakan untuk mengehadkan ruang alamat bagi setiap perintah klien. Biarkan kosong untuk menjalankan perintah tanpa had memori; halaman kesihatan kemudiannya akan memberi amaran."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Had Memori Perintah"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "MiB ruang alamat yang boleh digunakan oleh setiap perintah klien, melalui prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Kelayakan slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Direktori Fail Token"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Direktori mutlak pada pengumpul yang boleh menyimpan fail token slurmrestd, dipisahkan dengan koma atau ruang. Kluster hanya boleh menamakan fail token di dalam salah satu daripadanya, dimiliki oleh pengguna pengumpul dan dicapai tanpa pautan simbolik. Pastikan setiap direktori hanya boleh ditulis oleh root dan pengguna pengumpul. Kosong bermakna tiada kluster boleh menggunakan slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Hos slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Pilihan. Hos slurmrestd yang boleh dinamakan oleh kluster, sebagai hos atau hos:port, dipisahkan dengan koma atau ruang. Entri tanpa port membenarkan sebarang port pada hos tersebut. Kosong membenarkan sebarang hos."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Saat sebelum token tamat tempoh apabila halaman kesihatan mula memberi amaran, jika token membawa masa tamat tempoh."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Amaran Tamat Tempoh Token"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Nyahpasang"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Kekalkan Jadual Pemalam semasa Nyahpasang"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Apabila ditandakan, menyahpasang pemalam akan mengekalkan kluster dan syot kilatnya. Kosongkan untuk menggugurkannya semasa nyahpasang; eksport kluster terlebih dahulu daripada Kluster HPC. Pemalam ini tidak mencipta peranti Cacti atau jadual Maint dalam keluaran ini, dan penjadual tidak pernah dihubungi dalam kedua-dua keadaan."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Fail pertanyaan data %s tidak dipasang dalam direktori resource/script_server Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Fail pertanyaan data %s dalam direktori resource/script_server Cacti berbeza daripada fail yang disertakan oleh pemalam."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "hanya boleh dibaca oleh pengguna pengumpul"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "boleh dibaca oleh kumpulan fail; hadkannya kepada pengguna pengumpul (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "boleh dibaca oleh setiap pengguna pada pengumpul; hadkannya kepada pengguna pengumpul (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "ditolak: dimiliki oleh pengguna selain pengguna pengumpul (chown kepada pengguna pengumpul)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "hilang atau tidak boleh dibaca oleh pengguna pengumpul"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "ditolak: di luar direktori fail token yang ditetapkan dalam Tetapan, dicapai melalui pautan simbolik, bukan fail biasa, boleh ditulis oleh pihak lain, atau terlalu besar; log menamakan sebabnya"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "kosong"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Perintah klien Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Pemalam Penjadual HPC memerlukan PHP %s atau lebih baharu. Pelayan ini menjalankan PHP %s, jadi pemalam tidak dipasang atau didayakan."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Pemalam Penjadual HPC tidak didayakan."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Pemalam Penjadual HPC memerlukan PHP %s atau lebih baharu."
+
+#: setup.php
+msgid "Management"
+msgstr "Pengurusan"

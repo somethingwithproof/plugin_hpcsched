@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ig-NG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Ị nweghị ikike maka ngwaọrụ nke klọsta ahụ."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Aha: klọsta ọzọ na-ejilarị aha a."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Echekwaghị klọsta ahụ: onye ọzọ gbanwere ya kemgbe e meghere fọm ahụ, ma ọ bụ ide ihe dara ada. Meghee ya ọzọ ma kwugharịa mgbanwe ahụ."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Echekwara klọsta ahụ."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Agbanweghị ọnọdụ klọsta ahụ: ide ihe dara ada. Lee ndekọ Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Ehichapụrụ klọsta ahụ na nseta foto echekwara ya. Edebere ngwaọrụ ya na eserese ya. Akpọtụrụghị scheduler ahụ."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Emepụtara ngwaọrụ ahụ na eserese ya."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Emepụtaghị ngwaọrụ ahụ: klọsta ahụ enweelarị ngwaọrụ, onye ọzọ gbanwere ya kemgbe e meghere ibe ahụ, ma ọ bụ Cacti jụrụ ya. Lee ndekọ Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Ejikọtara klọsta ahụ na ngwaọrụ ahụ."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Ejikọtaghị klọsta ahụ: ngwaọrụ ahụ adịghị, ekweghị gị nwee ya, o buwororị klọsta ọzọ, ma ọ bụ onye ọzọ gbanwere klọsta ahụ kemgbe e meghere ibe ahụ."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Etinyere eserese ndị na-efu efu."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Etinyeghị eserese ọ bụla: klọsta ahụ enweghị ngwaọrụ, ma ọ bụ ngwaọrụ ya adịkwaghị."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Ewepụghị njikọ klọsta ahụ: onye ọzọ gbanwere ya kemgbe e meghere ibe ahụ."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Ewepụrụ njikọ klọsta ahụ. Edebere ngwaọrụ ahụ na eserese ya."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Edepụtagharịrị ndekọ nke partitions site na nseta foto ahụ."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Edepụtagharịghị ndekọ nke partitions: agbanyụrụ ngwaọrụ ahụ ma ọ bụ na ọ dara ada (anaghị eru ya), ya mere Cacti mafere ajụjụ data ya."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Edepụtagharịghị ndekọ nke partitions: Cacti enweghị ike ịgba ajụjụ data ahụ. Lee ndekọ Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Edepụtagharịghị ndekọ nke partitions: etinyeghị ajụjụ data HPC Scheduler. Wụnye ndebiri ndị ahụ site na ibe ahụike."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Edepụtagharịghị ndekọ nke partitions: klọsta ahụ enweghị ngwaọrụ, ma ọ bụ ngwaọrụ ya adịkwaghị."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Etinyere ndebiri HPC Scheduler."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Etinyeghị ndebiri ndị ahụ: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Nlere nleba anya"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Enweghị ike ịgụ nchọpụta ndị ahụ. Gwa onye nchịkwa ka ọ lelee ndekọ mgbakwunye ahụ."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Nyochaa ezinụlọ ihe kpatara nchere na ịdị ọhụrụ nke nseta foto na nchịkọta. Ziga nzere, njikọ klọsta na atụmatụ mmezi nye onye nchịkwa."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Aha: jiri mkpụrụedemede, ọnụọgụ, ntụpọ, akara uhie, ma ọ bụ akara ala site na 1 ruo 64, malite na mkpụrụedemede ma ọ bụ ọnụọgụ."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: họrọ otu n'ime poller ndị e depụtara."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Oge Nchịkọta: tinye sekọnd zuru ezu site na %d ruo %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Ụzọ Nbufe: họrọ otu n'ime ụzọ nbufe edepụtara."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: tinye ụzọ zuru oke (absolute path), ma ọ bụ hapụ ya ka ọ tọgbọrọ chakoo iji jiri ndabere poller."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: host na port a anọghị na ndepụta host slurmrestd na Ntọala."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: tinye URL https:// na-enweghị aha onye ọrụ, ajụjụ, ma ọ bụ mpempe; a na-anabata http:// nkịtị naanị maka adreesị loopback."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Onye Ọrụ slurmrestd: jiri ihe kachasị mkpụrụedemede, ọnụọgụ, ntụpọ, akara uhie, ma ọ bụ akara ala 64, ma ọ bụ hapụ ya ka ọ tọgbọrọ chakoo maka token onye ọrụ."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Faịlụ Token: tinye ụzọ zuru oke nke faịlụ token na poller. A naghị etinye token n'onwe ya ebe a."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Faịlụ Token: edobebeghị ndekọ faịlụ token ọ bụla. Gwa onye nchịkwa Cacti ka ọ tọọ ha n'okpuru Ntọala, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Faịlụ Token: faịlụ ahụ ga-adịrịrị n'ime otu n'ime ndekọ faịlụ token etinyere na Ntọala (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Klọsta HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Omume"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Ngwaọrụ"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Oge etiti"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Aha"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Ngalaba"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Ọnọdụ"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Ụzọ Nbufe"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Ahazibeghị klọsta ọ bụla."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Gbanyụọ"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Gbanye"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Ehichapụrụ poller %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "sekọnd %d"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Ọ dịghị"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Hichapụ"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Bupụ"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Budata nhazi klọsta dị ka JSON tupu iwepụ nke na-ewepụ tebụl plugin. O nwere ụzọ faịlụ token, ọ dịghị mgbe o nwere token."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Klọsta: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Klọsta Ọhụrụ"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Oge Nchịkọta (sekọnd)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Agbanyere"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Chịkọta Ndokwa"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Chịkọta Fair-share (akaụntụ naanị)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Ụzọ slurm.conf (nhọrọ)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Onye Ọrụ slurmrestd (nhọrọ)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Faịlụ Token na Poller"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Iwu ndị ahịa na-eji faịlụ binaries edobere n'okpuru Ntọala > HPC Scheduler na nkwenye Slurm nke onye ọrụ poller; ụzọ slurm.conf nhọrọ na-ahọrọ klọsta. A na-eji ogige slurmrestd naanị na ụzọ nbufe ahụ. Faịlụ token ga-abụrịrị nke onye ọrụ poller naanị nwere ike ịgụ; plugin ahụ na-agụ ya n'ọsọ ọ bụla ma ọ naghị echekwa token ahụ."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Chekwaa"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Ngwaọrụ maka Klọsta: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Ejikọtara ya na ngwaọrụ %s (id %d). Eserese ya na-agbaso ikike ngwaọrụ na eserese Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Itinye eserese ndị na-efu efu na-agbakwunye:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Tinye Eserese Na-efu Efu"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Depụtagharịa Ndekọ Partitions"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Wepụ Njikọ"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Iwepụ njikọ na-edebe ngwaọrụ ahụ, eserese ya, na akụkọ ha."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Klọsta ahụ ka ejikọtara na ngwaọrụ %d, nke na-adịkwaghị. Imepụta ma ọ bụ ijikọ ngwaọrụ na-anọchi njikọ ahụ."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Imepụta ngwaọrụ na-agbakwunye:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Na-enweghị eserese partition, naanị eserese klọsta ka a na-emepụta, ma hapụ isi iyi data na oku maka partitions ndị dị n'elu."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Mepụtakwa eserese partition"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Mepụta Ngwaọrụ"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Ma ọ bụ jikọọ ngwaọrụ dị adị"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Jikọọ Ngwaọrụ"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Etinyeghị ndebiri HPC Scheduler. Wụnye ha site na ibe ahụike."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Ngwaọrụ \"%s\" site na ndebiri ngwaọrụ %s, nke poller %d na-enyocha, na nyocha nnweta gbanyụrụ."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Ajụjụ data \"%s\", na-edepụta ndekọ partitions %d a maara ugbu a."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "eserese klọsta %d, nke ọ bụla nwere isi iyi data \"%s\" nke ya."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "eserese partition %d, %d maka partition ọ bụla, nke ọ bụla nwere isi iyi data nke ya."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Na mkpokọta: isi iyi data %d na faịlụ RRD %d, na oku sava edemede %d kwa nyocha. Partitions etinyere ma e mesịa na-enweta eserese site na ibe Eserese Ọhụrụ."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Emepụtara site na plugin HPC Scheduler maka klọsta %s. Ọnụọgụ ya sitere na nseta foto plugin; aha host bụ aha echekwara nke a na-adịghị akpọtụrụ ma ọlị."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "nhazi: ụzọ, URL, ma ọ bụ ntọala na-efu ma ọ bụ anabataghị ya"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "enweghị ike iru scheduler ahụ"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "oku ahụ were ogologo oge karịa ka e kwere ma kwụsị ya"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "azịza ahụ buru ibu karịa ka e kwere ma tụfuo ya"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "enweghị ike iji ngwa nyocha data (data parser) akpọchiri nyochaa azịza ahụ"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "scheduler ahụ jụrụ nzere ahụ"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "akaụntụ scheduler nwere ike ịghara ịhụ data a (PrivateData ma ọ bụ ikike)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "onye njikwa rịọrọ ndị ahịa ka ha wepụ aka (oke ọnụego)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "sava ahụ zara 304 na arịrịọ na-abụghị nke nwere ọnọdụ; echekwara data gara aga"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "plugin ahụ jụrụ oku na-abụghị na ndepụta nnabata ya"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "oku ahụ dara ada"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "ngwa ọgụgụ gwụrụ ebe nchekwa; belata Oke Nha Azịza ma ọ bụ bulie Ebe Nchekwa Nchịkọta na Ntọala"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Ọ dịtụbeghị"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "sekọnd %d gara aga"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "nkeji %d gara aga"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "elekere %d gara aga"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "ụbọchị %d gara aga"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Ugbu a"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Egbuola oge"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Nke ochie"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Achịkọtabeghị"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Klọsta"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Oku"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Klọsta"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Ogologo oge"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Ịdị Ọhụrụ"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Ọrụ Ikpeazụ"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Ọganihu Ikpeazụ"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Mpụtara"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Ngwa Nyocha"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Klọsta niile"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Ịdọ aka ná ntị"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Ịdọ aka ná ntị"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Enweghị ịdọ aka ná ntị."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Ndebiri"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Etinyere ndebiri ngwaọrụ, data, na eserese na ajụjụ data partition."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Etinyeghị ndebiri ndị ahụ ma ọ bụ ha abụghị nke ugbu a, ya mere enweghị ike ịmepụta ngwaọrụ klọsta. Lee ịdọ aka ná ntị ndị dị n'elu."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Wụnye Ndebiri"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Ngalaba Nseta Foto"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Oge Data"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Njehie"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Mgbalị Ikpeazụ"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Ndekọ"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Ngalaba"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Nwụnye ndebiri ikpeazụ dara ada: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Ụfọdụ ndebiri HPC Scheduler na-efu na Cacti. Wụnye ha n'okpuru."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, achọpụtara"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Oke Nha Azịza bụ %d MiB, mana azịza akọwapụtara nke nha ahụ abaghị n'ime Ebe Nchekwa Nchịkọta nke %d MiB; ngwa ọgụgụ na-enye ohere %d MiB. Bulie Ebe Nchekwa Nchịkọta ma ọ bụ belata Oke Nha Azịza na Ntọala."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Enyere ya poller %d, ngwa nchịkọta data dị anya. Ntọhapụ a na-achịkọta naanị na isi poller, ya mere anaghị achịkọta klọsta ahụ; a haziri nchịkọta dị anya maka agba nke 3. Nye ya isi poller."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Oge nchịkọta dị n'okpuru ala sekọnd %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Oge nchịkọta nke sekọnd %d dị mkpụmkpụ karịa oge poller nke sekọnd %d; a na-achịkọta data kwa sekọnd %d."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "A na-eru slurmrestd site na HTTP nkịtị na adreesị loopback; token ahụ na-agafe netwọkụ mpaghara n'ezoghị ezo."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Ọ dịbeghị ọsọ ngwa ọgụgụ mechara maka klọsta a."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Faịlụ token: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Token ahụ kwụsịrị ịdị irè %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Token ahụ ga-akwụsị ịdị irè n'ime nkeji %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Ọsọ ikpeazụ jiri mmefu oge ya niile nke sekọnd %d; achịkọtaghị ụfọdụ ngalaba."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Scheduler ahụ na-akọ Slurm %s, nke na-abụghị ntọhapụ a na-akwado (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Scheduler ahụ na-akọ Slurm %s, nke na-adịghị ebunye ngwa nyocha data %s ahọpụtara na Ntọala."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Iwu ndị ahịa gbara na-enweghị oke ebe nchekwa; tọọ ụzọ prlimit na Ntọala."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Njehie ikpeazụ: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Kwụsịtụrụ nchịkọta ruo sekọnd %d mgbe oke ọnụego gasịrị."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Data emeela ochie; eserese na ọkwa na-agụ ya dị ka nke a na-amaghị."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Na-echere"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Ejidere"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Na-arụ ọrụ"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Na-emecha"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Ndị ọzọ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Na-anọ nkịtị"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Ekenyere"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Agwakọtara"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Agbapụrụ"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Na-agbapụ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Anaghị enweta ya"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Ndozi"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Edobere"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Gbanyụrụ ọkụ"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Nyochaa nchọpụta edere n'okpuru ebe a. Nkweta bụ maka oge nnọkọ a naanị, ha na-agwụ mgbe nchọpụta gbanwere, ma ha anaghị egbochi ọkwa ịdọ aka ná ntị ma ọ bụ gbanwee ahụike."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Ọrụ HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Nnyocha"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Ihe"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Achọpụtara (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Amaghị ma ọ bụ ochie"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Ekwetala; ahụike agbanweghị."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Kweta"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Enweghị nchọpụta dị maka ngwaọrụ ndị ị nwere ike ịnweta."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Anakọtara"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Nkọwa"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Nodes"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Achịkọtabeghị klọsta ọ bụla."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Ihe kpatara nchere"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Eserese"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Akara dash pụtara na plugin enweghị data dị ugbu a maka ọnụọgụ ahụ: ngalaba ahụ dara ada, emeela ochie, ma ọ bụ achịkọtabeghị ya. Na-echere anaghị agụnye ọrụ ejidere. Agbapụrụ na-agụ node ọ bụla nwere ọkọlọtọ drain, gụnyere nodes ndị dara adakwa (ndị a na-apụghị iru)."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Ihe Kpatara Nchere: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Ezinụlọ"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Ọrụ"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Partitions"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Ihe kpatara ya"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Enweghị ọrụ na-echere."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Naanị ihe kpatara %d nwere ọtụtụ ọrụ ka edepụtara."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Ọrụ ọ bụla na-agụ n'okpuru ihe ikpeazụ nhazi oge nyochara maka ya, nke na-abụghị naanị ihe na-egbochi ya. Ọrụ dị n'ọtụtụ nkebi na-agụ otu ugboro ebe a na otu ugboro na nkebi ọ bụla ọ kpọrọ. A na-edepụta ọrụ ejidere na ihe kpatara eji jide ha."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Nọdụ dị n'ọnọdụ a na-amaghị"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Aha"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Ọnọdụ Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Ọ dịghị. Nọdụ ọ bụla dabara na ọnọdụ amaara."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Anakọbeghị foto ndekọ ọrụ ọ bụla."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Anakọbeghị foto ndekọ nọdụ ọ bụla, ya mere amaghị ọnọdụ nọdụ ndị ahụ."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Foto ndekọ ọrụ ewere na %s (%s), dị ugbu a."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Foto ndekọ nọdụ ewere na %s (%s), dị ugbu a."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Foto ndekọ ọrụ ewere na %s (%s), abụghị nke ugbu a: ọ kara aka ma ọ bụ nchịkọta ikpeazụ dara, na ọnụọgụ dị n'okpuru bụ ndị ikpeazụ anakọtara."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Foto ndekọ nọdụ ewere na %s (%s), abụghị nke ugbu a: ọ kara aka ma ọ bụ nchịkọta ikpeazụ dara, na nọdụ ndị dị n'okpuru bụ ndị ikpeazụ anakọtara."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Onye na-arụ ọrụ Nhazi Oge HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Nlele Nhazi Oge HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Onye nchịkwa Nhazi Oge HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Ahụike Nhazi Oge HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Ọkwa mkpa"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Akụrụngwa"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Ndabere"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Oge mmalite"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Ndokwa"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Oke njikọ"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Oke QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Oke nkebi"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Nnwere nọdụ"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Ndokwa dị iche iche"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Nkebi ziri ezi"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Iwu Ndị Ahịa Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Ngwaọrụ Nkọwa Data"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Ngwa nkọwa data Slurm maka iwu ndị ahịa. Họrọ nke ntọhapụ nke klọsta ọ bụla agụrụ site na iwu ndị ahịa nwere: v0.0.43 dị na 25.05, 25.11, na 26.05 ma wepụ ya na 27.05; v0.0.44 chọrọ 25.11 ma ọ bụ nke ọhụrụ; v0.0.45 chọrọ 26.05 ma ọ bụ nke ọhụrụ. Ibe ahụike na-adọ aka na ntị mgbe klọsta kọrọ ntọhapụ na-enweghị ya. Klọsta ndị agụrụ site na slurmrestd na-eleghara ntọala a anya: ha na-eji nke kachasị ọhụrụ n'ime ndị a nke daemon na-enye, ibe ahụike na-egosikwa nke ọ bụ."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Ụzọ zuru ezu gaa na squeue na poller ọ bụla nke na-agụ klọsta site na iwu ndị ahịa. Nkwụnye ahụ na-agba ya naanị dị ka squeue --all --json na ngwa nkọwa data dị n'elu."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Ụzọ zuru ezu gaa na scontrol. Nkwụnye ahụ na-agba naanị scontrol --json show node, show partition, na show reservation; ọ dịghị mgbe ọ na-agba update, reconfigure, ma ọ bụ token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Ụzọ zuru ezu gaa na sshare, nke ejiri naanị maka klọsta ndị na-anakọta nkebi ziri ezi."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Oke"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Oge Mpụ Ọkpụkpọ"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Sekọnd otu ọkpụkpọ nhazi oge nwere ike iwere tupu akwụsị ya ma dekọọ ngalaba ya dị ka nke dara. Ọkpụkpọ anaghị agafekwa oke oge onye na-agụ."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Oke Nha Azịza Kachasị"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB otu ọkpụkpọ nhazi oge nwere ike iweghachi. A na-atụfu azịza buru ibu karịa ma dekọọ ngalaba ya dị ka nke dara. Ntụgharị koodu chọrọ ihe dị ka okpukpu 12 nke nha azịza ahụ, ya mere onye na-agụ na-eji ihe ruru (Collection Memory - 64) / 12 MiB ma ibe ahụike na-adọ aka na ntị mgbe uru a buru ibu karịa."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Ebe Nchekwa Nchịkọta"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "MiB nke ebe nchekwa PHP nke ọsọ nchịkọta ọ bụla na-ebuli oke ya ruo (ọ naghị ebelata ya). Nke ndabara nke 1024 dabara azịza ruru 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Ụzọ zuru ezu gaa na prlimit (util-linux), nke ejiri kpuchie ohere adreesị nke iwu ndị ahịa ọ bụla. Hapụ ya ka oghere iji gbaa iwu na-enweghị oke ebe nchekwa; ibe ahụike ga-adọ aka na ntị mgbe ahụ."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Oke Ebe Nchekwa Iwu"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "MiB nke ohere adreesị iwu ndị ahịa ọ bụla nwere ike iji, site na prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Asambodo slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Ndekọ Faịlụ Token"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Ndekọ zuru ezu na ndị poller nke nwere ike ijide faịlụ token slurmrestd, kewapụrụ site na rịkọm ma ọ bụ oghere. Klọsta nwere ike ịkpọ naanị faịlụ token dị n'ime otu n'ime ha, nke onye ọrụ poller nwe ma rute na-enweghị njikọ ihe atụ. Debe ndekọ ọ bụla ka ọ bụrụ naanị root na onye ọrụ poller nwere ike ide na ya. Oghere pụtara na ọ dịghị klọsta nwere ike iji slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Ndị Nnabata slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Nhọrọ. Ndị nnabata slurmrestd nke klọsta nwere ike ịkpọ, dị ka host ma ọ bụ host:port, kewapụrụ site na rịkọm ma ọ bụ oghere. Ntinye na-enweghị ọdụ ụgbọ na-enye ohere ọdụ ụgbọ ọ bụla na onye nnabata ahụ. Oghere na-enye ohere onye nnabata ọ bụla."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Sekọnd tupu token agwụ mgbe ibe ahụike na-amalite ịdọ aka na ntị, ọ bụrụ na token ahụ bu oge ngwụcha."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Ịdọ Aka na Ntị Ngwụcha Token"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Wepụ"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Debe Tebụl Mgbakwunye Mgbe A Na-ewepụ"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Mgbe akara ya, iwepụ nkwụnye ahụ na-edobe klọsta ya na foto ndekọ ya. Hichapụ ya ka iwepụ ahụ tufuo ha; buru ụzọ bubata klọsta ndị ahụ site na HPC Clusters. Nkwụnye ahụ anaghị emepụta ngwaọrụ Cacti ma ọ bụ nhazi oge Maint na ntọhapụ a, a naghị akpọtụrụ nhazi oge ahụ n'ụzọ ọ bụla."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Faịlụ ajụjụ data %s etinyeghị na ndekọ resource/script_server nke Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Faịlụ ajụjụ data %s dị na ndekọ resource/script_server nke Cacti dị iche na nke nkwụnye ahụ na-ebubata."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "naanị onye ọrụ poller nwere ike ịgụ ya"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "òtù faịlụ nwere ike ịgụ ya; machibido ya naanị onye ọrụ poller (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "onye ọrụ ọ bụla na poller nwere ike ịgụ ya; machibido ya naanị onye ọrụ poller (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "ajụrụ: onye ọrụ ọzọ na-abụghị onye ọrụ poller nwe ya (jiri chown nye ya onye ọrụ poller)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "efuola ma ọ bụ onye ọrụ poller enweghị ike ịgụ ya"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "ajụrụ: dị n'èzí ndekọ faịlụ token edobere na Ntọala, ruru site na njikọ ihe atụ, abụghị faịlụ nkịtị, ndị ọzọ nwere ike ide na ya, ma ọ bụ buru ibu karịa; ndekọ na-akpọ ihe kpatara ya"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "oghere"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "iwu ndị ahịa Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Nkwụnye Nhazi Oge HPC chọrọ PHP %s ma ọ bụ nke ọhụrụ. Sava a na-agba PHP %s, ya mere etinyeghị ma ọ bụ mee ka nkwụnye ahụ rụọ ọrụ."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Nkwụnye Nhazi Oge HPC anaghị arụ ọrụ."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Nkwụnye Nhazi Oge HPC chọrọ PHP %s ma ọ bụ nke ọhụrụ."
+
+#: setup.php
+msgid "Management"
+msgstr "Njikwa"

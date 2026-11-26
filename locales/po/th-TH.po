@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: th-TH\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "คุณไม่มีสิทธิ์สำหรับอุปกรณ์ของคลัสเตอร์นั้น"
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "ชื่อ: คลัสเตอร์อื่นใช้ชื่อนี้อยู่แล้ว"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "ไม่ได้บันทึกคลัสเตอร์: มีผู้อื่นแก้ไขข้อมูลตั้งแต่เปิดแบบฟอร์ม หรือการเขียนข้อมูลล้มเหลว โปรดเปิดใหม่อีกครั้งและทำการเปลี่ยนแปลงซ้ำ"
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "บันทึกคลัสเตอร์แล้ว"
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "สถานะคลัสเตอร์ไม่เปลี่ยนแปลง: การเขียนข้อมูลล้มเหลว โปรดดูบันทึกของ Cacti"
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "ลบคลัสเตอร์และสแนปช็อตที่แคชไว้แล้ว อุปกรณ์และกราฟของคลัสเตอร์ยังคงอยู่ ไม่ได้ติดต่อตัวจัดตารางงาน"
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "สร้างอุปกรณ์และกราฟแล้ว"
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "ไม่ได้สร้างอุปกรณ์: คลัสเตอร์มีอุปกรณ์อยู่แล้ว มีผู้อื่นแก้ไขข้อมูลตั้งแต่เปิดหน้านี้ หรือ Cacti ปฏิเสธการสร้าง โปรดดูบันทึกของ Cacti"
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "แมปคลัสเตอร์กับอุปกรณ์แล้ว"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "ไม่ได้แมปคลัสเตอร์: ไม่มีอุปกรณ์นี้อยู่ คุณไม่มีสิทธิ์เข้าถึงอุปกรณ์นี้ อุปกรณ์นี้ถูกผูกกับคลัสเตอร์อื่นอยู่แล้ว หรือคลัสเตอร์ถูกผู้อื่นแก้ไขตั้งแต่เปิดหน้านี้"
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "เพิ่มกราฟที่ขาดหายไปแล้ว"
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "ไม่ได้เพิ่มกราฟ: คลัสเตอร์ไม่มีอุปกรณ์ หรืออุปกรณ์นั้นไม่มีอยู่แล้ว"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "ไม่ได้ยกเลิกการแมปคลัสเตอร์: มีผู้อื่นแก้ไขข้อมูลตั้งแต่เปิดหน้านี้"
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "ยกเลิกการแมปคลัสเตอร์แล้ว อุปกรณ์และกราฟของคลัสเตอร์ยังคงอยู่"
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "สร้างดัชนีพาร์ติชันใหม่จากสแนปช็อตแล้ว"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "ไม่ได้สร้างดัชนีพาร์ติชันใหม่: อุปกรณ์ถูกปิดใช้งานหรือไม่สามารถติดต่อได้ Cacti จึงข้าม data query ของอุปกรณ์นี้"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "ไม่ได้สร้างดัชนีพาร์ติชันใหม่: Cacti ไม่สามารถรัน data query ได้ โปรดดูบันทึกของ Cacti"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "ไม่ได้สร้างดัชนีพาร์ติชันใหม่: ยังไม่ได้ติดตั้ง data query ของ HPC Scheduler โปรดติดตั้งเทมเพลตจากหน้าสถานะระบบ"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "ไม่ได้สร้างดัชนีพาร์ติชันใหม่: คลัสเตอร์ไม่มีอุปกรณ์ หรืออุปกรณ์นั้นไม่มีอยู่แล้ว"
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "ติดตั้งเทมเพลต HPC Scheduler แล้ว"
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "ไม่ได้ติดตั้งเทมเพลต: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "มุมมองการติดตามตรวจสอบ"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "ไม่สามารถอ่านผลการสังเกตการณ์ได้ โปรดแจ้งผู้ดูแลระบบให้ตรวจสอบบันทึกของปลั๊กอิน"
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "ตรวจสอบกลุ่มสาเหตุที่ค้างรอและความใหม่ของสแนปช็อตในหน้าภาพรวม ส่งต่อเรื่องข้อมูลรับรอง การแมปคลัสเตอร์ และนโยบายการบำรุงรักษาไปยังผู้ดูแลระบบ"
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "ชื่อ: ใช้ตัวอักษร ตัวเลข จุด เครื่องหมายขีดกลาง หรือขีดล่าง 1 ถึง 64 ตัว โดยขึ้นต้นด้วยตัวอักษรหรือตัวเลข"
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: เลือกหนึ่งใน poller ที่แสดงอยู่"
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "ช่วงเวลาการเก็บข้อมูล: ป้อนจำนวนวินาทีที่เป็นจำนวนเต็มตั้งแต่ %d ถึง %d"
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "การรับส่งข้อมูล: เลือกวิธีรับส่งข้อมูลจากรายการที่มีอยู่"
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: ป้อนพาธแบบเต็ม หรือเว้นว่างไว้เพื่อใช้ค่าเริ่มต้นของ poller"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: โฮสต์และพอร์ตนี้ไม่อยู่ในรายการโฮสต์ของ slurmrestd ในการตั้งค่า"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: ป้อน URL แบบ https:// ที่ไม่มีชื่อผู้ใช้ พารามิเตอร์ query หรือ fragment ส่วน http:// แบบไม่เข้ารหัสจะยอมรับเฉพาะสำหรับแอดเดรส loopback เท่านั้น"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "ผู้ใช้ slurmrestd: ใช้ตัวอักษร ตัวเลข จุด เครื่องหมายขีดกลาง หรือขีดล่างได้ไม่เกิน 64 ตัว หรือเว้นว่างไว้สำหรับโทเค็นผู้ใช้"
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "ไฟล์โทเค็น: ป้อนพาธแบบเต็มของไฟล์โทเค็นบน poller ห้ามป้อนตัวโทเค็นเองที่นี่"
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "ไฟล์โทเค็น: ยังไม่ได้กำหนดไดเรกทอรีสำหรับไฟล์โทเค็น โปรดขอให้ผู้ดูแลระบบ Cacti กำหนดค่าภายใต้ การตั้งค่า > HPC Scheduler"
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "ไฟล์โทเค็น: ไฟล์ต้องอยู่ภายในไดเรกทอรีสำหรับไฟล์โทเค็นที่กำหนดไว้ในการตั้งค่า (%s)"
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "คลัสเตอร์ HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "การดำเนินการ"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "อุปกรณ์"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "ช่วงเวลา"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "ชื่อ"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "ส่วนข้อมูล"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "สถานะ"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "การรับส่งข้อมูล"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "ยังไม่ได้กำหนดค่าคลัสเตอร์"
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "ปิดใช้งาน"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "เปิดใช้งาน"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "poller %d ถูกลบแล้ว"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d วินาที"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "ไม่มี"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "ลบ"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "ส่งออก"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "ดาวน์โหลดการตั้งค่าคลัสเตอร์เป็น JSON ก่อนการถอนการติดตั้งที่จะลบตารางของปลั๊กอิน ไฟล์นี้เก็บเฉพาะพาธของไฟล์โทเค็น ไม่ได้เก็บตัวโทเค็น"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "คลัสเตอร์: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "คลัสเตอร์ใหม่"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "ช่วงเวลาการเก็บข้อมูล (วินาที)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "เก็บข้อมูลการจอง (Reservations)"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "เก็บข้อมูล Fair-share (เฉพาะบัญชีเท่านั้น)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "พาธของ slurm.conf (ไม่บังคับ)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "ผู้ใช้ slurmrestd (ไม่บังคับ)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "ไฟล์โทเค็นบน Poller"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "คำสั่งไคลเอนต์จะใช้ไบนารีที่กำหนดไว้ภายใต้ การตั้งค่า > HPC Scheduler และการยืนยันตัวตน Slurm ของผู้ใช้ poller เอง พาธ slurm.conf (ไม่บังคับ) ใช้สำหรับเลือกคลัสเตอร์ ช่องข้อมูล slurmrestd จะใช้เฉพาะกับการรับส่งข้อมูลแบบนั้นเท่านั้น ไฟล์โทเค็นต้องกำหนดสิทธิ์ให้อ่านได้เฉพาะผู้ใช้ poller เท่านั้น ปลั๊กอินจะอ่านไฟล์นี้ในทุกครั้งที่ทำงานและจะไม่จัดเก็บตัวโทเค็นไว้"
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "บันทึก"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "อุปกรณ์สำหรับคลัสเตอร์: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "แมปกับอุปกรณ์ %s (id %d) แล้ว กราฟของคลัสเตอร์จะใช้สิทธิ์ของอุปกรณ์และกราฟตามระบบของ Cacti"
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "การเพิ่มกราฟที่ขาดหายไปจะเพิ่มรายการต่อไปนี้:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "เพิ่มกราฟที่ขาดหายไป"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "สร้างดัชนีพาร์ติชันใหม่"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "ยกเลิกการแมป"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "การยกเลิกการแมปจะยังคงเก็บอุปกรณ์ กราฟ และประวัติของกราฟไว้"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "คลัสเตอร์ยังคงแมปกับอุปกรณ์ %d ซึ่งไม่มีอยู่แล้ว การสร้างหรือแมปอุปกรณ์ใหม่จะแทนที่การแมปเดิม"
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "การสร้างอุปกรณ์จะเพิ่มรายการต่อไปนี้:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "หากไม่มีกราฟพาร์ติชัน ระบบจะสร้างเฉพาะกราฟระดับคลัสเตอร์ และละเว้นแหล่งข้อมูลและการเรียกใช้สำหรับพาร์ติชันด้านบนไว้"
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "สร้างกราฟพาร์ติชันด้วย"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "สร้างอุปกรณ์"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "หรือแมปอุปกรณ์ที่มีอยู่"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "แมปอุปกรณ์"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "ยังไม่ได้ติดตั้งเทมเพลต HPC Scheduler โปรดติดตั้งจากหน้าสถานะระบบ"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "อุปกรณ์ \"%s\" จากเทมเพลตอุปกรณ์ %s ที่โพลล์โดย poller %d โดยปิดการตรวจสอบสถานะความพร้อมใช้งานไว้"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "data query \"%s\" ซึ่งจัดทำดัชนีพาร์ติชันที่ทราบในขณะนี้ %d พาร์ติชัน"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "กราฟระดับคลัสเตอร์ %d รายการ โดยแต่ละรายการมีแหล่งข้อมูล \"%s\" เป็นของตัวเอง"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "กราฟพาร์ติชัน %d รายการ (%d รายการต่อพาร์ติชัน) โดยแต่ละรายการมีแหล่งข้อมูลเป็นของตัวเอง"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "รวมทั้งหมด: แหล่งข้อมูล %d รายการ ไฟล์ RRD %d ไฟล์ และการเรียก script server %d ครั้งต่อการโพลล์ พาร์ติชันที่เพิ่มเข้ามาภายหลังสามารถสร้างกราฟได้จากหน้า New Graphs"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "สร้างโดยปลั๊กอิน HPC Scheduler สำหรับคลัสเตอร์ %s ค่าต่างๆ มาจากสแนปช็อตของปลั๊กอิน ชื่อโฮสต์เป็นชื่อสงวนที่ไม่เคยถูกติดต่อไปยังเครือข่าย"
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "การตั้งค่า: พาธ URL หรือการตั้งค่าขาดหายไปหรือไม่ได้รับอนุญาต"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "ไม่สามารถติดต่อตัวจัดตารางงานได้"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "การเรียกใช้เวลานานเกินกว่าที่กำหนดและถูกหยุดการทำงาน"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "คำตอบมีขนาดใหญ่เกินกว่าที่กำหนดและถูกทิ้งไป"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "ไม่สามารถแยกวิเคราะห์คำตอบด้วยตัวแยกวิเคราะห์ข้อมูลที่กำหนดไว้ได้"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "ตัวจัดตารางงานปฏิเสธข้อมูลรับรอง"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "บัญชีตัวจัดตารางงานอาจไม่มีสิทธิ์ดูข้อมูลนี้ (PrivateData หรือสิทธิ์การเข้าถึง)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "ตัวควบคุมขอให้ไคลเอนต์ชะลอการเรียก (rate limit)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "เซิร์ฟเวอร์ตอบกลับ 304 สำหรับคำขอที่ไม่ได้ตั้งเงื่อนไข ระบบจึงคงข้อมูลเดิมไว้"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "ปลั๊กอินปฏิเสธการเรียกที่อยู่นอกรายการที่อนุญาต"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "การเรียกล้มเหลว"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "ตัวอ่านหน่วยความจำไม่เพียงพอ โปรดลดค่า Maximum Answer Size หรือเพิ่มค่า Collection Memory ในการตั้งค่า"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "ไม่เคย"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d วินาทีที่แล้ว"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d นาทีที่แล้ว"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d ชั่วโมงที่แล้ว"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d วันที่แล้ว"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "ปัจจุบัน"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "ล่าช้า"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "ล้าสมัย"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "ไม่เคยเก็บข้อมูล"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "คลัสเตอร์"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "การเรียก"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "คลัสเตอร์"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "ระยะเวลา"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "ความใหม่ของข้อมูล"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "การทำงานล่าสุด"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "ความสำเร็จล่าสุด"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "ผลลัพธ์"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "ตัวแยกวิเคราะห์"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "คลัสเตอร์ทั้งหมด"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "คำเตือน"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "คำเตือน"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "ไม่มีคำเตือน"
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "เทมเพลต"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "ติดตั้งเทมเพลตอุปกรณ์ เทมเพลตข้อมูล เทมเพลตกราฟ และ data query ของพาร์ติชันแล้ว"
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "ยังไม่ได้ติดตั้งเทมเพลตหรือเทมเพลตไม่เป็นปัจจุบัน จึงไม่สามารถสร้างอุปกรณ์ของคลัสเตอร์ได้ โปรดดูคำเตือนด้านบน"
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "ติดตั้งเทมเพลต"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "ส่วนข้อมูลของสแนปช็อต"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "อายุข้อมูล"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "ความพยายามล่าสุด"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "ระเบียน"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "ส่วนข้อมูล"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "การติดตั้งเทมเพลตครั้งล่าสุดล้มเหลว: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "เทมเพลต HPC Scheduler บางรายการขาดหายไปจาก Cacti โปรดติดตั้งด้านล่าง"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, ค้นพบแล้ว"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "ขนาดคำตอบสูงสุด (Maximum Answer Size) คือ %d MiB แต่คำตอบที่ถอดรหัสแล้วขนาดดังกล่าวไม่พอดีกับหน่วยความจำสำหรับการเก็บข้อมูล (Collection Memory) ขนาด %d MiB ตัวอ่านอนุญาต %d MiB โปรดเพิ่ม Collection Memory หรือลด Maximum Answer Size ในการตั้งค่า"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "ถูกกำหนดให้ใช้ poller %d ซึ่งเป็นตัวรวบรวมข้อมูลระยะไกล เวอร์ชันนี้เก็บข้อมูลบน poller หลักเท่านั้น ดังนั้นคลัสเตอร์จึงไม่ถูกเก็บข้อมูล การเก็บข้อมูลระยะไกลอยู่ในแผนของระยะที่ 3 โปรดกำหนดให้ใช้ poller หลัก"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "ช่วงเวลาการเก็บข้อมูลต่ำกว่าค่าขั้นต่ำ %d วินาที"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "ช่วงเวลาการเก็บข้อมูล %d วินาทีสั้นกว่าช่วงเวลาของ poller ที่ %d วินาที ข้อมูลจะถูกเก็บทุกๆ %d วินาที"
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "เข้าถึง slurmrestd ผ่าน HTTP แบบไม่เข้ารหัสบนแอดเดรส loopback ทำให้โทเค็นถูกส่งผ่านสแตกเครือข่ายภายในเครื่องโดยไม่เข้ารหัส"
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "ยังไม่มีการทำงานของตัวอ่านที่เสร็จสิ้นสำหรับคลัสเตอร์นี้"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "ไฟล์โทเค็น: %s"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "โทเค็นหมดอายุแล้ว %s"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "โทเค็นจะหมดอายุในอีก %d นาที"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "การทำงานครั้งล่าสุดใช้เวลาจนเต็มงบเวลา %d วินาที ทำให้บางส่วนข้อมูลไม่ได้ถูกเก็บ"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "ตัวจัดตารางงานรายงานว่าเป็น Slurm %s ซึ่งไม่ใช่เวอร์ชันที่รองรับ (%s)"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "ตัวจัดตารางงานรายงานว่าเป็น Slurm %s ซึ่งไม่ได้มาพร้อมกับตัวแยกวิเคราะห์ข้อมูล %s ที่เลือกไว้ในการตั้งค่า"
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "คำสั่งไคลเอนต์ทำงานโดยไม่มีการจำกัดหน่วยความจำ โปรดตั้งค่าพาธของ prlimit ในการตั้งค่า"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "ข้อผิดพลาดล่าสุด: %s"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "การเก็บข้อมูลถูกหยุดชั่วคราวเป็นเวลา %d วินาทีหลังจากถูกจำกัดอัตราการเรียก"
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "ข้อมูลเก่าเกินกำหนด กราฟและการแจ้งเตือนจะอ่านค่าเป็น unknown"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "รอดำเนินการ"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "ถูกระงับ"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "กำลังทำงาน"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "กำลังเสร็จสิ้น"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "อื่นๆ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "ว่าง"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "ถูกจัดสรร"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "ผสม"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "ระบายงานออกแล้ว"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "กำลังระบายงานออก"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "ไม่สามารถติดต่อได้"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "การบำรุงรักษา"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "ถูกจอง"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "ปิดเครื่องอยู่"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "ตรวจสอบผลการสังเกตการณ์ที่บันทึกไว้ด้านล่าง การรับทราบมีผลเฉพาะในเซสชันนี้ จะหมดอายุเมื่อผลการสังเกตการณ์เปลี่ยนแปลง และจะไม่ระงับการแจ้งเตือนหรือเปลี่ยนสถานะสุขภาพ"
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "การปฏิบัติการ HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "การตรวจสอบเชิงลึก"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "ออบเจ็กต์"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "เวลาที่สังเกตการณ์ (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "ไม่ทราบค่าหรือข้อมูลเก่า"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "รับทราบแล้ว สถานะสุขภาพยังคงเดิม"
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "รับทราบ"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "ไม่มีผลการสังเกตการณ์สำหรับอุปกรณ์ที่คุณมีสิทธิ์เข้าถึง"
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "เก็บรวบรวมแล้ว"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "รายละเอียด"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "โหนด"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "ยังไม่มีคลัสเตอร์ที่ถูกเก็บข้อมูล"
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "สาเหตุที่รอดำเนินการ"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "กราฟ"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "เครื่องหมายขีดกลางหมายถึงปลั๊กอินไม่มีข้อมูลปัจจุบันสำหรับค่านั้น เนื่องจากส่วนข้อมูลล้มเหลว เก่าเกินกำหนด หรือไม่เคยถูกเก็บมาก่อน สถานะรอดำเนินการจะไม่รวมงานที่ถูกระงับ ส่วน Drained จะนับทุกโหนดที่มีแฟล็ก drain รวมถึงโหนดที่ไม่สามารถติดต่อได้ (down) ด้วย"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "สาเหตุที่รอดำเนินการ: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "กลุ่ม"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "งาน"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "พาร์ติชัน"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "เหตุผล"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "ไม่มีงานที่รอดำเนินการ"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "แสดงเฉพาะ %d เหตุผลที่มีงานมากที่สุดเท่านั้น"
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "แต่ละงานจะถูกนับรวมภายใต้เหตุผลสุดท้ายที่ตัวจัดตารางเวลาตรวจสอบพบ ซึ่งอาจไม่ใช่สิ่งเดียวที่ทำให้งานยังไม่ได้เริ่ม งานที่อยู่ในหลายพาร์ติชันจะถูกนับหนึ่งครั้งที่นี่และหนึ่งครั้งในแต่ละพาร์ติชันที่ระบุไว้ งานที่ถูกระงับจะแสดงพร้อมเหตุผลในการระงับ"
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "โหนดที่มีสถานะไม่ทราบ"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "ชื่อ"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "สถานะ Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "ไม่มี ทุกโหนดแมปกับสถานะที่ทราบแล้ว"
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "ยังไม่มีการเก็บรวบรวมสแนปช็อตของงาน"
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "ยังไม่มีการเก็บรวบรวมสแนปช็อตของโหนด จึงยังไม่ทราบสถานะของโหนด"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "สแนปช็อตของงานบันทึกเมื่อ %s (%s) เป็นข้อมูลล่าสุด"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "สแนปช็อตของโหนดบันทึกเมื่อ %s (%s) เป็นข้อมูลล่าสุด"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "สแนปช็อตของงานบันทึกเมื่อ %s (%s) ไม่ใช่ข้อมูลล่าสุด: ข้อมูลล้าสมัยหรือการเก็บรวบรวมครั้งล่าสุดล้มเหลว และจำนวนด้านล่างเป็นค่าล่าสุดที่เก็บรวบรวมได้"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "สแนปช็อตของโหนดบันทึกเมื่อ %s (%s) ไม่ใช่ข้อมูลล่าสุด: ข้อมูลล้าสมัยหรือการเก็บรวบรวมครั้งล่าสุดล้มเหลว และโหนดด้านล่างเป็นข้อมูลล่าสุดที่เก็บรวบรวมได้"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "ผู้ปฏิบัติการตัวจัดตารางเวลา HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "มุมมองตัวจัดตารางเวลา HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "ผู้ดูแลระบบตัวจัดตารางเวลา HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "สถานะการทำงานของตัวจัดตารางเวลา HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "ลำดับความสำคัญ"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "ทรัพยากร"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "การพึ่งพา"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "เวลาเริ่มต้น"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "การจอง"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "ขีดจำกัดความเชื่อมโยง"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "ขีดจำกัด QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "ขีดจำกัดพาร์ติชัน"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "ความพร้อมใช้งานของโหนด"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "การจอง"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "การจัดสรรแบบ Fair-share"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "คำสั่งไคลเอนต์ Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "ตัวแยกวิเคราะห์ข้อมูล"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "ตัวแยกวิเคราะห์ข้อมูล Slurm สำหรับคำสั่งไคลเอนต์ เลือกเวอร์ชันที่มีอยู่ในรุ่นของทุกคลัสเตอร์ที่อ่านผ่านคำสั่งไคลเอนต์: v0.0.43 มีอยู่ใน 25.05, 25.11 และ 26.05 และถูกนำออกใน 27.05; v0.0.44 ต้องใช้ 25.11 หรือใหม่กว่า; v0.0.45 ต้องใช้ 26.05 หรือใหม่กว่า หน้าสถานะการทำงานจะแจ้งเตือนเมื่อคลัสเตอร์รายงานรุ่นที่ไม่มีตัวแยกวิเคราะห์นี้ คลัสเตอร์ที่อ่านผ่าน slurmrestd จะไม่สนใจการตั้งค่านี้: โดยจะใช้เวอร์ชันล่าสุดในกลุ่มนี้ที่ให้บริการโดยดีมอน และหน้าสถานะการทำงานจะแสดงว่าใช้เวอร์ชันใด"
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "พาธแบบเต็มไปยัง squeue บนแต่ละ poller ที่อ่านคลัสเตอร์ผ่านคำสั่งไคลเอนต์ ปลั๊กอินจะรันเฉพาะคำสั่ง squeue --all --json ร่วมกับตัวแยกวิเคราะห์ข้อมูลด้านบนเท่านั้น"
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "พาธแบบเต็มไปยัง scontrol ปลั๊กอินจะรันเฉพาะ scontrol --json show node, show partition และ show reservation เท่านั้น โดยจะไม่รัน update, reconfigure หรือ token"
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "พาธแบบเต็มไปยัง sshare ใช้เฉพาะสำหรับคลัสเตอร์ที่เก็บรวบรวมข้อมูล Fair-share"
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "ขีดจำกัด"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "หมดเวลาการเรียก"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "จำนวนวินาทีที่การเรียกตัวจัดตารางเวลาหนึ่งครั้งสามารถใช้ได้ก่อนที่จะถูกหยุดและบันทึกส่วนนั้นว่าล้มเหลว ทั้งนี้การเรียกจะไม่ทำงานเกินกรอบเวลาของตัวอ่านด้วย"
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "ขนาดคำตอบสูงสุด"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "จำนวน MiB ที่การเรียกตัวจัดตารางเวลาหนึ่งครั้งสามารถส่งคืนได้ คำตอบที่ใหญ่กว่านี้จะถูกทิ้งและบันทึกส่วนนั้นว่าล้มเหลว การถอดรหัสต้องใช้หน่วยความจำประมาณ 12 เท่าของขนาดคำตอบ ดังนั้นตัวอ่านจึงใช้ไม่เกิน (หน่วยความจำการเก็บรวบรวม - 64) / 12 MiB และหน้าสถานะการทำงานจะแจ้งเตือนเมื่อค่านี้สูงกว่า"
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "หน่วยความจำการเก็บรวบรวม"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "จำนวน MiB ของหน่วยความจำ PHP ที่การรันเก็บรวบรวมแต่ละครั้งจะเพิ่มขีดจำกัดให้ถึง (จะไม่มีการลดขีดจำกัดลง) ค่าเริ่มต้น 1024 รองรับคำตอบได้สูงสุด 80 MiB"
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "พาธแบบเต็มไปยัง prlimit (util-linux) ใช้สำหรับจำกัดพื้นที่แอดเดรสของแต่ละคำสั่งไคลเอนต์ เว้นว่างไว้เพื่อรันคำสั่งโดยไม่จำกัดหน่วยความจำ จากนั้นหน้าสถานะการทำงานจะแจ้งเตือน"
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "ขีดจำกัดหน่วยความจำของคำสั่ง"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "จำนวน MiB ของพื้นที่แอดเดรสที่แต่ละคำสั่งไคลเอนต์สามารถใช้ได้ผ่าน prlimit"
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "ข้อมูลรับรอง slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "ไดเรกทอรีไฟล์โทเค็น"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "ไดเรกทอรีแบบเต็มบน poller ที่สามารถเก็บไฟล์โทเค็น slurmrestd คั่นด้วยเครื่องหมายจุลภาคหรือเว้นวรรค คลัสเตอร์สามารถระบุได้เฉพาะไฟล์โทเค็นที่อยู่ภายในไดเรกทอรีเหล่านี้ โดยมีผู้ใช้ poller เป็นเจ้าของและเข้าถึงโดยไม่ผ่านลิงก์สัญลักษณ์ ให้ตั้งสิทธิ์แต่ละไดเรกทอรีให้เขียนได้เฉพาะ root และผู้ใช้ poller เท่านั้น หากเว้นว่างหมายความว่าไม่มีคลัสเตอร์ใดสามารถใช้ slurmrestd ได้"
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "โฮสต์ slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "ไม่บังคับ โฮสต์ slurmrestd ที่คลัสเตอร์สามารถระบุได้ ในรูปแบบ host หรือ host:port คั่นด้วยเครื่องหมายจุลภาคหรือเว้นวรรค รายการที่ไม่มีพอร์ตจะอนุญาตทุกพอร์ตบนโฮสต์นั้น หากเว้นว่างจะอนุญาตทุกโฮสต์"
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "จำนวนวินาทีก่อนที่โทเค็นจะหมดอายุเมื่อหน้าสถานะการทำงานเริ่มแจ้งเตือน หากโทเค็นมีเวลาหมดอายุระบุไว้"
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "การแจ้งเตือนโทเค็นใกล้หมดอายุ"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "ถอนการติดตั้ง"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "เก็บตารางของปลั๊กอินไว้เมื่อถอนการติดตั้ง"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "เมื่อเลือกตัวเลือกนี้ การถอนการติดตั้งปลั๊กอินจะยังคงเก็บคลัสเตอร์และสแนปช็อตไว้ ล้างตัวเลือกนี้เพื่อให้การถอนการติดตั้งลบข้อมูลเหล่านั้นออก โดยให้ส่งออกคลัสเตอร์จาก HPC Clusters ก่อน ปลั๊กอินจะไม่สร้างอุปกรณ์ Cacti หรือกำหนดการ Maint ในรุ่นนี้ และจะไม่มีการติดต่อตัวจัดตารางเวลาไม่ว่าในกรณีใด"
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "ไฟล์คิวรีข้อมูล %s ไม่ได้ติดตั้งอยู่ในไดเรกทอรี resource/script_server ของ Cacti"
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "ไฟล์คิวรีข้อมูล %s ในไดเรกทอรี resource/script_server ของ Cacti แตกต่างจากไฟล์ที่มาพร้อมกับปลั๊กอิน"
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "อ่านได้เฉพาะผู้ใช้ poller เท่านั้น"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "อ่านได้โดยกลุ่มของไฟล์ ให้จำกัดสิทธิ์เฉพาะผู้ใช้ poller เท่านั้น (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "อ่านได้โดยผู้ใช้ทุกคนบน poller ให้จำกัดสิทธิ์เฉพาะผู้ใช้ poller เท่านั้น (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "ถูกปฏิเสธ: มีผู้ใช้รายอื่นที่ไม่ใช่ผู้ใช้ poller เป็นเจ้าของ (ให้ใช้ chown เปลี่ยนเจ้าของเป็นผู้ใช้ poller)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "สูญหายหรือไม่สามารถอ่านได้โดยผู้ใช้ poller"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "ถูกปฏิเสธ: อยู่นอกไดเรกทอรีไฟล์โทเค็นที่กำหนดไว้ในการตั้งค่า เข้าถึงผ่านลิงก์สัญลักษณ์ ไม่ใช่ไฟล์ปกติ เขียนได้โดยผู้อื่น หรือมีขนาดใหญ่เกินไป บันทึกจะระบุเหตุผลไว้"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "ว่างเปล่า"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "คำสั่งไคลเอนต์ Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "ปลั๊กอินตัวจัดตารางเวลา HPC ต้องการ PHP %s หรือใหม่กว่า เซิร์ฟเวอร์นี้รัน PHP %s ดังนั้นปลั๊กอินจึงไม่ได้รับการติดตั้งหรือเปิดใช้งาน"
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "ปลั๊กอินตัวจัดตารางเวลา HPC ไม่ได้เปิดใช้งาน"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "ปลั๊กอินตัวจัดตารางเวลา HPC ต้องการ PHP %s หรือใหม่กว่า"
+
+#: setup.php
+msgid "Management"
+msgstr "การจัดการ"

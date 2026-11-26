@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: am-ET\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "የዚያ ክላስተር መሣሪያ ፈቃድ የለዎትም።"
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "ስም፦ ሌላ ክላስተር ይህን ስም አስቀድሞ ይጠቀማል።"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "ክላስተሩ አልተቀመጠም፦ ቅጹ ከተከፈተ በኋላ በሌላ ሰው ተቀይሯል፣ ወይም መጻፉ አልተሳካም። እንደገና ይክፈቱት እና ለውጡን ይድገሙት።"
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "ክላስተሩ ተቀምጧል።"
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "የክላስተሩ ሁኔታ አልተቀየረም፦ መጻፉ አልተሳካም። የCacti መዝገብን ይመልከቱ።"
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "ክላስተሩ እና የተሸጎጠው ቅጽበታዊ ገጽ እይታው ተሰርዘዋል። መሣሪያው እና ግራፎቹ ተቀምጠዋል። መርሐግብር አስያዡ አልተገናኘም።"
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "መሣሪያው እና ግራፎቹ ተፈጥረዋል።"
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "መሣሪያው አልተፈጠረም፦ ክላስተሩ አስቀድሞ መሣሪያ አለው፣ ገጹ ከተከፈተ በኋላ በሌላ ሰው ተቀይሯል፣ ወይም Cacti አልተቀበለውም። የCacti መዝገብን ይመልከቱ።"
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "ክላስተሩ ከመሣሪያው ጋር ተዛምዷል።"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "ክላስተሩ አልተዛመደም፦ መሣሪያው የለም፣ ለእርስዎ አልተፈቀደም፣ አስቀድሞ ሌላ ክላስተር ይዟል፣ ወይም ክላስተሩ ገጹ ከተከፈተ በኋላ በሌላ ሰው ተቀይሯል።"
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "የጎደሉ ግራፎች ታክለዋል።"
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "ምንም ግራፎች አልታከሉም፦ ክላስተሩ መሣሪያ የለውም፣ ወይም መሣሪያው ከእንግዲህ የለም።"
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "የክላስተሩ ዝምድና አልተነሳም፦ ገጹ ከተከፈተ በኋላ በሌላ ሰው ተቀይሯል።"
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "የክላስተሩ ዝምድና ተነስቷል። መሣሪያው እና ግራፎቹ ተቀምጠዋል።"
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "ክፍልፋዮቹ ከቅጽበታዊ ገጽ እይታው እንደገና መረጃ ጠቋሚ ተሰርቶላቸዋል።"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "ክፍልፋዮቹ እንደገና መረጃ ጠቋሚ አልተሰራላቸውም፦ መሣሪያው ቦዝኗል ወይም የማይደረስበት ነው፣ ስለዚህ Cacti የውሂብ መጠይቁን ዘሎታል።"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "ክፍልፋዮቹ እንደገና መረጃ ጠቋሚ አልተሰራላቸውም፦ Cacti የውሂብ መጠይቁን ማስኬድ አልቻለም። የCacti መዝገብን ይመልከቱ።"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "ክፍልፋዮቹ እንደገና መረጃ ጠቋሚ አልተሰራላቸውም፦ የHPC Scheduler የውሂብ መጠይቅ አልተጫነም። አብነቶቹን ከጤና ገጽ ይጫኑ።"
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "ክፍልፋዮቹ እንደገና መረጃ ጠቋሚ አልተሰራላቸውም፦ ክላስተሩ መሣሪያ የለውም፣ ወይም መሣሪያው ከእንግዲህ የለም።"
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "የHPC Scheduler አብነቶች ተጭነዋል።"
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "አብነቶቹ አልተጫኑም፦ %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "የክትትል እይታ"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "ምልከታዎቹን ማንበብ አልተቻለም። አስተዳዳሪ የተሰኪውን መዝገብ እንዲያረጋግጥ ይጠይቁ።"
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "በአጠቃላይ እይታው ላይ በመጠባበቅ ላይ ያሉ ምክንያት ቤተሰቦችን እና የቅጽበታዊ ገጽ እይታውን ወቅታዊነት ይመርምሩ። የምስክር ወረቀቶችን፣ የክላስተር ዝምድናዎችን እና የጥገና ፖሊሲን ወደ አስተዳዳሪ ያሳልፉ።"
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "ስም፦ በፊደል ወይም በአሃዝ የሚጀምሩ ከ1 እስከ 64 ፊደላት፣ አሃዞች፣ ነጥቦች፣ ሰረዞች ወይም የግርጌ ሰረዞች ይጠቀሙ።"
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "ፖለር፦ ከተዘረዘሩት ፖለሮች አንዱን ይምረጡ።"
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "የስብሰባ ክፍተት፦ ከ%d እስከ %d ያሉ ሙሉ ሰከንዶችን ያስገቡ።"
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "ማስተላለፊያ፦ ከተዘረዘሩት ማስተላለፊያዎች አንዱን ይምረጡ።"
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf፦ ፍጹም መንገድ ያስገቡ፣ ወይም የፖለሩን ነባሪ ለመጠቀም ባዶ ይተዉት።"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL፦ ይህ አስተናጋጅ እና ወደብ በቅንብሮች ውስጥ ባለው የslurmrestd አስተናጋጅ ዝርዝር ውስጥ የሉም።"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL፦ ያለ ተጠቃሚ ስም፣ መጠይቅ ወይም ቁራጭ የhttps:// URL ያስገቡ፤ ግልጽ http:// ተቀባይነት ያለው ለloopback አድራሻ ብቻ ነው።"
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd ተጠቃሚ፦ ቢበዛ 64 ፊደላት፣ አሃዞች፣ ነጥቦች፣ ሰረዞች ወይም የግርጌ ሰረዞች ይጠቀሙ፣ ወይም ለተጠቃሚ ቶከን ባዶ ይተዉት።"
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "የቶከን ፋይል፦ በፖለሩ ላይ ያለውን የቶከን ፋይል ፍጹም መንገድ ያስገቡ። ቶከኑ ራሱ እዚህ ፈጽሞ አይገባም።"
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "የቶከን ፋይል፦ እስካሁን ምንም የቶከን ፋይል ማውጫዎች አልተዘጋጁም። የCacti አስተዳዳሪን በቅንብሮች፣ HPC Scheduler ስር እንዲያዘጋጃቸው ይጠይቁ።"
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "የቶከን ፋይል፦ ፋይሉ በቅንብሮች (%s) ውስጥ ከተዘጋጁት የቶከን ፋይል ማውጫዎች በአንዱ ውስጥ መሆን አለበት።"
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "የHPC ክላስተሮች"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "እርምጃዎች"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "መሣሪያ"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "ክፍተት"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "ስም"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "ሰብሳቢ"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "ክፍሎች"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "ሁኔታ"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "ማስተላለፊያ"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "እስካሁን ምንም ክላስተሮች አልተዋቀሩም።"
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "አሰናክል"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "አንቃ"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "የተሰረዘ ፖለር %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d ሰከንዶች"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "ምንም"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "ሰርዝ"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "ላክ"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "የተሰኪውን ሰንጠረዦች ከሚያጠፋ ማራገፍ በፊት የክላስተር ውቅሩን እንደ JSON ያውርዱ። የቶከን ፋይል መንገዶችን ይይዛል እንጂ ቶከን ፈጽሞ አይይዝም።"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "ክላስተር፦ %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "አዲስ ክላስተር"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "የስብሰባ ክፍተት (ሰከንዶች)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "ነቅቷል"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "ቦታ ማስያዣዎችን ሰብስብ"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Fair-shareን ሰብስብ (መለያዎች ብቻ)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "የslurm.conf መንገድ (አማራጭ)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd ተጠቃሚ (አማራጭ)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "በፖለሩ ላይ ያለ የቶከን ፋይል"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "የደንበኛ ትዕዛዞች በቅንብሮች > HPC Scheduler ስር የተዘጋጁትን ሁለትዮሾች እና የፖለር ተጠቃሚውን የራሱን የSlurm ማረጋገጫ ይጠቀማሉ፤ አማራጩ የslurm.conf መንገድ ክላስተር ይመርጣል። የslurmrestd መስኮች የሚጠቀሙት ከዚያ ማስተላለፊያ ጋር ብቻ ነው። የቶከን ፋይሉ በፖለር ተጠቃሚው ብቻ የሚነበብ መሆን አለበት፤ ተሰኪው በእያንዳንዱ ሩጫ ያነበዋል እና ቶከኑን ፈጽሞ አያከማችም።"
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "አስቀምጥ"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "መሣሪያ ለክላስተር፦ %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "ከመሣሪያ %s (መታወቂያ %d) ጋር ተዛምዷል። ግራፎቹ የCactiን የመሣሪያ እና የግራፍ ፈቃዶች ይከተላሉ።"
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "የጎደሉትን ግራፎች ማከል የሚከተሉትን ያክላል፦"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "የጎደሉ ግራፎችን አክል"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "ክፍልፋዮችን እንደገና መረጃ ጠቋሚ ስራ"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "ዝምድና አንሳ"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "ዝምድናን ማንሳት መሣሪያውን፣ ግራፎቹን እና ታሪካቸውን ይይዛል።"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "ክላስተሩ አሁንም ከእንግዲህ ከሌለው ከመሣሪያ %d ጋር ተዛምዷል። መሣሪያ መፍጠር ወይም ማዛመድ ያንን ዝምድና ይተካል።"
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "መሣሪያ መፍጠር የሚከተሉትን ያክላል፦"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "የክፍልፋይ ግራፎች ከሌሉ፣ የክላስተር ግራፎች ብቻ ይፈጠራሉ፣ እና ከላይ ላሉት ክፍልፋዮች የውሂብ ምንጮች እና ጥሪዎች ይቀራሉ።"
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "የክፍልፋይ ግራፎችንም ፍጠር"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "መሣሪያ ፍጠር"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "ወይም ነባር መሣሪያ አዛምድ"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "መሣሪያ አዛምድ"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "የHPC Scheduler አብነቶች አልተጫኑም። ከጤና ገጽ ይጫኗቸው።"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "\"%s\" መሣሪያ ከ%s የመሣሪያ አብነት፣ በፖለር %d የሚጠየቅ፣ የመገኘት ፍተሻዎች ጠፍተው።"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "የውሂብ መጠይቁ \"%s\"፣ አሁን የሚታወቁትን %d ክፍልፋዮች መረጃ ጠቋሚ እየሰራ።"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d የክላስተር ግራፎች፣ እያንዳንዳቸው የራሳቸው \"%s\" የውሂብ ምንጭ ያላቸው።"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d የክፍልፋይ ግራፎች፣ ለእያንዳንዱ ክፍልፋይ %d፣ እያንዳንዳቸው የራሳቸው የውሂብ ምንጭ ያላቸው።"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "በአጠቃላይ፦ %d የውሂብ ምንጮች እና %d RRD ፋይሎች፣ እና በእያንዳንዱ ጥየቃ %d የስክሪፕት አገልጋይ ጥሪዎች። በኋላ የሚታከሉ ክፍልፋዮች ከአዲስ ግራፎች ገጽ ግራፎችን ያገኛሉ።"
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "ለክላስተር %s በHPC Scheduler ተሰኪ የተፈጠረ። እሴቶቹ ከተሰኪው ቅጽበታዊ ገጽ እይታ ይመጣሉ፤ የአስተናጋጁ ስም ፈጽሞ የማይገናኝ የተያዘ ስም ነው።"
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "ውቅር፦ መንገድ፣ URL ወይም ቅንብር ጎድሏል ወይም አልተፈቀደም"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "መርሐግብር አስያዡ ሊደረስበት አልቻለም"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "ጥሪው ከተፈቀደው በላይ ጊዜ ወስዷል እና ቆሟል"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "መልሱ ከተፈቀደው በላይ ትልቅ ነበር እና ተጥሏል"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "መልሱ በተሰካው የውሂብ ተንታኝ ሊተነተን አልቻለም"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "መርሐግብር አስያዡ የምስክር ወረቀቱን አልተቀበለም"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "የመርሐግብር አስያዡ መለያ ይህን ውሂብ ላያይ ይችላል (PrivateData ወይም ፈቃዶች)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "ተቆጣጣሪው ደንበኞች እንዲቆዩ ጠይቋል (የፍጥነት ገደብ)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "አገልጋዩ ሁኔታዊ ላልነበረ ጥያቄ 304 መልሷል፤ የቀድሞው ውሂብ ተቀምጧል"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "ተሰኪው ከተፈቀዱት ዝርዝር ውጭ የሆነ ጥሪ አልተቀበለም"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "ጥሪው አልተሳካም"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "አንባቢው ማህደረ ትውስታ አልቆበታል፤ በቅንብሮች ውስጥ ከፍተኛውን የመልስ መጠን ይቀንሱ ወይም የስብሰባ ማህደረ ትውስታን ይጨምሩ"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "በፍጹም"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "ከ%d ሰከንዶች በፊት"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "ከ%d ደቂቃዎች በፊት"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "ከ%d ሰዓታት በፊት"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "ከ%d ቀናት በፊት"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "ወቅታዊ"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "የዘገየ"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "ጊዜው ያለፈበት"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "ፈጽሞ አልተሰበሰበም"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "ክላስተሮች"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "ጥሪዎች"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "ክላስተር"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "የቆይታ ጊዜ"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "ወቅታዊነት"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "የመጨረሻ ሩጫ"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "የመጨረሻ ስኬት"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "ውጤት"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "ተንታኝ"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "ሁሉም ክላስተሮች"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "ማስጠንቀቂያዎች"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "ማስጠንቀቂያ"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "ምንም ማስጠንቀቂያዎች የሉም።"
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "ቴምፕሌቶች"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "የመሣሪያ፣ የውሂብ እና የግራፍ አብነቶች እና የክፍልፋይ ውሂብ መጠይቅ ተጭነዋል።"
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "አብነቶቹ አልተጫኑም ወይም ወቅታዊ አይደሉም፣ ስለዚህ የክላስተር መሣሪያዎች ሊፈጠሩ አይችሉም። ከላይ ያሉትን ማስጠንቀቂያዎች ይመልከቱ።"
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "አብነቶችን ጫን"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "የቅጽበታዊ ገጽ እይታ ክፍሎች"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "የውሂብ እድሜ"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "ስህተት"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "የመጨረሻ ሙከራ"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "መዝገቦች"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "ክፍል"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "የመጨረሻው የአብነት ጭነት አልተሳካም፦ %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "አንዳንድ የHPC Scheduler አብነቶች ከCacti ጎድለዋል። ከታች ይጫኗቸው።"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s፣ ተገኝቷል"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "ከፍተኛው የመልስ መጠን %d MiB ነው፣ ነገር ግን የዚያ መጠን የተፈታ መልስ %d MiB በሆነው የስብሰባ ማህደረ ትውስታ ውስጥ አይገባም፤ አንባቢው %d MiB ይፈቅዳል። በቅንብሮች ውስጥ የስብሰባ ማህደረ ትውስታን ይጨምሩ ወይም ከፍተኛውን የመልስ መጠን ይቀንሱ።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "ለሩቅ ውሂብ ሰብሳቢ ለፖለር %d ተመድቧል። ይህ ልቀት የሚሰበስበው በዋናው ፖለር ላይ ብቻ ነው፣ ስለዚህ ክላስተሩ አይሰበሰብም፤ የሩቅ ስብሰባ ለምዕራፍ 3 ታቅዷል። ወደ ዋናው ፖለር ይመድቡት።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "የስብሰባ ክፍተቱ ከ%d ሰከንድ ዝቅተኛ ገደብ በታች ነው።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "የ%d ሰከንዶች የስብሰባ ክፍተት ከ%d ሰከንዶች የፖለር ክፍተት ያነሰ ነው፤ ውሂብ በየ%d ሰከንዱ ይሰበሰባል።"
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "slurmrestd በloopback አድራሻ ላይ በግልጽ HTTP ይደረሳል፤ ቶከኑ ሳይመሰጠር በአካባቢያዊ የአውታረ መረብ ቁልል ያልፋል።"
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "ለዚህ ክላስተር እስካሁን ምንም የአንባቢ ሩጫ አልተጠናቀቀም።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "የቶከን ፋይል፦ %s።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "ቶከኑ ጊዜው ያለፈበት %s ነው።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "ቶከኑ በ%d ደቂቃዎች ውስጥ ጊዜው ያልፍበታል።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "የመጨረሻው ሩጫ የ%d ሰከንዶች ሙሉ የጊዜ በጀቱን ተጠቅሟል፤ አንዳንድ ክፍሎች አልተሰበሰቡም።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "መርሐግብር አስያዡ Slurm %s ያሳውቃል፣ ይህም የሚደገፍ ልቀት አይደለም (%s)።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "መርሐግብር አስያዡ Slurm %s ያሳውቃል፣ እሱም በቅንብሮች ውስጥ የተመረጠውን %s የውሂብ ተንታኝ አያካትትም።"
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "የደንበኛ ትዕዛዞች ያለ ማህደረ ትውስታ ገደብ ተከናውነዋል፤ በቅንብሮች ውስጥ የprlimit መንገድን ያዘጋጁ።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "የመጨረሻ ስህተት፦ %s።"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "ከፍጥነት ገደብ በኋላ ስብሰባው ለ%d ሰከንዶች ቆሟል።"
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "ውሂቡ ጊዜው አልፎበታል፤ ግራፎች እና ማንቂያዎች እንደ ያልታወቀ ያነቡታል።"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "በመጠባበቅ ላይ"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "ታግዷል"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "በመስራት ላይ"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "በማጠናቀቅ ላይ"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "ሌላ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "ያለ ስራ"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "ተመድቧል"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "ድብልቅ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "የተሟጠጠ"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "በመሟጠጥ ላይ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "የማይደረስ"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "ጥገና"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "የተያዘ"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "ኃይሉ ጠፍቷል"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "ከዚህ በታች የተመዘገቡትን ምልከታዎች ይገምግሙ። እውቅናዎች ለዚህ ክፍለ ጊዜ ግላዊ ናቸው፣ ምልከታዎች ሲለወጡ ጊዜያቸው ያልፋል፣ እና ማንቂያዎችን አያፍኑም ወይም ጤናን አይለውጡም።"
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "የHPC Scheduler ክንውኖች"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "ምርመራ"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "ነገር"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "የታየበት (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "ያልታወቀ ወይም ያረጀ"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "እውቅና ተሰጥቷል፤ ጤና አልተለወጠም።"
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "እውቅና ስጥ"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "መድረስ ለሚችሉባቸው መሣሪያዎች ምንም ምልከታዎች የሉም።"
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "ተሰብስቧል"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "ዝርዝሮች"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "ኖዶች"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "እስካሁን ምንም ክላስተሮች አልተሰበሰቡም።"
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "በመጠባበቅ ላይ ያሉ ምክንያቶች"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "ግራፎች"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "ሰረዝ ማለት ተሰኪው ለዚያ እሴት ወቅታዊ ውሂብ የለውም ማለት ነው፦ ክፍሉ አልተሳካም፣ ጊዜው አልፎበታል ወይም ፈጽሞ አልተሰበሰበም። በመጠባበቅ ላይ ያሉ የታገዱ ስራዎችን አያካትትም። የተሟጠጠ የdrain ምልክት ያለውን እያንዳንዱን ኖድ ይቆጥራል፣ የማይደረስባቸውንም ኖዶች ጨምሮ።"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "በመጠባበቅ ላይ ያሉ ምክንያቶች፦ %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "ቤተሰብ"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "ስራዎች"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "ክፍልፋዮች"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "ምክንያት"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "በመጠባበቅ ላይ ያሉ ስራዎች የሉም።"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "ብዙ ስራዎች ያላቸው %d ምክንያቶች ብቻ ተዘርዝረዋል።"
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "እያንዳንዱ ስራ መርሐግብር አውጪው ለመጨረሻ ጊዜ በመረመረለት ምክንያት ስር ይቆጠራል፤ ይህም ስራውን ይዞ ያቆየው ብቸኛው ነገር ላይሆን ይችላል። በብዙ ክፍልፋዮች ውስጥ ያለ ስራ እዚህ አንድ ጊዜ እና በጠቀሰው እያንዳንዱ ክፍልፋይ ውስጥ አንድ ጊዜ ይቆጠራል። የታገዱ ስራዎች ከእገዳ ምክንያታቸው ጋር ይዘረዘራሉ።"
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "ባልታወቁ ሁኔታዎች ውስጥ ያሉ ኖዶች"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "ስሞች"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "የSlurm ሁኔታ"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "ምንም የለም። እያንዳንዱ ኖድ ወደሚታወቅ ሁኔታ ተመድቧል።"
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "እስካሁን ምንም የስራዎች ቅጽበታዊ ገጽታ አልተሰበሰበም።"
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "እስካሁን ምንም የኖዶች ቅጽበታዊ ገጽታ ስላልተሰበሰበ የኖዶቹ ሁኔታዎች አይታወቁም።"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "የስራዎች ቅጽበታዊ ገጽታ %s (%s) ላይ ተወስዷል፣ ወቅታዊ ነው።"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "የኖዶች ቅጽበታዊ ገጽታ %s (%s) ላይ ተወስዷል፣ ወቅታዊ ነው።"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "የስራዎች ቅጽበታዊ ገጽታ %s (%s) ላይ ተወስዷል፣ ወቅታዊ አይደለም፦ የቆየ ነው ወይም የመጨረሻው ስብሰባ አልተሳካም፣ እና ከታች ያሉት ቆጠራዎች ለመጨረሻ ጊዜ የተሰበሰቡት ናቸው።"
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "የኖዶች ቅጽበታዊ ገጽታ %s (%s) ላይ ተወስዷል፣ ወቅታዊ አይደለም፦ የቆየ ነው ወይም የመጨረሻው ስብሰባ አልተሳካም፣ እና ከታች ያሉት ኖዶች ለመጨረሻ ጊዜ የተሰበሰቡት ናቸው።"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "የHPC መርሐግብር አውጪ ኦፕሬተር"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "የHPC መርሐግብር አውጪ እይታ"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "የHPC መርሐግብር አውጪ አስተዳዳሪ"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "የHPC መርሐግብር አውጪ ጤና"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "ቅድሚያ"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "ሀብቶች"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "ጥገኝነት"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "የመጀመሪያ ጊዜ"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "ቦታ ማስያዝ"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "የትስስር ገደቦች"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "የQOS ገደቦች"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "የክፍልፋይ ገደቦች"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "የኖድ ተገኝነት"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "ቦታ ማስያዞች"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "ፍትሐዊ ክፍፍል"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "የSlurm ደንበኛ ትዕዛዞች"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "የውሂብ ተንታኝ"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "ለደንበኛ ትዕዛዞች የሚያገለግል የSlurm ውሂብ ተንታኝ። በደንበኛ ትዕዛዞች የሚነበብ የእያንዳንዱ ክላስተር እትም የሚያቀርበውን አንዱን ይምረጡ፦ v0.0.43 በ25.05፣ 25.11 እና 26.05 ውስጥ የሚገኝ ሲሆን በ27.05 ውስጥ ተወግዷል፤ v0.0.44 25.11 ወይም ከዚያ በላይ ይፈልጋል፤ v0.0.45 26.05 ወይም ከዚያ በላይ ይፈልጋል። አንድ ክላስተር ያለ እሱ እትምን ሪፖርት ሲያደርግ የጤና ገጹ ያስጠነቅቃል። በslurmrestd በኩል የሚነበቡ ክላስተሮች ይህን ቅንብር ችላ ይላሉ፦ ዴሞኑ ከሚያቀርባቸው መካከል አዲሱን ይጠቀማሉ፣ እና የጤና ገጹ የትኛውን እንደሆነ ያሳያል።"
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "በደንበኛ ትዕዛዞች በኩል ክላስተር በሚያነብ እያንዳንዱ ፖለር ላይ ወደ squeue የሚወስድ ፍጹም መንገድ። ተሰኪው ከላይ ካለው የውሂብ ተንታኝ ጋር እንደ squeue --all --json ብቻ ያስኬደዋል።"
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "ወደ scontrol የሚወስድ ፍጹም መንገድ። ተሰኪው scontrol --json show node፣ show partition እና show reservation ብቻ ያስኬዳል፤ update፣ reconfigure ወይም token በፍጹም አያስኬድም።"
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "ወደ sshare የሚወስድ ፍጹም መንገድ፣ ፍትሐዊ ክፍፍልን ለሚሰበስቡ ክላስተሮች ብቻ ጥቅም ላይ ይውላል።"
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "ገደቦች"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "የጥሪ ጊዜ ማብቂያ"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "አንድ የመርሐግብር አውጪ ጥሪ ከመቆሙ እና ክፍሉ እንዳልተሳካ ከመመዝገቡ በፊት ሊወስድ የሚችለው የሰከንዶች ብዛት። አንድ ጥሪ ከአንባቢው የጊዜ በጀት አልፎም አይሰራም።"
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "ከፍተኛ የመልስ መጠን"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "አንድ የመርሐግብር አውጪ ጥሪ ሊመልስ የሚችለው የMiB መጠን። ከዚህ የሚበልጥ መልስ ይጣላል እና ክፍሉ እንዳልተሳካ ይመዘገባል። መፍታት የመልሱን መጠን 12 እጥፍ ያህል ስለሚፈልግ አንባቢው ቢበዛ (የስብሰባ ማህደረ ትውስታ - 64) / 12 MiB ይጠቀማል፣ እና ይህ እሴት ሲበልጥ የጤና ገጹ ያስጠነቅቃል።"
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "የስብሰባ ማህደረ ትውስታ"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "እያንዳንዱ የስብሰባ ሂደት ገደቡን ከፍ የሚያደርግበት የPHP ማህደረ ትውስታ በMiB (በፍጹም ዝቅ አያደርግም)። ነባሪው 1024 እስከ 80 MiB የሚደርሱ መልሶችን ይይዛል።"
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "የእያንዳንዱን የደንበኛ ትዕዛዝ የአድራሻ ቦታ ለመገደብ የሚያገለግል ወደ prlimit (util-linux) የሚወስድ ፍጹም መንገድ። ትዕዛዞችን ያለ ማህደረ ትውስታ ገደብ ለማስኬድ ባዶ ይተዉት፤ ከዚያ የጤና ገጹ ያስጠነቅቃል።"
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "የትዕዛዝ ማህደረ ትውስታ ገደብ"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "እያንዳንዱ የደንበኛ ትዕዛዝ በprlimit በኩል ሊጠቀምበት የሚችለው የአድራሻ ቦታ በMiB።"
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "የslurmrestd ማረጋገጫዎች"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "የቶከን ፋይል ማውጫዎች"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "የslurmrestd ቶከን ፋይሎችን ሊይዙ የሚችሉ በፖለሮች ላይ ያሉ ፍጹም ማውጫዎች፣ በኮማ ወይም በክፍተት የተለዩ። አንድ ክላስተር በፖለር ተጠቃሚ ባለቤትነት የተያዘ እና ያለ ተምሳሌታዊ አገናኝ የሚደረስበት፣ ከእነዚህ ውስጥ በአንዱ ውስጥ ያለ የቶከን ፋይል ብቻ መጥቀስ ይችላል። እያንዳንዱ ማውጫ በroot እና በፖለር ተጠቃሚ ብቻ እንዲጻፍበት ያድርጉ። ባዶ መሆኑ ምንም ክላስተር slurmrestdን መጠቀም እንደማይችል ያመለክታል።"
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "የslurmrestd አስተናጋጆች"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "አማራጭ። አንድ ክላስተር ሊጠቅሳቸው የሚችላቸው የslurmrestd አስተናጋጆች፣ እንደ host ወይም host:port፣ በኮማ ወይም በክፍተት የተለዩ። ወደብ የሌለው ግቤት በዚያ አስተናጋጅ ላይ ማንኛውንም ወደብ ይፈቅዳል። ባዶ መሆኑ ማንኛውንም አስተናጋጅ ይፈቅዳል።"
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "ቶከኑ የማብቂያ ጊዜ ካለው፣ የጤና ገጹ ማስጠንቀቅ ከመጀመሩ በፊት ቶከን ከማብቃቱ አስቀድሞ ያሉ ሰከንዶች።"
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "የቶከን ማብቂያ ማስጠንቀቂያ"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "አራግፍ"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "ሲራገፍ የተሰኪ ሰንጠረዦችን አቆይ"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "ምልክት ሲደረግበት፣ ተሰኪውን ማራገፍ ክላስተሮቹን እና ቅጽበታዊ ገጽታዎቹን ያቆያል። ማራገፉ እንዲያጠፋቸው ምልክቱን ያጥፉ፤ መጀመሪያ ክላስተሮቹን ከHPC Clusters ወደ ውጭ ይላኩ። ተሰኪው በዚህ እትም ውስጥ ምንም የCacti መሳሪያዎችን ወይም የMaint መርሐግብሮችን አይፈጥርም፣ እና በሁለቱም መንገድ መርሐግብር አውጪው በፍጹም አይገናኝም።"
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "የውሂብ መጠይቅ ፋይሉ %s በCacti resource/script_server ማውጫ ውስጥ አልተጫነም።"
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "በCacti resource/script_server ማውጫ ውስጥ ያለው የውሂብ መጠይቅ ፋይል %s ተሰኪው ከሚያቀርበው ይለያል።"
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "በፖለር ተጠቃሚ ብቻ የሚነበብ"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "በፋይል ቡድኑ የሚነበብ፤ ለፖለር ተጠቃሚ ብቻ ይገድቡት (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "በፖለር ላይ ባለ እያንዳንዱ ተጠቃሚ የሚነበብ፤ ለፖለር ተጠቃሚ ብቻ ይገድቡት (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "ተከልክሏል፦ ከፖለር ተጠቃሚ ውጭ በሆነ ሌላ ተጠቃሚ ባለቤትነት የተያዘ (በchown ወደ ፖለር ተጠቃሚ ያዛውሩት)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "የጠፋ ወይም በፖለር ተጠቃሚ የማይነበብ"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "ተከልክሏል፦ በቅንብሮች ውስጥ ከተወሰኑት የቶከን ፋይል ማውጫዎች ውጭ፣ በተምሳሌታዊ አገናኝ በኩል የተደረሰበት፣ መደበኛ ፋይል ያልሆነ፣ በሌሎች ሊጻፍበት የሚችል ወይም በጣም ትልቅ፤ መዝገቡ ምክንያቱን ይጠቅሳል"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "ባዶ"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "የSlurm ደንበኛ ትዕዛዞች"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "የHPC መርሐግብር አውጪ ተሰኪ PHP %s ወይም ከዚያ በላይ ይፈልጋል። ይህ አገልጋይ PHP %s ስለሚያስኬድ ተሰኪው አልተጫነም ወይም አልነቃም።"
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "የHPC መርሐግብር አውጪ ተሰኪ አልነቃም።"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "የHPC መርሐግብር አውጪ ተሰኪ PHP %s ወይም ከዚያ በላይ ይፈልጋል።"
+
+#: setup.php
+msgid "Management"
+msgstr "አስተዳደር"
