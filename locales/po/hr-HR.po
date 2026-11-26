@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: hr-HR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Nemate dopuštenje za uređaj tog klastera."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Ime: drugi klaster već upotrebljava ovo ime."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Klaster nije spremljen: netko drugi ga je promijenio od otvaranja obrasca ili zapisivanje nije uspjelo. Ponovno ga otvorite i ponovite promjenu."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Klaster je spremljen."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Stanje klastera nije izmijenjeno: zapisivanje nije uspjelo. Provjerite dnevnik Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Klaster i njegova predmemorirana snimka su izbrisani. Njegov uređaj i grafovi su zadržani. Rasporednik nije kontaktiran."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Uređaj i njegovi grafovi su stvoreni."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Uređaj nije stvoren: klaster već ima uređaj, netko drugi ga je promijenio od otvaranja stranice ili ga je Cacti odbio. Provjerite dnevnik Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Klaster je pridružen uređaju."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Klaster nije pridružen: uređaj ne postoji, nemate dopuštenje za njega, već je dodijeljen drugom klasteru ili ga je netko drugi promijenio od otvaranja stranice."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Dodani su grafovi koji nedostaju."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Nije dodan nijedan graf: klaster nema uređaj ili taj uređaj više ne postoji."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Pridruživanje klastera nije uklonjeno: netko drugi ga je promijenio od otvaranja stranice."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Pridruživanje klastera je uklonjeno. Uređaj i njegovi grafovi su zadržani."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Particije su ponovno indeksirane iz snimke."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Particije nisu ponovno indeksirane: uređaj je onemogućen ili izvan rada, stoga je Cacti preskočio njegov upit podataka."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Particije nisu ponovno indeksirane: Cacti nije mogao izvršiti upit podataka. Provjerite dnevnik Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Particije nisu ponovno indeksirane: upit podataka za HPC Scheduler nije instaliran. Instalirajte predloške sa stranice stanja sustava."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Particije nisu ponovno indeksirane: klaster nema uređaj ili taj uređaj više ne postoji."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Predlošci za HPC Scheduler su instalirani."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Predlošci nisu instalirani: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Nadzorni prikaz"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Zapažanja nije bilo moguće učitati. Zamolite administratora da provjeri dnevnik dodatka."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Pregledajte skupine razloga čekanja i svježinu snimki na pregledu. Vjerodajnice, pridruživanja klastera i pravila održavanja proslijedite administratoru."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Ime: upotrijebite od 1 do 64 slova, znamenke, točke, crtice ili podvlake, počevši slovom ili znamenkom."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Ispitivač: odaberite jedan s popisa ispitivača."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Razdoblje prikupljanja: unesite cijele sekunde od %d do %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Prijenos: odaberite jedan s popisa prijenosa."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: unesite apsolutnu putanju ili ostavite prazno za zadanu vrijednost ispitivača."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: ovo računalo i priključak nisu na popisu slurmrestd poslužitelja u Postavkama."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: unesite https:// URL bez korisničkog imena, upita ili odsječka; obični http:// dopušten je samo za povratnu (loopback) adresu."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd korisnik: upotrijebite najviše 64 slova, znamenke, točke, crtice ili podvlake, ili ostavite prazno za korisnički token."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Datoteka tokena: unesite apsolutnu putanju datoteke tokena na ispitivaču. Sam token se ovdje nikada ne unosi."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Datoteka tokena: mape za datoteke tokena još nisu zadane. Zamolite administratora sustava Cacti da ih postavi u Postavke, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Datoteka tokena: datoteka se mora nalaziti unutar jedne od mapa za datoteke tokena definiranih u Postavkama (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "HPC klasteri"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Akcije"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Uređaj"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Razdoblje"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Ime"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Ispitivač"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Odjeljci"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Status"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Prijenos"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Još nijedan klaster nije konfiguriran."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Onemogući"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Omogući"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Izbrisani ispitivač %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d sek."
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Nijedno"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Izbriši"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Izvoz"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Preuzmite konfiguraciju klastera u JSON obliku prije deinstalacije koja uklanja tablice dodatka. Sadrži putanje datoteka tokena, nikada sam token."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Klaster: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Novi klaster"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Razdoblje prikupljanja (sekunde)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Omogućeno"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Prikupljaj rezervacije"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Prikupljaj Fair-share (samo računi)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Putanja datoteke slurm.conf (neobavezno)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd korisnik (neobavezno)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Datoteka tokena na ispitivaču"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Klijentske naredbe upotrebljavaju izvršne datoteke postavljene pod Postavke > HPC Scheduler i vlastitu Slurm autentifikaciju korisnika ispitivača; neobavezna putanja slurm.conf odabire klaster. Polja za slurmrestd koriste se samo s tim prijenosom. Datoteka tokena smije biti čitljiva samo korisniku ispitivača; dodatak je učitava pri svakom pokretanju i nikada ne sprema token."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Spremi"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Uređaj za klaster: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Pridruženo uređaju %s (id %d). Njegovi grafovi slijede Cacti dopuštenja za uređaje i grafove."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Dodavanje grafova koji nedostaju dodaje:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Dodaj grafove koji nedostaju"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Ponovno indeksiraj particije"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Ukloni pridruživanje"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Uklanjanje pridruživanja čuva uređaj, njegove grafove i njihovu povijest."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Klaster je još uvijek pridružen uređaju %d, koji više ne postoji. Stvaranje ili pridruživanje uređaja zamjenjuje to pridruživanje."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Stvaranje uređaja dodaje:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Bez grafova particija stvaraju se samo grafovi klastera, a izvori podataka i pozivi za gore navedene particije izostavljaju se."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Stvori i grafove particija"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Stvori uređaj"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Ili pridruži postojeći uređaj"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Pridruži uređaj"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Predlošci za HPC Scheduler nisu instalirani. Instalirajte ih sa stranice stanja sustava."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Uređaj \"%s\" iz predloška uređaja %s, pod nadzorom ispitivača %d, s isključenim provjerama dostupnosti."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Upit podataka \"%s\", koji indeksira sada poznatih %d particija."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d grafova klastera, svaki s vlastitim izvorom podataka \"%s\"."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d grafova particija, po %d za svaku particiju, svaki s vlastitim izvorom podataka."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Ukupno: %d izvora podataka i %d RRD datoteka te %d poziva poslužitelja skripti po ispitivanju. Naknadno dodane particije dobivaju grafove sa stranice Novi grafovi."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Stvorio dodatak HPC Scheduler za klaster %s. Njegove vrijednosti potječu iz snimke dodatka; naziv poslužitelja je rezervirano ime koje se nikada ne kontaktira."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "konfiguracija: putanja, URL ili postavka nedostaje ili nije dopuštena"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "nije bilo moguće dosegnuti rasporednik"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "poziv je trajao dulje od dopuštenog i prekinut je"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "odgovor je premašio dopuštenu veličinu i odbačen je"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "odgovor se nije mogao raščlaniti zaključanim analizatorom podataka"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "rasporednik je odbio vjerodajnicu"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "račun rasporednika možda nema uvid u ove podatke (PrivateData ili dopuštenja)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "nadzornik je zatražio od klijenata da odgode zahtjeve (ograničenje stope)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "poslužitelj je odgovorio s 304 na zahtjev koji nije bio uvjetan; zadržani su prethodni podaci"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "dodatak je odbio poziv izvan svog popisa dopuštenih"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "poziv nije uspio"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "čitaču je ponestalo memorije; smanjite Najveću veličinu odgovora ili povećajte Memoriju za prikupljanje u Postavkama"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Nikad"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "prije %d sek."
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "prije %d min."
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "prije %d sat(i)"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "prije %d dan(a)"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Ažurno"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Zakašnjelo"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Zastarjelo"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Nikad nije prikupljeno"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Klasteri"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Pozivi"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Klaster"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Trajanje"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Svježina"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Zadnje pokretanje"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Zadnji uspjeh"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Rezultat"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Analizator"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Svi klasteri"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Upozorenja"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Upozorenje"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Nema upozorenja."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Predlošci"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Predlošci uređaja, podataka i grafova te upit podataka za particije su instalirani."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Predlošci nisu instalirani ili nisu ažurni, stoga se uređaji klastera ne mogu stvoriti. Provjerite upozorenja iznad."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Instaliraj predloške"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Odjeljci snimke"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Starost podataka"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Pogreška"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Zadnji pokušaj"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Zapisi"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Odjeljak"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Zadnja instalacija predložaka nije uspjela: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Neki predlošci za HPC Scheduler nedostaju u sustavu Cacti. Instalirajte ih u nastavku."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, prepoznato"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Najveća veličina odgovora iznosi %d MiB, no dekodirani odgovor te veličine ne stane u Memoriju za prikupljanje od %d MiB; čitač dopušta %d MiB. Povećajte Memoriju za prikupljanje ili smanjite Najveću veličinu odgovora u Postavkama."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Dodijeljeno ispitivaču %d, udaljenom sakupljaču podataka. Ovo izdanje prikuplja podatke samo na glavnom ispitivaču, pa se podaci za klaster ne prikupljaju; udaljeno prikupljanje planirano je za 3. fazu. Dodijelite ga glavnom ispitivaču."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Razdoblje prikupljanja je ispod donjeg praga od %d sekundi."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Razdoblje prikupljanja od %d sekundi kraće je od razdoblja ispitivača od %d sekundi; podaci se prikupljaju svakih %d sekundi."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "Servisu slurmrestd pristupa se običnim HTTP protokolom na povratnoj (loopback) adresi; token prolazi lokalnim mrežnim slogom nekriptiran."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Još nije dovršeno nijedno pokretanje čitača za ovaj klaster."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Datoteka tokena: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Token je istekao %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Token istječe za %d minuta."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Zadnje pokretanje potrošilo je čitav vremenski okvir od %d sekundi; neki odjeljci nisu prikupljeni."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Rasporednik javlja Slurm %s, što nije podržano izdanje (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Rasporednik javlja Slurm %s, koji ne uključuje analizator podataka %s odabran u Postavkama."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Klijentske naredbe izvršene su bez ograničenja memorije; postavite putanju alata prlimit u Postavkama."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Zadnja pogreška: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Prikupljanje je zaustavljeno na %d sekundi nakon ograničenja stope."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Podaci su zastarjeli; grafovi i alarmi tumače ih kao nepoznate."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Na čekanju"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Zadržano"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "U tijeku"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Dovršavanje"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Ostalo"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Slobodan"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Dodijeljen"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Mješovit"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Ispražnjen"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Pražnjenje"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Izvan rada"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Održavanje"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Rezerviran"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Ugašen"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Pregledajte zabilježena zapažanja u nastavku. Potvrde su osobne za ovu sesiju, istječu kad se zapažanja promijene i nikada ne potiskuju alarme niti mijenjaju stanje sustava."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Operacije HPC Schedulera"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Provjera"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Objekt"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Zapaženo (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Nepoznato ili zastarjelo"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Potvrđeno; stanje sustava nepromijenjeno."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Potvrdi"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Nema dostupnih zapažanja za uređaje kojima smijete pristupiti."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Prikupljeno"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Pojedinosti"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Čvorovi"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Podaci još nisu prikupljeni niti za jedan klaster."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Razlozi čekanja"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Grafovi"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Crtica znači da dodatak nema ažurne podatke za tu vrijednost: odjeljak nije uspio, zastario je ili nikad nije prikupljen. Na čekanju ne uključuje zadržane poslove. Ispražnjeni broji svaki čvor s oznakom drain, uključujući čvorove koji su ujedno izvan rada."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Razlozi čekanja: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Skupina"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Poslovi"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Particije"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Razlog"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Nema poslova na čekanju."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Prikazano je samo %d razloga s najvećim brojem poslova."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Svaki posao broji se pod zadnjim razlogom koji je rasporednik za njega ispitao, što ne mora biti jedini čimbenik koji ga zaustavlja. Posao u više particija broji se jednom ovdje i jednom u svakoj navedenoj particiji. Zadržani poslovi navedeni su uz razlog zadržavanja."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Čvorovi u nepoznatim statusima"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Imena"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Slurm status"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Nijedan. Svaki čvor odgovara poznatom statusu."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Snimka poslova još nije prikupljena."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Snimka čvorova još nije prikupljena, stoga su statusi čvorova nepoznati."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Snimka poslova izrađena %s (%s), ažurna."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Snimka čvorova izrađena %s (%s), ažurna."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Snimka poslova izrađena %s (%s), nije ažurna: zastarjela je ili zadnje prikupljanje nije uspjelo, a donji brojevi su zadnji prikupljeni."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Snimka čvorova izrađena %s (%s), nije ažurna: zastarjela je ili zadnje prikupljanje nije uspjelo, a donji čvorovi su zadnji prikupljeni."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "HPC Scheduler operater"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "HPC Scheduler pregled"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "HPC Scheduler administrator"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Stanje sustava HPC Scheduler"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Prioritet"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Resursi"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Ovisnost"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Vrijeme početka"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Rezervacija"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Ograničenja udruživanja"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "QOS ograničenja"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Ograničenja particije"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Dostupnost čvorova"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Rezervacije"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Fair-share"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Klijentske naredbe Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Analizator podataka"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Slurm analizator podataka za klijentske naredbe. Odaberite onaj koji donosi izdanje svakog klastera čitanog klijentskim naredbama: v0.0.43 prisutan je u 25.05, 25.11 i 26.05 te se uklanja u 27.05; v0.0.44 zahtijeva 25.11 ili noviji; v0.0.45 zahtijeva 26.05 ili noviji. Stranica stanja sustava upozorava kad klaster javi izdanje bez njega. Klasteri čitani putem slurmrestd zanemaruju ovu postavku: upotrebljavaju najnoviji koji pozadinski servis poslužuje, a stranica stanja sustava prikazuje koji."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Apsolutna putanja alata squeue na svakom ispitivaču koji čita klaster klijentskim naredbama. Dodatak ga pokreće isključivo kao squeue --all --json s gornjim analizatorom podataka."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Apsolutna putanja alata scontrol. Dodatak izvršava isključivo scontrol --json show node, show partition i show reservation; nikada update, reconfigure ili token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Apsolutna putanja alata sshare, upotrebljava se samo za klastere koji prikupljaju fair-share."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Ograničenja"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Istek vremena poziva"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Broj sekundi koliko jedan poziv rasporednika smije trajati prije nego što se prekine, a njegov odjeljak zabilježi kao neuspješan. Poziv nikada ne premašuje ni vremenski okvir čitača."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Najveća veličina odgovora"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "Broj MiB koje jedan poziv rasporednika smije vratiti. Veći odgovor se odbacuje, a njegov odjeljak bilježi kao neuspješan. Dekodiranje zahtijeva oko 12 puta veću memoriju od veličine odgovora, pa čitač dopušta najviše (Memorija za prikupljanje - 64) / 12 MiB, a stranica stanja sustava upozorava kad je ova vrijednost veća."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Memorija za prikupljanje"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "Broj MiB PHP memorije na koji svako prikupljanje podiže svoje ograničenje (nikada ga ne smanjuje). Zadana vrijednost od 1024 dovoljna je za odgovore do 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Apsolutna putanja alata prlimit (util-linux), za ograničavanje adresnog prostora svake klijentske naredbe. Ostavite prazno za pokretanje naredbi bez ograničenja memorije; stranica stanja sustava tada upozorava."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Ograničenje memorije naredbe"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "Broj MiB adresnog prostora koji svaka klijentska naredba smije upotrijebiti pomoću alata prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Vjerodajnice za slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Mape za datoteke tokena"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Apsolutne mape na ispitivačima koje smiju sadržavati datoteke tokena za slurmrestd, odvojene zarezima ili razmacima. Klaster smije navesti samo datoteku tokena unutar jedne od njih, u vlasništvu korisnika ispitivača i bez simboličke poveznice. Svaka mapa smije biti upisiva samo za root i korisnika ispitivača. Prazno polje znači da nijedan klaster ne može koristiti slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Poslužitelji slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Neobavezno. Poslužitelji za slurmrestd koje klaster smije navesti, kao host ili host:port, odvojeni zarezima ili razmacima. Unos bez priključka dopušta bilo koji priključak na tom poslužitelju. Prazno polje dopušta bilo koji poslužitelj."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Broj sekundi prije isteka tokena kada stranica stanja sustava počinje prikazivati upozorenje, ako token sadrži vrijeme isteka."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Upozorenje na istek tokena"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Deinstalacija"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Zadrži tablice dodatka pri deinstalaciji"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Kad je označeno, deinstalacija dodatka čuva njegove klastere i snimke. Poništite oznaku da ih deinstalacija ukloni; prethodno izvezite klastere sa stranice HPC klasteri. Dodatak u ovom izdanju ne stvara Cacti uređaje ni Maint rasporede, a rasporednik se ni u jednom slučaju ne kontaktira."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Datoteka upita podataka %s nije instalirana u Cacti mapi resource/script_server."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Datoteka upita podataka %s u Cacti mapi resource/script_server razlikuje se od one koju donosi dodatak."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "čitljivo samo korisniku ispitivača"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "čitljivo grupi datoteke; ograničite pristup samo na korisnika ispitivača (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "čitljivo svim korisnicima na ispitivaču; ograničite pristup samo na korisnika ispitivača (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "odbijeno: u vlasništvu korisnika različitog od korisnika ispitivača (dodijelite vlasništvo pomoću chown korisniku ispitivača)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "nedostaje ili nije čitljivo korisniku ispitivača"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "odbijeno: izvan mapa za datoteke tokena zadanih u Postavkama, dohvaćeno putem simboličke poveznice, nije obična datoteka, dopušten je upis drugima ili je prevelika; dnevnik navodi razlog"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "prazno"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Klijentske naredbe Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Dodatak HPC Scheduler zahtijeva PHP %s ili noviji. Ovaj poslužitelj koristi PHP %s, stoga dodatak nije instaliran ni omogućen."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Dodatak HPC Scheduler nije omogućen."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Dodatak HPC Scheduler zahtijeva PHP %s ili noviji."
+
+#: setup.php
+msgid "Management"
+msgstr "Upravljanje"
