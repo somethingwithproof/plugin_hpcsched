@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: rw-RW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Ntabwo ufite uburenganzira ku gikoresho cy'iryo huriro."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Izina: irindi huriro risanzwe rikoresha iri zina."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Ihuriro ntiryabitswe: ryahinduwe n'undi muntu kuva ifishi ifunguwe, cyangwa kwandika byananiranye. Ongera urifungure maze usubiremo impinduka."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Ihuriro ryabitswe."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Imiterere y'ihuriro ntiyahinduwe: kwandika byananiranye. Reba inyandiko-mvugo ya Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Ihuriro n'ishusho yaryo y'ako kanya yari ibitswe byasibwe. Igikoresho cyaryo n'ibishushanyo byaryo byagumishijweho. Umugenga w'imirimo ntiyavugishijwe."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Igikoresho n'ibishushanyo byacyo byaremwe."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Igikoresho nticyaremwe: ihuriro risanzwe rifite igikoresho, ryahinduwe n'undi muntu kuva urupapuro rufunguwe, cyangwa Cacti yarabyanze. Reba inyandiko-mvugo ya Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Ihuriro ryahujwe n'igikoresho."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Ihuriro ntiryahujwe: igikoresho ntikibaho, ntucyemerewe, gisanzwe gifite irindi huriro, cyangwa ihuriro ryahinduwe n'undi muntu kuva urupapuro rufunguwe."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Ibishushanyo byaburaga byongeweho."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Nta bishushanyo byongeweho: ihuriro nta gikoresho rifite, cyangwa igikoresho cyaryo ntikikibaho."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Ihuriro ntiryatandukanyijwe: ryahinduwe n'undi muntu kuva urupapuro rufunguwe."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Ihuriro ryatandukanyijwe. Igikoresho n'ibishushanyo byacyo byagumishijweho."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Ibice byongeye kubarwa bivuye ku ishusho y'ako kanya."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Ibice ntibyongeye kubarwa: igikoresho cyarahagaritswe cyangwa kitagerwaho, bityo Cacti yasimbuste ishakisha ryacyo ry'amakuru."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Ibice ntibyongeye kubarwa: Cacti ntiyashoboye gukora ishakisha ry'amakuru. Reba inyandiko-mvugo ya Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Ibice ntibyongeye kubarwa: ishakisha ry'amakuru rya HPC Scheduler ntiryashyizwemo. Shyiramo ibyitegererezo uvuye ku rupapuro rw'ubuzima bwa sisitemu."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Ibice ntibyongeye kubarwa: ihuriro nta gikoresho rifite, cyangwa igikoresho cyaryo ntikikibaho."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Ibyitegererezo bya HPC Scheduler byashyizwemo."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Ibyitegererezo ntibyashyizwemo: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Imboni y'ikurikirana"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Ibyagaragaye ntibyashoboye gusomwa. Saba umuyobozi kugenzura inyandiko-mvugo y'umugereka."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Suzuma amatsinda y'impamvu zo gutegereza n'ubushya bw'ishusho y'ako kanya ku ncamake. Ohereza ibirebana n'ibyangombwa byo kwinjira, ihuzwa ry'amahuriro na politiki yo kubungabunga ku muyobozi wa sisitemu."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Izina: koresha kuva ku nyuguti 1 kugeza kuri 64, imibare, utudomo, uturongo tugufi, cyangwa uturongo two munsi, utangirira ku nyuguti cyangwa umubare."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: hitamo imwe muri poller zatanzwe ku rutonde."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Intera y'ikusanya: andika amasegonda yuzuye kuva kuri %d kugeza kuri %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Uburyo bwo gutwara amakuru: hitamo bumwe mu buryo bwashyizwe ku rutonde."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: andika inzira yuzuye, cyangwa uyireke irimo ubusa kugira ngo hakoreshwe igenamiterere mbanziriza ry'umukusanyamakuru."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: iyi seriveri n'iki cyambu ntibiri ku rutonde rwa host za slurmrestd muri Igenamiterere."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: andika URL ya https:// idafite izina ry'ukoresha, ikibazo (query), cyangwa igice (fragment); http:// isanzwe yemerwa gusa kuri aderesi ya loopback."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Ukoresha slurmrestd: koresha ibimenyetso bitarenze 64 by'inyuguti, imibare, utudomo, uturongo tugufi, cyangwa uturongo two munsi, cyangwa uhareke harimo ubusa kuri token y'ukoresha."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Dosiye ya Token: andika inzira yuzuye ya dosiye ya token ku mukusanyamakuru. Token ubwayo ntiyigera yandikwa hano."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Dosiye ya Token: nta bubiko bwa dosiye za token burashyirwaho. Saba umuyobozi wa Cacti kubishyiraho munsi ya Igenamiterere, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Dosiye ya Token: dosiye igomba kuba iri muri bumwe mu bubiko bwa dosiye za token bwashyizweho muri Igenamiterere (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Amahuriro ya HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Ibikorwa"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Igikoresho"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Intera"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Izina"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Ibice"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Imiterere"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Uburyo bwo gutwara amakuru"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Nta mahuriro arashyirwaho."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Hagarika"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Fungura"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Umukusanyamakuru %d wasibwe"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "amasegonda %d"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Nta na kimwe"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Siba"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Ohereza hanze"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Kurura igenamiterere ry'ihuriro nka JSON mbere yo gukura umugereka muri sisitemu uvanaho imbonerahamwe z'umugereka. Ribika inzira za dosiye za token, ntiribika token na rimwe."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Ihuriro: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Ihuriro Rishya"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Intera y'ikusanya (amasegonda)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Byafunguwe"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Kusanya Ibiteganyijwe"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Kusanya Fair-share (konti gusa)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Inzira ya slurm.conf (si ngombwa)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Ukoresha slurmrestd (si ngombwa)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Dosiye ya Token ku Mukusanyamakuru"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Amabwiriza y'umukiriya akoresha porogaramu zashyizweho munsi ya Igenamiterere > HPC Scheduler hamwe n'uburenganzira bwa Slurm bw'ukoresha umukusanyamakuru; inzira ya slurm.conf itari ngombwa ihitamo ihuriro. Ibisabwa bya slurmrestd bikoreshwa gusa n'ubwo buryo bwo gutwara amakuru. Dosiye ya token igomba kuba isomeka n'ukoresha umukusanyamakuru wenyine; umugereka uyisoma muri buri gikorwa kandi ntiwigera ubika token."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Bika"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Igikoresho cy'Ihuriro: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Ryahujwe n'igikoresho %s (id %d). Ibishushanyo byaryo bikurikiza uburenganzira bw'igikoresho n'ibishushanyo bya Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Kongeraho ibishushanyo byaburaga byongeraho:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Ongeraho Ibishushanyo Byaburaga"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Ongera Ubare Ibice"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Tandukanya"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Gutandukanya bigumisha igikoresho, ibishushanyo byacyo, n'amateka yabyo."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Ihuriro riracyahujwe n'igikoresho %d, kitakibaho. Kurema cyangwa guhuza igikoresho bisimbura iryo huzwa."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Kurema igikoresho byongeraho:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Hatariho ibishushanyo by'ibice, haremwa ibishushanyo by'ihuriro gusa, kandi amasoko y'amakuru n'ibisabwa by'ibice biri hejuru birarekwa."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Kandi rema ibishushanyo by'ibice"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Rema Igikoresho"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Cyangwa huza igikoresho gisanzweho"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Huza Igikoresho"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Ibyitegererezo bya HPC Scheduler ntibyashyizwemo. Bishyiremo uvuye ku rupapuro rw'ubuzima bwa sisitemu."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Igikoresho \"%s\" kivuye ku cyitegererezo cy'igikoresho %s, gikusanywa n'umukusanyamakuru %d, igenzura ryo kuboneka ryafunzwe."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Ishakisha ry'amakuru \"%s\", ribara ibice %d bizwi ubu."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "Ibishushanyo by'ihuriro %d, buri kimwe gifite isoko yacyo y'amakuru \"%s\"."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "Ibishushanyo by'ibice %d, %d kuri buri gice, buri kimwe gifite isoko yacyo y'amakuru."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Muri rusange: amasoko y'amakuru %d na dosiye za RRD %d, n'ibisabwa kuri script server %d muri buri kusanya. Ibice byongeweho nyuma bibona ibishushanyo bivuye ku rupapuro rw'Ibishushanyo Bishya."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Byaremwe n'umugereka wa HPC Scheduler ku bw'ihuriro %s. Agaciro kabyo kava ku ishusho y'ako kanya y'umugereka; izina rya host ni izina ryabikiwe ritigera rivugishwa."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "igenamiterere: inzira, URL, cyangwa igenamiterere rirabura cyangwa ntiryemewe"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "umugenga w'imirimo ntiyashoboye kugerwaho"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "igisabwa cyamaze igihe kirenga icyemewe maze gihagarikwa"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "igisubizo cyari kinini kurusha uko byemewe maze kirajugunywa"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "igisubizo nticyashoboye gusesengurwa n'umusesenguzi w'amakuru watoranyijwe"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "umugenga w'imirimo yanze icyangombwa cyo kwinjira"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "konti y'umugenga w'imirimo ishobora kutabona aya makuru (PrivateData cyangwa uburenganzira)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "umugenzuzi yasabye abakiriya kugabanya umuvuduko (rate limit)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "seriveri yasubije 304 ku gisabwa kitari gifite ibisabwa; amakuru ya mbere yagumishijweho"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "umugereka wanze igisabwa kiri hanze y'urutonde rw'ibyemewe"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "igisabwa cyananiranye"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "umusomyi yashizeho ububiko (memory); gabanya Ingano Ntarenzwa y'Igisubizo cyangwa wongere Ububiko bw'Ikusanya muri Igenamiterere"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Nta na rimwe"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "hashize amasegonda %d"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "hashize iminota %d"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "hashize amasaha %d"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "hashize iminsi %d"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Bigezweho"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Byatinze"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Byashaje"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Ntikigeze gikusanywa"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Amahuriro"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Ibisabwa"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Ihuriro"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Igihe byamaze"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Ubushyashya bw'amakuru"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Inshuro iheruka"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Iheruka kugenda neza"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Ibyavuyemo"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Umusesenguzi"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Amahuriro yose"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Imiburo"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Iburira"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Nta miburo."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Inyandikorugero"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Ibyitegererezo by'igikoresho, amakuru, n'ibishushanyo hamwe n'ishakisha ry'amakuru ry'igice byashyizwemo."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Ibyitegererezo ntibyashyizwemo cyangwa ntibigezweho, bityo ibikoresho by'ihuriro ntibishobora kuremwa. Reba amaburira ari hejuru."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Shyiramo Ibyitegererezo"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Ibice by'Ishusho y'Ako Kanya"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Igihe amakuru amaze atavugururwa"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Ikosa"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Igerageza rya Nyuma"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Inyandiko"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Igice"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Ishyirwamo rya nyuma ry'ibyitegererezo ryananiranye: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Bimwe mu byitegererezo bya HPC Scheduler birabura muri Cacti. Bishyiremo hasi."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, byavumbuwe"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Ingano Ntarenzwa y'Igisubizo ni %d MiB, ariko igisubizo cyasobanuwe gifite iyo ngano ntigikwirwa mu Bubiko bw'Ikusanya bwa %d MiB; umusomyi yemera %d MiB. Ongera Ububiko bw'Ikusanya cyangwa ugabanye Ingano Ntarenzwa y'Igisubizo muri Igenamiterere."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Cyahawe umukusanyamakuru %d, ukusanya amakuru uri kure. Iyi verisiyo ikusanya gusa ku mukusanyamakuru mukuru, bityo ihuriro ntirikusanywa; ikusanya rya kure riteganyijwe mu cyiciro cya 3. Gihereze umukusanyamakuru mukuru."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Intera y'ikusanya iri munsi y'urugero rwo hasi rw'amasegonda %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Intera y'ikusanya y'amasegonda %d ni ngufi kurusha intera y'umukusanyamakuru y'amasegonda %d; amakuru akusanywa buri masegonda %d."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "slurmrestd igerwaho hakoreshejwe HTTP isanzwe kuri aderesi ya loopback; token inyura mu muyoboro w'imbere idasobekeranijwe."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Nta gikorwa cy'umusomyi kirarangira kuri iri huriro."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Dosiye ya token: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Token yarangiye %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Token irangira mu minota %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Igikorwa cya nyuma cyakoresheje igihe cyose cyateganyijwe cy'amasegonda %d; bimwe mu bice ntibyakusanyijwe."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Umugenga w'imirimo atangaza Slurm %s, itari verisiyo ishyigikiwe (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Umugenga w'imirimo atangaza Slurm %s, itazana n'umusesenguzi w'amakuru %s wahiswemo muri Igenamiterere."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Amabwiriza y'umukiriya yakoze nta rugero rw'ububiko (memory limit); shyiraho inzira ya prlimit muri Igenamiterere."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Ikosa rya nyuma: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Ikusanya ryahagaritswe by'agateganyo amasegonda %d nyuma y'urugero rw'umuvuduko w'ibisabwa (rate limit)."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Amakuru yarashaje; ibishushanyo n'integuza biyasoma nk'ayatazwi."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Bitegereje"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Byafashwe"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Birakora"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Birarangira"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Ikindi"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Bidafite akazi"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Byahawe imirimo"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Bivanze"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Byakuwemo imirimo"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Birimo gukurwamo imirimo"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Yaguye"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Isana n'ivugurura"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Byabikiwe"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Byazimijwe"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Suzuma ibyagaragaye byanditswe hasi aha. Kwemeza ko wabibonye ni umwihariko w'iki gikorwa cyo kwinjira, birarangira iyo ibyagaragaye bihindutse, kandi ntibihagarika na rimwe impuruza cyangwa ngo bihindure ubuzima bwa sisitemu."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Ibikorwa bya HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Iperereza"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Ikintu"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Byagaragaye (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Ntibizwi cyangwa byashaje"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Byemejwe ko byabonywe; ubuzima ntibwahindutse."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Emeza ko wabibonye"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Nta byagaragaye biboneka ku bikoresho ufite uburenganzira bwo kugeraho."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Byakusanyijwe"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Ibisobanuro birambuye"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Nodi"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Nta mahuriro arakusanywa."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Impamvu zo gutegereza"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Ibishushanyo"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Akamenyetso ka dash gasobanura ko umugereka udafite amakuru agezweho y'ako gaciro: igice cyarananiranye, kirashaje, cyangwa ntikigeze gikusanywa. Bitegereje ntibibarirwamo imirimo yafashwe. Byakuwemo imirimo bibara buri nodi ifite ikimenyetso cya drain, harimo na nodi zitagerwaho."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Impamvu zo Gutegereza: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Itsinda"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Imirimo"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Ibice"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Impamvu"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Nta mirimo itegereje ihari."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Impamvu %d gusa zifite imirimo myinshi nizo zashyizwe ku rutonde."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Buri murimo ubarirwa munsi y'impamvu ya nyuma gahunda igena imirimo yasuzumye kuri wo, kandi si ngombwa ko ari yo mpamvu yonyine iwuboshye. Umurimo uri mu bice byinshi ubarwa rimwe hano kandi ukabarwa rimwe muri buri gice kivugwa. Imirimo yahagaritswe ishyirwa ku rutonde hamwe n'impamvu yayihagaritse."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Nodi ziri mu miterere itazwi"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Amazina"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Imiterere ya Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Nta na kimwe. Buri nodi ihuye n'imiterere izwi."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Nta shusho y'imirimo irakusanywa kugeza ubu."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Nta shusho ya nodi irakusanywa kugeza ubu, bityo imiterere ya nodi ntizwi."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Ishusho y'imirimo yafashwe %s (%s), igezweho."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Ishusho ya nodi yafashwe %s (%s), igezweho."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Ishusho y'imirimo yafashwe %s (%s), ntigezweho: irashaje cyangwa ikusanya rya nyuma ryarananiwe, kandi imibare iri hasi ni iya nyuma yakusanyijwe."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Ishusho ya nodi yafashwe %s (%s), ntigezweho: irashaje cyangwa ikusanya rya nyuma ryarananiwe, kandi nodi ziri hasi ni iza nyuma zakusanyijwe."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Ukoresha HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Kureba HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Umuyobozi wa HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Ubuzima bwa HPC Scheduler"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Icyihutirwa"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Ibikorwaremezo"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Icyo bishingiyeho"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Igihe cyo gutangira"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Umwanya wateganyijwe"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Imbibi z'isano"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Imbibi za QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Imbibi z'igice"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Kuboneka kwa nodi"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Imyanya yateganyijwe"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Igabana riringaniye"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Amabwiriza y'umukiriya wa Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Umusesenguzi w'amakuru"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Umusesenguzi w'amakuru ya Slurm ku mabwiriza y'umukiriya. Hitamo uwo verisiyo ya buri tsinda risomwa binyuze mu mabwiriza y'umukiriya itanga: v0.0.43 iri muri 25.05, 25.11, na 26.05 kandi ikurwaho muri 27.05; v0.0.44 ikenera 25.11 cyangwa iyisumbuyeho; v0.0.45 ikenera 26.05 cyangwa iyisumbuyeho. Ipaji y'ubuzima irabiburira iyo itsinda ritangaje verisiyo itawufite. Amatsinda asomwa binyuze kuri slurmrestd yirengagiza iri genamiterere: akoresha ugezweho kurusha iyindi muri iyi serivisi itanga, kandi ipaji y'ubuzima yerekana uwo ari wo."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Inzira nyakuri igana kuri squeue kuri buri poller isoma itsinda binyuze mu mabwiriza y'umukiriya. Umugereka uyikoresha gusa nka squeue --all --json hamwe n'umusesenguzi w'amakuru uri hejuru."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Inzira nyakuri igana kuri scontrol. Umugereka ukoresha gusa scontrol --json show node, show partition, na show reservation; ntukigera ukoresha update, reconfigure, cyangwa token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Inzira nyakuri igana kuri sshare, ikoreshwa gusa ku matsinda akusanya igabana riringaniye."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Imbibi"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Igihe ntarengwa cyo guhamagara"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Amasegonda ihamagara rimwe rya gahunda rishobora gufata mbere y'uko rihagarikwa kandi igice cyaryo kikandikwa ko cyananiwe. Ihamagara kandi ntirirenza igihe cyagenwe cy'umusomyi."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Ingano ntarengwa y'igisubizo"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB ihamagara rimwe rya gahunda rishobora kugarura. Igisubizo kinini kurushaho kirajugunywa kandi igice cyacyo kikandikwa ko cyananiwe. Gusesengura bisaba hafi inshuro 12 z'ingano y'igisubizo, bityo umusomyi akoresha bitarenze (Ububiko bw'ikusanya - 64) / 12 MiB kandi ipaji y'ubuzima irabiburira iyo iyi mibare ari minini."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Ububiko bw'ikusanya"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "MiB y'ububiko bwa PHP buri gikorwa cy'ikusanya kizamuraho urugero rwacyo (ntirushobora kurumanura). Igenamiterere risanzwe rya 1024 rikwiranye n'ibisubizo bigera kuri 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Inzira nyakuri igana kuri prlimit (util-linux), ikoreshwa mu kugabanya umwanya w'aderesi wa buri bwiriza ry'umukiriya. Siga ubusa kugira ngo ukoreshe amabwiriza nta rubibi rw'ububiko; ipaji y'ubuzima izabiburira."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Urubibi rw'ububiko bw'amabwiriza"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "MiB y'umwanya w'aderesi buri bwiriza ry'umukiriya rishobora gukoresha, binyuze kuri prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Ibyangombwa bya slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Ububiko bw'amadosiye ya token"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Ububiko nyakuri kuri za poller bushobora kubika amadosiye ya token ya slurmrestd, butandukanyijwe n'utumenyetso tw'ikitso cyangwa imyanya. Itsinda rishobora kuvuga gusa dosiye ya token iri muri bumwe muri bwo, ifitwe n'umukoresha wa poller kandi igerwaho nta murongo w'ikimenyetso (symbolic link). Buri bubiko bukwiriye kwemerera gusa root n'umukoresha wa poller kubwandikamo. Ubusa bisobanuye ko nta tsinda rishobora gukoresha slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Seriveri za slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Bitari ngombwa. Seriveri za slurmrestd itsinda rishobora kuvuga, nka host cyangwa host:port, bitandukanyijwe n'utumenyetso tw'ikitso cyangwa imyanya. Icyanditswe kitagira icyambu cyemera icyambu icyo ari cyo cyose kuri iyo seriveri. Ubusa bwemera seriveri iyo ari yo yose."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Amasegonda mbere y'uko token irangira igihe ipaji y'ubuzima itangira kuburira, niba token ifite igihe cyo kurangiriraho."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Iburira ry'irangira rya token"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Kura muri sisitemu"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Gumisha imbonerahamwe z'umugereka igihe ukurwa muri sisitemu"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Iyo byahiswemo, gukuramo umugereka bigumana amatsinda n'amashusho yawo. Bikureho kugira ngo gukuramo umugereka bibisibe; banza wohereze hanze amatsinda uturutse muri HPC Clusters. Umugereka ntukora ibikoresho bya Cacti cyangwa gahunda za Maint muri iyi verisiyo, kandi gahunda igena imirimo ntijya ivugishwa mu buryo ubwo ari bwo bwose."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Dosiye yo gusaba amakuru %s ntiyashyizwe mu bubiko bwa resource/script_server bwa Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Dosiye yo gusaba amakuru %s iri mu bubiko bwa resource/script_server bwa Cacti itandukanye n'iyo umugereka utanga."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "isomwa gusa n'umukoresha wa poller"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "isomwa n'itsinda rya dosiye; yikumire ku mukoresha wa poller wenyine (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "isomwa na buri mukoresha kuri poller; yikumire ku mukoresha wa poller wenyine (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "yanzwe: ifitwe n'undi mukoresha utari umukoresha wa poller (koresha chown uyegurire umukoresha wa poller)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "irabura cyangwa ntishobora gusomwa n'umukoresha wa poller"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "yanzwe: iri hanze y'ububiko bw'amadosiye ya token bwashyizwe mu Igenamiterere, yagezweho binyuze mu murongo w'ikimenyetso (symbolic link), si dosiye isanzwe, yandikwamo n'abandi, cyangwa ni nini cyane; inyandiko-mvugo ivuga impamvu"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "ubusa"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Amabwiriza y'umukiriya wa Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Umugereka wa HPC Scheduler ukenera PHP %s cyangwa iyisumbuyeho. Iyi seriveri ikoresha PHP %s, bityo umugereka ntiwashyizwemo cyangwa ngo wemezwe."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Umugereka wa HPC Scheduler ntiwemejwe."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Umugereka wa HPC Scheduler ukenera PHP %s cyangwa iyisumbuyeho."
+
+#: setup.php
+msgid "Management"
+msgstr "Imicungire"

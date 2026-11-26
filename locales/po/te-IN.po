@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: te-IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "ఆ క్లస్టర్ పరికరానికి మీకు అనుమతి లేదు."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "పేరు: మరొక క్లస్టర్ ఇప్పటికే ఈ పేరును ఉపయోగిస్తోంది."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "క్లస్టర్ సేవ్ చేయబడలేదు: ఫారమ్ తెరిచినప్పటి నుండి దాన్ని వేరొకరు మార్చారు లేదా వ్రాయడం విఫలమైంది. దాన్ని మళ్లీ తెరిచి మార్పును పునరావృతం చేయండి."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "క్లస్టర్ సేవ్ చేయబడింది."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "క్లస్టర్ స్థితి మార్చబడలేదు: వ్రాయడం విఫలమైంది. Cacti లాగ్ చూడండి."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "క్లస్టర్ మరియు దాని క్యాష్ చేసిన స్నాప్‌షాట్ తొలగించబడ్డాయి. దాని పరికరం మరియు గ్రాఫ్‌లు ఉంచబడ్డాయి. షెడ్యూలర్‌ను సంప్రదించలేదు."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "పరికరం మరియు దాని గ్రాఫ్‌లు సృష్టించబడ్డాయి."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "పరికరం సృష్టించబడలేదు: క్లస్టర్‌లో ఇప్పటికే పరికరం ఉంది, పేజీ తెరిచినప్పటి నుండి దాన్ని వేరొకరు మార్చారు లేదా Cacti దాన్ని తిరస్కరించింది. Cacti లాగ్ చూడండి."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "క్లస్టర్ పరికరానికి మ్యాప్ చేయబడింది."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "క్లస్టర్ మ్యాప్ చేయబడలేదు: పరికరం లేదు, మీకు అనుమతి లేదు, ఇప్పటికే మరొక క్లస్టర్‌ను కలిగి ఉంది లేదా పేజీ తెరిచినప్పటి నుండి క్లస్టర్‌ను వేరొకరు మార్చారు."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "తప్పిపోయిన గ్రాఫ్‌లు జోడించబడ్డాయి."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "గ్రాఫ్‌లు ఏవీ జోడించబడలేదు: క్లస్టర్‌కు పరికరం లేదు లేదా దాని పరికరం ఇప్పుడు లేదు."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "క్లస్టర్ అన్‌మ్యాప్ చేయబడలేదు: పేజీ తెరిచినప్పటి నుండి దాన్ని వేరొకరు మార్చారు."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "క్లస్టర్ అన్‌మ్యాప్ చేయబడింది. పరికరం మరియు దాని గ్రాఫ్‌లు ఉంచబడ్డాయి."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "స్నాప్‌షాట్ నుండి విభజనలు మళ్లీ ఇండెక్స్ చేయబడ్డాయి."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "విభజనలు మళ్లీ ఇండెక్స్ చేయబడలేదు: పరికరం నిలిపివేయబడింది లేదా అందుబాటులో లేదు, కాబట్టి Cacti దాని డేటా క్వెరీని దాటవేసింది."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "విభజనలు మళ్లీ ఇండెక్స్ చేయబడలేదు: Cacti డేటా క్వెరీని అమలు చేయలేకపోయింది. Cacti లాగ్ చూడండి."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "విభజనలు మళ్లీ ఇండెక్స్ చేయబడలేదు: HPC షెడ్యూలర్ డేటా క్వెరీ ఇన్‌స్టాల్ చేయబడలేదు. ఆరోగ్య పేజీ నుండి టెంప్లేట్‌లను ఇన్‌స్టాల్ చేయండి."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "విభజనలు మళ్లీ ఇండెక్స్ చేయబడలేదు: క్లస్టర్‌కు పరికరం లేదు లేదా దాని పరికరం ఇప్పుడు లేదు."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "HPC షెడ్యూలర్ టెంప్లేట్‌లు ఇన్‌స్టాల్ చేయబడ్డాయి."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "టెంప్లేట్‌లు ఇన్‌స్టాల్ చేయబడలేదు: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "పర్యవేక్షణ వీక్షణ"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "పరిశీలనలను చదవలేకపోయాము. ప్లగిన్ లాగ్‌ను తనిఖీ చేయమని నిర్వాహకుడిని అడగండి."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "అవలోకనంలో పెండింగ్ కారణ కుటుంబాలు మరియు స్నాప్‌షాట్ తాజాదనాన్ని తనిఖీ చేయండి. ఆధారాలు, క్లస్టర్ మ్యాపింగ్‌లు మరియు నిర్వహణ విధానాన్ని నిర్వాహకుడికి నివేదించండి."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "పేరు: అక్షరం లేదా అంకెతో ప్రారంభమయ్యే 1 నుండి 64 అక్షరాలు, అంకెలు, చుక్కలు, డాష్‌లు లేదా అండర్‌స్కోర్‌లను ఉపయోగించండి."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "పోలర్: జాబితా చేసిన పోలర్‌లలో ఒకదాన్ని ఎంచుకోండి."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "సేకరణ విరామం: %d నుండి %d వరకు పూర్తి సెకన్లను నమోదు చేయండి."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "రవాణా: జాబితా చేసిన రవాణాలలో ఒకదాన్ని ఎంచుకోండి."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: సంపూర్ణ మార్గాన్ని నమోదు చేయండి లేదా పోలర్ డిఫాల్ట్‌ను ఉపయోగించడానికి ఖాళీగా ఉంచండి."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: ఈ హోస్ట్ మరియు పోర్ట్ సెట్టింగ్లలోని slurmrestd హోస్ట్ జాబితాలో లేవు."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: వినియోగదారు పేరు, క్వెరీ లేదా ఫ్రాగ్మెంట్ లేకుండా https:// URL ను నమోదు చేయండి; సాధారణ http:// లూప్‌బ్యాక్ చిరునామాకు మాత్రమే ఆమోదించబడుతుంది."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd వినియోగదారు: గరిష్టంగా 64 అక్షరాలు, అంకెలు, చుక్కలు, డాష్‌లు లేదా అండర్‌స్కోర్‌లను ఉపయోగించండి లేదా వినియోగదారు టోకెన్ కోసం ఖాళీగా ఉంచండి."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "టోకెన్ ఫైల్: పోలర్‌పై ఉన్న టోకెన్ ఫైల్ యొక్క సంపూర్ణ మార్గాన్ని నమోదు చేయండి. టోకెన్‌ను ఎప్పుడూ ఇక్కడ నమోదు చేయకూడదు."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "టోకెన్ ఫైల్: ఇంకా టోకెన్ ఫైల్ డైరెక్టరీలు సెట్ చేయబడలేదు. సెట్టింగ్లు, HPC షెడ్యూలర్ కింద వాటిని సెట్ చేయమని Cacti నిర్వాహకుడిని అడగండి."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "టోకెన్ ఫైల్: ఫైల్ సెట్టింగ్లలో సెట్ చేసిన టోకెన్ ఫైల్ డైరెక్టరీలలో ఒకదాని లోపల ఉండాలి (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "HPC క్లస్టర్‌లు"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "చర్యలు"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "పరికరం"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "విరామం"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "పేరు"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "పోలర్"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "విభాగాలు"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "స్థితి"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "రవాణా"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "ఇంకా క్లస్టర్‌లు ఏవీ కాన్ఫిగర్ చేయబడలేదు."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "నిలిపివేయి"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "ప్రారంభించు"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "తొలగించబడిన పోలర్ %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d సెకన్లు"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "ఏదీ లేదు"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "తొలగించండి"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "ఎగుమతి చేయి"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "ప్లగ్‌ఇన్ పట్టికలను తొలగించే అన్‌ఇన్‌స్టాల్‌కు ముందు క్లస్టర్ కాన్ఫిగరేషన్‌ను JSON గా డౌన్‌లోడ్ చేయండి. ఇది టోకెన్ ఫైల్ మార్గాలను కలిగి ఉంటుంది, ఎప్పుడూ టోకెన్‌ను కాదు."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "క్లస్టర్: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "కొత్త క్లస్టర్"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "సేకరణ విరామం (సెకన్లు)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "ప్రారంభించబడింది"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "రిజర్వేషన్‌లను సేకరించండి"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "ఫెయిర్-షేర్‌ను సేకరించండి (ఖాతాలు మాత్రమే)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "slurm.conf మార్గం (ఐచ్ఛికం)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd వినియోగదారు (ఐచ్ఛికం)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "పోలర్‌పై టోకెన్ ఫైల్"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "క్లయింట్ ఆదేశాలు సెట్టింగ్లు > HPC షెడ్యూలర్ కింద సెట్ చేసిన బైనరీలను మరియు పోలర్ వినియోగదారు యొక్క స్వంత Slurm ప్రమాణీకరణను ఉపయోగిస్తాయి; ఐచ్ఛిక slurm.conf మార్గం క్లస్టర్‌ను ఎంచుకుంటుంది. slurmrestd ఫీల్డ్‌లు ఆ రవాణాతో మాత్రమే ఉపయోగించబడతాయి. టోకెన్ ఫైల్ పోలర్ వినియోగదారుకు మాత్రమే చదవగలిగేదిగా ఉండాలి; ప్లగ్‌ఇన్ దాన్ని ప్రతి అమలులో చదువుతుంది మరియు టోకెన్‌ను ఎప్పుడూ నిల్వ చేయదు."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "సేవ్ చేయండి"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "క్లస్టర్ కోసం పరికరం: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "పరికరం %s (id %d) కు మ్యాప్ చేయబడింది. దీని గ్రాఫ్‌లు Cacti యొక్క పరికర మరియు గ్రాఫ్ అనుమతులను అనుసరిస్తాయి."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "తప్పిపోయిన గ్రాఫ్‌లను జోడించడం వీటిని జోడిస్తుంది:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "తప్పిపోయిన గ్రాఫ్‌లను జోడించండి"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "విభజనలను మళ్లీ ఇండెక్స్ చేయండి"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "అన్‌మ్యాప్ చేయండి"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "అన్‌మ్యాప్ చేయడం వలన పరికరం, దాని గ్రాఫ్‌లు మరియు వాటి చరిత్ర అలాగే ఉంటాయి."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "క్లస్టర్ ఇప్పటికీ పరికరం %d కు మ్యాప్ చేయబడి ఉంది, అది ఇప్పుడు లేదు. పరికరాన్ని సృష్టించడం లేదా మ్యాప్ చేయడం ఆ మ్యాపింగ్‌ను భర్తీ చేస్తుంది."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "పరికరాన్ని సృష్టించడం వీటిని జోడిస్తుంది:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "విభజన గ్రాఫ్‌లు లేకుండా, క్లస్టర్ గ్రాఫ్‌లు మాత్రమే సృష్టించబడతాయి మరియు పై విభజనల కోసం డేటా మూలాలు మరియు కాల్‌లు వదిలివేయబడతాయి."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "విభజన గ్రాఫ్‌లను కూడా సృష్టించండి"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "పరికరాన్ని సృష్టించండి"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "లేదా ఉన్న పరికరాన్ని మ్యాప్ చేయండి"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "పరికరాన్ని మ్యాప్ చేయండి"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "HPC షెడ్యూలర్ టెంప్లేట్‌లు ఇన్‌స్టాల్ చేయబడలేదు. ఆరోగ్య పేజీ నుండి వాటిని ఇన్‌స్టాల్ చేయండి."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "\"%s\" పరికరం (%s పరికర టెంప్లేట్ నుండి), లభ్యత తనిఖీలు ఆఫ్‌లో ఉండి పోలర్ %d ద్వారా పోల్ చేయబడుతుంది."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "డేటా క్వెరీ \"%s\", ఇప్పుడు తెలిసిన %d విభజనలను ఇండెక్స్ చేస్తోంది."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d క్లస్టర్ గ్రాఫ్‌లు, ప్రతి ఒక్కటి దాని స్వంత \"%s\" డేటా మూలంతో."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d విభజన గ్రాఫ్‌లు, ప్రతి విభజనకు %d, ప్రతి ఒక్కటి దాని స్వంత డేటా మూలంతో."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "మొత్తంగా: %d డేటా మూలాలు మరియు %d RRD ఫైల్‌లు, మరియు ప్రతి పోల్‌కు %d స్క్రిప్ట్ సర్వర్ కాల్‌లు. తర్వాత జోడించిన విభజనలు కొత్త గ్రాఫ్‌ల పేజీ నుండి గ్రాఫ్‌లను పొందుతాయి."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "క్లస్టర్ %s కోసం HPC షెడ్యూలర్ ప్లగ్‌ఇన్ ద్వారా సృష్టించబడింది. దీని విలువలు ప్లగ్‌ఇన్ స్నాప్‌షాట్ నుండి వస్తాయి; హోస్ట్ పేరు ఎప్పుడూ సంప్రదించబడని రిజర్వ్ చేయబడిన పేరు."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "కాన్ఫిగరేషన్: ఒక మార్గం, URL లేదా సెట్టింగ్ లేదు లేదా అనుమతించబడదు"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "షెడ్యూలర్‌ను చేరుకోలేకపోయింది"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "కాల్ అనుమతించిన దానికంటే ఎక్కువ సమయం తీసుకుంది మరియు ఆపివేయబడింది"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "సమాధానం అనుమతించిన దానికంటే పెద్దదిగా ఉంది మరియు విస్మరించబడింది"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "పిన్ చేసిన డేటా పార్సర్‌తో సమాధానాన్ని పార్స్ చేయలేకపోయింది"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "షెడ్యూలర్ ఆధారాన్ని తిరస్కరించింది"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "షెడ్యూలర్ ఖాతా ఈ డేటాను చూడకపోవచ్చు (PrivateData లేదా అనుమతులు)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "నియంత్రిక క్లయింట్‌లను వేచి ఉండమని అడిగింది (రేట్ పరిమితి)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "షరతులతో కూడినది కాని అభ్యర్థనకు సర్వర్ 304 అని సమాధానమిచ్చింది; మునుపటి డేటా ఉంచబడింది"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "ప్లగ్‌ఇన్ దాని అనుమతి జాబితా వెలుపల ఉన్న కాల్‌ను తిరస్కరించింది"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "కాల్ విఫలమైంది"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "రీడర్ మెమరీ అయిపోయింది; సెట్టింగ్లలో గరిష్ట సమాధాన పరిమాణాన్ని తగ్గించండి లేదా సేకరణ మెమరీని పెంచండి"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "ఎప్పుడూ లేదు"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d సెకన్ల క్రితం"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d నిమిషాల క్రితం"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d గంటల క్రితం"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d రోజుల క్రితం"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "ప్రస్తుత"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "ఆలస్యమైనది"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "పాతబడినది"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "ఎప్పుడూ సేకరించబడలేదు"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "క్లస్టర్‌లు"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "కాల్‌లు"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "క్లస్టర్"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "వ్యవధి"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "తాజాదనం"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "చివరి రన్"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "చివరి విజయం"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "ఫలితం"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "పార్సర్"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "అన్ని క్లస్టర్‌లు"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "హెచ్చరికలు"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "హెచ్చరిక"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "హెచ్చరికలు లేవు."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "టెంప్లేట్‌లు"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "పరికరం, డేటా మరియు గ్రాఫ్ టెంప్లేట్‌లు మరియు విభజన డేటా క్వెరీ ఇన్‌స్టాల్ చేయబడ్డాయి."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "టెంప్లేట్‌లు ఇన్‌స్టాల్ చేయబడలేదు లేదా తాజాగా లేవు, కాబట్టి క్లస్టర్ పరికరాలు సృష్టించబడవు. పై హెచ్చరికలను చూడండి."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "టెంప్లేట్‌లను ఇన్‌స్టాల్ చేయండి"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "స్నాప్‌షాట్ విభాగాలు"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "డేటా వయస్సు"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "లోపం"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "చివరి ప్రయత్నం"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "రికార్డులు"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "విభాగం"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "చివరి టెంప్లేట్ ఇన్‌స్టాల్ విఫలమైంది: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Cacti నుండి కొన్ని HPC షెడ్యూలర్ టెంప్లేట్‌లు లేవు. వాటిని క్రింద ఇన్‌స్టాల్ చేయండి."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, కనుగొనబడింది"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "గరిష్ట సమాధాన పరిమాణం %d MiB, కానీ ఆ పరిమాణంలో డీకోడ్ చేయబడిన సమాధానం %d MiB సేకరణ మెమరీలో సరిపోదు; రీడర్ %d MiB ను అనుమతిస్తుంది. సెట్టింగ్లలో సేకరణ మెమరీని పెంచండి లేదా గరిష్ట సమాధాన పరిమాణాన్ని తగ్గించండి."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "రిమోట్ డేటా కలెక్టర్ అయిన పోలర్ %d కు కేటాయించబడింది. ఈ విడుదల ప్రధాన పోలర్‌లో మాత్రమే సేకరిస్తుంది, కాబట్టి క్లస్టర్ సేకరించబడదు; దశ 3 కోసం రిమోట్ సేకరణ ప్రణాళిక చేయబడింది. దీన్ని ప్రధాన పోలర్‌కు కేటాయించండి."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "సేకరణ విరామం %d సెకన్ల కనిష్ట పరిమితి కంటే తక్కువగా ఉంది."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "%d సెకన్ల సేకరణ విరామం %d సెకన్ల పోలర్ విరామం కంటే తక్కువగా ఉంది; డేటా ప్రతి %d సెకన్లకు సేకరించబడుతుంది."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "లూప్‌బ్యాక్ చిరునామాలో సాధారణ HTTP ద్వారా slurmrestd ను చేరుకుంటారు; టోకెన్ స్థానిక నెట్‌వర్క్ స్టాక్‌ను ఎన్‌క్రిప్ట్ చేయకుండా దాటుతుంది."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "ఈ క్లస్టర్ కోసం ఇంకా ఏ రీడర్ అమలు పూర్తి కాలేదు."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "టోకెన్ ఫైల్: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "టోకెన్ గడువు ముగిసింది (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "టోకెన్ గడువు %d నిమిషాల్లో ముగుస్తుంది."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "చివరి అమలు దాని మొత్తం %d సెకన్ల సమయ బడ్జెట్‌ను ఉపయోగించింది; కొన్ని విభాగాలు సేకరించబడలేదు."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "షెడ్యూలర్ Slurm %s ను నివేదిస్తోంది, ఇది మద్దతు ఉన్న విడుదల కాదు (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "షెడ్యూలర్ Slurm %s ను నివేదిస్తోంది, ఇది సెట్టింగ్లలో ఎంచుకున్న డేటా పార్సర్ %s ను కలిగి లేదు."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "క్లయింట్ ఆదేశాలు మెమరీ పరిమితి లేకుండా అమలు చేయబడ్డాయి; సెట్టింగ్లలో prlimit మార్గాన్ని సెట్ చేయండి."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "చివరి లోపం: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "రేట్ పరిమితి తర్వాత సేకరణ %d సెకన్ల పాటు నిలిపివేయబడింది."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "డేటా పాతది; గ్రాఫ్‌లు మరియు హెచ్చరికలు దీన్ని తెలియనిదిగా చదువుతాయి."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "పెండింగ్‌లో ఉంది"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "హోల్డ్ చేయబడింది"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "నడుస్తోంది"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "పూర్తవుతోంది"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "ఇతర"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "నిష్క్రియంగా ఉంది"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "కేటాయించబడింది"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "మిశ్రమం"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "డ్రెయిన్ చేయబడింది"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "డ్రెయిన్ అవుతోంది"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "డౌన్"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "నిర్వహణ"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "రిజర్వ్ చేయబడింది"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "పవర్ ఆఫ్ చేయబడింది"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "దిగువ నమోదు చేసిన పరిశీలనలను సమీక్షించండి. అంగీకారాలు ఈ సెషన్‌కు వ్యక్తిగతమైనవి, పరిశీలనలు మారినప్పుడు గడువు ముగుస్తాయి మరియు హెచ్చరికలను ఎప్పుడూ అణచివేయవు లేదా ఆరోగ్యాన్ని మార్చవు."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "HPC షెడ్యూలర్ కార్యకలాపాలు"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "పరిశోధన"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "ఆబ్జెక్ట్"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "పరిశీలించబడింది (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "తెలియనిది లేదా పాతది"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "అంగీకరించబడింది; ఆరోగ్యం మారలేదు."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "అంగీకరించండి"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "మీరు యాక్సెస్ చేయగల పరికరాలకు ఎటువంటి పరిశీలనలు అందుబాటులో లేవు."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC షెడ్యూలర్"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "సేకరించబడింది"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "వివరాలు"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "నోడ్‌లు"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "ఇంకా ఏ క్లస్టర్‌లు సేకరించబడలేదు."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "పెండింగ్ కారణాలు"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "గ్రాఫ్‌లు"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "డాష్ అంటే ప్లగ్‌ఇన్‌కు ఆ విలువ కోసం ప్రస్తుత డేటా లేదని అర్థం: విభాగం విఫలమైంది, పాతది లేదా ఎప్పుడూ సేకరించబడలేదు. పెండింగ్ హోల్డ్ చేసిన జాబ్‌లను మినహాయిస్తుంది. డ్రెయిన్ చేయబడినది డ్రెయిన్ ఫ్లాగ్ ఉన్న ప్రతి నోడ్‌ను లెక్కిస్తుంది, అందుబాటులో లేని నోడ్‌లతో సహా."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "పెండింగ్ కారణాలు: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "కుటుంబం"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "జాబ్‌లు"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "విభజనలు"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "కారణం"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "పెండింగ్‌లో ఉన్న జాబ్‌లు లేవు."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "అత్యధిక జాబ్‌లు ఉన్న %d కారణాలు మాత్రమే జాబితా చేయబడ్డాయి."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "షెడ్యూలర్ దాని కోసం పరిశీలించిన చివరి కారణం క్రింద ప్రతి జాబ్ లెక్కించబడుతుంది, అది మాత్రమే దానిని ఆపి ఉంచే అంశం కానవసరం లేదు. అనేక విభజనలలో ఉన్న జాబ్ ఇక్కడ ఒకసారి మరియు అది పేర్కొనే ప్రతి విభజనలో ఒకసారి లెక్కించబడుతుంది. నిలిపివేయబడిన జాబ్‌లు వాటి నిలుపుదల కారణంతో జాబితా చేయబడతాయి."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "తెలియని స్థితులలో ఉన్న నోడ్‌లు"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "పేర్లు"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Slurm స్థితి"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "ఏదీ లేదు. ప్రతి నోడ్ తెలిసిన స్థితికి మ్యాప్ అవుతుంది."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "ఇంకా జాబ్‌ల స్నాప్‌షాట్ సేకరించబడలేదు."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "ఇంకా నోడ్‌ల స్నాప్‌షాట్ సేకరించబడలేదు, కాబట్టి నోడ్ స్థితులు తెలియవు."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "జాబ్‌ల స్నాప్‌షాట్ %s (%s) వద్ద తీసుకోబడింది, తాజాది."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "నోడ్‌ల స్నాప్‌షాట్ %s (%s) వద్ద తీసుకోబడింది, తాజాది."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "జాబ్‌ల స్నాప్‌షాట్ %s (%s) వద్ద తీసుకోబడింది, తాజాది కాదు: ఇది పాతది లేదా చివరి సేకరణ విఫలమైంది, మరియు క్రింది గణనలు చివరిగా సేకరించబడినవి."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "నోడ్‌ల స్నాప్‌షాట్ %s (%s) వద్ద తీసుకోబడింది, తాజాది కాదు: ఇది పాతది లేదా చివరి సేకరణ విఫలమైంది, మరియు క్రింది నోడ్‌లు చివరిగా సేకరించబడినవి."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "HPC షెడ్యూలర్ ఆపరేటర్"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "HPC షెడ్యూలర్ వీక్షణ"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "HPC షెడ్యూలర్ నిర్వాహకుడు"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "HPC షెడ్యూలర్ ఆరోగ్యం"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "ప్రాధాన్యత"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "వనరులు"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "ఆధారితత్వం"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "ప్రారంభ సమయం"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "రిజర్వేషన్"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "అనుబంధ పరిమితులు"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "QOS పరిమితులు"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "విభజన పరిమితులు"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "నోడ్ లభ్యత"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "రిజర్వేషన్లు"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "ఫెయిర్-షేర్"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Slurm క్లయింట్ ఆదేశాలు"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "డేటా పార్సర్"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "క్లయింట్ ఆదేశాల కోసం Slurm డేటా పార్సర్. క్లయింట్ ఆదేశాల ద్వారా చదవబడే ప్రతి క్లస్టర్ విడుదలలో ఉండే దానిని ఎంచుకోండి: v0.0.43 అనేది 25.05, 25.11, మరియు 26.05లలో ఉంటుంది మరియు 27.05లో తీసివేయబడింది; v0.0.44కు 25.11 లేదా ఆ తర్వాతి వెర్షన్ అవసరం; v0.0.45కు 26.05 లేదా ఆ తర్వాతి వెర్షన్ అవసరం. ఒక క్లస్టర్ అది లేని విడుదలను నివేదించినప్పుడు ఆరోగ్య పేజీ హెచ్చరిస్తుంది. slurmrestd ద్వారా చదవబడే క్లస్టర్లు ఈ సెట్టింగ్‌ను విస్మరిస్తాయి: అవి డీమన్ అందించే వీటిలో సరికొత్తదానిని ఉపయోగిస్తాయి, మరియు ఆరోగ్య పేజీ ఏదో చూపుతుంది."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "క్లయింట్ ఆదేశాల ద్వారా క్లస్టర్‌ను చదివే ప్రతి పోలర్‌లో squeueకి పూర్తి మార్గం. ప్లగిన్ దీనిని పై డేటా పార్సర్‌తో squeue --all --jsonగా మాత్రమే అమలు చేస్తుంది."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "scontrolకి పూర్తి మార్గం. ప్లగిన్ scontrol --json show node, show partition, మరియు show reservation మాత్రమే అమలు చేస్తుంది; ఎప్పుడూ update, reconfigure, లేదా token అమలు చేయదు."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "sshareకి పూర్తి మార్గం, ఫెయిర్-షేర్‌ను సేకరించే క్లస్టర్లకు మాత్రమే ఉపయోగించబడుతుంది."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "పరిమితులు"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "కాల్ గడువు ముగింపు"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "ఒక షెడ్యూలర్ కాల్ ఆపివేయబడి, దాని విభాగం విఫలమైనదిగా నమోదు చేయబడటానికి ముందు అది తీసుకోగల సెకన్లు. ఒక కాల్ రీడర్ సమయ బడ్జెట్‌ను మించి కూడా ఎప్పుడూ అమలు కాదు."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "గరిష్ట సమాధాన పరిమాణం"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "ఒక షెడ్యూలర్ కాల్ తిరిగి ఇవ్వగల MiB. పెద్ద సమాధానం విస్మరించబడుతుంది మరియు దాని విభాగం విఫలమైనదిగా నమోదు చేయబడుతుంది. డీకోడింగ్‌కు సమాధాన పరిమాణం కంటే సుమారు 12 రెట్లు అవసరం, కాబట్టి రీడర్ గరిష్టంగా (సేకరణ మెమరీ - 64) / 12 MiB ఉపయోగిస్తుంది మరియు ఈ విలువ పెద్దదిగా ఉన్నప్పుడు ఆరోగ్య పేజీ హెచ్చరిస్తుంది."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "సేకరణ మెమరీ"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "ప్రతి సేకరణ అమలు దాని పరిమితిని పెంచే PHP మెమరీ MiB (ఇది ఎప్పుడూ పరిమితిని తగ్గించదు). డిఫాల్ట్ 1024 అనేది 80 MiB వరకు ఉన్న సమాధానాలకు సరిపోతుంది."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "ప్రతి క్లయింట్ ఆదేశం యొక్క చిరునామా స్థలాన్ని పరిమితం చేయడానికి ఉపయోగించే prlimit (util-linux)కి పూర్తి మార్గం. మెమరీ పరిమితి లేకుండా ఆదేశాలను అమలు చేయడానికి ఖాళీగా ఉంచండి; అప్పుడు ఆరోగ్య పేజీ హెచ్చరిస్తుంది."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "ఆదేశ మెమరీ పరిమితి"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "prlimit ద్వారా ప్రతి క్లయింట్ ఆదేశం ఉపయోగించగల చిరునామా స్థలం MiB."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "slurmrestd ఆధారాలు"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "టోకెన్ ఫైల్ డైరెక్టరీలు"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "కామాలు లేదా ఖాళీలతో వేరు చేయబడిన, slurmrestd టోకెన్ ఫైల్‌లను కలిగి ఉండగల పోలర్లలోని పూర్తి డైరెక్టరీలు. ఒక క్లస్టర్ వాటిలో ఒకదాని లోపల ఉన్న, పోలర్ వినియోగదారు యాజమాన్యంలోని మరియు సింబాలిక్ లింక్ లేకుండా చేరుకోగల టోకెన్ ఫైల్‌ను మాత్రమే పేర్కొనగలదు. ప్రతి డైరెక్టరీని root మరియు పోలర్ వినియోగదారు మాత్రమే వ్రాయగలిగేలా ఉంచండి. ఖాళీగా ఉంటే ఏ క్లస్టర్ slurmrestdను ఉపయోగించలేదని అర్థం."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "slurmrestd హోస్ట్‌లు"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "ఐచ్ఛికం. కామాలు లేదా ఖాళీలతో వేరు చేయబడిన, host లేదా host:portగా ఒక క్లస్టర్ పేర్కొనగల slurmrestd హోస్ట్‌లు. పోర్ట్ లేని నమోదు ఆ హోస్ట్‌లోని ఏ పోర్ట్‌నైనా అనుమతిస్తుంది. ఖాళీగా ఉంటే ఏ హోస్ట్‌నైనా అనుమతిస్తుంది."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "టోకెన్ గడువు సమయాన్ని కలిగి ఉంటే, ఆరోగ్య పేజీ హెచ్చరించడం ప్రారంభించడానికి ముందు టోకెన్ గడువు ముగిసే సెకన్లు."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "టోకెన్ గడువు హెచ్చరిక"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "అన్‌ఇన్‌స్టాల్ చేయండి"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "అన్‌ఇన్‌స్టాల్ చేసినప్పుడు ప్లగిన్ పట్టికలను ఉంచండి"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "ఎంచుకున్నప్పుడు, ప్లగిన్‌ను అన్‌ఇన్‌స్టాల్ చేయడం దాని క్లస్టర్లు మరియు స్నాప్‌షాట్‌లను ఉంచుతుంది. అన్‌ఇన్‌స్టాల్ వాటిని తొలగించడానికి దీనిని క్లియర్ చేయండి; ముందుగా HPC Clusters నుండి క్లస్టర్లను ఎగుమతి చేయండి. ఈ విడుదలలో ప్లగిన్ ఎటువంటి Cacti పరికరాలు లేదా Maint షెడ్యూల్‌లను సృష్టించదు, మరియు ఏ విధంగానూ షెడ్యూలర్‌ను సంప్రదించదు."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "డేటా క్వెరీ ఫైల్ %s Cacti యొక్క resource/script_server డైరెక్టరీలో ఇన్‌స్టాల్ చేయబడలేదు."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Cacti యొక్క resource/script_server డైరెక్టరీలోని డేటా క్వెరీ ఫైల్ %s ప్లగిన్ అందించే దానికంటే భిన్నంగా ఉంది."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "పోలర్ వినియోగదారు ద్వారా మాత్రమే చదవగలదు"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "ఫైల్ సమూహం ద్వారా చదవగలదు; దీనిని పోలర్ వినియోగదారుకు మాత్రమే పరిమితం చేయండి (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "పోలర్‌లోని ప్రతి వినియోగదారు ద్వారా చదవగలదు; దీనిని పోలర్ వినియోగదారుకు మాత్రమే పరిమితం చేయండి (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "తిరస్కరించబడింది: పోలర్ వినియోగదారు కాకుండా ఇతర వినియోగదారు యాజమాన్యంలో ఉంది (దీనిని పోలర్ వినియోగదారుకు chown చేయండి)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "కనిపించలేదు లేదా పోలర్ వినియోగదారు ద్వారా చదవబడదు"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "తిరస్కరించబడింది: సెట్టింగ్లలో సెట్ చేసిన టోకెన్ ఫైల్ డైరెక్టరీల వెలుపల ఉంది, సింబాలిక్ లింక్ ద్వారా చేరుకోబడింది, సాధారణ ఫైల్ కాదు, ఇతరులు వ్రాయగలరు, లేదా చాలా పెద్దది; లాగ్ కారణాన్ని పేర్కొంటుంది"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "ఖాళీ"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Slurm క్లయింట్ ఆదేశాలు"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "HPC షెడ్యూలర్ ప్లగిన్‌కు PHP %s లేదా ఆ తర్వాతి వెర్షన్ అవసరం. ఈ సర్వర్ PHP %sను అమలు చేస్తోంది, కాబట్టి ప్లగిన్ ఇన్‌స్టాల్ చేయబడలేదు లేదా ప్రారంభించబడలేదు."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "HPC షెడ్యూలర్ ప్లగిన్ ప్రారంభించబడలేదు."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "HPC షెడ్యూలర్ ప్లగిన్‌కు PHP %s లేదా ఆ తర్వాతి వెర్షన్ అవసరం."
+
+#: setup.php
+msgid "Management"
+msgstr "నిర్వహణ"

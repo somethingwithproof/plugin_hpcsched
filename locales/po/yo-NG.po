@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: yo-NG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "O kò ní àṣẹ fún ẹ̀rọ ti kúlọ́sítà yẹn."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Orúkọ: kúlọ́sítà mìíràn ti ń lo orúkọ yìí tẹ́lẹ̀."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "A kò fi kúlọ́sítà náà pamọ́: ẹnì kan mìíràn ti yí i padà láti ìgbà tí a ti ṣí fọ́ọ̀mù náà, tàbí kíkọ rẹ̀ kùnà. Tún ṣí i kí o sì tún àtúnṣe náà ṣe."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "A ti fi kúlọ́sítà náà pamọ́."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "A kò yí ipò kúlọ́sítà náà padà: kíkọ rẹ̀ kùnà. Wo àkọsílẹ̀ ìṣẹ̀lẹ̀ Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "A ti pa kúlọ́sítà náà àti àwòrán àkókò tí a fi pamọ́ rẹ̀ rẹ́. A pa ẹ̀rọ àti àwọn àwòrán ìṣirò rẹ̀ mọ́. A kò kàn sí olùṣètò àkókò náà."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "A ti ṣẹ̀dá ẹ̀rọ náà àti àwọn àwòrán ìṣirò rẹ̀."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "A kò ṣẹ̀dá ẹ̀rọ náà: kúlọ́sítà náà ti ní ẹ̀rọ kan tẹ́lẹ̀, ẹnì kan mìíràn ti yí i padà láti ìgbà tí a ti ṣí ojú-ewé náà, tàbí Cacti kọ̀ ọ́. Wo àkọsílẹ̀ ìṣẹ̀lẹ̀ Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "A ti so kúlọ́sítà náà pọ̀ mọ́ ẹ̀rọ náà."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "A kò so kúlọ́sítà náà pọ̀: ẹ̀rọ náà kò sí, a kò gbà á láàyè fún ọ, ó ti gbé kúlọ́sítà mìíràn tẹ́lẹ̀, tàbí ẹnì kan mìíràn ti yí kúlọ́sítà náà padà láti ìgbà tí a ti ṣí ojú-ewé náà."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "A ti fi àwọn àwòrán ìṣirò tí ó sọnù kún un."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "A kò fi àwòrán ìṣirò kankan kún un: kúlọ́sítà náà kò ní ẹ̀rọ, tàbí ẹ̀rọ rẹ̀ kò sí mọ́."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "A kò yọ ìsopọ̀ kúlọ́sítà náà kúrò: ẹnì kan mìíràn ti yí i padà láti ìgbà tí a ti ṣí ojú-ewé náà."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "A ti yọ ìsopọ̀ kúlọ́sítà náà kúrò. A pa ẹ̀rọ náà àti àwọn àwòrán ìṣirò rẹ̀ mọ́."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "A ti tún àwọn ìpín kọ sínú àtọ́ka láti inú àwòrán àkókò náà."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "A kò tún àwọn ìpín kọ sínú àtọ́ka: ẹ̀rọ náà wà ní àìṣiṣẹ́ tàbí kò ṣeé dé bá, nítorí náà Cacti fo ìbéèrè dátà rẹ̀ kọjá."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "A kò tún àwọn ìpín kọ sínú àtọ́ka: Cacti kò lè ṣiṣẹ́ ìbéèrè dátà náà. Wo àkọsílẹ̀ ìṣẹ̀lẹ̀ Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "A kò tún àwọn ìpín kọ sínú àtọ́ka: a kò fi ìbéèrè dátà HPC Scheduler sórí ẹ̀rọ. Fi àwọn àwòkọ náà sórí ẹ̀rọ láti ojú-ewé ìlera."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "A kò tún àwọn ìpín kọ sínú àtọ́ka: kúlọ́sítà náà kò ní ẹ̀rọ, tàbí ẹ̀rọ rẹ̀ kò sí mọ́."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "A ti fi àwọn àwòkọ HPC Scheduler sórí ẹ̀rọ."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "A kò fi àwọn àwòkọ náà sórí ẹ̀rọ: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Ìwòran àbójútó"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "A kò le ka àwọn àkíyèsí. Béèrè lọ́wọ́ alákòóso láti ṣàyẹ̀wò àkọsílẹ̀ àfikún náà."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Ṣàyẹ̀wò àwọn ẹgbẹ́ ìdí ìdádúró àti ìtuntun àwòrán àkókò lórí àkópọ̀. Gbé àwọn ẹ̀rí ìdánimọ̀, ìsopọ̀ kúlọ́sítà àti ìlànà ìtọ́jú sókè sí alákòóso."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Orúkọ: lo lẹ́tà, nọ́ńbà, àmì ìdádúró, ìlà àárín, tàbí ìlà ìsàlẹ̀ 1 sí 64, kí ó sì bẹ̀rẹ̀ pẹ̀lú lẹ́tà tàbí nọ́ńbà."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: yan ọ̀kan nínú àwọn poller tí a tò sílẹ̀."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Àkókò Àárín Ìkójọpọ̀: tẹ odidi ìṣẹ́jú-àáyá láti %d sí %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Ọ̀nà Ìfiránṣẹ́: yan ọ̀kan nínú àwọn ọ̀nà ìfiránṣẹ́ tí a tò sílẹ̀."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: tẹ ipa-ọ̀nà pípé sílẹ̀, tàbí fi sílẹ̀ ní òfo láti lo ìlànà àkọ́bẹ̀rẹ̀ olùkójọ."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: olùgbàlejò àti ibùdó yìí kò sí lórí àtòjọ olùgbàlejò slurmrestd ní Settings."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: tẹ https:// URL kan láìsí orúkọ olùmúlò, ìbéèrè, tàbí ìpín; http:// lásán ni a gbà nìkan fún àdírẹ́sì loopback."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Olùmúlò slurmrestd: lo lẹ́tà, nọ́ńbà, àmì ìdádúró, ìlà àárín, tàbí ìlà ìsàlẹ̀ tí kò ju 64 lọ, tàbí fi sílẹ̀ ní òfo fún àmì ìdánimọ̀ olùmúlò."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Fáìlì Àmì Ìdánimọ̀: tẹ ipa-ọ̀nà pípé ti fáìlì àmì ìdánimọ̀ lórí olùkójọ. A kì í tẹ àmì ìdánimọ̀ náà fúnra rẹ̀ síbí rárá."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Fáìlì Àmì Ìdánimọ̀: kò sí àwọn àkójọpọ̀ fáìlì àmì ìdánimọ̀ tí a ti ṣètò sílẹ̀ síbẹ̀. Béèrè lọ́wọ́ alákòóso Cacti láti ṣètò wọn lábẹ́ Settings, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Fáìlì Àmì Ìdánimọ̀: fáìlì náà gbọ́dọ̀ wà nínú ọ̀kan lára àwọn àkójọpọ̀ fáìlì àmì ìdánimọ̀ tí a ṣètò ní Settings (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Àwọn Kúlọ́sítà HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Àwọn Ìgbésẹ̀"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Ẹ̀rọ"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Àkókò Àárín"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Orúkọ"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Àwọn Ìpín"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Ipò"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Ọ̀nà Ìfiránṣẹ́"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Kò sí kúlọ́sítà tí a ti ṣètò síbẹ̀."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Pa ṣíṣẹ́"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Mú ṣiṣẹ́"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Olùkójọ %d tí a pa rẹ́"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "ìṣẹ́jú-àáyá %d"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Kò sí"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Pa rẹ́"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Kó jáde"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Ṣe ìgbàsílẹ̀ ìṣètò kúlọ́sítà náà gẹ́gẹ́ bí JSON kí o tó yọ àfikún kúrò tí ó máa pa àwọn tábìlì àfikún rẹ́. Ó ní àwọn ipa-ọ̀nà fáìlì àmì ìdánimọ̀ nínú, kì í ṣe àmì ìdánimọ̀ rárá."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Kúlọ́sítà: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Kúlọ́sítà Tuntun"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Àkókò Àárín Ìkójọpọ̀ (ìṣẹ́jú-àáyá)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Ṣíṣiṣẹ́"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Kó Àwọn Ìfipamọ́ Jọ"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Kó Ìpín-dọ́gba Jọ (àwọn àkọọ́lẹ̀ nìkan)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Ipa-ọ̀nà slurm.conf (àṣàyàn)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Olùmúlò slurmrestd (àṣàyàn)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Fáìlì Àmì Ìdánimọ̀ lórí Olùkójọ"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Àwọn àṣẹ oníbàárà ń lo àwọn fáìlì binary tí a ṣètò lábẹ́ Settings > HPC Scheduler àti ìjẹ́rìísí Slurm ti olùmúlò olùkójọ fúnra rẹ̀; ipa-ọ̀nà slurm.conf àṣàyàn ń yan kúlọ́sítà kan. Àwọn ààyè slurmrestd ni a ń lò pẹ̀lú ọ̀nà ìfiránṣẹ́ yẹn nìkan. Fáìlì àmì ìdánimọ̀ gbọ́dọ̀ ṣeé kà fún olùmúlò olùkójọ nìkan; àfikún náà máa ń kà á ní ìṣiṣẹ́ kọ̀ọ̀kan, kì í sì í fi àmì ìdánimọ̀ náà pamọ́ rárá."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Fi pamọ́"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Ẹ̀rọ fún Kúlọ́sítà: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Ti so pọ̀ mọ́ ẹ̀rọ %s (id %d). Àwọn àwòrán ìṣirò rẹ̀ tẹ̀lé àṣẹ ẹ̀rọ àti àwòrán ìṣirò ti Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Fífi àwọn àwòrán ìṣirò tí ó sọnù kún un máa ń fi kún:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Fi Àwọn Àwòrán Ìṣirò Tí Ó Sọnù Kún Un"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Tún Àwọn Ìpín Kọ Sínú Àtọ́ka"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Yọ Ìsopọ̀ Kúrò"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Yíyọ ìsopọ̀ kúrò ń pa ẹ̀rọ náà, àwọn àwòrán ìṣirò rẹ̀, àti ìtàn wọn mọ́."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Kúlọ́sítà náà ṣì wà ní ìsopọ̀ mọ́ ẹ̀rọ %d, èyí tí kò sí mọ́. Ṣíṣẹ̀dá tàbí síso ẹ̀rọ kan pọ̀ máa ń rọ́pò ìsopọ̀ yẹn."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Ṣíṣẹ̀dá ẹ̀rọ kan máa ń fi kún:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Láìsí àwọn àwòrán ìṣirò ìpín, àwọn àwòrán ìṣirò kúlọ́sítà nìkan ni a ṣẹ̀dá, a sì fi àwọn orísun dátà àti ìpè fún àwọn ìpín lókè sílẹ̀."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Tún ṣẹ̀dá àwọn àwòrán ìṣirò ìpín pẹ̀lú"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Ṣẹ̀dá Ẹ̀rọ"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Tàbí so ẹ̀rọ tí ó wà tẹ́lẹ̀ pọ̀"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "So Ẹ̀rọ Pọ̀"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "A kò fi àwọn àwòkọ HPC Scheduler sórí ẹ̀rọ. Fi wọ́n sórí ẹ̀rọ láti ojú-ewé ìlera."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Ẹ̀rọ \"%s\" láti inú àwòkọ ẹ̀rọ %s, tí olùkójọ %d ń kójọ, pẹ̀lú àyẹ̀wò wíwà ní àìṣiṣẹ́."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Ìbéèrè dátà \"%s\", tí ó ń kọ àwọn ìpín %d tí a mọ̀ báyìí sínú àtọ́ka."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "Àwọn àwòrán ìṣirò kúlọ́sítà %d, ọ̀kọ̀ọ̀kan pẹ̀lú orísun dátà \"%s\" tirẹ̀."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "Àwọn àwòrán ìṣirò ìpín %d, %d fún ìpín kọ̀ọ̀kan, ọ̀kọ̀ọ̀kan pẹ̀lú orísun dátà tirẹ̀."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Ní gbogbo rẹ̀: àwọn orísun dátà %d àti àwọn fáìlì RRD %d, àti àwọn ìpè olùpèsè ìwé-àṣẹ %d fún ìkójọpọ̀ kọ̀ọ̀kan. Àwọn ìpín tí a fi kún un lẹ́yìn-ọ̀-rẹyìn ń gba àwọn àwòrán ìṣirò láti ojú-ewé New Graphs."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Tí àfikún HPC Scheduler ṣẹ̀dá fún kúlọ́sítà %s. Àwọn iye rẹ̀ wá láti inú àwòrán àkókò àfikún náà; orúkọ olùgbàlejò jẹ́ orúkọ ìfipamọ́ tí a kì í kàn sí rárá."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "ìṣètò: ipa-ọ̀nà kan, URL, tàbí ètò kan sọnù tàbí a kò gbà á láàyè"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "a kò lè dé ọ̀dọ̀ olùṣètò àkókò náà"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "ìpè náà gba àkókò púpọ̀ ju bí a ti gbà láàyè lọ, a sì dá a dúró"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "ìdáhùn náà tóbi ju bí a ti gbà láàyè lọ, a sì kọ̀ ọ́ nù"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "a kò lè tú ìdáhùn náà pẹ̀lú olùtú dátà tí a so mọ́"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "olùṣètò àkókò náà kọ ẹ̀rí ìdánimọ̀ náà"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "àkọọ́lẹ̀ olùṣètò àkókò náà lè má rí dátà yìí (PrivateData tàbí àwọn àṣẹ)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "olùdarí náà sọ fún àwọn oníbàárà láti fàsẹ́yìn (ààlà ìwọ̀n)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "olùpèsè dáhùn 304 sí ìbéèrè kan tí kò ní àdéhùn; a pa dátà tẹ́lẹ̀ mọ́"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "àfikún náà kọ ìpè kan níta àtòjọ àṣẹ rẹ̀"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "ìpè náà kùnà"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "ìrántí olùkà náà ti tán; dín Ìwọ̀n Ìdáhùn Tí Ó Pọ̀ Jù kù tàbí gbé Ìrántí Ìkójọpọ̀ sókè ní Settings"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Láéláé"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "ìṣẹ́jú-àáyá %d sẹ́yìn"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "ìṣẹ́jú %d sẹ́yìn"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "wákàtí %d sẹ́yìn"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "ọjọ́ %d sẹ́yìn"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Lọ́wọ́lọ́wọ́"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Ó fà sẹ́yìn"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Ti pẹ́ jù"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "A kò kójọ rí"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Àwọn Kúlọ́sítà"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Àwọn Ìpè"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Kúlọ́sítà"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Àkókò Tí Ó Gbà"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Ìtuntun"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Ìṣiṣẹ́ Tí Ó Kẹ́yìn"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Àṣeyọrí Tó Kẹ́yìn"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Àbájáde"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Olùtú"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Gbogbo àwọn kúlọ́sítà"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Àwọn ìkìlọ̀"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Ìkìlọ̀"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Kò sí ìkìlọ̀ kankan."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Àwọn Àdàkọ"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "A ti fi àwọn àwòkọ ẹ̀rọ, dátà, àti àwòrán ìṣirò àti ìbéèrè dátà ìpín sórí ẹ̀rọ."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "A kò fi àwọn àwòkọ náà sórí ẹ̀rọ tàbí wọn kò sí ní àkókò yìí, nítorí náà a kò lè ṣẹ̀dá àwọn ẹ̀rọ kúlọ́sítà. Wo àwọn ìkìlọ̀ lókè."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Fi Àwọn Àwòkọ Sórí Ẹ̀rọ"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Àwọn Ìpín Àwòrán Àkókò"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Àkókò Láti Ìgbà Ìmúdójúìwọ̀n Dátà"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Àṣìṣe"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Ìgbìyànjú Tí Ó Kẹ́yìn"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Àwọn Àkọsílẹ̀"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Ìpín"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Fífisórí-ẹ̀rọ àwòkọ tí ó kẹ́yìn kùnà: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Àwọn àwòkọ HPC Scheduler kan sọnù láti inú Cacti. Fi wọ́n sórí ẹ̀rọ ní ìsàlẹ̀."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, tí a ṣàwárí"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Ìwọ̀n Ìdáhùn Tí Ó Pọ̀ Jù jẹ́ %d MiB, ṣùgbọ́n ìdáhùn tí a tú irú ìwọ̀n bẹ́ẹ̀ kò gbà sínú Ìrántí Ìkójọpọ̀ ti %d MiB; olùkà náà gba %d MiB láàyè. Gbé Ìrántí Ìkójọpọ̀ sókè tàbí dín Ìwọ̀n Ìdáhùn Tí Ó Pọ̀ Jù kù ní Settings."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "A yàn án sí olùkójọ %d, olùkójọ dátà òkèèrè kan. Ìtúsílẹ̀ yìí ń kójọ lórí olùkójọ àkọ́kọ́ nìkan, nítorí náà a kò kójọ kúlọ́sítà náà; a ti pète ìkójọpọ̀ òkèèrè fún ìpele 3. Yàn án sí olùkójọ àkọ́kọ́."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Àkókò àárín ìkójọpọ̀ wà ní ìsàlẹ̀ ìpìlẹ̀ ìṣẹ́jú-àáyá %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Àkókò àárín ìkójọpọ̀ ti ìṣẹ́jú-àáyá %d kúrú ju àkókò àárín olùkójọ ti ìṣẹ́jú-àáyá %d lọ; a ń kó dátà jọ ní gbogbo ìṣẹ́jú-àáyá %d."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "A ń dé ọ̀dọ̀ slurmrestd lórí HTTP lásán ní àdírẹ́sì loopback; àmì ìdánimọ̀ náà kọjá lórí ìtò nẹ́tíwọ́ọ̀kì abẹ́lé láìsí ìfipamọ́ kọ́ọ̀dù."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Kò sí ìṣiṣẹ́ olùkà tí ó ti parí fún kúlọ́sítà yìí síbẹ̀."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Fáìlì àmì ìdánimọ̀: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Àmì ìdánimọ̀ náà ti parí %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Àmì ìdánimọ̀ náà yóò parí ní ìṣẹ́jú %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Ìṣiṣẹ́ tí ó kẹ́yìn lo gbogbo ààlà àkókò rẹ̀ ti ìṣẹ́jú-àáyá %d; a kò kó àwọn ìpín kan jọ."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Olùṣètò àkókò náà ròyìn Slurm %s, èyí tí kì í ṣe ìtúsílẹ̀ tí a ṣe àtìlẹ́yìn fún (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Olùṣètò àkókò náà ròyìn Slurm %s, èyí tí kò ní olùtú dátà %s tí a yàn ní Settings."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Àwọn àṣẹ oníbàárà ṣiṣẹ́ láìsí ààlà ìrántí; ṣètò ipa-ọ̀nà prlimit ní Settings."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Àṣìṣe tí ó kẹ́yìn: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "A dá ìkójọpọ̀ dúró fún ìṣẹ́jú-àáyá %d lẹ́yìn ààlà ìwọ̀n."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Dátà ti di àtijọ́; àwọn àwòrán ìṣirò àti àwọn ìkìlọ̀ kà á sí àìmọ̀."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Ní Ìdádúró"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Tí A Dì Mú"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Ń Ṣiṣẹ́"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Ń Parí"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Òmíràn"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Wà Ní Ìsinmi"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Tí A Pín Sílẹ̀"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Àdàpọ̀"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Tí A Ti Tú Kúrò"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Ń Tú Kúrò"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Kò ṣeé dé bá"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Ìtọ́jú"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Tí A Fipamọ́"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Tí A Ti Pa Agbára Rẹ̀"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Ṣàyẹ̀wò àwọn àkíyèsí tí a kọ sílẹ̀ ní ìsàlẹ̀ yìí. Àwọn ìjẹ́rìísí wà fún ìgbà ìpàdé yìí nìkan, wọ́n ń dópin nígbà tí àwọn àkíyèsí bá yí padà, wọn kì í sì í dín àwọn ìtanijí kù tàbí yí ìlera padà."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Àwọn Iṣẹ́ HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Ìwádìí"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Ohun"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Àkíyèsí (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Àìmọ̀ tàbí ó ti pẹ́"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "A ti jẹ́rìí sí i; ìlera kò yí padà."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Jẹ́rìí sí i"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Kò sí àkíyèsí kankan fún àwọn ẹ̀rọ tí o ní ààyè sí."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Ti kó jọ"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Àwọn àlàyé"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Àwọn Nóòdù"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Kò sí kúlọ́sítà tí a ti kójọ síbẹ̀."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Àwọn ìdí ìdádúró"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Àwọn Àwòrán-ìṣirò"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Ìlà kúkúrú túmọ̀ sí pé àfikún náà kò ní dátà lọ́wọ́lọ́wọ́ fún iye yẹn: ìpín náà kùnà, ó ti di àtijọ́, tàbí a kò kójọ rẹ̀ rí. Ní Ìdádúró yọ àwọn iṣẹ́ tí a dì mú kúrò. Tí A Ti Tú Kúrò ń ka gbogbo nóòdù tí ó ní àmì ìtúkúrò, pẹ̀lú àwọn nóòdù tí kò tún ṣeé dé bá."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Àwọn Ìdí Ìdádúró: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Ẹbí"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Àwọn Iṣẹ́"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Àwọn Ìpín"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Ìdí"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Kò sí àwọn iṣẹ́ tí ó ń dúró."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Àwọn ìdí %d tí ó ní iṣẹ́ púpọ̀ jùlọ nìkan ni a ṣe àkójọ rẹ̀."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Iṣẹ́ kọ̀ọ̀kan ń kà lábẹ́ ìdí ìkẹyìn tí olùṣètò yẹ̀ wò fún un, èyí tí kò pọndandan kó jẹ́ ohun kan ṣoṣo tí ó dá a dúró. Iṣẹ́ tí ó wà nínú ìpín púpọ̀ ń kà lẹ́ẹ̀kan níbí àti lẹ́ẹ̀kan nínú ìpín kọ̀ọ̀kan tí ó dárúkọ. Àwọn iṣẹ́ tí a dá dúró ni a ṣe àkójọ pẹ̀lú ìdí ìdádúró wọn."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Àwọn Nóòdù ní Ipò Àìmọ̀"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Àwọn Orúkọ"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Ipò Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Kò sí. Nóòdù kọ̀ọ̀kan bá ipò tí a mọ̀ mu."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "A kò tíì gba àwòrán-ipò iṣẹ́ kankan síbẹ̀."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "A kò tíì gba àwòrán-ipò nóòdù kankan síbẹ̀, nítorí náà a kò mọ ipò àwọn nóòdù."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Àwòrán-ipò àwọn iṣẹ́ tí a gbà ní %s (%s), ó jẹ́ ti ìsinsìnyí."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Àwòrán-ipò àwọn nóòdù tí a gbà ní %s (%s), ó jẹ́ ti ìsinsìnyí."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Àwòrán-ipò àwọn iṣẹ́ tí a gbà ní %s (%s), kì í ṣe ti ìsinsìnyí: ó ti pẹ́ tàbí ìkójọpọ̀ ìkẹyìn kùnà, àti pé àwọn ìkàwé ìsàlẹ̀ jẹ́ èyí tí a gbà kẹ́yìn."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Àwòrán-ipò àwọn nóòdù tí a gbà ní %s (%s), kì í ṣe ti ìsinsìnyí: ó ti pẹ́ tàbí ìkójọpọ̀ ìkẹyìn kùnà, àti pé àwọn nóòdù ìsàlẹ̀ jẹ́ èyí tí a gbà kẹ́yìn."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Olùṣiṣẹ́ Olùṣètò HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Ìwòran Olùṣètò HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Alámòójútó Olùṣètò HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Ìlera Olùṣètò HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Àkọ́kọ́ṣe"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Àwọn Ohun-èlò"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Ìgbẹ́kẹ̀lé"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Àkókò ìbẹ̀rẹ̀"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Ìfipamọ́"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Àwọn òpin àjọṣepọ̀"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Àwọn òpin QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Àwọn òpin ìpín"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Wíwà nóòdù"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Àwọn ìfipamọ́"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Ìpín-dọ́gba"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Àwọn Àṣẹ Oníbàárà Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Olùtúpalẹ̀ Dátà"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Olùtúpalẹ̀ dátà Slurm fún àwọn àṣẹ oníbàárà. Yan èyí tí ìtẹ̀jáde ìṣùpọ̀ kọ̀ọ̀kan tí a kà nípasẹ̀ àwọn àṣẹ oníbàárà ní: v0.0.43 wà nínú 25.05, 25.11, àti 26.05 a sì yọ ọ́ kúrò ní 27.05; v0.0.44 nílò 25.11 tàbí èyí tí ó tẹ̀lé e; v0.0.45 nílò 26.05 tàbí èyí tí ó tẹ̀lé e. Ojú-ewé ìlera ń kìlọ̀ nígbà tí ìṣùpọ̀ bá ròyìn ìtẹ̀jáde láìsí rẹ̀. Àwọn ìṣùpọ̀ tí a kà nípasẹ̀ slurmrestd máa ń fo ètò yìí dà: wọ́n ń lo èyí tí ó tuntun jùlọ nínú àwọn wọ̀nyí tí daemon ń pèsè, ojú-ewé ìlera sì ń fi èyí hàn."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Ọ̀nà pípé sí squeue lórí olùṣàyẹ̀wò kọ̀ọ̀kan tí ń ka ìṣùpọ̀ nípasẹ̀ àwọn àṣẹ oníbàárà. Àfikún náà ń ṣiṣẹ́ rẹ̀ gẹ́gẹ́ bí squeue --all --json nìkan pẹ̀lú olùtúpalẹ̀ dátà lókè."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Ọ̀nà pípé sí scontrol. Àfikún náà ń ṣiṣẹ́ scontrol --json show node, show partition, àti show reservation nìkan; kì í ṣe update, reconfigure, tàbí token láé."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Ọ̀nà pípé sí sshare, tí a lò fún àwọn ìṣùpọ̀ tí ń gba ìpín-dọ́gba nìkan."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Àwọn Òpin"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Àkókò Ìdádúró Ìpè"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Ìṣẹ́jú-àáyá tí ìpè olùṣètò kan lè gbà kí a tó dá a dúró kí a sì kọ abala rẹ̀ sílẹ̀ gẹ́gẹ́ bí èyí tí ó kùnà. Ìpè kì í kọjá ètò àkókò olùkà náà pẹ̀lú."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Ìwọ̀n Ìdáhùn Púpọ̀ Jùlọ"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB tí ìpè olùṣètò kan lè dá padà. Ìdáhùn tí ó tóbi jù ni a máa ń kọ̀ sílẹ̀ tí a sì ń kọ abala rẹ̀ sílẹ̀ gẹ́gẹ́ bí èyí tí ó kùnà. Ìtúmọ̀ nílò ní nǹkan bí ìlọ́po 12 ìwọ̀n ìdáhùn, nítorí náà olùkà ń lo ó pọ̀ jù (Ìrántí Ìkójọpọ̀ - 64) / 12 MiB, ojú-ewé ìlera sì ń kìlọ̀ nígbà tí iye yìí bá tóbi jù."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Ìrántí Ìkójọpọ̀"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "MiB ti ìrántí PHP tí ìṣiṣẹ́ ìkójọpọ̀ kọ̀ọ̀kan ń gbé òpin rẹ̀ sókè sí (kì í dín òpin kù láé). Àṣàyàn ìbẹ̀rẹ̀ ti 1024 bá àwọn ìdáhùn tí ó tó 80 MiB mu."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Ọ̀nà pípé sí prlimit (util-linux), tí a lò láti ṣe òpin ààyè àdírẹ́sì ti àṣẹ oníbàárà kọ̀ọ̀kan. Fi sílẹ̀ ní òfo láti ṣiṣẹ́ àwọn àṣẹ láìsí òpin ìrántí; ojú-ewé ìlera yóò wá kìlọ̀."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Òpin Ìrántí Àṣẹ"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "MiB ti ààyè àdírẹ́sì tí àṣẹ oníbàárà kọ̀ọ̀kan lè lò, nípasẹ̀ prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Àwọn Ìwé-ẹ̀rí slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Àwọn Fóldà Fáìlì Àmì-ìdánimọ̀"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Àwọn fóldà pípé lórí àwọn olùṣàyẹ̀wò tí ó lè gba àwọn fáìlì àmì-ìdánimọ̀ slurmrestd, tí a yà sọ́tọ̀ pẹ̀lú kọ́mà tàbí ààyè. Ìṣùpọ̀ kan lè dárúkọ fáìlì àmì-ìdánimọ̀ kan nìkan nínú ọ̀kan lára wọn, tí olùlò olùṣàyẹ̀wò ni, tí a sì dé láìsí ìjápọ̀ àpẹẹrẹ. Jẹ́ kí fóldà kọ̀ọ̀kan ṣe é kọ sí nìkan láti ọwọ́ root àti olùlò olùṣàyẹ̀wò. Òfo túmọ̀ sí pé kò sí ìṣùpọ̀ tí ó lè lo slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Àwọn Olùgbàlejò slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Kò pọndandan. Àwọn olùgbàlejò slurmrestd tí ìṣùpọ̀ lè dárúkọ, gẹ́gẹ́ bí host tàbí host:port, tí a yà sọ́tọ̀ pẹ̀lú kọ́mà tàbí ààyè. Àkọsílẹ̀ láìsí ibùdó gba ibùdó èyíkéyìí láàyè lórí olùgbàlejò náà. Òfo gba olùgbàlejò èyíkéyìí láàyè."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Ìṣẹ́jú-àáyá ṣáájú kí àmì-ìdánimọ̀ tó parí nígbà tí ojú-ewé ìlera bẹ̀rẹ̀ sí í kìlọ̀, tí àmì-ìdánimọ̀ bá ní àkókò ìparí."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Ìkìlọ̀ Ìparí Àmì-ìdánimọ̀"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Yọ kúrò"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Pa Àwọn Tábìlì Àfikún Mọ́ Nígbà Yíyọ Kúrò"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Nígbà tí a bá fi àmì sí i, yíyọ àfikún náà kúrò yóò pa àwọn ìṣùpọ̀ àti àwọn àwòrán-ipò rẹ̀ mọ́. Pa á rẹ́ kí yíyọ kúrò lè pa wọ́n rẹ́; kó àwọn ìṣùpọ̀ náà jáde kọ́kọ́ láti HPC Clusters. Àfikún náà kò dá àwọn ẹ̀rọ Cacti tàbí àwọn ìṣètò Maint kankan sílẹ̀ nínú ìtẹ̀jáde yìí, a kò sì kan sí olùṣètò náà lọ́nàkọnà."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "A kò fi fáìlì ìbéèrè dátà %s sínú fóldà resource/script_server ti Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Fáìlì ìbéèrè dátà %s nínú fóldà resource/script_server ti Cacti yàtọ̀ sí èyí tí àfikún náà mú wá."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "tí olùlò olùṣàyẹ̀wò nìkan lè kà"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "tí ẹgbẹ́ fáìlì lè kà; dín in kù sí olùlò olùṣàyẹ̀wò nìkan (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "tí gbogbo olùlò lórí olùṣàyẹ̀wò lè kà; dín in kù sí olùlò olùṣàyẹ̀wò nìkan (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "a kọ̀ ọ́: olùlò mìíràn yàtọ̀ sí olùlò olùṣàyẹ̀wò ni ó ni ín (ṣe chown rẹ̀ sí olùlò olùṣàyẹ̀wò)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "kò sí tàbí olùlò olùṣàyẹ̀wò kò lè kà á"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "a kọ̀ ọ́: ó wà lóde àwọn fóldà fáìlì àmì-ìdánimọ̀ tí a ṣètò nínú Ètò, a dé e nípasẹ̀ ìjápọ̀ àpẹẹrẹ, kì í ṣe fáìlì déédéé, ó ṣe é kọ sí láti ọwọ́ àwọn mìíràn, tàbí ó tóbi jù; àkọsílẹ̀ náà dárúkọ ìdí rẹ̀"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "òfo"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Àwọn àṣẹ oníbàárà Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Àfikún Olùṣètò HPC nílò PHP %s tàbí èyí tí ó tẹ̀lé e. Olùpèsè yìí ń ṣiṣẹ́ PHP %s, nítorí náà a kò fi àfikún náà sori ẹ̀rọ tàbí kí a mú un ṣiṣẹ́."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Àfikún Olùṣètò HPC kò sí ní ṣíṣiṣẹ́."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Àfikún Olùṣètò HPC nílò PHP %s tàbí èyí tí ó tẹ̀lé e."
+
+#: setup.php
+msgid "Management"
+msgstr "Ìṣàkóso"

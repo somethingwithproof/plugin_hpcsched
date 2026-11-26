@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ar-EG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "ليست لديك صلاحية الوصول إلى جهاز هذا العنقود."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "الاسم: يوجد عنقود آخر يستخدم هذا الاسم بالفعل."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "لم يتم حفظ العنقود: قام شخص آخر بتعديله منذ فتح النموذج، أو فشلت عملية الكتابة. افتحه مرة أخرى وأعد إجراء التعديل."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "تم حفظ العنقود."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "لم تتغير حالة العنقود: فشلت عملية الكتابة. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "تم حذف العنقود ولقطته المخزّنة مؤقتًا. تم الاحتفاظ بجهازه ورسومه البيانية. لم يتم الاتصال بالمُجدول."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "تم إنشاء الجهاز ورسومه البيانية."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "لم يتم إنشاء الجهاز: العنقود لديه جهاز بالفعل، أو قام شخص آخر بتعديله منذ فتح الصفحة، أو رفضه Cacti. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "تم ربط العنقود بالجهاز."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "لم يتم ربط العنقود: الجهاز غير موجود، أو غير مسموح لك به، أو يحمل عنقودًا آخر بالفعل، أو قام شخص آخر بتعديل العنقود منذ فتح الصفحة."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "تمت إضافة الرسوم البيانية الناقصة."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "لم تتم إضافة أي رسوم بيانية: العنقود ليس لديه جهاز، أو لم يعد جهازه موجودًا."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "لم يتم فك ربط العنقود: قام شخص آخر بتعديله منذ فتح الصفحة."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "تم فك ربط العنقود. تم الاحتفاظ بالجهاز ورسومه البيانية."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "تمت إعادة فهرسة الأقسام من اللقطة."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "لم تتم إعادة فهرسة الأقسام: الجهاز معطّل أو غير متاح، لذلك تخطّى Cacti استعلام البيانات الخاص به."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "لم تتم إعادة فهرسة الأقسام: تعذّر على Cacti تشغيل استعلام البيانات. راجع سجل Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "لم تتم إعادة فهرسة الأقسام: استعلام بيانات HPC Scheduler غير مثبّت. ثبّت القوالب من صفحة الحالة الصحية."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "لم تتم إعادة فهرسة الأقسام: العنقود ليس لديه جهاز، أو لم يعد جهازه موجودًا."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "قوالب HPC Scheduler مثبّتة."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "لم يتم تثبيت القوالب: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "عرض المراقبة"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "تعذرت قراءة الملاحظات. اطلب من المسؤول فحص سجل الإضافة."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "افحص فئات أسباب الانتظار وحداثة اللقطة في النظرة العامة. صعّد بيانات الاعتماد وربط العناقيد وسياسة الصيانة إلى المسؤول."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "الاسم: استخدم من 1 إلى 64 حرفًا أو رقمًا أو نقطة أو شرطة أو شرطة سفلية، على أن يبدأ بحرف أو رقم."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "المجمّع: اختر أحد المجمّعات المدرجة."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "فترة الجمع: أدخل عددًا صحيحًا من الثواني من %d إلى %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "وسيلة النقل: اختر إحدى وسائل النقل المدرجة."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: أدخل مسارًا مطلقًا، أو اتركه فارغًا لاستخدام الإعداد الافتراضي للمستطلع."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "عنوان URL الخاص بـ slurmrestd: هذا المضيف والمنفذ غير موجودين في قائمة مضيفي slurmrestd في الإعدادات."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "عنوان URL الخاص بـ slurmrestd: أدخل عنوان URL بصيغة https:// بدون اسم مستخدم أو سلسلة استعلام أو جزء؛ يُقبل http:// العادي فقط لعنوان الحلقة المحلية (loopback)."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "مستخدم slurmrestd: استخدم 64 حرفًا أو رقمًا أو نقطة أو شرطة أو شرطة سفلية بحد أقصى، أو اتركه فارغًا لاستخدام رمز مستخدم."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "ملف الرمز: أدخل المسار المطلق لملف الرمز على المستطلع. لا يتم إدخال الرمز نفسه هنا أبدًا."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "ملف الرمز: لم يتم تعيين مجلدات ملفات الرمز بعد. اطلب من مسؤول Cacti تعيينها ضمن الإعدادات، HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "ملف الرمز: يجب أن يكون الملف داخل أحد مجلدات ملفات الرمز المعيّنة في الإعدادات (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "عناقيد HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "الجهاز"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "الفاصل الزمني"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "الاسم"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "المُستطلِع"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "الأقسام"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "الحالة"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "وسيلة النقل"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "لم يتم تكوين أي عناقيد بعد."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "تعطيل"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "تفعيل"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "المستطلع المحذوف %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d ثانية"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "لا شيء"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "حذف"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "تصدير"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "نزّل تكوين العنقود بصيغة JSON قبل إلغاء التثبيت الذي يحذف جداول الإضافة. يحتوي على مسارات ملفات الرمز، ولا يحتوي على أي رمز أبدًا."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "العنقود: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "عنقود جديد"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "فترة الجمع (بالثواني)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "مُفعّل"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "جمع الحجوزات"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "جمع الحصص العادلة (الحسابات فقط)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "مسار slurm.conf (اختياري)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "عنوان URL الخاص بـ slurmrestd"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "مستخدم slurmrestd (اختياري)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "ملف الرمز على المستطلع"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "تستخدم أوامر العميل الملفات التنفيذية المعيّنة ضمن الإعدادات > HPC Scheduler ومصادقة Slurm الخاصة بمستخدم المستطلع؛ يحدد مسار slurm.conf الاختياري عنقودًا. تُستخدم حقول slurmrestd فقط مع وسيلة النقل تلك. يجب أن يكون ملف الرمز قابلًا للقراءة من قِبل مستخدم المستطلع فقط؛ تقرأه الإضافة في كل تشغيل ولا تخزّن الرمز أبدًا."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "حفظ"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "جهاز العنقود: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "مربوط بالجهاز %s (المعرّف %d). تتبع رسومه البيانية صلاحيات الأجهزة والرسوم البيانية في Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "إضافة الرسوم البيانية الناقصة تضيف:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "إضافة الرسوم البيانية الناقصة"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "إعادة فهرسة الأقسام"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "فك الربط"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "يحتفظ فك الربط بالجهاز ورسومه البيانية وسجلّها التاريخي."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "لا يزال العنقود مربوطًا بالجهاز %d، الذي لم يعد موجودًا. يؤدي إنشاء جهاز أو ربطه إلى استبدال هذا الربط."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "إنشاء جهاز يضيف:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "بدون الرسوم البيانية للأقسام، يتم إنشاء الرسوم البيانية للعنقود فقط، وتُستبعد مصادر البيانات والاستدعاءات الخاصة بالأقسام المذكورة أعلاه."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "إنشاء الرسوم البيانية للأقسام أيضًا"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "إنشاء جهاز"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "أو ربط جهاز موجود"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "ربط الجهاز"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "قوالب HPC Scheduler غير مثبّتة. ثبّتها من صفحة الحالة الصحية."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "جهاز \"%s\" من قالب الجهاز %s، يتم استطلاعه بواسطة المستطلع %d، مع إيقاف فحوصات التوافر."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "استعلام البيانات \"%s\"، يفهرس %d من الأقسام المعروفة حاليًا."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d من الرسوم البيانية للعنقود، لكل منها مصدر البيانات \"%s\" الخاص به."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d من الرسوم البيانية للأقسام، بمعدل %d لكل قسم، ولكل منها مصدر البيانات الخاص به."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "في المجموع: %d من مصادر البيانات و%d من ملفات RRD، و%d من استدعاءات خادم السكربتات لكل استطلاع. تحصل الأقسام المضافة لاحقًا على رسوم بيانية من صفحة الرسوم البيانية الجديدة."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "تم إنشاؤه بواسطة إضافة HPC Scheduler للعنقود %s. تأتي قيمه من لقطة الإضافة؛ اسم المضيف هو اسم محجوز لا يتم الاتصال به أبدًا."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "التكوين: مسار أو عنوان URL أو إعداد مفقود أو غير مسموح به"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "تعذّر الوصول إلى المُجدول"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "استغرق الاستدعاء وقتًا أطول من المسموح به وتم إيقافه"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "كان الرد أكبر من المسموح به وتم تجاهله"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "تعذّر تحليل الرد باستخدام محلل البيانات المثبّت"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "رفض المُجدول بيانات الاعتماد"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "قد لا يُسمح لحساب المُجدول برؤية هذه البيانات (PrivateData أو الصلاحيات)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "طلب المتحكم من العملاء التراجع مؤقتًا (حد المعدل)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "أجاب الخادم بالرمز 304 على طلب لم يكن مشروطًا؛ تم الاحتفاظ بالبيانات السابقة"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "رفضت الإضافة استدعاءً خارج قائمة السماح الخاصة بها"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "فشل الاستدعاء"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "نفدت ذاكرة القارئ؛ خفّض الحد الأقصى لحجم الرد أو ارفع ذاكرة الجمع في الإعدادات"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "أبداً"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "منذ %d ثانية"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "منذ %d دقيقة"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "منذ %d ساعة"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "منذ %d يوم"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "حالي"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "متأخر"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "قديم"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "لم يُجمع أبدًا"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "العناقيد"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "الاستدعاءات"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "العنقود"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "المدة"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "حداثة البيانات"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "آخر تشغيل"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "آخر نجاح"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "النتيجة"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "المحلل"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "كل العناقيد"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "تحذيرات"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "تحذير"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "لا توجد تحذيرات."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "القوالب"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "تم تثبيت قوالب الجهاز والبيانات والرسوم البيانية واستعلام بيانات الأقسام."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "القوالب غير مثبّتة أو ليست محدثة، لذا لا يمكن إنشاء أجهزة العنقود. راجع التحذيرات أعلاه."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "تثبيت القوالب"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "أقسام اللقطة"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "عمر البيانات"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "خطأ"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "آخر محاولة"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "السجلات"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "القسم"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "فشل آخر تثبيت للقوالب: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "بعض قوالب HPC Scheduler مفقودة من Cacti. ثبّتها أدناه."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s، تم اكتشافه"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "الحد الأقصى لحجم الرد هو %d MiB، لكن الرد المفكوك الترميز بهذا الحجم لا يتسع في ذاكرة الجمع البالغة %d MiB؛ يسمح القارئ بـ %d MiB. ارفع ذاكرة الجمع أو خفّض الحد الأقصى لحجم الرد في الإعدادات."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "معيّن للمستطلع %d، وهو جامع بيانات عن بُعد. يجمع هذا الإصدار البيانات على المستطلع الرئيسي فقط، لذلك لا يتم جمع بيانات العنقود؛ الجمع عن بُعد مخطط له في المرحلة 3. عيّنه للمستطلع الرئيسي."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "فترة الجمع أقل من الحد الأدنى البالغ %d ثانية."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "فترة الجمع البالغة %d ثانية أقصر من فترة المستطلع البالغة %d ثانية؛ يتم جمع البيانات كل %d ثانية."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "يتم الوصول إلى slurmrestd عبر HTTP عادي على عنوان الحلقة المحلية (loopback)؛ يعبر الرمز مكدس الشبكة المحلية بدون تشفير."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "لم ينتهِ أي تشغيل للقارئ لهذا العنقود بعد."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "ملف الرمز: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "انتهت صلاحية الرمز %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "تنتهي صلاحية الرمز خلال %d دقيقة."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "استهلك آخر تشغيل كامل ميزانيته الزمنية البالغة %d ثانية؛ لم يتم جمع بعض الأقسام."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "يُبلغ المُجدول عن Slurm %s، وهو ليس إصدارًا مدعومًا (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "يُبلغ المُجدول عن Slurm %s، وهو لا يتضمن محلل البيانات %s المختار في الإعدادات."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "تم تشغيل أوامر العميل بدون حد للذاكرة؛ عيّن مسار prlimit في الإعدادات."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "آخر خطأ: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "تم إيقاف الجمع مؤقتًا لمدة %d ثانية بعد بلوغ حد المعدل."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "البيانات قديمة؛ تقرؤها الرسوم البيانية والتنبيهات باعتبارها غير معروفة."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "محتجز"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "قيد التشغيل"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "قيد الإكمال"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "أخرى"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "خامل"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "مخصّص"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "مختلط"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "مُفرَّغ"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "قيد التفريغ"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "متوقف (غير متصل)"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "الصيانة"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "محجوز"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "مُطفأ"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "راجع الملاحظات المسجلة أدناه. الإقرارات خاصة بهذه الجلسة، وتنتهي صلاحيتها عند تغير الملاحظات، ولا توقف التنبيهات ولا تغير الحالة الصحية مطلقاً."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "عمليات HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "التحقيق"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "الكائن"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "وقت الرصد (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "غير معروف أو قديم"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "تم الإقرار؛ الحالة الصحية لم تتغير."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "إقرار"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "لا توجد ملاحظات متاحة للأجهزة التي يحق لك الوصول إليها."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "تم الجمع"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "التفاصيل"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "العقد"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "لم يتم جمع بيانات أي عناقيد بعد."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "أسباب الانتظار"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "الرسوم البيانية"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "تعني الشرطة أن الإضافة لا تملك بيانات حالية لتلك القيمة: فشل القسم، أو أصبحت بياناته قديمة، أو لم يُجمع أبدًا. تستثني حالة «قيد الانتظار» المهام المحتجزة. وتحتسب حالة «مُفرَّغ» كل عقدة تحمل علامة التفريغ، بما في ذلك العقد غير المتاحة أيضًا."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "أسباب الانتظار: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "الفئة"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "المهام"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "الأقسام"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "السبب"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "لا توجد مهام معلّقة."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "يتم عرض الأسباب الـ %d الأكثر ارتباطًا بالمهام فقط."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "تُحتسب كل مهمة ضمن آخر سبب فحصه المُجدوِل لها، ولا يلزم أن يكون هو السبب الوحيد لتأخيرها. وتُحتسب المهمة الموجودة في عدة أقسام مرة واحدة هنا ومرة في كل قسم تحدده. وتُعرض المهام المحتجزة مع سبب احتجازها."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "عُقد في حالات غير معروفة"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "الأسماء"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "حالة Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "لا يوجد. كل عقدة مرتبطة بحالة معروفة."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "لم يتم جمع لقطة للمهام بعد."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "لم يتم جمع لقطة للعُقد بعد، لذا فإن حالات العُقد غير معروفة."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "تم أخذ لقطة المهام في %s (%s)، مُحدَّثة."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "تم أخذ لقطة العُقد في %s (%s)، مُحدَّثة."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "تم أخذ لقطة المهام في %s (%s)، غير مُحدَّثة: إما أنها قديمة أو فشل آخر تجميع، والأعداد أدناه هي آخر ما تم جمعه."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "تم أخذ لقطة العُقد في %s (%s)، غير مُحدَّثة: إما أنها قديمة أو فشل آخر تجميع، والعُقد أدناه هي آخر ما تم جمعه."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "مُشغّل مُجدوِل HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "عرض مُجدوِل HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "مسؤول مُجدوِل HPC"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "صحة مُجدوِل HPC"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "الأولوية"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "الموارد"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "الاعتمادية"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "وقت البدء"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "الحجز"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "حدود الارتباط"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "حدود QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "حدود القسم"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "توفّر العُقد"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "الحجوزات"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "الحصة العادلة"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "أوامر عميل Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "محلّل البيانات"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "محلّل بيانات Slurm لأوامر العميل. اختر إصدارًا يتوفّر في كل عنقود تتم قراءته عبر أوامر العميل: يتوفّر v0.0.43 في 25.05 و25.11 و26.05 وتمت إزالته في 27.05؛ ويتطلب v0.0.44 الإصدار 25.11 أو أحدث؛ ويتطلب v0.0.45 الإصدار 26.05 أو أحدث. تُظهر صفحة الصحة تحذيرًا عندما يُبلّغ عنقود عن إصدار لا يتضمّنه. أما العناقيد التي تتم قراءتها عبر slurmrestd فتتجاهل هذا الإعداد: إذ تستخدم أحدث محلّل من بينها يقدّمه الخادم الخفي (daemon)، وتوضح صفحة الصحة أيّها مُستخدم."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "المسار الكامل إلى squeue على كل مُجمِّع يقرأ عنقودًا عبر أوامر العميل. تشغّله الإضافة فقط بصيغة squeue --all --json مع محلّل البيانات المحدّد أعلاه."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "المسار الكامل إلى scontrol. تشغّل الإضافة فقط scontrol --json show node وshow partition وshow reservation؛ ولا تشغّل أبدًا update أو reconfigure أو token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "المسار الكامل إلى sshare، ويُستخدم فقط للعناقيد التي تجمع بيانات الحصة العادلة."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "الحدود"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "مهلة الاستدعاء"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "عدد الثواني التي قد يستغرقها استدعاء واحد للمُجدوِل قبل إيقافه وتسجيل قسمه كفاشل. كما لا يتجاوز أي استدعاء الميزانية الزمنية للقارئ."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "الحد الأقصى لحجم الاستجابة"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "عدد الميبيبايت (MiB) التي يمكن أن يُرجعها استدعاء واحد للمُجدوِل. يتم تجاهل الاستجابة الأكبر وتسجيل قسمها كفاشل. يتطلب فك الترميز نحو 12 ضعف حجم الاستجابة، لذا يستخدم القارئ بحد أقصى (ذاكرة التجميع - 64) / 12 MiB، وتُصدر صفحة الصحة تحذيرًا عندما تكون هذه القيمة أكبر."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "ذاكرة التجميع"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "حجم ذاكرة PHP بالميبيبايت (MiB) الذي ترفع إليه كل عملية تجميع حدّها الأقصى (ولا تخفضه أبدًا). القيمة الافتراضية 1024 تناسب الاستجابات حتى 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "المسار الكامل إلى prlimit (من util-linux)، ويُستخدم لتقييد مساحة العناوين لكل أمر عميل. اتركه فارغًا لتشغيل الأوامر دون حد للذاكرة؛ وحينها تُصدر صفحة الصحة تحذيرًا."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "حد ذاكرة الأمر"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "مساحة العناوين بالميبيبايت (MiB) التي يمكن لكل أمر عميل استخدامها عبر prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "بيانات اعتماد slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "أدلة ملفات الرموز"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "الأدلة الكاملة على المُجمِّعات التي يُسمح لها باحتواء ملفات رموز slurmrestd، مفصولة بفواصل أو مسافات. لا يمكن للعنقود تحديد إلا ملف رمز داخل أحد هذه الأدلة، مملوكًا لمستخدم المُجمِّع ويُوصل إليه دون رابط رمزي. حافظ على أن تكون صلاحية الكتابة لكل دليل مقصورة على root ومستخدم المُجمِّع فقط. تركها فارغة يعني عدم تمكّن أي عنقود من استخدام slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "مضيفو slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "اختياري. مضيفو slurmrestd الذين يجوز للعنقود تحديدهم، بصيغة host أو host:port، مفصولين بفواصل أو مسافات. أي إدخال بدون منفذ يسمح بأي منفذ على ذلك المضيف. تركه فارغًا يسمح بأي مضيف."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "عدد الثواني قبل انتهاء صلاحية الرمز التي تبدأ عندها صفحة الصحة بالتحذير، إذا كان الرمز يحمل وقت انتهاء صلاحية."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "تحذير انتهاء صلاحية الرمز"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "إلغاء التثبيت"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "الاحتفاظ بجداول الإضافة عند إلغاء التثبيت"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "عند التحديد، يحتفظ إلغاء تثبيت الإضافة بالعناقيد واللقطات الخاصة بها. ألغِ التحديد ليحذفها إلغاء التثبيت؛ وصدِّر العناقيد أولًا من HPC Clusters. لا تنشئ الإضافة أي أجهزة Cacti أو جداول Maint في هذا الإصدار، ولا يتم الاتصال بالمُجدوِل أبدًا في كلتا الحالتين."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "ملف استعلام البيانات %s غير مثبّت في دليل resource/script_server الخاص بـ Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "ملف استعلام البيانات %s في دليل resource/script_server الخاص بـ Cacti يختلف عن الملف المرفق مع الإضافة."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "قابل للقراءة بواسطة مستخدم المُجمِّع فقط"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "قابل للقراءة بواسطة مجموعة الملف؛ قصِر صلاحيته على مستخدم المُجمِّع (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "قابل للقراءة بواسطة كل مستخدم على المُجمِّع؛ قصِر صلاحيته على مستخدم المُجمِّع (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "مرفوض: مملوك لمستخدم آخر غير مستخدم المُجمِّع (غيّر ملكيته إلى مستخدم المُجمِّع باستخدام chown)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "مفقود أو غير قابل للقراءة بواسطة مستخدم المُجمِّع"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "مرفوض: خارج أدلة ملفات الرموز المحددة في الإعدادات، أو تم الوصول إليه عبر رابط رمزي، أو ليس ملفًا عاديًا، أو قابل للكتابة من قِبل الآخرين، أو كبير جدًا؛ يوضح السجل السبب"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "فارغ"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "أوامر عميل Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "تتطلب إضافة مُجدوِل HPC إصدار PHP %s أو أحدث. يشغّل هذا الخادم PHP %s، لذلك لم يتم تثبيت الإضافة أو تفعيلها."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "إضافة مُجدوِل HPC غير مُفعَّلة."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "تتطلب إضافة مُجدوِل HPC إصدار PHP %s أو أحدث."
+
+#: setup.php
+msgid "Management"
+msgstr "الإدارة"

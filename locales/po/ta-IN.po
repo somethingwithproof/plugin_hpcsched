@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ta-IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "அந்தத் தொகுப்பின் சாதனத்திற்கான அனுமதி உங்களுக்கு இல்லை."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "பெயர்: மற்றொரு தொகுப்பு ஏற்கனவே இந்தப் பெயரைப் பயன்படுத்துகிறது."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "தொகுப்பு சேமிக்கப்படவில்லை: படிவம் திறக்கப்பட்டதிலிருந்து வேறொருவரால் இது மாற்றப்பட்டது, அல்லது எழுதுதல் தோல்வியடைந்தது. அதை மீண்டும் திறந்து மாற்றத்தைத் திரும்பச் செய்யவும்."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "தொகுப்பு சேமிக்கப்பட்டது."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "தொகுப்பு நிலை மாற்றப்படவில்லை: எழுதுதல் தோல்வியடைந்தது. Cacti பதிவைப் பார்க்கவும்."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "தொகுப்பு மற்றும் அதன் தற்காலிக சேமிப்பு நிழற்படம் நீக்கப்பட்டன. அதன் சாதனமும் வரைபடங்களும் தக்கவைக்கப்பட்டன. திட்டமிடுபவருடன் தொடர்பு கொள்ளப்படவில்லை."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "சாதனமும் அதன் வரைபடங்களும் உருவாக்கப்பட்டன."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "சாதனம் உருவாக்கப்படவில்லை: தொகுப்பில் ஏற்கனவே ஒரு சாதனம் உள்ளது, பக்கம் திறக்கப்பட்டதிலிருந்து வேறொருவரால் இது மாற்றப்பட்டது, அல்லது Cacti அதை நிராகரித்தது. Cacti பதிவைப் பார்க்கவும்."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "தொகுப்பு சாதனத்துடன் இணைக்கப்பட்டது."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "தொகுப்பு இணைக்கப்படவில்லை: சாதனம் இல்லை, உங்களுக்கு அனுமதிக்கப்படவில்லை, ஏற்கனவே மற்றொரு தொகுப்பைக் கொண்டுள்ளது, அல்லது பக்கம் திறக்கப்பட்டதிலிருந்து வேறொருவரால் தொகுப்பு மாற்றப்பட்டது."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "விடுபட்ட வரைபடங்கள் சேர்க்கப்பட்டன."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "வரைபடங்கள் எதுவும் சேர்க்கப்படவில்லை: தொகுப்பில் சாதனம் இல்லை, அல்லது அதன் சாதனம் இப்போது இல்லை."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "தொகுப்பு இணைப்பு நீக்கப்படவில்லை: பக்கம் திறக்கப்பட்டதிலிருந்து வேறொருவரால் இது மாற்றப்பட்டது."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "தொகுப்பின் இணைப்பு நீக்கப்பட்டது. சாதனமும் அதன் வரைபடங்களும் தக்கவைக்கப்பட்டன."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "நிழற்படத்திலிருந்து பகிர்வுகள் மீண்டும் அட்டவணைப்படுத்தப்பட்டன."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "பகிர்வுகள் மீண்டும் அட்டவணைப்படுத்தப்படவில்லை: சாதனம் முடக்கப்பட்டுள்ளது அல்லது அணுக முடியாத நிலையில் உள்ளது, எனவே Cacti அதன் தரவு வினவலைத் தவிர்த்தது."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "பகிர்வுகள் மீண்டும் அட்டவணைப்படுத்தப்படவில்லை: Cacti-யால் தரவு வினவலை இயக்க முடியவில்லை. Cacti பதிவைப் பார்க்கவும்."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "பகிர்வுகள் மீண்டும் அட்டவணைப்படுத்தப்படவில்லை: HPC Scheduler தரவு வினவல் நிறுவப்படவில்லை. நலப் பக்கத்திலிருந்து வார்ப்புருக்களை நிறுவவும்."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "பகிர்வுகள் மீண்டும் அட்டவணைப்படுத்தப்படவில்லை: தொகுப்பில் சாதனம் இல்லை, அல்லது அதன் சாதனம் இப்போது இல்லை."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "HPC Scheduler வார்ப்புருக்கள் நிறுவப்பட்டுள்ளன."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "வார்ப்புருக்கள் நிறுவப்படவில்லை: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "கண்காணிப்புப் பார்வை"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "அவதானிப்புகளைப் படிக்க முடியவில்லை. செருகுநிரல் பதிவைச் சரிபார்க்க நிர்வாகியிடம் கேளுங்கள்."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "மேலோட்டப் பார்வையில் நிலுவைக் காரணக் குடும்பங்கள் மற்றும் நிழற்படப் புதுமையை ஆய்வு செய்யவும். நற்சான்றிதழ்கள், தொகுப்பு இணைப்புகள் மற்றும் பராமரிப்புக் கொள்கை ஆகியவற்றை நிர்வாகியிடம் மேல்முறையீடு செய்யவும்."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "பெயர்: ஓர் எழுத்து அல்லது இலக்கத்துடன் தொடங்கி, 1 முதல் 64 எழுத்துகள், இலக்கங்கள், புள்ளிகள், இடைக்கோடுகள் அல்லது அடிக்கோடுகளைப் பயன்படுத்தவும்."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "போலர்: பட்டியலிடப்பட்ட போலர்களில் ஒன்றைத் தேர்ந்தெடுக்கவும்."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "சேகரிப்பு இடைவெளி: %d முதல் %d வரையிலான முழு வினாடிகளை உள்ளிடவும்."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "போக்குவரத்து: பட்டியலிடப்பட்ட போக்குவரத்துகளில் ஒன்றைத் தேர்ந்தெடுக்கவும்."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: ஒரு முழுமையான பாதையை உள்ளிடவும், அல்லது வாக்கெடுப்பியின் இயல்புநிலையைப் பயன்படுத்த அதைக் காலியாக விடவும்."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: இந்தப் புரவலனும் துறைமுகமும் அமைப்புகளில் உள்ள slurmrestd புரவலன் பட்டியலில் இல்லை."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: பயனர் பெயர், வினவல் அல்லது துண்டு இல்லாத https:// URL ஐ உள்ளிடவும்; லூப்பேக் முகவரிக்கு மட்டுமே சாதாரண http:// ஏற்றுக்கொள்ளப்படும்."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd பயனர்: அதிகபட்சம் 64 எழுத்துகள், இலக்கங்கள், புள்ளிகள், இடைக்கோடுகள் அல்லது அடிக்கோடுகளைப் பயன்படுத்தவும், அல்லது பயனர் அடையாளவில்லைக்குக் காலியாக விடவும்."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "அடையாளவில்லைக் கோப்பு: வாக்கெடுப்பியில் உள்ள அடையாளவில்லைக் கோப்பின் முழுமையான பாதையை உள்ளிடவும். அடையாளவில்லை ஒருபோதும் இங்கே உள்ளிடப்படாது."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "அடையாளவில்லைக் கோப்பு: அடையாளவில்லைக் கோப்பு அடைவுகள் எதுவும் இன்னும் அமைக்கப்படவில்லை. அமைப்புகள், HPC Scheduler என்பதன் கீழ் அவற்றை அமைக்குமாறு Cacti நிர்வாகியிடம் கேளுங்கள்."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "அடையாளவில்லைக் கோப்பு: கோப்பு அமைப்புகளில் (%s) அமைக்கப்பட்டுள்ள அடையாளவில்லைக் கோப்பு அடைவுகளில் ஒன்றிற்குள் இருக்க வேண்டும்."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "HPC தொகுப்புகள்"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "செயல்கள்"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "சாதனம்"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "இடைவெளி"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "பெயர்"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "பிரிவுகள்"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "நிலை"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "போக்குவரத்து"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "இன்னும் தொகுப்புகள் எதுவும் கட்டமைக்கப்படவில்லை."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "முடக்கு"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "இயக்கு"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "நீக்கப்பட்ட வாக்கெடுப்பி %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d வினாடிகள்"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "ஏதுமில்லை"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "நீக்கு"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "ஏற்றுமதி"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "செருகுநிரல் அட்டவணைகளை நீக்கும் நிறுவல் நீக்கத்திற்கு முன்பு தொகுப்புக் கட்டமைப்பை JSON ஆகப் பதிவிறக்கவும். இதில் அடையாளவில்லைக் கோப்புப் பாதைகள் இருக்கும், அடையாளவில்லை ஒருபோதும் இருக்காது."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "தொகுப்பு: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "புதிய தொகுப்பு"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "சேகரிப்பு இடைவெளி (வினாடிகள்)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "இயக்கப்பட்டது"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "முன்பதிவுகளைச் சேகரி"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "நியாயப் பங்கைச் சேகரி (கணக்குகள் மட்டும்)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "slurm.conf பாதை (விருப்பத்தேர்வு)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd பயனர் (விருப்பத்தேர்வு)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "வாக்கெடுப்பியில் உள்ள அடையாளவில்லைக் கோப்பு"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "கிளையன்ட் கட்டளைகள் அமைப்புகள் > HPC Scheduler என்பதன் கீழ் அமைக்கப்பட்டுள்ள இருமக் கோப்புகளையும் வாக்கெடுப்பிப் பயனரின் சொந்த Slurm அங்கீகாரத்தையும் பயன்படுத்துகின்றன; விருப்பத்தேர்வு slurm.conf பாதை ஒரு தொகுப்பைத் தேர்ந்தெடுக்கிறது. slurmrestd புலங்கள் அந்தப் போக்குவரத்துடன் மட்டுமே பயன்படுத்தப்படுகின்றன. அடையாளவில்லைக் கோப்பு வாக்கெடுப்பிப் பயனரால் மட்டுமே படிக்கக்கூடியதாக இருக்க வேண்டும்; செருகுநிரல் ஒவ்வொரு இயக்கத்தின்போதும் அதைப் படிக்கும் மற்றும் அடையாளவில்லையை ஒருபோதும் சேமிக்காது."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "சேமி"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "தொகுப்பிற்கான சாதனம்: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "சாதனம் %s (அடையாள எண் %d) உடன் இணைக்கப்பட்டது. இதன் வரைபடங்கள் Cacti இன் சாதன மற்றும் வரைபட அனுமதிகளைப் பின்பற்றுகின்றன."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "விடுபட்ட வரைபடங்களைச் சேர்ப்பது இவற்றைச் சேர்க்கும்:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "விடுபட்ட வரைபடங்களைச் சேர்"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "பகிர்வுகளை மீண்டும் அட்டவணைப்படுத்து"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "இணைப்பை நீக்கு"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "இணைப்பை நீக்குவது சாதனம், அதன் வரைபடங்கள் மற்றும் அவற்றின் வரலாற்றைத் தக்கவைக்கும்."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "தொகுப்பு இன்னும் சாதனம் %d உடன் இணைக்கப்பட்டுள்ளது, ஆனால் அது இப்போது இல்லை. ஒரு சாதனத்தை உருவாக்குவது அல்லது இணைப்பது அந்த இணைப்பை மாற்றும்."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "ஒரு சாதனத்தை உருவாக்குவது இவற்றைச் சேர்க்கும்:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "பகிர்வு வரைபடங்கள் இல்லாமல், தொகுப்பு வரைபடங்கள் மட்டுமே உருவாக்கப்படும், மேலும் மேலே உள்ள பகிர்வுகளுக்கான தரவு மூலங்களும் அழைப்புகளும் தவிர்க்கப்படும்."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "பகிர்வு வரைபடங்களையும் உருவாக்கு"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "சாதனத்தை உருவாக்கு"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "அல்லது ஏற்கனவே உள்ள சாதனத்தை இணை"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "சாதனத்தை இணை"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "HPC Scheduler வார்ப்புருக்கள் நிறுவப்படவில்லை. நலப் பக்கத்திலிருந்து அவற்றை நிறுவவும்."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "சாதனம் \"%s\" (%s சாதன வார்ப்புருவிலிருந்து), வாக்கெடுப்பி %d மூலம் வாக்கெடுக்கப்பட்டு, கிடைக்கும் தன்மைச் சோதனைகள் முடக்கப்பட்டிருக்கும்."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "தரவு வினவல் \"%s\", இப்போது அறியப்பட்ட %d பகிர்வுகளை அட்டவணைப்படுத்துகிறது."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d தொகுப்பு வரைபடங்கள், ஒவ்வொன்றும் அதன் சொந்த \"%s\" தரவு மூலத்துடன்."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d பகிர்வு வரைபடங்கள், ஒவ்வொரு பகிர்வுக்கும் %d, ஒவ்வொன்றும் அதன் சொந்த தரவு மூலத்துடன்."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "மொத்தத்தில்: %d தரவு மூலங்கள் மற்றும் %d RRD கோப்புகள், மேலும் ஒரு வாக்கெடுப்பிற்கு %d ஸ்கிரிப்ட் சேவையக அழைப்புகள். பின்னர் சேர்க்கப்படும் பகிர்வுகள் புதிய வரைபடங்கள் பக்கத்திலிருந்து வரைபடங்களைப் பெறும்."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "தொகுப்பு %s க்காக HPC Scheduler செருகுநிரலால் உருவாக்கப்பட்டது. இதன் மதிப்புகள் செருகுநிரல் நிழற்படத்திலிருந்து வருகின்றன; புரவலன் பெயர் ஒரு ஒதுக்கப்பட்ட பெயர், அது ஒருபோதும் தொடர்பு கொள்ளப்படாது."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "கட்டமைப்பு: ஒரு பாதை, URL, அல்லது அமைப்பு விடுபட்டுள்ளது அல்லது அனுமதிக்கப்படவில்லை"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "திட்டமிடுபவரைத் தொடர்பு கொள்ள முடியவில்லை"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "அழைப்பு அனுமதிக்கப்பட்டதை விட அதிக நேரம் எடுத்ததால் நிறுத்தப்பட்டது"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "பதில் அனுமதிக்கப்பட்டதை விடப் பெரியதாக இருந்ததால் நிராகரிக்கப்பட்டது"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "பொருத்தப்பட்ட தரவுப் பாகுபடுத்தியால் பதிலைப் பாகுபடுத்த முடியவில்லை"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "திட்டமிடுபவர் நற்சான்றிதழை நிராகரித்தார்"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "திட்டமிடுபவர் கணக்கு இந்தத் தரவைப் பார்க்க முடியாது (PrivateData அல்லது அனுமதிகள்)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "கட்டுப்படுத்தி கிளையன்ட்களைப் பின்வாங்குமாறு கேட்டுக்கொண்டது (விகித வரம்பு)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "நிபந்தனையற்ற கோரிக்கைக்குச் சேவையகம் 304 எனப் பதிலளித்தது; முந்தைய தரவு தக்கவைக்கப்பட்டது"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "அனுமதிப்பட்டியலுக்கு வெளியே உள்ள அழைப்பைச் செருகுநிரல் நிராகரித்தது"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "அழைப்பு தோல்வியடைந்தது"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "படிப்பியில் நினைவகம் தீர்ந்துவிட்டது; அமைப்புகளில் அதிகபட்ச பதில் அளவைக் குறைக்கவும் அல்லது சேகரிப்பு நினைவகத்தை உயர்த்தவும்"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "ஒருபோதும் இல்லை"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d விநாடிகளுக்கு முன்"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d நிமிடங்களுக்கு முன்"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d மணிநேரங்களுக்கு முன்"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d நாட்களுக்கு முன்"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "தற்போதைய"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "தாமதமானது"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "பழமையானது"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "ஒருபோதும் சேகரிக்கப்படவில்லை"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "தொகுப்புகள்"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "அழைப்புகள்"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "தொகுப்பு"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "கால அளவு"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "புதுமை"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "கடைசி இயக்கம்"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "கடைசி வெற்றி"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "விளைவு"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "பாகுபடுத்தி"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "அனைத்துத் தொகுப்புகளும்"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "எச்சரிக்கைகள்"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "எச்சரிக்கை"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "எச்சரிக்கைகள் இல்லை."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "வார்ப்புருக்கள்"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "சாதனம், தரவு மற்றும் வரைபட வார்ப்புருக்களும் பகிர்வு தரவு வினவலும் நிறுவப்பட்டுள்ளன."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "வார்ப்புருக்கள் நிறுவப்படவில்லை அல்லது புதுப்பித்த நிலையில் இல்லை, எனவே தொகுப்புச் சாதனங்களை உருவாக்க முடியாது. மேலே உள்ள எச்சரிக்கைகளைப் பார்க்கவும்."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "வார்ப்புருக்களை நிறுவு"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "நிழற்படப் பிரிவுகள்"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "தரவு வயது"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "பிழை"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "கடைசி முயற்சி"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "பதிவுகள்"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "பிரிவு"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "கடைசி வார்ப்புரு நிறுவல் தோல்வியடைந்தது: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "சில HPC Scheduler வார்ப்புருக்கள் Cacti-யில் இல்லை. கீழே அவற்றை நிறுவவும்."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, கண்டறியப்பட்டது"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "அதிகபட்ச பதில் அளவு %d MiB ஆகும், ஆனால் அந்த அளவிலான குறிவிலக்கப்பட்ட பதில் %d MiB சேகரிப்பு நினைவகத்தில் பொருந்தாது; படிப்பி %d MiB ஐ அனுமதிக்கிறது. அமைப்புகளில் சேகரிப்பு நினைவகத்தை உயர்த்தவும் அல்லது அதிகபட்ச பதில் அளவைக் குறைக்கவும்."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "தொலைநிலத் தரவு சேகரிப்பாளரான வாக்கெடுப்பி %d க்கு ஒதுக்கப்பட்டுள்ளது. இந்த வெளியீடு முதன்மை வாக்கெடுப்பியில் மட்டுமே சேகரிக்கிறது, எனவே தொகுப்பு சேகரிக்கப்படவில்லை; தொலைநிலைச் சேகரிப்பு கட்டம் 3-க்குத் திட்டமிடப்பட்டுள்ளது. இதை முதன்மை வாக்கெடுப்பிக்கு ஒதுக்கவும்."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "சேகரிப்பு இடைவெளி %d வினாடி குறைந்தபட்ச வரம்பிற்குக் கீழே உள்ளது."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "%d வினாடிகள் கொண்ட சேகரிப்பு இடைவெளி, %d வினாடிகள் கொண்ட வாக்கெடுப்பி இடைவெளியை விடக் குறைவானது; தரவு ஒவ்வொரு %d வினாடிகளுக்கும் சேகரிக்கப்படுகிறது."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "லூப்பேக் முகவரியில் சாதாரண HTTP வழியாக slurmrestd அணுகப்படுகிறது; அடையாளவில்லை உள்ளூர் பிணைய அடுக்கை மறையாக்கம் இல்லாமல் கடக்கிறது."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "இந்தத் தொகுப்பிற்கு இன்னும் எந்தப் படிப்பி இயக்கமும் முடிவடையவில்லை."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "அடையாளவில்லைக் கோப்பு: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "அடையாளவில்லை காலாவதியானது: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "அடையாளவில்லை %d நிமிடங்களில் காலாவதியாகிறது."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "கடைசி இயக்கம் அதன் முழு நேர வரம்பான %d வினாடிகளையும் பயன்படுத்தியது; சில பிரிவுகள் சேகரிக்கப்படவில்லை."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "திட்டமிடுபவர் Slurm %s ஐத் தெரிவிக்கிறது, இது ஆதரிக்கப்படும் வெளியீடு அல்ல (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "திட்டமிடுபவர் Slurm %s ஐத் தெரிவிக்கிறது, அதில் அமைப்புகளில் தேர்ந்தெடுக்கப்பட்ட தரவுப் பாகுபடுத்தி %s வழங்கப்படவில்லை."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "கிளையன்ட் கட்டளைகள் நினைவக வரம்பின்றி இயங்கின; அமைப்புகளில் prlimit பாதையை அமைக்கவும்."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "கடைசிப் பிழை: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "விகித வரம்பிற்குப் பிறகு சேகரிப்பு %d வினாடிகளுக்கு இடைநிறுத்தப்பட்டுள்ளது."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "தரவு பழையதாகிவிட்டது; வரைபடங்களும் எச்சரிக்கைகளும் அதை அறியப்படாததாகப் படிக்கின்றன."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "நிலுவையில்"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "நிறுத்திவைக்கப்பட்டது"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "இயங்குகிறது"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "நிறைவடைகிறது"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "மற்றவை"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "காத்திருப்பு நிலை"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "ஒதுக்கப்பட்டது"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "கலப்பு"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "காலியாக்கப்பட்டது"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "காலியாகிறது"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "செயலிழந்தது"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "பராமரிப்பு"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "ஒதுக்கிவைக்கப்பட்டது"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "மின்நிறுத்தப்பட்டது"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "கீழே பதிவுசெய்யப்பட்ட அவதானிப்புகளை மதிப்பாய்வு செய்யவும். ஒப்புதல்கள் இந்த அமர்வுக்குத் தனிப்பட்டவை, அவதானிப்புகள் மாறும்போது காலாவதியாகும், மேலும் எச்சரிக்கைகளைத் தடுக்கவோ நலநிலையை மாற்றவோ செய்யாது."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "HPC Scheduler செயல்பாடுகள்"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "ஆய்வு"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "பொருள்"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "அவதானிக்கப்பட்டது (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "தெரியாதது அல்லது பழமையானது"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "ஒப்புக்கொள்ளப்பட்டது; நலநிலை மாறவில்லை."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "ஒப்புக்கொள்"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "நீங்கள் அணுகக்கூடிய சாதனங்களுக்கு அவதானிப்புகள் எதுவும் இல்லை."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "சேகரிக்கப்பட்டது"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "விவரங்கள்"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "முனைகள்"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "இன்னும் எந்தத் தொகுப்புகளும் சேகரிக்கப்படவில்லை."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "நிலுவைக் காரணங்கள்"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "வரைபடங்கள்"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "ஒரு கோடு என்பது அந்த மதிப்பிற்கான தற்போதைய தரவு செருகுநிரலிடம் இல்லை என்பதைக் குறிக்கிறது: பிரிவு தோல்வியடைந்தது, பழையதாகிவிட்டது, அல்லது ஒருபோதும் சேகரிக்கப்படவில்லை. நிலுவையில் என்பது நிறுத்திவைக்கப்பட்ட பணிகளைத் தவிர்க்கிறது. காலியாக்கப்பட்டது என்பது அணுக முடியாத நிலையில் உள்ள முனைகள் உட்பட, காலியாக்கக் கொடி கொண்ட ஒவ்வொரு முனையையும் கணக்கிடுகிறது."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "நிலுவைக் காரணங்கள்: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "குடும்பம்"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "பணிகள்"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "பகிர்வுகள்"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "காரணம்"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "நிலுவையில் பணிகள் எதுவும் இல்லை."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "அதிக பணிகளைக் கொண்ட %d காரணங்கள் மட்டுமே பட்டியலிடப்பட்டுள்ளன."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "ஒவ்வொரு பணியும் அதற்காக திட்டமிடுபவர் ஆராய்ந்த கடைசி காரணத்தின் கீழ் கணக்கிடப்படுகிறது; அதுவே அதைத் தடுத்து நிறுத்தும் ஒரே காரணமாக இருக்க வேண்டியதில்லை. பல பகிர்வுகளில் உள்ள ஒரு பணி இங்கே ஒரு முறையும், அது குறிப்பிடும் ஒவ்வொரு பகிர்விலும் ஒரு முறையும் கணக்கிடப்படும். நிறுத்தி வைக்கப்பட்ட பணிகள் அவற்றின் நிறுத்திவைப்பு காரணத்துடன் பட்டியலிடப்பட்டுள்ளன."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "அறியப்படாத நிலைகளில் உள்ள கணுக்கள்"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "பெயர்கள்"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Slurm நிலை"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "ஏதுமில்லை. ஒவ்வொரு கணுவும் அறியப்பட்ட ஒரு நிலைக்குப் பொருந்துகிறது."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "பணிகளின் நிலைப்பதிவு இன்னும் சேகரிக்கப்படவில்லை."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "கணுக்களின் நிலைப்பதிவு இன்னும் சேகரிக்கப்படவில்லை, எனவே கணு நிலைகள் அறியப்படவில்லை."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "பணிகளின் நிலைப்பதிவு %s (%s) அன்று எடுக்கப்பட்டது, தற்போதையது."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "கணுக்களின் நிலைப்பதிவு %s (%s) அன்று எடுக்கப்பட்டது, தற்போதையது."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "பணிகளின் நிலைப்பதிவு %s (%s) அன்று எடுக்கப்பட்டது, தற்போதையதல்ல: இது பழையதாகிவிட்டது அல்லது கடைசி சேகரிப்பு தோல்வியடைந்தது, மேலும் கீழே உள்ள எண்ணிக்கைகள் கடைசியாகச் சேகரிக்கப்பட்டவை."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "கணுக்களின் நிலைப்பதிவு %s (%s) அன்று எடுக்கப்பட்டது, தற்போதையதல்ல: இது பழையதாகிவிட்டது அல்லது கடைசி சேகரிப்பு தோல்வியடைந்தது, மேலும் கீழே உள்ள கணுக்கள் கடைசியாகச் சேகரிக்கப்பட்டவை."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "HPC திட்டமிடுபவர் இயக்குநர்"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "HPC திட்டமிடுபவர் பார்வை"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "HPC திட்டமிடுபவர் நிர்வாகம்"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "HPC திட்டமிடுபவர் நலன்"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "முன்னுரிமை"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "வளங்கள்"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "சார்புநிலை"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "தொடக்க நேரம்"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "ஒதுக்கீடு"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "தொடர்பு வரம்புகள்"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "QOS வரம்புகள்"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "பகிர்வு வரம்புகள்"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "கணு கிடைப்புத்தன்மை"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "ஒதுக்கீடுகள்"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "நியாயப் பங்கு"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Slurm கிளையன்ட் கட்டளைகள்"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "தரவுப் பாகுபடுத்தி"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "கிளையன்ட் கட்டளைகளுக்கான Slurm தரவுப் பாகுபடுத்தி. கிளையன்ட் கட்டளைகள் வழியாகப் படிக்கப்படும் ஒவ்வொரு தொகுப்பின் வெளியீட்டிலும் உள்ள ஒன்றைத் தேர்ந்தெடுக்கவும்: v0.0.43 என்பது 25.05, 25.11 மற்றும் 26.05 ஆகியவற்றில் உள்ளது மற்றும் 27.05 இல் நீக்கப்பட்டுள்ளது; v0.0.44 க்கு 25.11 அல்லது அதற்குப் பிந்தைய பதிப்பு தேவை; v0.0.45 க்கு 26.05 அல்லது அதற்குப் பிந்தைய பதிப்பு தேவை. இது இல்லாத ஒரு வெளியீட்டைத் தொகுப்பு தெரிவிக்கும்போது நலப் பக்கம் எச்சரிக்கும். slurmrestd வழியாகப் படிக்கப்படும் தொகுப்புகள் இந்த அமைப்பைப் புறக்கணிக்கின்றன: அவை டீமான் வழங்குவதில் மிகப் புதியதைப் பயன்படுத்துகின்றன, மேலும் அது எது என்பதை நலப் பக்கம் காட்டும்."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "கிளையன்ட் கட்டளைகள் வழியாகத் தொகுப்பைப் படிக்கும் ஒவ்வொரு போல்லரிலும் உள்ள squeue இன் முழுமையான பாதை. செருகுநிரல் அதை மேலே உள்ள தரவுப் பாகுபடுத்தியுடன் squeue --all --json ஆக மட்டுமே இயக்குகிறது."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "scontrol க்கான முழுமையான பாதை. செருகுநிரல் scontrol --json show node, show partition மற்றும் show reservation ஆகியவற்றை மட்டுமே இயக்குகிறது; update, reconfigure அல்லது token ஆகியவற்றை ஒருபோதும் இயக்காது."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "sshare க்கான முழுமையான பாதை, நியாயப் பங்கைச் சேகரிக்கும் தொகுப்புகளுக்கு மட்டுமே பயன்படுத்தப்படுகிறது."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "வரம்புகள்"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "அழைப்பு காலாவதி"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "ஒரு திட்டமிடுபவர் அழைப்பு நிறுத்தப்பட்டு அதன் பிரிவு தோல்வியடைந்ததாகப் பதிவு செய்யப்படுவதற்கு முன் எடுத்துக்கொள்ளக்கூடிய வினாடிகள். ஒரு அழைப்பு படிப்பான் நேர வரம்பைத் தாண்டியும் ஒருபோதும் இயங்காது."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "அதிகபட்ச பதில் அளவு"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "ஒரு திட்டமிடுபவர் அழைப்பு திருப்பி அனுப்பக்கூடிய MiB அளவு. பெரிய பதில் நிராகரிக்கப்பட்டு அதன் பிரிவு தோல்வியடைந்ததாகப் பதிவு செய்யப்படும். குறிவிலக்கத்திற்குப் பதில் அளவை விட சுமார் 12 மடங்கு தேவைப்படுவதால், படிப்பான் அதிகபட்சமாக (சேகரிப்பு நினைவகம் - 64) / 12 MiB ஐப் பயன்படுத்துகிறது மற்றும் இந்த மதிப்பு பெரியதாக இருக்கும்போது நலப் பக்கம் எச்சரிக்கும்."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "சேகரிப்பு நினைவகம்"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "ஒவ்வொரு சேகரிப்பு இயக்கமும் அதன் வரம்பை உயர்த்தும் PHP நினைவகத்தின் MiB அளவு (இது ஒருபோதும் வரம்பைக் குறைக்காது). இயல்புநிலையான 1024 என்பது 80 MiB வரையிலான பதில்களுக்குப் பொருந்தும்."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "ஒவ்வொரு கிளையன்ட் கட்டளையின் முகவரி இடத்தை வரம்பிடப் பயன்படும் prlimit (util-linux) க்கான முழுமையான பாதை. நினைவக வரம்பு இல்லாமல் கட்டளைகளை இயக்க காலியாக விடவும்; அப்போது நலப் பக்கம் எச்சரிக்கும்."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "கட்டளை நினைவக வரம்பு"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "prlimit வழியாக ஒவ்வொரு கிளையன்ட் கட்டளையும் பயன்படுத்தக்கூடிய முகவரி இடத்தின் MiB அளவு."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "slurmrestd சான்றுகள்"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "டோக்கன் கோப்பு அடைவுகள்"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "காற்புள்ளிகள் அல்லது இடைவெளிகளால் பிரிக்கப்பட்ட, slurmrestd டோக்கன் கோப்புகளை வைத்திருக்கக்கூடிய போல்லர்களில் உள்ள முழுமையான அடைவுகள். ஒரு தொகுப்பு இவற்றில் ஒன்றிற்குள் உள்ள, போல்லர் பயனருக்குச் சொந்தமான மற்றும் குறியீட்டு இணைப்பு இல்லாமல் அணுகப்படும் டோக்கன் கோப்பை மட்டுமே குறிப்பிட முடியும். ஒவ்வொரு அடைவையும் root மற்றும் போல்லர் பயனரால் மட்டுமே எழுதக்கூடியதாக வைத்திருக்கவும். காலியாக இருந்தால் எந்தத் தொகுப்பும் slurmrestd ஐப் பயன்படுத்த முடியாது என்று பொருள்."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "slurmrestd புரவலன்கள்"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "விருப்பத்தேர்வு. காற்புள்ளிகள் அல்லது இடைவெளிகளால் பிரிக்கப்பட்ட, host அல்லது host:port வடிவில் ஒரு தொகுப்பு குறிப்பிடக்கூடிய slurmrestd புரவலன்கள். போர்ட் இல்லாத உள்ளீடு அந்தப் புரவலனில் எந்தப் போர்ட்டையும் அனுமதிக்கும். காலியாக இருந்தால் எந்தப் புரவலனையும் அனுமதிக்கும்."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "டோக்கனில் காலாவதி நேரம் இருந்தால், டோக்கன் காலாவதியாவதற்கு எத்தனை வினாடிகளுக்கு முன்பு நலப் பக்கம் எச்சரிக்கத் தொடங்கும்."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "டோக்கன் காலாவதி எச்சரிக்கை"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "நிறுவல் நீக்கு"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "நிறுவல் நீக்கும்போது செருகுநிரல் அட்டவணைகளை வைத்திரு"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "தேர்ந்தெடுக்கப்பட்டால், செருகுநிரலை நிறுவல் நீக்குவது அதன் தொகுப்புகளையும் நிலைப்பதிவுகளையும் வைத்திருக்கும். நிறுவல் நீக்கம் அவற்றை நீக்க இதைத் தேர்வுநீக்கவும்; முதலில் HPC Clusters இலிருந்து தொகுப்புகளை ஏற்றுமதி செய்யவும். இந்த வெளியீட்டில் செருகுநிரல் Cacti சாதனங்கள் அல்லது Maint அட்டவணைகள் எதையும் உருவாக்காது, மேலும் திட்டமிடுபவர் எந்த வகையிலும் தொடர்பு கொள்ளப்பட மாட்டார்."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "தரவு வினவல் கோப்பு %s ஆனது Cacti இன் resource/script_server அடைவில் நிறுவப்படவில்லை."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Cacti இன் resource/script_server அடைவில் உள்ள தரவு வினவல் கோப்பு %s ஆனது செருகுநிரல் வழங்குவதிலிருந்து வேறுபடுகிறது."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "போல்லர் பயனரால் மட்டுமே படிக்கக்கூடியது"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "கோப்புக் குழுவால் படிக்கக்கூடியது; அதைப் போல்லர் பயனருக்கு மட்டுமே கட்டுப்படுத்தவும் (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "போல்லரில் உள்ள ஒவ்வொரு பயனராலும் படிக்கக்கூடியது; அதைப் போல்லர் பயனருக்கு மட்டுமே கட்டுப்படுத்தவும் (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "மறுக்கப்பட்டது: போல்லர் பயனரைத் தவிர வேறு பயனருக்குச் சொந்தமானது (அதைப் போல்லர் பயனருக்கு chown செய்யவும்)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "காணவில்லை அல்லது போல்லர் பயனரால் படிக்க முடியாதது"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "மறுக்கப்பட்டது: அமைப்புகளில் அமைக்கப்பட்ட டோக்கன் கோப்பு அடைவுகளுக்கு வெளியே உள்ளது, குறியீட்டு இணைப்பு வழியாக அணுகப்பட்டது, வழக்கமான கோப்பு அல்ல, மற்றவர்களால் எழுதக்கூடியது அல்லது மிகப் பெரியது; பதிவு காரணத்தைக் குறிப்பிடுகிறது"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "காலியானது"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Slurm கிளையன்ட் கட்டளைகள்"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "HPC திட்டமிடுபவர் செருகுநிரலுக்கு PHP %s அல்லது அதற்குப் பிந்தைய பதிப்பு தேவை. இந்தச் சேவையகம் PHP %s ஐ இயக்குகிறது, எனவே செருகுநிரல் நிறுவப்படவில்லை அல்லது இயக்கப்படவில்லை."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "HPC திட்டமிடுபவர் செருகுநிரல் இயக்கப்படவில்லை."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "HPC திட்டமிடுபவர் செருகுநிரலுக்கு PHP %s அல்லது அதற்குப் பிந்தைய பதிப்பு தேவை."
+
+#: setup.php
+msgid "Management"
+msgstr "மேலாண்மை"

@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: mg-MG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Tsy manana fahazoan-dalana amin'ny fitaovan'io cluster io ianao."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Anarana: efa misy cluster hafa mampiasa io anarana io."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Tsy voatahiry ny cluster: novan'olon-kafa izany hatramin'ny nanokafana ny taratasy fenoina, na tsy nahomby ny fanoratana. Sokafy indray ary avereno ny fanovana."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Voatahiry ny cluster."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Tsy niova ny toetry ny cluster: tsy nahomby ny fanoratana. Jereo ny firaketana Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Voafafa ny cluster sy ny snapshot voatahiry tao amin'ny cache. Notazonina ny fitaovana sy ny grafikany. Tsy nifandraisana ny scheduler."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Voaforona ny fitaovana sy ny grafikany."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Tsy voaforona ny fitaovana: efa manana fitaovana ny cluster, novan'olon-kafa izany hatramin'ny nanokafana ny pejy, na nolavin'ny Cacti izany. Jereo ny firaketana Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Nampifandraisina tamin'ny fitaovana ny cluster."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Tsy nampifandraisina ny cluster: tsy misy ilay fitaovana, tsy nahazoana alalana ho anao, efa mitondra cluster hafa, na novan'olon-kafa ny cluster hatramin'ny nanokafana ny pejy."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Nampiana ireo grafika tsy ampy."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Tsy nisy grafika nampiana: tsy manana fitaovana ny cluster, na tsy misy intsony ny fitaovany."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Tsy tapaka ny fifandraisan'ny cluster: novan'olon-kafa izany hatramin'ny nanokafana ny pejy."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Tapaka ny fifandraisan'ny cluster. Notazonina ny fitaovana sy ny grafikany."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Naverina nohavaozina ny fanondroana ireo partition avy amin'ny snapshot."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Tsy naverina nohavaozina ny fanondroana ireo partition: nosakanana na tsy azo ifandraisana ny fitaovana, ka nodinganin'ny Cacti ny fangatahana rakitra."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Tsy naverina nohavaozina ny fanondroana ireo partition: tsy nahavita nandefa ny fangatahana rakitra ny Cacti. Jereo ny firaketana Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Tsy naverina nohavaozina ny fanondroana ireo partition: tsy napetraka ny fangatahana rakitra HPC Scheduler. Apetraho avy ao amin'ny pejin'ny fahasalamana ireo modely."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Tsy naverina nohavaozina ny fanondroana ireo partition: tsy manana fitaovana ny cluster, na tsy misy intsony ny fitaovany."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Napetraka ireo modely HPC Scheduler."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Tsy napetraka ireo modely: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Fomba fijery fanaraha-maso"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Tsy azo novakiana ny fandinihana. Angataho ny mpitantana hanamarina ny firaketana ny plugin."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Jereo ao amin'ny topimaso ireo sokajin-antony miandry sy ny fahavaozan'ny snapshot. Ampitao any amin'ny mpitantana ny mombamomba ny fanamarinana, ny fifandraisana cluster ary ny politikam-pikojakojana."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Anarana: mampiasà litera, isa, teboka, tsipika kely, na tsipika ambany miisa 1 ka hatramin'ny 64, manomboka amin'ny litera na isa."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: mifidiana iray amin'ireo poller voatanisa."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Elanelam-potoana fanangonana: ampidiro segondra feno manomboka amin'ny %d ka hatramin'ny %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Fomba fifandraisana: misafidiana iray amin'ireo fomba fifandraisana voatanisa."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: ampidiro lalana feno, na avelao ho banga mba hampiasana ny an'ny poller tsotra."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: tsy ao anatin'ny lisitry ny mpampiantrano slurmrestd ao amin'ny Fikirakirana ity mpampiantrano sy seranana ity."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: ampidiro URL https:// tsy misy anaran'ny mpampiasa, fangatahana (query), na ampahany (fragment); ekena ihany ny http:// tsotra ho an'ny adiresy loopback."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Mpampiasa slurmrestd: mampiasà litera, isa, teboka, tsipika kely, na tsipika ambany fara fahabetsany 64, na avelao ho banga ho an'ny token mpampiasa."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Rakitra Token: ampidiro ny lalana feno an'ny rakitra token ao amin'ny poller. Tsy ampidirina eto mihitsy ny tena token."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Rakitra Token: mbola tsy misy lahatahiry rakitra token napetraka. Angataho ny mpitantana Cacti hametraka izany ao amin'ny Fikirakirana, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Rakitra Token: tsy maintsy ao anatin'ny iray amin'ireo lahatahiry rakitra token napetraka ao amin'ny Fikirakirana (%s) ny rakitra."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Ireo Cluster HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Hetsika"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Fitaovana"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Elanelam-potoana"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Anarana"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Fizarana"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Toetra"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Fomba fifandraisana"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Mbola tsy misy cluster voarindra."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Ajanony"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Alefaso"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Poller %d voafafa"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d segondra"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Tsy misy"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Fafao"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Aondrana"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Alaivo amin'ny endrika JSON ny fikirakirana cluster alohan'ny fanesorana izay mamafa ireo tabilao an'ny plugin. Mitahiry lalan-drakitra token izany, fa tsy token mihitsy."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Cluster: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Cluster Vaovao"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Elanelam-potoana fanangonana (segondra)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Alefa"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Manangona Famandrihana"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Manangona Fair-share (kaonty ihany)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Lalana slurm.conf (tsy voatery)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Mpampiasa slurmrestd (tsy voatery)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Rakitra Token ao amin'ny Poller"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Mampiasa ireo programa napetraka ao amin'ny Fikirakirana > HPC Scheduler sy ny fanamarinana Slurm an'ny mpampiasa poller ny baiko mpanjifa; ny lalana slurm.conf tsy voatery no misafidy cluster. Ampiasaina miaraka amin'io fomba fifandraisana io ihany ireo saha slurmrestd. Ny mpampiasa poller ihany no tokony hahavaky ny rakitra token; mamaky azy isaky ny mandeha ny plugin ary tsy mitahiry ny token mihitsy."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Tehirizo"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Fitaovana ho an'ny Cluster: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Nampifandraisina tamin'ny fitaovana %s (id %d). Manaraka ny fahazoan-dalana fitaovana sy grafika an'ny Cacti ireo grafikany."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Ny fanampiana ireo grafika tsy ampy dia manampy:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Ampio ny Grafika Tsy Ampy"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Havaozy ny Fanondroana Partition"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Tapaho ny fifandraisana"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Ny fanapahana ny fifandraisana dia mitazona ny fitaovana, ny grafikany, ary ny tantarany."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Mbola mifandray amin'ny fitaovana %d, izay tsy misy intsony, ny cluster. Ny famoronana na fampifandraisana fitaovana dia manolo io fifandraisana io."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Ny famoronana fitaovana dia manampy:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Raha tsy misy ny grafika partition, ny grafika cluster ihany no foronina, ary avela ireo loharanon-drakitra sy antso ho an'ny partition etsy ambony."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Forony ihany koa ny grafika partition"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Mamorona Fitaovana"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Na ampifandraiso amin'ny fitaovana efa misy"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Ampifandraiso ny Fitaovana"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Tsy napetraka ireo modely HPC Scheduler. Apetraho avy ao amin'ny pejin'ny fahasalamana izy ireo."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Fitaovana \"%s\" avy amin'ny modely fitaovana %s, angonin'ny poller %d, miaraka amin'ny fanamarinana fahafahana miasa tsy alefa."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Ny fangatahana rakitra \"%s\", manondro ireo partition %d fantatra amin'izao fotoana izao."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "Grafika cluster %d, samy manana ny loharanon-drakiny \"%s\" avy."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "Grafika partition %d, %d isaky ny partition, samy manana ny loharanon-drakiny avy."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Amin'ny fitambarany: loharanon-drakitra %d sy rakitra RRD %d, ary antso mpizara script %d isaky ny fanangonana. Ireo partition ampiana any aoriana dia mahazo grafika avy ao amin'ny pejy Grafika Vaovao."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Noforonin'ny plugin HPC Scheduler ho an'ny cluster %s. Avy amin'ny snapshot an'ny plugin ny sandany; anarana voatokana tsy ifandraisana mihitsy ny anaran'ny mpampiantrano."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "fikirakirana: misy lalana, URL, na fikirakirana tsy ampy na tsy azo atao"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "tsy azo nifandraisana ny scheduler"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "naharitra ela loatra noho ny nahazoana alalana ny antso ka najanona"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "lehibe loatra noho ny nahazoana alalana ny valiny ka nariana"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "tsy azo nofakafakaina tamin'ny mpandinika rakitra voatondro ny valiny"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "nolavin'ny scheduler ny fanamarinana"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "mety tsy mahazo mahita ity rakitra ity ny kaonty scheduler (PrivateData na fahazoan-dalana)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "nangataka ireo mpanjifa hihena ny fifamoivoizana ny mpanara-maso (fetran'ny tahan'ny fangatahana)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "namaly 304 ny mpizara tamin'ny fangatahana tsy nisy fepetra; notazonina ny rakitra teo aloha"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "nolavin'ny plugin ny antso ivelan'ny lisitra nahazoana alalana"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "tsy nahomby ny antso"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "lany fitadidiana ny mpamaky; ampidino ny Haben'ny Valiny Fara Fahabetsany na ampiakaro ny Fitadidiana Fanangonana ao amin'ny Fikirakirana"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Tsy mbola nisy"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d segondra lasa izay"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d minitra lasa izay"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d ora lasa izay"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d andro lasa izay"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Amin'izao fotoana"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Tara"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Lany andro"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Tsy mbola nangonina mihitsy"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Ireo Cluster"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Antso"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Cluster"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Faharetany"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Fahavaozana"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Fampandehanana farany"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Fahombiazana farany"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Vokatra"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Mpanadihady"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Ny cluster rehetra"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Fampitandremana"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Fampitandremana"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Tsy misy fampitandremana."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Modely"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Napetraka ny modely fitaovana, rakitra, ary grafika ary ny fangatahana rakitra partition."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Tsy napetraka na tsy vaovao ireo modely, ka tsy azo foronina ny fitaovana cluster. Jereo ireo fampitandremana etsy ambony."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Apetraho ireo Modely"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Fizarana Snapshot"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Faharetan'ny Rakitra"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Hadisoana"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Fanandramana Farany"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Firaketana"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Fizarana"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Tsy nahomby ny fametrahana modely farany: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Misy modely HPC Scheduler tsy hita ao amin'ny Cacti. Apetraho etsy ambany izy ireo."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, hita"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Ny Haben'ny Valiny Fara Fahabetsany dia %d MiB, fa ny valiny voavaha amin'io habe io dia tsy tafiditra ao anatin'ny Fitadidiana Fanangonana %d MiB; ny mpamaky dia mamela %d MiB. Ampiakaro ny Fitadidiana Fanangonana na ampidino ny Haben'ny Valiny Fara Fahabetsany ao amin'ny Fikirakirana."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Voatendry ho an'ny poller %d, mpanangona rakitra lavitra. Ity dikan-teny ity dia manangona ao amin'ny poller fototra ihany, ka tsy angonina ny cluster; ny fanangonana lavitra dia nomanina ho amin'ny dingana faha-3. Atokàny ho an'ny poller fototra izy."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Latsaky ny fetra ambany %d segondra ny elanelam-potoana fanangonana."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Ny elanelam-potoana fanangonana %d segondra dia fohy kokoa noho ny elanelam-potoana poller %d segondra; angonina isaky ny %d segondra ny rakitra."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "Azo ifandraisana amin'ny alalan'ny HTTP tsotra amin'ny adiresy loopback ny slurmrestd; mandalo tsy voarakotra ao amin'ny tambajotra eo an-toerana ny token."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Mbola tsy nisy fampandehanana mpamaky vita ho an'ity cluster ity."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Rakitra token: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Lany andro %s ny token."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Lany andro afaka %d minitra ny token."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Nampiasa ny tetibola fotoany manontolo %d segondra ny fampandehanana farany; misy fizarana tsy voangona."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Mitatitra Slurm %s ny scheduler, izay tsy dikan-teny tohanana (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Mitatitra Slurm %s ny scheduler, izay tsy ahitana ny mpanadihady rakitra %s nofidina ao amin'ny Fikirakirana."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Nandeha tsy nisy fetran'ny fitadidiana ny baiko mpanjifa; amboary ny lalana prlimit ao amin'ny Fikirakirana."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Hadisoana farany: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Najanona mandritra ny %d segondra ny fanangonana taorian'ny fetran'ny tahan'ny fangatahana."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Lany andro ny rakitra; mamaky azy ho tsy fantatra ny grafika sy ny fampitandremana."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Miandry"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Voatana"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Mandeha"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Mamita"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Hafa"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Tsy miasa"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Natokana"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Mifangaro"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Drained"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Draining"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Tsy azo tratrarina"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Fikojakojana"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Voatokana"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Maty herinaratra"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Jereo eto ambany ny fandinihana voarakitra. Ny fanekena dia manokana ho an'ity fivoriana ity, lany daty rehefa miova ny fandinihana, ary tsy manafoana fampitandremana na manova ny fahasalamana velively."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Fampandehanana HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Fanadihadiana"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Singa"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Voamarika (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Tsy fantatra na efa antitra"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Voamarika ho ekena; tsy niova ny fahasalamana."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Ekeo"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Tsy misy fandinihana azo jerena ho an'ny fitaovana azonao idirana."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Voangona"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Antsipiriany"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Ireo node"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Mbola tsy misy cluster angonina."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Antony fiandrasana"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Kisary"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Ny tsipika dia midika fa tsy manana rakitra ankehitriny ho an'io sanda io ny plugin: tsy nahomby ny fizarana, lany andro, na tsy mbola nangonina mihitsy. Tsy ao anatin'ny Miandry ireo asa voatana. Ny Drained dia manisa ny node rehetra misy ny marika drain, anisan'izany ireo node izay tsy azo ifandraisana ihany koa."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Antony Fiandrasana: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Sokajy"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Asa"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Ireo Partition"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Antony"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Tsy misy asa miandry."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Ny antony %d manana asa betsaka indrindra ihany no voatanisa."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Ny asa tsirairay dia isaina eo ambanin'ny antony farany nodinihin'ny mpandrindra ho azy, izay tsy voatery ho ny hany zavatra manakana azy. Ny asa iray ao amin'ny fizarana maromaro dia isaina indray mandeha eto ary indray mandeha ao amin'ny fizarana tsirairay tononiny. Ny asa voatazona dia voatanisa miaraka amin'ny anton'ny fitazonana azy."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Singa amin'ny toetra tsy fantatra"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Anarana"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Toetra Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Tsy misy. Ny singa rehetra dia mifanaraka amin'ny toetra fantatra."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Tsy mbola nisy firaketana toetran'ny asa nangonina."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Tsy mbola nisy firaketana toetran'ny singa nangonina, ka tsy fantatra ny toetran'ny singa."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Firaketana toetran'ny asa nalaina tamin'ny %s (%s), ankehitriny."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Firaketana toetran'ny singa nalaina tamin'ny %s (%s), ankehitriny."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Firaketana toetran'ny asa nalaina tamin'ny %s (%s), tsy ankehitriny: efa lany andro izany na tsy nahomby ny fanangonana farany, ary ny isa eto ambany dia ireo nangonina farany."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Firaketana toetran'ny singa nalaina tamin'ny %s (%s), tsy ankehitriny: efa lany andro izany na tsy nahomby ny fanangonana farany, ary ny singa eto ambany dia ireo nangonina farany."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Mpandraharaha ny HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Fijerena ny HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Mpitantana ny HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Fahasalaman'ny HPC Scheduler"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Laharampahamehana"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Loharano"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Fiankinan-doha"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Ora fanombohana"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Famandrihana"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Fetran'ny fifandraisana"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Fetran'ny QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Fetran'ny fizarana"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Fahazoana ny singa"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Famandrihana"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Fizarana ara-drariny"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Baiko mpanjifa Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Mpanadihady angona"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Mpanadihady angona Slurm ho an'ny baiko mpanjifa. Misafidiana iray izay entin'ny kinovan'ny cluster tsirairay vakiana amin'ny alalan'ny baiko mpanjifa: ny v0.0.43 dia ao amin'ny 25.05, 25.11, ary 26.05 ary nesorina ao amin'ny 27.05; ny v0.0.44 dia mila 25.11 na aoriana; ny v0.0.45 dia mila 26.05 na aoriana. Ny pejin'ny fahasalamana dia mampitandrina rehefa mitatitra kinova tsy manana izany ny cluster iray. Ny cluster vakiana amin'ny alalan'ny slurmrestd dia tsy miraharaha ity fikirakirana ity: mampiasa ny farany indrindra amin'ireo atolotry ny daemon izy ireo, ary ny pejin'ny fahasalamana no mampiseho hoe iza."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Lalana feno mankany amin'ny squeue eo amin'ny poller tsirairay izay mamaky cluster amin'ny alalan'ny baiko mpanjifa. Ny plugin dia mandefa azy amin'ny endrika squeue --all --json miaraka amin'ny mpanadihady angona etsy ambony ihany."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Lalana feno mankany amin'ny scontrol. Ny plugin dia mandefa scontrol --json show node, show partition, ary show reservation ihany; tsy mandefa update, reconfigure, na token mihitsy."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Lalana feno mankany amin'ny sshare, ampiasaina ho an'ny cluster manangona fizarana ara-drariny ihany."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Fetra"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Fe-potoana fijanonan'ny antso"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Segondra azon'ny antso iray amin'ny mpandrindra alaina alohan'ny hampijanona azy sy handraketana ny fizarany ho tsy nahomby. Tsy mandeha mihoatra ny fe-potoana natokana ho an'ny mpamaky ihany koa ny antso."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Haben'ny valiny farany ambony"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB azon'ny antso iray amin'ny mpandrindra averina. Ny valiny lehibe kokoa dia ariana ary raketina ho tsy nahomby ny fizarany. Ny famakiana ny kaody dia mila manodidina ny 12 heny amin'ny haben'ny valiny, koa ny mpamaky dia mampiasa farafahabetsany (Collection Memory - 64) / 12 MiB ary mampitandrina ny pejin'ny fahasalamana rehefa lehibe kokoa io sanda io."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Fahatsiarovana fanangonana"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "MiB amin'ny fahatsiarovana PHP izay ampiakaran'ny fanangonana tsirairay ny fetrany (tsy mampihena mihitsy izany). Ny sanda mahazatra 1024 dia mahazaka valiny hatramin'ny 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Lalana feno mankany amin'ny prlimit (util-linux), ampiasaina hametra ny habak'adiresin'ny baiko mpanjifa tsirairay. Avelao ho foana mba handefasana baiko tsy misy fetran'ny fahatsiarovana; mampitandrina ny pejin'ny fahasalamana amin'izay."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Fetran'ny fahatsiarovan'ny baiko"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "MiB amin'ny habak'adiresy azon'ny baiko mpanjifa tsirairay ampiasaina, amin'ny alalan'ny prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Mari-pahazoan-dalana slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Lahatahirin'ny rakitra token"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Lahatahiry feno eo amin'ny poller izay mety hitahiry rakitra token slurmrestd, sarahan'ny faingo na elanelana. Ny cluster iray dia tsy afaka manondro afa-tsy rakitra token ao anatin'ny iray amin'izy ireo, an'ny mpampiasa poller ary tratrarina tsy misy rohy ara-tandindona. Ataovy izay hahafahan'ny root sy ny mpampiasa poller ihany manoratra ao amin'ny lahatahiry tsirairay. Ny foana dia midika fa tsy misy cluster afaka mampiasa slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Mpampiantrano slurmrestd"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Tsy voatery. Ny mpampiantrano slurmrestd azon'ny cluster iray tononina, amin'ny endrika host na host:port, sarahan'ny faingo na elanelana. Ny fidirana tsy misy port dia mamela izay port rehetra eo amin'io mpampiantrano io. Ny foana dia mamela izay mpampiantrano rehetra."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Segondra alohan'ny hahataperan'ny fetran'ny token rehefa manomboka mampitandrina ny pejin'ny fahasalamana, raha mitondra ora fahataperana ny token."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Fampitandremana fahataperan'ny token"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Fanesorana"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Tazomy ny tabilaon'ny plugin rehefa manaisotra"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Rehefa voamarika, ny fanesorana ny plugin dia mitazona ny cluster sy ny firaketana toetrany. Esory ny marika mba hamafan'ny fanesorana azy ireo; aondrano aloha ny cluster avy ao amin'ny HPC Clusters. Ny plugin dia tsy mamorona fitaovana Cacti na fandaharam-potoana Maint amin'ity kinova ity, ary tsy antsoina mihitsy ny mpandrindra na manao ahoana na manao ahoana."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Ny rakitra fangatahana angona %s dia tsy tafapetraka ao amin'ny lahatahiry resource/script_server an'ny Cacti."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Ny rakitra fangatahana angona %s ao amin'ny lahatahiry resource/script_server an'ny Cacti dia samy hafa amin'ilay entin'ny plugin."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "tsy azon'iza vakiana afa-tsy ny mpampiasa poller"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "azon'ny vondron'ny rakitra vakiana; ferana ho an'ny mpampiasa poller ihany (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "azon'ny mpampiasa rehetra eo amin'ny poller vakiana; ferana ho an'ny mpampiasa poller ihany (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "nolavina: an'ny mpampiasa hafa ankoatra ny mpampiasa poller (ampiasao ny chown hanomezana azy ny mpampiasa poller)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "tsy hita na tsy azon'ny mpampiasa poller vakiana"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "nolavina: ivelan'ny lahatahirin'ny rakitra token napetraka ao amin'ny Fikirakirana, tratrarina amin'ny alalan'ny rohy ara-tandindona, tsy rakitra mahazatra, azon'ny hafa soratana, na lehibe loatra; ny firaketana no manonona ny antony"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "foana"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Baiko mpanjifa Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Ny plugin HPC Scheduler dia mitaky PHP %s na aoriana. Ity mpizara ity dia mampiasa PHP %s, koa tsy napetraka na nalefa ny plugin."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Ny plugin HPC Scheduler dia tsy alefa."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Ny plugin HPC Scheduler dia mitaky PHP %s na aoriana."
+
+#: setup.php
+msgid "Management"
+msgstr "Fitantanana"

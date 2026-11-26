@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ha-NG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Ba ka da izinin amfani da na'urar wannan rukunin."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Suna: wani rukuni daban yana amfani da wannan sunan tuni."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Ba a adana rukunin ba: wani daban ya canza shi tun lokacin da aka buɗe fom ɗin, ko kuma rubutawa ta gaza. Sake buɗe shi ka maimaita canjin."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "An adana rukunin."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Ba a canza yanayin rukunin ba: rubutawa ta gaza. Duba rajistar Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "An share rukunin da ajiyayyen hoton bayanansa. An riƙe na'urarsa da jadawalansa. Ba a tuntuɓi mai tsara aiki ba."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "An ƙirƙiri na'urar da jadawalanta."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Ba a ƙirƙiri na'urar ba: rukunin yana da na'ura tuni, wani daban ya canza shi tun lokacin da aka buɗe shafin, ko kuma Cacti ya ƙi shi. Duba rajistar Cacti."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "An haɗa rukunin zuwa na'urar."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Ba a haɗa rukunin ba: na'urar ba ta wanzu ba, ba a ba ka izini a kanta ba, tana ɗauke da wani rukuni daban tuni, ko kuma wani daban ya canza rukunin tun lokacin da aka buɗe shafin."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "An ƙara jadawalan da suka ɓace."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Ba a ƙara wani jadawali ba: rukunin ba shi da na'ura, ko kuma na'urarsa ba ta wanzu a yanzu."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Ba a raba haɗin rukunin ba: wani daban ya canza shi tun lokacin da aka buɗe shafin."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "An raba haɗin rukunin. An riƙe na'urar da jadawalanta."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "An sake tsara fihirisar ɓangarorin daga hoton bayanan."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Ba a sake tsara fihirisar ɓangarorin ba: an kashe na'urar ko ba ta samuwa, saboda haka Cacti ya tsallake binciken bayananta."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Ba a sake tsara fihirisar ɓangarorin ba: Cacti bai iya gudanar da binciken bayanan ba. Duba rajistar Cacti."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Ba a sake tsara fihirisar ɓangarorin ba: ba a girka binciken bayanan HPC Scheduler ba. Girka samfuran daga shafin lafiya."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Ba a sake tsara fihirisar ɓangarorin ba: rukunin ba shi da na'ura, ko kuma na'urarsa ba ta wanzu a yanzu."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "An girka samfuran HPC Scheduler."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Ba a girka samfuran ba: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Duban sa ido"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Ba a iya karanta abubuwan da aka lura ba. Nemi mai gudanarwa ya duba rajistar plugin."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Duba nau'ikan dalilan jira da sabuntar hoton bayanai a taƙaitaccen bayani. Miƙa batun bayanan tantancewa, haɗin rukuni da ƙa'idar gyara ga mai gudanarwa."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Suna: yi amfani da haruffa, lambobi, ɗigo, dogon layi, ko layin ƙasa daga 1 zuwa 64, farawa da harafi ko lamba."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: zaɓi ɗaya daga cikin pollers da aka jera."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Tazarar Tattara Bayanai: shigar da cikakkun daƙiƙoƙi daga %d zuwa %d."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Hanyar Isarwa: zaɓi ɗaya daga cikin hanyoyin isarwar da aka jera."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: shigar da cikakkiyar hanya, ko a bar shi babu komai domin amfani da saitin tsoho na mai tattara bayanai."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: wannan sunan mai masauki da tasha (port) ba sa cikin jerin masu masauki na slurmrestd a Saituna."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: shigar da https:// URL ba tare da sunan mai amfani, tambaya, ko guntu ba; ana karɓar http:// na yau da kullum ga adireshin loopback kaɗai."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "Mai Amfani da slurmrestd: yi amfani da haruffa, lambobi, ɗigo, dogon layi, ko layin ƙasa da ba su wuce 64 ba, ko a bar shi babu komai domin alamar sirri (token) ta mai amfani."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Fayil ɗin Alamar Sirri: shigar da cikakkiyar hanyar fayil ɗin alamar sirri (token) a kan mai tattara bayanai. Ba a taɓa shigar da alamar sirrin kanta a nan ba."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Fayil ɗin Alamar Sirri: ba a saita kowace jagorar fayil ɗin alamar sirri ba tukuna. Nemi mai gudanarwa na Cacti ya saita su ƙarƙashin Saituna, HPC Scheduler."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Fayil ɗin Alamar Sirri: dole ne fayil ɗin ya kasance a cikin ɗaya daga cikin jagororin fayil ɗin alamar sirri da aka saita a Saituna (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "Rukunonin HPC"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Ayyuka"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Na'ura"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Tazara"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Suna"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Sassan"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Hali"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Hanyar Isarwa"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Ba a saita wani rukuni ba tukuna."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Dakatar"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Kunna"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "An share mai tattara bayanai %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "daƙiƙoƙi %d"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Babu"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Share"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Fitarwa"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Sauke saitin rukunin a matsayin JSON kafin cirewa wadda ke zubar da teburan plugin ɗin. Yana riƙe hanyoyin fayilolin alamar sirri, ba alamar sirri ba ko kaɗan."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Rukuni: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Sabon Rukuni"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Tazarar Tattara Bayanai (daƙiƙoƙi)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "An kunna"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Tattara Tanadi"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Tattara Fair-share (asusai kaɗai)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "Hanyar slurm.conf (na zaɓi)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "Mai Amfani da slurmrestd (na zaɓi)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Fayil ɗin Alamar Sirri a kan Mai Tattara Bayanai"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Umurnan abokin ciniki suna amfani da fayilolin shiri da aka saita ƙarƙashin Saituna > HPC Scheduler da kuma tantancewar Slurm ta mai amfani da mai tattara bayanai; hanyar slurm.conf ta zaɓi tana zaɓar rukuni. Ana amfani da filayen slurmrestd tare da wannan hanyar isarwa kaɗai. Dole ne fayil ɗin alamar sirri ya zama mai karantuwa ga mai amfani da mai tattara bayanai kaɗai; plugin ɗin yana karanta shi a kowane gudu kuma ba ya taɓa adana alamar sirrin."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Adana"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Na'ura don Rukuni: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "An haɗa zuwa na'ura %s (id %d). Jadawalanta suna bin izinin na'ura da jadawali na Cacti."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Ƙara jadawalan da suka ɓace yana ƙara:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Ƙara Jadawalan da Suka Ɓace"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Sake Tsara Fihirisar Ɓangarori"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Raba Haɗi"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Raba haɗi yana riƙe na'urar, jadawalanta, da tarihinsu."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Rukunin har yanzu yana haɗe da na'ura %d, wadda ba ta wanzu a yanzu. Ƙirƙira ko haɗa na'ura zai maye gurbin wannan haɗin."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Ƙirƙirar na'ura yana ƙara:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Ba tare da jadawalan ɓangarori ba, jadawalan rukuni kaɗai za a ƙirƙira, kuma za a bar tushen bayanai da kiraye-kirayen ɓangarorin da ke sama."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Hakanan ƙirƙiri jadawalan ɓangarori"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Ƙirƙiri Na'ura"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Ko haɗa na'urar da ke akwai"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Haɗa Na'ura"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Ba a girka samfuran HPC Scheduler ba. Girka su daga shafin lafiya."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "Na'ura \"%s\" daga samfurin na'ura %s, mai tattara bayanai %d ke tattarawa, tare da kashe duba samuwa."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Binciken bayanai \"%s\", yana tsara fihirisar ɓangarori %d da aka sani a yanzu."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "Jadawalan rukuni %d, kowanne da nasa tushen bayanai \"%s\"."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "Jadawalan ɓangarori %d, %d ga kowane ɓangare, kowanne da nasa tushen bayanai."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "Gabaɗaya: tushen bayanai %d da fayilolin RRD %d, da kiraye-kirayen script server %d a kowane tattarawa. Ɓangarorin da aka ƙara daga baya suna samun jadawalai daga shafin Sabbin Jadawalai."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Plugin ɗin HPC Scheduler ya ƙirƙira don rukuni %s. Ƙimominsa sun fito ne daga hoton bayanan plugin ɗin; sunan mai masauki suna ne keɓaɓɓe wanda ba a taɓa tuntuɓa ba."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "saiti: hanya, URL, ko saiti ya ɓace ko ba a yarda da shi ba"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "ba a iya isa ga mai tsara aiki ba"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "kiran ya ɗauki lokaci fiye da yadda aka yarda kuma an dakatar da shi"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "amsar ta fi girman da aka yarda kuma an jefar da ita"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "ba a iya fassara amsar da mai fassara bayanan da aka manna ba"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "mai tsara aiki ya ƙi bayanan tantancewar"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "asusun mai tsara aiki ba zai iya ganin waɗannan bayanan ba (PrivateData ko izini)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "mai sarrafawa ya nemi abokan ciniki su ja da baya (iyakar yawan buƙatu)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "sabar ta amsa da 304 ga buƙatar da ba ta da sharaɗi; an riƙe bayanan baya"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "plugin ɗin ya ƙi kira da ke wajen jerin waɗanda aka yarda da su"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "kiran ya gaza"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "mai karatu ya ƙare da ƙwaƙwalwar ajiya; rage Matsakaicin Girman Amsa ko ƙara Ƙwaƙwalwar Tattara Bayanai a Saituna"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Ba taɓa ba"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "daƙiƙa %d da suka wuce"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "minti %d da suka wuce"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "sa'a %d da suka wuce"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "kwana %d da suka wuce"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Na yanzu"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Ya yi jinkiri"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Ya tsufa"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Ba a taɓa tattarawa ba"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Rukunoni"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Kiraye-kiraye"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Rukuni"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Tsawon Lokaci"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Sabuntawa"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Gudun Ƙarshe"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Nasara ta Ƙarshe"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Sakamako"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Mai Fassara"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Dukkan rukunoni"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Gargaɗi"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Gargaɗi"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Babu gargaɗi."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Samfura"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "An girka samfuran na'ura, bayanai, da jadawali da kuma binciken bayanan ɓangare."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Ba a girka samfuran ba ko ba su zamani ba, saboda haka ba za a iya ƙirƙirar na'urorin rukuni ba. Duba gargaɗin da ke sama."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Girka Samfura"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Sassan Hoton Bayanai"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Tsawon Lokacin Bayanai"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Kuskure"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Yunƙuri na Ƙarshe"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Rajistoci"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Sashe"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Girka samfuri na ƙarshe ya gaza: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Wasu samfuran HPC Scheduler sun ɓace daga Cacti. Girka su a ƙasa."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, an gano"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Matsakaicin Girman Amsa shi ne %d MiB, amma amsar da aka warware mai wannan girman ba ta shiga cikin Ƙwaƙwalwar Tattara Bayanai ta %d MiB ba; mai karatu yana ba da damar %d MiB. Ƙara Ƙwaƙwalwar Tattara Bayanai ko rage Matsakaicin Girman Amsa a Saituna."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "An sanya wa mai tattara bayanai %d, mai tattara bayanai na nesa. Wannan fitowar tana tattarawa ne a kan babban mai tattara bayanai kaɗai, saboda haka ba a tattara rukunin ba; an shirya tattarawa ta nesa don mataki na 3. Sanya shi ga babban mai tattara bayanai."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Tazarar tattara bayanan tana ƙasa da mafi ƙarancin daƙiƙa %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Tazarar tattara bayanai ta daƙiƙoƙi %d ta fi tazarar mai tattara bayanai ta daƙiƙoƙi %d gajarta; ana tattara bayanai a kowane daƙiƙoƙi %d."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "ana samun slurmrestd ta hanyar HTTP na yau da kullum a kan adireshin loopback; alamar sirrin tana wucewa ta hanyar sadarwar gida ba tare da ɓoyewa ba."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Babu wani gudun mai karatu da ya kammala don wannan rukunin tukuna."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Fayil ɗin alamar sirri: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Alamar sirrin ta ƙare %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Alamar sirrin za ta ƙare cikin mintuna %d."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Gudu na ƙarshe ya yi amfani da dukkan kasafin lokacinsa na daƙiƙoƙi %d; ba a tattara wasu sassan ba."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Mai tsara aiki ya ruwaito Slurm %s, wanda ba fitowa ce da ake goyon baya ba (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Mai tsara aiki ya ruwaito Slurm %s, wanda ba ya zuwa da mai fassara bayanan %s da aka zaɓa a Saituna."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Umurnan abokin ciniki sun yi aiki ba tare da iyakar ƙwaƙwalwar ajiya ba; saita hanyar prlimit a Saituna."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Kuskure na ƙarshe: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "An dakatar da tattara bayanai na daƙiƙoƙi %d bayan iyakar yawan buƙatu."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Bayanai sun wuce lokaci; jadawalai da gargaɗi suna karanta su a matsayin ba a sani ba."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Ana Jira"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "An Riƙe"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Yana Gudu"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Yana Kammalawa"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Sauran"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Babu Aiki"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "An Ware"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Gauraye"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "An Kwashe"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Ana Kwashewa"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Ya faɗi"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Kulawa"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "An Tanada"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "An kashe wuta"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Duba abubuwan da aka lura da aka yi rajista a ƙasa. Amincewa ta keɓanta ga wannan zaman ne, tana ƙarewa idan abubuwan da aka lura suka canza, kuma ba ta taɓa hana faɗakarwa ko canza lafiya ba."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "Ayyukan HPC Scheduler"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Bincike"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Abu"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "An Lura (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Ba a sani ba ko ya tsufa"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "An amince; lafiya ba ta canza ba."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Amince"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Babu abubuwan da aka lura don na'urorin da za ku iya shiga."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "An tattara"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Cikakken bayani"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Nodes"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Ba a tattara wani rukuni ba tukuna."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Dalilan jira"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Jadawalai"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "Layi yana nufin plugin ɗin ba shi da bayanan yanzu don wannan ƙimar: sashen ya gaza, ya wuce lokaci, ko ba a taɓa tattara shi ba. Ana Jira ba ya haɗa da ayyukan da aka riƙe. An Kwashe yana ƙidaya kowane node mai tutar kwashewa, gami da nodes waɗanda su ma ba su samuwa."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Dalilan Jira: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Nau'i"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Ayyuka"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Ɓangarori"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Dalili"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Babu ayyukan da ke jira."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Dalilai %d da ke da mafi yawan ayyuka kawai aka jero."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Kowane aiki ana ƙirga shi ne ƙarƙashin dalilin ƙarshe da mai tsara ayyuka (scheduler) ya duba masa, wanda ba lallai ba ne ya zama shi kaɗai ne ke riƙe shi. Aiki da ke cikin sassa (partitions) da dama ana ƙirga shi sau ɗaya a nan kuma sau ɗaya a kowane sashe da ya ambata. Ayyukan da aka riƙe ana jero su tare da dalilin riƙe su."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Na'urori (Nodes) masu Yanayi da Ba a Sani Ba"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Sunaye"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Yanayin Slurm"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Babu. Kowace na'ura (node) tana da sanannen yanayi."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Ba a tattara hoton bayanan (snapshot) ayyuka ba tukuna."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Ba a tattara hoton bayanan (snapshot) na'urori ba tukuna, don haka ba a san yanayin na'urorin ba."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "An ɗauki hoton bayanan ayyuka a %s (%s), na yanzu ne."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "An ɗauki hoton bayanan na'urori a %s (%s), na yanzu ne."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "An ɗauki hoton bayanan ayyuka a %s (%s), ba na yanzu ba ne: ya tsufa ko kuma tattarawa ta ƙarshe ta gaza, kuma ƙididdigar da ke ƙasa su ne na ƙarshe da aka tattara."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "An ɗauki hoton bayanan na'urori a %s (%s), ba na yanzu ba ne: ya tsufa ko kuma tattarawa ta ƙarshe ta gaza, kuma na'urorin da ke ƙasa su ne na ƙarshe da aka tattara."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "Mai Sarrafa HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "Duba HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "Gudanarwar HPC Scheduler"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "Lafiyar HPC Scheduler"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Fifiko"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Albarkatu"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Dogaro"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Lokacin farawa"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Tanadi"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Iyakokin ƙungiya (Association)"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "Iyakokin QOS"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Iyakokin sashe (Partition)"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Samuwar na'ura (Node)"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Tanade-tanade"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Rabo mai adalci (Fair-share)"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Umarnin Abokin Ciniki na Slurm"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Mai Fassarar Bayanai (Data Parser)"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Mai fassarar bayanai na Slurm don umarnin abokin ciniki. Zaɓi wanda sigar kowane cluster da ake karantawa ta umarnin abokin ciniki take da shi: v0.0.43 yana cikin 25.05, 25.11, da 26.05 kuma an cire shi a 27.05; v0.0.44 yana buƙatar 25.11 ko sama da haka; v0.0.45 yana buƙatar 26.05 ko sama da haka. Shafin lafiya yana yin gargaɗi lokacin da wani cluster ya ba da rahoton sigar da ba ta da shi. Clusters da ake karantawa ta slurmrestd suna watsi da wannan saitin: suna amfani da mafi sabunta daga cikin waɗannan da daemon ɗin ke bayarwa, kuma shafin lafiya yana nuna wanne ne."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Cikakkiyar hanyar fayil zuwa squeue a kan kowane poller da ke karanta cluster ta umarnin abokin ciniki. Plugin ɗin yana gudanar da shi ne kawai a matsayin squeue --all --json tare da mai fassarar bayanai na sama."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Cikakkiyar hanyar fayil zuwa scontrol. Plugin ɗin yana gudanar da scontrol --json show node, show partition, da show reservation ne kawai; ba ya taɓa gudanar da update, reconfigure, ko token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Cikakkiyar hanyar fayil zuwa sshare, ana amfani da ita ne kawai don clusters da ke tattara fair-share."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Iyakoki"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Lokacin Ƙarewar Kira"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Daƙiƙoƙin da kiran mai tsara ayyuka (scheduler) guda ɗaya zai iya ɗauka kafin a dakatar da shi kuma a yi rajistar ɓangarensa a matsayin wanda ya gaza. Haka kuma kira ba zai taɓa wuce ƙayyadadden lokacin mai karantawa ba."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Mafi Girman Amsa"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "Yawan MiB da kiran scheduler guda ɗaya zai iya mayarwa. Duk amsar da ta fi girma ana watsar da ita kuma ana yin rajistar ɓangarenta a matsayin wanda ya gaza. Fassarawa tana buƙatar kusan ninki 12 na girman amsar, don haka mai karantawa yana amfani da mafi yawa (Collection Memory - 64) / 12 MiB kuma shafin lafiya yana yin gargaɗi lokacin da wannan ƙimar ta fi girma."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Ƙwaƙwalwar Tattarawa"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "Yawan MiB na ƙwaƙwalwar PHP da kowane zagayen tattarawa ke ɗaga iyakarsa zuwa gare ta (ba ya taɓa ragewa). Tsohon saiti na 1024 ya dace da amsoshi har zuwa 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Cikakkiyar hanyar fayil zuwa prlimit (util-linux), ana amfani da ita don iyakance sararin adireshi na kowane umarnin abokin ciniki. Bar shi fanko don gudanar da umarni ba tare da iyakar ƙwaƙwalwa ba; shafin lafiya zai yi gargaɗi a lokacin."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Iyakar Ƙwaƙwalwar Umarni"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "Yawan MiB na sararin adireshi da kowane umarnin abokin ciniki zai iya amfani da shi, ta hanyar prlimit."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "Takardun Shaidar slurmrestd"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Foldodin Fayilolin Token"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Cikakkun foldodi (directories) a kan pollers da za su iya riƙe fayilolin token na slurmrestd, waɗanda aka raba su da waƙafi ko sarari. Cluster zai iya ambaton fayil ɗin token ne kawai da ke cikin ɗayansu, wanda mai amfani na poller ya mallaka kuma aka isa gare shi ba tare da hanyar haɗi ta alama (symbolic link) ba. Kula kowace folda ta kasance mai rubutu ne kawai ga root da mai amfani na poller. Barin fanko yana nufin babu wani cluster da zai iya amfani da slurmrestd."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "Masu Masaukin slurmrestd (Hosts)"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Na zaɓi. Masu masaukin slurmrestd da cluster zai iya ambata, a matsayin host ko host:port, waɗanda aka raba su da waƙafi ko sarari. Shigarwa ba tare da port ba tana ba da damar kowace port a kan wancan mai masaukin. Fanko yana ba da damar kowane mai masauki."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Daƙiƙoƙi kafin token ya ƙare lokacin da shafin lafiya zai fara gargaɗi, idan token ɗin yana ɗauke da lokacin ƙarewa."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Gargaɗin Ƙarewar Token"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Cirewa"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Riƙe Teburan Plugin yayin Cirewa"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Idan an zaɓe shi, cire plugin ɗin zai adana clusters ɗinsa da hotunan bayanai (snapshots). Share shi don cirewar ta goge su; fitar da clusters ɗin da farko daga HPC Clusters. Plugin ɗin ba ya ƙirƙirar na'urorin Cacti ko jadawalin Maint a wannan fitowar, kuma ba a taɓa tuntuɓar mai tsara ayyuka ta kowace hanya ba."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Ba a shigar da fayil ɗin tambayar bayanai %s a cikin foldar resource/script_server ta Cacti ba."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Fayil ɗin tambayar bayanai %s da ke cikin foldar resource/script_server ta Cacti ya bambanta da wanda plugin ɗin ya zo da shi."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "mai amfani na poller ne kawai ke iya karantawa"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "ƙungiyar fayil tana iya karantawa; ƙuntata shi ga mai amfani na poller kawai (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "kowane mai amfani a kan poller yana iya karantawa; ƙuntata shi ga mai amfani na poller kawai (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "an ƙi: wani mai amfani ne daban da mai amfani na poller ya mallake shi (yi chown nasa zuwa ga mai amfani na poller)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "ya ɓace ko kuma mai amfani na poller ba ya iya karanta shi"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "an ƙi: yana wajen foldodin fayilolin token da aka saita a cikin Settings, an isa gare shi ta hanyar haɗi ta alama (symbolic link), ba fayil na yau da kullun ba ne, wasu suna iya rubutawa a ciki, ko kuma ya yi girma da yawa; rajista (log) ta ambaci dalilin"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "fanko"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Umarnin abokin ciniki na Slurm"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Plugin na HPC Scheduler yana buƙatar PHP %s ko sama da haka. Wannan sabar tana amfani da PHP %s, don haka ba a shigar da plugin ɗin ko kunna shi ba."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Ba a kunna plugin na HPC Scheduler ba."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Plugin na HPC Scheduler yana buƙatar PHP %s ko sama da haka."
+
+#: setup.php
+msgid "Management"
+msgstr "Gudanarwa"

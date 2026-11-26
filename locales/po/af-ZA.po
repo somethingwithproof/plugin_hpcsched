@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: af-ZA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "Jy het nie toestemming vir die toestel van daardie kluster nie."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "Naam: 'n ander kluster gebruik reeds hierdie naam."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "Die kluster is nie gestoor nie: dit is deur iemand anders verander vandat die vorm oopgemaak is, of die skryfbewerking het misluk. Maak dit weer oop en herhaal die verandering."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "Die kluster is gestoor."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "Die klusterstaat is nie verander nie: die skryfbewerking het misluk. Sien die Cacti-logboek."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "Die kluster en sy gekaste momentopname is geskrap. Sy toestel en grafieke is behou. Die skeduleerder is nie gekontak nie."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "Die toestel en sy grafieke is geskep."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "Die toestel is nie geskep nie: die kluster het reeds 'n toestel, dit is deur iemand anders verander vandat die bladsy oopgemaak is, of Cacti het dit geweier. Sien die Cacti-logboek."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "Die kluster is aan die toestel gekoppel."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "Die kluster is nie gekoppel nie: die toestel bestaan nie, word nie vir jou toegelaat nie, dra reeds 'n ander kluster, of die kluster is deur iemand anders verander vandat die bladsy oopgemaak is."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "Ontbrekende grafieke is bygevoeg."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "Geen grafieke is bygevoeg nie: die kluster het geen toestel nie, of sy toestel bestaan nie meer nie."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "Die kluster is nie ontkoppel nie: dit is deur iemand anders verander vandat die bladsy oopgemaak is."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "Die kluster is ontkoppel. Die toestel en sy grafieke is behou."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "Die partisies is vanuit die momentopname herindekseer."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "Die partisies is nie herindekseer nie: die toestel is gedeaktiveer of onbereikbaar, dus het Cacti sy datanavraag oorgeslaan."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "Die partisies is nie herindekseer nie: Cacti kon nie die datanavraag uitvoer nie. Sien die Cacti-logboek."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "Die partisies is nie herindekseer nie: die HPC Scheduler-datanavraag is nie geïnstalleer nie. Installeer die sjablone vanaf die gesondheidsbladsy."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "Die partisies is nie herindekseer nie: die kluster het geen toestel nie, of sy toestel bestaan nie meer nie."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "Die HPC Scheduler-sjablone is geïnstalleer."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "Die sjablone is nie geïnstalleer nie: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "Moniteringsaansig"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "Waarnemings kon nie gelees word nie. Vra 'n administrateur om die inproplogboek na te gaan."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "Ondersoek hangende redefamilies en momentopname-varsheid op die oorsig. Eskaleer geloofsbriewe, klusterkoppelings en instandhoudingsbeleid na 'n administrateur."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "Naam: gebruik 1 tot 64 letters, syfers, punte, koppeltekens of onderstrepe, beginnende met 'n letter of syfer."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "Poller: kies een van die gelyste pollers."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "Insamelingsinterval: voer heel sekondes van %d tot %d in."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "Vervoer: kies een van die gelyste vervoermetodes."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: voer 'n absolute pad in, of laat dit leeg om die poller se verstekwaarde te gebruik."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd-URL: hierdie gasheer en poort is nie op die slurmrestd-gasheerlys in Opstelling nie."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd-URL: voer 'n https:// URL sonder gebruikersnaam, navraag of fragment in; gewone http:// word slegs vir 'n teruglusadres aanvaar."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd-gebruiker: gebruik hoogstens 64 letters, syfers, punte, koppeltekens of onderstrepe, of laat dit leeg vir 'n gebruikertoken."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "Tokenlêer: voer die absolute pad van die tokenlêer op die poller in. Die token self word nooit hier ingevoer nie."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "Tokenlêer: geen tokenlêergidse is nog gestel nie. Vra 'n Cacti-administrateur om dit onder Opstelling, HPC Scheduler te stel."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "Tokenlêer: die lêer moet binne een van die tokenlêergidse wees wat in Opstelling gestel is (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "HPC-klusters"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "Aksies"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "Toestel"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "Interval"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "Naam"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "Poller"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "Afdelings"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "Toestand"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "Vervoer"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "Geen klusters is nog opgestel nie."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "Deaktiveer"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "Aktiveer"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "Geskrapte poller %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d sekondes"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "Geen"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "Skrap"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "Voer uit"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "Laai die klusteropstelling as JSON af voor 'n deïnstallering wat die inproptabelle skrap. Dit bevat tokenlêerpaaie, nooit 'n token nie."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "Kluster: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "Nuwe kluster"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "Insamelingsinterval (sekondes)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "Geaktiveer"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "Samel besprekings in"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "Samel billike deling in (slegs rekeninge)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "slurm.conf-pad (opsioneel)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd-URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd-gebruiker (opsioneel)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "Tokenlêer op die poller"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "Kliëntopdragte gebruik die binêre lêers wat onder Opstelling > HPC Scheduler gestel is en die poller-gebruiker se eie Slurm-verifikasie; die opsionele slurm.conf-pad kies 'n kluster. slurmrestd-velde word slegs met daardie vervoer gebruik. Die tokenlêer moet slegs deur die poller-gebruiker leesbaar wees; die inprop lees dit by elke uitvoering en stoor nooit die token nie."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "Stoor"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "Toestel vir kluster: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "Gekoppel aan toestel %s (id %d). Sy grafieke volg Cacti se toestel- en grafiektoestemmings."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "Die byvoeging van die ontbrekende grafieke voeg by:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "Voeg ontbrekende grafieke by"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "Herindekseer partisies"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "Ontkoppel"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "Ontkoppeling behou die toestel, sy grafieke en hul geskiedenis."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "Die kluster is steeds gekoppel aan toestel %d, wat nie meer bestaan nie. Die skep of koppeling van 'n toestel vervang daardie koppeling."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "Die skep van 'n toestel voeg by:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "Sonder partisiegrafieke word slegs die klustergrafieke geskep, en die databronne en oproepe vir die partisies hierbo word uitgelaat."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "Skep ook die partisiegrafieke"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "Skep toestel"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "Of koppel 'n bestaande toestel"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "Koppel toestel"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "Die HPC Scheduler-sjablone is nie geïnstalleer nie. Installeer dit vanaf die gesondheidsbladsy."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "'n Toestel \"%s\" vanaf die %s-toestelsjabloon, gepol deur poller %d, met beskikbaarheidskontroles af."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "Die datanavraag \"%s\", wat die %d partisies wat nou bekend is, indekseer."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d klustergrafieke, elkeen met sy eie \"%s\"-databron."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d partisiegrafieke, %d vir elke partisie, elkeen met sy eie databron."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "In totaal: %d databronne en %d RRD-lêers, en %d skripbedieneroproepe per pol. Partisies wat later bygevoeg word, kry grafieke vanaf die Nuwe Grafieke-bladsy."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "Geskep deur die HPC Scheduler-inprop vir kluster %s. Sy waardes kom vanaf die inpropmomentopname; die gasheernaam is 'n gereserveerde naam wat nooit gekontak word nie."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "opstelling: 'n pad, URL of instelling ontbreek of word nie toegelaat nie"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "die skeduleerder kon nie bereik word nie"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "die oproep het langer geneem as wat toegelaat word en is gestop"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "die antwoord was groter as wat toegelaat word en is weggegooi"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "die antwoord kon nie met die vasgemaakte data-ontleder ontleed word nie"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "die skeduleerder het die geloofsbrief geweier"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "die skeduleerderrekening mag nie hierdie data sien nie (PrivateData of toestemmings)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "die beheerder het kliënte gevra om terug te staan (tempobeperking)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "die bediener het 304 geantwoord op 'n versoek wat nie voorwaardelik was nie; vorige data behou"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "die inprop het 'n oproep buite sy toelatingslys geweier"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "die oproep het misluk"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "die leser het sonder geheue geraak; verlaag Maksimum Antwoordgrootte of verhoog Insamelingsgeheue in Opstelling"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "Nooit"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d sekondes gelede"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d minute gelede"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d ure gelede"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d dae gelede"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "Huidig"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "Vertraag"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "Verouderd"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "Nooit ingesamel nie"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "Klusters"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "Oproepe"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "Kluster"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "Duur"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "Varsheid"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "Laaste lopie"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "Laaste sukses"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "Uitkoms"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "Ontleder"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "Alle klusters"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "Waarskuwings"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "Waarskuwing"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "Geen waarskuwings nie."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "Sjablone"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "Die toestel-, data- en grafieksjablone en die partisiedatanavraag is geïnstalleer."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "Die sjablone is nie geïnstalleer of nie op datum nie, dus kan klustertoestelle nie geskep word nie. Sien die waarskuwings hierbo."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "Installeer sjablone"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "Momentopname-afdelings"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "Data-ouderdom"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "Fout"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "Laaste poging"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "Rekords"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "Afdeling"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "Die laaste sjablooninstallasie het misluk: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "Sommige HPC Scheduler-sjablone ontbreek in Cacti. Installeer dit hieronder."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, ontdek"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "Maksimum Antwoordgrootte is %d MiB, maar 'n gedekodeerde antwoord van daardie grootte pas nie in die Insamelingsgeheue van %d MiB nie; die leser laat %d MiB toe. Verhoog Insamelingsgeheue of verlaag Maksimum Antwoordgrootte in Opstelling."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "Toegewys aan poller %d, 'n afgeleë data-insamelaar. Hierdie vrystelling samel slegs op die hoofpoller in, dus word die kluster nie ingesamel nie; afgeleë insameling word vir fase 3 beplan. Wys dit aan die hoofpoller toe."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "Die insamelingsinterval is onder die minimum van %d sekondes."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "Die insamelingsinterval van %d sekondes is korter as die poller-interval van %d sekondes; data word elke %d sekondes ingesamel."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "slurmrestd word oor gewone HTTP op die teruglusadres bereik; die token gaan ongeënkripteer oor die plaaslike netwerkstapel."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "Geen leseruitvoering het nog vir hierdie kluster voltooi nie."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "Tokenlêer: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "Die token het %s verval."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "Die token verval oor %d minute."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "Die laaste uitvoering het sy hele tydsbegroting van %d sekondes gebruik; sommige afdelings is nie ingesamel nie."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "Die skeduleerder rapporteer Slurm %s, wat nie 'n ondersteunde vrystelling is nie (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "Die skeduleerder rapporteer Slurm %s, wat nie die data-ontleder %s bevat wat in Opstelling gekies is nie."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "Kliëntopdragte het sonder 'n geheuebeperking geloop; stel die prlimit-pad in Opstelling."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "Laaste fout: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "Insameling is vir %d sekondes gepouseer na 'n tempobeperking."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "Data is verouderd; grafieke en waarskuwings lees dit as onbekend."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "Hangend"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "Teruggehou"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "Loopend"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "Voltooiend"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "Ander"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "Ledig"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "Toegewys"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "Gemeng"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "Gedreineer"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "Dreinerend"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "Af"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "Instandhouding"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "Gereserveer"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "Afgeskakel"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "Hersien die aangetekende waarnemings hieronder. Erkennings is persoonlik tot hierdie sessie, verval wanneer waarnemings verander, en onderdruk nooit waarskuwings of verander gesondheid nie."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "HPC Scheduler-bedrywighede"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "Ondersoek"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "Objek"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "Waargeneem (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "Onbekend of verouderd"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "Erken; gesondheid onveranderd."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "Erken"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "Geen waarnemings is beskikbaar vir toestelle waartoe jy toegang het nie."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC Scheduler"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "Versamel"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "Besonderhede"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "Nodusse"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "Geen klusters word nog ingesamel nie."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "Hangende redes"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "Grafieke"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "'n Streep beteken die inprop het geen huidige data vir daardie waarde nie: die afdeling het misluk, is verouderd, of is nooit ingesamel nie. Hangend sluit teruggehoue take uit. Gedreineer tel elke nodus met die dreineervlag, insluitend nodusse wat ook onbereikbaar is."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "Hangende redes: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "Familie"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "Take"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "Partisies"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "Rede"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "Geen hangende take nie."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "Slegs die %d redes met die meeste take word gelys."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "Elke taak tel onder die laaste rede wat die skeduleerder daarvoor ondersoek het, wat nie noodwendig die enigste ding is wat dit terughou nie. 'n Taak in verskeie partisies tel een keer hier en een keer in elke partisie wat dit noem. Teruggehoude take word saam met hul terughourede gelys."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "Nodusse in onbekende toestande"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "Name"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Slurm-toestand"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "Geen. Elke nodus stem ooreen met 'n bekende toestand."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "Geen taak-kiekie is nog ingesamel nie."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "Geen nodus-kiekie is nog ingesamel nie, dus is die nodustoestande onbekend."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "Taak-kiekie geneem %s (%s), aktueel."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "Nodus-kiekie geneem %s (%s), aktueel."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "Taak-kiekie geneem %s (%s), nie aktueel nie: dit is verouderd of die laaste insameling het misluk, en die tellings hieronder is die laaste wat ingesamel is."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "Nodus-kiekie geneem %s (%s), nie aktueel nie: dit is verouderd of die laaste insameling het misluk, en die nodusse hieronder is die laaste wat ingesamel is."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "HPC-skeduleerderoperateur"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "HPC-skeduleerderaansig"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "HPC-skeduleerderadministrateur"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "HPC-skeduleerdergesondheid"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "Prioriteit"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "Hulpbronne"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "Afhanklikheid"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "Begintyd"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "Bespreking"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "Assosiasielimiete"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "QOS-limiete"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "Partisielimiete"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "Nodusbeskikbaarheid"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "Besprekings"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "Regverdige deel"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Slurm-kliëntopdragte"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "Data-ontleder"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Slurm-data-ontleder vir die kliëntopdragte. Kies een wat saam met die vrystelling van elke kluster wat deur kliëntopdragte gelees word, beskikbaar is: v0.0.43 is in 25.05, 25.11 en 26.05 en word in 27.05 verwyder; v0.0.44 vereis 25.11 of later; v0.0.45 vereis 26.05 of later. Die gesondheidsbladsy waarsku wanneer 'n kluster 'n vrystelling daarsonder rapporteer. Klusters wat deur slurmrestd gelees word, ignoreer hierdie opstelling: hulle gebruik die nuutste hiervan wat die daemon bedien, en die gesondheidsbladsy wys watter een."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "Absolute pad na squeue op elke poller wat 'n kluster deur kliëntopdragte lees. Die inprop voer dit slegs as squeue --all --json met die data-ontleder hierbo uit."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "Absolute pad na scontrol. Die inprop voer slegs scontrol --json show node, show partition en show reservation uit; nooit update, reconfigure of token nie."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "Absolute pad na sshare, slegs gebruik vir klusters wat regverdige deel insamel."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "Limiete"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "Roep-tyduit"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "Sekondes wat een skeduleerderroep mag neem voordat dit gestop word en sy afdeling as misluk aangeteken word. 'n Roep hardloop ook nooit verby die leser se tydbegroting nie."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "Maksimum antwoordgrootte"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB wat een skeduleerderroep mag terugstuur. 'n Groter antwoord word weggegooi en sy afdeling as misluk aangeteken. Dekodering benodig ongeveer 12 keer die antwoordgrootte, dus gebruik die leser hoogstens (Insamelingsgeheue - 64) / 12 MiB en die gesondheidsbladsy waarsku wanneer hierdie waarde groter is."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "Insamelingsgeheue"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "MiB PHP-geheue waarna elke insamelingslopie sy limiet verhoog (dit verlaag dit nooit nie). Die verstekwaarde van 1024 pas antwoorde tot 80 MiB."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "Absolute pad na prlimit (util-linux), gebruik om die adresruimte van elke kliëntopdrag te beperk. Laat leeg om opdragte sonder 'n geheuelimiet uit te voer; die gesondheidsbladsy waarsku dan."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "Opdraggeheuelimiet"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "MiB adresruimte wat elke kliëntopdrag deur prlimit mag gebruik."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "slurmrestd-geloofsbriewe"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "Token-lêergidse"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "Absolute gidse op die pollers wat slurmrestd-tokenlêers mag bevat, geskei deur kommas of spasies. 'n Kluster kan slegs 'n tokenlêer binne een van hulle noem wat deur die poller-gebruiker besit word en sonder 'n simboliese skakel bereik word. Hou elke gids slegs skryfbaar vir root en die poller-gebruiker. Leeg beteken geen kluster kan slurmrestd gebruik nie."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "slurmrestd-gashere"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "Opsioneel. Die slurmrestd-gashere wat 'n kluster mag noem, as gasheer of gasheer:poort, geskei deur kommas of spasies. 'n Inskrywing sonder 'n poort laat enige poort op daardie gasheer toe. Leeg laat enige gasheer toe."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "Sekondes voordat 'n token verval wanneer die gesondheidsbladsy begin waarsku, indien die token 'n vervaltyd dra."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "Token-vervalwaarskuwing"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "Deïnstalleer"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "Behou inproptabelle by deïnstallasie"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "Wanneer dit gemerk is, behou die verwydering van die inprop sy klusters en kiekies. Maak dit skoon sodat die verwydering hulle laat vaar; voer die klusters eers uit vanaf HPC Clusters. Die inprop skep geen Cacti-toestelle of Maint-skedules in hierdie vrystelling nie, en die skeduleerder word in elk geval nooit gekontak nie."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "Die datanavraaglêer %s is nie in Cacti se resource/script_server-gids geïnstalleer nie."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "Die datanavraaglêer %s in Cacti se resource/script_server-gids verskil van die een wat die inprop verskaf."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "slegs leesbaar deur die poller-gebruiker"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "leesbaar deur die lêergroep; beperk dit tot die poller-gebruiker (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "leesbaar deur elke gebruiker op die poller; beperk dit tot die poller-gebruiker (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "geweier: besit deur 'n ander gebruiker as die poller-gebruiker (chown dit na die poller-gebruiker)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "ontbreek of nie leesbaar deur die poller-gebruiker nie"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "geweier: buite die token-lêergidse wat in Settings gestel is, bereik deur 'n simboliese skakel, nie 'n gewone lêer nie, skryfbaar deur ander, of te groot; die logboek noem die rede"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "leeg"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Slurm-kliëntopdragte"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "Die HPC Scheduler-inprop vereis PHP %s of later. Hierdie bediener loop PHP %s, dus is die inprop nie geïnstalleer of geaktiveer nie."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "Die HPC Scheduler-inprop is nie geaktiveer nie."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "Die HPC Scheduler-inprop vereis PHP %s of later."
+
+#: setup.php
+msgid "Management"
+msgstr "Bestuur"
