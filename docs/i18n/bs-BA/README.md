@@ -1,4 +1,4 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
 [English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
@@ -6,35 +6,47 @@
 
 # plugin_hpcsched
 
-Dodatak za Cacti 1.2 koji grafički prikazuje stanje HPC batch planera pored uređaja koje Cacti već nadzire: dubinu reda, poslove na čekanju u odnosu na poslove u toku, razloge zašto poslovi čekaju, stanja čvorova i iskorištenost particija. Slurm je prvi podržani backend. Thold generiše upozorenja na osnovu dobijenih izvora podataka, a Maint se može pokretati na osnovu ispražnjenih čvorova i rezervacija za održavanje.
+Cacti 1.2 dodatak (`hpcsched`, verzija `0.1.0-dev`) koji grafički prikazuje stanje HPC batch planera pored uređaja koje Cacti već nadzire: dubinu reda, poslove na čekanju u odnosu na poslove u toku, razloge zašto poslovi čekaju, stanja čvorova, iskorištenost particija i fair-share iskorištenost na nivou računa. Slurm je implementirani backend. Thold generiše upozorenja na osnovu dobijenih izvora podataka, a opcioni Maint sinhronizator upravlja Cacti Maint prozorima na osnovu ispražnjenih (drained), nedostupnih (down) i za održavanje rezervisanih Slurm računarskih čvorova.
 
-> **Status: u razvoju, još nema izdanja.** Prekretnica 2 (osnova) je spojena u granu `main`, a ova grana dodaje prekretnicu 3 (grafikoni klastera i razlozi čekanja). Kod se instalira, nadograđuje i deinstalira putem Cacti API-ja za dodatke i odbija verzije PHP-a niže od 8.2. Vodi registar Slurm klastera, pri čemu je svaki dodijeljen jednom Cacti polleru. Pozadinski čitač na glavnom polleru prikuplja po jedan snimak po klasteru u svakom intervalu, bilo pokretanjem komandi `squeue`, `scontrol` i `sshare` sa zastavicom `--json`, ili čitanjem servisa `slurmrestd` preko HTTPS-a, te pohranjuje broj poslova po stanju i razlogu čekanja, stanja čvorova, particije, rezervacije i fair-share iskorištenost zajedno s njihovom svježinom. Dodatak isporučuje Cacti šablone i, nakon potvrde administratora, kreira ili mapira po jedan Cacti uređaj za svaki klaster s grafikonima poslova po stanju, poslova na čekanju po porodici razloga, čvorova po stanju, CPU resursa i iskorištenosti, za cijeli klaster i za svaku particiju, kao i starosti snimka. Pregledna stranica samo za čitanje prikazuje brojeve po klasteru s njihovom svježinom i pregled razloga čekanja po klasteru, dok administratorska stranica stanja sistema pokazuje šta je svako prikupljanje vratilo i jesu li šabloni instalirani. Svaka stranica i svaka radnja poštuje Cacti dozvole za uređaje. Izvori podataka su takvi da Thold može postavljati upozorenja na njima, ali integracija s dodacima Thold i Maint još nije testirana; to je predviđeno za prekretnicu 4 i kasnije. Skup testova pokriva sintetičke Slurm komande i odgovore servisa `slurmrestd`, a CI također testira stvarni Slurm klaster sa šest čvorova u kontejnerima kako je opisano ispod. Čitač još nije pokrenut na produkcijskom klasteru. Ispod napomena za operatere, ovaj README opisuje dizajn, a ne već isporučeno ponašanje.
+> **Status: u razvoju, još nema izdanja.** Ova grana implementira osnovu dodatka, grafikone klastera i particija, porodice razloga čekanja, uparivanje Slurm računarskih čvorova s Cacti uređajima, opcionu sinhronizaciju Cacti Maint prozora, fair-share sažetke na nivou računa, izvršavanje i replikaciju na udaljenim sakupljačima podataka, CLI za Configuration-as-Code (CasC) i operacije, te hookove za Cacti ekosistem (CasC, Doctor i MCP / Abilities API v2). Skup testova pokriva sintetičke Slurm komande i odgovore servisa `slurmrestd`, a CI testira živi Slurm klaster sa šest čvorova u kontejnerima. Čitač još nije pokrenut na produkcijskom klasteru, a sveobuhvatni Thold replay test još nije u CI-ju.
 
 Ovo je nezavisan projekat i nije povezan s projektom Cacti.
+
+## Šta je implementirano
+
+- **Životni ciklus i šema (v3)**: instalacija, idempotentna nadogradnja, deinstalacija (zadano zadržava tabele dodatka) i minimalna verzija PHP 8.2 uz održavanje ulaznih tačaka sintaksno obradivim na PHP 8.0. Šema v3 dodaje tabele `plugin_hpcsched_node_map` i `plugin_hpcsched_maint_link` uz tabele klastera, pokretanja, sekcija, broja poslova, broja čvorova, čvorova, particija, rezervacija i udjela.
+- **Slurm prikupljanje samo za čitanje na glavnom i udaljenim pollerima**: `poller_bottom` pokreće `poller_hpcsched.php --cluster=N` u pozadini na svakom polleru (`poller_id`) za njemu dodijeljene omogućene klastere. Svako pokretanje prikuplja po jedan keširani snimak po klasteru putem klijentskih komandi (`squeue`, `scontrol`, `sshare` s `--json`) ili preko `slurmrestd` putem HTTPS-a (loopback HTTP je dozvoljen uz zdravstveno upozorenje). `INFO` deklariše `remote_collect:1, remote_poller:1`, a `replicate_out` replicira netajne definicije `plugin_hpcsched_cluster` na udaljene sakupljače (`poller_id >= 2`); sadržaj datoteka s tokenima se nikada ne čita niti replicira.
+- **Cacti šabloni i grafikoni klastera**: isporučuje šablone uređaja, podataka i grafikona (`templates/hpcsched-templates.xml`) te upit podataka skriptnog servera za particije (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`). Nakon potvrde administratora, kreira ili mapira jedan Cacti uređaj po klasteru s grafikonima poslova po stanju, poslova na čekanju po porodici razloga, čvorova po stanju, CPU resursa, iskorištenosti (klastera i po particiji) te starosti snimka.
+- **Uparivanje Slurm čvorova s uređajima i Cacti Maint sinhronizacija**: četveronivojski matcher linearnog vremena (`NodeMatcher`) mapira Slurm računarske čvorove na postojeće Cacti `host` zapise (tačno ime hosta, tačna adresa, tačan opis/alias ili prva DNS oznaka za imena koja nisu IP) te označava višestruka poklapanja ili dvostruke zahtjeve za uređajem kao `ambiguous` umjesto nagađanja. `HostList::expand()` proširuje liste hostova Slurm rezervacija (do 10.000 čvorova). `MaintSynchronizer` kreira, obnavlja i uklanja jednokratne Cacti Maint rasporede u vlasništvu dodatka praćene u `plugin_hpcsched_maint_link` za mapirane čvorove u stanju `DRAIN`, `DRAINING`, `DOWN` ili aktivnim `MAINT`/`MAINTENANCE` rezervacijama bez izmjene Maint rasporeda koje su kreirali administratori.
+- **Fair-share sažeci na nivou računa**: kada je `collect_shares` omogućen, prikuplja redove pridruživanja Slurm računa u `plugin_hpcsched_share` (odbacujući korisničke redove prema [ADR 0010](../../decisions/0010-bound-series-cardinality.md)). `ShareSummary` i `ShareRepository` računaju broj računa/particija, ukupnu sirovu i efektivnu iskorištenost, min/max/prosječne fair-share faktore i vodeće račune; broj računa je izložen u `hpcsched-get-queue-summary`.
+- **CasC i operacijski CLI (`cli/hpcsched.php`)**: izvoz YAML/XML konfiguracije, validacija, dry-run planiranje razlika, primjena uz potvrdu, strukturirani izlaz zdravstvenog stanja i opciona Maint sinhronizacija (`sync-maint --dry-run` / `--apply`).
+- **Ekosistemski hookovi (`setup.php`)**: `casc_register_providers`, `doctor_register_checks` i `abilities_register`.
 
 ## Uloge pristupa
 
 | Područje (Realm) | Pristup |
 | --- | --- |
-| HPC Scheduler View | Postojeće stranice za nadzor. |
-| HPC Scheduler Operator | Nadzor plus stranica Operacije i lične potvrde za trijažu. |
-| HPC Scheduler Admin | Pristup operatera plus postojeće konfiguracijske i administratorske radnje. |
+| HPC Scheduler View | Pregled klastera i razloga čekanja samo za čitanje (`hpcsched.php`). |
+| HPC Scheduler Operator | View pristup plus stranica Operacije (`hpcsched_operator.php`) i lične potvrde za trijažu. |
+| HPC Scheduler Admin | Operator pristup plus administracija klastera (`hpcsched_clusters.php`) i stranica zdravstvenog stanja (`hpcsched_health.php`). |
 
-Nakon kopiranja datoteka za nadogradnju, otvorite stranicu Plugins kao administrator da registrujete novo područje. Dodijelite područje Operator izričito pod **Configuration > Users** ili korisničkim grupama. Nadogradnje zadržavaju postojeće ID-ove i dozvole za područja View i Admin. Pristup Admin nasljeđuje pristup Operator, a pristup Operator nasljeđuje pristup View pri svakom zahtjevu; to ne dodaje trajno sačuvane dozvole korisnicima ni grupama. Postavke dodatka zahtijevaju i pristup HPC Scheduler Admin pored Cacti dozvole Settings.
+Nakon kopiranja datoteka za nadogradnju, otvorite stranicu Plugins kao administrator da biste registrovali nova područja i hookove. Izričito dodijelite područje Operator pod **Configuration > Users** ili korisničkim grupama. Nadogradnje zadržavaju postojeće ID-eve i dodjele za View i Admin područja. Admin pristup nasljeđuje Operator pristup, a Operator pristup nasljeđuje View pristup na svakom zahtjevu; to ne dodaje pohranjene dozvole korisnicima ili grupama. Postavke dodatka također zahtijevaju HPC Scheduler Admin pristup uz Cacti Settings dozvolu.
 
-Cacti dozvole za uređaje i dalje ograničavaju redove i radnje dostupne svakom korisniku; klaster bez uređaja prikazuje se na administratorskim stranicama svakom korisniku s područjem dodatka, ali ne u prikazima za operatere, koji prikazuju samo klastere mapirane na uređaj. Kredencijali, konfiguracija, mapiranje, brisanje i druge administratorske izmjene ostaju na administratorskim stranicama. Potvrde traju samo u trenutnoj korisničkoj sesiji, najviše jedan sat i samo dok isto opažanje ostaje svježe. Nova ili izmijenjena opažanja ih poništavaju. One nikada ne označavaju neuspjelo mjerenje kao ispravno niti potiskuju upozorenja.
+Cacti dozvole za uređaje ograničavaju redove i radnje dostupne svakom korisniku. Klaster mapiran na Cacti uređaj prikazuje se, izvozi i mijenja samo korisnicima kojima Cacti dozvoljava taj uređaj; mapiranje uređaja također zahtijeva dozvolu za ciljni uređaj. Klaster bez uređaja prikazuje se na administrativnim stranicama korisnicima s područjem dodatka, ali ne i u operatorskim pregledima koji prikazuju samo klastere mapirane na uređaj. Klaster čiji je mapirani uređaj obrisan dok je dodatak bio onemogućen prikazuje se samo korisnicima s HPC Scheduler Admin pristupom. Potvrde traju samo u trenutnoj korisničkoj sesiji, najviše jedan sat i samo dok isto opažanje ostaje svježe. Nova ili promijenjena opažanja ih poništavaju. One nikada ne označavaju neuspjelo mjerenje zdravim niti potiskuju upozorenja.
 
-## Napomene za operatere za prekretnicu 2
+## Napomene za operatere
 
-**Princip najmanjih ovlaštenja.** Dodatak samo čita podatke. Dodijelite mu namjenskog Slurm korisnika bez administratorske ili operaterske uloge (`AdminLevel=None` u `sacctmgr`). Kada je u datoteci `slurm.conf` postavljeno `PrivateData=jobs` (ili `nodes`, `reservations`, `usage`), taj korisnik vidi samo sopstvene zapise, pa su brojevi nepotpuni i dodatak to ne može otkriti. Uklanjanje tog ograničenja za nalog zahtijeva nivo operatera ili administratora, što omogućava i izmjene; ta odluka je na samoj organizaciji. Za klijentske komande, korisnik Cacti pollera treba Slurm klijentske binarne datoteke i datoteku `slurm.conf` koja može pristupiti kontroleru; putanje binarnih datoteka su apsolutne postavke pod Configuration > Settings > HPC Scheduler. Za `slurmrestd`, URL mora biti `https://`, ili `http://` isključivo na loopback adresi. TLS certifikati se provjeravaju, a preusmjeravanja se ne prate. Opcionalni spisak slurmrestd hostova pod Configuration > Settings > HPC Scheduler ograničava hostove i portove koje klaster smije navesti.
+### Sigurnost, najmanja privilegija i datoteke s tokenima
 
-**Udaljeni polleri.** Ovo izdanje prikuplja podatke samo na glavnom Cacti polleru. Klaster dodijeljen udaljenom prikupljaču podataka se ne prikuplja: čitač na njemu odbija rad uz zabilježen razlog u zapisniku, a stranica stanja sistema navodi taj klaster. Udaljeno prikupljanje planirano je za fazu 3.
+Dodatak samo čita. Dajte mu namjenskog Slurm korisnika bez administratorske ili operatorske uloge (`AdminLevel=None` u `sacctmgr`). Uz `PrivateData=jobs` (ili `nodes`, `reservations`, `usage`) u `slurm.conf`, taj korisnik vidi samo vlastite zapise, pa su brojevi nepotpuni i dodatak to ne može otkriti. Uklanjanje tog ograničenja za račun zahtijeva operatorski ili administratorski nivo, što također omogućava izmjene; taj kompromis je odluka svake lokacije.
 
-**Memorija.** Svako pokretanje prikupljanja dekodira po jedan odgovor planera odjednom, što zauzima otprilike 12 puta više PHP memorije od veličine odgovora (izmjereno oko 10 puta za zapise poslova u Slurm formatu, plus sam tekst). Pokretanje podiže svoje PHP ograničenje memorije na vrijednost postavke Collection Memory (podrazumijevano 1024 MiB) i dopušta odgovore do (Collection Memory - 64) / 12 MiB, podrazumijevano 80 MiB, čak i kada je Maximum Answer Size postavljeno više; stranica stanja sistema upozorava kada je to slučaj. Veći odgovor uzrokuje da njegova sekcija ne uspije jer je prevelika, a pokretanje koje ipak ostane bez memorije bilježi se kao neuspjelo. Veliki klaster može zahtijevati povećanje obje postavke; 100.000 stvarnih zapisa poslova još nije mjereno.
+Za klijentske komande, Cacti poller korisniku su potrebne Slurm klijentske binarne datoteke (`squeue`, `scontrol` i opciono `sshare`) te `slurm.conf` koji dopire do kontrolera; putanje binarnih datoteka su apsolutne postavke pod **Configuration > Settings > HPC Scheduler**.
 
-**Datoteke tokena.** Klaster koji koristi `slurmrestd` navodi datoteku tokena; sam token se nikada ne pohranjuje u bazu podataka, ne prikazuje na stranici i ne upisuje u zapisnik. Datoteka se mora nalaziti unutar jednog od direktorija za datoteke tokena podešenih pod Configuration > Settings > HPC Scheduler, biti dostupna bez simboličke veze i biti obična datoteka u vlasništvu korisnika pollera u koju samo taj korisnik može pisati, s jednim redom: samim tokenom ili `SLURM_JWT=<token>` kako ispisuje `scontrol token`. Ako direktoriji za tokene nisu postavljeni, nijedan klaster ne može koristiti `slurmrestd`. Ove dvije postavke nalaze se na Cacti stranici Postavke, tako da ih samo područje Admin dodatka ne može izmijeniti; neka svaki direktorij tokena bude otvoren za upis samo korisniku root i korisniku pollera. Datoteka koju grupa ili drugi korisnici mogu čitati i dalje se koristi, a stranica stanja sistema prikazuje upozorenje. Stranica stanja sistema također upozorava kada token ističe unutar konfigurisanog vremena upozorenja.
+Za `slurmrestd`, URL mora biti `https://`, ili `http://` samo na loopback adresi. TLS certifikati se provjeravaju i preusmjeravanja se ne prate. Opciona lista `slurmrestd` hostova pod **Configuration > Settings > HPC Scheduler** ograničava koje hostove i portove klaster smije navesti.
 
-Da biste rotirali token bez vremenskog prozora u kojem čitač vidi nepotpunu datoteku, zapišite novi token pored starog i preimenujte ga na njegovo mjesto:
+Klaster tipa `slurmrestd` navodi datoteku s tokenom; sam token se nikada ne sprema u bazu podataka, ne prikazuje na stranici, ne izvozi putem CasC-a niti zapisuje u log. Datoteka se mora nalaziti unutar jednog od direktorija datoteka s tokenima konfigurisanih pod **Configuration > Settings > HPC Scheduler**, biti dostupna bez simboličke veze i biti obična datoteka u vlasništvu poller korisnika u koju samo taj korisnik može pisati, s jednim redom: tokenom ili `SLURM_JWT=<token>` kako ga ispisuje `scontrol token`. Ako nijedan direktorij za tokene nije postavljen, nijedan klaster ne može koristiti `slurmrestd`. Držite svaki direktorij za tokene upisivim samo za root i poller korisnika. Datoteka čitljiva grupi ili drugim korisnicima i dalje se koristi, a stranica zdravstvenog stanja upozorava; također upozorava kada token ističe unutar konfigurisanog prozora upozorenja.
+
+Za atomsku rotaciju tokena:
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -45,82 +57,135 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-Sljedeće prikupljanje čita novu datoteku. Generisanje tokena pomoću `scontrol token` zahtijeva Slurm administratora; pokrenite komandu tamo gdje je to dozvoljeno i kopirajte datoteku na poller.
+Sljedeće prikupljanje čita novu datoteku. Generisanje tokena komandom `scontrol token` zahtijeva Slurm administratora; pokrenite je tamo gdje je dozvoljeno i kopirajte datoteku na poller.
 
-## Napomene za operatere za prekretnicu 3
+### Udaljeni sakupljači podataka
 
-**Šabloni.** Instalacija i nadogradnja uvoze šablone uređaja, podataka i grafikona za HPC Scheduler te kopiraju upit za podatke particija u Cacti direktorij `resource/script_server/`. Ako korisnik koji instalira dodatak nema pravo upisa u taj direktorij, ako već postoji drugačija datoteka istog naziva koju nije upisao dodatak ili je naziv simbolička veza, uvoz se zaustavlja, datoteka ostaje netaknuta, a stranica stanja sistema navodi šta treba uraditi; dugme Install Templates na stranici stanja sistema ponavlja pokušaj. Ručno napravljena identična kopija se koristi, ali ostaje pod vašim upravljanjem. Deinstalacija uklanja datoteku upita samo ako ju je upisao dodatak i ako nije mijenjana, a zadržava šablone, uređaje i grafikone.
+`INFO` deklariše `remote_collect:1, remote_poller:1`. `hpcsched_poller_bottom()` pokreće `poller_hpcsched.php` na svakom polleru za omogućene klastere dodijeljene tom `poller_id`, a `hpcsched_replicate_out()` replicira netajne redove `plugin_hpcsched_cluster` na udaljene pollere (`poller_id >= 2`). Datoteke s tokenima i Slurm klijentske binarne datoteke moraju lokalno postojati na dodijeljenom udaljenom polleru; sadržaj tokena se nikada ne replicira.
 
-**Uređaji klastera.** Stranica HPC Clusters > Device prikazuje šta će uređaj dodati (grafikone, izvore podataka, RRD datoteke i pozive script servera po ispitivanju) prije nego što se bilo šta kreira. Create Device kreira uređaj s nazivom hosta u rezervisanoj domeni `.invalid` i bez provjere dostupnosti; Map Device umjesto toga dodaje grafikone postojećem uređaju bez izmjene njegovih postavki. Svaki grafikon klastera i svaki grafikon particije ima sopstveni izvor podataka: šest za klaster i pet po particiji, jedan poziv script servera po izvoru podataka klastera i jedan po vrijednosti particije (32) po ispitivanju. Kasnije dodane particije indeksiraju se kada ih čitač uoči i dobijaju grafikone sa Cacti stranice New Graphs; uklonjena particija prestaje se ispitivati i zadržava svoje grafikone. Brisanje uređaja uklanja mapiranje klastera i zadržava sam klaster.
+### Ograničenja memorije
 
-**Šta grafikoni broje.** Na čekanju isključuje zadržane poslove, koji imaju sopstvenu seriju. Niz poslova na čekanju broji svoje preostale zadatke. Posao ili čvor u više particija broji se jednom u grafikonima klastera i jednom u svakoj particiji, pa zbir grafikona particija ne mora odgovarati grafikonu klastera. Razlozi čekanja grupisani su u jedanaest porodica ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); pregled razloga čekanja navodi sirove razloge, uključujući one u kategoriji Other. Svaki posao prijavljuje samo posljednji razlog koji je planer provjerio. Imenilac iskorištenosti uključuje ispražnjene, nedostupne i druge čvorove koji nisu na raspolaganju. Zastarjeli ili neuspjeli podaci prikazuju se kao `U`, nikada kao nula; `age` ostaje numerička vrijednost.
+Svako pokretanje prikupljanja dekodira po jedan odgovor planera odjednom, što zauzima otprilike 12 puta veću veličinu odgovora u PHP memoriji (izmjereno oko 10 puta za zapise poslova u Slurm obliku, plus sam tekst). Čitač podiže svoje PHP ograničenje memorije na postavku Collection Memory (zadano 1024 MiB) i dopušta odgovore do `(Collection Memory - 64) / 12` MiB (zadano 80 MiB), čak i kada je Maximum Answer Size postavljen više; stranica zdravstvenog stanja upozorava kada Maximum Answer Size premašuje to prilagođeno ograničenje. Veći odgovor uzrokuje neuspjeh svoje sekcije kao prevelike, a pokretanje koje ipak iscrpi memoriju bilježi memorijski neuspjeh i oslobađa svoj zakup i procesni slot putem shutdown handlera. Veliki klasteri mogu zahtijevati povećanje obje postavke; 100.000 stvarnih zapisa poslova nije izmjereno.
 
-**Upozoravanje.** Thold može postavljati upozorenja na bilo kojem od ovih izvora podataka; postavite trajanje u Tholdu na najmanje jedan interval prikupljanja i postavite upozorenje na `age` da otkrijete zaustavljen čitač. Cjelovita provjera s dodatkom Thold dio je prekretnice 4.
+### Šabloni, uređaji klastera i brojanje grafikona
 
-**Testirano na stvarnom izlazu Slurma.** CI pokreće Slurm klaster sa šest čvorova u kontejnerima (26.05.5 pri svakoj izmjeni, 25.11.8 izgrađen iz izvornog koda pri slanju na `main`, sedmično i na zahtjev) te provjerava stanja čvorova, rezervaciju za održavanje, razloge čekanja i nizove poslova onako kako ih dodatak raščlanjuje, a zatim prikuplja podatke s tog klastera koristeći sopstvene transporte dodatka za komande i `slurmrestd`. Starija izdanja pokrivena su samo sintetičkim testnim podacima. Čitač još nije pokrenut na produkcijskom klasteru.
+Instalacija i nadogradnja uvoze HPC Scheduler šablone uređaja, podataka i grafikona te kopiraju upit podataka za particije u Cacti direktorij `resource/script_server/`. Ako taj direktorij nije upisiv, tamo postoji druga datoteka istog imena ili je cilj simbolička veza, uvoz se zaustavlja, ostavlja datoteku netaknutom i prijavljuje stanje na stranici zdravstvenog stanja gdje **Install Templates** pokušava ponovo. Deinstalacija uklanja datoteku upita samo ako ju je dodatak zapisao i nije mijenjana, a zadržava šablone, uređaje i grafikone.
 
-**Dozvole.** Klaster mapiran na uređaj prikazuje se, izvozi i mijenja samo korisnicima kojima Cacti dozvoljava pristup tom uređaju, na svakoj stranici dodatka; mapiranje uređaja također zahtijeva dozvolu za ciljni uređaj. Klaster bez uređaja vidljiv je svima s područjem dodatka. Klaster koji je još mapiran na uređaj obrisan dok je dodatak bio onemogućen prikazuje se samo korisnicima s područjem HPC Scheduler Admin, koji mogu kreirati ili mapirati uređaj za njega. Pristup grafikonima reguliše sam Cacti.
+**HPC Clusters > Device** prikazuje pregled grafikona, izvora podataka, RRD datoteka i poziva skriptnog servera po anketiranju prije kreiranja bilo čega. **Create Device** kreira uređaj s imenom hosta u rezervisanom domenu `.invalid` i bez provjere dostupnosti; **Map Device** povezuje grafikone na postojeći uređaj bez izmjene njegovih postavki. Svaki grafikon klastera i grafikon particije ima vlastiti izvor podataka: šest za klaster i pet po particiji. Naknadno dodane particije automatski se reindeksiraju kada čitač otkrije promjenu; uklonjene particije prestaju se anketirati i zadržavaju svoje grafikone. Brisanje uređaja ukida mapiranje klastera (i čisti odgovarajuće redove `plugin_hpcsched_node_map`) uz zadržavanje zapisa klastera.
+
+Poslovi na čekanju (Pending) isključuju zadržane (held) poslove, koji imaju vlastitu seriju. Niz poslova na čekanju broji svoje preostale zadatke. Posao ili čvor u više particija broji se jednom u grafikonima klastera i jednom u svakoj particiji, pa zbrojevi particija ne moraju dati ukupan zbroj klastera. Razlozi čekanja grupisani su u jedanaest porodica ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); pregled razloga čekanja navodi sirove razloge uključujući one u `Other`. Nazivnik iskorištenosti uključuje ispražnjene, nedostupne i druge nedostupne čvorove. Zastarjeli ili neuspjeli podaci prijavljuju se kao `U`, nikada kao nula; `age` ostaje numerički.
+
+Za upozoravanje, podesite Thold na bilo kojem izvoru podataka klastera ili particije s trajanjem od najmanje jednog intervala prikupljanja i podesite upozorenje na `age` kako biste otkrili zaustavljeni čitač.
+
+## CLI i ekosistemski hookovi
+
+### Ulazna tačka čitača
+
+`hpcsched_poller_bottom()` automatski pokreće `poller_hpcsched.php`; može se pokrenuti i ručno na polleru dodijeljenom klasteru:
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force` se izvršava čak i dok je dodatak onemogućen, radi dijagnostike iz komandne linije.
+
+### CLI za Configuration-as-Code, zdravstveno stanje i Maint sinhronizaciju
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` zapisuje nove datoteke s pravima `0600` (ili na stdout) i zamjenjuje konfigurisane `token_file` putanje sa `[REDACTED]`. `plan` i `apply` odbijaju ugrađena polja `jwt`, `secret` i `password`, te čuvaju postojeće lokalne `token_file` putanje kada je proslijeđeno `[REDACTED]`. `apply` zahtijeva tačan `--confirm=PLAN_HASH` koji je ispisao `plan`.
+- `health` procjenjuje aktuelnost šeme, svježinu klastera, ishode pokretanja, dostupnost Maint-a i upozorenja bez kontaktiranja planera ili čitanja datoteka s tokenima.
+- `sync-maint` zadano koristi `--dry-run` i daje pregled ili primjenjuje Cacti Maint rasporede za mapirane Slurm čvorove u `DRAIN`, `DRAINING`, `DOWN` ili aktivnim `MAINT`/`MAINTENANCE` rezervacijama (zadani drain/down horizont 3600s, margina obnove 600s). Odbija `--apply` ako nedostaju `plugin_maint_schedules` i `plugin_maint_hosts`, te ažurira ili uklanja samo rasporede zabilježene u `plugin_hpcsched_maint_link`.
+
+### Ekosistemski hookovi
+
+Kada su prisutni odgovarajući Cacti dodaci ili integracije hosta, `setup.php` registruje:
+
+- `casc_register_providers`: izvozi, validira, planira i uz potvrdu primjenjuje `hpcsched` konfiguraciju (`yaml` i `xml`, šema v1) uz redakciju tajni.
+- `doctor_register_checks`: pruža četiri dijagnostičke provjere samo za čitanje (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: registruje tri sposobnosti samo za čitanje, nedestruktivne i idempotentne pod kategorijom `hpcsched`, ograničene područjem HPC Scheduler View (i dozvolama za uređaje za sažetke klastera): `hpcsched-list-clusters`, `hpcsched-get-queue-summary` i `hpcsched-get-health`.
 
 ## Zašto
 
-Operateri koji koriste Cacti već crtaju grafikone svojih računarskih čvorova. Pogled planera nedostaje u tim grafikonima, što ostavlja dvije praznine:
+Operateri koji koriste Cacti već crtaju grafikone za svoje računarske čvorove. Pogled planera nedostaje na tim grafikonima, što ostavlja dvije praznine:
 
-- **Nema odgovora na pitanje "zašto posao ne počinje".** Slurm bilježi razlog za svaki posao na čekanju. Pun red čekanja pored grafikona neaktivnih čvorova ne pokazuje je li uzrok prioritet, ograničenja resursa, zadržavanja, zavisnosti ili ispražnjeni čvorovi.
-- **Nema veze između stanja planera i upozoravanja.** Thold šalje upozorenja za uređaj koji je administrator već ispraznio, a administratori ručno kreiraju rasporede u Maintu.
+- **Nema odgovora na "zašto posao ne kreće".** Slurm bilježi razlog za svaki posao na čekanju. Pun red pored grafikona neaktivnih čvorova ne govori je li uzrok prioritet, ograničenje resursa, zadržavanje, zavisnosti ili ispražnjeni čvorovi.
+- **Nema veze između stanja planera i upozoravanja.** Thold upozorava na uređaj koji je administrator već ispraznio, a administratori ručno kreiraju Maint rasporede.
 
-Dodatak prikuplja jedan keširani snimak po klasteru, objavljuje ga kao obične Cacti izvore podataka i grafikone, mapira čvorove planera na postojeće Cacti uređaje i može unositi ispražnjene čvorove i rezervacije za održavanje u Maint. Koristi postojeće Cacti dozvole, udaljene prikupljače podataka, Thold i Maint, a prema planeru radi isključivo u režimu čitanja.
+Dodatak prikuplja jedan keširani snimak po klasteru, objavljuje ga kao obične Cacti izvore podataka i grafikone, mapira čvorove planera na postojeće Cacti uređaje i sinhronizuje Maint prozore s rokom trajanja u vlasništvu dodatka za ispražnjene, nedostupne i za održavanje rezervisane čvorove. Ponovo koristi Cacti dozvole, udaljene sakupljače podataka, Thold i Maint, i ostaje strogo samo za čitanje prema planeru.
 
-## Planirani opseg
+## Opseg i granice
 
-| Faza | Opseg | Prekretnice |
-|---|---|---|
-| 0, istraživanje | Matrica izdanja Slurma, potvrda ponašanja uzvodnog softvera, opterećenje kontrolera, testni podaci za imenovanje čvorova | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, grafikoni klastera | Dubina reda, poslovi na čekanju i u toku, razlozi čekanja, stanja čvorova, iskorištenost particija, Thold upozoravanje, stranica stanja sistema, izdanje | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, čvorovi i održavanje | Mapiranje čvorova na uređaje, stanje po čvoru, automatski Maint termini za ispražnjene čvorove i rezervacije za održavanje | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, obračun | Fair-share iskorištenost, ograničena statistika obračuna, udaljeni prikupljači podataka | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+Izvan opsega: bilo kakav put pisanja prema planeru (slanje, otkazivanje, zadržavanje, pražnjenje, nastavak), motor za upozoravanje u vlasništvu dodatka, motor za izvještavanje ili obračun troškova te serije po korisniku ili po poslu. PBS Pro, OpenPBS i LSF backendi su samo za istraživanje.
 
-Izvan opsega: bilo kakav put upisa prema planeru (slanje, otkazivanje, zadržavanje, pražnjenje, nastavak), sopstveni sistem upozoravanja u dodatku, sistem za izvještavanje ili naplatu, serije po korisniku i po poslu. Backendovi za PBS Pro, OpenPBS i LSF su predmet istraživanja.
-
-## Ciljevi kompatibilnosti
+## Zahtjevi i kompatibilnost
 
 | Komponenta | Cilj |
 |---|---|
-| Cacti | 1.2.31 ili noviji, bez izmjena jezgra |
-| PHP | 8.2 ili noviji; `setup.php` ostaje ispravan za raščlanjivanje na PHP 8.0 kako bi nepodržano okruženje dobilo uredno odbijanje umjesto oštećenog Cacti interfejsa |
-| Slurm | 25.05, 25.11 i 26.05, tri najnovija izdanja ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 25.11 i 26.05 testirani su na živom klasteru, 25.05 samo na testnim podacima. Klijentske komande su podrazumijevani transport ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) i koriste postavku parsera podataka: podrazumijevano v0.0.43, koju SchedMD uklanja u 27.05, ili v0.0.44 odnosno v0.0.45 na izdanjima koja ih isporučuju. Klasteri preko slurmrestd automatski otkrivaju najnoviji parser koji demon nudi |
-| Thold, Maint | Bez izmjena u Tholdu; integracija s Maintom je prijedlog koji zahtijeva saglasnost održavalaca Mainta |
+| Cacti | 1.2.31 ili noviji (`compat = 1.2.31`), bez izmjena jezgre |
+| PHP | 8.2 ili noviji; ulazne tačke ostaju sintaksno obradive na 8.0 i odbijaju aktivaciju na 8.1 tako da nepodržano okruženje dobije odbijanje umjesto pokvarenog Cacti korisničkog sučelja |
+| Slurm | 25.05, 25.11 i 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 26.05.5 se testira u CI-ju pri svakoj izmjeni protiv kontejnerskog klastera od šest čvorova, 25.11.8 na `main`, sedmično i na zahtjev, a 25.05 samo protiv testnih podataka (fixtures). Klijentske komande zadano koriste parser podataka `v0.0.43` (uz izbor `v0.0.44` i `v0.0.45`); `slurmrestd` klasteri otkrivaju najnoviji parser koji daemon poslužuje |
+| Thold, Maint | Nisu potrebne izmjene u Tholdu; `sync-maint` se integriše s Cacti Maint tabelama `plugin_maint_schedules` i `plugin_maint_hosts` koristeći veznu tabelu u vlasništvu dodatka (`plugin_hpcsched_maint_link`) |
+
+## Razvoj i testiranje
+
+CI tok rada (`.github/workflows/plugin-ci-workflow.yml`) testira PHP 8.2 do 8.5 protiv Cacti `release/1.2.31` i `1.2.x`, linting ulaznih tačaka na PHP 8.0, odbijanje na PHP 8.1, PHPStan, provjeru gettexta/prijevoda, REUSE licenciranje, linting toka rada, tok uređaja klastera i provjere odstupanja izvoza šablona te živi Slurm klaster sa šest čvorova (`slurm-live`).
+
+Sa zaključanim dijeljenim Cacti Pest alatom za dodatke (`CACTI_PEST_BIN`) i jednokratnom Cacti bazom podataka:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Dizajn
 
-- [docs/PLAN.md](../../PLAN.md) sadrži cjelovit plan: arhitekturu, činjenice o uzvodnom softveru na koje se oslanja (s izvorima i izričitim spiskom nepotvrđenih pretpostavki), mapiranje čvorova, model stanja, sigurnosne granice, proračun performansi, testiranje i rizike.
-- [docs/decisions/](../../decisions) sadrži zapise o arhitektonskim odlukama.
-- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) povezuje svaki ID zahtjeva s njegovim zadatkom.
+- [docs/PLAN.md](../../PLAN.md) je plan arhitekture i dizajna: uzvodne činjenice s izvorima, mapiranje čvorova, model stanja, sigurnosne granice, proračun performansi, testiranje i rizici.
+- [docs/decisions/](../../decisions/) sadrži zapise o odlukama arhitekture (ADR).
+- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) povezuje svaki ID zahtjeva s njegovim zadatkom (issue).
 
 ```mermaid
 flowchart LR
-    S[Slurm kontroler] -->|pozivi samo za čitanje, jedan skup po ciklusu| R[Čitač na dodijeljenom Cacti polleru]
-    R --> SNAP[(Tabele snimka)]
-    SNAP --> SS[Ulazi script servera]
-    SS -->|poller_output| T[Thold i Maint]
+    S[Slurm kontroler] -->|pozivi samo za čitanje, jedan skup po ciklusu| R[poller_hpcsched.php na dodijeljenom polleru]
+    R --> SNAP[(Tabele snimaka)]
+    SNAP --> SS[Ulazi skriptnog servera]
+    SS -->|poller_output| T[Thold]
     SS --> G[Cacti grafikoni i dozvole]
-    SNAP --> MAP[Mapiranje čvorova na uređaje]
-    MAP -->|sopstveni rasporedi s istekom| T
+    SNAP --> MAP[NodeMatcher i MaintSynchronizer]
+    MAP -->|vlasnički rasporedi s istekom| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor i MCP sposobnosti]
 ```
 
-## Praćenje rada
+## Kako se prati rad
 
-- **Prekretnice** prate prekretnice plana. Svaka ima epik zadatak sa spiskom podzadataka i dokaza o završetku.
-- **Zadaci** su kategorisani oznakama: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Zadaci zahtjeva navode numerisane, testabilne zahtjeve (`REQ-AREA-NNN`) i kriterije prihvatanja.
-- **Oznake** također nose prefikse `area:`, `phase:`, `priority:` i `status:`. Pogledajte [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
+- **Prekretnice (Milestones)** prate prekretnice plana. Svaka ima epic zadatak koji navodi njegove podzadatke i izlazne dokaze.
+- **Zadaci (Issues)** su označeni etiketom: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Zadaci zahtjeva navode numerisane, testabilne zahtjeve (`REQ-AREA-NNN`) i kriterije prihvatanja.
+- **Etikete (Labels)** također nose `area:`, `phase:`, `priority:` i `status:`. Pogledajte [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
 - [Tabla projekta](https://github.com/users/somethingwithproof/projects/10) prikazuje sve zadatke kroz prekretnice.
 
 ## Doprinos
 
-Pročitajte [CONTRIBUTING.md](../../../CONTRIBUTING.md). Komiti zahtijevaju DCO potpis (sign-off). Rasprava o dizajnu odvija se u zadacima; otvorene odluke nose oznaku `type: decision`.
+Pročitajte [CONTRIBUTING.md](../../../CONTRIBUTING.md). Commitovi moraju imati DCO potpis (`git commit -s`). Rasprava o dizajnu odvija se na zadacima; otvorene odluke nose etiketu `type: decision`.
 
 ## Sigurnost
 
-Sigurnosne ranjivosti prijavite privatno; pogledajte [SECURITY.md](../../../SECURITY.md).
+Prijavite ranjivosti privatno; pogledajte [SECURITY.md](../../../SECURITY.md).
 
 ## Licenca
 

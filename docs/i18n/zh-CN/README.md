@@ -1,43 +1,52 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
 [English](../../../README.md) | [简体中文](README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
 <!-- translations:end -->
 
-<a id="plugin_hpcsched"></a>
 # plugin_hpcsched
 
-这是一个 Cacti 1.2 插件，将 HPC 批处理调度器的状态与 Cacti 已监控的设备一起绘图：队列深度、等待和运行中的任务、任务等待原因、节点状态以及分区利用率。Slurm 是第一个后端。Thold 可对生成的数据源告警，Maint 则可由已排空节点和维护预留驱动。
+这是一个 Cacti 1.2 插件（`hpcsched`，版本 `0.1.0-dev`），用于将 HPC 批处理调度器的状态与 Cacti 已监控的设备一同绘图：队列深度、等待与运行中的作业、作业等待原因、节点状态、分区利用率以及账户级公平份额使用情况。Slurm 是已实现的后端。Thold 可针对生成的数据源发出告警，而可选启用的 Maint 同步器则可根据已排空（drained）、宕机（down）以及处于维护预留状态的 Slurm 计算节点来驱动 Cacti Maint 维护窗口。
 
-> **状态：开发中，尚未发布。** 里程碑 2（基础）已合并到 `main`，此分支添加里程碑 3（集群图表和等待原因）。代码通过 Cacti 插件 API 安装、升级和卸载，并拒绝 PHP 8.2 以下版本。它维护 Slurm 集群注册表，每个集群分配给一个 Cacti 采集器。主采集器上的后台读取器在每个间隔为每个集群采集一个快照，方式是使用 `--json` 运行 `squeue`、`scontrol` 和 `sshare`，或通过 HTTPS 读取 `slurmrestd`，然后按状态和等待原因保存任务计数、节点状态、分区、预留、公平份额用量及其时效性。插件提供 Cacti 模板，经管理员确认后为每个集群创建或映射一个 Cacti 设备，绘制集群及各分区的任务状态、等待原因类别、节点状态、CPU 和利用率，以及快照年龄。只读概览页显示各集群计数及其时效性，并提供每个集群的等待原因视图；仅管理员可访问的健康状态页显示每次采集的返回结果及模板安装状态。所有页面和操作遵循 Cacti 设备权限。数据源可供 Thold 告警，但尚未测试与 Thold 或 Maint 的集成；这是里程碑 4 及之后的工作。测试套件覆盖合成 Slurm 命令和 `slurmrestd` 响应，CI 还会测试下文所述的容器内真实六节点 Slurm 集群。读取器尚未针对生产集群运行。操作员说明之后的 README 内容描述的是设计，而非已交付行为。
+> **状态：开发中，尚未发布。** 本分支实现了插件基础框架、集群和分区图表、等待原因分类、Slurm 计算节点与 Cacti 设备的匹配、可选启用的 Cacti Maint 窗口同步、账户级公平份额汇总、远程数据采集器执行与复制、配置即代码（CasC）及运维 CLI，以及 Cacti 生态挂钩（CasC、Doctor 和 MCP / Abilities API v2）。测试套件覆盖合成 Slurm 命令与 `slurmrestd` 响应，CI 也在容器中运行并测试了一个真实的六节点 Slurm 集群。读取器尚未在生产集群上运行过，端到端 Thold 回放测试也尚未加入 CI。
 
-这是独立项目，不隶属于 Cacti 项目。
+这是一个独立项目，与 Cacti 项目没有隶属关系。
 
-<a id="access-roles"></a>
+## 已实现功能
+
+- **生命周期与数据库模式（v3）**：支持安装、幂等升级、卸载（默认保留插件表），最低要求 PHP 8.2，同时保证入口文件可在 PHP 8.0 上解析。v3 模式在集群、运行记录、分段、作业计数、节点计数、节点、分区、预留和份额表之外，新增了 `plugin_hpcsched_node_map` 和 `plugin_hpcsched_maint_link`。
+- **主采集器与远程采集器上的只读 Slurm 采集**：`poller_bottom` 会在每个采集器（`poller_id`）上为分配给它的已启用集群在后台启动 `poller_hpcsched.php --cluster=N`。每次运行通过客户端命令（带 `--json` 的 `squeue`、`scontrol`、`sshare`）或经由 HTTPS 的 `slurmrestd`（允许回环地址 HTTP 并给出健康警告）为每个集群采集一份缓存快照。`INFO` 声明了 `remote_collect:1, remote_poller:1`，`replicate_out` 会将不含机密的 `plugin_hpcsched_cluster` 定义复制到远程采集器（`poller_id >= 2`）；令牌文件内容绝不会被读取用于复制或被同步。
+- **Cacti 模板与集群图表**：附带设备、数据和图表模板（`templates/hpcsched-templates.xml`）以及分区脚本服务器数据查询（`scripts/ss_hpcsched_cluster.php`、`scripts/ss_hpcsched_partitions.php`）。经管理员确认后，为每个集群创建或映射一个 Cacti 设备，生成按状态统计的作业、按原因家族统计的等待作业、按状态统计的节点、CPU、利用率（集群级及各分区级）以及快照年龄图表。
+- **Slurm 节点到设备的匹配与 Cacti Maint 同步**：四层线性时间匹配器（`NodeMatcher`）将 Slurm 计算节点映射到现有 Cacti `host` 记录（精确主机名、精确地址、精确描述/别名，或非 IP 名称的首个 DNS 标签），对于多重匹配或重复认领同一设备的情况会标记为 `ambiguous` 而非猜测。`HostList::expand()` 可展开 Slurm 预留主机列表（最多 10,000 个节点）。`MaintSynchronizer` 会为处于 `DRAIN`、`DRAINING`、`DOWN` 或活动 `MAINT`/`MAINTENANCE` 预留中的已映射节点创建、续期和移除由插件持有并在 `plugin_hpcsched_maint_link` 中跟踪的一次性 Cacti Maint 计划，且不会修改管理员手动创建的 Maint 计划。
+- **账户级公平份额汇总**：启用 `collect_shares` 时，将 Slurm 账户关联行采集到 `plugin_hpcsched_share` 中（按 [ADR 0010](../../decisions/0010-bound-series-cardinality.md) 丢弃用户行）。`ShareSummary` 和 `ShareRepository` 计算账户/分区数量、原始与有效使用量总计、最小/最大/平均公平份额因子以及排名靠前的账户；账户数量通过 `hpcsched-get-queue-summary` 暴露。
+- **CasC 与运维 CLI（`cli/hpcsched.php`）**：支持 YAML/XML 配置导出、校验、空运行差异规划（dry-run diff）、带确认哈希的应用、结构化健康状态输出以及可选启用的 Maint 同步（`sync-maint --dry-run` / `--apply`）。
+- **生态挂钩（`setup.php`）**：`casc_register_providers`、`doctor_register_checks` 和 `abilities_register`。
+
 ## 访问角色
 
 | 权限域 | 访问权限 |
 | --- | --- |
-| HPC Scheduler View | 现有监控页面。 |
-| HPC Scheduler Operator | 监控、运维页面以及个人排查确认。 |
-| HPC Scheduler Admin | 操作员访问权限及现有配置和管理操作。 |
+| HPC Scheduler View | 只读集群概览与等待原因（`hpcsched.php`）。 |
+| HPC Scheduler Operator | 包含 View 权限，外加操作页面（`hpcsched_operator.php`）和个人分诊确认。 |
+| HPC Scheduler Admin | 包含 Operator 权限，外加集群管理（`hpcsched_clusters.php`）和健康状态页面（`hpcsched_health.php`）。 |
 
-复制升级文件后，以管理员身份打开插件页面，注册新权限域。在**配置 > 用户**或用户组中明确授予 Operator 权限域。升级保留现有 View 和 Admin 权限域的 ID 及授权。每次请求时，Admin 继承 Operator 访问权限，Operator 继承 View 访问权限；这不会向用户或组添加持久化授权。插件设置除需要 Cacti 的设置权限外，还需要 HPC Scheduler Admin 权限。
+复制升级文件后，请以管理员身份打开 Plugins 页面以注册新的权限域和挂钩。在 **Configuration > Users** 或用户组中显式分配 Operator 权限域。升级会保留现有的 View 和 Admin 权限域 ID 与授权。每次请求时 Admin 访问权限会继承 Operator 访问权限，Operator 访问权限会继承 View 访问权限；这不会向用户或用户组写入额外的持久化授权。除 Cacti 的 Settings 权限外，修改插件设置还需要 HPC Scheduler Admin 访问权限。
 
-Cacti 设备权限仍限制每位用户可访问的行和操作；没有设备的集群会列在管理页面上，所有拥有插件权限域的用户都能看到，但不会出现在运维页面中，运维页面只列出已映射到设备的集群。凭据、配置、映射、删除和其他管理更改仍在管理页面中执行。确认记录仅在当前用户会话中有效，最多一小时，并且仅在同一观测结果仍然新鲜时有效。新出现或更改的观测结果会使确认失效。确认绝不会将失败的测量标记为健康，也不会抑制告警。
+Cacti 设备权限会限制每位用户可见的行与可执行的操作。已映射到某台 Cacti 设备的集群仅对 Cacti 允许访问该设备的用户显示、导出或修改；映射设备时同样需要目标设备的权限。未映射设备的集群会列在具有插件权限域的用户的管理页面上，但不会出现在仅列出已映射设备集群的操作员视图中。在插件禁用期间其映射设备被删除的集群，仅对具有 HPC Scheduler Admin 访问权限的用户可见。确认标记仅在当前用户会话内有效，最长持续一小时，且仅在同一观测结果仍保持新鲜时有效。新的或发生变化的观测结果会使其失效。确认标记绝不会将失败的测量标为健康或抑制告警。
 
-<a id="operator-notes-for-milestone-2"></a>
-## 里程碑 2 操作员说明
+## 操作员说明
 
-**最小权限。** 插件只读取。请使用专门的 Slurm 用户，不授予管理员或操作员角色（在 `sacctmgr` 中设置 `AdminLevel=None`）。如果 `slurm.conf` 设置了 `PrivateData=jobs`（或 `nodes`、`reservations`、`usage`），该用户只能看到自己的记录，因此计数不完整，插件无法检测这一情况。解除此限制需要操作员或管理员级别，这同时允许更改；需由站点自行权衡。对于客户端命令，Cacti 采集器用户需要 Slurm 客户端二进制文件和可连接控制器的 `slurm.conf`；二进制文件绝对路径在“配置 > 设置 > HPC Scheduler”中设置。对于 `slurmrestd`，URL 必须使用 `https://`，只有环回地址允许 `http://`。插件验证 TLS 证书，不跟随重定向。“配置 > 设置 > HPC Scheduler”中的可选 slurmrestd 主机列表可限制集群指定的主机和端口。
+### 安全性、最小权限与令牌文件
 
-**远程采集器。** 此版本仅在 Cacti 主采集器上采集。分配给远程数据采集器的集群不会被采集：远端读取器拒绝执行并记录原因，健康状态页面标出该集群。远程采集属于第 3 阶段。
+插件只执行读取操作。请为其分配一个不带管理员或操作员角色的专用 Slurm 用户（在 `sacctmgr` 中设为 `AdminLevel=None`）。如果在 `slurm.conf` 中设置了 `PrivateData=jobs`（或 `nodes`、`reservations`、`usage`），该用户将只能看到自己的记录，从而导致计数不完整且插件无法检测到这一点。为该账户解除此限制需要赋予操作员或管理员级别，而这同时会允许变更操作；这一权衡由站点自行决定。
 
-**内存。** 每次采集一次解码一个调度器响应，需要约响应大小 12 倍的 PHP 内存（对形状类似 Slurm 的任务记录，实测约 10 倍，再加响应文本本身）。运行时将 PHP 内存上限提高到“采集内存”设置值（默认 1024 MiB），并允许最大 (采集内存 - 64) / 12 MiB 的响应，默认 80 MiB；即使“最大响应大小”设置得更高，也使用此限制，并在健康状态页警告。更大的响应会使对应部分因过大而失败；仍然耗尽内存的运行也会记为失败。大型集群可能需要同时提高两个设置；尚未测量 100,000 条真实任务记录的情况。
+对于客户端命令，Cacti 采集器用户需要 Slurm 客户端二进制文件（`squeue`、`scontrol`，以及可选的 `sshare`）和能够连接控制器的 `slurm.conf`；二进制文件路径在 **Configuration > Settings > HPC Scheduler** 下以绝对路径配置。
 
-**令牌文件。** `slurmrestd` 集群指定令牌文件；令牌本身绝不存入数据库、显示在页面上或写入日志。文件必须位于“配置 > 设置 > HPC Scheduler”指定的令牌文件目录之一，路径不能经过符号链接，必须是属于采集器用户且仅该用户可写的普通文件。文件包含一行：令牌本身，或 `scontrol token` 输出的 `SLURM_JWT=<token>`。如果未设置令牌目录，任何集群都不能使用 `slurmrestd`。这两个设置位于 Cacti 设置页，仅有插件 Admin 权限域无法更改；请将每个令牌目录限制为仅 root 和采集器用户可写。组或其他用户可读的文件仍会被使用，但健康状态页会警告。令牌在配置的警告时间内过期时，健康状态页也会警告。
+对于 `slurmrestd`，URL 必须为 `https://`，或仅在回环地址上使用 `http://`。系统会校验证书且不跟随重定向。**Configuration > Settings > HPC Scheduler** 下的可选 `slurmrestd` 主机列表可限制集群能够指定的主机和端口。
 
-轮换令牌时，为避免读取器看到不完整文件，请在旧文件旁写入新令牌，再重命名到目标位置：
+使用 `slurmrestd` 的集群需指定一个令牌文件；令牌本身绝不会存入数据库、显示在页面上、由 CasC 导出或写入日志。该文件必须位于 **Configuration > Settings > HPC Scheduler** 下配置的令牌文件目录之一内，路径不得经过符号链接，必须是由采集器用户拥有且仅该用户可写的常规文件，文件内容为单行：令牌本身或 `scontrol token` 输出的 `SLURM_JWT=<token>` 格式。若未设置任何令牌目录，则没有任何集群可以使用 `slurmrestd`。请确保每个令牌目录仅对 root 和采集器用户可写。如果文件对所属组或其他用户可读，插件仍会使用它，并在健康页面发出警告；当令牌将在配置的预警窗口内过期时，健康页面也会发出警告。
+
+原子轮换令牌的方法如下：
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -48,92 +57,136 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-下次采集会读取新文件。使用 `scontrol token` 生成令牌需要 Slurm 管理员权限；请在允许的位置运行，再将文件复制到采集器。
+下一次采集将读取新文件。使用 `scontrol token` 生成令牌需要 Slurm 管理员权限；请在允许的环境运行该命令并将文件复制到采集器上。
 
-<a id="operator-notes-for-milestone-3"></a>
-## 里程碑 3 操作员说明
+### 远程数据采集器
 
-**模板。** 安装和升级会导入 HPC Scheduler 设备、数据和图表模板，并将分区数据查询复制到 Cacti 的 `resource/script_server/` 目录。如果安装插件的用户无法写入该目录、目录中已有非插件创建的同名不同文件，或该名称是符号链接，导入会停止，保留原文件，健康状态页说明处理方法；可在健康状态页使用“安装模板”重试。手动复制的相同文件会被使用，但所有权仍归您。卸载仅在查询文件由插件写入且未修改时删除该文件，并保留模板、设备和图表。
+`INFO` 声明了 `remote_collect:1, remote_poller:1`。`hpcsched_poller_bottom()` 会在每个采集器上针对分配给该 `poller_id` 的已启用集群启动 `poller_hpcsched.php`，`hpcsched_replicate_out()` 会将不含机密的 `plugin_hpcsched_cluster` 行复制到远程采集器（`poller_id >= 2`）。令牌文件和 Slurm 客户端二进制文件必须本地存在于所分配的远程采集器上；令牌内容绝不会被复制。
 
-**集群设备。** “HPC 集群 > 设备”在创建前显示将添加的内容（图表、数据源、RRD 文件以及每次采集的脚本服务器调用数）。“创建设备”使用保留的 `.invalid` 域主机名并关闭可用性检查；“映射设备”则将图表附加到现有设备，不改变其设置。每个集群图表和分区图表都有独立数据源：集群六个，每分区五个；每次采集对每个集群数据源调用脚本服务器一次，对分区的每个值（32 个）调用一次。之后添加的分区在读取器发现时建立索引，可在 Cacti 的“新建图表”页创建图表；移除的分区停止采集但保留图表。删除设备会取消集群映射并保留集群。
+### 内存限制
 
-**图表统计内容。** 等待任务不包括被保留任务，后者有独立序列。等待中的任务数组按剩余任务数计数。属于多个分区的任务或节点在集群图表中计一次，在每个分区中各计一次，因此分区图表之和不一定等于集群图表。等待原因分为十一个类别（[ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)）；等待原因视图列出原始原因，包括归入“其他”的原因。每个任务仅报告调度器最近检查的原因。利用率的分母包含已排空、已停止和其他不可用节点。过期或失败数据为 `U`，绝不是零；`age` 始终为数值。
+每次采集运行一次解码一个调度器响应，这大约需要响应大小 12 倍的 PHP 内存（针对 Slurm 结构的作业记录实测约为 10 倍，再加上文本本身）。读取器会将其 PHP 内存限制提高到 Collection Memory 设置值（默认 1024 MiB），并允许最大 `(Collection Memory - 64) / 12` MiB（默认 80 MiB）的响应，即使 Maximum Answer Size 设置得更高亦如此；当 Maximum Answer Size 超过该适配上限时，健康页面会发出警告。更大的响应会使对应分段因过大而失败，而仍耗尽内存的运行会通过关闭处理程序记录内存失败并释放其租约与进程槽位。大型集群可能需要同时调高这两项设置；尚未对 100,000 条真实作业记录进行实测。
 
-**告警。** Thold 可对这些任意数据源告警；Thold 持续时间应至少为一个采集间隔，并对 `age` 设置告警以检测停止的读取器。端到端 Thold 检查属于里程碑 4。
+### 模板、集群设备与图表计数
 
-**针对真实 Slurm 输出测试。** CI 在容器中启动六节点 Slurm 集群（每次更改使用 26.05.5；向 `main` 推送、每周及按需运行时从源码构建 25.11.8），检查插件解析出的节点状态、维护预留、等待原因和任务数组，然后使用插件自身的命令及 `slurmrestd` 传输方式采集该集群。更早版本仅由合成测试数据覆盖。读取器仍未在生产集群上运行。
+安装和升级时会导入 HPC Scheduler 设备、数据和图表模板，并将分区数据查询复制到 Cacti 的 `resource/script_server/` 目录。如果该目录不可写、已存在同名但内容不同的文件，或者目标位置是符号链接，导入会停止，保持原文件不变，并在健康页面报告该情况，管理员可在健康页面点击 **Install Templates** 重试。卸载时仅当该查询文件由本插件写入且未被修改时才会将其移除，而模板、设备和图表均会保留。
 
-**权限。** 在每个插件页面中，关联到设备的集群仅向 Cacti 授权访问该设备的用户显示、导出或允许更改；映射设备还需要目标设备权限。无设备的集群对拥有插件权限域的所有用户可见。插件禁用期间设备被删除、但集群仍保留映射时，只有 HPC Scheduler Admin 用户可见，并可为其创建或映射设备。图表访问由 Cacti 自身控制。
+**HPC Clusters > Device** 会在创建任何对象前预览每次轮询的图表、数据源、RRD 文件和脚本服务器调用数量。**Create Device** 会创建一个主机名位于保留域名 `.invalid` 中且不启用可用性检查的设备；**Map Device** 则将图表关联到现有设备而不修改其设置。每个集群图表和分区图表都有各自的数据源：集群有 6 个，每个分区有 5 个。后续新增的分区会在读取器检测到变化时自动重新索引；被移除的分区会停止轮询并保留其现有图表。删除设备会解除集群映射（并清除匹配的 `plugin_hpcsched_node_map` 行），同时保留集群记录。
 
-<a id="why"></a>
-## 原因
+等待中的作业（Pending）不包含被挂起（held）的作业，后者有自己的数据序列。处于等待状态的作业数组按其剩余任务数计数。位于多个分区中的作业或节点在集群图表中只计一次，在每个所属分区中各计一次，因此各分区之和不一定等于集群总计。等待原因被归入十一个家族（参见 [ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)）；等待原因视图会列出原始原因，包括归在 `Other` 中的原因。利用率的分母包含已排空、宕机以及其他不可用节点。过期或失败的数据会报告为 `U`，绝不报告为零；`age` 保持为数值。
 
-使用 Cacti 的操作员已经为计算节点绘图，但缺少调度器视角，留下两个缺口：
+如需配置告警，请在任意集群或分区数据源上配置 Thold，持续时间至少设为一个采集间隔，并对 `age` 设置告警以检测读取器停止运行。
 
-- **无法解释“任务为何不启动”。** Slurm 为每个等待任务记录原因。满队列旁的空闲节点图表无法说明原因是优先级、资源限制、保留、依赖关系还是已排空节点。
-- **调度器状态与告警脱节。** Thold 对管理员已排空的设备告警，管理员需要手动创建 Maint 计划。
+## CLI 与生态挂钩
 
-插件为每个集群采集一个缓存快照，将其发布为普通 Cacti 数据源和图表，将调度器节点映射到现有 Cacti 设备，并可把已排空节点和维护预留加入 Maint。它复用 Cacti 权限、远程数据采集器、Thold 和 Maint，对调度器只读。
+### 读取器入口点
 
-<a id="planned-scope"></a>
-## 计划范围
+`hpcsched_poller_bottom()` 会自动启动 `poller_hpcsched.php`；也可以在集群所分配的采集器上手动运行：
 
-| 阶段 | 范围 | 里程碑 |
-|---|---|---|
-| 0，研究 | Slurm 版本矩阵、上游行为确认、控制器负载、节点命名测试数据 | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1，集群图表 | 队列深度、等待和运行任务、等待原因、节点状态、分区利用率、Thold 告警、健康状态页面、发布 | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2)、[M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3)、[M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2，节点和维护 | 节点到设备映射、逐节点状态、已排空节点和维护预留的自动 Maint 窗口 | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3，记账 | 公平份额用量、有界记账统计、远程数据采集器 | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
 
-范围之外：任何调度器写入路径（提交、取消、保留、排空、恢复）、插件自有告警引擎、报表或费用分摊引擎，以及按用户或任务建立序列。PBS Pro、OpenPBS 和 LSF 后端仍属研究。
+`--force` 允许在插件处于禁用状态时运行，用于命令行诊断。
 
-<a id="compatibility-targets"></a>
-## 兼容性目标
+### 配置即代码、健康状态与 Maint 同步 CLI
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` 以 `0600` 权限创建新文件（或输出到标准输出），并将配置中的 `token_file` 路径替换为 `[REDACTED]`。`plan` 和 `apply` 拒绝内联 `jwt`、`secret` 和 `password` 字段，并在传入 `[REDACTED]` 时保留现有的本地 `token_file` 路径。`apply` 需要精确传入 `plan` 输出的 `--confirm=PLAN_HASH`。
+- `health` 评估数据库模式是否为最新、集群数据新鲜度、运行结果、Maint 可用性以及各项警告，过程中不连接调度器也不读取令牌文件。
+- `sync-maint` 默认执行 `--dry-run`，用于预览或应用针对处于 `DRAIN`、`DRAINING`、`DOWN` 或活动 `MAINT`/`MAINTENANCE` 预留中的已映射 Slurm 节点的 Cacti Maint 计划（默认排空/宕机视野 3600 秒，续期间隔 600 秒）。若缺少 `plugin_maint_schedules` 和 `plugin_maint_hosts`，则会拒绝执行 `--apply`，且仅更新或移除记录在 `plugin_hpcsched_maint_link` 中的计划。
+
+### 生态挂钩
+
+当相应的 Cacti 插件或宿主集成存在时，`setup.php` 会注册以下挂钩：
+
+- `casc_register_providers`：提供带机密脱敏的 `hpcsched` 配置（`yaml` 和 `xml`，schema v1）导出、校验、规划和确认应用功能。
+- `doctor_register_checks`：提供四项只读诊断检查（`hpcsched.schema`、`hpcsched.cluster_freshness`、`hpcsched.token_health`、`hpcsched.maint_sync`）。
+- `abilities_register`：在 `hpcsched` 分类下注册三项只读、非破坏性且幂等的能力，受 HPC Scheduler View 权限域（集群汇总另受设备权限）限制：`hpcsched-list-clusters`、`hpcsched-get-queue-summary` 和 `hpcsched-get-health`。
+
+## 为什么做这个插件
+
+运行 Cacti 的运维人员已经在为计算节点绘制图表，但这些图表中缺少调度器视角，留下了两处空白：
+
+- **不知道“作业为何没有启动”。** Slurm 会为每个等待中的作业记录原因。满载的队列与空闲节点图表并列时，无法直接看出原因在于优先级、资源限制、挂起、依赖关系还是节点已排空。
+- **调度器状态与告警之间缺乏联动。** Thold 会对管理员已经排空的设备继续告警，管理员也不得不手动创建 Maint 维护计划。
+
+本插件为每个集群采集一份缓存快照，将其发布为常规的 Cacti 数据源和图表，将调度器节点映射到现有的 Cacti 设备，并为已排空、宕机和处于维护预留的节点同步由插件持有并会到期的 Maint 窗口。它复用了 Cacti 的权限体系、远程数据采集器、Thold 和 Maint，并对调度器保持严格只读。
+
+## 范围与边界
+
+不在范围内：任何调度器写入路径（提交、取消、挂起、排空、恢复）、插件自建告警引擎、报表或计费引擎，以及按用户或按作业的数据序列。PBS Pro、OpenPBS 和 LSF 后端目前仅处于研究阶段。
+
+## 需求与兼容性
 
 | 组件 | 目标 |
 |---|---|
-| Cacti | 1.2.31 或更高版本，无需核心补丁 |
-| PHP | 8.2 或更高版本；`setup.php` 在 8.0 中仍可解析，以便对不受支持的运行时明确拒绝，而不是损坏 Cacti 界面 |
-| Slurm | 25.05、25.11 和 26.05，即最近三个版本（[ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)）；25.11 和 26.05 针对运行中的集群测试，25.05 仅用测试数据。默认传输方式为客户端命令（[ADR 0012](../../decisions/0012-client-commands-default-transport.md)），使用数据解析器设置：默认 v0.0.43（SchedMD 将在 27.05 移除），或在支持的版本上使用 v0.0.44、v0.0.45。slurmrestd 集群会发现守护进程提供的最新解析器 |
-| Thold、Maint | 无需修改 Thold；Maint 集成是一项需获得 Maint 维护者同意的提案 |
+| Cacti | 1.2.31 或更高版本（`compat = 1.2.31`），无需核心补丁 |
+| PHP | 8.2 或更高版本；入口文件在 8.0 上保持可解析，并在 8.1 上拒绝激活，以便不受支持的运行时收到明确的拒绝提示而非损坏 Cacti 界面 |
+| Slurm | 25.05、25.11 和 26.05（[ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)）；每次变更都会在 CI 中针对六节点容器集群测试 26.05.5，在 `main` 分支、每周及按需测试 25.11.8，25.05 仅针对测试夹具测试。客户端命令默认使用数据解析器 `v0.0.43`（可选择 `v0.0.44` 和 `v0.0.45`）；`slurmrestd` 集群会自动发现守护进程提供的最新解析器 |
+| Thold、Maint | 无需修改 Thold；`sync-maint` 通过插件自有的关联表（`plugin_hpcsched_maint_link`）与 Cacti Maint 的 `plugin_maint_schedules` 和 `plugin_maint_hosts` 表集成 |
 
-<a id="design"></a>
-## 设计
+## 开发与测试
 
-- [docs/PLAN.md](../../PLAN.md) 是完整计划：架构、依赖的上游事实（含来源和明确的未验证假设清单）、节点映射、状态模型、安全边界、性能计算、测试和风险。
-- [docs/decisions/](../../decisions) 保存架构决策记录。
-- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) 将每个需求 ID 映射到对应议题。
+CI 工作流（`.github/workflows/plugin-ci-workflow.yml`）覆盖 PHP 8.2 至 8.5 搭配 Cacti `release/1.2.31` 和 `1.2.x`、PHP 8.0 入口语法检查、PHP 8.1 拒绝激活测试、PHPStan、gettext/翻译校验、REUSE 许可检查、工作流语法检查、集群设备流程与模板导出漂移检查，以及真实六节点 Slurm 容器集群测试（`slurm-live`）。
+
+使用 Cacti 锁定的共享 Pest 插件测试工具（`CACTI_PEST_BIN`）和一次性 Cacti 数据库：
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
+
+## 设计文档
+
+- [docs/PLAN.md](../../PLAN.md) 是架构与设计方案：附带来源的上游事实、节点映射、状态模型、安全边界、性能测算、测试及风险。
+- [docs/decisions/](../../decisions/) 存放架构决策记录（ADR）。
+- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) 将每个需求 ID 映射到对应的 issue。
 
 ```mermaid
 flowchart LR
-    S[Slurm controller] -->|read-only calls, one set per cycle| R[Reader on the assigned Cacti poller]
-    R --> SNAP[(Snapshot tables)]
-    SNAP --> SS[Script server inputs]
-    SS -->|poller_output| T[Thold and Maint]
-    SS --> G[Cacti graphs and permissions]
-    SNAP --> MAP[Node to device mapping]
-    MAP -->|owned, expiring schedules| T
+    S[Slurm 控制器] -->|每个周期一组只读调用| R[已分配采集器上的 poller_hpcsched.php]
+    R --> SNAP[(快照数据表)]
+    SNAP --> SS[脚本服务器输入]
+    SS -->|poller_output| T[Thold]
+    SS --> G[Cacti 图表与权限]
+    SNAP --> MAP[NodeMatcher 与 MaintSynchronizer]
+    MAP -->|插件持有的到期计划| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator、Doctor 与 MCP 能力]
 ```
 
-<a id="how-work-is-tracked"></a>
 ## 工作跟踪方式
 
-- **里程碑**遵循计划。每个里程碑都有一个史诗议题，列出子议题和完成证据。
-- **议题**按标签分类：`type: requirement`、`type: research`、`type: decision`、`type: epic`。需求议题包含带编号的可测试需求（`REQ-AREA-NNN`）和验收标准。
-- **标签**还包括 `area:`、`phase:`、`priority:` 和 `status:`。参阅 [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels)。
-- [项目看板](https://github.com/users/somethingwithproof/projects/10) 显示各里程碑的全部议题。
+- **里程碑（Milestones）** 对应设计方案中的里程碑。每个里程碑都有一个 epic issue，列出其子 issue 和退出证据。
+- **Issues** 按标签分类：`type: requirement`、`type: research`、`type: decision`、`type: epic`。需求 issue 陈述带编号的可测试需求（`REQ-AREA-NNN`）和验收标准。
+- **标签（Labels）** 还包括 `area:`、`phase:`、`priority:` 和 `status:`。参见 [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels)。
+- [项目看板](https://github.com/users/somethingwithproof/projects/10)展示了所有里程碑下的全部 issue。
 
-<a id="contributing"></a>
-## 贡献
+## 参与贡献
 
-请阅读 [CONTRIBUTING.md](../../../CONTRIBUTING.md)。提交需要 DCO 签署。设计讨论在议题中进行；未决决策带有 `type: decision` 标签。
+请阅读 [CONTRIBUTING.md](../../../CONTRIBUTING.md)。提交需要附带 DCO 签署（`git commit -s`）。设计讨论在 issue 中进行；尚未定案的决策带有 `type: decision` 标签。
 
-<a id="security"></a>
 ## 安全
 
-请私下报告漏洞；参阅 [SECURITY.md](../../../SECURITY.md)。
+请私下报告安全漏洞；参见 [SECURITY.md](../../../SECURITY.md)。
 
-<a id="license"></a>
 ## 许可证
 
-GNU 通用公共许可证 v2.0，与 Cacti 及其插件相同。参阅 [LICENSE](../../../LICENSE)。
+GNU General Public License v2.0，与 Cacti 及其插件采用相同的许可证。参见 [LICENSE](../../../LICENSE)。

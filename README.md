@@ -4,45 +4,47 @@
 
 # plugin_hpcsched
 
-A Cacti 1.2 plugin that graphs the state of an HPC batch scheduler next to the devices Cacti already monitors: queue depth, pending versus running jobs, why jobs are pending, node states, and partition utilization. Slurm is the first backend. Thold alerts on the resulting data sources, and Maint can be driven by drained nodes and maintenance reservations.
+A Cacti 1.2 plugin (`hpcsched`, version `0.1.0-dev`) that graphs the state of an HPC batch scheduler next to the devices Cacti already monitors: queue depth, pending versus running jobs, why jobs are pending, node states, partition utilization, and account-level fair-share usage. Slurm is the implemented backend. Thold alerts on the resulting data sources, and an opt-in Maint synchronizer drives Cacti Maint windows from drained, down, and maintenance-reserved Slurm compute nodes.
 
-> **Status: in development, no release yet.** Milestone 2 (foundation) is merged on `main`, and this branch adds milestone 3 (cluster graphs and pending reasons). The code installs, upgrades, and uninstalls through Cacti's plugin API and refuses PHP below 8.2. It keeps a registry of Slurm clusters, each assigned to one Cacti poller. A background reader on the main poller collects one snapshot per cluster per interval, either by running `squeue`, `scontrol`, and `sshare` with `--json` or by reading `slurmrestd` over HTTPS, and stores job counts by state and pending reason, node states, partitions, reservations, and fair-share usage with their freshness. The plugin ships Cacti templates and, on an administrator's confirmation, creates or maps one Cacti device per cluster with graphs of jobs by state, pending jobs by reason family, nodes by state, CPUs, and utilization, for the cluster and for each partition, plus the snapshot age. A read-only overview page shows counts per cluster with their freshness and a pending reasons view per cluster, and an admin-only health page shows what each collection returned and whether the templates are installed. Every page and action follows Cacti's device permissions. The data sources are ones Thold can alert on, but no Thold or Maint integration has been tested yet; that is milestone 4 and later. The test suite covers synthetic Slurm commands and `slurmrestd` responses, and CI also exercises a real six-node Slurm cluster in containers as described below. The reader has not run against a production cluster. Below the operator notes, this README describes the design, not shipped behavior.
+> **Status: in development, no release yet.** This branch implements the plugin foundation, cluster and partition graphs, pending reason families, Slurm compute-node-to-Cacti-device matching, opt-in Cacti Maint window synchronization, account-level fair-share summaries, remote data collector execution and replication, a Configuration-as-Code (CasC) and operations CLI, and Cacti ecosystem hooks (CasC, Doctor, and MCP / Abilities API v2). The test suite covers synthetic Slurm commands and `slurmrestd` responses, and CI exercises a live six-node Slurm cluster in containers. The reader has not run against a production cluster, and an end-to-end Thold replay test is not yet in CI.
 
 This is an independent project and is not affiliated with the Cacti project.
+
+## What is implemented
+
+- **Lifecycle and schema (v3)**: install, idempotent upgrade, uninstall (keeping plugin tables by default), and a PHP 8.2 floor while keeping entry points parseable on PHP 8.0. Schema v3 adds `plugin_hpcsched_node_map` and `plugin_hpcsched_maint_link` alongside the cluster, run, section, job-count, node-count, node, partition, reservation, and share tables.
+- **Read-only Slurm collection on main and remote pollers**: `poller_bottom` starts `poller_hpcsched.php --cluster=N` in the background on each poller (`poller_id`) for its assigned enabled clusters. Each run collects one cached snapshot per cluster via client commands (`squeue`, `scontrol`, `sshare` with `--json`) or `slurmrestd` over HTTPS (loopback HTTP allowed with a health warning). `INFO` declares `remote_collect:1, remote_poller:1`, and `replicate_out` replicates non-secret `plugin_hpcsched_cluster` definitions to remote collectors (`poller_id >= 2`); token file contents are never read or replicated.
+- **Cacti templates and cluster graphs**: ships device, data, and graph templates (`templates/hpcsched-templates.xml`) and the partition script-server data query (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`). On administrator confirmation, creates or maps one Cacti device per cluster with graphs for jobs by state, pending jobs by reason family, nodes by state, CPUs, utilization (cluster and per partition), and snapshot age.
+- **Slurm node-to-device matching and Cacti Maint sync**: four-tier linear-time matcher (`NodeMatcher`) maps Slurm compute nodes to existing Cacti `host` records (exact hostname, exact address, exact description/alias, or first DNS label for non-IP names) and marks multi-matches or duplicate device claims `ambiguous` rather than guessing. `HostList::expand()` expands Slurm reservation hostlists (up to 10,000 nodes). `MaintSynchronizer` creates, renews, and removes plugin-owned one-time Cacti Maint schedules tracked in `plugin_hpcsched_maint_link` for mapped nodes in `DRAIN`, `DRAINING`, `DOWN`, or active `MAINT`/`MAINTENANCE` reservations without modifying administrator-created Maint schedules.
+- **Account-level fair-share summaries**: when `collect_shares` is enabled, collects Slurm account association rows into `plugin_hpcsched_share` (dropping user rows per [ADR 0010](docs/decisions/0010-bound-series-cardinality.md)). `ShareSummary` and `ShareRepository` compute account/partition counts, raw and effective usage totals, min/max/average fair-share factors, and top accounts; account counts are exposed in `hpcsched-get-queue-summary`.
+- **CasC and operations CLI (`cli/hpcsched.php`)**: YAML/XML configuration export, validation, dry-run diff planning, confirmation-gated apply, structured health output, and opt-in Maint sync (`sync-maint --dry-run` / `--apply`).
+- **Ecosystem hooks (`setup.php`)**: `casc_register_providers`, `doctor_register_checks`, and `abilities_register`.
 
 ## Access roles
 
 | Realm | Access |
 | --- | --- |
-| HPC Scheduler View | Existing monitoring pages. |
-| HPC Scheduler Operator | Monitoring plus the Operations page and personal triage acknowledgments. |
-| HPC Scheduler Admin | Operator access plus the existing configuration and administrative actions. |
+| HPC Scheduler View | Read-only cluster overview and pending reasons (`hpcsched.php`). |
+| HPC Scheduler Operator | View access plus the Operations page (`hpcsched_operator.php`) and personal triage acknowledgments. |
+| HPC Scheduler Admin | Operator access plus cluster administration (`hpcsched_clusters.php`) and the health page (`hpcsched_health.php`). |
 
-After copying upgrade files, open the Plugins page as an administrator to register
-the new realm. Assign the Operator realm explicitly under **Configuration > Users** or user groups.
-Upgrades retain the existing View and Admin realm IDs and grants. Admin access
-inherits Operator access, and Operator access inherits View access on each request;
-this does not add stored grants to users or groups. Plugin settings also require
-HPC Scheduler Admin access in addition to Cacti's Settings permission.
+After copying upgrade files, open the Plugins page as an administrator to register new realms and hooks. Assign the Operator realm explicitly under **Configuration > Users** or user groups. Upgrades retain existing View and Admin realm IDs and grants. Admin access inherits Operator access, and Operator access inherits View access on each request; this does not add stored grants to users or groups. Plugin settings also require HPC Scheduler Admin access in addition to Cacti's Settings permission.
 
-Cacti device permissions still limit the rows and actions available to each user; a cluster without a device is listed on the administrative pages for every user with the plugin realm, but not in the operator views, which list only clusters mapped to a device.
-Credentials, configuration, mapping, deletion and other administrative changes
-remain in the administrative pages. Acknowledgments last only in the current
-user's session, for at most one hour and only while the same observation remains
-fresh. New or changed observations invalidate them. They never mark a failed
-measurement healthy or suppress alerts.
+Cacti device permissions limit the rows and actions available to each user. A cluster mapped to a Cacti device is shown, exported, and changed only for users Cacti allows that device; mapping a device also requires permission for the target device. A cluster without a device is listed on the administrative pages for users with the plugin realm, but not in operator views, which list only clusters mapped to a device. A cluster whose mapped device was deleted while the plugin was disabled is shown only to users with HPC Scheduler Admin access. Acknowledgments last only in the current user's session, for at most one hour and only while the same observation remains fresh. New or changed observations invalidate them. They never mark a failed measurement healthy or suppress alerts.
 
-## Operator notes for milestone 2
+## Operator notes
 
-**Least privilege.** The plugin only reads. Give it a dedicated Slurm user with no administrator or operator role (`AdminLevel=None` in `sacctmgr`). With `PrivateData=jobs` (or `nodes`, `reservations`, `usage`) in `slurm.conf`, that user sees only its own records, so the counts are incomplete and the plugin cannot detect it. Lifting that for the account means an operator or administrator level, which also allows changes; that tradeoff is the site's call. For client commands, the Cacti poller user needs the Slurm client binaries and a `slurm.conf` that reaches the controller; the binary paths are absolute settings under Configuration > Settings > HPC Scheduler. For `slurmrestd`, the URL must be `https://`, or `http://` on a loopback address only. TLS certificates are verified and redirects are not followed. An optional slurmrestd host list under Configuration > Settings > HPC Scheduler limits the hosts and ports a cluster may name.
+### Security, least privilege, and token files
 
-**Remote pollers.** This release collects only on the main Cacti poller. A cluster assigned to a remote data collector is not collected: the reader there refuses with a logged reason and the health page names the cluster. Remote collection is phase 3.
+The plugin only reads. Give it a dedicated Slurm user with no administrator or operator role (`AdminLevel=None` in `sacctmgr`). With `PrivateData=jobs` (or `nodes`, `reservations`, `usage`) in `slurm.conf`, that user sees only its own records, so counts are incomplete and the plugin cannot detect it. Lifting that for the account requires an operator or administrator level, which also allows changes; that tradeoff is the site's call.
 
-**Memory.** Each collection run decodes one scheduler answer at a time, which takes about 12 times the answer's size in PHP memory (measured at about 10 times for job records shaped like Slurm's, plus the text itself). The run raises its PHP memory limit to the Collection Memory setting (1024 MiB by default) and allows answers up to (Collection Memory - 64) / 12 MiB, 80 MiB by default, even when Maximum Answer Size is set higher; the health page warns when it is. A larger answer fails its section as too large, and a run that still runs out of memory is recorded as failed. A large cluster may need both settings raised; 100,000 real job records have not been measured.
+For client commands, the Cacti poller user needs the Slurm client binaries (`squeue`, `scontrol`, and optionally `sshare`) and a `slurm.conf` that reaches the controller; binary paths are absolute settings under **Configuration > Settings > HPC Scheduler**.
 
-**Token files.** A `slurmrestd` cluster names a token file; the token itself is never stored in the database, shown on a page, or written to the log. The file must lie inside one of the token file directories set under Configuration > Settings > HPC Scheduler, reached without a symbolic link, and be a regular file owned by the poller user that only that user can write, holding one line: the token, or `SLURM_JWT=<token>` as `scontrol token` prints it. With no token directories set, no cluster can use `slurmrestd`. These two settings are on Cacti's Settings page, so the plugin's Admin realm alone cannot change them; keep each token directory writable only by root and the poller user. A file the group or other users can read is still used, and the health page warns. The health page also warns when the token expires within the configured warning time.
+For `slurmrestd`, the URL must be `https://`, or `http://` on a loopback address only. TLS certificates are verified and redirects are not followed. An optional `slurmrestd` host list under **Configuration > Settings > HPC Scheduler** restricts which hosts and ports a cluster may name.
 
-To rotate a token without a window in which the reader sees a partial file, write the new token next to the old one and rename it into place:
+A `slurmrestd` cluster names a token file; the token itself is never stored in the database, shown on a page, exported by CasC, or written to the log. The file must lie inside one of the Token File Directories configured under **Configuration > Settings > HPC Scheduler**, reached without a symbolic link, and be a regular file owned by the poller user that only that user can write, holding one line: the token or `SLURM_JWT=<token>` as `scontrol token` prints it. With no token directories set, no cluster can use `slurmrestd`. Keep each token directory writable only by root and the poller user. A file readable by group or other users is still used, and the health page warns; it also warns when the token expires within the configured warning window.
+
+To rotate a token atomically:
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -53,21 +55,60 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-The next collection reads the new file. Generating tokens with `scontrol token` needs a Slurm administrator; run it where that is allowed and copy the file to the poller.
+The next collection reads the new file. Generating tokens with `scontrol token` requires a Slurm administrator; run it where permitted and copy the file to the poller.
 
-## Operator notes for milestone 3
+### Remote data collectors
 
-**Templates.** Install and upgrade import the HPC Scheduler device, data, and graph templates and copy the partition data query to Cacti's `resource/script_server/` directory. If that directory is not writable by the user that installs the plugin, a different file of the same name is already there and was not written by the plugin, or the name is a symbolic link, the import stops, the file is left alone, and the health page says what to do; Install Templates on the health page retries. An identical copy made by hand is used but stays yours. Uninstall removes the query file only if the plugin wrote it and it is unchanged, and keeps the templates, devices, and graphs.
+`INFO` declares `remote_collect:1, remote_poller:1`. `hpcsched_poller_bottom()` launches `poller_hpcsched.php` on each poller for enabled clusters assigned to that `poller_id`, and `hpcsched_replicate_out()` replicates non-secret `plugin_hpcsched_cluster` rows to remote pollers (`poller_id >= 2`). Token files and Slurm client binaries must exist locally on the assigned remote poller; token contents are never replicated.
 
-**Cluster devices.** HPC Clusters > Device shows what a device will add (graphs, data sources, RRD files, and script server calls per poll) before anything is created. Create Device makes a device with a host name in the reserved `.invalid` domain and no availability check; Map Device instead attaches the graphs to an existing device and leaves its settings alone. Each cluster graph and each partition graph has its own data source: six for the cluster and five per partition, one script server call per cluster data source and one per value of a partition (32) per poll. Partitions added later are indexed when the reader sees them and get graphs from Cacti's New Graphs page; a removed partition stops being polled and keeps its graphs. Deleting the device unmaps the cluster and keeps it.
+### Memory limits
 
-**What the graphs count.** Pending excludes held jobs, which have their own series. A pending array counts its remaining tasks. A job or node in several partitions counts once in the cluster graphs and once in each partition, so partition graphs need not add up to the cluster's. Pending reasons are grouped into eleven families ([ADR 0011](docs/decisions/0011-pending-reason-families-and-counting.md)); the pending reasons view lists the raw reasons, including those in Other. Each job reports only the last reason the scheduler examined. The utilization denominator includes drained, down, and other unavailable nodes. Stale or failed data is `U`, never zero; `age` stays numeric.
+Each collection run decodes one scheduler answer at a time, which takes about 12 times the answer's size in PHP memory (measured at about 10 times for job records shaped like Slurm's, plus the text itself). The reader raises its PHP memory limit to the Collection Memory setting (1024 MiB by default) and allows answers up to `(Collection Memory - 64) / 12` MiB (80 MiB by default), even when Maximum Answer Size is set higher; the health page warns when Maximum Answer Size exceeds that fitted cap. A larger answer fails its section as too large, and a run that still exhausts memory records a memory failure and releases its lease and process slot via a shutdown handler. Large clusters may need both settings raised; 100,000 real job records have not been measured.
 
-**Alerting.** Thold can alert on any of these data sources; set Thold durations to at least one collection interval, and alert on `age` to catch a stopped reader. The end-to-end Thold check is milestone 4.
+### Templates, cluster devices, and graph counting
 
-**Tested against real Slurm output.** CI starts a six-node Slurm cluster in containers (26.05.5 on every change, 25.11.8 built from source on pushes to `main`, weekly, and on request) and checks node states, the maintenance reservation, pending reasons, and arrays as the plugin parses them, then collects from that cluster with the plugin's own command and `slurmrestd` transports. Older releases are covered only by synthetic fixtures. The reader has still not run against a production cluster.
+Install and upgrade import the HPC Scheduler device, data, and graph templates and copy the partition data query to Cacti's `resource/script_server/` directory. If that directory is not writable, a different file of the same name exists there, or the target is a symbolic link, the import stops, leaves the file untouched, and reports the condition on the health page where **Install Templates** retries. Uninstall removes the query file only if the plugin wrote it and it is unchanged, and keeps the templates, devices, and graphs.
 
-**Permissions.** A cluster on a device is shown, exported, and changed only for users Cacti allows that device, on every plugin page; mapping a device also needs permission for the target device. A cluster without a device is visible to everyone with the plugin realm. A cluster still mapped to a device that was deleted while the plugin was disabled is shown only to users with the HPC Scheduler Admin realm, who can create or map a device for it. Graph access is Cacti's own.
+**HPC Clusters > Device** previews the graphs, data sources, RRD files, and script server calls per poll before creating anything. **Create Device** makes a device with a hostname in the reserved `.invalid` domain and no availability check; **Map Device** attaches the graphs to an existing device without changing its settings. Each cluster graph and partition graph has its own data source: six for the cluster and five per partition. Partitions added later are reindexed automatically when the reader detects a change; removed partitions stop being polled and keep their graphs. Deleting a device unmaps the cluster (and clears any matching `plugin_hpcsched_node_map` rows) while keeping the cluster record.
+
+Pending excludes held jobs, which have their own series. A pending job array counts its remaining tasks. A job or node in multiple partitions counts once in the cluster graphs and once in each partition, so partition totals need not sum to the cluster total. Pending reasons are grouped into eleven families ([ADR 0011](docs/decisions/0011-pending-reason-families-and-counting.md)); the pending reasons view lists raw reasons including those in `Other`. The utilization denominator includes drained, down, and other unavailable nodes. Stale or failed data is reported as `U`, never zero; `age` stays numeric.
+
+For alerting, configure Thold on any of the cluster or partition data sources with durations of at least one collection interval, and alert on `age` to detect a stopped reader.
+
+## CLI and ecosystem hooks
+
+### Reader entry point
+
+`hpcsched_poller_bottom()` starts `poller_hpcsched.php` automatically; it can also be run manually on the cluster's assigned poller:
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force` runs even while the plugin is disabled, for command-line diagnosis.
+
+### Configuration-as-Code, health, and Maint sync CLI
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` writes new files with mode `0600` (or stdout) and replaces configured `token_file` paths with `[REDACTED]`. `plan` and `apply` reject inline `jwt`, `secret`, and `password` fields, and preserve existing local `token_file` paths when `[REDACTED]` is supplied. `apply` requires the exact `--confirm=PLAN_HASH` printed by `plan`.
+- `health` evaluates schema currency, cluster freshness, run outcomes, Maint availability, and warnings without contacting schedulers or reading token files.
+- `sync-maint` defaults to `--dry-run` and previews or applies Cacti Maint schedules for mapped Slurm nodes in `DRAIN`, `DRAINING`, `DOWN`, or active `MAINT`/`MAINTENANCE` reservations (default drain/down horizon 3600s, renewal margin 600s). It refuses `--apply` if `plugin_maint_schedules` and `plugin_maint_hosts` are absent, and only updates or removes schedules recorded in `plugin_hpcsched_maint_link`.
+
+### Ecosystem hooks
+
+When the corresponding Cacti plugins or host integrations are present, `setup.php` registers:
+
+- `casc_register_providers`: exports, validates, plans, and confirmation-applies `hpcsched` configuration (`yaml` and `xml`, schema v1) with secret redaction.
+- `doctor_register_checks`: provides four read-only diagnostic checks (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: registers three read-only, non-destructive, idempotent abilities under category `hpcsched`, gated by the HPC Scheduler View realm (and device permissions for cluster summaries): `hpcsched-list-clusters`, `hpcsched-get-queue-summary`, and `hpcsched-get-health`.
 
 ## Why
 
@@ -76,43 +117,57 @@ Operators who run Cacti already graph their compute nodes. The scheduler's view 
 - **No "why is work not starting".** Slurm records a reason for each pending job. A full queue next to idle node graphs does not say whether the cause is priority, resource limits, holds, dependencies, or drained nodes.
 - **No link between scheduler state and alerting.** Thold alerts on a device an administrator has already drained, and administrators create Maint schedules by hand.
 
-The plugin collects one cached snapshot per cluster, publishes it as ordinary Cacti data sources and graphs, maps scheduler nodes onto existing Cacti devices, and can place drained nodes and maintenance reservations into Maint. It reuses Cacti's permissions, remote data collectors, Thold, and Maint, and it is read-only toward the scheduler.
+The plugin collects one cached snapshot per cluster, publishes it as ordinary Cacti data sources and graphs, maps scheduler nodes onto existing Cacti devices, and synchronizes plugin-owned expiring Maint windows for drained, down, and maintenance-reserved nodes. It reuses Cacti's permissions, remote data collectors, Thold, and Maint, and stays strictly read-only toward the scheduler.
 
-## Planned scope
+## Scope and boundaries
 
-| Phase | Scope | Milestones |
-|---|---|---|
-| 0, research | Slurm release matrix, upstream behavior confirmation, controller load, node naming fixtures | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, cluster graphs | Queue depth, pending and running jobs, pending reasons, node states, partition utilization, Thold alerting, health page, release | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, nodes and maintenance | Node-to-device mapping, per-node state, automatic Maint windows for drained nodes and maintenance reservations | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, accounting | Fair-share usage, bounded accounting statistics, remote data collectors | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+Out of scope: any scheduler write path (submit, cancel, hold, drain, resume), a plugin-owned alerting engine, a reporting or chargeback engine, and per-user or per-job series. PBS Pro, OpenPBS, and LSF backends are research only.
 
-Out of scope: any scheduler write path (submit, cancel, hold, drain, resume), a plugin-owned alerting engine, a reporting or chargeback engine, per-user and per-job series. PBS Pro, OpenPBS, and LSF backends are research.
-
-## Compatibility targets
+## Requirements and compatibility
 
 | Component | Target |
 |---|---|
-| Cacti | 1.2.31 or later, no core patches |
-| PHP | 8.2 or later; `setup.php` stays parseable on 8.0 so an unsupported runtime gets a refusal instead of a broken Cacti UI |
-| Slurm | 25.05, 25.11, and 26.05, the three latest releases ([ADR 0013](docs/decisions/0013-three-latest-slurm-releases.md)); 25.11 and 26.05 are tested against a live cluster, 25.05 against fixtures only. Client commands are the default transport ([ADR 0012](docs/decisions/0012-client-commands-default-transport.md)) and use the data parser setting: v0.0.43 by default, which SchedMD removes in 27.05, or v0.0.44 or v0.0.45 on releases that ship them. slurmrestd clusters discover the newest parser the daemon serves |
-| Thold, Maint | No Thold change; Maint integration is a proposal that needs Maint maintainers' agreement |
+| Cacti | 1.2.31 or later (`compat = 1.2.31`), no core patches |
+| PHP | 8.2 or later; entry points stay parseable on 8.0 and refuse activation on 8.1 so an unsupported runtime gets a refusal instead of a broken Cacti UI |
+| Slurm | 25.05, 25.11, and 26.05 ([ADR 0013](docs/decisions/0013-three-latest-slurm-releases.md)); 26.05.5 is tested in CI on every change against a six-node container cluster, 25.11.8 on `main`, weekly, and on request, and 25.05 against fixtures only. Client commands default to data parser `v0.0.43` (with `v0.0.44` and `v0.0.45` selectable); `slurmrestd` clusters discover the newest parser the daemon serves |
+| Thold, Maint | No Thold changes required; `sync-maint` integrates with Cacti Maint's `plugin_maint_schedules` and `plugin_maint_hosts` tables using a plugin-owned link table (`plugin_hpcsched_maint_link`) |
+
+## Development and testing
+
+The CI workflow (`.github/workflows/plugin-ci-workflow.yml`) tests PHP 8.2 through 8.5 against Cacti `release/1.2.31` and `1.2.x`, PHP 8.0 entry-point linting, PHP 8.1 refusal, PHPStan, gettext/translation verification, REUSE licensing, workflow linting, cluster device flow and template export drift checks, and a live six-node Slurm cluster (`slurm-live`).
+
+With Cacti's locked shared Pest plugin harness (`CACTI_PEST_BIN`) and a disposable Cacti database:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Design
 
-- [docs/PLAN.md](docs/PLAN.md) is the full plan: architecture, upstream facts it depends on (with sources and an explicit list of unconfirmed assumptions), node mapping, state model, security boundaries, performance arithmetic, testing, and risks.
+- [docs/PLAN.md](docs/PLAN.md) is the architecture and design plan: upstream facts with sources, node mapping, state model, security boundaries, performance arithmetic, testing, and risks.
 - [docs/decisions/](docs/decisions/) holds architecture decision records.
 - [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) maps every requirement ID to its issue.
 
 ```mermaid
 flowchart LR
-    S[Slurm controller] -->|read-only calls, one set per cycle| R[Reader on the assigned Cacti poller]
+    S[Slurm controller] -->|read-only calls, one set per cycle| R[poller_hpcsched.php on assigned poller]
     R --> SNAP[(Snapshot tables)]
     SNAP --> SS[Script server inputs]
-    SS -->|poller_output| T[Thold and Maint]
+    SS -->|poller_output| T[Thold]
     SS --> G[Cacti graphs and permissions]
-    SNAP --> MAP[Node to device mapping]
-    MAP -->|owned, expiring schedules| T
+    SNAP --> MAP[NodeMatcher and MaintSynchronizer]
+    MAP -->|owned, expiring schedules| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor, and MCP abilities]
 ```
 
 ## How work is tracked
@@ -124,7 +179,7 @@ flowchart LR
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md). Commits need a DCO sign-off. Design discussion happens on issues; open decisions carry the `type: decision` label.
+Read [CONTRIBUTING.md](CONTRIBUTING.md). Commits need a DCO sign-off (`git commit -s`). Design discussion happens on issues; open decisions carry the `type: decision` label.
 
 ## Security
 

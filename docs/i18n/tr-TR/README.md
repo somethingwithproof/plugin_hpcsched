@@ -1,4 +1,4 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
 [English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
@@ -6,35 +6,47 @@
 
 # plugin_hpcsched
 
-Zaten Cacti'nin izlediği cihazların yanında bir HPC toplu iş zamanlayıcısının durumunu grafikleştiren bir Cacti 1.2 eklentisidir: kuyruk derinliği, bekleyen ve çalışan işler, işlerin neden beklediği, düğüm durumları ve bölüm (partition) kullanımı. İlk arka uç Slurm'dur. Thold, elde edilen veri kaynakları üzerinde uyarı verebilir; Maint ise boşaltılmış (drained) düğümler ve bakım rezervasyonları tarafından yönlendirilebilir.
+Zaten Cacti'nin izlediği cihazların yanında bir HPC toplu iş zamanlayıcısının durumunu grafikleştiren bir Cacti 1.2 eklentisidir (`hpcsched`, sürüm `0.1.0-dev`): kuyruk derinliği, bekleyen ve çalışan işler, işlerin neden beklediği, düğüm durumları, bölüm (partition) kullanımı ve hesap düzeyinde adil paylaşım (fair-share) kullanımı. Uygulanan arka uç Slurm'dur. Thold, elde edilen veri kaynakları üzerinde uyarı verebilir ve isteğe bağlı Maint eşitleyicisi, boşaltılmış (drained), kapalı (down) ve bakım için ayrılmış Slurm hesaplama düğümlerinden Cacti Maint pencerelerini yönetir.
 
-> **Durum: geliştirme aşamasında, henüz sürüm yayınlanmadı.** Kilometre taşı 2 (temel yapı) `main` dalına birleştirilmiştir ve bu dal kilometre taşı 3'ü (küme grafikleri ve bekleme nedenleri) ekler. Kod, Cacti'nin eklenti API'si üzerinden kurulur, yükseltilir ve kaldırılır; 8.2'nin altındaki PHP sürümlerini reddeder. Her biri bir Cacti yoklayıcısına (poller) atanmış Slurm kümelerinin bir kaydını tutar. Ana yoklayıcıdaki arka plan okuyucusu, her aralıkta küme başına bir anlık görüntü toplar; bunu `--json` ile `squeue`, `scontrol` ve `sshare` çalıştırarak ya da HTTPS üzerinden `slurmrestd` okuyarak yapar ve iş sayılarını durum ile bekleme nedenine göre, düğüm durumlarını, bölümleri, rezervasyonları ve adil paylaşım (fair-share) kullanımını güncellik bilgileriyle birlikte depolar. Eklenti, Cacti şablonlarını içerir ve yöneticinin onayıyla küme başına bir Cacti cihazı oluşturur ya da mevcut bir cihazla eşler; hem küme hem de her bölüm için duruma göre işler, neden ailesine göre bekleyen işler, duruma göre düğümler, CPU'lar ve kullanım oranları ile anlık görüntü yaşını gösteren grafikler üretir. Salt okunur genel bakış sayfası küme başına sayıları güncellikleriyle birlikte ve küme başına bekleme nedenleri görünümünü sunar; yalnızca yöneticilere açık sağlık sayfası ise her toplama işleminin ne döndürdüğünü ve şablonların kurulu olup olmadığını gösterir. Her sayfa ve eylem Cacti'nin cihaz izinlerini izler. Veri kaynakları Thold'un üzerinde uyarı oluşturabileceği türdendir, ancak henüz hiçbir Thold veya Maint entegrasyonu test edilmemiştir; bu, kilometre taşı 4 ve sonrasının kapsamındadır. Test paketi yapay Slurm komutlarını ve `slurmrestd` yanıtlarını kapsar; ayrıca CI aşağıda açıklandığı gibi kapsayıcılar içinde gerçek bir altı düğümlü Slurm kümesini de çalıştırarak sınar. Okuyucu henüz bir üretim kümesine karşı çalıştırılmamıştır. Operatör notlarının altındaki kısımlarda bu README, yayınlanmış davranışı değil tasarımı açıklamaktadır.
+> **Durum: geliştirme aşamasında, henüz sürüm yayınlanmadı.** Bu dal; eklenti temelini, küme ve bölüm grafiklerini, bekleme nedeni ailelerini, Slurm hesaplama düğümü ile Cacti cihazı eşleştirmesini, isteğe bağlı Cacti Maint pencere eşitlemesini, hesap düzeyinde adil paylaşım özetlerini, uzak veri toplayıcı yürütme ve çoğaltmasını, Configuration-as-Code (CasC) ve operasyon CLI'sini ve Cacti ekosistem kancalarını (CasC, Doctor ve MCP / Abilities API v2) uygular. Test paketi yapay Slurm komutlarını ve `slurmrestd` yanıtlarını kapsar; CI ise kapsayıcılar içinde çalışan altı düğümlü bir Slurm kümesini test eder. Okuyucu henüz bir üretim kümesine karşı çalıştırılmamıştır ve uçtan uca bir Thold yeniden oynatma testi henüz CI'da yer almamaktadır.
 
 Bu bağımsız bir projedir ve Cacti projesiyle herhangi bir bağlantısı yoktur.
+
+## Neler uygulandı
+
+- **Yaşam döngüsü ve şema (v3)**: kurulum, idempotent yükseltme, kaldırma (varsayılan olarak eklenti tablolarını korur) ve giriş noktalarını PHP 8.0'da ayrıştırılabilir tutarken PHP 8.2 alt sınırı. Şema v3; cluster, run, section, job-count, node-count, node, partition, reservation ve share tablolarının yanına `plugin_hpcsched_node_map` ve `plugin_hpcsched_maint_link` tablolarını ekler.
+- **Ana ve uzak yoklayıcılarda salt okunur Slurm toplama**: `poller_bottom`, her yoklayıcıda (`poller_id`) kendisine atanmış etkin kümeler için arka planda `poller_hpcsched.php --cluster=N` komutunu başlatır. Her çalışma, istemci komutları (`squeue`, `scontrol`, `--json` ile `sshare`) veya HTTPS üzerinden `slurmrestd` (sağlık uyarısıyla geri döngü HTTP'ye izin verilir) aracılığıyla küme başına önbelleğe alınmış bir anlık görüntü toplar. `INFO`, `remote_collect:1, remote_poller:1` bildirir ve `replicate_out`, gizli olmayan `plugin_hpcsched_cluster` tanımlarını uzak toplayıcılara (`poller_id >= 2`) çoğaltır; belirteç (token) dosyası içerikleri hiçbir zaman okunmaz veya çoğaltılmaz.
+- **Cacti şablonları ve küme grafikleri**: cihaz, veri ve grafik şablonlarını (`templates/hpcsched-templates.xml`) ve bölüm script-server veri sorgusunu (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`) içerir. Yönetici onayıyla, küme başına bir Cacti cihazı oluşturur veya eşler; duruma göre işler, neden ailesine göre bekleyen işler, duruma göre düğümler, CPU'lar, kullanım (küme ve bölüm başına) ve anlık görüntü yaşı için grafikler sağlar.
+- **Slurm düğüm-cihaz eşleştirme ve Cacti Maint eşitleme**: dört katmanlı doğrusal zamanlı eşleyici (`NodeMatcher`), Slurm hesaplama düğümlerini mevcut Cacti `host` kayıtlarıyla eşler (tam ana bilgisayar adı, tam adres, tam açıklama/takma ad veya IP olmayan adlar için ilk DNS etiketi) ve tahmin yürütmek yerine çoklu eşleşmeleri veya mükerrer cihaz taleplerini `ambiguous` olarak işaretler. `HostList::expand()` Slurm rezervasyon ana bilgisayar listelerini (10.000 düğüme kadar) genişletir. `MaintSynchronizer`, yönetici tarafından oluşturulan Maint zamanlamalarını değiştirmeden `DRAIN`, `DRAINING`, `DOWN` durumundaki veya etkin `MAINT`/`MAINTENANCE` rezervasyonlarındaki eşlenmiş düğümler için `plugin_hpcsched_maint_link` içinde izlenen eklentiye ait tek seferlik Cacti Maint zamanlamalarını oluşturur, yeniler ve kaldırır.
+- **Hesap düzeyinde adil paylaşım özetleri**: `collect_shares` etkinleştirildiğinde, Slurm hesap ilişkilendirme satırlarını `plugin_hpcsched_share` tablosuna toplar ([ADR 0010](../../decisions/0010-bound-series-cardinality.md) uyarınca kullanıcı satırlarını atlar). `ShareSummary` ve `ShareRepository` hesap/bölüm sayılarını, ham ve etkin kullanım toplamlarını, en düşük/en yüksek/ortalama adil paylaşım faktörlerini ve en üstteki hesapları hesaplar; hesap sayıları `hpcsched-get-queue-summary` içinde sunulur.
+- **CasC ve operasyon CLI'si (`cli/hpcsched.php`)**: YAML/XML yapılandırma dışa aktarma, doğrulama, deneme amaçlı (dry-run) fark planlama, onay kapılı uygulama, yapılandırılmış sağlık çıktısı ve isteğe bağlı Maint eşitleme (`sync-maint --dry-run` / `--apply`).
+- **Ekosistem kancaları (`setup.php`)**: `casc_register_providers`, `doctor_register_checks` ve `abilities_register`.
 
 ## Erişim rolleri
 
 | Yetki Alanı | Erişim |
 | --- | --- |
-| HPC Scheduler View | Mevcut izleme sayfaları. |
-| HPC Scheduler Operator | İzleme sayfalarına ek olarak Operations sayfası ve kişisel önceliklendirme (triage) onayları. |
-| HPC Scheduler Admin | Operator erişimine ek olarak mevcut yapılandırma ve yönetimsel eylemler. |
+| HPC Scheduler View | Salt okunur küme genel bakışı ve bekleme nedenleri (`hpcsched.php`). |
+| HPC Scheduler Operator | View erişimine ek olarak Operations sayfası (`hpcsched_operator.php`) ve kişisel önceliklendirme onayları. |
+| HPC Scheduler Admin | Operator erişimine ek olarak küme yönetimi (`hpcsched_clusters.php`) ve sağlık sayfası (`hpcsched_health.php`). |
 
-Yükseltme dosyalarını kopyaladıktan sonra yeni yetki alanını kaydetmek için yönetici olarak Plugins sayfasını açın. Operator yetki alanını **Configuration > Users** veya kullanıcı grupları altında açıkça atayın. Yükseltmeler mevcut View ve Admin yetki alanı kimliklerini ve izinlerini korur. Her istekte Admin erişimi Operator erişimini, Operator erişimi ise View erişimini devralır; bu durum kullanıcılara veya gruplara depolanmış ek izinler eklemez. Eklenti ayarları ayrıca Cacti'nin Settings iznine ek olarak HPC Scheduler Admin erişimi gerektirir.
+Yükseltme dosyalarını kopyaladıktan sonra yeni yetki alanlarını ve kancaları kaydetmek için yönetici olarak Plugins sayfasını açın. Operator yetki alanını **Configuration > Users** veya kullanıcı grupları altında açıkça atayın. Yükseltmeler mevcut View ve Admin yetki alanı kimliklerini ve izinlerini korur. Her istekte Admin erişimi Operator erişimini, Operator erişimi ise View erişimini devralır; bu durum kullanıcılara veya gruplara depolanmış ek izinler eklemez. Eklenti ayarları ayrıca Cacti'nin Settings iznine ek olarak HPC Scheduler Admin erişimi gerektirir.
 
-Cacti cihaz izinleri her kullanıcıya sunulan satırları ve eylemleri sınırlamaya devam eder; cihazı olmayan bir küme, eklenti yetki alanına sahip her kullanıcı için yönetimsel sayfalarda listelenir, ancak yalnızca bir cihaza eşlenmiş kümeleri listeleyen operatör görünümlerinde yer almaz. Kimlik bilgileri, yapılandırma, eşleme, silme ve diğer yönetimsel değişiklikler yönetimsel sayfalarda kalır. Onaylar yalnızca geçerli kullanıcının oturumunda, en fazla bir saat boyunca ve yalnızca aynı gözlem güncel kaldığı sürece geçerlidir. Yeni veya değişmiş gözlemler bunları geçersiz kılar. Başarısız bir ölçümü asla sağlıklı olarak işaretlemez veya uyarıları bastırmazlar.
+Cacti cihaz izinleri her kullanıcıya sunulan satırları ve eylemleri sınırlar. Bir Cacti cihazına eşlenmiş küme, yalnızca Cacti'nin o cihaza izin verdiği kullanıcılara gösterilir, dışa aktarılır ve bu kullanıcılar tarafından değiştirilebilir; bir cihazı eşlemek için hedef cihaza yönelik izin de gerekir. Cihazı olmayan bir küme, eklenti yetki alanına sahip kullanıcılar için yönetimsel sayfalarda listelenir, ancak yalnızca bir cihaza eşlenmiş kümeleri listeleyen operatör görünümlerinde yer almaz. Eklenti devre dışıyken eşlenmiş cihazı silinen bir küme yalnızca HPC Scheduler Admin erişimine sahip kullanıcılara gösterilir. Onaylar yalnızca geçerli kullanıcının oturumunda, en fazla bir saat boyunca ve yalnızca aynı gözlem güncel kaldığı sürece geçerlidir. Yeni veya değişmiş gözlemler bunları geçersiz kılar. Başarısız bir ölçümü asla sağlıklı olarak işaretlemez veya uyarıları bastırmazlar.
 
-## Kilometre taşı 2 için operatör notları
+## Operatör notları
 
-**En az ayrıcalık.** Eklenti yalnızca okuma yapar. Ona yönetici veya operatör rolü olmayan özel bir Slurm kullanıcısı verin (`sacctmgr` içinde `AdminLevel=None`). `slurm.conf` içinde `PrivateData=jobs` (veya `nodes`, `reservations`, `usage`) varsa, bu kullanıcı yalnızca kendi kayıtlarını görür; bu nedenle sayımlar eksik kalır ve eklenti bunu tespit edemez. Hesap için bu kısıtlamayı kaldırmak operatör veya yönetici düzeyi vermek anlamına gelir ve bu da değişiklik yapılmasına olanak tanır; bu ödünleşim tesisin kendi kararıdır. İstemci komutları için Cacti yoklayıcı kullanıcısının Slurm istemci ikili dosyalarına ve denetleyiciye ulaşan bir `slurm.conf` dosyasına ihtiyacı vardır; ikili dosya yolları Configuration > Settings > HPC Scheduler altında mutlak yol ayarlarıdır. `slurmrestd` için URL `https://` veya yalnızca loopback adresinde `http://` olmalıdır. TLS sertifikaları doğrulanır ve yönlendirmeler izlenmez. Configuration > Settings > HPC Scheduler altındaki isteğe bağlı bir slurmrestd ana bilgisayar listesi, bir kümenin belirtebileceği ana bilgisayarları ve bağlantı noktalarını sınırlar.
+### Güvenlik, en az ayrıcalık ve belirteç dosyaları
 
-**Uzak yoklayıcılar.** Bu sürüm yalnızca ana Cacti yoklayıcısında toplama yapar. Uzak bir veri toplayıcıya atanan bir kümeden veri toplanmaz: oradaki okuyucu günlüğe kaydedilen bir nedenle işlemi reddeder ve sağlık sayfası kümenin adını gösterir. Uzaktan toplama aşama 3'ün kapsamındadır.
+Eklenti yalnızca okuma yapar. Ona yönetici veya operatör rolü olmayan özel bir Slurm kullanıcısı verin (`sacctmgr` içinde `AdminLevel=None`). `slurm.conf` içinde `PrivateData=jobs` (veya `nodes`, `reservations`, `usage`) varsa, bu kullanıcı yalnızca kendi kayıtlarını görür; bu nedenle sayımlar eksik kalır ve eklenti bunu algılayamaz. Hesap için bu kısıtlamayı kaldırmak, değişikliklere de olanak tanıyan operatör veya yönetici düzeyi gerektirir; bu denge sitenin kararına bağlıdır.
 
-**Bellek.** Her toplama çalıştırması aynı anda tek bir zamanlayıcı yanıtının kodunu çözer; bu işlem PHP belleğinde yanıt boyutunun yaklaşık 12 katını kaplar (Slurm'unkine benzer yapıdaki iş kayıtları için yaklaşık 10 katı artı metnin kendisi olarak ölçülmüştür). Çalıştırma, PHP bellek sınırını Collection Memory ayarına (varsayılan olarak 1024 MiB) yükseltir ve Maximum Answer Size daha yüksek ayarlanmış olsa bile (Collection Memory - 64) / 12 MiB, yani varsayılan olarak 80 MiB'a kadar olan yanıtlara izin verir; bu durum gerçekleştiğinde sağlık sayfası uyarı verir. Daha büyük bir yanıt kendi bölümünü çok büyük olduğu için başarısız kılar ve yine de belleği tükenen bir çalıştırma başarısız olarak kaydedilir. Büyük bir küme her iki ayarın da yükseltilmesini gerektirebilir; 100.000 gerçek iş kaydı ölçülmemiştir.
+İstemci komutları için, Cacti yoklayıcı kullanıcısının Slurm istemci ikili dosyalarına (`squeue`, `scontrol` ve isteğe bağlı olarak `sshare`) ve denetleyiciye ulaşan bir `slurm.conf` dosyasına ihtiyacı vardır; ikili dosya yolları **Configuration > Settings > HPC Scheduler** altındaki mutlak ayarlardır.
 
-**Belirteç dosyaları.** Bir `slurmrestd` kümesi bir belirteç dosyası belirtir; belirtecin kendisi asla veritabanında depolanmaz, bir sayfada gösterilmez veya günlüğe yazılmaz. Dosya, Configuration > Settings > HPC Scheduler altında ayarlanan belirteç dosyası dizinlerinden birinin içinde bulunmalı, sembolik bağlantı olmadan ulaşılabilmeli ve yalnızca yoklayıcı kullanıcısının yazabileceği, yoklayıcı kullanıcısına ait, tek bir satır içeren normal bir dosya olmalıdır: belirteç ya da `scontrol token` çıktısının verdiği şekilde `SLURM_JWT=<token>`. Hiç belirteç dizini ayarlanmamışsa hiçbir küme `slurmrestd` kullanamaz. Bu iki ayar Cacti'nin Settings sayfasındadır, dolayısıyla eklentinin Admin yetki alanı tek başına bunları değiştiremez; her belirteç dizinini yalnızca root ve yoklayıcı kullanıcısı tarafından yazılabilir tutun. Grup veya diğer kullanıcılar tarafından okunabilen bir dosya yine de kullanılır ve sağlık sayfası uyarı verir. Sağlık sayfası ayrıca belirtecin süresi yapılandırılan uyarı süresi içinde dolduğunda da uyarı verir.
+`slurmrestd` için URL mutlaka `https://` veya yalnızca geri döngü adresinde `http://` olmalıdır. TLS sertifikaları doğrulanır ve yönlendirmeler izlenmez. **Configuration > Settings > HPC Scheduler** altındaki isteğe bağlı `slurmrestd` ana bilgisayar listesi, bir kümenin hangi ana bilgisayarları ve bağlantı noktalarını adlandırabileceğini kısıtlar.
 
-Okuyucunun kısmi bir dosya gördüğü bir zaman aralığı olmadan belirteci döndürmek için yeni belirteci eskisinin yanına yazın ve yerine yeniden adlandırın:
+Bir `slurmrestd` kümesi bir belirteç (token) dosyasını adlandırır; belirtecin kendisi hiçbir zaman veritabanında saklanmaz, bir sayfada gösterilmez, CasC tarafından dışa aktarılmaz veya günlüğe yazılmaz. Dosya, **Configuration > Settings > HPC Scheduler** altında yapılandırılan Token File Directories dizinlerinden birinin içinde olmalı, sembolik bağlantı olmadan erişilmeli ve yoklayıcı kullanıcısına ait olup yalnızca o kullanıcının yazabileceği, tek satır içeren normal bir dosya olmalıdır: belirteç veya `scontrol token` komutunun yazdırdığı biçimde `SLURM_JWT=<token>`. Hiçbir belirteç dizini ayarlanmamışsa hiçbir küme `slurmrestd` kullanamaz. Her belirteç dizinini yalnızca root ve yoklayıcı kullanıcısı tarafından yazılabilir tutun. Grup veya diğer kullanıcılar tarafından okunabilen bir dosya yine de kullanılır ve sağlık sayfası uyarır; belirtecin süresi yapılandırılan uyarı penceresi içinde dolduğunda da uyarır.
+
+Bir belirteci atomik olarak döndürmek için:
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -45,78 +57,131 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-Bir sonraki toplama yeni dosyayı okur. `scontrol token` ile belirteç oluşturmak bir Slurm yöneticisi gerektirir; bunu izin verilen yerde çalıştırın ve dosyayı yoklayıcıya kopyalayın.
+Bir sonraki toplama işlemi yeni dosyayı okur. `scontrol token` ile belirteç oluşturmak Slurm yöneticisi gerektirir; izin verilen yerde çalıştırın ve dosyayı yoklayıcıya kopyalayın.
 
-## Kilometre taşı 3 için operatör notları
+### Uzak veri toplayıcılar
 
-**Şablonlar.** Kurulum ve yükseltme, HPC Scheduler cihaz, veri ve grafik şablonlarını içe aktarır ve bölüm veri sorgusunu Cacti'nin `resource/script_server/` dizinine kopyalar. Bu dizin eklentiyi kuran kullanıcı tarafından yazılabilir değilse, aynı ada sahip farklı bir dosya zaten oradaysa ve eklenti tarafından yazılmamışsa ya da bu ad bir sembolik bağlantıysa, içe aktarma durur, dosyaya dokunulmaz ve sağlık sayfası ne yapılması gerektiğini bildirir; sağlık sayfasındaki Install Templates yeniden dener. Elle yapılmış birebir aynı bir kopya kullanılır ancak size ait kalır. Kaldırma işlemi sorgu dosyasını yalnızca eklenti yazmışsa ve dosya değiştirilmemişse siler; şablonları, cihazları ve grafikleri ise korur.
+`INFO`, `remote_collect:1, remote_poller:1` bildirir. `hpcsched_poller_bottom()`, ilgili `poller_id` değerine atanmış etkin kümeler için her yoklayıcıda `poller_hpcsched.php` betiğini başlatır ve `hpcsched_replicate_out()`, gizli olmayan `plugin_hpcsched_cluster` satırlarını uzak yoklayıcılara (`poller_id >= 2`) çoğaltır. Belirteç dosyaları ve Slurm istemci ikili dosyaları atanmış uzak yoklayıcıda yerel olarak bulunmalıdır; belirteç içerikleri hiçbir zaman çoğaltılmaz.
 
-**Küme cihazları.** HPC Clusters > Device, herhangi bir şey oluşturulmadan önce bir cihazın neler ekleyeceğini (grafikler, veri kaynakları, RRD dosyaları ve yoklama başına betik sunucusu çağrıları) gösterir. Create Device, ayrılmış `.invalid` etki alanında bir ana bilgisayar adına sahip ve erişilebilirlik denetimi olmayan bir cihaz oluşturur; Map Device ise bunun yerine grafikleri mevcut bir cihaza ekler ve ayarlarına dokunmaz. Her küme grafiğinin ve her bölüm grafiğinin kendi veri kaynağı vardır: küme için altı ve bölüm başına beş adet; yoklama başına küme veri kaynağı başına bir ve bir bölümün her değeri için bir (32) betik sunucusu çağrısı yapılır. Daha sonra eklenen bölümler okuyucu onları gördüğünde indekslenir ve Cacti'nin New Graphs sayfasından grafiklerini alır; kaldırılan bir bölümün yoklanması durur ve grafikleri korunur. Cihazı silmek kümenin eşlemesini kaldırır ve kümeyi korur.
+### Bellek sınırları
 
-**Grafiklerin saydıkları.** Bekleyen işler, kendi serisine sahip olan bekletilen (held) işleri hariç tutar. Bekleyen bir iş dizisi (array), kalan görevlerini sayar. Birden fazla bölümdeki bir iş veya düğüm, küme grafiklerinde bir kez ve her bölümde bir kez sayılır; bu nedenle bölüm grafiklerinin toplamının kümeninkine eşit olması gerekmez. Bekleme nedenleri on bir ailede gruplandırılmıştır ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); bekleme nedenleri görünümü Other içindekiler dahil ham nedenleri listeler. Her iş yalnızca zamanlayıcının incelediği son nedeni bildirir. Kullanım paydası boşaltılmış (drained), çalışmayan (down) ve diğer kullanılamayan düğümleri içerir. Bayat veya başarısız veriler asla sıfır değil `U` olur; `age` sayısal kalır.
+Her toplama çalışması aynı anda bir zamanlayıcı yanıtını çözer; bu da PHP belleğinde yanıt boyutunun yaklaşık 12 katı yer kaplar (Slurm benzeri iş kayıtları için metnin kendisiyle birlikte yaklaşık 10 katı olarak ölçülmüştür). Okuyucu, PHP bellek sınırını Collection Memory ayarına (varsayılan olarak 1024 MiB) yükseltir ve Maximum Answer Size daha yüksek ayarlanmış olsa bile `(Collection Memory - 64) / 12` MiB (varsayılan olarak 80 MiB) boyutuna kadar yanıtlara izin verir; Maximum Answer Size bu uyarlanmış sınırı aştığında sağlık sayfası uyarır. Daha büyük bir yanıt kendi bölümünü çok büyük olarak başarısız kılar ve yine de bellek tüketen bir çalışma bellek hatası kaydedip bir kapanma işleyicisi aracılığıyla kiralama ve işlem yuvasını serbest bırakır. Büyük kümelerde her iki ayarın da yükseltilmesi gerekebilir; 100.000 gerçek iş kaydı ölçülmemiştir.
 
-**Uyarı verme.** Thold bu veri kaynaklarından herhangi biri üzerinde uyarı verebilir; Thold sürelerini en az bir toplama aralığına ayarlayın ve durmuş bir okuyucuyu yakalamak için `age` üzerinde uyarı oluşturun. Uçtan uca Thold denetimi kilometre taşı 4'tür.
+### Şablonlar, küme cihazları ve grafik sayımı
 
-**Gerçek Slurm çıktısına karşı test edilmiştir.** CI, kapsayıcılar içinde altı düğümlü bir Slurm kümesi başlatır (her değişiklikte 26.05.5; `main` dalına gönderimlerde, haftalık olarak ve istek üzerine kaynaktan derlenen 25.11.8) ve düğüm durumlarını, bakım rezervasyonunu, bekleme nedenlerini ve iş dizilerini eklentinin ayrıştırdığı şekliyle denetler; ardından eklentinin kendi komut ve `slurmrestd` aktarım katmanlarıyla bu kümeden veri toplar. Daha eski sürümler yalnızca yapay test verileriyle (fixtures) kapsanmaktadır. Okuyucu hâlâ bir üretim kümesine karşı çalıştırılmamıştır.
+Kurulum ve yükseltme, HPC Scheduler cihaz, veri ve grafik şablonlarını içe aktarır ve bölüm veri sorgusunu Cacti'nin `resource/script_server/` dizinine kopyalar. Bu dizin yazılabilir değilse, orada aynı ada sahip farklı bir dosya varsa veya hedef bir sembolik bağlantıysa içe aktarma durur, dosyaya dokunulmaz ve **Install Templates** seçeneğinin yeniden denediği sağlık sayfasında durum bildirilir. Kaldırma işlemi, sorgu dosyasını yalnızca eklenti yazmışsa ve dosya değiştirilmemişse kaldırır; şablonları, cihazları ve grafikleri korur.
 
-**İzinler.** Bir cihaz üzerindeki küme, her eklenti sayfasında yalnızca Cacti'nin o cihaza izin verdiği kullanıcılara gösterilir, dışa aktarılır ve bu kullanıcılar tarafından değiştirilir; bir cihazı eşlemek de hedef cihaz için izin gerektirir. Cihazı olmayan bir küme, eklenti yetki alanına sahip herkese görünür. Eklenti devre dışıyken silinmiş bir cihazla hâlâ eşli olan bir küme yalnızca HPC Scheduler Admin yetki alanına sahip kullanıcılara gösterilir; bu kullanıcılar küme için bir cihaz oluşturabilir veya eşleyebilir. Grafik erişimi Cacti'nin kendi kurallarına tabidir.
+**HPC Clusters > Device**, herhangi bir şey oluşturmadan önce yoklama başına grafikleri, veri kaynaklarını, RRD dosyalarını ve script server çağrılarını önizler. **Create Device** ayrılmış `.invalid` etki alanında bir ana bilgisayar adına sahip ve kullanılabilirlik denetimi olmayan bir cihaz oluşturur; **Map Device** ise ayarlarını değiştirmeden grafikleri mevcut bir cihaza bağlar. Her küme grafiğinin ve bölüm grafiğinin kendi veri kaynağı vardır: küme için altı ve bölüm başına beş adet. Sonradan eklenen bölümler, okuyucu bir değişiklik algıladığında otomatik olarak yeniden dizinlenir; kaldırılan bölümlerin yoklanması durur ve grafikleri korunur. Bir cihazı silmek, küme kaydını korurken kümenin eşlemesini kaldırır (ve eşleşen `plugin_hpcsched_node_map` satırlarını temizler).
+
+Bekleyen işler, kendi serilerine sahip olan bekletilen (held) işleri hariç tutar. Bekleyen bir iş dizisi kalan görevlerini sayar. Birden fazla bölümdeki bir iş veya düğüm, küme grafiklerinde bir kez ve her bölümde bir kez sayılır; bu nedenle bölüm toplamlarının küme toplamına eşit olması gerekmez. Bekleme nedenleri on bir ailede gruplandırılmıştır ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); bekleme nedenleri görünümü `Other` içindekiler dahil ham nedenleri listeler. Kullanım paydası boşaltılmış, kapalı ve diğer kullanılamayan düğümleri içerir. Eski veya başarısız veriler asla sıfır olarak değil `U` olarak bildirilir; `age` sayısal kalır.
+
+Uyarılar için, en az bir toplama aralığı süresine sahip herhangi bir küme veya bölüm veri kaynağında Thold yapılandırın ve durmuş bir okuyucuyu algılamak için `age` üzerinde uyarı oluşturun.
+
+## CLI ve ekosistem kancaları
+
+### Okuyucu giriş noktası
+
+`hpcsched_poller_bottom()`, `poller_hpcsched.php` betiğini otomatik olarak başlatır; kümenin atandığı yoklayıcıda el ile de çalıştırılabilir:
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force`, komut satırı tanısı için eklenti devre dışıyken bile çalışır.
+
+### Configuration-as-Code, sağlık ve Maint eşitleme CLI'si
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export`, yeni dosyaları `0600` kipiyle (veya stdout'a) yazar ve yapılandırılmış `token_file` yollarını `[REDACTED]` ile değiştirir. `plan` ve `apply`, satır içi `jwt`, `secret` ve `password` alanlarını reddeder ve `[REDACTED]` sağlandığında mevcut yerel `token_file` yollarını korur. `apply`, `plan` tarafından yazdırılan tam `--confirm=PLAN_HASH` değerini gerektirir.
+- `health`, zamanlayıcılarla iletişim kurmadan veya belirteç dosyalarını okumadan şema güncelliğini, küme güncelliğini, çalışma sonuçlarını, Maint kullanılabilirliğini ve uyarıları değerlendirir.
+- `sync-maint` varsayılan olarak `--dry-run` kullanır ve `DRAIN`, `DRAINING`, `DOWN` durumundaki veya etkin `MAINT`/`MAINTENANCE` rezervasyonlarındaki eşlenmiş Slurm düğümleri için Cacti Maint zamanlamalarını önizler veya uygular (varsayılan boşaltma/kapalı ufku 3600 sn, yenileme payı 600 sn). `plugin_maint_schedules` ve `plugin_maint_hosts` yoksa `--apply` seçeneğini reddeder ve yalnızca `plugin_hpcsched_maint_link` içinde kayıtlı zamanlamaları günceller veya kaldırır.
+
+### Ekosistem kancaları
+
+İlgili Cacti eklentileri veya ana bilgisayar entegrasyonları mevcut olduğunda `setup.php` şunları kaydeder:
+
+- `casc_register_providers`: `hpcsched` yapılandırmasını (`yaml` ve `xml`, şema v1) gizli veri sansürleme ile dışa aktarır, doğrular, planlar ve onaylı olarak uygular.
+- `doctor_register_checks`: dört salt okunur tanılama denetimi sağlar (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: `hpcsched` kategorisi altında HPC Scheduler View yetki alanı (ve küme özetleri için cihaz izinleri) tarafından denetlenen üç salt okunur, yıkıcı olmayan, idempotent yetenek kaydeder: `hpcsched-list-clusters`, `hpcsched-get-queue-summary` ve `hpcsched-get-health`.
 
 ## Neden
 
-Cacti çalıştıran operatörler hesaplama düğümlerini zaten grafikleştirir. Zamanlayıcının görünümü bu grafiklerde eksiktir ve bu da iki boşluk bırakır:
+Cacti çalıştıran operatörler hesaplama düğümlerinin grafiklerini zaten çizmektedir. Bu grafiklerde zamanlayıcının görünümü eksiktir ve bu da iki boşluk bırakır:
 
-- **"İş neden başlamıyor" bilgisinin olmaması.** Slurm her bekleyen iş için bir neden kaydeder. Boşta duran düğüm grafiklerinin yanındaki dolu bir kuyruk, nedenin öncelik, kaynak sınırları, bekletmeler, bağımlılıklar veya boşaltılmış düğümler olup olmadığını söylemez.
-- **Zamanlayıcı durumu ile uyarı verme arasında bağlantı olmaması.** Thold, bir yöneticinin zaten boşalttığı bir cihaz için uyarı verir ve yöneticiler Maint zamanlamalarını elle oluşturur.
+- **"İş neden başlamıyor" yanıtının olmaması.** Slurm bekleyen her iş için bir neden kaydeder. Boşta duran düğüm grafiklerinin yanındaki dolu bir kuyruk, nedenin öncelik, kaynak sınırları, bekletmeler, bağımlılıklar veya boşaltılmış düğümler olup olmadığını söylemez.
+- **Zamanlayıcı durumu ile uyarı sistemi arasında bağlantı olmaması.** Thold, yöneticinin zaten boşalttığı bir cihazda uyarı verir ve yöneticiler Maint zamanlamalarını elle oluşturur.
 
-Eklenti, küme başına önbelleğe alınmış bir anlık görüntü toplar, bunu olağan Cacti veri kaynakları ve grafikleri olarak yayınlar, zamanlayıcı düğümlerini mevcut Cacti cihazlarıyla eşler ve boşaltılmış düğümleri ile bakım rezervasyonlarını Maint içine yerleştirebilir. Cacti'nin izinlerini, uzak veri toplayıcılarını, Thold'u ve Maint'i yeniden kullanır ve zamanlayıcıya karşı salt okunurdur.
+Eklenti, küme başına önbelleğe alınmış bir anlık görüntü toplar, bunu sıradan Cacti veri kaynakları ve grafikleri olarak yayınlar, zamanlayıcı düğümlerini mevcut Cacti cihazlarıyla eşler ve boşaltılmış, kapalı ve bakım için ayrılmış düğümler için eklentiye ait süresi dolan Maint pencerelerini eşitler. Cacti'nin izinlerini, uzak veri toplayıcılarını, Thold'u ve Maint'i yeniden kullanır ve zamanlayıcıya karşı kesinlikle salt okunur kalır.
 
-## Planlanan kapsam
+## Kapsam ve sınırlar
 
-| Aşama | Kapsam | Kilometre Taşları |
-|---|---|---|
-| 0, araştırma | Slurm sürüm matrisi, üst akış davranış doğrulaması, denetleyici yükü, düğüm adlandırma test verileri | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, küme grafikleri | Kuyruk derinliği, bekleyen ve çalışan işler, bekleme nedenleri, düğüm durumları, bölüm kullanımı, Thold uyarısı, sağlık sayfası, sürüm | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, düğümler ve bakım | Düğümden cihaza eşleme, düğüm başına durum, boşaltılmış düğümler ve bakım rezervasyonları için otomatik Maint pencereleri | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, muhasebe | Adil paylaşım (fair-share) kullanımı, sınırlı muhasebe istatistikleri, uzak veri toplayıcılar | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+Kapsam dışı: herhangi bir zamanlayıcı yazma yolu (submit, cancel, hold, drain, resume), eklentiye ait bir uyarı motoru, bir raporlama veya maliyetlendirme motoru ve kullanıcı başına veya iş başına seriler. PBS Pro, OpenPBS ve LSF arka uçları yalnızca araştırma amaçlıdır.
 
-Kapsam dışı: herhangi bir zamanlayıcı yazma yolu (gönderme, iptal etme, bekletme, boşaltma, sürdürme), eklentiye ait bir uyarı motoru, bir raporlama veya ücretlendirme motoru, kullanıcı başına ve iş başına seriler. PBS Pro, OpenPBS ve LSF arka uçları araştırma aşamasındadır.
-
-## Uyumluluk hedefleri
+## Gereksinimler ve uyumluluk
 
 | Bileşen | Hedef |
 |---|---|
-| Cacti | 1.2.31 veya üzeri, çekirdek yaması olmadan |
-| PHP | 8.2 veya üzeri; desteklenmeyen bir çalışma zamanının bozuk bir Cacti arayüzü yerine reddedilme mesajı alması için `setup.php` 8.0 üzerinde ayrıştırılabilir kalır |
-| Slurm | 25.05, 25.11 ve 26.05, en son üç sürüm ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 25.11 ve 26.05 canlı bir kümeye karşı, 25.05 ise yalnızca test verilerine karşı test edilir. İstemci komutları varsayılan aktarım katmanıdır ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) ve veri ayrıştırıcı ayarını kullanır: varsayılan olarak SchedMD'nin 27.05'te kaldıracağı v0.0.43 ya da bunları içeren sürümlerde v0.0.44 veya v0.0.45. slurmrestd kümeleri, arka plan programının sunduğu en yeni ayrıştırıcıyı keşfeder |
-| Thold, Maint | Thold değişikliği yok; Maint entegrasyonu, Maint bakımcılarının onayını gerektiren bir öneridir |
+| Cacti | 1.2.31 veya üzeri (`compat = 1.2.31`), çekirdek yaması yok |
+| PHP | 8.2 veya üzeri; giriş noktaları 8.0 üzerinde ayrıştırılabilir kalır ve 8.1 üzerinde etkinleştirmeyi reddeder, böylece desteklenmeyen bir çalışma zamanı bozuk bir Cacti kullanıcı arayüzü yerine ret yanıtı alır |
+| Slurm | 25.05, 25.11 ve 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 26.05.5 her değişiklikte altı düğümlü bir kapsayıcı kümesine karşı CI'da test edilir, 25.11.8 `main` üzerinde, haftalık ve istek üzerine test edilir, 25.05 ise yalnızca test verilerine karşı sınanır. İstemci komutları varsayılan olarak `v0.0.43` veri ayrıştırıcısını kullanır (`v0.0.44` ve `v0.0.45` seçilebilir); `slurmrestd` kümeleri artalan programının sunduğu en yeni ayrıştırıcıyı keşfeder |
+| Thold, Maint | Thold değişikliği gerekmez; `sync-maint`, eklentiye ait bir bağlantı tablosu (`plugin_hpcsched_maint_link`) kullanarak Cacti Maint'in `plugin_maint_schedules` ve `plugin_maint_hosts` tablolarıyla entegre olur |
+
+## Geliştirme ve test
+
+CI iş akışı (`.github/workflows/plugin-ci-workflow.yml`); Cacti `release/1.2.31` ve `1.2.x` sürümlerine karşı PHP 8.2 ile 8.5 arasını, PHP 8.0 giriş noktası lint denetimini, PHP 8.1 reddini, PHPStan'ı, gettext/çeviri doğrulamasını, REUSE lisanslamasını, iş akışı lint denetimini, küme cihazı akışını ve şablon dışa aktarma sapma denetimlerini ve canlı altı düğümlü bir Slurm kümesini (`slurm-live`) test eder.
+
+Cacti'nin kilitli paylaşılan Pest eklenti test düzeneği (`CACTI_PEST_BIN`) ve tek kullanımlık bir Cacti veritabanı ile:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Tasarım
 
-- [docs/PLAN.md](../../PLAN.md) tam plandır: mimari, dayandığı üst akış gerçekleri (kaynakları ve doğrulanmamış varsayımların açık bir listesiyle), düğüm eşleme, durum modeli, güvenlik sınırları, performans aritmetiği, testler ve riskler.
-- [docs/decisions/](../../decisions) mimari karar kayıtlarını barındırır.
-- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) her gereksinim kimliğini ilgili iş kaydıyla eşler.
+- [docs/PLAN.md](../../PLAN.md) mimari ve tasarım planıdır: kaynaklarıyla birlikte yukarı akış gerçekleri, düğüm eşleme, durum modeli, güvenlik sınırları, performans aritmetiği, test ve riskler.
+- [docs/decisions/](../../decisions/) mimari karar kayıtlarını içerir.
+- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) her gereksinim kimliğini ilgili sorunuyla eşler.
 
 ```mermaid
 flowchart LR
-    S[Slurm denetleyicisi] -->|salt okunur çağrılar, döngü başına bir küme| R[Atanan Cacti yoklayıcısındaki okuyucu]
+    S[Slurm denetleyicisi] -->|salt okunur çağrılar, döngü başına bir küme| R[atanan yoklayıcıda poller_hpcsched.php]
     R --> SNAP[(Anlık görüntü tabloları)]
-    SNAP --> SS[Betik sunucusu girdileri]
-    SS -->|poller_output| T[Thold ve Maint]
+    SNAP --> SS[Script server girdileri]
+    SS -->|poller_output| T[Thold]
     SS --> G[Cacti grafikleri ve izinleri]
-    SNAP --> MAP[Düğümden cihaza eşleme]
-    MAP -->|sahipli, süresi dolan zamanlamalar| T
+    SNAP --> MAP[NodeMatcher ve MaintSynchronizer]
+    MAP -->|sahipli, süresi dolan zamanlamalar| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor ve MCP yetenekleri]
 ```
 
-## Çalışmaların izlenme biçimi
+## İşin izlenme biçimi
 
-- **Kilometre taşları**, plandaki kilometre taşlarını izler. Her birinin alt iş kayıtlarını ve çıkış kanıtlarını listeleyen bir epik iş kaydı vardır.
-- **İş kayıtları** etiketlerle türlendirilir: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Gereksinim iş kayıtları numaralandırılmış, test edilebilir gereksinimleri (`REQ-AREA-NNN`) ve kabul ölçütlerini belirtir.
-- **Etiketler** ayrıca `area:`, `phase:`, `priority:` ve `status:` taşır. Bkz. [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
-- [Proje panosu](https://github.com/users/somethingwithproof/projects/10) kilometre taşları genelindeki tüm iş kayıtlarını gösterir.
+- **Kilometre taşları** planın kilometre taşlarını takip eder. Her birinin alt sorunlarını ve çıkış kanıtlarını listeleyen bir epik sorunu vardır.
+- **Sorunlar** etiketlerle türlerine ayrılır: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Gereksinim sorunları numaralandırılmış, test edilebilir gereksinimleri (`REQ-AREA-NNN`) ve kabul ölçütlerini belirtir.
+- **Etiketler** ayrıca `area:`, `phase:`, `priority:` ve `status:` bilgilerini taşır. Bkz. [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
+- [Proje panosu](https://github.com/users/somethingwithproof/projects/10) tüm kilometre taşlarındaki tüm sorunları gösterir.
 
 ## Katkıda bulunma
 
-[CONTRIBUTING.md](../../../CONTRIBUTING.md) dosyasını okuyun. Commit'ler bir DCO imzası gerektirir. Tasarım tartışmaları iş kayıtları üzerinde yapılır; açık kararlar `type: decision` etiketini taşır.
+[CONTRIBUTING.md](../../../CONTRIBUTING.md) dosyasını okuyun. Commit'ler bir DCO imzası (`git commit -s`) gerektirir. Tasarım tartışmaları sorunlar üzerinde yapılır; açık kararlar `type: decision` etiketini taşır.
 
 ## Güvenlik
 
@@ -124,4 +189,4 @@ Güvenlik açıklarını gizli olarak bildirin; bkz. [SECURITY.md](../../../SECU
 
 ## Lisans
 
-Cacti ve eklentileriyle aynı lisans olan GNU General Public License v2.0. Bkz. [LICENSE](../../../LICENSE).
+GNU General Public License v2.0, Cacti ve eklentileriyle aynı lisans. Bkz. [LICENSE](../../../LICENSE).

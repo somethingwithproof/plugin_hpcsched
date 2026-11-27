@@ -1,4 +1,4 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
 [English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
@@ -6,45 +6,47 @@
 
 # plugin_hpcsched
 
-Een Cacti 1.2-plug-in die de status van een HPC-batchscheduler in grafieken weergeeft naast de apparaten die Cacti al monitort: wachtrijdiepte, wachtende versus actieve jobs, waarom jobs wachten, nodestatussen en partitiebenutting. Slurm is de eerste backend. Thold geeft meldingen op basis van de resulterende gegevensbronnen, en Maint kan worden aangestuurd door gedrainde nodes en onderhoudsreserveringen.
+Een Cacti 1.2-plug-in (`hpcsched`, versie `0.1.0-dev`) die de status van een HPC-batchscheduler in grafieken weergeeft naast de apparaten die Cacti al monitort: wachtrijdiepte, wachtende versus actieve jobs, waarom jobs wachten, nodestatussen, partitiebenutting en fair-share-gebruik op accountniveau. Slurm is de geïmplementeerde backend. Thold geeft meldingen op de resulterende gegevensbronnen, en een opt-in Maint-synchronisator stuurt Cacti Maint-vensters aan vanuit gedrainde, niet-beschikbare (down) en voor onderhoud gereserveerde Slurm-rekennodes.
 
-> **Status: in ontwikkeling, nog geen release.** Mijlpaal 2 (basis) is gemerged op `main`, en deze branch voegt mijlpaal 3 toe (clustergrafieken en wachtredenen). De code wordt geïnstalleerd, bijgewerkt en gede-installeerd via de plug-in-API van Cacti en weigert PHP lager dan 8.2. De plug-in houdt een register bij van Slurm-clusters, elk toegewezen aan één Cacti-poller. Een achtergrondlezer op de hoofdpoller verzamelt één snapshot per cluster per interval, door `squeue`, `scontrol` en `sshare` uit te voeren met `--json` of door `slurmrestd` uit te lezen via HTTPS, en slaat jobaantallen op per status en wachtreden, nodestatussen, partities, reserveringen en fair-share-gebruik samen met hun actualiteit. De plug-in levert Cacti-sjablonen mee en maakt of koppelt, na bevestiging door een beheerder, één Cacti-apparaat per cluster met grafieken van jobs per status, wachtende jobs per redenfamilie, nodes per status, CPU's en benutting, voor het cluster en voor elke partitie, plus de leeftijd van de snapshot. Een alleen-lezen overzichtspagina toont aantallen per cluster met hun actualiteit en een weergave van wachtredenen per cluster, en een statuspagina alleen voor beheerders toont wat elke verzameling heeft teruggegeven en of de sjablonen zijn geïnstalleerd. Elke pagina en actie volgt de apparaatmachtigingen van Cacti. De gegevensbronnen zijn geschikt voor Thold-meldingen, maar er is nog geen Thold- of Maint-integratie getest; dat is voor mijlpaal 4 en later. De testsuite dekt synthetische Slurm-commando's en `slurmrestd`-antwoorden, en CI test ook een echt Slurm-cluster met zes nodes in containers zoals hieronder beschreven. De lezer heeft nog niet gedraaid op een productiecluster. Onder de beheerdersnotities beschrijft deze README het ontwerp, niet het opgeleverde gedrag.
+> **Status: in ontwikkeling, nog geen release.** Deze branch implementeert de basis van de plug-in, cluster- en partitiegrafieken, families van wachtredenen, het koppelen van Slurm-rekennodes aan Cacti-apparaten, opt-in synchronisatie van Cacti Maint-vensters, fair-share-samenvattingen op accountniveau, uitvoering en replicatie op externe gegevensverzamelaars, een Configuration-as-Code (CasC)- en beheer-CLI, en Cacti-ecosysteemhooks (CasC, Doctor en MCP / Abilities API v2). De testsuite dekt synthetische Slurm-commando's en `slurmrestd`-antwoorden, en CI test een actief Slurm-cluster met zes nodes in containers. De lezer heeft nog niet gedraaid op een productiecluster, en een end-to-end Thold-replaytest zit nog niet in CI.
 
 Dit is een onafhankelijk project en is niet gelieerd aan het Cacti-project.
+
+## Wat is geïmplementeerd
+
+- **Levenscyclus en schema (v3)**: installeren, idempotent upgraden, verwijderen (met standaard behoud van plug-intabellen) en een minimale vereiste van PHP 8.2, terwijl toegangspunten parseerbaar blijven op PHP 8.0. Schema v3 voegt `plugin_hpcsched_node_map` en `plugin_hpcsched_maint_link` toe naast de tabellen voor clusters, runs, secties, jobaantallen, nodeaantallen, nodes, partities, reserveringen en shares.
+- **Alleen-lezen Slurm-verzameling op hoofd- en externe pollers**: `poller_bottom` start `poller_hpcsched.php --cluster=N` op de achtergrond op elke poller (`poller_id`) voor de daaraan toegewezen ingeschakelde clusters. Elke run verzamelt één gecachte snapshot per cluster via clientcommando's (`squeue`, `scontrol`, `sshare` met `--json`) of `slurmrestd` via HTTPS (loopback-HTTP toegestaan met een statuswaarschuwing). `INFO` verklaart `remote_collect:1, remote_poller:1`, en `replicate_out` repliceert niet-geheime `plugin_hpcsched_cluster`-definities naar externe verzamelaars (`poller_id >= 2`); de inhoud van tokenbestanden wordt nooit gelezen of gerepliceerd.
+- **Cacti-sjablonen en clustergrafieken**: levert apparaat-, gegevens- en grafieksjablonen (`templates/hpcsched-templates.xml`) en de partitie-scriptservergegevensquery (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`). Na bevestiging door een beheerder maakt of koppelt de plug-in één Cacti-apparaat per cluster met grafieken voor jobs per status, wachtende jobs per redenfamilie, nodes per status, CPU's, benutting (cluster en per partitie) en leeftijd van de snapshot.
+- **Koppeling van Slurm-nodes aan apparaten en Cacti Maint-synchronisatie**: een viertraps matcher met lineaire looptijd (`NodeMatcher`) koppelt Slurm-rekennodes aan bestaande Cacti `host`-records (exacte hostnaam, exact adres, exacte beschrijving/alias of eerste DNS-label voor niet-IP-namen) en markeert meervoudige matches of dubbele apparaatclaims als `ambiguous` in plaats van te gokken. `HostList::expand()` vouwt hostlijsten van Slurm-reserveringen uit (tot 10.000 nodes). `MaintSynchronizer` maakt, verlengt en verwijdert eenmalige Cacti Maint-schema's die eigendom zijn van de plug-in en worden bijgehouden in `plugin_hpcsched_maint_link` voor gekoppelde nodes in `DRAIN`, `DRAINING`, `DOWN` of actieve `MAINT`/`MAINTENANCE`-reserveringen zonder door beheerders gemaakte Maint-schema's te wijzigen.
+- **Fair-share-samenvattingen op accountniveau**: wanneer `collect_shares` is ingeschakeld, verzamelt het Slurm-accountkoppelingsrijen in `plugin_hpcsched_share` (waarbij gebruikersrijen worden weggelaten conform [ADR 0010](../../decisions/0010-bound-series-cardinality.md)). `ShareSummary` en `ShareRepository` berekenen aantallen accounts/partities, totalen voor ruw en effectief gebruik, min/max/gemiddelde fair-share-factoren en topaccounts; accountaantallen worden beschikbaar gemaakt in `hpcsched-get-queue-summary`.
+- **CasC- en beheer-CLI (`cli/hpcsched.php`)**: YAML/XML-configuratie-export, validatie, dry-run diff-planning, door bevestiging bewaakt toepassen, gestructureerde statusuitvoer en opt-in Maint-synchronisatie (`sync-maint --dry-run` / `--apply`).
+- **Ecosysteemhooks (`setup.php`)**: `casc_register_providers`, `doctor_register_checks` en `abilities_register`.
 
 ## Toegangsrollen
 
 | Realm | Toegang |
 | --- | --- |
-| HPC Scheduler View | Bestaande monitoringpagina's. |
-| HPC Scheduler Operator | Monitoring plus de pagina Operations en persoonlijke triagebevestigingen. |
-| HPC Scheduler Admin | Operator-toegang plus de bestaande configuratie- en beheeracties. |
+| HPC Scheduler View | Alleen-lezen clusteroverzicht en wachtredenen (`hpcsched.php`). |
+| HPC Scheduler Operator | View-toegang plus de pagina Operations (`hpcsched_operator.php`) en persoonlijke triagebevestigingen. |
+| HPC Scheduler Admin | Operator-toegang plus clusterbeheer (`hpcsched_clusters.php`) en de statuspagina (`hpcsched_health.php`). |
 
-Open na het kopiëren van de upgradebestanden de pagina Plugins als beheerder om het
-nieuwe realm te registreren. Wijs het Operator-realm expliciet toe onder **Configuration > Users** of gebruikersgroepen.
-Upgrades behouden de bestaande View- en Admin-realm-ID's en -toekenningen. Admin-toegang
-erft Operator-toegang en Operator-toegang erft View-toegang bij elk verzoek;
-dit voegt geen opgeslagen toekenningen toe aan gebruikers of groepen. Plug-in-instellingen vereisen daarnaast
-HPC Scheduler Admin-toegang bovenop Cacti's Settings-machtiging.
+Open na het kopiëren van de upgradebestanden als beheerder de pagina Plugins om nieuwe realms en hooks te registreren. Wijs de Operator-realm expliciet toe onder **Configuration > Users** of gebruikersgroepen. Upgrades behouden bestaande View- en Admin-realm-ID's en toekenningen. Admin-toegang erft Operator-toegang en Operator-toegang erft View-toegang bij elke aanvraag; dit voegt geen opgeslagen toekenningen toe aan gebruikers of groepen. Plug-ininstellingen vereisen naast de Settings-machtiging van Cacti ook HPC Scheduler Admin-toegang.
 
-De apparaatmachtigingen van Cacti blijven de rijen en acties beperken die voor elke gebruiker beschikbaar zijn; een cluster zonder apparaat wordt op de beheerpagina's weergegeven voor elke gebruiker met het plug-in-realm, maar niet in de operatorweergaven, die alleen clusters tonen die aan een apparaat zijn gekoppeld.
-Inloggegevens, configuratie, koppeling, verwijdering en andere beheerwijzigingen
-blijven op de beheerpagina's. Bevestigingen gelden alleen binnen de huidige sessie
-van de gebruiker, voor maximaal één uur en alleen zolang dezelfde waarneming actueel
-blijft. Nieuwe of gewijzigde waarnemingen maken ze ongeldig. Ze markeren nooit een mislukte
-meting als gezond en onderdrukken geen meldingen.
+Apparaatmachtigingen van Cacti beperken de rijen en acties die voor elke gebruiker beschikbaar zijn. Een cluster dat is gekoppeld aan een Cacti-apparaat wordt alleen getoond, geëxporteerd en gewijzigd voor gebruikers die van Cacti toegang hebben tot dat apparaat; het koppelen van een apparaat vereist ook machtiging voor het doelapparaat. Een cluster zonder apparaat wordt op de beheerpagina's vermeld voor gebruikers met de plug-inrealm, maar niet in operatorweergaven, die alleen clusters tonen die aan een apparaat zijn gekoppeld. Een cluster waarvan het gekoppelde apparaat is verwijderd terwijl de plug-in was uitgeschakeld, wordt alleen getoond aan gebruikers met HPC Scheduler Admin-toegang. Bevestigingen blijven alleen behouden in de huidige sessie van de gebruiker, gedurende maximaal één uur en alleen zolang dezelfde waarneming actueel blijft. Nieuwe of gewijzigde waarnemingen maken ze ongeldig. Ze markeren een mislukte meting nooit als gezond en onderdrukken geen meldingen.
 
-## Beheerdersnotities voor mijlpaal 2
+## Beheerdersnotities
 
-**Minimale rechten (least privilege).** De plug-in leest alleen. Geef de plug-in een eigen Slurm-gebruiker zonder beheerders- of operatorrol (`AdminLevel=None` in `sacctmgr`). Met `PrivateData=jobs` (of `nodes`, `reservations`, `usage`) in `slurm.conf` ziet die gebruiker alleen zijn eigen records, waardoor de aantallen onvolledig zijn en de plug-in dit niet kan detecteren. Dat opheffen voor het account betekent een operator- of beheerdersniveau, waarmee ook wijzigingen mogelijk zijn; die afweging is aan de locatie zelf. Voor clientcommando's heeft de Cacti-pollergebruiker de Slurm-clientbinaries nodig en een `slurm.conf` die de controller bereikt; de binaire paden zijn absolute instellingen onder Configuration > Settings > HPC Scheduler. Voor `slurmrestd` moet de URL `https://` zijn, of `http://` alleen op een loopback-adres. TLS-certificaten worden geverifieerd en omleidingen worden niet gevolgd. Een optionele slurmrestd-hostlijst onder Configuration > Settings > HPC Scheduler beperkt de hosts en poorten die een cluster mag opgeven.
+### Beveiliging, minimale rechten en tokenbestanden
 
-**Externe pollers.** Deze release verzamelt alleen op de hoofdpoller van Cacti. Een cluster dat is toegewezen aan een externe gegevensverzamelaar (remote data collector) wordt niet uitgelezen: de lezer weigert daar met een gelogde reden en de statuspagina noemt het cluster. Verzameling op afstand is fase 3.
+De plug-in leest alleen. Geef de plug-in een toegewezen Slurm-gebruiker zonder beheerders- of operatorrol (`AdminLevel=None` in `sacctmgr`). Met `PrivateData=jobs` (of `nodes`, `reservations`, `usage`) in `slurm.conf` ziet die gebruiker alleen zijn eigen records, waardoor aantallen onvolledig zijn en de plug-in dat niet kan detecteren. Het opheffen van die beperking voor het account vereist een operator- of beheerdersniveau, wat ook wijzigingen mogelijk maakt; die afweging is aan de beheerder van de omgeving.
 
-**Geheugen.** Elke verzamelingsrun decodeert één scheduler-antwoord tegelijk, wat ongeveer 12 keer de grootte van het antwoord aan PHP-geheugen kost (gemeten op ongeveer 10 keer voor jobrecords met de vorm van die van Slurm, plus de tekst zelf). De run verhoogt zijn PHP-geheugenlimiet tot de instelling Collection Memory (standaard 1024 MiB) en staat antwoorden toe tot (Collection Memory - 64) / 12 MiB, standaard 80 MiB, zelfs wanneer Maximum Answer Size hoger is ingesteld; de statuspagina waarschuwt als dat het geval is. Een groter antwoord laat zijn sectie mislukken als te groot, en een run die toch zonder geheugen komt te zitten wordt vastgelegd als mislukt. Voor een groot cluster moeten mogelijk beide instellingen worden verhoogd; 100.000 echte jobrecords zijn niet gemeten.
+Voor clientcommando's heeft de Cacti-pollergebruiker de Slurm-clientbinaries (`squeue`, `scontrol` en optioneel `sshare`) en een `slurm.conf` nodig die de controller bereikt; binaire paden zijn absolute instellingen onder **Configuration > Settings > HPC Scheduler**.
 
-**Tokenbestanden.** Een `slurmrestd`-cluster vermeldt een tokenbestand; het token zelf wordt nooit in de database opgeslagen, op een pagina getoond of naar het logboek geschreven. Het bestand moet in een van de tokenbestand-mappen staan die zijn ingesteld onder Configuration > Settings > HPC Scheduler, bereikt zonder symbolische link, en een regulier bestand zijn dat eigendom is van de pollergebruiker en alleen door die gebruiker kan worden beschreven, met één regel: het token, of `SLURM_JWT=<token>` zoals `scontrol token` het afdrukt. Als er geen tokenmappen zijn ingesteld, kan geen enkel cluster `slurmrestd` gebruiken. Deze twee instellingen staan op de Settings-pagina van Cacti, dus het Admin-realm van de plug-in alleen kan ze niet wijzigen; houd elke tokenmap alleen beschrijfbaar door root en de pollergebruiker. Een bestand dat door de groep of andere gebruikers kan worden gelezen wordt nog steeds gebruikt, maar de statuspagina geeft een waarschuwing. De statuspagina waarschuwt ook wanneer het token binnen de geconfigureerde waarschuwingstijd verloopt.
+Voor `slurmrestd` moet de URL `https://` zijn, of `http://` uitsluitend op een loopback-adres. TLS-certificaten worden geverifieerd en omleidingen worden niet gevolgd. Een optionele `slurmrestd`-hostlijst onder **Configuration > Settings > HPC Scheduler** beperkt welke hosts en poorten een cluster mag opgeven.
 
-Om een token te roteren zonder een tijdsvenster waarin de lezer een onvolledig bestand ziet, schrijf je het nieuwe token naast het oude en hernoem je het op zijn plaats:
+Een `slurmrestd`-cluster wijst een tokenbestand aan; het token zelf wordt nooit opgeslagen in de database, getoond op een pagina, geëxporteerd via CasC of weggeschreven naar het logboek. Het bestand moet zich bevinden in een van de Token File Directories die zijn geconfigureerd onder **Configuration > Settings > HPC Scheduler**, bereikbaar zijn zonder symbolische link en een regulier bestand zijn dat eigendom is van de pollergebruiker en alleen door die gebruiker beschrijfbaar is, met één regel: het token of `SLURM_JWT=<token>` zoals `scontrol token` het afdrukt. Zonder ingestelde tokenmappen kan geen enkel cluster `slurmrestd` gebruiken. Houd elke tokenmap alleen beschrijfbaar voor root en de pollergebruiker. Een bestand dat leesbaar is voor groep of andere gebruikers wordt nog steeds gebruikt, en de statuspagina geeft een waarschuwing; deze waarschuwt ook wanneer het token binnen het geconfigureerde waarschuwingsvenster verloopt.
+
+Om een token atomair te roteren:
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -55,78 +57,131 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-De volgende verzameling leest het nieuwe bestand. Het genereren van tokens met `scontrol token` vereist een Slurm-beheerder; voer dit uit waar dat is toegestaan en kopieer het bestand naar de poller.
+De volgende verzameling leest het nieuwe bestand. Het genereren van tokens met `scontrol token` vereist een Slurm-beheerder; voer het uit waar dat is toegestaan en kopieer het bestand naar de poller.
 
-## Beheerdersnotities voor mijlpaal 3
+### Externe gegevensverzamelaars
 
-**Sjablonen.** Installatie en upgrade importeren de HPC Scheduler-apparaat-, gegevens- en grafieksjablonen en kopiëren de partitiegegevensquery naar Cacti's map `resource/script_server/`. Als die map niet beschrijfbaar is door de gebruiker die de plug-in installeert, er al een ander bestand met dezelfde naam staat dat niet door de plug-in is geschreven, of de naam een symbolische link is, stopt de import, blijft het bestand ongemoeid en geeft de statuspagina aan wat te doen; Install Templates op de statuspagina probeert het opnieuw. Een handmatig gemaakte identieke kopie wordt gebruikt maar blijft van jou. De-installatie verwijdert het querybestand alleen als de plug-in het heeft geschreven en het ongewijzigd is, en behoudt de sjablonen, apparaten en grafieken.
+`INFO` verklaart `remote_collect:1, remote_poller:1`. `hpcsched_poller_bottom()` start `poller_hpcsched.php` op elke poller voor ingeschakelde clusters die aan die `poller_id` zijn toegewezen, en `hpcsched_replicate_out()` repliceert niet-geheime `plugin_hpcsched_cluster`-rijen naar externe pollers (`poller_id >= 2`). Tokenbestanden en Slurm-clientbinaries moeten lokaal aanwezig zijn op de toegewezen externe poller; tokeninhoud wordt nooit gerepliceerd.
 
-**Clusterapparaten.** HPC Clusters > Device toont wat een apparaat toevoegt (grafieken, gegevensbronnen, RRD-bestanden en scriptserver-aanroepen per poll) voordat er iets wordt aangemaakt. Create Device maakt een apparaat met een hostnaam in het gereserveerde `.invalid`-domein en zonder beschikbaarheidscontrole; Map Device koppelt in plaats daarvan de grafieken aan een bestaand apparaat en laat de instellingen ervan ongemoeid. Elke clustergrafiek en elke partitiegrafiek heeft een eigen gegevensbron: zes voor het cluster en vijf per partitie, één scriptserver-aanroep per clustergegevensbron en één per waarde van een partitie (32) per poll. Partities die later worden toegevoegd worden geïndexeerd wanneer de lezer ze ziet en krijgen grafieken via Cacti's pagina New Graphs; een verwijderde partitie wordt niet meer gepolld en behoudt zijn grafieken. Het verwijderen van het apparaat ontkoppelt het cluster en behoudt het.
+### Geheugenlimieten
 
-**Wat de grafieken tellen.** Wachtend (pending) sluit tegengehouden (held) jobs uit, die hun eigen reeks hebben. Een wachtende array telt de resterende taken. Een job of node in meerdere partities telt één keer mee in de clustergrafieken en één keer in elke partitie, dus partitiegrafieken hoeven niet op te tellen tot die van het cluster. Wachtredenen zijn gegroepeerd in elf families ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); de weergave van wachtredenen somt de ruwe redenen op, inclusief die in Other. Elke job rapporteert alleen de laatste reden die de scheduler heeft onderzocht. De noemer voor benutting omvat gedrainde, niet-beschikbare (down) en andere onbeschikbare nodes. Verouderde of mislukte gegevens zijn `U`, nooit nul; `age` blijft numeriek.
+Elke verzamelrun decodeert één scheduler-antwoord tegelijk, wat ongeveer 12 keer de grootte van het antwoord in PHP-geheugen inneemt (gemeten op ongeveer 10 keer voor jobrecords in Slurm-formaat, plus de tekst zelf). De lezer verhoogt zijn PHP-geheugenlimiet naar de instelling Collection Memory (standaard 1024 MiB) en staat antwoorden toe tot `(Collection Memory - 64) / 12` MiB (standaard 80 MiB), zelfs wanneer Maximum Answer Size hoger is ingesteld; de statuspagina waarschuwt wanneer Maximum Answer Size die berekende limiet overschrijdt. Een groter antwoord laat zijn sectie mislukken als te groot, en een run die toch door zijn geheugen raakt, legt een geheugenfout vast en geeft zijn lease en processlot vrij via een shutdown-handler. Grote clusters moeten mogelijk beide instellingen verhogen; 100.000 echte jobrecords zijn nog niet gemeten.
 
-**Meldingen (alerting).** Thold kan meldingen geven op elk van deze gegevensbronnen; stel Thold-duren in op ten minste één verzamelingsinterval en stel een melding in op `age` om een gestopte lezer te detecteren. De end-to-end Thold-controle is mijlpaal 4.
+### Sjablonen, clusterapparaten en grafiektelling
 
-**Getest tegen echte Slurm-uitvoer.** CI start een Slurm-cluster met zes nodes in containers (26.05.5 bij elke wijziging, 25.11.8 gebouwd vanaf broncode bij pushes naar `main`, wekelijks en op verzoek) en controleert nodestatussen, de onderhoudsreservering, wachtredenen en arrays zoals de plug-in ze parseert, en verzamelt vervolgens gegevens van dat cluster met de eigen commando- en `slurmrestd`-transporten van de plug-in. Oudere releases worden alleen gedekt door synthetische fixtures. De lezer heeft nog steeds niet gedraaid op een productiecluster.
+Installeren en upgraden importeren de apparaat-, gegevens- en grafieksjablonen van HPC Scheduler en kopiëren de partitiegegevensquery naar de map `resource/script_server/` van Cacti. Als die map niet beschrijfbaar is, er al een ander bestand met dezelfde naam staat of het doel een symbolische link is, stopt de import, blijft het bestand onaangeroerd en wordt de situatie gemeld op de statuspagina waar **Install Templates** het opnieuw kan proberen. Verwijderen verwijdert het querybestand alleen als de plug-in het heeft geschreven en het ongewijzigd is, en behoudt de sjablonen, apparaten en grafieken.
 
-**Machtigingen.** Een cluster op een apparaat wordt op elke plug-inpagina alleen getoond, geëxporteerd en gewijzigd voor gebruikers die van Cacti toegang hebben tot dat apparaat; het koppelen van een apparaat vereist ook machtiging voor het doelapparaat. Een cluster zonder apparaat is zichtbaar voor iedereen met het plug-in-realm. Een cluster dat nog gekoppeld is aan een apparaat dat werd verwijderd terwijl de plug-in was uitgeschakeld, wordt alleen getoond aan gebruikers met het HPC Scheduler Admin-realm, die er een apparaat voor kunnen aanmaken of koppelen. Grafiektoegang is die van Cacti zelf.
+**HPC Clusters > Device** geeft vooraf een voorbeeld van de grafieken, gegevensbronnen, RRD-bestanden en scriptserver-aanroepen per poll voordat er iets wordt aangemaakt. **Create Device** maakt een apparaat aan met een hostnaam in het gereserveerde `.invalid`-domein en zonder beschikbaarheidscontrole; **Map Device** koppelt de grafieken aan een bestaand apparaat zonder de instellingen ervan te wijzigen. Elke clustergrafiek en partitiegrafiek heeft een eigen gegevensbron: zes voor het cluster en vijf per partitie. Later toegevoegde partities worden automatisch opnieuw geïndexeerd zodra de lezer een wijziging detecteert; verwijderde partities worden niet meer gepolld en behouden hun grafieken. Het verwijderen van een apparaat ontkoppelt het cluster (en wist alle bijbehorende `plugin_hpcsched_node_map`-rijen) terwijl het clusterrecord behouden blijft.
+
+Pending sluit geblokkeerde (held) jobs uit, die hun eigen reeks hebben. Een wachtende job-array telt zijn resterende taken. Een job of node in meerdere partities wordt één keer geteld in de clustergrafieken en één keer in elke partitie, zodat partitietotalen niet hoeven op te tellen tot het clustertotaal. Wachtredenen worden gegroepeerd in elf families ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); de weergave van wachtredenen somt de ruwe redenen op, inclusief die in `Other`. De noemer voor benutting omvat gedrainde, niet-beschikbare (down) en andere onbeschikbare nodes. Verouderde of mislukte gegevens worden gerapporteerd als `U`, nooit als nul; `age` blijft numeriek.
+
+Configureer voor meldingen Thold op een van de cluster- of partitiegegevensbronnen met een duur van ten minste één verzamelinterval, en stel een melding in op `age` om een gestopte lezer te detecteren.
+
+## CLI en ecosysteemhooks
+
+### Toegangspunt van de lezer
+
+`hpcsched_poller_bottom()` start `poller_hpcsched.php` automatisch; het kan ook handmatig worden uitgevoerd op de aan het cluster toegewezen poller:
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force` draait ook terwijl de plug-in is uitgeschakeld, voor diagnose via de opdrachtregel.
+
+### Configuration-as-Code-, status- en Maint-sync-CLI
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` schrijft nieuwe bestanden met modus `0600` (of naar stdout) en vervangt geconfigureerde `token_file`-paden door `[REDACTED]`. `plan` en `apply` weigeren inline `jwt`-, `secret`- en `password`-velden en behouden bestaande lokale `token_file`-paden wanneer `[REDACTED]` wordt opgegeven. `apply` vereist de exacte `--confirm=PLAN_HASH` die door `plan` is afgedrukt.
+- `health` evalueert de actualiteit van het schema, clusteractualiteit, runresultaten, beschikbaarheid van Maint en waarschuwingen zonder contact op te nemen met schedulers of tokenbestanden te lezen.
+- `sync-maint` gebruikt standaard `--dry-run` en toont of past Cacti Maint-schema's toe voor gekoppelde Slurm-nodes in `DRAIN`, `DRAINING`, `DOWN` of actieve `MAINT`/`MAINTENANCE`-reserveringen (standaard drain/down-horizon 3600s, verlengingsmarge 600s). Het weigert `--apply` als `plugin_maint_schedules` en `plugin_maint_hosts` ontbreken, en werkt alleen schema's bij of verwijdert alleen schema's die in `plugin_hpcsched_maint_link` zijn vastgelegd.
+
+### Ecosysteemhooks
+
+Wanneer de bijbehorende Cacti-plug-ins of hostintegraties aanwezig zijn, registreert `setup.php`:
+
+- `casc_register_providers`: exporteert, valideert, plant en past met bevestiging `hpcsched`-configuratie toe (`yaml` en `xml`, schema v1) met redactie van geheimen.
+- `doctor_register_checks`: biedt vier alleen-lezen diagnostische controles (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: registreert drie alleen-lezen, niet-destructieve, idempotente vaardigheden onder categorie `hpcsched`, afgeschermd door de HPC Scheduler View-realm (en apparaatmachtigingen voor clustersamenvattingen): `hpcsched-list-clusters`, `hpcsched-get-queue-summary` en `hpcsched-get-health`.
 
 ## Waarom
 
-Beheerders die Cacti gebruiken, maken al grafieken van hun rekennodes. Het beeld vanuit de scheduler ontbreekt in die grafieken, wat twee hiaten oplevert:
+Beheerders die Cacti gebruiken, brengen hun rekennodes al in grafieken in kaart. Het beeld vanuit de scheduler ontbreekt in die grafieken, wat twee leemtes achterlaat:
 
-- **Geen "waarom start het werk niet".** Slurm legt voor elke wachtende job een reden vast. Een volle wachtrij naast grafieken van inactieve nodes zegt niet of de oorzaak prioriteit, resourcelimieten, holds, afhankelijkheden of gedrainde nodes is.
-- **Geen koppeling tussen schedulerstatus en meldingen.** Thold geeft een melding voor een apparaat dat een beheerder al heeft gedraind, en beheerders maken handmatig Maint-planningen aan.
+- **Geen "waarom start het werk niet".** Slurm legt voor elke wachtende job een reden vast. Een volle wachtrij naast grafieken van inactieve nodes vertelt niet of de oorzaak prioriteit, resourcelimieten, blokkades, afhankelijkheden of gedrainde nodes is.
+- **Geen koppeling tussen schedulerstatus en meldingen.** Thold geeft meldingen voor een apparaat dat een beheerder al heeft gedraind, en beheerders maken handmatig Maint-schema's aan.
 
-De plug-in verzamelt één gecachte snapshot per cluster, publiceert deze als gewone Cacti-gegevensbronnen en -grafieken, koppelt schedulernodes aan bestaande Cacti-apparaten en kan gedrainde nodes en onderhoudsreserveringen in Maint plaatsen. Het hergebruikt Cacti's machtigingen, externe gegevensverzamelaars, Thold en Maint, en is alleen-lezen richting de scheduler.
+De plug-in verzamelt één gecachte snapshot per cluster, publiceert die als gewone Cacti-gegevensbronnen en -grafieken, koppelt schedulernodes aan bestaande Cacti-apparaten en synchroniseert plug-ineigen verlopende Maint-vensters voor gedrainde, niet-beschikbare en voor onderhoud gereserveerde nodes. Hij hergebruikt de machtigingen van Cacti, externe gegevensverzamelaars, Thold en Maint, en blijft strikt alleen-lezen richting de scheduler.
 
-## Geplande scope
+## Bereik en grenzen
 
-| Fase | Scope | Mijlpalen |
-|---|---|---|
-| 0, onderzoek | Slurm-releasematrix, bevestiging van upstreamgedrag, belasting van de controller, fixtures voor nodenaamgeving | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, clustergrafieken | Wachtrijdiepte, wachtende en actieve jobs, wachtredenen, nodestatussen, partitiebenutting, Thold-meldingen, statuspagina, release | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, nodes en onderhoud | Koppeling van node naar apparaat, status per node, automatische Maint-vensters voor gedrainde nodes en onderhoudsreserveringen | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, accounting | Fair-share-gebruik, begrensde accountingstatistieken, externe gegevensverzamelaars | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+Buiten bereik: elk schrijfpad naar een scheduler (indienen, annuleren, vasthouden, drainen, hervatten), een eigen meldingsengine in de plug-in, een rapportage- of doorbelastingsengine en tijdreeksen per gebruiker of per job. Backends voor PBS Pro, OpenPBS en LSF zijn uitsluitend onderzoeksonderwerp.
 
-Buiten scope: elk schrijfpad naar de scheduler (indienen, annuleren, hold, drain, hervatten), een eigen meldingen-engine in de plug-in, een rapportage- of doorbelastingsengine, reeksen per gebruiker en per job. Backends voor PBS Pro, OpenPBS en LSF zijn in onderzoek.
-
-## Compatibiliteitsdoelen
+## Vereisten en compatibiliteit
 
 | Component | Doel |
 |---|---|
-| Cacti | 1.2.31 of nieuwer, geen core-patches |
-| PHP | 8.2 of nieuwer; `setup.php` blijft parsebaar op 8.0 zodat een niet-ondersteunde runtime een weigering krijgt in plaats van een kapotte Cacti-UI |
-| Slurm | 25.05, 25.11 en 26.05, de drie nieuwste releases ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 25.11 en 26.05 zijn getest tegen een live cluster, 25.05 alleen tegen fixtures. Clientcommando's zijn het standaardtransport ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) en gebruiken de dataparser-instelling: standaard v0.0.43, die SchedMD verwijdert in 27.05, of v0.0.44 of v0.0.45 op releases die deze meeleveren. slurmrestd-clusters ontdekken de nieuwste parser die de daemon aanbiedt |
-| Thold, Maint | Geen wijziging aan Thold; Maint-integratie is een voorstel dat instemming van de Maint-beheerders vereist |
+| Cacti | 1.2.31 of later (`compat = 1.2.31`), geen core-patches |
+| PHP | 8.2 of later; toegangspunten blijven parseerbaar op 8.0 en weigeren activatie op 8.1 zodat een niet-ondersteunde runtime een weigering krijgt in plaats van een kapotte Cacti-UI |
+| Slurm | 25.05, 25.11 en 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 26.05.5 wordt bij elke wijziging in CI getest tegen een containercluster met zes nodes, 25.11.8 op `main`, wekelijks en op aanvraag, en 25.05 alleen tegen fixtures. Clientcommando's gebruiken standaard gegevensparser `v0.0.43` (met `v0.0.44` en `v0.0.45` selecteerbaar); `slurmrestd`-clusters ontdekken de nieuwste parser die de daemon aanbiedt |
+| Thold, Maint | Geen Thold-wijzigingen vereist; `sync-maint` integreert met de tabellen `plugin_maint_schedules` en `plugin_maint_hosts` van Cacti Maint via een koppeltabel die eigendom is van de plug-in (`plugin_hpcsched_maint_link`) |
+
+## Ontwikkeling en testen
+
+De CI-workflow (`.github/workflows/plugin-ci-workflow.yml`) test PHP 8.2 tot en met 8.5 tegen Cacti `release/1.2.31` en `1.2.x`, PHP 8.0-linting van toegangspunten, PHP 8.1-weigering, PHPStan, gettext-/vertalingsvalidatie, REUSE-licenties, workflow-linting, controles op clusterapparaatstromen en afwijkingen van sjabloonexports, en een live Slurm-cluster met zes nodes (`slurm-live`).
+
+Met Cacti's vergrendelde gedeelde Pest-plug-inharnas (`CACTI_PEST_BIN`) en een wegwerpdatabase voor Cacti:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Ontwerp
 
-- [docs/PLAN.md](../../PLAN.md) is het volledige plan: architectuur, upstreamfeiten waarop het steunt (met bronnen en een expliciete lijst van onbevestigde aannames), nodekoppeling, statusmodel, beveiligingsgrenzen, prestatierekenen, testen en risico's.
-- [docs/decisions/](../../decisions) bevat architecture decision records.
+- [docs/PLAN.md](../../PLAN.md) is het architectuur- en ontwerpplan: upstreamfeiten met bronnen, nodekoppeling, statusmodel, beveiligingsgrenzen, prestatierekenkunde, testen en risico's.
+- [docs/decisions/](../../decisions/) bevat architecturele beslissingsrecords.
 - [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) koppelt elke vereiste-ID aan het bijbehorende issue.
 
 ```mermaid
 flowchart LR
-    S[Slurm-controller] -->|alleen-lezen aanroepen, één set per cyclus| R[Lezer op de toegewezen Cacti-poller]
-    R --> SNAP[(Snapshot-tabellen)]
+    S[Slurm-controller] -->|alleen-lezen aanroepen, één set per cyclus| R[poller_hpcsched.php op toegewezen poller]
+    R --> SNAP[(Snapshottabellen)]
     SNAP --> SS[Scriptserver-invoer]
-    SS -->|poller_output| T[Thold en Maint]
-    SS --> G[Cacti-grafieken en -rechten]
-    SNAP --> MAP[Koppeling van nodes naar apparaten]
-    MAP -->|beheerde, aflopende planningen| T
+    SS -->|poller_output| T[Thold]
+    SS --> G[Cacti-grafieken en machtigingen]
+    SNAP --> MAP[NodeMatcher en MaintSynchronizer]
+    MAP -->|eigen, verlopende schema's| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor en MCP-vaardigheden]
 ```
 
-## Hoe werk wordt bijgehouden
+## Hoe het werk wordt gevolgd
 
-- **Mijlpalen** volgen de mijlpalen van het plan. Elke mijlpaal heeft een epic-issue met daarin de sub-issues en het opleverbewijs.
-- **Issues** worden getypeerd met een label: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Requirement-issues bevatten genummerde, testbare vereisten (`REQ-AREA-NNN`) en acceptatiecriteria.
+- **Mijlpalen** volgen de mijlpalen van het plan. Elke mijlpaal heeft een epic-issue met daarin de sub-issues en het afsluitbewijs.
+- **Issues** worden getypeerd met labels: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Vereisten-issues vermelden genummerde, testbare vereisten (`REQ-AREA-NNN`) en acceptatiecriteria.
 - **Labels** bevatten ook `area:`, `phase:`, `priority:` en `status:`. Zie [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
-- Het [projectbord](https://github.com/users/somethingwithproof/projects/10) toont alle issues over de mijlpalen heen.
+- Het [projectbord](https://github.com/users/somethingwithproof/projects/10) toont alle issues over alle mijlpalen heen.
 
 ## Bijdragen
 
-Lees [CONTRIBUTING.md](../../../CONTRIBUTING.md). Commits vereisen een DCO sign-off. Ontwerpdiscussies vinden plaats op issues; open beslissingen hebben het label `type: decision`.
+Lees [CONTRIBUTING.md](../../../CONTRIBUTING.md). Commits vereisen een DCO sign-off (`git commit -s`). Ontwerpdiscussies vinden plaats in issues; openstaande beslissingen dragen het label `type: decision`.
 
 ## Beveiliging
 
