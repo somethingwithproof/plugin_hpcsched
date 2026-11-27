@@ -227,6 +227,20 @@ final class BackfillMetrics {
 		$sorted = $samples;
 		sort($sorted, SORT_NUMERIC);
 
+		return self::percentileFromSorted($sorted, $count, $p);
+	}
+
+	/**
+	 * Compute an interpolated Hyndman-Fan type-7 percentile from an already
+	 * sorted ascending numeric array in O(1).
+	 *
+	 * @param non-empty-list<float> $sorted sorted ascending wait durations
+	 * @param positive-int          $count  length of $sorted
+	 * @param float                 $p      percentile in [0.0, 100.0]
+	 *
+	 * @return float
+	 */
+	private static function percentileFromSorted(array $sorted, int $count, float $p): float {
 		$clamped = max(0.0, min(100.0, $p));
 
 		if ($count === 1 || $clamped <= 0.0) {
@@ -234,15 +248,17 @@ final class BackfillMetrics {
 		}
 
 		if ($clamped >= 100.0) {
-			return round($sorted[$count - 1], 4);
+			return round($sorted[$count - 1] ?? $sorted[0], 4);
 		}
 
 		$rank  = ($clamped / 100.0) * ($count - 1);
 		$lower = (int) floor($rank);
 		$upper = (int) ceil($rank);
 		$frac  = $rank - $lower;
+		$loVal = $sorted[$lower] ?? $sorted[0];
+		$hiVal = $sorted[$upper] ?? $loVal;
 
-		return round($sorted[$lower] + ($frac * ($sorted[$upper] - $sorted[$lower])), 4);
+		return round($loVal + ($frac * ($hiVal - $loVal)), 4);
 	}
 
 	/**
@@ -288,6 +304,21 @@ final class BackfillMetrics {
 			? round(min(1.0, max(0.0, $backfillCpuSec / $idleHoleCpuSec)), 6)
 			: ($backfillCpuSec > 0.0 ? 1.0 : 0.0);
 
+		$p50  = 0.0;
+		$p95  = 0.0;
+		$p99  = 0.0;
+		$mean = 0.0;
+		$max  = 0.0;
+
+		if ($samples > 0) {
+			sort($waits, SORT_NUMERIC);
+			$p50  = self::percentileFromSorted($waits, $samples, 50.0);
+			$p95  = self::percentileFromSorted($waits, $samples, 95.0);
+			$p99  = self::percentileFromSorted($waits, $samples, 99.0);
+			$mean = round(array_sum($waits) / $samples, 4);
+			$max  = round($waits[$samples - 1], 4);
+		}
+
 		return [
 			'samples'               => $samples,
 			'started_jobs'          => $started,
@@ -298,11 +329,11 @@ final class BackfillMetrics {
 			'idle_hole_cpu_seconds' => round($idleHoleCpuSec, 4),
 			'backfill_efficiency'   => $efficiency,
 			'starving_jobs'         => $starving,
-			'wait_p50'              => self::percentile($waits, 50.0),
-			'wait_p95'              => self::percentile($waits, 95.0),
-			'wait_p99'              => self::percentile($waits, 99.0),
-			'wait_mean'             => $samples > 0 ? round(array_sum($waits) / $samples, 4) : 0.0,
-			'wait_max'              => $samples > 0 ? round(max($waits), 4) : 0.0,
+			'wait_p50'              => $p50,
+			'wait_p95'              => $p95,
+			'wait_p99'              => $p99,
+			'wait_mean'             => $mean,
+			'wait_max'              => $max,
 		];
 	}
 }

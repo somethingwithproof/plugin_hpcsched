@@ -37,29 +37,65 @@ enum JobState: string {
 	 * slurmctld keeps them (MinJobAge), so both transports drop them to
 	 * count the same jobs. A job still completing is not finished.
 	 */
-	private const FINISHED = ['BOOT_FAIL', 'CANCELLED', 'COMPLETED', 'DEADLINE', 'FAILED', 'NODE_FAIL', 'OUT_OF_MEMORY', 'PREEMPTED', 'TIMEOUT'];
+	private const FINISHED = [
+		'BOOT_FAIL'     => true,
+		'CANCELLED'     => true,
+		'COMPLETED'     => true,
+		'DEADLINE'      => true,
+		'FAILED'        => true,
+		'NODE_FAIL'     => true,
+		'OUT_OF_MEMORY' => true,
+		'PREEMPTED'     => true,
+		'TIMEOUT'       => true,
+	];
 
 	/**
 	 * @param list<string> $state the JSON job_state array (base state and flags)
 	 */
 	public static function finished(array $state): bool {
-		$set = array_map(static fn (string $s): string => strtoupper(trim($s)), $state);
+		$ended = false;
 
-		return !in_array('COMPLETING', $set, true) && array_intersect($set, self::FINISHED) !== [];
+		foreach ($state as $raw) {
+			$token = strtoupper(trim($raw));
+
+			if ($token === 'COMPLETING') {
+				return false;
+			}
+
+			if (isset(self::FINISHED[$token])) {
+				$ended = true;
+			}
+		}
+
+		return $ended;
 	}
 
 	/**
 	 * @param list<string> $state the JSON job_state array (base state and flags)
 	 */
 	public static function of(array $state, string $reason): self {
-		$set = array_map(static fn (string $s): string => strtoupper(trim($s)), $state);
+		$pending = false;
+		$running = false;
 
-		return match (true) {
-			in_array('COMPLETING', $set, true) => self::Completing,
-			in_array('PENDING', $set, true)    => ReasonFamily::of($reason) === ReasonFamily::Held ? self::Held : self::Pending,
-			in_array('RUNNING', $set, true)    => self::Running,
-			default                            => self::Other,
-		};
+		foreach ($state as $raw) {
+			$token = strtoupper(trim($raw));
+
+			if ($token === 'COMPLETING') {
+				return self::Completing;
+			}
+
+			if ($token === 'PENDING') {
+				$pending = true;
+			} elseif ($token === 'RUNNING') {
+				$running = true;
+			}
+		}
+
+		if ($pending) {
+			return ReasonFamily::of($reason) === ReasonFamily::Held ? self::Held : self::Pending;
+		}
+
+		return $running ? self::Running : self::Other;
 	}
 
 	/**

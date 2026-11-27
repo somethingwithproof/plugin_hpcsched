@@ -185,6 +185,7 @@ final class DominantResourceFairness {
 	 * @return array<string, array{fairshareFactor: ?float, effectiveUsage: ?float}>
 	 */
 	private function indexShareRecords(array $shareRecords): array {
+		/** @var array<string, array{factorSum: float, factorCount: int, effectiveSum: float, effectiveCount: int}> $grouped */
 		$grouped = [];
 
 		foreach ($shareRecords as $record) {
@@ -193,15 +194,22 @@ final class DominantResourceFairness {
 			}
 
 			if (!isset($grouped[$record->account])) {
-				$grouped[$record->account] = ['factors' => [], 'effective' => []];
+				$grouped[$record->account] = [
+					'factorSum'      => 0.0,
+					'factorCount'    => 0,
+					'effectiveSum'   => 0.0,
+					'effectiveCount' => 0,
+				];
 			}
 
 			if ($record->fairshareFactor !== null && is_finite($record->fairshareFactor)) {
-				$grouped[$record->account]['factors'][] = $record->fairshareFactor;
+				$grouped[$record->account]['factorSum'] += $record->fairshareFactor;
+				$grouped[$record->account]['factorCount']++;
 			}
 
 			if ($record->effectiveUsage !== null && is_finite($record->effectiveUsage)) {
-				$grouped[$record->account]['effective'][] = $record->effectiveUsage;
+				$grouped[$record->account]['effectiveSum'] += $record->effectiveUsage;
+				$grouped[$record->account]['effectiveCount']++;
 			}
 		}
 
@@ -209,8 +217,8 @@ final class DominantResourceFairness {
 
 		foreach ($grouped as $account => $data) {
 			$indexed[$account] = [
-				'fairshareFactor' => $data['factors'] !== [] ? array_sum($data['factors']) / count($data['factors']) : null,
-				'effectiveUsage'  => $data['effective'] !== [] ? array_sum($data['effective']) : null,
+				'fairshareFactor' => $data['factorCount'] > 0 ? $data['factorSum'] / $data['factorCount'] : null,
+				'effectiveUsage'  => $data['effectiveCount'] > 0 ? $data['effectiveSum'] : null,
 			];
 		}
 

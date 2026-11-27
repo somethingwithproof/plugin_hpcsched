@@ -95,31 +95,39 @@ final class NodeMatcher {
 			$rawHost  = trim($node['hostname'] ?? '');
 			$rawAddr  = trim($node['address'] ?? '');
 			$host     = self::norm($rawHost !== '' ? $rawHost : $nameKey);
-			$addr     = self::norm($rawAddr !== '' ? $rawAddr : $host);
-			$tiers   = [
-				self::TIER_HOSTNAME    => $byHost[$host] ?? [],
-				self::TIER_ADDRESS     => $byHost[$addr] ?? [],
-				self::TIER_DESCRIPTION => array_merge($byDesc[self::norm($nameKey)] ?? [], $byDesc[$host] ?? []),
-				self::TIER_SHORT       => (!self::isIp($host) && !str_contains($host, '.')) ? ($byShort[$host] ?? []) : [],
-			];
+			$resolved = ['state' => NodeMatchState::Unmatched, 'device' => null, 'tier' => null];
 
-			$candidates[$nameKey] = ['state' => NodeMatchState::Unmatched, 'device' => null, 'tier' => null];
+			// Evaluate tiers lazily in precedence order so a Tier 1 hostname hit
+			// avoids address normalization, description merging, and IP validation.
+			$tier1 = $byHost[$host] ?? [];
 
-			foreach ($tiers as $tier => $ids) {
-				$ids = array_values(array_unique($ids));
+			if ($tier1 !== []) {
+				$resolved = self::resolveTier(self::TIER_HOSTNAME, $tier1);
+			} else {
+				$addr  = $rawAddr !== '' ? self::norm($rawAddr) : $host;
+				$tier2 = $byHost[$addr] ?? [];
 
-				if (count($ids) === 1) {
-					$candidates[$nameKey] = ['state' => NodeMatchState::Proposed, 'device' => $ids[0], 'tier' => $tier];
+				if ($tier2 !== []) {
+					$resolved = self::resolveTier(self::TIER_ADDRESS, $tier2);
+				} else {
+					$normName = self::norm($nameKey);
+					$descA    = $byDesc[$normName] ?? [];
+					$descB    = $normName !== $host ? ($byDesc[$host] ?? []) : [];
+					$tier3    = $descA === [] ? $descB : ($descB === [] ? $descA : array_values(array_unique(array_merge($descA, $descB))));
 
-					break;
-				}
+					if ($tier3 !== []) {
+						$resolved = self::resolveTier(self::TIER_DESCRIPTION, $tier3);
+					} elseif (!str_contains($host, '.') && !self::isIp($host)) {
+						$tier4 = $byShort[$host] ?? [];
 
-				if (count($ids) > 1) {
-					$candidates[$nameKey] = ['state' => NodeMatchState::Ambiguous, 'device' => null, 'tier' => $tier];
-
-					break;
+						if ($tier4 !== []) {
+							$resolved = self::resolveTier(self::TIER_SHORT, $tier4);
+						}
+					}
 				}
 			}
+
+			$candidates[$nameKey] = $resolved;
 		}
 
 		/** @var array<int, list<string>> $claims */
@@ -151,6 +159,23 @@ final class NodeMatcher {
 	}
 
 	/**
+	 * Convert a non-empty deduplicated candidate ID list for one matching tier
+	 * into a Proposed or Ambiguous candidate record.
+	 *
+	 * @param int            $tier matched tier constant
+	 * @param non-empty-list<int> $ids matched Cacti device IDs
+	 *
+	 * @return array{state: NodeMatchState, device: ?int, tier: int}
+	 */
+	private static function resolveTier(int $tier, array $ids): array {
+		if (count($ids) === 1) {
+			return ['state' => NodeMatchState::Proposed, 'device' => $ids[0], 'tier' => $tier];
+		}
+
+		return ['state' => NodeMatchState::Ambiguous, 'device' => null, 'tier' => $tier];
+	}
+
+	/**
 	 * Norm.
 	 *
 	 * @param string $value
@@ -171,15 +196,13 @@ final class NodeMatcher {
 	}
 
 	/**
-	 * Short label.
+	 * Short label from an already-normalized hostname.
 	 *
-	 * @param string $value
+	 * @param string $value normalized lowercase hostname
 	 * @return ?string
 	 */
 	private static function shortLabel(string $value): ?string {
-		$value = self::norm($value);
-
-		if ($value === '' || self::isIp($value) || !str_contains($value, '.')) {
+		if ($value === '' || !str_contains($value, '.') || self::isIp($value)) {
 			return null;
 		}
 

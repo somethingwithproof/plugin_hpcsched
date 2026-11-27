@@ -46,18 +46,59 @@ final class JobTally {
 	 * @param list<string> $partitions
 	 */
 	public function add(array $partitions, JobState $state, string $reason, int $count): void {
-		$pending = $state === JobState::Pending || $state === JobState::Held;
-		$reason  = Reasons::name($reason);
-		$family  = ReasonFamily::of($reason)->value;
+		$pending   = $state === JobState::Pending || $state === JobState::Held;
+		$stateName = $state->value;
+		$norm      = '';
+		$family    = '';
 
-		foreach (array_merge([self::CLUSTER], array_values(array_unique($partitions))) as $partition) {
-			$key = "p:$partition";
+		if ($pending) {
+			$norm   = Reasons::name($reason);
+			$family = ReasonFamily::of($norm)->value;
+		}
 
-			$this->states[$key][$state->value] = ($this->states[$key][$state->value] ?? 0) + $count;
+		$this->states['p:'][$stateName] = ($this->states['p:'][$stateName] ?? 0) + $count;
+
+		if ($pending) {
+			$this->families['p:'][$family] = ($this->families['p:'][$family] ?? 0) + $count;
+			$this->reasons['p:'][$norm]    = ($this->reasons['p:'][$norm] ?? 0) + $count;
+		}
+
+		$nPart = count($partitions);
+
+		if ($nPart === 0) {
+			return;
+		}
+
+		if ($nPart === 1) {
+			if ($partitions[0] === self::CLUSTER) {
+				return;
+			}
+
+			$key                             = 'p:' . $partitions[0];
+			$this->states[$key][$stateName]  = ($this->states[$key][$stateName] ?? 0) + $count;
 
 			if ($pending) {
 				$this->families[$key][$family] = ($this->families[$key][$family] ?? 0) + $count;
-				$this->reasons[$key][$reason]  = ($this->reasons[$key][$reason] ?? 0) + $count;
+				$this->reasons[$key][$norm]    = ($this->reasons[$key][$norm] ?? 0) + $count;
+			}
+
+			return;
+		}
+
+		$seen = [self::CLUSTER => true];
+
+		foreach ($partitions as $partition) {
+			if (isset($seen[$partition])) {
+				continue;
+			}
+
+			$seen[$partition]               = true;
+			$key                            = 'p:' . $partition;
+			$this->states[$key][$stateName] = ($this->states[$key][$stateName] ?? 0) + $count;
+
+			if ($pending) {
+				$this->families[$key][$family] = ($this->families[$key][$family] ?? 0) + $count;
+				$this->reasons[$key][$norm]    = ($this->reasons[$key][$norm] ?? 0) + $count;
 			}
 		}
 	}

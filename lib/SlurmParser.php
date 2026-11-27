@@ -35,7 +35,9 @@ final class SlurmParser {
 	 * @throws TransportError
 	 */
 	public static function jobs(array $doc): JobTally {
-		$tally = new JobTally();
+		$tally      = new JobTally();
+		$partCache  = [];
+		$validNames = [];
 
 		foreach (SlurmJson::records($doc, 'jobs') as $job) {
 			$states = SlurmJson::strings($job, 'job_state');
@@ -50,16 +52,83 @@ final class SlurmParser {
 
 			$reason = SlurmJson::string($job, 'state_reason');
 			$state  = JobState::of($states, $reason);
-			$tasks  = SlurmJson::string($job, 'array_task_string');
+			$isPend = $state === JobState::Pending || $state === JobState::Held;
+			$tasks  = $isPend ? SlurmJson::string($job, 'array_task_string') : '';
 
 			// A pending array that has not split into tasks is one record
 			// carrying its remaining tasks as an expression.
-			$count = ($state === JobState::Pending || $state === JobState::Held) && $tasks !== '' ? SlurmJson::arrayTasks($tasks) : 1;
+			$count = ($isPend && $tasks !== '') ? SlurmJson::arrayTasks($tasks) : 1;
 
-			$tally->add(self::names(SlurmJson::strings($job, 'partition')), $state, $state === JobState::Pending || $state === JobState::Held ? $reason : '', $count);
+			$rawPart = $job['partition'] ?? null;
+
+			if (is_string($rawPart)) {
+				$partitions = $partCache[$rawPart] ??= self::namesCached(SlurmJson::strings($job, 'partition'), $validNames);
+			} else {
+				$partitions = self::namesCached(SlurmJson::strings($job, 'partition'), $validNames);
+			}
+
+			$tally->add($partitions, $state, $isPend ? $reason : '', $count);
 		}
 
 		return $tally;
+	}
+
+	/**
+	 * Aggregate terminal job exit outcomes (OOM, TIMEOUT, NODE_FAIL,
+	 * PREEMPTED, CANCELLED, FAILED, COMPLETED) per partition and cluster-wide
+	 * from a Slurm /jobs/ or sacct --json payload. Active and completing jobs
+	 * are skipped, and no job name, user, or account is retained.
+	 *
+	 * @param array<array-key, mixed> $doc decoded Slurm JSON object
+	 *
+	 * @return JobExitTally
+	 *
+	 * @throws TransportError
+	 */
+	public static function jobExits(array $doc): JobExitTally {
+		$tally      = new JobExitTally();
+		$partCache  = [];
+		$validNames = [];
+
+		foreach (SlurmJson::records($doc, 'jobs') as $job) {
+			$states = SlurmJson::strings($job, 'job_state');
+
+			if ($states === []) {
+				throw new TransportError(ErrorClass::Malformed, 'job without a state');
+			}
+
+			$outcome = JobExitReason::classify($states, SlurmJson::string($job, 'state_reason'));
+
+			if ($outcome === null) {
+				continue;
+			}
+
+			$rawPart = $job['partition'] ?? null;
+
+			if (is_string($rawPart)) {
+				$partitions = $partCache[$rawPart] ??= self::namesCached(SlurmJson::strings($job, 'partition'), $validNames);
+			} else {
+				$partitions = self::namesCached(SlurmJson::strings($job, 'partition'), $validNames);
+			}
+
+			$tally->add($partitions, $outcome, 1);
+		}
+
+		return $tally;
+	}
+
+	/**
+	 * Parse Slurm controller diagnostics from a slurmrestd /diag JSON payload.
+	 *
+	 * @param array<array-key, mixed> $doc decoded Slurm /diag JSON object
+	 * @param ?int                    $now optional reference Unix timestamp for rollup lag
+	 *
+	 * @return ControllerDiagnostics
+	 *
+	 * @throws TransportError
+	 */
+	public static function diagnostics(array $doc, ?int $now = null): ControllerDiagnostics {
+		return DiagnosticsParser::parseRestDiag($doc, $now);
 	}
 
 	/**
@@ -70,7 +139,8 @@ final class SlurmParser {
 	 * @throws TransportError
 	 */
 	public static function nodes(array $doc): array {
-		$nodes = [];
+		$nodes      = [];
+		$validNames = [];
 
 		foreach (SlurmJson::records($doc, 'nodes') as $node) {
 			$name  = SlurmJson::string($node, 'name');
@@ -80,17 +150,44 @@ final class SlurmParser {
 				throw new TransportError(ErrorClass::Malformed, 'node without a name or state');
 			}
 
+			$gres     = isset($node['gres']) ? SlurmJson::string($node, 'gres') : '';
+			$gresUsed = isset($node['gres_used']) ? SlurmJson::string($node, 'gres_used') : '';
+			$tresStr  = isset($node['tres']) ? SlurmJson::string($node, 'tres') : (isset($node['tres_str']) ? SlurmJson::string($node, 'tres_str') : '');
+			$tresUsed = isset($node['tres_used']) ? SlurmJson::string($node, 'tres_used') : '';
+
+			$totalGpus = $gres !== '' ? TresParser::parseGpuCount($gres) : ($tresStr !== '' ? TresParser::parseGpuCount($tresStr) : 0);
+			$allocGpus = $gresUsed !== '' ? TresParser::parseGpuCount($gresUsed) : ($tresUsed !== '' ? TresParser::parseGpuCount($tresUsed) : 0);
+
+			if ($totalGpus > 0 && $allocGpus > $totalGpus) {
+				$allocGpus = $totalGpus;
+			}
+
+			$totalMem = isset($node['real_memory']) ? (SlurmJson::int($node, 'real_memory') ?? 0) : ($tresStr !== '' ? TresParser::parseMemMib($tresStr) : 0);
+			$allocMem = isset($node['alloc_memory']) ? (SlurmJson::int($node, 'alloc_memory') ?? 0) : ($tresUsed !== '' ? TresParser::parseMemMib($tresUsed) : 0);
+
+			if ($totalMem > 0 && $allocMem > $totalMem) {
+				$allocMem = $totalMem;
+			}
+
+			$rawFree = isset($node['free_mem']) ? SlurmJson::int($node, 'free_mem') : null;
+			$freeMem = $rawFree !== null ? ($totalMem > 0 ? min($totalMem, $rawFree) : $rawFree) : max(0, $totalMem - $allocMem);
+
 			$nodes[] = new NodeRecord(
 				name: self::clip($name, 64),
 				hostname: self::clip(SlurmJson::string($node, 'hostname'), 255),
 				address: self::clip(SlurmJson::string($node, 'address'), 255),
-				partitions: self::names(SlurmJson::strings($node, 'partitions')),
+				partitions: self::namesCached(SlurmJson::strings($node, 'partitions'), $validNames),
 				flags: $flags,
-				state: NodeState::fromFlags($flags),
+				state: NodeState::fromNormalizedFlags($flags),
 				reason: self::clip(SlurmJson::string($node, 'reason'), 255),
 				reasonChangedAt: SlurmJson::int($node, 'reason_changed_at') ?? 0,
 				cpus: SlurmJson::int($node, 'cpus') ?? 0,
 				allocCpus: SlurmJson::int($node, 'alloc_cpus') ?? 0,
+				totalGpus: $totalGpus,
+				allocGpus: $allocGpus,
+				totalMemMib: $totalMem,
+				allocMemMib: $allocMem,
+				freeMemMib: $freeMem,
 			);
 		}
 
@@ -208,13 +305,32 @@ final class SlurmParser {
 	/**
 	 * Partition names as counter keys: at most 64 characters, and names
 	 * that are not plain identifiers are dropped rather than stored.
+	 * Uses a per-snapshot validation cache so repeated partition names across
+	 * tens of thousands of jobs or nodes skip regex re-evaluation.
 	 *
-	 * @param list<string> $names
+	 * @param list<string>        $names raw partition names
+	 * @param array<string, bool> $cache memoized identifier validity map
 	 *
 	 * @return list<string>
 	 */
-	private static function names(array $names): array {
-		return array_values(array_unique(array_filter($names, static fn (string $n): bool => preg_match('/^[A-Za-z0-9._-]{1,64}$/', $n) === 1)));
+	private static function namesCached(array $names, array &$cache): array {
+		$out  = [];
+		$seen = [];
+
+		foreach ($names as $n) {
+			if (isset($seen[$n])) {
+				continue;
+			}
+
+			$valid = $cache[$n] ??= (preg_match('/^[A-Za-z0-9._-]{1,64}$/', $n) === 1);
+
+			if ($valid) {
+				$seen[$n] = true;
+				$out[]    = $n;
+			}
+		}
+
+		return $out;
 	}
 
 	/**
@@ -225,6 +341,10 @@ final class SlurmParser {
 	 * @return string
 	 */
 	private static function clip(string $text, int $length): string {
+		if (strlen($text) <= $length) {
+			return $text;
+		}
+
 		return mb_substr($text, 0, $length, 'UTF-8');
 	}
 }

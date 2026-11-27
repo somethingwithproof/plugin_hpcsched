@@ -106,11 +106,13 @@ final class MaintSynchronizer {
 				}
 			}
 
-			$activeNodes = [];
+			$activeNodes  = [];
+			$presentNodes = [];
 
 			foreach ($nodes as $node) {
-				$name   = $node['name'];
-				$hostId = $this->resolveHostId($name, $savedMaps, $autoMatches);
+				$name                = $node['name'];
+				$presentNodes[$name] = true;
+				$hostId              = $this->resolveHostId($name, $savedMaps, $autoMatches);
 
 				if ($hostId < 1) {
 					continue;
@@ -177,7 +179,7 @@ final class MaintSynchronizer {
 
 			// Clean up links for nodes that disappeared from the snapshot or were unmapped.
 			foreach ($ownedLinks as $name => $link) {
-				if (!isset($activeNodes[$name]) && !$this->nodePresent($nodes, (string) $name)) {
+				if (!isset($activeNodes[$name]) && !isset($presentNodes[$name])) {
 					$actions[] = new MaintAction(
 						operation: 'remove',
 						clusterId: $cluster->id,
@@ -306,18 +308,5 @@ final class MaintSynchronizer {
 		$upper = strtoupper($flags);
 
 		return str_contains($upper, 'MAINT') || str_contains($upper, 'MAINTENANCE');
-	}
-
-	/**
-	 * @param list<array{name: string, hostname: string, address: string, state: string, raw_state: string, reason: string}> $nodes
-	 */
-	private function nodePresent(array $nodes, string $name): bool {
-		foreach ($nodes as $node) {
-			if ($node['name'] === $name) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 }
