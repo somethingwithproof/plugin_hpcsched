@@ -23,6 +23,12 @@ namespace Somethingwithproof\Hpcsched;
  * Configuration-as-Code parse, validation, or serialization error.
  */
 final class ConfigException extends \RuntimeException {
+	/**
+	 * Construct a new ConfigException instance.
+	 *
+	 * @param string $message
+	 * @param ?int $sourceLine
+	 */
 	public function __construct(string $message, public readonly ?int $sourceLine = null) {
 		parent::__construct($sourceLine !== null ? sprintf('line %d: %s', $sourceLine, $message) : $message);
 	}

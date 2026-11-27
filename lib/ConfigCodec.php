@@ -23,15 +23,33 @@ namespace Somethingwithproof\Hpcsched;
  * Reads and writes HPC Scheduler CasC configuration documents in YAML or XML.
  */
 final class ConfigCodec {
+	/** Yaml constant for ConfigCodec. */
 	public const YAML      = 'yaml';
+	/** Xml constant for ConfigCodec. */
 	public const XML       = 'xml';
+	/** Current schema version number. */
 	public const VERSION   = 1;
+	/** Maximum bytes. */
 	public const MAX_BYTES = 4194304;
 
+	/**
+	 * Check whether format.
+	 *
+	 * @param string $format
+	 * @return bool
+	 */
 	public static function isFormat(string $format): bool {
 		return $format === self::YAML || $format === self::XML;
 	}
 
+	/**
+	 * Parse.
+	 *
+	 * @param string $format
+	 * @param string $text
+	 * @return ConfigTree
+	 * @throws ConfigException
+	 */
 	public static function parse(string $format, string $text): ConfigTree {
 		return match ($format) {
 			self::YAML => YamlReader::parse($text, self::MAX_BYTES),
@@ -51,6 +69,13 @@ final class ConfigCodec {
 		};
 	}
 
+	/**
+	 * Read file.
+	 *
+	 * @param string $path
+	 * @return string
+	 * @throws ConfigException
+	 */
 	public static function readFile(string $path): string {
 		if (!is_file($path) || !is_readable($path)) {
 			throw new ConfigException(sprintf('Cannot read %s', $path));

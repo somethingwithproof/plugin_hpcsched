@@ -37,7 +37,7 @@ const HPCSCHED_TABLES = [
 	'plugin_hpcsched_share',
 ];
 
-const HPCSCHED_HOOKS = ['abilities_register', 'auth_alternate_realms', 'casc_register_providers', 'config_arrays', 'config_settings', 'device_remove', 'doctor_register_checks', 'draw_navigation_text', 'poller_bottom', 'replicate_out'];
+const HPCSCHED_HOOKS = ['abilities_register', 'api_register_resources', 'auth_alternate_realms', 'casc_register_providers', 'config_arrays', 'config_settings', 'device_remove', 'doctor_register_checks', 'doctor_register_debug_info', 'draw_navigation_text', 'poller_bottom', 'replicate_out'];
 
 const HPCSCHED_T = 1800000000;
 
@@ -158,6 +158,34 @@ it('upgrades a schema 1 install, adding the device column and the node counts, k
 		->and($state['tracked'])->toBe(HPCSCHED_TABLES)
 		->and($state['tables']['plugin_hpcsched_cluster'])->toBe(1)
 		->and($state['columns'])->toContain('host_id');
+});
+
+it('upgrades a schema 2 (main) install to schema 3 idempotently, keeping clusters', function () {
+	lifecycle('install');
+	lifecycle('seed');
+	lifecycle('make_schema_2');
+	lifecycle('set_schema', '2');
+	lifecycle('set_version', '0.1.0');
+
+	$before = lifecycle('state');
+	expect(array_keys($before['tables']))->not->toContain('plugin_hpcsched_node_map')
+		->and(array_keys($before['tables']))->not->toContain('plugin_hpcsched_maint_link');
+
+	$first = lifecycle('upgrade');
+	expect($first['result'])->toBeTrue()
+		->and($first['schema'])->toEqual('3')
+		->and($first['plugin']['version'])->toEqual(HPCSCHED_VERSION)
+		->and(array_keys($first['tables']))->toBe(HPCSCHED_TABLES)
+		->and($first['tracked'])->toBe(HPCSCHED_TABLES)
+		->and(array_keys($first['hooks']))->toBe(HPCSCHED_HOOKS)
+		->and($first['tables']['plugin_hpcsched_cluster'])->toBe(1);
+
+	$second = lifecycle('upgrade');
+	expect($second['result'])->toBeTrue()
+		->and($second['schema'])->toEqual('3')
+		->and($second['tables']['plugin_hpcsched_cluster'])->toBe(1)
+		->and($second['tracked'])->toBe(HPCSCHED_TABLES)
+		->and($second['hooks'])->toBe($first['hooks']);
 });
 
 it('imports the templates and the query file on install, and a reinstall creates no Cacti object (REQ-OBJ-001)', function () {

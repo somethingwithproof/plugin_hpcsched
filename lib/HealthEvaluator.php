@@ -25,6 +25,20 @@ namespace Somethingwithproof\Hpcsched;
  * scheduler or reads a token file.
  */
 final class HealthEvaluator {
+	/**
+	 * Construct a new HealthEvaluator instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param RunRepository $runs
+	 * @param ViewRepository $view
+	 * @param ShareRepository $shares
+	 * @param MaintRepository $maint
+	 * @param Settings $settings
+	 * @param FreshnessEvaluator $evaluator
+	 * @param Clock $clock
+	 * @param Schema $schema
+	 * @param int $pollerInterval
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly RunRepository $runs,

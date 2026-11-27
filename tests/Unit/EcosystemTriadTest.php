@@ -227,3 +227,75 @@ it('exposes four read-only Doctor diagnostic checks and a CasC provider descript
 		->and($casc['redacted_fields'])->toContain('token_file')
 		->and(($casc['export'])(ConfigCodec::YAML))->not->toContain('secret.jwt');
 });
+
+it('registers decoupled doctor_register_debug_info and api_register_resources hooks and ships a valid Config/State schema', function () {
+	hpcsched_seed_triad_db();
+
+	$debugInfo = hpcsched_doctor_register_debug_info([]);
+	expect($debugInfo)->toHaveKey('hpcsched')
+		->and($debugInfo['hpcsched']['label'])->toBe('HPC Scheduler')
+		->and(json_encode($debugInfo))->not->toContain('secret.jwt')
+		->and($debugInfo['hpcsched']['fields'])->toHaveKeys([
+			'schema_version',
+			'health_status',
+			'clusters_configured',
+			'cluster_freshness',
+			'maint_sync',
+			'token_redaction',
+		])
+		->and($debugInfo['hpcsched']['fields']['token_redaction']['private'])->toBeTrue();
+
+	// Object-registrar path works without importing any external Doctor class.
+	$debugReg = new class {
+		/** @var array<string, mixed> */
+		public array $sections = [];
+
+		/** @param array<string, mixed> $section */
+		public function register(string $id, array $section): void {
+			$this->sections[$id] = $section;
+		}
+	};
+	expect(hpcsched_doctor_register_debug_info($debugReg))->toBe($debugReg)
+		->and($debugReg->sections)->toHaveKey('hpcsched');
+
+	// Google AIP resource descriptors (plain array and object registrar).
+	$resources = hpcsched_api_register_resources([]);
+	expect(array_keys($resources))->toBe(['hpcsched.clusters', 'hpcsched.partitions', 'hpcsched.shares']);
+
+	foreach ($resources as $key => $descriptor) {
+		expect($descriptor['plugin'])->toBe('hpcsched', $key)
+			->and($descriptor['read_only'])->toBeTrue($key)
+			->and($descriptor['methods'])->toBe(['get', 'list'], $key)
+			->and(json_encode($descriptor))->not->toContain('token_file');
+	}
+
+	$apiReg = new class {
+		/** @var array<string, mixed> */
+		public array $items = [];
+
+		/** @param array<string, mixed> $descriptor */
+		public function register(string $id, array $descriptor): void {
+			$this->items[$id] = $descriptor;
+		}
+	};
+	expect(hpcsched_api_register_resources($apiReg))->toBe($apiReg)
+		->and(array_keys($apiReg->items))->toBe(['hpcsched.clusters', 'hpcsched.partitions', 'hpcsched.shares']);
+
+	// Static Drupal-style Config vs. State schema parses cleanly and covers all settings and tables.
+	$schemaFile = dirname(__DIR__, 2) . '/schema/hpcsched.schema.yaml';
+	expect(is_file($schemaFile))->toBeTrue();
+
+	$tree = Somethingwithproof\Hpcsched\YamlReader::parse((string) file_get_contents($schemaFile))->data;
+	expect($tree['plugin'])->toBe('hpcsched')
+		->and($tree['storage_separation'])->toBe('strict')
+		->and($tree['config']['casc_managed'])->toBeTrue()
+		->and($tree['state']['casc_managed'])->toBeFalse()
+		->and(array_keys($tree['config']['settings']))->toEqualCanonicalizing(Settings::NAMES);
+
+	$configTables = $tree['config']['tables'];
+	$stateTables  = $tree['state']['tables'];
+	$allSchema    = array_merge($configTables, $stateTables);
+
+	expect(array_intersect($configTables, $stateTables))->toBe([])
+		->and($allSchema)->toEqualCanonicalizing(array_keys(Schema::tables()));
+});

@@ -35,10 +35,18 @@ final class NodeTally {
 	/** Node state series, each normalized state in exactly one. */
 	public const STATES = ['n_idle', 'n_allocated', 'n_mixed', 'n_drained', 'n_down', 'n_maint', 'n_powered_down', 'n_other'];
 
+	/** Cpus constant for NodeTally. */
 	public const CPUS = ['cpus_alloc', 'cpus_idle', 'cpus_other', 'cpus_total'];
 
+	/** Nodes constant for NodeTally. */
 	public const NODES = ['nodes_alloc', 'nodes_total'];
 
+	/**
+	 * Series.
+	 *
+	 * @param NodeState $state
+	 * @return string
+	 */
 	public static function series(NodeState $state): string {
 		return match ($state) {
 			NodeState::Idle                           => 'n_idle',

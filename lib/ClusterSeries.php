@@ -37,6 +37,7 @@ namespace Somethingwithproof\Hpcsched;
  * cluster has been collected (REQ-ALERT-002).
  */
 final class ClusterSeries {
+	/** Name field constant for ClusterSeries. */
 	public const NAME_FIELD = 'name';
 
 	/** The script server answers a whole poll cycle from one process. */
@@ -51,6 +52,15 @@ final class ClusterSeries {
 	 */
 	private array $cache = [];
 
+	/**
+	 * Construct a new ClusterSeries instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param SeriesRepository $series
+	 * @param FreshnessEvaluator $evaluator
+	 * @param Clock $clock
+	 * @param int $pollerInterval
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly SeriesRepository $series,
@@ -60,6 +70,12 @@ final class ClusterSeries {
 	) {
 	}
 
+	/**
+	 * Cluster.
+	 *
+	 * @param int $hostId
+	 * @return string
+	 */
 	public function cluster(int $hostId): string {
 		$data   = $this->load($hostId);
 		$values = $data['values']['p:'] ?? array_fill_keys(Series::names(), null);
@@ -74,6 +90,15 @@ final class ClusterSeries {
 		return implode(' ', $pairs);
 	}
 
+	/**
+	 * Partitions.
+	 *
+	 * @param int $hostId
+	 * @param string $command
+	 * @param string $field
+	 * @param string $index
+	 * @return string
+	 */
 	public function partitions(int $hostId, string $command, string $field = '', string $index = ''): string {
 		$data = $this->load($hostId);
 

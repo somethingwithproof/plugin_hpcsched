@@ -24,6 +24,13 @@ namespace Somethingwithproof\Hpcsched;
  * file is read, at use time, once per run (REQ-CRED-002).
  */
 final class Transports {
+	/**
+	 * Construct a new Transports instance.
+	 *
+	 * @param Settings $settings
+	 * @param CommandRunner $runner
+	 * @param HttpTransport $http
+	 */
 	public function __construct(
 		private readonly Settings $settings,
 		private readonly CommandRunner $runner,

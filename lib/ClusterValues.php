@@ -32,7 +32,9 @@ namespace Somethingwithproof\Hpcsched;
  * observation (REQ-STATE-005).
  */
 final readonly class ClusterValues {
+	/** Job values constant for ClusterValues. */
 	public const JOB_VALUES  = ['running', 'pending', 'held', 'completing'];
+	/** Node values constant for ClusterValues. */
 	public const NODE_VALUES = ['nodes_total', 'nodes_down', 'nodes_drained', 'nodes_idle', 'nodes_allocated', 'nodes_mixed'];
 
 	/**

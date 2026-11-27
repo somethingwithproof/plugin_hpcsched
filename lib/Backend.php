@@ -25,6 +25,11 @@ namespace Somethingwithproof\Hpcsched;
  * scheduler (REQ-BACKEND-005): the one method reads.
  */
 interface Backend {
+	/**
+	 * Name.
+	 *
+	 * @return string
+	 */
 	public function name(): string;
 
 	/**

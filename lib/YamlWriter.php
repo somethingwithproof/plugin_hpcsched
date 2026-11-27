@@ -89,6 +89,13 @@ final class YamlWriter {
 		}
 	}
 
+	/**
+	 * Scalar.
+	 *
+	 * @param mixed $value
+	 * @return string
+	 * @throws ConfigException
+	 */
 	private static function scalar(mixed $value): string {
 		if (is_bool($value)) {
 			return $value ? 'true' : 'false';

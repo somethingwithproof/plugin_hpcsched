@@ -24,6 +24,11 @@ namespace Somethingwithproof\Hpcsched;
  * casc_register_providers hook.
  */
 final class CascProvider {
+	/**
+	 * Construct a new CascProvider instance.
+	 *
+	 * @param ConfigService $service
+	 */
 	public function __construct(private readonly ConfigService $service) {
 	}
 

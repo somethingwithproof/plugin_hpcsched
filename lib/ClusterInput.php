@@ -48,6 +48,11 @@ final readonly class ClusterInput {
 	) {
 	}
 
+	/**
+	 * Valid.
+	 *
+	 * @return bool
+	 */
 	public function valid(): bool {
 		return $this->errors === [];
 	}

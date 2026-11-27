@@ -29,6 +29,7 @@ namespace Somethingwithproof\Hpcsched;
  * ignored, as the REST guide tells clients to do.
  */
 final class SlurmJson {
+	/** Depth constant for SlurmJson. */
 	public const DEPTH = 64;
 
 	/**
@@ -161,6 +162,12 @@ final class SlurmJson {
 		return $out;
 	}
 
+	/**
+	 * Number.
+	 *
+	 * @param mixed $value
+	 * @return ?float
+	 */
 	private static function number(mixed $value): ?float {
 		if (is_array($value)) {
 			if (($value['set'] ?? true) === false || ($value['infinite'] ?? false) === true) {

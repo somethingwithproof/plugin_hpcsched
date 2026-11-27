@@ -34,10 +34,20 @@ final readonly class MaintSyncPlan {
 	) {
 	}
 
+	/**
+	 * Check whether empty.
+	 *
+	 * @return bool
+	 */
 	public function isEmpty(): bool {
 		return $this->actions === [];
 	}
 
+	/**
+	 * Id.
+	 *
+	 * @return string
+	 */
 	public function id(): string {
 		$canonical = array_map(static fn (MaintAction $a): array => $a->toArray(), $this->actions);
 

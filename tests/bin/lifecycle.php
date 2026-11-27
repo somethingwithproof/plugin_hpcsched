@@ -119,6 +119,13 @@ switch ($action) {
 		db_execute("DELETE FROM plugin_db_changes WHERE plugin = 'hpcsched' AND `table` IN ('plugin_hpcsched_node_count', 'plugin_hpcsched_node_map', 'plugin_hpcsched_maint_link')");
 
 		break;
+	case 'make_schema_2':
+		// What a schema 2 (main) install has: no node-map or maint-link tables.
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_node_map');
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_maint_link');
+		db_execute("DELETE FROM plugin_db_changes WHERE plugin = 'hpcsched' AND `table` IN ('plugin_hpcsched_node_map', 'plugin_hpcsched_maint_link')");
+
+		break;
 	case 'seed':
 		// A cluster row, so table drops and keeps are visible.
 		db_execute("INSERT INTO plugin_hpcsched_cluster (name, poller_id, admin_state, transport, collect_interval) VALUES ('seed', 1, 'enabled', 'commands', 60)");

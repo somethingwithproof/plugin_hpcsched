@@ -36,6 +36,12 @@ final readonly class ReservationRecord {
 	) {
 	}
 
+	/**
+	 * Active at.
+	 *
+	 * @param int $time
+	 * @return bool
+	 */
 	public function activeAt(int $time): bool {
 		return $this->start <= $time && ($this->end === 0 || $time < $this->end);
 	}

@@ -96,6 +96,11 @@ enum NodeState: string {
 		return $out;
 	}
 
+	/**
+	 * Label.
+	 *
+	 * @return string
+	 */
 	public function label(): string {
 		return match ($this) {
 			self::Idle        => __('Idle', 'hpcsched'),

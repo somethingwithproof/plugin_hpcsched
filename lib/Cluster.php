@@ -28,14 +28,36 @@ namespace Somethingwithproof\Hpcsched;
  * (DeviceAccess).
  */
 final readonly class Cluster {
+	/** Name pattern constant for Cluster. */
 	public const NAME_PATTERN = '/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/';
 
 	// Provisional until the live load test (#18): 60 second default, a 30
 	// second floor, and a time budget of half the interval.
+	/** Default interval. */
 	public const DEFAULT_INTERVAL = 60;
+	/** Minimum interval. */
 	public const MIN_INTERVAL     = 30;
+	/** Maximum interval. */
 	public const MAX_INTERVAL     = 3600;
 
+	/**
+	 * Construct a new Cluster instance.
+	 *
+	 * @param int $id
+	 * @param string $name
+	 * @param int $pollerId
+	 * @param AdminState $adminState
+	 * @param Transport $transport
+	 * @param int $interval
+	 * @param string $slurmConf
+	 * @param string $restUrl
+	 * @param string $restUser
+	 * @param string $tokenFile
+	 * @param bool $reservations
+	 * @param bool $shares
+	 * @param int $updatedAt
+	 * @param int $hostId
+	 */
 	public function __construct(
 		public int $id,
 		public string $name,
@@ -87,6 +109,11 @@ final readonly class Cluster {
 		);
 	}
 
+	/**
+	 * Enabled.
+	 *
+	 * @return bool
+	 */
 	public function enabled(): bool {
 		return $this->adminState === AdminState::Enabled;
 	}

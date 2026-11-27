@@ -25,6 +25,7 @@ namespace Somethingwithproof\Hpcsched;
  * maintenance reservation.
  */
 final class HostList {
+	/** Maximum expansion. */
 	public const MAX_EXPANSION = 10000;
 
 	/**

@@ -24,6 +24,12 @@ namespace Somethingwithproof\Hpcsched;
  * (plugin_hpcsched_node_map) and snapshot node/reservation reads.
  */
 final class NodeMapRepository {
+	/**
+	 * Construct a new NodeMapRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 * @param Clock $clock
+	 */
 	public function __construct(private readonly \PDO|false $connection, private readonly Clock $clock) {
 	}
 
@@ -117,6 +123,14 @@ final class NodeMapRepository {
 		return $out;
 	}
 
+	/**
+	 * Save mapping.
+	 *
+	 * @param int $clusterId
+	 * @param NodeMatch $match
+	 * @param string $source
+	 * @return bool
+	 */
 	public function saveMapping(int $clusterId, NodeMatch $match, string $source = 'auto'): bool {
 		return db_execute_prepared(
 			'INSERT INTO plugin_hpcsched_node_map (cluster_id, node_name, host_id, match_state, match_tier, source, updated_at)

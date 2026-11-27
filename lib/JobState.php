@@ -62,6 +62,11 @@ enum JobState: string {
 		};
 	}
 
+	/**
+	 * Label.
+	 *
+	 * @return string
+	 */
 	public function label(): string {
 		return match ($this) {
 			self::Pending    => __('Pending', 'hpcsched'),

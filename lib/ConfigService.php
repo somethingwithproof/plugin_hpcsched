@@ -27,8 +27,16 @@ namespace Somethingwithproof\Hpcsched;
  * raw secrets.
  */
 final class ConfigService {
+	/** Redacted constant for ConfigService. */
 	public const REDACTED = '[REDACTED]';
 
+	/**
+	 * Construct a new ConfigService instance.
+	 *
+	 * @param SettingsRepository $settings
+	 * @param ClusterRepository $clusters
+	 * @param ConfigRepository $configRepo
+	 */
 	public function __construct(
 		private readonly SettingsRepository $settings,
 		private readonly ClusterRepository $clusters,
@@ -101,6 +109,12 @@ final class ConfigService {
 		return $data;
 	}
 
+	/**
+	 * Export.
+	 *
+	 * @param string $format
+	 * @return string
+	 */
 	public function export(string $format): string {
 		return ConfigCodec::write($format, $this->exportData());
 	}
@@ -112,6 +126,12 @@ final class ConfigService {
 		return $this->plan($tree)->errors;
 	}
 
+	/**
+	 * Plan.
+	 *
+	 * @param ConfigTree $tree
+	 * @return ConfigPlan
+	 */
 	public function plan(ConfigTree $tree): ConfigPlan {
 		$errors          = [];
 		$notes           = [];
@@ -391,6 +411,13 @@ final class ConfigService {
 		return $value;
 	}
 
+	/**
+	 * Cluster differs.
+	 *
+	 * @param Cluster $existing
+	 * @param ClusterInput $desired
+	 * @return bool
+	 */
 	private function clusterDiffers(Cluster $existing, ClusterInput $desired): bool {
 		return $existing->pollerId !== $desired->pollerId
 			|| $existing->adminState !== $desired->adminState

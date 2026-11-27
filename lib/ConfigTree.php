@@ -33,6 +33,12 @@ final readonly class ConfigTree {
 	) {
 	}
 
+	/**
+	 * Line of.
+	 *
+	 * @param string $path
+	 * @return ?int
+	 */
 	public function lineOf(string $path): ?int {
 		return $this->lines[$path] ?? null;
 	}

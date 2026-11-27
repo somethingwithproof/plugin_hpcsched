@@ -25,6 +25,11 @@ namespace Somethingwithproof\Hpcsched;
  * pollers; each remote collector manages its own local token files.
  */
 final class ReplicatorRepository {
+	/**
+	 * Construct a new ReplicatorRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 

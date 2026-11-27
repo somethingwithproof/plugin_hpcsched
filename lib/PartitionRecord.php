@@ -19,7 +19,18 @@
 
 namespace Somethingwithproof\Hpcsched;
 
+/**
+ * Partition record component.
+ */
 final readonly class PartitionRecord {
+	/**
+	 * Construct a new PartitionRecord instance.
+	 *
+	 * @param string $name
+	 * @param string $state
+	 * @param int $totalNodes
+	 * @param int $totalCpus
+	 */
 	public function __construct(
 		public string $name,
 		public string $state,

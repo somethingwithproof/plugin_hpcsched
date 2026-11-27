@@ -30,6 +30,7 @@ namespace Somethingwithproof\Hpcsched;
  * counts as its number of tasks.
  */
 final class JobTally {
+	/** Cluster constant for JobTally. */
 	public const CLUSTER = '';
 
 	/** @var array<string, array<string, int>> partition => state => jobs */
@@ -81,14 +82,33 @@ final class JobTally {
 		return $rows;
 	}
 
+	/**
+	 * Count.
+	 *
+	 * @param string $partition
+	 * @param JobState $state
+	 * @return int
+	 */
 	public function count(string $partition, JobState $state): int {
 		return $this->states["p:$partition"][$state->value] ?? 0;
 	}
 
+	/**
+	 * Pending in.
+	 *
+	 * @param string $partition
+	 * @param ReasonFamily $family
+	 * @return int
+	 */
 	public function pendingIn(string $partition, ReasonFamily $family): int {
 		return $this->families["p:$partition"][$family->value] ?? 0;
 	}
 
+	/**
+	 * Total.
+	 *
+	 * @return int
+	 */
 	public function total(): int {
 		return array_sum($this->states['p:'] ?? []);
 	}

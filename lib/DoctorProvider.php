@@ -24,7 +24,67 @@ namespace Somethingwithproof\Hpcsched;
  * doctor_register_checks hook.
  */
 final class DoctorProvider {
+	/**
+	 * Construct a Cacti Doctor provider backed by a read-only health evaluator.
+	 *
+	 * @param HealthEvaluator $evaluator read-only scheduler health evaluator
+	 */
 	public function __construct(private readonly HealthEvaluator $evaluator) {
+	}
+
+	/**
+	 * Build a redacted diagnostic debug-info section for the optional
+	 * doctor_register_debug_info hook. Excludes all token file paths, token
+	 * contents, and scheduler credentials.
+	 *
+	 * @return array{
+	 *   label: string,
+	 *   description: string,
+	 *   private: bool,
+	 *   fields: array<string, array{label: string, value: string, private: bool}>
+	 * }
+	 */
+	public function debugInfo(): array {
+		$report  = $this->evaluator->evaluate();
+		$summary = $report['summary'];
+
+		return [
+			'label'       => 'HPC Scheduler',
+			'description' => 'Read-only health and cluster summary for plugin_hpcsched. Token paths and secrets are redacted.',
+			'private'     => false,
+			'fields'      => [
+				'schema_version' => [
+					'label'   => 'Schema Version',
+					'value'   => sprintf('v%d (%s)', $report['schema_version'], $report['schema_current'] ? 'current' : 'upgrade_required'),
+					'private' => false,
+				],
+				'health_status' => [
+					'label'   => 'Health Status',
+					'value'   => $report['status'],
+					'private' => false,
+				],
+				'clusters_configured' => [
+					'label'   => 'Configured Clusters',
+					'value'   => sprintf('%d total (%d enabled, %d remote)', $summary['clusters'], $summary['enabled_clusters'], $summary['remote_clusters']),
+					'private' => false,
+				],
+				'cluster_freshness' => [
+					'label'   => 'Cluster Freshness',
+					'value'   => sprintf('%d stale, %d failed', $summary['stale_clusters'], $summary['failed_clusters']),
+					'private' => false,
+				],
+				'maint_sync' => [
+					'label'   => 'Cacti Maint Integration',
+					'value'   => $report['maint_available'] ? sprintf('available (%d managed links)', $report['maint_links']) : 'not_installed',
+					'private' => false,
+				],
+				'token_redaction' => [
+					'label'   => 'Credential Exposure',
+					'value'   => 'redacted',
+					'private' => true,
+				],
+			],
+		];
 	}
 
 	/**

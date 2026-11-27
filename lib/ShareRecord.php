@@ -26,6 +26,18 @@ namespace Somethingwithproof\Hpcsched;
  * scheduler did not set, which is not zero.
  */
 final readonly class ShareRecord {
+	/**
+	 * Construct a new ShareRecord instance.
+	 *
+	 * @param string $account
+	 * @param string $partition
+	 * @param string $parent
+	 * @param ?float $usage
+	 * @param ?float $usageNormalized
+	 * @param ?float $effectiveUsage
+	 * @param ?float $fairshareFactor
+	 * @param ?float $fairshareLevel
+	 */
 	public function __construct(
 		public string $account,
 		public string $partition,

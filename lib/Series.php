@@ -37,6 +37,7 @@ final class Series {
 	/** Job series: the normalized states, Other renamed to keep it apart from the other Others. */
 	public const JOBS = ['pending', 'held', 'running', 'completing', 'jobs_other'];
 
+	/** Utilization constant for Series. */
 	public const UTILIZATION = ['cpu_util_pct', 'node_util_pct', 'nodes_alloc', 'nodes_total'];
 
 	/** Seconds since the cluster's oldest configured section was observed. */
@@ -114,6 +115,13 @@ final class Series {
 		return floor($value) === $value && abs($value) < 1e15 ? (string) (int) $value : rtrim(rtrim(sprintf('%.4F', $value), '0'), '.');
 	}
 
+	/**
+	 * Percent.
+	 *
+	 * @param ?float $part
+	 * @param ?float $whole
+	 * @return ?float
+	 */
 	private static function percent(?float $part, ?float $whole): ?float {
 		return $part === null || $whole === null || $whole <= 0 ? null : round(100 * $part / $whole, 2);
 	}

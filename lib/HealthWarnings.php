@@ -111,6 +111,12 @@ final class HealthWarnings {
 		return $out;
 	}
 
+	/**
+	 * Host.
+	 *
+	 * @param string $url
+	 * @return string
+	 */
 	private static function host(string $url): string {
 		$host = parse_url($url, PHP_URL_HOST);
 

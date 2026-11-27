@@ -23,11 +23,23 @@ namespace Somethingwithproof\Hpcsched;
  * XXE-safe XML reader and writer for HPC Scheduler CasC documents.
  */
 final class ConfigXml {
+	/** Maximum bytes. */
 	public const MAX_BYTES = 4194304;
+	/** Maximum depth. */
 	public const MAX_DEPTH = 8;
 
+	/** Root constant for ConfigXml. */
 	private const ROOT = 'hpcsched-config';
 
+	/**
+	 * Parse.
+	 *
+	 * @param string $text
+	 * @param int $maxBytes
+	 * @param int $maxDepth
+	 * @return ConfigTree
+	 * @throws ConfigException
+	 */
 	public static function parse(string $text, int $maxBytes = self::MAX_BYTES, int $maxDepth = self::MAX_DEPTH): ConfigTree {
 		if (strlen($text) > $maxBytes) {
 			throw new ConfigException(sprintf('The file is larger than the %d byte limit', $maxBytes));
@@ -178,6 +190,14 @@ final class ConfigXml {
 		return $xml;
 	}
 
+	/**
+	 * Coerce scalar.
+	 *
+	 * @param string $raw
+	 * @param string $type
+	 * @return bool|int|string
+	 * @throws ConfigException
+	 */
 	private static function coerceScalar(string $raw, string $type): bool|int|string {
 		return match ($type) {
 			'bool'  => $raw === 'true',
@@ -186,6 +206,15 @@ final class ConfigXml {
 		};
 	}
 
+	/**
+	 * Parse int.
+	 *
+	 * @param string $raw
+	 * @param string $field
+	 * @param int $line
+	 * @return int
+	 * @throws ConfigException
+	 */
 	private static function parseInt(string $raw, string $field, int $line): int {
 		if (preg_match('/^-?[0-9]{1,18}$/', $raw) !== 1) {
 			throw new ConfigException(sprintf('Attribute "%s" must be an integer', $field), $line);
@@ -194,6 +223,13 @@ final class ConfigXml {
 		return (int) $raw;
 	}
 
+	/**
+	 * Scalar.
+	 *
+	 * @param mixed $value
+	 * @return string
+	 * @throws ConfigException
+	 */
 	private static function scalar(mixed $value): string {
 		if (is_bool($value)) {
 			return $value ? 'true' : 'false';
@@ -206,6 +242,15 @@ final class ConfigXml {
 		return (string) $value;
 	}
 
+	/**
+	 * Check depth.
+	 *
+	 * @param \DOMNode $node
+	 * @param int $depth
+	 * @param int $max
+	 * @return void
+	 * @throws ConfigException
+	 */
 	private static function checkDepth(\DOMNode $node, int $depth, int $max): void {
 		if ($depth > $max) {
 			throw new ConfigException(sprintf('Nesting exceeds %d levels', $max), $node->getLineNo());

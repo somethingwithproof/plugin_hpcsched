@@ -30,6 +30,11 @@ enum Section: string {
 	case Reservations = 'reservations';
 	case Shares       = 'shares';
 
+	/**
+	 * Label.
+	 *
+	 * @return string
+	 */
 	public function label(): string {
 		return match ($this) {
 			self::Jobs         => __('Jobs', 'hpcsched'),

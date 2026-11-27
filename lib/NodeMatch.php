@@ -23,6 +23,14 @@ namespace Somethingwithproof\Hpcsched;
  * Result of matching one Slurm node name to a Cacti host record.
  */
 final readonly class NodeMatch {
+	/**
+	 * Construct a new NodeMatch instance.
+	 *
+	 * @param string $nodeName
+	 * @param NodeMatchState $state
+	 * @param ?int $hostId
+	 * @param ?int $tier
+	 */
 	public function __construct(
 		public string $nodeName,
 		public NodeMatchState $state,

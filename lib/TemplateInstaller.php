@@ -42,16 +42,31 @@ final class TemplateInstaller {
 	/** Bump when templates/hpcsched-templates.xml or the query XML changes. */
 	public const VERSION = 1;
 
+	/** Setting constant for TemplateInstaller. */
 	public const SETTING         = 'hpcsched_templates_version';
+	/** Failure setting constant for TemplateInstaller. */
 	public const FAILURE_SETTING = 'hpcsched_templates_failure';
+	/** Files setting constant for TemplateInstaller. */
 	public const FILES_SETTING   = 'hpcsched_query_files';
 
+	/** Device template constant for TemplateInstaller. */
 	public const DEVICE_TEMPLATE = 'HPC Scheduler Cluster';
+	/** Cluster constant for TemplateInstaller. */
 	public const CLUSTER         = 'HPC Scheduler Cluster Values';
+	/** Query constant for TemplateInstaller. */
 	public const QUERY           = 'HPC Scheduler Partitions';
+	/** Query file constant for TemplateInstaller. */
 	public const QUERY_FILE      = 'hpcsched_partitions.xml';
+	/** Age graph constant for TemplateInstaller. */
 	public const AGE_GRAPH       = 'HPC Scheduler Snapshot Age';
 
+	/**
+	 * Construct a new TemplateInstaller instance.
+	 *
+	 * @param string $pluginPath
+	 * @param string $cactiPath
+	 * @param CactiObjectRepository $objects
+	 */
 	public function __construct(
 		private readonly string $pluginPath,
 		private readonly string $cactiPath,
@@ -99,6 +114,11 @@ final class TemplateInstaller {
 		return $out;
 	}
 
+	/**
+	 * Check whether current.
+	 *
+	 * @return bool
+	 */
 	public function isCurrent(): bool {
 		return (int) read_config_option(self::SETTING) === self::VERSION && $this->present() && $this->queryFileProblem() === null;
 	}
@@ -322,10 +342,20 @@ final class TemplateInstaller {
 		return preg_match('/^[0-9a-f]{64}$/', $hash) === 1 ? $hash : null;
 	}
 
+	/**
+	 * Query source.
+	 *
+	 * @return string
+	 */
 	private function querySource(): string {
 		return $this->pluginPath . '/resource/script_server/' . self::QUERY_FILE;
 	}
 
+	/**
+	 * Query target.
+	 *
+	 * @return ?string
+	 */
 	private function queryTarget(): ?string {
 		$dir = $this->cactiPath . '/resource/script_server';
 

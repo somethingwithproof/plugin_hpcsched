@@ -60,6 +60,11 @@ enum ReasonFamily: string {
 		};
 	}
 
+	/**
+	 * Label.
+	 *
+	 * @return string
+	 */
 	public function label(): string {
 		return match ($this) {
 			self::Priority    => __('Priority', 'hpcsched'),

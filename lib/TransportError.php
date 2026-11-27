@@ -26,6 +26,12 @@ namespace Somethingwithproof\Hpcsched;
  * the Redactor before it is logged.
  */
 final class TransportError extends \RuntimeException {
+	/**
+	 * Construct a new TransportError instance.
+	 *
+	 * @param ErrorClass $errorClass
+	 * @param string $detail
+	 */
 	public function __construct(public readonly ErrorClass $errorClass, string $detail = '') {
 		parent::__construct($errorClass->value . ($detail !== '' ? ': ' . $detail : ''));
 	}

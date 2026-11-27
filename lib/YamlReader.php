@@ -23,19 +23,37 @@ namespace Somethingwithproof\Hpcsched;
  * Strict, bounded YAML subset reader for CasC documents.
  */
 final class YamlReader {
+	/** Maximum bytes. */
 	public const MAX_BYTES = 4194304;
+	/** Maximum depth. */
 	public const MAX_DEPTH = 8;
+	/** Maximum line. */
 	public const MAX_LINE  = 16384;
 
 	/** @var array<int, string> */
 	private array $raw = [];
+	/** Pos state for YamlReader. */
 	private int $pos   = 0;
 	/** @var array<string, int> */
 	private array $lineMap = [];
 
+	/**
+	 * Construct a new YamlReader instance.
+	 *
+	 * @param int $maxDepth
+	 */
 	private function __construct(private readonly int $maxDepth) {
 	}
 
+	/**
+	 * Parse.
+	 *
+	 * @param string $text
+	 * @param int $maxBytes
+	 * @param int $maxDepth
+	 * @return ConfigTree
+	 * @throws ConfigException
+	 */
 	public static function parse(string $text, int $maxBytes = self::MAX_BYTES, int $maxDepth = self::MAX_DEPTH): ConfigTree {
 		if (strlen($text) > $maxBytes) {
 			throw new ConfigException(sprintf('The file is larger than the %d byte limit', $maxBytes));
@@ -52,6 +70,13 @@ final class YamlReader {
 		return (new self($maxDepth))->run($text);
 	}
 
+	/**
+	 * Run.
+	 *
+	 * @param string $text
+	 * @return ConfigTree
+	 * @throws ConfigException
+	 */
 	private function run(string $text): ConfigTree {
 		$text = str_replace("\r\n", "\n", $text);
 
@@ -132,6 +157,14 @@ final class YamlReader {
 		return null;
 	}
 
+	/**
+	 * Block.
+	 *
+	 * @param int $indent
+	 * @param string $path
+	 * @param int $depth
+	 * @return mixed
+	 */
 	private function block(int $indent, string $path, int $depth): mixed {
 		$cur = $this->peek();
 
@@ -142,12 +175,25 @@ final class YamlReader {
 		return self::isItem($cur[2]) ? $this->sequence($indent, $path, $depth) : $this->map($indent, $path, $depth);
 	}
 
+	/**
+	 * Guard depth.
+	 *
+	 * @param int $depth
+	 * @return void
+	 * @throws ConfigException
+	 */
 	private function guardDepth(int $depth): void {
 		if ($depth > $this->maxDepth) {
 			throw new ConfigException(sprintf('Nesting is deeper than %d levels', $this->maxDepth), $this->pos + 1);
 		}
 	}
 
+	/**
+	 * Check whether item.
+	 *
+	 * @param string $text
+	 * @return bool
+	 */
 	private static function isItem(string $text): bool {
 		return $text === '-' || str_starts_with($text, '- ');
 	}
@@ -245,6 +291,18 @@ final class YamlReader {
 		return $result;
 	}
 
+	/**
+	 * Value.
+	 *
+	 * @param string $rest
+	 * @param int $no
+	 * @param int $indent
+	 * @param string $path
+	 * @param int $depth
+	 * @param bool $inMap
+	 * @return mixed
+	 * @throws ConfigException
+	 */
 	private function value(string $rest, int $no, int $indent, string $path, int $depth, bool $inMap): mixed {
 		if ($rest === '' || $rest[0] === '#') {
 			$next = $this->peek();
@@ -321,6 +379,14 @@ final class YamlReader {
 		return [$key, ltrim(substr($text, $at + 1), ' ')];
 	}
 
+	/**
+	 * Scalar.
+	 *
+	 * @param string $text
+	 * @param int $no
+	 * @return null|bool|int|string
+	 * @throws ConfigException
+	 */
 	private function scalar(string $text, int $no): null|bool|int|string {
 		if ($text[0] === '"' || $text[0] === "'") {
 			[$value, $end] = $this->quoted($text, 0, $no);

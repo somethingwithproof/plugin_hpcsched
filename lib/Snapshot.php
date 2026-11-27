@@ -51,6 +51,12 @@ final readonly class Snapshot {
 	) {
 	}
 
+	/**
+	 * Outcome.
+	 *
+	 * @param Section $section
+	 * @return SectionOutcome
+	 */
 	public function outcome(Section $section): SectionOutcome {
 		return $this->outcomes[$section->value] ?? SectionOutcome::notAttempted();
 	}

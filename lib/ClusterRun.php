@@ -24,6 +24,29 @@ namespace Somethingwithproof\Hpcsched;
  * read it. Error classes and states only; no scheduler text.
  */
 final readonly class ClusterRun {
+	/**
+	 * Construct a new ClusterRun instance.
+	 *
+	 * @param int $clusterId
+	 * @param int $leaseExpires
+	 * @param int $startedAt
+	 * @param int $finishedAt
+	 * @param ?float $duration
+	 * @param RunOutcome $outcome
+	 * @param ?ErrorClass $error
+	 * @param string $release
+	 * @param string $transport
+	 * @param string $dataParser
+	 * @param int $calls
+	 * @param int $lastSuccess
+	 * @param int $lastFailure
+	 * @param int $backoffUntil
+	 * @param int $backoffStep
+	 * @param bool $overran
+	 * @param bool $memoryLimited
+	 * @param TokenState $tokenState
+	 * @param int $tokenExpires
+	 */
 	public function __construct(
 		public int $clusterId,
 		public int $leaseExpires = 0,

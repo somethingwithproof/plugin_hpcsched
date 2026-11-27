@@ -46,10 +46,19 @@ final class CommandTransport implements SlurmTransport {
 		'shares'       => ['sshare', ['--json={p}']],
 	];
 
+	/** Calls state for CommandTransport. */
 	private int $calls = 0;
 
+	/** Limited state for CommandTransport. */
 	private bool $limited = true;
 
+	/**
+	 * Construct a new CommandTransport instance.
+	 *
+	 * @param CommandRunner $runner
+	 * @param Settings $settings
+	 * @param string $slurmConf
+	 */
 	public function __construct(
 		private readonly CommandRunner $runner,
 		private readonly Settings $settings,
@@ -57,18 +66,39 @@ final class CommandTransport implements SlurmTransport {
 	) {
 	}
 
+	/**
+	 * Transport.
+	 *
+	 * @return Transport
+	 */
 	public function transport(): Transport {
 		return Transport::Commands;
 	}
 
+	/**
+	 * Data parser.
+	 *
+	 * @param float $deadline
+	 * @return string
+	 */
 	public function dataParser(float $deadline): string {
 		return $this->settings->dataParser;
 	}
 
+	/**
+	 * Calls.
+	 *
+	 * @return int
+	 */
 	public function calls(): int {
 		return $this->calls;
 	}
 
+	/**
+	 * Memory limited.
+	 *
+	 * @return bool
+	 */
 	public function memoryLimited(): bool {
 		return $this->limited && $this->calls > 0;
 	}
@@ -132,6 +162,16 @@ final class CommandTransport implements SlurmTransport {
 		return 0;
 	}
 
+	/**
+	 * Fetch.
+	 *
+	 * @param Section $section
+	 * @param string $dataParser
+	 * @param float $deadline
+	 * @param int $since
+	 * @return string
+	 * @throws TransportError
+	 */
 	public function fetch(Section $section, string $dataParser, float $deadline, int $since = 0): string {
 		if ($this->slurmConf !== '' && !Settings::pathAcceptable($this->slurmConf)) {
 			throw new TransportError(ErrorClass::Config, 'slurm.conf path');

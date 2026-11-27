@@ -26,10 +26,20 @@
  * down the whole Cacti UI (REQ-COMPAT-001 to REQ-COMPAT-003).
  */
 
+/**
+ * Php supported.
+ *
+ * @return bool
+ */
 function hpcsched_php_supported(): bool {
 	return version_compare(PHP_VERSION, '8.2.0', '>=');
 }
 
+/**
+ * Boot.
+ *
+ * @return bool
+ */
 function hpcsched_boot(): bool {
 	if (!hpcsched_php_supported()) {
 		return false;
@@ -83,6 +93,11 @@ function plugin_hpcsched_version(): array {
 	return $version;
 }
 
+/**
+ * Plugin hpcsched install.
+ *
+ * @return void
+ */
 function plugin_hpcsched_install(): void {
 	if (hpcsched_refuse_unsupported()) {
 		return;
@@ -91,6 +106,11 @@ function plugin_hpcsched_install(): void {
 	plugin_hpcsched_upgrade(true);
 }
 
+/**
+ * Plugin hpcsched check config.
+ *
+ * @return bool
+ */
 function plugin_hpcsched_check_config(): bool {
 	if (hpcsched_refuse_unsupported()) {
 		return false;
@@ -143,6 +163,11 @@ function hpcsched_require_post(string $page, array $actions): void {
 	}
 }
 
+/**
+ * Settings.
+ *
+ * @return \Somethingwithproof\Hpcsched\Settings
+ */
 function hpcsched_settings(): \Somethingwithproof\Hpcsched\Settings {
 	return (new \Somethingwithproof\Hpcsched\SettingsRepository(false))->load();
 }
@@ -268,6 +293,11 @@ function plugin_hpcsched_uninstall(): void {
 	}
 }
 
+/**
+ * Config arrays.
+ *
+ * @return void
+ */
 function hpcsched_config_arrays(): void {
 	global $menu;
 
@@ -284,6 +314,11 @@ function hpcsched_config_arrays(): void {
 	}
 }
 
+/**
+ * Config settings.
+ *
+ * @return void
+ */
 function hpcsched_config_settings(): void {
 	global $tabs, $settings;
 
@@ -380,12 +415,22 @@ function hpcsched_due_clusters(int $poller_id): array {
 	))->due($poller_id, hpcsched_poller_interval());
 }
 
+/**
+ * Template installer.
+ *
+ * @return \Somethingwithproof\Hpcsched\TemplateInstaller
+ */
 function hpcsched_template_installer(): \Somethingwithproof\Hpcsched\TemplateInstaller {
 	global $config;
 
 	return new \Somethingwithproof\Hpcsched\TemplateInstaller(__DIR__, $config['base_path'], new \Somethingwithproof\Hpcsched\CactiObjectRepository(false));
 }
 
+/**
+ * Provisioner.
+ *
+ * @return \Somethingwithproof\Hpcsched\DeviceProvisioner
+ */
 function hpcsched_provisioner(): \Somethingwithproof\Hpcsched\DeviceProvisioner {
 	global $config;
 
@@ -461,6 +506,11 @@ function hpcsched_cluster_series(): \Somethingwithproof\Hpcsched\ClusterSeries {
 	);
 }
 
+/**
+ * Poller interval.
+ *
+ * @return int
+ */
 function hpcsched_poller_interval(): int {
 	$interval = (int) read_config_option('poller_interval');
 
@@ -508,6 +558,15 @@ function hpcsched_record_memory_failure(int $cluster_id, string $holder, \Someth
 	cacti_log('ERROR: The HPC scheduler reader for cluster ' . $cluster_id . ' ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings', false, 'HPCSCHED');
 }
 
+/**
+ * Reader.
+ *
+ * @param \Somethingwithproof\Hpcsched\Settings $settings
+ * @param string $holder
+ * @param ?\Somethingwithproof\Hpcsched\Clock $clock
+ * @param ?string $ca_file
+ * @return \Somethingwithproof\Hpcsched\Reader
+ */
 function hpcsched_reader(\Somethingwithproof\Hpcsched\Settings $settings, string $holder = '', ?\Somethingwithproof\Hpcsched\Clock $clock = null, ?string $ca_file = null): \Somethingwithproof\Hpcsched\Reader {
 	$clock = $clock ?? new \Somethingwithproof\Hpcsched\SystemClock();
 
@@ -607,6 +666,11 @@ function hpcsched_replicate_out($data) {
 	return $data;
 }
 
+/**
+ * Health evaluator.
+ *
+ * @return \Somethingwithproof\Hpcsched\HealthEvaluator
+ */
 function hpcsched_health_evaluator(): \Somethingwithproof\Hpcsched\HealthEvaluator {
 	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
 
@@ -624,6 +688,11 @@ function hpcsched_health_evaluator(): \Somethingwithproof\Hpcsched\HealthEvaluat
 	);
 }
 
+/**
+ * Config service.
+ *
+ * @return \Somethingwithproof\Hpcsched\ConfigService
+ */
 function hpcsched_config_service(): \Somethingwithproof\Hpcsched\ConfigService {
 	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
 
@@ -634,6 +703,11 @@ function hpcsched_config_service(): \Somethingwithproof\Hpcsched\ConfigService {
 	);
 }
 
+/**
+ * Maint synchronizer.
+ *
+ * @return \Somethingwithproof\Hpcsched\MaintSynchronizer
+ */
 function hpcsched_maint_synchronizer(): \Somethingwithproof\Hpcsched\MaintSynchronizer {
 	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
 
@@ -646,6 +720,12 @@ function hpcsched_maint_synchronizer(): \Somethingwithproof\Hpcsched\MaintSynchr
 	);
 }
 
+/**
+ * User view allowed.
+ *
+ * @param int $userId
+ * @return bool
+ */
 function hpcsched_user_view_allowed(int $userId): bool {
 	if ($userId < 1 || !function_exists('is_realm_allowed')) {
 		return false;
@@ -660,6 +740,13 @@ function hpcsched_user_view_allowed(int $userId): bool {
 	return false;
 }
 
+/**
+ * User cluster allowed.
+ *
+ * @param int $userId
+ * @param \Somethingwithproof\Hpcsched\Cluster $cluster
+ * @return bool
+ */
 function hpcsched_user_cluster_allowed(int $userId, \Somethingwithproof\Hpcsched\Cluster $cluster): bool {
 	if ($cluster->hostId < 1) {
 		return hpcsched_user_view_allowed($userId);
@@ -754,4 +841,66 @@ function hpcsched_casc_register_providers($providers = array()) {
 	$providers['hpcsched'] = $descriptor;
 
 	return $providers;
+}
+
+/**
+ * doctor_register_debug_info hook: contribute a redacted plain-array
+ * diagnostic snapshot for Cacti Doctor without importing external plugin classes.
+ *
+ * @param mixed $info
+ * @return mixed
+ */
+function hpcsched_doctor_register_debug_info($info = array()) {
+	if (!hpcsched_boot()) {
+		return $info;
+	}
+
+	$section = (new \Somethingwithproof\Hpcsched\DoctorProvider(hpcsched_health_evaluator()))->debugInfo();
+
+	if (is_object($info) && method_exists($info, 'register')) {
+		$info->register('hpcsched', $section);
+
+		return $info;
+	}
+
+	if (!is_array($info)) {
+		$info = array();
+	}
+
+	$info['hpcsched'] = $section;
+
+	return $info;
+}
+
+/**
+ * api_register_resources hook: expose plain-array Google AIP resource
+ * descriptors without importing external API plugin classes.
+ *
+ * @param mixed $resources
+ * @return mixed
+ */
+function hpcsched_api_register_resources($resources = array()) {
+	if (!hpcsched_boot()) {
+		return $resources;
+	}
+
+	$descriptors = (new \Somethingwithproof\Hpcsched\ApiResourceProvider())->resources();
+
+	if (is_object($resources) && method_exists($resources, 'register')) {
+		foreach ($descriptors as $key => $descriptor) {
+			$resources->register($key, $descriptor);
+		}
+
+		return $resources;
+	}
+
+	if (!is_array($resources)) {
+		$resources = array();
+	}
+
+	foreach ($descriptors as $key => $descriptor) {
+		$resources[$key] = $descriptor;
+	}
+
+	return $resources;
 }

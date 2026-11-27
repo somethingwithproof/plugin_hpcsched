@@ -25,6 +25,12 @@ namespace Somethingwithproof\Hpcsched;
  * schedule that is not owned by a plugin_hpcsched_maint_link row.
  */
 final class MaintRepository {
+	/**
+	 * Construct a new MaintRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 * @param Clock $clock
+	 */
 	public function __construct(private readonly \PDO|false $connection, private readonly Clock $clock) {
 	}
 
@@ -70,6 +76,11 @@ final class MaintRepository {
 		return $out;
 	}
 
+	/**
+	 * Total links.
+	 *
+	 * @return int
+	 */
 	public function totalLinks(): int {
 		return Row::count(db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hpcsched_maint_link', [], '', true, $this->connection));
 	}
@@ -119,6 +130,12 @@ final class MaintRepository {
 		return $scheduleId;
 	}
 
+	/**
+	 * Update schedule.
+	 *
+	 * @param MaintAction $action
+	 * @return bool
+	 */
 	public function updateSchedule(MaintAction $action): bool {
 		if ($action->scheduleId < 1) {
 			return false;

@@ -36,6 +36,14 @@ final class DeviceProvisioner {
 	/** Script server calls one data source makes per poll: the cluster input answers in one call. */
 	private const CLUSTER_CALLS = 1;
 
+	/**
+	 * Construct a new DeviceProvisioner instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param SeriesRepository $series
+	 * @param CactiObjectRepository $objects
+	 * @param string $cactiPath
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly SeriesRepository $series,
@@ -242,6 +250,12 @@ final class DeviceProvisioner {
 		return $this->objects->queriesSkipped($hostId) ? ReindexResult::Skipped : ReindexResult::Completed;
 	}
 
+	/**
+	 * Description.
+	 *
+	 * @param Cluster $cluster
+	 * @return string
+	 */
 	public function description(Cluster $cluster): string {
 		return 'HPC cluster ' . $cluster->name;
 	}
@@ -255,6 +269,16 @@ final class DeviceProvisioner {
 		return strtolower($cluster->name) . '.hpcsched.invalid';
 	}
 
+	/**
+	 * Graph.
+	 *
+	 * @param int $clusterId
+	 * @param int $hostId
+	 * @param string $name
+	 * @param int $queryId
+	 * @param string $partition
+	 * @return void
+	 */
 	private function graph(int $clusterId, int $hostId, string $name, int $queryId = 0, string $partition = ''): void {
 		$templateId = $this->objects->graphTemplateId($name);
 
@@ -276,6 +300,11 @@ final class DeviceProvisioner {
 		}
 	}
 
+	/**
+	 * Include core.
+	 *
+	 * @return void
+	 */
 	private function includeCore(): void {
 		include_once($this->cactiPath . '/lib/api_automation_tools.php');
 		include_once($this->cactiPath . '/lib/api_data_source.php');

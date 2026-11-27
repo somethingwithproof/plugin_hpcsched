@@ -23,10 +23,15 @@ namespace Somethingwithproof\Hpcsched;
  * Shared plain YAML scalar classification for YamlReader and YamlWriter.
  */
 final class YamlScalar {
+	/** String constant for YamlScalar. */
 	public const STRING    = 'string';
+	/** Nil constant for YamlScalar. */
 	public const NIL       = 'null';
+	/** Bool constant for YamlScalar. */
 	public const BOOL      = 'bool';
+	/** Int constant for YamlScalar. */
 	public const INT       = 'int';
+	/** Ambiguous constant for YamlScalar. */
 	public const AMBIGUOUS = 'ambiguous';
 
 	/**
@@ -65,6 +70,12 @@ final class YamlScalar {
 		return [self::STRING, $text];
 	}
 
+	/**
+	 * Plain safe.
+	 *
+	 * @param string $text
+	 * @return bool
+	 */
 	public static function plainSafe(string $text): bool {
 		if ($text === '' || self::classify($text)[0] !== self::STRING) {
 			return false;

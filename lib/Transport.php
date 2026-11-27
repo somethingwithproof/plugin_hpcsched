@@ -27,6 +27,11 @@ enum Transport: string {
 	case Commands = 'commands';
 	case Rest     = 'rest';
 
+	/**
+	 * Label.
+	 *
+	 * @return string
+	 */
 	public function label(): string {
 		return match ($this) {
 			self::Commands => __('Slurm client commands', 'hpcsched'),

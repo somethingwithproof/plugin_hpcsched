@@ -50,10 +50,22 @@ final class DeviceAccess {
 	) {
 	}
 
+	/**
+	 * Device.
+	 *
+	 * @param int $hostId
+	 * @return bool
+	 */
 	public function device(int $hostId): bool {
 		return $hostId > 0 && ($this->deviceAllowed)($hostId) === true;
 	}
 
+	/**
+	 * Cluster.
+	 *
+	 * @param ?Cluster $cluster
+	 * @return bool
+	 */
 	public function cluster(?Cluster $cluster): bool {
 		if ($cluster === null) {
 			return false;

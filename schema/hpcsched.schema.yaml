@@ -1,0 +1,101 @@
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+# SPDX-License-Identifier: GPL-2.0-or-later
+#
+# Static configuration and state schema for plugin_hpcsched.
+# Strictly separates declarative configuration (CasC-managed) from ephemeral
+# operational state (scheduler snapshots, leases, section status, node maps,
+# and Cacti Maint links).
+
+schema_version: 1
+plugin: hpcsched
+storage_separation: strict
+
+config:
+  label: HPC Scheduler Declarative Configuration
+  casc_managed: true
+  settings:
+    hpcsched_squeue:
+      type: path
+      default: "/usr/bin/squeue"
+      secret: false
+    hpcsched_scontrol:
+      type: path
+      default: "/usr/bin/scontrol"
+      secret: false
+    hpcsched_sshare:
+      type: path
+      default: "/usr/bin/sshare"
+      secret: false
+    hpcsched_prlimit:
+      type: path
+      default: "/usr/bin/prlimit"
+      secret: false
+    hpcsched_child_memory:
+      type: integer
+      default: 2048
+      min: 64
+      max: 65536
+      secret: false
+    hpcsched_call_timeout:
+      type: integer
+      default: 30
+      min: 2
+      max: 300
+      secret: false
+    hpcsched_max_output:
+      type: integer
+      default: 64
+      min: 1
+      max: 1024
+      secret: false
+    hpcsched_token_warning:
+      type: integer
+      default: 3600
+      min: 0
+      max: 604800
+      secret: false
+    hpcsched_uninstall_keep_tables:
+      type: boolean
+      default: true
+      secret: false
+    hpcsched_data_parser:
+      type: string
+      default: "v0.0.43"
+      secret: false
+    hpcsched_token_dirs:
+      type: path_list
+      default: ""
+      secret: false
+    hpcsched_rest_hosts:
+      type: host_list
+      default: ""
+      secret: false
+    hpcsched_reader_memory:
+      type: integer
+      default: 1024
+      min: 256
+      max: 65536
+      secret: false
+  tables:
+    - plugin_hpcsched_cluster
+  redacted_fields:
+    - token_file
+
+state:
+  label: Ephemeral Scheduler Runtime State
+  casc_managed: false
+  tables:
+    - plugin_hpcsched_run
+    - plugin_hpcsched_section
+    - plugin_hpcsched_job_count
+    - plugin_hpcsched_node_count
+    - plugin_hpcsched_node
+    - plugin_hpcsched_partition
+    - plugin_hpcsched_reservation
+    - plugin_hpcsched_share
+    - plugin_hpcsched_node_map
+    - plugin_hpcsched_maint_link
+  settings:
+    - hpcsched_schema_version
+    - hpcsched_templates_version
+    - hpcsched_templates_failure

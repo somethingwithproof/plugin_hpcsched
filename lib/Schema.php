@@ -35,33 +35,54 @@ namespace Somethingwithproof\Hpcsched;
  * schedule, or contacts the scheduler.
  */
 final class Schema {
+	/** Current schema version number. */
 	public const VERSION = 3;
 
+	/** Map of Cacti hook names to setup.php callback functions. */
 	public const HOOKS = [
-		'auth_alternate_realms'   => 'hpcsched_auth_alternate_realms',
-		'config_arrays'           => 'hpcsched_config_arrays',
-		'config_settings'         => 'hpcsched_config_settings',
-		'draw_navigation_text'    => 'hpcsched_draw_navigation_text',
-		'poller_bottom'           => 'hpcsched_poller_bottom',
-		'device_remove'           => 'hpcsched_device_remove',
-		'replicate_out'           => 'hpcsched_replicate_out',
-		'abilities_register'      => 'hpcsched_abilities_register',
-		'doctor_register_checks'  => 'hpcsched_doctor_register_checks',
-		'casc_register_providers' => 'hpcsched_casc_register_providers',
+		'auth_alternate_realms'      => 'hpcsched_auth_alternate_realms',
+		'config_arrays'              => 'hpcsched_config_arrays',
+		'config_settings'            => 'hpcsched_config_settings',
+		'draw_navigation_text'       => 'hpcsched_draw_navigation_text',
+		'poller_bottom'              => 'hpcsched_poller_bottom',
+		'device_remove'              => 'hpcsched_device_remove',
+		'replicate_out'              => 'hpcsched_replicate_out',
+		'abilities_register'         => 'hpcsched_abilities_register',
+		'api_register_resources'     => 'hpcsched_api_register_resources',
+		'doctor_register_checks'     => 'hpcsched_doctor_register_checks',
+		'doctor_register_debug_info' => 'hpcsched_doctor_register_debug_info',
+		'casc_register_providers'    => 'hpcsched_casc_register_providers',
 	];
 
+	/** Plugin constant for Schema. */
 	private const PLUGIN  = 'hpcsched';
+	/** Setting constant for Schema. */
 	private const SETTING = 'hpcsched_schema_version';
 
+	/**
+	 * Construct a new Schema instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 
+	/**
+	 * Stored version.
+	 *
+	 * @return int
+	 */
 	public function storedVersion(): int {
 		$value = db_fetch_cell_prepared('SELECT value FROM settings WHERE name = ?', [self::SETTING], '', true, $this->connection);
 
 		return is_numeric($value) ? (int) $value : 0;
 	}
 
+	/**
+	 * Check whether current.
+	 *
+	 * @return bool
+	 */
 	public function isCurrent(): bool {
 		return $this->storedVersion() === self::VERSION;
 	}
@@ -100,10 +121,23 @@ final class Schema {
 		return true;
 	}
 
+	/**
+	 * Recorded plugin version.
+	 *
+	 * @return string
+	 */
 	public function recordedPluginVersion(): string {
 		return (string) db_fetch_cell_prepared('SELECT version FROM plugin_config WHERE directory = ?', [self::PLUGIN], '', true, $this->connection);
 	}
 
+	/**
+	 * Record plugin version.
+	 *
+	 * @param string $version
+	 * @param string $author
+	 * @param string $homepage
+	 * @return void
+	 */
 	public function recordPluginVersion(string $version, string $author, string $homepage): void {
 		db_execute_prepared('UPDATE plugin_config SET version = ?, author = ?, webpage = ? WHERE directory = ?', [$version, $author, $homepage, self::PLUGIN], true, $this->connection);
 	}
@@ -115,6 +149,11 @@ final class Schema {
 		return (int) db_fetch_cell_prepared('SELECT status FROM plugin_config WHERE directory = ?', [self::PLUGIN], '', true, $this->connection) === 1;
 	}
 
+	/**
+	 * Hooks registered.
+	 *
+	 * @return bool
+	 */
 	public function hooksRegistered(): bool {
 		$placeholders = implode(', ', array_fill(0, count(self::HOOKS), '?'));
 
@@ -135,6 +174,11 @@ final class Schema {
 		return $ok !== false && (int) db_fetch_cell_prepared("SELECT COUNT(*) FROM plugin_db_changes WHERE plugin = ? AND method = 'create'", [self::PLUGIN], '', true, $this->connection) === 0;
 	}
 
+	/**
+	 * Forget version.
+	 *
+	 * @return void
+	 */
 	public function forgetVersion(): void {
 		db_execute_prepared('DELETE FROM settings WHERE name = ?', [self::SETTING], true, $this->connection);
 	}
@@ -185,6 +229,13 @@ final class Schema {
 		return $this->columnExists('plugin_hpcsched_cluster', 'host_id');
 	}
 
+	/**
+	 * Column exists.
+	 *
+	 * @param string $table
+	 * @param string $column
+	 * @return bool
+	 */
 	private function columnExists(string $table, string $column): bool {
 		return db_fetch_cell_prepared('SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?', [$table, $column], '', true, $this->connection) > 0;
 	}
@@ -206,6 +257,12 @@ final class Schema {
 		return true;
 	}
 
+	/**
+	 * Table exists.
+	 *
+	 * @param string $table
+	 * @return bool
+	 */
 	private function tableExists(string $table): bool {
 		return db_fetch_cell_prepared('SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ?', [$table], '', true, $this->connection) > 0;
 	}

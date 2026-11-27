@@ -24,6 +24,11 @@ namespace Somethingwithproof\Hpcsched;
  * shows a job, user, or account (REQ-UI-004, REQ-REASON-006).
  */
 final class ViewRepository {
+	/**
+	 * Construct a new ViewRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 

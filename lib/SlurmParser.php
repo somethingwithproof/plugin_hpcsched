@@ -217,6 +217,13 @@ final class SlurmParser {
 		return array_values(array_unique(array_filter($names, static fn (string $n): bool => preg_match('/^[A-Za-z0-9._-]{1,64}$/', $n) === 1)));
 	}
 
+	/**
+	 * Clip.
+	 *
+	 * @param string $text
+	 * @param int $length
+	 * @return string
+	 */
 	private static function clip(string $text, int $length): string {
 		return mb_substr($text, 0, $length, 'UTF-8');
 	}

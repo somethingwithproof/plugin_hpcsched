@@ -38,14 +38,29 @@ final readonly class ConfigPlan {
 	) {
 	}
 
+	/**
+	 * Check whether errors is present.
+	 *
+	 * @return bool
+	 */
 	public function hasErrors(): bool {
 		return $this->errors !== [];
 	}
 
+	/**
+	 * Check whether empty.
+	 *
+	 * @return bool
+	 */
 	public function isEmpty(): bool {
 		return $this->settingsChanges === [] && $this->clusterChanges === [];
 	}
 
+	/**
+	 * Id.
+	 *
+	 * @return string
+	 */
 	public function id(): string {
 		$canonical = [
 			'settings' => $this->settingsChanges,

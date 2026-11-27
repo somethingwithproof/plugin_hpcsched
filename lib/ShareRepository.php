@@ -24,6 +24,11 @@ namespace Somethingwithproof\Hpcsched;
  * (plugin_hpcsched_share).
  */
 final class ShareRepository {
+	/**
+	 * Construct a new ShareRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 
@@ -49,6 +54,13 @@ final class ShareRepository {
 		return $out;
 	}
 
+	/**
+	 * Summary.
+	 *
+	 * @param int $clusterId
+	 * @param int $topLimit
+	 * @return ShareSummary
+	 */
 	public function summary(int $clusterId, int $topLimit = 10): ShareSummary {
 		return ShareSummary::fromRecords($clusterId, $this->forCluster($clusterId), $topLimit);
 	}

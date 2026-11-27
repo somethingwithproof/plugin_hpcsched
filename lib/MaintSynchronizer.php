@@ -27,9 +27,21 @@ namespace Somethingwithproof\Hpcsched;
  * removed, so administrator-created Maint schedules remain untouched.
  */
 final class MaintSynchronizer {
+	/** Default drain horizon. */
 	public const DEFAULT_DRAIN_HORIZON = 3600;
+	/** Renew margin constant for MaintSynchronizer. */
 	public const RENEW_MARGIN          = 600;
 
+	/**
+	 * Construct a new MaintSynchronizer instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param NodeMapRepository $nodeMaps
+	 * @param MaintRepository $maint
+	 * @param NodeMatcher $matcher
+	 * @param Clock $clock
+	 * @param int $drainHorizon
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly NodeMapRepository $nodeMaps,
@@ -284,6 +296,12 @@ final class MaintSynchronizer {
 		return null;
 	}
 
+	/**
+	 * Check whether maint reservation.
+	 *
+	 * @param string $flags
+	 * @return bool
+	 */
 	private static function isMaintReservation(string $flags): bool {
 		$upper = strtoupper($flags);
 

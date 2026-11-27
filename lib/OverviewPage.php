@@ -28,6 +28,7 @@ namespace Somethingwithproof\Hpcsched;
  * not see are left out (DeviceAccess).
  */
 final class OverviewPage {
+	/** File constant for OverviewPage. */
 	public const FILE = 'hpcsched.php';
 
 	/** Rows the reasons view lists at most per table (REQ-REASON-004). */
@@ -48,6 +49,11 @@ final class OverviewPage {
 	) {
 	}
 
+	/**
+	 * Render.
+	 *
+	 * @return void
+	 */
 	public function render(): void {
 		$now = $this->clock->now();
 

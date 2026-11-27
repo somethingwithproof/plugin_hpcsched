@@ -77,10 +77,22 @@ final class RestTransport implements SlurmTransport {
 	 */
 	public const FULL_READ_SECONDS = 600;
 
+	/** Calls state for RestTransport. */
 	private int $calls = 0;
 
+	/** Parser state for RestTransport. */
 	private string $parser = '';
 
+	/**
+	 * Construct a new RestTransport instance.
+	 *
+	 * @param HttpTransport $http
+	 * @param Endpoint $endpoint
+	 * @param string $user
+	 * @param Token $token
+	 * @param float $callTimeout
+	 * @param string $cached
+	 */
 	public function __construct(
 		private readonly HttpTransport $http,
 		private readonly Endpoint $endpoint,
@@ -91,10 +103,21 @@ final class RestTransport implements SlurmTransport {
 	) {
 	}
 
+	/**
+	 * Transport.
+	 *
+	 * @return Transport
+	 */
 	public function transport(): Transport {
 		return Transport::Rest;
 	}
 
+	/**
+	 * Data parser.
+	 *
+	 * @param float $deadline
+	 * @return string
+	 */
 	public function dataParser(float $deadline): string {
 		if ($this->parser === '') {
 			$this->parser = DataParser::supported($this->cached) ? $this->cached : $this->discover($deadline);
@@ -103,10 +126,20 @@ final class RestTransport implements SlurmTransport {
 		return $this->parser;
 	}
 
+	/**
+	 * Calls.
+	 *
+	 * @return int
+	 */
 	public function calls(): int {
 		return $this->calls;
 	}
 
+	/**
+	 * Memory limited.
+	 *
+	 * @return bool
+	 */
 	public function memoryLimited(): bool {
 		return true;
 	}
@@ -152,6 +185,17 @@ final class RestTransport implements SlurmTransport {
 		return max(0, $previous->observedAt - FreshnessEvaluator::SKEW_ALLOWANCE);
 	}
 
+	/**
+	 * Fetch.
+	 *
+	 * @param Section $section
+	 * @param string $dataParser
+	 * @param float $deadline
+	 * @param int $since
+	 * @return string
+	 * @throws TransportError
+	 * @throws Unchanged
+	 */
 	public function fetch(Section $section, string $dataParser, float $deadline, int $since = 0): string {
 		if (!DataParser::supported($dataParser)) {
 			throw new TransportError(ErrorClass::Config, 'data parser');
@@ -210,6 +254,12 @@ final class RestTransport implements SlurmTransport {
 		return $this->http->get(new HttpRequest($this->endpoint, $this->endpoint->basePath . $path, $headers, $query), min($deadline, microtime(true) + $this->callTimeout));
 	}
 
+	/**
+	 * Error.
+	 *
+	 * @param int $status
+	 * @return TransportError
+	 */
 	private static function error(int $status): TransportError {
 		return match (true) {
 			$status === 304 => new TransportError(ErrorClass::NotModified, '304'),

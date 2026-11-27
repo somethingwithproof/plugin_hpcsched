@@ -31,6 +31,7 @@ namespace Somethingwithproof\Hpcsched;
  * the Admin realm edits, can point the reader at.
  */
 final readonly class Settings {
+	/** Registered setting names managed by the plugin. */
 	public const NAMES = [
 		'hpcsched_squeue',
 		'hpcsched_scontrol',
@@ -47,13 +48,21 @@ final readonly class Settings {
 		'hpcsched_reader_memory',
 	];
 
+	/** Default squeue. */
 	public const DEFAULT_SQUEUE        = '/usr/bin/squeue';
+	/** Default scontrol. */
 	public const DEFAULT_SCONTROL      = '/usr/bin/scontrol';
+	/** Default sshare. */
 	public const DEFAULT_SSHARE        = '/usr/bin/sshare';
+	/** Default prlimit. */
 	public const DEFAULT_PRLIMIT       = '/usr/bin/prlimit';
+	/** Default child memory. */
 	public const DEFAULT_CHILD_MEMORY  = 2048;
+	/** Default call timeout. */
 	public const DEFAULT_CALL_TIMEOUT  = 30;
+	/** Default max output. */
 	public const DEFAULT_MAX_OUTPUT    = 64;
+	/** Default reader memory. */
 	public const DEFAULT_READER_MEMORY = 1024;
 
 	/**
@@ -65,8 +74,24 @@ final readonly class Settings {
 
 	/** MiB the reader keeps for everything other than one decoded answer. */
 	public const MEMORY_RESERVE = 64;
+	/** Default token warning. */
 	public const DEFAULT_TOKEN_WARNING = 3600;
 
+	/**
+	 * Construct a new Settings instance.
+	 *
+	 * @param string $squeue
+	 * @param string $scontrol
+	 * @param string $sshare
+	 * @param string $prlimit
+	 * @param int $childMemoryMib
+	 * @param int $callTimeout
+	 * @param int $maxOutputMib
+	 * @param int $tokenWarning
+	 * @param bool $keepTablesOnUninstall
+	 * @param string $dataParser
+	 * @param int $readerMemoryMib
+	 */
 	public function __construct(
 		public string $squeue,
 		public string $scontrol,
@@ -192,6 +217,11 @@ final readonly class Settings {
 		return false;
 	}
 
+	/**
+	 * Max output bytes.
+	 *
+	 * @return int
+	 */
 	public function maxOutputBytes(): int {
 		return $this->fittedOutputMib() * 1048576;
 	}

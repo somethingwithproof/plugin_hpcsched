@@ -24,6 +24,19 @@ namespace Somethingwithproof\Hpcsched;
  * Slurm compute node.
  */
 final readonly class MaintAction {
+	/**
+	 * Construct a new MaintAction instance.
+	 *
+	 * @param string $operation
+	 * @param int $clusterId
+	 * @param string $nodeName
+	 * @param int $hostId
+	 * @param string $reasonKind
+	 * @param string $sourceRef
+	 * @param int $startTime
+	 * @param int $endTime
+	 * @param int $scheduleId
+	 */
 	public function __construct(
 		public string $operation,
 		public int $clusterId,

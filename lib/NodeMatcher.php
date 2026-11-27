@@ -31,9 +31,13 @@ namespace Somethingwithproof\Hpcsched;
  * ambiguous rather than guessed at.
  */
 final class NodeMatcher {
+	/** Tier hostname constant for NodeMatcher. */
 	public const TIER_HOSTNAME    = 1;
+	/** Tier address constant for NodeMatcher. */
 	public const TIER_ADDRESS     = 2;
+	/** Tier description constant for NodeMatcher. */
 	public const TIER_DESCRIPTION = 3;
+	/** Tier short constant for NodeMatcher. */
 	public const TIER_SHORT       = 4;
 
 	/**
@@ -146,14 +150,32 @@ final class NodeMatcher {
 		return $result;
 	}
 
+	/**
+	 * Norm.
+	 *
+	 * @param string $value
+	 * @return string
+	 */
 	public static function norm(string $value): string {
 		return strtolower(rtrim(trim($value), '.'));
 	}
 
+	/**
+	 * Check whether ip.
+	 *
+	 * @param string $value
+	 * @return bool
+	 */
 	private static function isIp(string $value): bool {
 		return filter_var($value, FILTER_VALIDATE_IP) !== false;
 	}
 
+	/**
+	 * Short label.
+	 *
+	 * @param string $value
+	 * @return ?string
+	 */
 	private static function shortLabel(string $value): ?string {
 		$value = self::norm($value);
 

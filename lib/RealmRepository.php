@@ -23,6 +23,11 @@ namespace Somethingwithproof\Hpcsched;
  * Resolves plugin_realms IDs for read-only MCP ability authorization.
  */
 final class RealmRepository {
+	/**
+	 * Construct a new RealmRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 

@@ -23,13 +23,29 @@ namespace Somethingwithproof\Hpcsched;
  * A clock that moves only when told to, for tests and replays.
  */
 final class FixedClock implements Clock {
+	/**
+	 * Construct a new FixedClock instance.
+	 *
+	 * @param int $time
+	 */
 	public function __construct(private int $time) {
 	}
 
+	/**
+	 * Now.
+	 *
+	 * @return int
+	 */
 	public function now(): int {
 		return $this->time;
 	}
 
+	/**
+	 * Advance.
+	 *
+	 * @param int $seconds
+	 * @return void
+	 */
 	public function advance(int $seconds): void {
 		$this->time += $seconds;
 	}

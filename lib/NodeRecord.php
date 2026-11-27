@@ -44,6 +44,11 @@ final readonly class NodeRecord {
 	) {
 	}
 
+	/**
+	 * Drained.
+	 *
+	 * @return bool
+	 */
 	public function drained(): bool {
 		return NodeState::drained($this->flags);
 	}
