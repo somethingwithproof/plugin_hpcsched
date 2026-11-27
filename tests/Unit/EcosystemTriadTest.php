@@ -215,27 +215,74 @@ it('exposes four read-only Doctor diagnostic checks and a CasC provider descript
 	]);
 
 	foreach ($checks as $check) {
-		expect($check['category'])->toBe('hpcsched')
-			->and(['pass', 'warn', 'fail'])->toContain($check['status']);
+		expect($check)->toHaveKeys(['id', 'plugin', 'category', 'title', 'status', 'message', 'details', 'remediation'])
+			->and($check['plugin'])->toBe('hpcsched')
+			->and($check['category'])->toBe('hpcsched')
+			->and(['ok', 'warn', 'fail', 'info'])->toContain($check['status'])
+			->and($check['message'])->not->toBe('');
 	}
+
+	expect($checks[0]['status'])->toBe('ok');
+
+	$hookChecks = hpcsched_doctor_register_checks(['mode' => 'run', 'plugin' => 'hpcsched']);
+	expect(array_is_list($hookChecks))->toBeTrue()
+		->and(array_key_exists('mode', $hookChecks))->toBeFalse()
+		->and(array_column($hookChecks, 'id'))->toBe([
+			'hpcsched.schema',
+			'hpcsched.cluster_freshness',
+			'hpcsched.token_health',
+			'hpcsched.maint_sync',
+		]);
 
 	$clock = new FixedClock(1800000000);
 	$casc  = (new CascProvider(new ConfigService(new SettingsRepository(false), new ClusterRepository(false, $clock), new ConfigRepository(false))))->descriptor();
 
-	expect($casc['plugin'])->toBe('hpcsched')
-		->and($casc['formats'])->toBe([ConfigCodec::YAML, ConfigCodec::XML])
-		->and($casc['redacted_fields'])->toContain('token_file')
-		->and(($casc['export'])(ConfigCodec::YAML))->not->toContain('secret.jwt');
+	expect($casc['slug'])->toBe('hpcsched')
+		->and($casc['schemaVersion'])->toBe('1.0')
+		->and($casc['redacted_fields'])->toContain('token_file');
+
+	$exported = ($casc['export'])([]);
+	expect($exported)->toHaveKeys(['config', 'reference'])
+		->and(json_encode($exported))->not->toContain('secret.jwt')
+		->and(($casc['validate'])($exported['config']))->toBe([])
+		->and(($casc['validate'])($exported))->toBe([])
+		->and(($casc['validate'])(['schema_version' => 999]))->not->toBeEmpty()
+		->and(($casc['plan'])($exported['config'], []))->toBe([]);
+
+	$desired = $exported['config'];
+	$desired['settings']['hpcsched_call_timeout'] = 45;
+	expect(($casc['plan'])($desired, []))->toHaveCount(1)
+		->and(($casc['plan'])(['schema_version' => 999], [])[0]['operation'])->toBe('error')
+		->and(($casc['apply'])($desired, 'wrong-hash', [])['ok'])->toBeFalse();
+
+	$cascReg = new class {
+		/** @var list<array<string, mixed>> */
+		public array $registered = [];
+
+		/** @param array<string, mixed> $descriptor */
+		public function register(array $descriptor): void {
+			$this->registered[] = $descriptor;
+		}
+	};
+	expect(hpcsched_casc_register_providers($cascReg))->toBe($cascReg)
+		->and($cascReg->registered)->toHaveCount(1)
+		->and($cascReg->registered[0]['slug'])->toBe('hpcsched')
+		->and(hpcsched_casc_register_providers(null)['slug'])->toBe('hpcsched');
 });
 
 it('registers decoupled doctor_register_debug_info and api_register_resources hooks and ships a valid Config/State schema', function () {
 	hpcsched_seed_triad_db();
 
-	$debugInfo = hpcsched_doctor_register_debug_info([]);
-	expect($debugInfo)->toHaveKey('hpcsched')
-		->and($debugInfo['hpcsched']['label'])->toBe('HPC Scheduler')
+	// doctor_register_debug_info returns a plain list and never echoes $context.
+	$debugInfo = hpcsched_doctor_register_debug_info(['plugin' => 'hpcsched']);
+	expect(array_is_list($debugInfo))->toBeTrue()
+		->and(array_key_exists('plugin', $debugInfo))->toBeFalse()
+		->and($debugInfo)->toHaveCount(1)
+		->and($debugInfo[0]['id'])->toBe('hpcsched.overview')
+		->and($debugInfo[0]['plugin'])->toBe('hpcsched')
+		->and($debugInfo[0]['label'])->toBe('HPC Scheduler')
 		->and(json_encode($debugInfo))->not->toContain('secret.jwt')
-		->and($debugInfo['hpcsched']['fields'])->toHaveKeys([
+		->and($debugInfo[0]['fields'])->toHaveKeys([
 			'schema_version',
 			'health_status',
 			'clusters_configured',
@@ -243,43 +290,43 @@ it('registers decoupled doctor_register_debug_info and api_register_resources ho
 			'maint_sync',
 			'token_redaction',
 		])
-		->and($debugInfo['hpcsched']['fields']['token_redaction']['private'])->toBeTrue();
+		->and($debugInfo[0]['fields']['token_redaction']['private'])->toBeTrue();
 
-	// Object-registrar path works without importing any external Doctor class.
-	$debugReg = new class {
-		/** @var array<string, mixed> */
-		public array $sections = [];
-
-		/** @param array<string, mixed> $section */
-		public function register(string $id, array $section): void {
-			$this->sections[$id] = $section;
-		}
-	};
-	expect(hpcsched_doctor_register_debug_info($debugReg))->toBe($debugReg)
-		->and($debugReg->sections)->toHaveKey('hpcsched');
-
-	// Google AIP resource descriptors (plain array and object registrar).
+	// Google AIP resource descriptors (canonical lowerCamelCase collections, realm_read, handlers).
 	$resources = hpcsched_api_register_resources([]);
-	expect(array_keys($resources))->toBe(['hpcsched.clusters', 'hpcsched.partitions', 'hpcsched.shares']);
+	expect(array_is_list($resources))->toBeTrue()
+		->and(array_column($resources, 'collection'))->toBe(['hpcschedClusters']);
 
-	foreach ($resources as $key => $descriptor) {
-		expect($descriptor['plugin'])->toBe('hpcsched', $key)
-			->and($descriptor['read_only'])->toBeTrue($key)
-			->and($descriptor['methods'])->toBe(['get', 'list'], $key)
+	foreach ($resources as $descriptor) {
+		expect($descriptor['plugin'])->toBe('hpcsched')
+			->and($descriptor['collection'])->toMatch('/^[a-z][A-Za-z0-9]{2,63}$/')
+			->and($descriptor['realm_read'])->toBe('hpcsched.php')
+			->and($descriptor['read_only'])->toBeTrue()
+			->and(array_keys($descriptor['handlers']))->toBe(['list', 'get'])
 			->and(json_encode($descriptor))->not->toContain('token_file');
 	}
 
-	$apiReg = new class {
-		/** @var array<string, mixed> */
-		public array $items = [];
+	// Direct ApiResourceProvider handler execution (permitted and denied users).
+	$apiProvider = new Somethingwithproof\Hpcsched\ApiResourceProvider(
+		hpcsched_triad_evaluator(),
+		static fn (int $u): bool => $u === 10,
+	);
+	$directResources = $apiProvider->resources();
+	$list            = ($directResources[0]['handlers']['list'])(['user_id' => 10]);
 
-		/** @param array<string, mixed> $descriptor */
-		public function register(string $id, array $descriptor): void {
-			$this->items[$id] = $descriptor;
-		}
-	};
-	expect(hpcsched_api_register_resources($apiReg))->toBe($apiReg)
-		->and(array_keys($apiReg->items))->toBe(['hpcsched.clusters', 'hpcsched.partitions', 'hpcsched.shares']);
+	expect($list)->toHaveCount(1)
+		->and($list[0]['name'])->toBe('hpcschedClusters/1')
+		->and($list[0]['display_name'])->toBe('prod')
+		->and(json_encode($list))->not->toContain('secret.jwt')
+		->and(($directResources[0]['handlers']['get'])('hpcschedClusters/1', ['user_id' => 10])['display_name'])->toBe('prod')
+		->and(($directResources[0]['handlers']['get'])('999', ['user_id' => 10]))->toBeNull()
+		->and(($directResources[0]['handlers']['get'])('bad', ['user_id' => 10]))->toBeNull()
+		->and(($directResources[0]['handlers']['list'])(['user_id' => 99]))->toBe([])
+		->and(($directResources[0]['handlers']['get'])('1', ['user_id' => 99]))->toBeNull();
+
+	$mergedApi = hpcsched_api_register_resources([['plugin' => 'other', 'collection' => 'otherItems']]);
+	expect($mergedApi)->toHaveCount(2)
+		->and($mergedApi[1]['collection'])->toBe('hpcschedClusters');
 
 	// Static Drupal-style Config vs. State schema parses cleanly and covers all settings and tables.
 	$schemaFile = dirname(__DIR__, 2) . '/schema/hpcsched.schema.yaml';
