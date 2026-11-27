@@ -68,13 +68,6 @@ if ($hpcsched_cluster < 1) {
 	exit(1);
 }
 
-// Before any plugin table is read: on a remote data collector the default
-// connection is the collector's local database (remote collection is phase 3).
-if (!hpcsched_on_main_poller()) {
-	cacti_log('ERROR: The HPC scheduler reader for cluster ' . $hpcsched_cluster . ' did not run: this release collects only on the main poller, and poller ' . (int) $config['poller_id'] . ' is a remote data collector', false, 'HPCSCHED');
-	exit(1);
-}
-
 if (!(new \Somethingwithproof\Hpcsched\Schema(false))->isCurrent()) {
 	cacti_log('ERROR: The HPC scheduler reader did not run because the plugin schema is not current; open the Plugins page to finish the upgrade', false, 'HPCSCHED');
 	exit(1);

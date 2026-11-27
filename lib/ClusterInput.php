@@ -53,6 +53,42 @@ final readonly class ClusterInput {
 	}
 
 	/**
+	 * Build a pre-validated ClusterInput (used by CasC apply).
+	 */
+	public static function fromValidated(
+		int $id,
+		string $name,
+		int $pollerId,
+		AdminState $adminState,
+		Transport $transport,
+		int $interval,
+		string $slurmConf,
+		string $restUrl,
+		string $restUser,
+		string $tokenFile,
+		bool $reservations,
+		bool $shares,
+		int $updatedAt,
+	): self {
+		return new self(
+			id: $id,
+			name: $name,
+			pollerId: $pollerId,
+			adminState: $adminState,
+			transport: $transport,
+			interval: $interval,
+			slurmConf: $slurmConf,
+			restUrl: $restUrl,
+			restUser: $restUser,
+			tokenFile: $tokenFile,
+			reservations: $reservations,
+			shares: $shares,
+			updatedAt: $updatedAt,
+			errors: [],
+		);
+	}
+
+	/**
 	 * @param array<string, string> $input
 	 * @param array<int, string>    $pollers poller id => name
 	 */

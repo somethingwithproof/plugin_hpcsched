@@ -332,14 +332,6 @@ function hpcsched_poller_bottom(): void {
 		return;
 	}
 
-	// The repositories use the default database connection, which on a
-	// remote data collector is its local database, not the main one. Remote
-	// collection is phase 3; until then nothing is started there, and the
-	// health page lists every cluster assigned to a remote poller.
-	if (!hpcsched_on_main_poller()) {
-		return;
-	}
-
 	if (!function_exists('exec_background')) {
 		include_once($config['library_path'] . '/poller.php');
 	}
@@ -359,7 +351,7 @@ function hpcsched_poller_bottom(): void {
 	}
 
 	try {
-		$due = hpcsched_due_clusters((int) $config['poller_id']);
+		$due = hpcsched_due_clusters((int) ($config['poller_id'] ?? 1));
 	} catch (\Somethingwithproof\Hpcsched\DatabaseError $e) {
 		cacti_log('ERROR: The HPC scheduler readers were not started because the cluster list could not be read', false, 'HPCSCHED');
 
@@ -442,7 +434,9 @@ function hpcsched_device_remove($host_ids) {
 		}
 	}
 
-	$count = (new \Somethingwithproof\Hpcsched\ClusterRepository(false, new \Somethingwithproof\Hpcsched\SystemClock()))->unmapHosts($ids);
+	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
+	$count = (new \Somethingwithproof\Hpcsched\ClusterRepository(false, $clock))->unmapHosts($ids);
+	(new \Somethingwithproof\Hpcsched\NodeMapRepository(false, $clock))->unmapHosts($ids);
 
 	if ($count > 0) {
 		\Somethingwithproof\Hpcsched\Log::info(sprintf('%d clusters lost their device when it was deleted; they can be given a device again from HPC Clusters', $count));
@@ -584,4 +578,180 @@ function hpcsched_page_allowed(): bool {
 		&& api_plugin_is_enabled('hpcsched')
 		&& ($current_user['enabled'] ?? '') === 'on'
 		&& api_plugin_user_realm_auth(get_current_page());
+}
+
+/**
+ * replicate_out hook: replicate non-secret cluster metadata assigned to a
+ * remote collector. Token file contents are never read or replicated.
+ *
+ * @param mixed $data
+ * @return mixed
+ */
+function hpcsched_replicate_out($data) {
+	if (!hpcsched_boot() || !is_array($data)) {
+		return $data;
+	}
+
+	$remote_poller_id = isset($data['remote_poller_id']) && is_numeric($data['remote_poller_id']) ? (int) $data['remote_poller_id'] : 0;
+	$rcnn_id          = $data['rcnn_id'] ?? false;
+
+	if ($remote_poller_id < 2 || $rcnn_id === false || !function_exists('replicate_out_table')) {
+		return $data;
+	}
+
+	$rows = (new \Somethingwithproof\Hpcsched\ReplicatorRepository(false))->clustersForPoller($remote_poller_id);
+
+	// @phpstan-ignore argument.type
+	replicate_out_table($rcnn_id, $rows, 'plugin_hpcsched_cluster', $remote_poller_id);
+
+	return $data;
+}
+
+function hpcsched_health_evaluator(): \Somethingwithproof\Hpcsched\HealthEvaluator {
+	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
+
+	return new \Somethingwithproof\Hpcsched\HealthEvaluator(
+		new \Somethingwithproof\Hpcsched\ClusterRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\RunRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\ViewRepository(false),
+		new \Somethingwithproof\Hpcsched\ShareRepository(false),
+		new \Somethingwithproof\Hpcsched\MaintRepository(false, $clock),
+		hpcsched_settings(),
+		new \Somethingwithproof\Hpcsched\FreshnessEvaluator($clock),
+		$clock,
+		new \Somethingwithproof\Hpcsched\Schema(false),
+		hpcsched_poller_interval(),
+	);
+}
+
+function hpcsched_config_service(): \Somethingwithproof\Hpcsched\ConfigService {
+	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
+
+	return new \Somethingwithproof\Hpcsched\ConfigService(
+		new \Somethingwithproof\Hpcsched\SettingsRepository(false),
+		new \Somethingwithproof\Hpcsched\ClusterRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\ConfigRepository(false),
+	);
+}
+
+function hpcsched_maint_synchronizer(): \Somethingwithproof\Hpcsched\MaintSynchronizer {
+	$clock = new \Somethingwithproof\Hpcsched\SystemClock();
+
+	return new \Somethingwithproof\Hpcsched\MaintSynchronizer(
+		new \Somethingwithproof\Hpcsched\ClusterRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\NodeMapRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\MaintRepository(false, $clock),
+		new \Somethingwithproof\Hpcsched\NodeMatcher(),
+		$clock,
+	);
+}
+
+function hpcsched_user_view_allowed(int $userId): bool {
+	if ($userId < 1 || !function_exists('is_realm_allowed')) {
+		return false;
+	}
+
+	foreach ((new \Somethingwithproof\Hpcsched\RealmRepository(false))->viewRealmIds() as $realmId) {
+		if (is_realm_allowed($realmId, $userId)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function hpcsched_user_cluster_allowed(int $userId, \Somethingwithproof\Hpcsched\Cluster $cluster): bool {
+	if ($cluster->hostId < 1) {
+		return hpcsched_user_view_allowed($userId);
+	}
+
+	if (function_exists('is_device_allowed')) {
+		return (bool) is_device_allowed($cluster->hostId, $userId);
+	}
+
+	return false;
+}
+
+/**
+ * abilities_register hook: register read-only HPC Scheduler abilities gated by
+ * the View realm.
+ *
+ * @param mixed $registrar
+ */
+function hpcsched_abilities_register($registrar): void {
+	if (!hpcsched_boot() || !is_object($registrar)) {
+		return;
+	}
+
+	$provider = new \Somethingwithproof\Hpcsched\AbilitiesProvider(
+		hpcsched_health_evaluator(),
+		static function (int $userId): bool {
+			return hpcsched_user_view_allowed($userId);
+		},
+		static function (int $userId, \Somethingwithproof\Hpcsched\Cluster $cluster): bool {
+			return hpcsched_user_cluster_allowed($userId, $cluster);
+		},
+	);
+
+	$provider->register($registrar);
+}
+
+/**
+ * doctor_register_checks hook: provide read-only diagnostic checks for Cacti Doctor.
+ *
+ * @param mixed $checks
+ * @return mixed
+ */
+function hpcsched_doctor_register_checks($checks = array()) {
+	if (!hpcsched_boot()) {
+		return $checks;
+	}
+
+	$results = (new \Somethingwithproof\Hpcsched\DoctorProvider(hpcsched_health_evaluator()))->checks();
+
+	if (is_object($checks) && method_exists($checks, 'register')) {
+		foreach ($results as $check) {
+			$checks->register($check);
+		}
+
+		return $checks;
+	}
+
+	if (!is_array($checks)) {
+		$checks = array();
+	}
+
+	foreach ($results as $check) {
+		$checks[] = $check;
+	}
+
+	return $checks;
+}
+
+/**
+ * casc_register_providers hook: register HPC Scheduler CasC provider descriptor.
+ *
+ * @param mixed $providers
+ * @return mixed
+ */
+function hpcsched_casc_register_providers($providers = array()) {
+	if (!hpcsched_boot()) {
+		return $providers;
+	}
+
+	$descriptor = (new \Somethingwithproof\Hpcsched\CascProvider(hpcsched_config_service()))->descriptor();
+
+	if (is_object($providers) && method_exists($providers, 'register')) {
+		$providers->register('hpcsched', $descriptor);
+
+		return $providers;
+	}
+
+	if (!is_array($providers)) {
+		$providers = array();
+	}
+
+	$providers['hpcsched'] = $descriptor;
+
+	return $providers;
 }

@@ -35,15 +35,19 @@ namespace Somethingwithproof\Hpcsched;
  * schedule, or contacts the scheduler.
  */
 final class Schema {
-	public const VERSION = 2;
+	public const VERSION = 3;
 
 	public const HOOKS = [
-		'auth_alternate_realms' => 'hpcsched_auth_alternate_realms',
-		'config_arrays'        => 'hpcsched_config_arrays',
-		'config_settings'      => 'hpcsched_config_settings',
-		'draw_navigation_text' => 'hpcsched_draw_navigation_text',
-		'poller_bottom'        => 'hpcsched_poller_bottom',
-		'device_remove'        => 'hpcsched_device_remove',
+		'auth_alternate_realms'   => 'hpcsched_auth_alternate_realms',
+		'config_arrays'           => 'hpcsched_config_arrays',
+		'config_settings'         => 'hpcsched_config_settings',
+		'draw_navigation_text'    => 'hpcsched_draw_navigation_text',
+		'poller_bottom'           => 'hpcsched_poller_bottom',
+		'device_remove'           => 'hpcsched_device_remove',
+		'replicate_out'           => 'hpcsched_replicate_out',
+		'abilities_register'      => 'hpcsched_abilities_register',
+		'doctor_register_checks'  => 'hpcsched_doctor_register_checks',
+		'casc_register_providers' => 'hpcsched_casc_register_providers',
 	];
 
 	private const PLUGIN  = 'hpcsched';
@@ -161,6 +165,10 @@ final class Schema {
 			// data inputs read. A fresh install already has both from
 			// migration 1, which uses the current definitions.
 			2 => fn (): bool => $this->createTables(array_intersect_key(self::tables(), ['plugin_hpcsched_node_count' => true])) && $this->addHostColumn(),
+			3 => fn (): bool => $this->createTables(array_intersect_key(self::tables(), [
+				'plugin_hpcsched_node_map'   => true,
+				'plugin_hpcsched_maint_link' => true,
+			])),
 		];
 	}
 
@@ -378,6 +386,38 @@ final class Schema {
 					...$stamps,
 				],
 				'unique_keys' => [['name' => 'cluster_share', 'columns' => ['cluster_id', 'account', 'partition_name']]],
+			],
+			// Slurm compute-node to Cacti host record mappings (Phase 2).
+			'plugin_hpcsched_node_map' => $innodb + [
+				'comment' => 'Mapping of Slurm compute nodes to Cacti host records',
+				'columns' => [
+					$id('cluster_id'),
+					$text('node_name', 64),
+					$int('host_id'),
+					$text('match_state', 16, 'unmatched'),
+					$int('match_tier'),
+					$text('source', 16, 'auto'),
+					$int('updated_at'),
+				],
+				'unique_keys' => [['name' => 'cluster_node_map', 'columns' => ['cluster_id', 'node_name']]],
+				'keys'        => [['name' => 'host_id', 'columns' => ['host_id']]],
+			],
+			// Ownership table for Cacti Maint schedules managed by hpcsched.
+			'plugin_hpcsched_maint_link' => $innodb + [
+				'comment' => 'Plugin-owned Cacti Maint schedule links per Slurm node',
+				'columns' => [
+					$id('cluster_id'),
+					$text('node_name', 64),
+					$int('host_id'),
+					$int('schedule_id'),
+					$text('reason_kind', 16),
+					$text('source_ref', 128),
+					$int('start_time'),
+					$int('end_time'),
+					$int('synced_at'),
+				],
+				'unique_keys' => [['name' => 'cluster_node_maint', 'columns' => ['cluster_id', 'node_name']]],
+				'keys'        => [['name' => 'schedule_id', 'columns' => ['schedule_id']], ['name' => 'host_id', 'columns' => ['host_id']]],
 			],
 		];
 	}

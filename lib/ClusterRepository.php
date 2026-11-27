@@ -25,7 +25,7 @@ namespace Somethingwithproof\Hpcsched;
  * alone; nothing is sent to the scheduler.
  */
 final class ClusterRepository {
-	private const SNAPSHOT_TABLES = ['plugin_hpcsched_run', 'plugin_hpcsched_section', 'plugin_hpcsched_job_count', 'plugin_hpcsched_node', 'plugin_hpcsched_node_count', 'plugin_hpcsched_partition', 'plugin_hpcsched_reservation', 'plugin_hpcsched_share'];
+	private const SNAPSHOT_TABLES = ['plugin_hpcsched_run', 'plugin_hpcsched_section', 'plugin_hpcsched_job_count', 'plugin_hpcsched_node', 'plugin_hpcsched_node_count', 'plugin_hpcsched_node_map', 'plugin_hpcsched_maint_link', 'plugin_hpcsched_partition', 'plugin_hpcsched_reservation', 'plugin_hpcsched_share'];
 
 	public function __construct(private readonly \PDO|false $connection, private readonly Clock $clock) {
 	}
