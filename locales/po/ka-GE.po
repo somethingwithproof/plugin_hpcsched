@@ -1,0 +1,1094 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hpcsched 0.1.0-dev\n"
+"Report-Msgid-Bugs-To: https://github.com/somethingwithproof/plugin_hpcsched/issues\n"
+"PO-Revision-Date: 2026-11-27 00:00+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language: ka-GE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: hpcsched_clusters.php
+msgid "You do not have permission for the device of that cluster."
+msgstr "თქვენ არ გაქვთ ამ კლასტერის მოწყობილობაზე წვდომის უფლება."
+
+#: hpcsched_clusters.php
+msgid "Name: another cluster already uses this name."
+msgstr "სახელი: სხვა კლასტერი უკვე იყენებს ამ სახელს."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not saved: it was changed by someone else since the form was opened, or the write failed. Open it again and repeat the change."
+msgstr "კლასტერი არ შენახულა: ფორმის გახსნის შემდეგ იგი სხვამ შეცვალა, ან ჩაწერა ჩაიშალა. ხელახლა გახსენით და გაიმეორეთ ცვლილება."
+
+#: hpcsched_clusters.php
+msgid "The cluster was saved."
+msgstr "კლასტერი შენახულია."
+
+#: hpcsched_clusters.php
+msgid "The cluster state was not changed: the write failed. See the Cacti log."
+msgstr "კლასტერის მდგომარეობა არ შეცვლილა: ჩაწერა ჩაიშალა. იხილეთ Cacti-ს ჟურნალი."
+
+#: hpcsched_clusters.php
+msgid "The cluster and its cached snapshot were deleted. Its device and graphs were kept. The scheduler was not contacted."
+msgstr "კლასტერი და მისი ქეშირებული სნეპშოტი წაიშალა. მისი მოწყობილობა და გრაფიკები შენახულია. დამგეგმავთან კავშირი არ დამყარებულა."
+
+#: hpcsched_clusters.php
+msgid "The device and its graphs were created."
+msgstr "მოწყობილობა და მისი გრაფიკები შექმნილია."
+
+#: hpcsched_clusters.php
+msgid "The device was not created: the cluster already has a device, it was changed by someone else since the page was opened, or Cacti refused it. See the Cacti log."
+msgstr "მოწყობილობა არ შეიქმნა: კლასტერს უკვე აქვს მოწყობილობა, გვერდის გახსნის შემდეგ იგი სხვამ შეცვალა, ან Cacti-მ უარი თქვა. იხილეთ Cacti-ს ჟურნალი."
+
+#: hpcsched_clusters.php
+msgid "The cluster was mapped to the device."
+msgstr "კლასტერი მიბმულია მოწყობილობაზე."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not mapped: the device does not exist, is not allowed to you, already carries another cluster, or the cluster was changed by someone else since the page was opened."
+msgstr "კლასტერი არ მიება: მოწყობილობა არ არსებობს, თქვენთვის დაუშვებელია, უკვე ატარებს სხვა კლასტერს, ან გვერდის გახსნის შემდეგ კლასტერი სხვამ შეცვალა."
+
+#: hpcsched_clusters.php
+msgid "Missing graphs were added."
+msgstr "ნაკლული გრაფიკები დამატებულია."
+
+#: hpcsched_clusters.php
+msgid "No graphs were added: the cluster has no device, or its device no longer exists."
+msgstr "გრაფიკები არ დაემატა: კლასტერს არ აქვს მოწყობილობა, ან მისი მოწყობილობა აღარ არსებობს."
+
+#: hpcsched_clusters.php
+msgid "The cluster was not unmapped: it was changed by someone else since the page was opened."
+msgstr "კლასტერის მიბმა არ მოიხსნა: გვერდის გახსნის შემდეგ იგი სხვამ შეცვალა."
+
+#: hpcsched_clusters.php
+msgid "The cluster was unmapped. The device and its graphs were kept."
+msgstr "კლასტერის მიბმა მოიხსნა. მოწყობილობა და მისი გრაფიკები შენახულია."
+
+#: hpcsched_clusters.php
+msgid "The partitions were reindexed from the snapshot."
+msgstr "დანაყოფები ხელახლა დაინდექსდა სნეპშოტიდან."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the device is disabled or down, so Cacti skipped its data query."
+msgstr "დანაყოფების ხელახალი ინდექსაცია არ მოხდა: მოწყობილობა გამორთულია ან მიუწვდომელია, ამიტომ Cacti-მ გამოტოვა მისი მონაცემთა მოთხოვნა."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: Cacti could not run the data query. See the Cacti log."
+msgstr "დანაყოფების ხელახალი ინდექსაცია არ მოხდა: Cacti-მ ვერ გაუშვა მონაცემთა მოთხოვნა. იხილეთ Cacti-ს ჟურნალი."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the HPC Scheduler data query is not installed. Install the templates from the health page."
+msgstr "დანაყოფების ხელახალი ინდექსაცია არ მოხდა: HPC დამგეგმავის მონაცემთა მოთხოვნა არ არის დაყენებული. დააყენეთ შაბლონები მდგომარეობის გვერდიდან."
+
+#: hpcsched_clusters.php
+msgid "The partitions were not reindexed: the cluster has no device, or its device no longer exists."
+msgstr "დანაყოფების ხელახალი ინდექსაცია არ მოხდა: კლასტერს არ აქვს მოწყობილობა, ან მისი მოწყობილობა აღარ არსებობს."
+
+#: hpcsched_health.php
+msgid "The HPC Scheduler templates are installed."
+msgstr "HPC დამგეგმავის შაბლონები დაყენებულია."
+
+#: hpcsched_health.php
+#, php-format
+msgid "The templates were not installed: %s"
+msgstr "შაბლონები არ დაყენდა: %s"
+
+#: hpcsched_operator.php
+msgid "Monitoring view"
+msgstr "მონიტორინგის ხედი"
+
+#: hpcsched_operator.php
+msgid "Observations could not be read. Ask an administrator to check the plugin log."
+msgstr "დაკვირვებების წაკითხვა ვერ მოხერხდა. სთხოვეთ ადმინისტრატორს შეამოწმოს დანამატის ჟურნალი."
+
+#: include/operator.php
+msgid "Inspect pending reason families and snapshot freshness on the overview. Escalate credentials, cluster mappings and maintenance policy to an administrator."
+msgstr "შეამოწმეთ მოლოდინის მიზეზების ჯგუფები და სნეპშოტის აქტუალობა მიმოხილვაზე. ავტორიზაციის მონაცემები, კლასტერების მიბმა და ტექნიკური მომსახურების პოლიტიკა გადაეცით ადმინისტრატორს."
+
+#: lib/ClusterInput.php
+msgid "Name: use 1 to 64 letters, digits, dots, dashes, or underscores, starting with a letter or digit."
+msgstr "სახელი: გამოიყენეთ 1-დან 64-მდე ასო, ციფრი, წერტილი, ტირე ან ქვედა ტირე, ასოთი ან ციფრით დაწყებული."
+
+#: lib/ClusterInput.php
+msgid "Poller: choose one of the listed pollers."
+msgstr "პოლერი: აირჩიეთ ერთ-ერთი ჩამოთვლილი პოლერი."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Collection Interval: enter whole seconds from %d to %d."
+msgstr "შეგროვების ინტერვალი: შეიყვანეთ მთელი წამები %d-დან %d-მდე."
+
+#: lib/ClusterInput.php
+msgid "Transport: choose one of the listed transports."
+msgstr "ტრანსპორტი: აირჩიეთ ერთ-ერთი ჩამოთვლილი ტრანსპორტი."
+
+#: lib/ClusterInput.php
+msgid "slurm.conf: enter an absolute path, or leave it empty to use the poller default."
+msgstr "slurm.conf: შეიყვანეთ აბსოლუტური გზა, ან დატოვეთ ცარიელი პოლერის ნაგულისხმევის გამოსაყენებლად."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: this host and port are not on the slurmrestd host list in Settings."
+msgstr "slurmrestd URL: ეს ჰოსტი და პორტი არ არის პარამეტრებში მითითებულ slurmrestd ჰოსტების სიაში."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd URL: enter an https:// URL without user name, query, or fragment; plain http:// is accepted only for a loopback address."
+msgstr "slurmrestd URL: შეიყვანეთ https:// URL მომხმარებლის სახელის, მოთხოვნისა და ფრაგმენტის გარეშე; ჩვეულებრივი http:// დაშვებულია მხოლოდ loopback მისამართისთვის."
+
+#: lib/ClusterInput.php
+msgid "slurmrestd User: use at most 64 letters, digits, dots, dashes, or underscores, or leave it empty for a user token."
+msgstr "slurmrestd მომხმარებელი: გამოიყენეთ არაუმეტეს 64 ასო, ციფრი, წერტილი, ტირე ან ქვედა ტირე, ან დატოვეთ ცარიელი მომხმარებლის ტოკენისთვის."
+
+#: lib/ClusterInput.php
+msgid "Token File: enter the absolute path of the token file on the poller. The token itself is never entered here."
+msgstr "ტოკენის ფაილი: შეიყვანეთ ტოკენის ფაილის აბსოლუტური გზა პოლერზე. თავად ტოკენი აქ არასდროს იწერება."
+
+#: lib/ClusterInput.php
+msgid "Token File: no token file directories are set yet. Ask a Cacti administrator to set them under Settings, HPC Scheduler."
+msgstr "ტოკენის ფაილი: ტოკენის ფაილების დირექტორიები ჯერ არ არის დაყენებული. სთხოვეთ Cacti ადმინისტრატორს დააყენოს ისინი პარამეტრებში, HPC დამგეგმავის განყოფილებაში."
+
+#: lib/ClusterInput.php
+#, php-format
+msgid "Token File: the file must be inside one of the token file directories set in Settings (%s)."
+msgstr "ტოკენის ფაილი: ფაილი უნდა მდებარეობდეს პარამეტრებში მითითებულ ტოკენის ფაილების ერთ-ერთ დირექტორიაში (%s)."
+
+#: lib/ClustersPage.php lib/Pages.php
+msgid "HPC Clusters"
+msgstr "HPC კლასტერები"
+
+#: lib/ClustersPage.php lib/OperatorPage.php
+msgid "Actions"
+msgstr "მოქმედებები"
+
+#: lib/ClustersPage.php
+msgid "Device"
+msgstr "მოწყობილობა"
+
+#: lib/ClustersPage.php
+msgid "Interval"
+msgstr "ინტერვალი"
+
+#: lib/ClustersPage.php
+msgid "Name"
+msgstr "სახელი"
+
+#: lib/ClustersPage.php
+msgid "Poller"
+msgstr "პოლერი"
+
+#: lib/ClustersPage.php
+msgid "Sections"
+msgstr "განყოფილებები"
+
+#: lib/ClustersPage.php lib/HealthPage.php lib/OperatorPage.php
+msgid "State"
+msgstr "მდგომარეობა"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "Transport"
+msgstr "ტრანსპორტი"
+
+#: lib/ClustersPage.php lib/HealthPage.php
+msgid "No clusters configured yet."
+msgstr "კლასტერები ჯერ არ არის კონფიგურირებული."
+
+#: lib/ClustersPage.php
+msgid "Disable"
+msgstr "გამორთვა"
+
+#: lib/ClustersPage.php
+msgid "Enable"
+msgstr "ჩართვა"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Deleted poller %d"
+msgstr "წაშლილი პოლერი %d"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "%d seconds"
+msgstr "%d წამი"
+
+#: lib/ClustersPage.php
+msgid "None"
+msgstr "არცერთი"
+
+#: lib/ClustersPage.php
+msgid "Delete"
+msgstr "წაშლა"
+
+#: lib/ClustersPage.php
+msgid "Export"
+msgstr "ექსპორტი"
+
+#: lib/ClustersPage.php
+msgid "Download the cluster configuration as JSON before an uninstall that drops the plugin tables. It holds token file paths, never a token."
+msgstr "ჩამოტვირთეთ კლასტერის კონფიგურაცია JSON ფორმატში დანამატის ცხრილების წამშლელ დეინსტალაციამდე. იგი შეიცავს ტოკენის ფაილების გზებს და არასდროს თავად ტოკენს."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Cluster: %s"
+msgstr "კლასტერი: %s"
+
+#: lib/ClustersPage.php
+msgid "New Cluster"
+msgstr "ახალი კლასტერი"
+
+#: lib/ClustersPage.php
+msgid "Collection Interval (seconds)"
+msgstr "შეგროვების ინტერვალი (წამებში)"
+
+#: lib/ClustersPage.php
+msgid "Enabled"
+msgstr "ჩართულია"
+
+#: lib/ClustersPage.php
+msgid "Collect Reservations"
+msgstr "რეზერვაციების შეგროვება"
+
+#: lib/ClustersPage.php
+msgid "Collect Fair-share (accounts only)"
+msgstr "სამართლიანი განაწილების შეგროვება (მხოლოდ ანგარიშები)"
+
+#: lib/ClustersPage.php
+msgid "slurm.conf Path (optional)"
+msgstr "slurm.conf გზა (არასავალდებულო)"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd URL"
+msgstr "slurmrestd URL"
+
+#: lib/ClustersPage.php
+msgid "slurmrestd User (optional)"
+msgstr "slurmrestd მომხმარებელი (არასავალდებულო)"
+
+#: lib/ClustersPage.php
+msgid "Token File on the Poller"
+msgstr "ტოკენის ფაილი პოლერზე"
+
+#: lib/ClustersPage.php
+msgid "Client commands use the binaries set under Settings > HPC Scheduler and the poller user's own Slurm authentication; the optional slurm.conf path selects a cluster. slurmrestd fields are used only with that transport. The token file must be readable by the poller user only; the plugin reads it at each run and never stores the token."
+msgstr "კლიენტის ბრძანებები იყენებს პარამეტრები > HPC დამგეგმავში მითითებულ ბინარულ ფაილებს და პოლერის მომხმარებლის Slurm ავთენტიფიკაციას; არასავალდებულო slurm.conf გზა ირჩევს კლასტერს. slurmrestd ველები გამოიყენება მხოლოდ ამ ტრანსპორტთან. ტოკენის ფაილი წაკითხვადი უნდა იყოს მხოლოდ პოლერის მომხმარებლისთვის; დანამატი მას ყოველ გაშვებაზე კითხულობს და არასდროს ინახავს ტოკენს."
+
+#: lib/ClustersPage.php
+msgid "Save"
+msgstr "შენახვა"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Device for Cluster: %s"
+msgstr "მოწყობილობა კლასტერისთვის: %s"
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "Mapped to device %s (id %d). Its graphs follow Cacti's device and graph permissions."
+msgstr "მიბმულია მოწყობილობაზე %s (id %d). მისი გრაფიკები ემორჩილება Cacti-ს მოწყობილობისა და გრაფიკების უფლებებს."
+
+#: lib/ClustersPage.php
+msgid "Adding the missing graphs adds:"
+msgstr "ნაკლული გრაფიკების დამატება ამატებს:"
+
+#: lib/ClustersPage.php
+msgid "Add Missing Graphs"
+msgstr "ნაკლული გრაფიკების დამატება"
+
+#: lib/ClustersPage.php
+msgid "Reindex Partitions"
+msgstr "დანაყოფების ხელახალი ინდექსაცია"
+
+#: lib/ClustersPage.php
+msgid "Unmap"
+msgstr "მიბმის მოხსნა"
+
+#: lib/ClustersPage.php
+msgid "Unmapping keeps the device, its graphs, and their history."
+msgstr "მიბმის მოხსნა ინახავს მოწყობილობას, მის გრაფიკებსა და მათ ისტორიას."
+
+#: lib/ClustersPage.php
+#, php-format
+msgid "The cluster is still mapped to device %d, which no longer exists. Creating or mapping a device replaces that mapping."
+msgstr "კლასტერი კვლავ მიბმულია მოწყობილობაზე %d, რომელიც აღარ არსებობს. მოწყობილობის შექმნა ან მიბმა ჩაანაცვლებს ამ მიბმას."
+
+#: lib/ClustersPage.php
+msgid "Creating a device adds:"
+msgstr "მოწყობილობის შექმნა ამატებს:"
+
+#: lib/ClustersPage.php
+msgid "Without partition graphs, only the cluster graphs are created, and the data sources and calls for the partitions above are left out."
+msgstr "დანაყოფების გრაფიკების გარეშე იქმნება მხოლოდ კლასტერის გრაფიკები, ხოლო ზემოთ მოცემული დანაყოფების მონაცემთა წყაროები და გამოძახებები გამოტოვებულია."
+
+#: lib/ClustersPage.php
+msgid "Also create the partition graphs"
+msgstr "ასევე შეიქმნას დანაყოფების გრაფიკები"
+
+#: lib/ClustersPage.php
+msgid "Create Device"
+msgstr "მოწყობილობის შექმნა"
+
+#: lib/ClustersPage.php
+msgid "Or map an existing device"
+msgstr "ან მიაბით არსებული მოწყობილობა"
+
+#: lib/ClustersPage.php
+msgid "Map Device"
+msgstr "მოწყობილობის მიბმა"
+
+#: lib/DeviceProvisioner.php
+msgid "The HPC Scheduler templates are not installed. Install them from the health page."
+msgstr "HPC დამგეგმავის შაბლონები არ არის დაყენებული. დააყენეთ ისინი მდგომარეობის გვერდიდან."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "A device \"%s\" from the %s device template, polled by poller %d, with availability checks off."
+msgstr "მოწყობილობა \"%s\" მოწყობილობის შაბლონიდან %s, გამოკითხული პოლერით %d, ხელმისაწვდომობის შემოწმების გარეშე."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "The data query \"%s\", indexing the %d partitions known now."
+msgstr "მონაცემთა მოთხოვნა \"%s\", რომელიც აინდექსირებს ამჟამად ცნობილ %d დანაყოფს."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d cluster graphs, each with its own \"%s\" data source."
+msgstr "%d კლასტერის გრაფიკი, თითოეული საკუთარი \"%s\" მონაცემთა წყაროთი."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "%d partition graphs, %d for each partition, each with its own data source."
+msgstr "%d დანაყოფის გრაფიკი, %d თითოეული დანაყოფისთვის, თითოეული საკუთარი მონაცემთა წყაროთი."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "In all: %d data sources and %d RRD files, and %d script server calls per poll. Partitions added later get graphs from the New Graphs page."
+msgstr "სულ: %d მონაცემთა წყარო, %d RRD ფაილი და %d სკრიპტ-სერვერის გამოძახება თითო გამოკითხვაზე. მოგვიანებით დამატებული დანაყოფები გრაფიკებს იღებენ „ახალი გრაფიკების“ გვერდიდან."
+
+#: lib/DeviceProvisioner.php
+#, php-format
+msgid "Created by the HPC Scheduler plugin for cluster %s. Its values come from the plugin snapshot; the host name is a reserved name that is never contacted."
+msgstr "შექმნილია HPC დამგეგმავის დანამატის მიერ კლასტერისთვის %s. მისი მნიშვნელობები მოდის დანამატის სნეპშოტიდან; ჰოსტის სახელი დაჯავშნილია და მასთან კავშირი არასდროს მყარდება."
+
+#: lib/ErrorClass.php
+msgid "configuration: a path, URL, or setting is missing or not allowed"
+msgstr "კონფიგურაცია: გზა, URL ან პარამეტრი აკლია ან არ არის დაშვებული"
+
+#: lib/ErrorClass.php
+msgid "the scheduler could not be reached"
+msgstr "დამგეგმავთან დაკავშირება ვერ მოხერხდა"
+
+#: lib/ErrorClass.php
+msgid "the call took longer than allowed and was stopped"
+msgstr "გამოძახებამ დაშვებულზე მეტი დრო დაიკავა და შეჩერდა"
+
+#: lib/ErrorClass.php
+msgid "the answer was larger than allowed and was discarded"
+msgstr "პასუხი დაშვებულზე დიდი იყო და უარყოფილია"
+
+#: lib/ErrorClass.php
+msgid "the answer could not be parsed with the pinned data parser"
+msgstr "პასუხის გაანალიზება მიმაგრებული მონაცემთა პარსერით ვერ მოხერხდა"
+
+#: lib/ErrorClass.php
+msgid "the scheduler refused the credential"
+msgstr "დამგეგმავმა უარყო ავტორიზაციის მონაცემი"
+
+#: lib/ErrorClass.php
+msgid "the scheduler account may not see this data (PrivateData or permissions)"
+msgstr "დამგეგმავის ანგარიშს არ შეუძლია ამ მონაცემების ნახვა (PrivateData ან უფლებები)"
+
+#: lib/ErrorClass.php
+msgid "the controller asked clients to back off (rate limit)"
+msgstr "კონტროლერმა კლიენტებს მოთხოვნების შემცირება სთხოვა (სიხშირის ლიმიტი)"
+
+#: lib/ErrorClass.php
+msgid "the server answered 304 to a request that was not conditional; previous data kept"
+msgstr "სერვერმა დააბრუნა 304 არაპირობით მოთხოვნაზე; წინა მონაცემები შენახულია"
+
+#: lib/ErrorClass.php
+msgid "the plugin refused a call outside its allowlist"
+msgstr "დანამატმა უარყო დაშვებულთა სიის გარეთ არსებული გამოძახება"
+
+#: lib/ErrorClass.php
+msgid "the call failed"
+msgstr "გამოძახება ჩაიშალა"
+
+#: lib/ErrorClass.php
+msgid "the reader ran out of memory; lower Maximum Answer Size or raise Collection Memory in Settings"
+msgstr "წამკითხველს მეხსიერება ამოეწურა; შეამცირეთ მაქსიმალური პასუხის ზომა ან გაზარდეთ შეგროვების მეხსიერება პარამეტრებში"
+
+#: lib/Format.php lib/OperatorPage.php lib/OverviewPage.php
+msgid "Never"
+msgstr "არასდროს"
+
+#: lib/Format.php
+#, php-format
+msgid "%d seconds ago"
+msgstr "%d წამის წინ"
+
+#: lib/Format.php
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d წუთის წინ"
+
+#: lib/Format.php
+#, php-format
+msgid "%d hours ago"
+msgstr "%d საათის წინ"
+
+#: lib/Format.php
+#, php-format
+msgid "%d days ago"
+msgstr "%d დღის წინ"
+
+#: lib/Freshness.php
+msgid "Current"
+msgstr "აქტუალური"
+
+#: lib/Freshness.php
+msgid "Delayed"
+msgstr "დაგვიანებული"
+
+#: lib/Freshness.php
+msgid "Stale"
+msgstr "მოძველებული"
+
+#: lib/Freshness.php
+msgid "Never collected"
+msgstr "არასდროს შეგროვებულა"
+
+#: lib/HealthPage.php
+msgid "Clusters"
+msgstr "კლასტერები"
+
+#: lib/HealthPage.php
+msgid "Calls"
+msgstr "გამოძახებები"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Cluster"
+msgstr "კლასტერი"
+
+#: lib/HealthPage.php
+msgid "Duration"
+msgstr "ხანგრძლივობა"
+
+#: lib/HealthPage.php lib/OverviewPage.php
+msgid "Freshness"
+msgstr "აქტუალობა"
+
+#: lib/HealthPage.php
+msgid "Last Run"
+msgstr "ბოლო გაშვება"
+
+#: lib/HealthPage.php
+msgid "Last Success"
+msgstr "ბოლო წარმატება"
+
+#: lib/HealthPage.php
+msgid "Outcome"
+msgstr "შედეგი"
+
+#: lib/HealthPage.php
+msgid "Parser"
+msgstr "პარსერი"
+
+#: lib/HealthPage.php
+msgid "Slurm"
+msgstr "Slurm"
+
+#: lib/HealthPage.php
+msgid "All clusters"
+msgstr "ყველა კლასტერი"
+
+#: lib/HealthPage.php
+msgid "Warnings"
+msgstr "გაფრთხილებები"
+
+#: lib/HealthPage.php
+msgid "Warning"
+msgstr "გაფრთხილება"
+
+#: lib/HealthPage.php
+msgid "No warnings."
+msgstr "გაფრთხილებები არ არის."
+
+#: lib/HealthPage.php
+msgid "Templates"
+msgstr "შაბლონები"
+
+#: lib/HealthPage.php
+msgid "The device, data, and graph templates and the partition data query are installed."
+msgstr "მოწყობილობის, მონაცემთა და გრაფიკის შაბლონები და დანაყოფების მონაცემთა მოთხოვნა დაყენებულია."
+
+#: lib/HealthPage.php
+msgid "The templates are not installed or not current, so cluster devices cannot be created. See the warnings above."
+msgstr "შაბლონები არ არის დაყენებული ან არ არის აქტუალური, ამიტომ კლასტერის მოწყობილობების შექმნა შეუძლებელია. იხილეთ ზემოთ მოცემული გაფრთხილებები."
+
+#: lib/HealthPage.php
+msgid "Install Templates"
+msgstr "შაბლონების დაყენება"
+
+#: lib/HealthPage.php
+msgid "Snapshot Sections"
+msgstr "სნეპშოტის განყოფილებები"
+
+#: lib/HealthPage.php
+msgid "Data Age"
+msgstr "მონაცემების ასაკი"
+
+#: lib/HealthPage.php
+msgid "Error"
+msgstr "შეცდომა"
+
+#: lib/HealthPage.php
+msgid "Last Attempt"
+msgstr "ბოლო მცდელობა"
+
+#: lib/HealthPage.php
+msgid "Records"
+msgstr "ჩანაწერები"
+
+#: lib/HealthPage.php
+msgid "Section"
+msgstr "განყოფილება"
+
+#: lib/HealthPage.php
+#, php-format
+msgid "The last template install failed: %s"
+msgstr "შაბლონების ბოლო დაყენება ჩაიშალა: %s"
+
+#: lib/HealthPage.php
+msgid "Some HPC Scheduler templates are missing from Cacti. Install them below."
+msgstr "HPC დამგეგმავის ზოგიერთი შაბლონი აკლია Cacti-ს. დააყენეთ ისინი ქვემოთ."
+
+#: lib/HealthPage.php
+#, php-format
+msgid "%s, discovered"
+msgstr "%s, აღმოჩენილი"
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Maximum Answer Size is %d MiB, but a decoded answer of that size does not fit in the Collection Memory of %d MiB; the reader allows %d MiB. Raise Collection Memory or lower Maximum Answer Size in Settings."
+msgstr "მაქსიმალური პასუხის ზომაა %d MiB, მაგრამ ამ ზომის დეკოდირებული პასუხი არ ეტევა %d MiB შეგროვების მეხსიერებაში; წამკითხველი უშვებს %d MiB-ს. გაზარდეთ შეგროვების მეხსიერება ან შეამცირეთ მაქსიმალური პასუხის ზომა პარამეტრებში."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller."
+msgstr "მინიჭებულია პოლერზე %d (დაშორებული მონაცემთა შემგროვებელი). ეს ვერსია აგროვებს მხოლოდ მთავარ პოლერზე, ამიტომ კლასტერი არ გროვდება; დაშორებული შეგროვება დაგეგმილია მე-3 ფაზაში. მიანიჭეთ იგი მთავარ პოლერს."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval is below the %d second floor."
+msgstr "შეგროვების ინტერვალი %d წამის მინიმუმზე დაბალია."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The collection interval of %d seconds is shorter than the poller interval of %d seconds; data is collected every %d seconds."
+msgstr "შეგროვების ინტერვალი (%d წამი) პოლერის ინტერვალზე (%d წამი) მოკლეა; მონაცემები გროვდება ყოველ %d წამში."
+
+#: lib/HealthWarnings.php
+msgid "slurmrestd is reached over plain HTTP on the loopback address; the token crosses the local network stack unencrypted."
+msgstr "slurmrestd ხელმისაწვდომია ჩვეულებრივი HTTP-ით loopback მისამართზე; ტოკენი ლოკალურ ქსელურ სტეკში დაუშიფრავად გადის."
+
+#: lib/HealthWarnings.php
+msgid "No reader run has finished for this cluster yet."
+msgstr "ამ კლასტერისთვის წამკითხველის გაშვება ჯერ არ დასრულებულა."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Token file: %s."
+msgstr "ტოკენის ფაილი: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expired %s."
+msgstr "ტოკენს ვადა გაუვიდა %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The token expires in %d minutes."
+msgstr "ტოკენს ვადა ეწურება %d წუთში."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The last run used its whole time budget of %d seconds; some sections were not collected."
+msgstr "ბოლო გაშვებამ გამოიყენა მთელი %d წამის დროის ბიუჯეტი; ზოგიერთი განყოფილება არ შეგროვდა."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which is not a supported release (%s)."
+msgstr "დამგეგმავი გადმოსცემს Slurm %s ვერსიას, რომელიც არ არის მხარდაჭერილი გამოშვება (%s)."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "The scheduler reports Slurm %s, which does not ship the data parser %s chosen in Settings."
+msgstr "დამგეგმავი გადმოსცემს Slurm %s ვერსიას, რომელიც არ შეიცავს პარამეტრებში არჩეულ მონაცემთა პარსერს %s."
+
+#: lib/HealthWarnings.php
+msgid "Client commands ran without a memory limit; set the prlimit path in Settings."
+msgstr "კლიენტის ბრძანებები გაშვებულია მეხსიერების ლიმიტის გარეშე; მიუთითეთ prlimit გზა პარამეტრებში."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Last error: %s."
+msgstr "ბოლო შეცდომა: %s."
+
+#: lib/HealthWarnings.php
+#, php-format
+msgid "Collection is paused for %d seconds after a rate limit."
+msgstr "სიხშირის ლიმიტის შემდეგ შეგროვება შეჩერებულია %d წამით."
+
+#: lib/HealthWarnings.php
+msgid "Data is stale; graphs and alerts read it as unknown."
+msgstr "მონაცემები მოძველებულია; გრაფიკები და გაფრთხილებები მათ უცნობად კითხულობენ."
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Pending"
+msgstr "მოლოდინში"
+
+#: lib/JobState.php lib/OverviewPage.php lib/ReasonFamily.php
+msgid "Held"
+msgstr "შეჩერებული"
+
+#: lib/JobState.php lib/OverviewPage.php
+msgid "Running"
+msgstr "მიმდინარე"
+
+#: lib/JobState.php
+msgid "Completing"
+msgstr "დასრულების პროცესში"
+
+#: lib/JobState.php lib/NodeState.php lib/ReasonFamily.php
+msgid "Other"
+msgstr "სხვა"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Idle"
+msgstr "უმოქმედო"
+
+#: lib/NodeState.php
+msgid "Allocated"
+msgstr "გამოყოფილი"
+
+#: lib/NodeState.php
+msgid "Mixed"
+msgstr "შერეული"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Drained"
+msgstr "დაცლილი"
+
+#: lib/NodeState.php
+msgid "Draining"
+msgstr "დაცლის პროცესში"
+
+#: lib/NodeState.php lib/OverviewPage.php
+msgid "Down"
+msgstr "გათიშული"
+
+#: lib/NodeState.php
+msgid "Maintenance"
+msgstr "ტექნიკური მომსახურება"
+
+#: lib/NodeState.php
+msgid "Reserved"
+msgstr "დაჯავშნილი"
+
+#: lib/NodeState.php
+msgid "Powered down"
+msgstr "გამორთული"
+
+#: lib/OperatorPage.php
+msgid "Review the recorded observations below. Acknowledgments are personal to this session, expire when observations change, and never suppress alerts or change health."
+msgstr "ქვემოთ იხილეთ ჩაწერილი დაკვირვებები. დადასტურებები პერსონალურია მიმდინარე სესიისთვის, ძალას კარგავს დაკვირვების შეცვლისას და არასდროს თრგუნავს გაფრთხილებებს ან ცვლის მდგომარეობას."
+
+#: lib/OperatorPage.php lib/Pages.php
+msgid "HPC Scheduler Operations"
+msgstr "HPC დამგეგმავის ოპერაციები"
+
+#: lib/OperatorPage.php
+msgid "Investigation"
+msgstr "გამოკვლევა"
+
+#: lib/OperatorPage.php
+msgid "Object"
+msgstr "ობიექტი"
+
+#: lib/OperatorPage.php
+msgid "Observed (UTC)"
+msgstr "დაფიქსირებულია (UTC)"
+
+#: lib/OperatorPage.php
+msgid "Unknown or stale"
+msgstr "უცნობი ან მოძველებული"
+
+#: lib/OperatorPage.php
+msgid "Acknowledged; health unchanged."
+msgstr "დადასტურებულია; მდგომარეობა უცვლელია."
+
+#: lib/OperatorPage.php
+msgid "Acknowledge"
+msgstr "დადასტურება"
+
+#: lib/OperatorPage.php
+msgid "No observations are available for devices you may access."
+msgstr "თქვენთვის ხელმისაწვდომ მოწყობილობებზე დაკვირვებები არ მოიპოვება."
+
+#: lib/OverviewPage.php lib/Pages.php setup.php
+msgid "HPC Scheduler"
+msgstr "HPC დამგეგმავი"
+
+#: lib/OverviewPage.php
+msgid "Collected"
+msgstr "შეგროვებულია"
+
+#: lib/OverviewPage.php
+msgid "Details"
+msgstr "დეტალები"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Nodes"
+msgstr "კვანძები"
+
+#: lib/OverviewPage.php
+msgid "No clusters are collected yet."
+msgstr "კლასტერები ჯერ არ შეგროვებულა."
+
+#: lib/OverviewPage.php
+msgid "Pending reasons"
+msgstr "მოლოდინის მიზეზები"
+
+#: lib/OverviewPage.php
+msgid "Graphs"
+msgstr "გრაფიკები"
+
+#: lib/OverviewPage.php
+msgid "A dash means the plugin has no current data for that value: the section failed, is stale, or was never collected. Pending excludes held jobs. Drained counts every node with the drain flag, including nodes that are also down."
+msgstr "ტირე ნიშნავს, რომ დანამატს ამ მნიშვნელობისთვის აქტუალური მონაცემები არ აქვს: განყოფილება ჩაიშალა, მოძველებულია ან არასდროს შეგროვებულა. მოლოდინში მყოფი არ მოიცავს შეჩერებულ ამოცანებს. დაცლილი ითვლის drain ალმის მქონე ყველა კვანძს, მათ შორის გათიშულ კვანძებსაც."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Pending Reasons: %s"
+msgstr "მოლოდინის მიზეზები: %s"
+
+#: lib/OverviewPage.php
+msgid "Family"
+msgstr "ჯგუფი"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Jobs"
+msgstr "ამოცანები"
+
+#: lib/OverviewPage.php lib/Section.php
+msgid "Partitions"
+msgstr "დანაყოფები"
+
+#: lib/OverviewPage.php
+msgid "Reason"
+msgstr "მიზეზი"
+
+#: lib/OverviewPage.php
+msgid "No pending jobs."
+msgstr "მოლოდინში მყოფი ამოცანები არ არის."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Only the %d reasons with the most jobs are listed."
+msgstr "ჩამოთვლილია მხოლოდ ყველაზე მეტი ამოცანის მქონე %d მიზეზი."
+
+#: lib/OverviewPage.php
+msgid "Each job counts under the last reason the scheduler examined for it, which need not be the only thing holding it back. A job in several partitions counts once here and once in each partition it names. Held jobs are listed with their hold reason."
+msgstr "თითოეული ამოცანა ითვლება იმ ბოლო მიზეზის ქვეშ, რომელიც დამგეგმავმა მისთვის შეამოწმა, რაც შეიძლება არ იყოს მისი შეფერხების ერთადერთი მიზეზი. რამდენიმე დანაყოფში მყოფი ამოცანა აქ ითვლება ერთხელ და თითოჯერ მის მიერ მითითებულ ყოველ დანაყოფში. შეჩერებული ამოცანები ნაჩვენებია შეჩერების მიზეზით."
+
+#: lib/OverviewPage.php
+msgid "Nodes in Unknown States"
+msgstr "უცნობ მდგომარეობაში მყოფი კვანძები"
+
+#: lib/OverviewPage.php
+msgid "Names"
+msgstr "სახელები"
+
+#: lib/OverviewPage.php
+msgid "Slurm State"
+msgstr "Slurm მდგომარეობა"
+
+#: lib/OverviewPage.php
+msgid "None. Every node maps to a known state."
+msgstr "არცერთი. ყველა კვანძი შეესაბამება ცნობილ მდგომარეობას."
+
+#: lib/OverviewPage.php
+msgid "No jobs snapshot has been collected yet."
+msgstr "ამოცანების სნეპშოტი ჯერ არ შეგროვებულა."
+
+#: lib/OverviewPage.php
+msgid "No nodes snapshot has been collected yet, so the node states are unknown."
+msgstr "კვანძების სნეპშოტი ჯერ არ შეგროვებულა, ამიტომ კვანძების მდგომარეობები უცნობია."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), current."
+msgstr "ამოცანების სნეპშოტი აღებულია %s (%s), აქტუალურია."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), current."
+msgstr "კვანძების სნეპშოტი აღებულია %s (%s), აქტუალურია."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Jobs snapshot taken %s (%s), not current: it is stale or the last collection failed, and the counts below are the last ones collected."
+msgstr "ამოცანების სნეპშოტი აღებულია %s (%s), არ არის აქტუალური: იგი მოძველებულია ან ბოლო შეგროვება ჩაიშალა და ქვემოთ მოცემული რაოდენობები ბოლოს შეგროვებულია."
+
+#: lib/OverviewPage.php
+#, php-format
+msgid "Nodes snapshot taken %s (%s), not current: it is stale or the last collection failed, and the nodes below are the last ones collected."
+msgstr "კვანძების სნეპშოტი აღებულია %s (%s), არ არის აქტუალური: იგი მოძველებულია ან ბოლო შეგროვება ჩაიშალა და ქვემოთ მოცემული კვანძები ბოლოს შეგროვებულია."
+
+#: lib/Pages.php
+msgid "HPC Scheduler Operator"
+msgstr "HPC დამგეგმავის ოპერატორი"
+
+#: lib/Pages.php
+msgid "HPC Scheduler View"
+msgstr "HPC დამგეგმავის ხედი"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Admin"
+msgstr "HPC დამგეგმავის ადმინისტრატორი"
+
+#: lib/Pages.php
+msgid "HPC Scheduler Health"
+msgstr "HPC დამგეგმავის მდგომარეობა"
+
+#: lib/ReasonFamily.php
+msgid "Priority"
+msgstr "პრიორიტეტი"
+
+#: lib/ReasonFamily.php
+msgid "Resources"
+msgstr "რესურსები"
+
+#: lib/ReasonFamily.php
+msgid "Dependency"
+msgstr "დამოკიდებულება"
+
+#: lib/ReasonFamily.php
+msgid "Begin time"
+msgstr "დაწყების დრო"
+
+#: lib/ReasonFamily.php
+msgid "Reservation"
+msgstr "რეზერვაცია"
+
+#: lib/ReasonFamily.php
+msgid "Association limits"
+msgstr "ასოციაციის ლიმიტები"
+
+#: lib/ReasonFamily.php
+msgid "QOS limits"
+msgstr "QOS ლიმიტები"
+
+#: lib/ReasonFamily.php
+msgid "Partition limits"
+msgstr "დანაყოფის ლიმიტები"
+
+#: lib/ReasonFamily.php
+msgid "Node availability"
+msgstr "კვანძის ხელმისაწვდომობა"
+
+#: lib/Section.php
+msgid "Reservations"
+msgstr "რეზერვაციები"
+
+#: lib/Section.php
+msgid "Fair-share"
+msgstr "სამართლიანი განაწილება"
+
+#: lib/Settings.php
+msgid "Slurm Client Commands"
+msgstr "Slurm კლიენტის ბრძანებები"
+
+#: lib/Settings.php
+msgid "Data Parser"
+msgstr "მონაცემთა პარსერი"
+
+#: lib/Settings.php
+msgid "Slurm data parser for the client commands. Choose one that the release of every cluster read through client commands ships: v0.0.43 is in 25.05, 25.11, and 26.05 and is removed in 27.05; v0.0.44 needs 25.11 or later; v0.0.45 needs 26.05 or later. The health page warns when a cluster reports a release without it. Clusters read through slurmrestd ignore this setting: they use the newest of these the daemon serves, and the health page shows which."
+msgstr "Slurm მონაცემთა პარსერი კლიენტის ბრძანებებისთვის. აირჩიეთ ის, რომელიც მოჰყვება კლიენტის ბრძანებებით წაკითხული ყველა კლასტერის გამოშვებას: v0.0.43 არის 25.05, 25.11 და 26.05 ვერსიებში და ამოღებულია 27.05-ში; v0.0.44 საჭიროებს 25.11 ან უფრო ახალს; v0.0.45 საჭიროებს 26.05 ან უფრო ახალს. მდგომარეობის გვერდი გაფრთხილებთ, თუ კლასტერი გადმოსცემს გამოშვებას მის გარეშე. slurmrestd-ით წაკითხული კლასტერები უგულებელყოფენ ამ პარამეტრს: ისინი იყენებენ დემონის მიერ მხარდაჭერილ უახლესს და მდგომარეობის გვერდი აჩვენებს რომელს."
+
+#: lib/Settings.php
+msgid "Absolute path to squeue on each poller that reads a cluster through client commands. The plugin runs it only as squeue --all --json with the data parser above."
+msgstr "აბსოლუტური გზა squeue-მდე თითოეულ პოლერზე, რომელიც კითხულობს კლასტერს კლიენტის ბრძანებებით. დანამატი მას უშვებს მხოლოდ როგორც squeue --all --json ზემოთ არჩეული მონაცემთა პარსერით."
+
+#: lib/Settings.php
+msgid "squeue"
+msgstr "squeue"
+
+#: lib/Settings.php
+msgid "Absolute path to scontrol. The plugin runs only scontrol --json show node, show partition, and show reservation; never update, reconfigure, or token."
+msgstr "აბსოლუტური გზა scontrol-მდე. დანამატი უშვებს მხოლოდ scontrol --json show node, show partition და show reservation ბრძანებებს; არასდროს update, reconfigure ან token."
+
+#: lib/Settings.php
+msgid "scontrol"
+msgstr "scontrol"
+
+#: lib/Settings.php
+msgid "Absolute path to sshare, used only for clusters that collect fair-share."
+msgstr "აბსოლუტური გზა sshare-მდე, გამოიყენება მხოლოდ იმ კლასტერებისთვის, რომლებიც აგროვებენ სამართლიან განაწილებას."
+
+#: lib/Settings.php
+msgid "sshare"
+msgstr "sshare"
+
+#: lib/Settings.php
+msgid "Limits"
+msgstr "ლიმიტები"
+
+#: lib/Settings.php
+msgid "Call Timeout"
+msgstr "გამოძახების ტაიმაუტი"
+
+#: lib/Settings.php
+msgid "Seconds one scheduler call may take before it is stopped and its section recorded as failed. A call never runs past the reader time budget either."
+msgstr "წამები, რაც დამგეგმავის ერთ გამოძახებას შეუძლია დასჭირდეს, სანამ შეჩერდება და მისი განყოფილება ჩაშლილად ჩაიწერება. გამოძახება ასევე არასდროს სცდება წამკითხველის დროის ბიუჯეტს."
+
+#: lib/Settings.php
+msgid "Maximum Answer Size"
+msgstr "მაქსიმალური პასუხის ზომა"
+
+#: lib/Settings.php
+msgid "MiB one scheduler call may return. A larger answer is discarded and its section recorded as failed. Decoding needs about 12 times the answer size, so the reader uses at most (Collection Memory - 64) / 12 MiB and the health page warns when this value is larger."
+msgstr "MiB, რაც დამგეგმავის ერთ გამოძახებას შეუძლია დააბრუნოს. უფრო დიდი პასუხი უარყოფილია და მისი განყოფილება ჩაშლილად იწერება. დეკოდირებას სჭირდება პასუხის ზომაზე დაახლოებით 12-ჯერ მეტი მეხსიერება, ამიტომ წამკითხველი იყენებს არაუმეტეს (შეგროვების მეხსიერება - 64) / 12 MiB-ს და მდგომარეობის გვერდი გაფრთხილებთ, როცა ეს მნიშვნელობა მეტია."
+
+#: lib/Settings.php
+msgid "Collection Memory"
+msgstr "შეგროვების მეხსიერება"
+
+#: lib/Settings.php
+msgid "MiB of PHP memory each collection run raises its limit to (it never lowers one). The default of 1024 fits answers up to 80 MiB."
+msgstr "PHP მეხსიერების MiB, რომლამდეც შეგროვების ყოველი გაშვება ზრდის თავის ლიმიტს (არასდროს ამცირებს). ნაგულისხმევი 1024 იტევს 80 MiB-მდე პასუხებს."
+
+#: lib/Settings.php
+msgid "Absolute path to prlimit (util-linux), used to cap the address space of each client command. Leave empty to run commands without a memory limit; the health page then warns."
+msgstr "აბსოლუტური გზა prlimit-მდე (util-linux), რომელიც გამოიყენება კლიენტის თითოეული ბრძანების სამისამართო სივრცის შესაზღუდად. დატოვეთ ცარიელი ბრძანებების მეხსიერების ლიმიტის გარეშე გასაშვებად; ამ შემთხვევაში მდგომარეობის გვერდი გაფრთხილებთ."
+
+#: lib/Settings.php
+msgid "prlimit"
+msgstr "prlimit"
+
+#: lib/Settings.php
+msgid "Command Memory Limit"
+msgstr "ბრძანების მეხსიერების ლიმიტი"
+
+#: lib/Settings.php
+msgid "MiB of address space each client command may use, through prlimit."
+msgstr "სამისამართო სივრცის MiB, რომლის გამოყენებაც კლიენტის თითოეულ ბრძანებას შეუძლია prlimit-ის მეშვეობით."
+
+#: lib/Settings.php
+msgid "slurmrestd Credentials"
+msgstr "slurmrestd ავტორიზაციის მონაცემები"
+
+#: lib/Settings.php
+msgid "Token File Directories"
+msgstr "ტოკენის ფაილების დირექტორიები"
+
+#: lib/Settings.php
+msgid "Absolute directories on the pollers that may hold slurmrestd token files, separated by commas or spaces. A cluster can name only a token file inside one of them, owned by the poller user and reached without a symbolic link. Keep each directory writable only by root and the poller user. Empty means no cluster can use slurmrestd."
+msgstr "აბსოლუტური დირექტორიები პოლერებზე, სადაც შეიძლება ინახებოდეს slurmrestd ტოკენის ფაილები, გამოყოფილი მძიმით ან ინტერვალით. კლასტერს შეუძლია მიუთითოს მხოლოდ ერთ-ერთ მათგანში მდებარე, პოლერის მომხმარებლის მფლობელობაში მყოფი და სიმბოლური ბმულის გარეშე ხელმისაწვდომი ტოკენის ფაილი. თითოეულ დირექტორიაში ჩაწერა შეზღუდეთ მხოლოდ root-ითა და პოლერის მომხმარებლით. ცარიელი ველი ნიშნავს, რომ ვერც ერთი კლასტერი ვერ გამოიყენებს slurmrestd-ს."
+
+#: lib/Settings.php
+msgid "slurmrestd Hosts"
+msgstr "slurmrestd ჰოსტები"
+
+#: lib/Settings.php
+msgid "Optional. The slurmrestd hosts a cluster may name, as host or host:port, separated by commas or spaces. An entry without a port allows any port on that host. Empty allows any host."
+msgstr "არასავალდებულო. slurmrestd ჰოსტები, რომელთა მითითებაც კლასტერს შეუძლია ფორმატით host ან host:port, გამოყოფილი მძიმით ან ინტერვალით. პორტის გარეშე ჩანაწერი უშვებს ნებისმიერ პორტს ამ ჰოსტზე. ცარიელი ველი უშვებს ნებისმიერ ჰოსტს."
+
+#: lib/Settings.php
+msgid "Seconds before a token expires when the health page starts to warn, if the token carries an expiry time."
+msgstr "წამები ტოკენის ვადის ამოწურვამდე, როცა მდგომარეობის გვერდი იწყებს გაფრთხილებას, თუ ტოკენი შეიცავს ვადის დროს."
+
+#: lib/Settings.php
+msgid "Token Expiry Warning"
+msgstr "ტოკენის ვადის გაფრთხილება"
+
+#: lib/Settings.php
+msgid "Uninstall"
+msgstr "დეინსტალაცია"
+
+#: lib/Settings.php
+msgid "Keep Plugin Tables on Uninstall"
+msgstr "დანამატის ცხრილების შენახვა დეინსტალაციისას"
+
+#: lib/Settings.php
+msgid "When checked, uninstalling the plugin keeps its clusters and snapshots. Clear it to have the uninstall drop them; export the clusters first from HPC Clusters. The plugin creates no Cacti devices or Maint schedules in this release, and the scheduler is never contacted either way."
+msgstr "მონიშვნის შემთხვევაში, დანამატის დეინსტალაცია შეინახავს მის კლასტერებსა და სნეპშოტებს. მონიშვნის მოხსნით დეინსტალაცია წაშლის მათ; წინასწარ გააკეთეთ კლასტერების ექსპორტი HPC კლასტერების გვერდიდან. ამ გამოშვებაში დანამატი არ ქმნის Cacti მოწყობილობებს ან Maint განრიგებს და დამგეგმავთან კავშირი არც ერთ შემთხვევაში არ მყარდება."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s is not installed in Cacti's resource/script_server directory."
+msgstr "მონაცემთა მოთხოვნის ფაილი %s არ არის დაყენებული Cacti-ს resource/script_server დირექტორიაში."
+
+#: lib/TemplateInstaller.php
+#, php-format
+msgid "The data query file %s in Cacti's resource/script_server directory differs from the one the plugin ships."
+msgstr "მონაცემთა მოთხოვნის ფაილი %s Cacti-ს resource/script_server დირექტორიაში განსხვავდება დანამატის მიერ მოწოდებულისგან."
+
+#: lib/TokenState.php
+msgid "readable only by the poller user"
+msgstr "წაკითხვადია მხოლოდ პოლერის მომხმარებლისთვის"
+
+#: lib/TokenState.php
+msgid "readable by the file group; restrict it to the poller user (chmod 600)"
+msgstr "წაკითხვადია ფაილის ჯგუფისთვის; შეზღუდეთ იგი პოლერის მომხმარებლით (chmod 600)"
+
+#: lib/TokenState.php
+msgid "readable by every user on the poller; restrict it to the poller user (chmod 600)"
+msgstr "წაკითხვადია პოლერის ყველა მომხმარებლისთვის; შეზღუდეთ იგი პოლერის მომხმარებლით (chmod 600)"
+
+#: lib/TokenState.php
+msgid "refused: owned by a user other than the poller user (chown it to the poller user)"
+msgstr "უარყოფილია: მფლობელი არის პოლერის მომხმარებლისგან განსხვავებული მომხმარებელი (შეუცვალეთ მფლობელი chown-ით პოლერის მომხმარებელზე)"
+
+#: lib/TokenState.php
+msgid "missing or not readable by the poller user"
+msgstr "აკლია ან არ არის წაკითხვადი პოლერის მომხმარებლისთვის"
+
+#: lib/TokenState.php
+msgid "refused: outside the token file directories set in Settings, reached through a symbolic link, not a regular file, writable by others, or too large; the log names the reason"
+msgstr "უარყოფილია: პარამეტრებში მითითებული ტოკენის ფაილების დირექტორიების გარეთაა, მიღწეულია სიმბოლური ბმულით, არ არის ჩვეულებრივი ფაილი, ჩაწერადია სხვების მიერ ან ზედმეტად დიდია; მიზეზი მითითებულია ჟურნალში"
+
+#: lib/TokenState.php
+msgid "empty"
+msgstr "ცარიელია"
+
+#: lib/Transport.php
+msgid "Slurm client commands"
+msgstr "Slurm კლიენტის ბრძანებები"
+
+#: lib/Transport.php
+msgid "slurmrestd"
+msgstr "slurmrestd"
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later. This server runs PHP %s, so the plugin was not installed or enabled."
+msgstr "HPC დამგეგმავის დანამატი მოითხოვს PHP %s ან უფრო ახალ ვერსიას. ამ სერვერზე გაშვებულია PHP %s, ამიტომ დანამატი არ დაყენდა ან არ ჩაირთო."
+
+#: setup.php
+msgid "The HPC Scheduler plugin is not enabled."
+msgstr "HPC დამგეგმავის დანამატი არ არის ჩართული."
+
+#: setup.php
+#, php-format
+msgid "The HPC Scheduler plugin requires PHP %s or later."
+msgstr "HPC დამგეგმავის დანამატი მოითხოვს PHP %s ან უფრო ახალ ვერსიას."
+
+#: setup.php
+msgid "Management"
+msgstr "მართვა"
