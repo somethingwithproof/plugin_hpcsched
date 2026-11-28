@@ -26,6 +26,14 @@ namespace Somethingwithproof\Hpcsched;
  * token travels only in its header.
  */
 final readonly class Endpoint {
+	/**
+	 * Construct a new Endpoint instance.
+	 *
+	 * @param bool $tls
+	 * @param string $host
+	 * @param int $port
+	 * @param string $basePath
+	 */
 	private function __construct(
 		public bool $tls,
 		public string $host,
@@ -87,16 +95,32 @@ final readonly class Endpoint {
 		return in_array($host, $hosts, true) || in_array($host . ':' . $this->port, $hosts, true);
 	}
 
+	/**
+	 * Loopback.
+	 *
+	 * @param string $host
+	 * @return bool
+	 */
 	public static function loopback(string $host): bool {
 		return $host === 'localhost' || $host === '::1' || preg_match('/^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $host) === 1;
 	}
 
+	/**
+	 * Socket address.
+	 *
+	 * @return string
+	 */
 	public function socketAddress(): string {
 		$host = str_contains($this->host, ':') ? '[' . $this->host . ']' : $this->host;
 
 		return ($this->tls ? 'tls' : 'tcp') . "://$host:" . $this->port;
 	}
 
+	/**
+	 * Host header.
+	 *
+	 * @return string
+	 */
 	public function hostHeader(): string {
 		$host = str_contains($this->host, ':') ? '[' . $this->host . ']' : $this->host;
 

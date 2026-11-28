@@ -19,6 +19,9 @@
 
 namespace Somethingwithproof\Hpcsched;
 
+/**
+ * Section outcome component.
+ */
 final readonly class SectionOutcome {
 	/**
 	 * @param bool $unchanged a completed conditional read that found nothing
@@ -32,18 +35,41 @@ final readonly class SectionOutcome {
 	) {
 	}
 
+	/**
+	 * Completed.
+	 *
+	 * @param int $records
+	 * @return self
+	 */
 	public static function completed(int $records): self {
 		return new self(SectionState::Completed, null, $records);
 	}
 
+	/**
+	 * Unchanged.
+	 *
+	 * @param int $records
+	 * @return self
+	 */
 	public static function unchanged(int $records): self {
 		return new self(SectionState::Completed, null, $records, true);
 	}
 
+	/**
+	 * Failed.
+	 *
+	 * @param ErrorClass $error
+	 * @return self
+	 */
 	public static function failed(ErrorClass $error): self {
 		return new self(SectionState::Failed, $error);
 	}
 
+	/**
+	 * Not attempted.
+	 *
+	 * @return self
+	 */
 	public static function notAttempted(): self {
 		return new self(SectionState::NotAttempted);
 	}

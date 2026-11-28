@@ -23,6 +23,13 @@ namespace Somethingwithproof\Hpcsched;
  * Plain-text formatting for page cells. Callers escape the result.
  */
 final class Format {
+	/**
+	 * Age.
+	 *
+	 * @param int $time
+	 * @param int $now
+	 * @return string
+	 */
 	public static function age(int $time, int $now): string {
 		if ($time <= 0) {
 			return __('Never', 'hpcsched');

@@ -29,8 +29,18 @@ namespace Somethingwithproof\Hpcsched;
  * contacts a scheduler.
  */
 final class ClustersPage {
+	/** File constant for ClustersPage. */
 	public const FILE = 'hpcsched_clusters.php';
 
+	/**
+	 * Construct a new ClustersPage instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param PollerRepository $pollers
+	 * @param DeviceAccess $access
+	 * @param CactiObjectRepository $objects
+	 * @param DeviceProvisioner $provisioner
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly PollerRepository $pollers,
@@ -40,6 +50,11 @@ final class ClustersPage {
 	) {
 	}
 
+	/**
+	 * Render list.
+	 *
+	 * @return void
+	 */
 	public function renderList(): void {
 		$pollers  = $this->pollers->names();
 		$clusters = $this->access->clusters($this->clusters->all());
@@ -245,11 +260,28 @@ final class ClustersPage {
 			. '</form>';
 	}
 
+	/**
+	 * Text.
+	 *
+	 * @param string $name
+	 * @param string $label
+	 * @param string $value
+	 * @param int $length
+	 * @return void
+	 */
 	private function text(string $name, string $label, string $value, int $length): void {
 		print '<tr><td><label for="' . html_escape($name) . '">' . html_escape($label) . '</label></td>'
 			. '<td><input type="text" id="' . html_escape($name) . '" name="' . html_escape($name) . '" value="' . html_escape($value) . '" maxlength="' . $length . '" size="' . min(60, $length) . '"></td></tr>';
 	}
 
+	/**
+	 * Checkbox.
+	 *
+	 * @param string $name
+	 * @param string $label
+	 * @param bool $checked
+	 * @return void
+	 */
 	private function checkbox(string $name, string $label, bool $checked): void {
 		print '<tr><td><label for="' . html_escape($name) . '">' . html_escape($label) . '</label></td><td><input type="checkbox" id="' . html_escape($name) . '" name="' . html_escape($name) . '" value="on"' . ($checked ? ' checked' : '') . '></td></tr>';
 	}

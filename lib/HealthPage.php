@@ -27,6 +27,19 @@ namespace Somethingwithproof\Hpcsched;
  * Nothing here contacts a scheduler or reads a token file.
  */
 final class HealthPage {
+	/**
+	 * Construct a new HealthPage instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param RunRepository $runs
+	 * @param ViewRepository $view
+	 * @param Settings $settings
+	 * @param FreshnessEvaluator $evaluator
+	 * @param Clock $clock
+	 * @param int $pollerInterval
+	 * @param DeviceAccess $access
+	 * @param TemplateInstaller $templates
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly RunRepository $runs,
@@ -40,6 +53,11 @@ final class HealthPage {
 	) {
 	}
 
+	/**
+	 * Render.
+	 *
+	 * @return void
+	 */
 	public function render(): void {
 		$now      = $this->clock->now();
 		$runs     = $this->runs->all();

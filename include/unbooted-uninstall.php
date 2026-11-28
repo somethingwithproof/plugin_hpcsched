@@ -26,6 +26,11 @@
  * run both paths. No scheduler is contacted.
  */
 
+/**
+ * Uninstall unbooted.
+ *
+ * @return void
+ */
 function hpcsched_uninstall_unbooted(): void {
 	$row  = db_fetch_row_prepared('SELECT value FROM settings WHERE name = ?', array('hpcsched_uninstall_keep_tables'));
 	$keep = !is_array($row) || $row === array() || (isset($row['value']) && $row['value'] === 'on');

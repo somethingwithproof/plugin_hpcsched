@@ -25,8 +25,15 @@ namespace Somethingwithproof\Hpcsched;
  * alone; nothing is sent to the scheduler.
  */
 final class ClusterRepository {
-	private const SNAPSHOT_TABLES = ['plugin_hpcsched_run', 'plugin_hpcsched_section', 'plugin_hpcsched_job_count', 'plugin_hpcsched_node', 'plugin_hpcsched_node_count', 'plugin_hpcsched_partition', 'plugin_hpcsched_reservation', 'plugin_hpcsched_share'];
+	/** Snapshot tables constant for ClusterRepository. */
+	private const SNAPSHOT_TABLES = ['plugin_hpcsched_run', 'plugin_hpcsched_section', 'plugin_hpcsched_job_count', 'plugin_hpcsched_node', 'plugin_hpcsched_node_count', 'plugin_hpcsched_node_map', 'plugin_hpcsched_maint_link', 'plugin_hpcsched_partition', 'plugin_hpcsched_reservation', 'plugin_hpcsched_share'];
 
+	/**
+	 * Construct a new ClusterRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 * @param Clock $clock
+	 */
 	public function __construct(private readonly \PDO|false $connection, private readonly Clock $clock) {
 	}
 
@@ -47,12 +54,24 @@ final class ClusterRepository {
 		return $out;
 	}
 
+	/**
+	 * Get.
+	 *
+	 * @param int $id
+	 * @return ?Cluster
+	 */
 	public function get(int $id): ?Cluster {
 		$row = Row::one(db_fetch_row_prepared('SELECT * FROM plugin_hpcsched_cluster WHERE id = ?', [$id], true, $this->connection));
 
 		return $row === null ? null : Cluster::fromRow($row);
 	}
 
+	/**
+	 * Find by host.
+	 *
+	 * @param int $hostId
+	 * @return ?Cluster
+	 */
 	public function findByHost(int $hostId): ?Cluster {
 		if ($hostId <= 0) {
 			return null;
@@ -103,6 +122,13 @@ final class ClusterRepository {
 		return is_int($count) ? $count : 0;
 	}
 
+	/**
+	 * Name taken.
+	 *
+	 * @param string $name
+	 * @param int $exceptId
+	 * @return bool
+	 */
 	public function nameTaken(string $name, int $exceptId): bool {
 		return Row::count(db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hpcsched_cluster WHERE name = ? AND id <> ?', [$name, $exceptId], '', true, $this->connection)) > 0;
 	}
@@ -132,10 +158,23 @@ final class ClusterRepository {
 		return $ok && db_affected_rows($this->connection) === 1 ? $input->id : 0;
 	}
 
+	/**
+	 * Set state.
+	 *
+	 * @param int $id
+	 * @param AdminState $state
+	 * @return bool
+	 */
 	public function setState(int $id, AdminState $state): bool {
 		return db_execute_prepared('UPDATE plugin_hpcsched_cluster SET admin_state = ?, updated_at = GREATEST(updated_at + 1, ?) WHERE id = ?', [$state->value, $this->clock->now(), $id], true, $this->connection) !== false;
 	}
 
+	/**
+	 * Delete.
+	 *
+	 * @param int $id
+	 * @return bool
+	 */
 	public function delete(int $id): bool {
 		if (!db_begin_transaction($this->connection)) {
 			return false;

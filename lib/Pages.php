@@ -30,8 +30,11 @@ namespace Somethingwithproof\Hpcsched;
  * account name (REQ-UI-004).
  */
 final class Pages {
+	/** Operator constant for Pages. */
 	public const OPERATOR = ['hpcsched_operator.php'];
+	/** View constant for Pages. */
 	public const VIEW  = ['hpcsched.php'];
+	/** Admin constant for Pages. */
 	public const ADMIN = ['hpcsched_clusters.php', 'hpcsched_health.php'];
 
 	/**

@@ -30,8 +30,10 @@ namespace Somethingwithproof\Hpcsched;
  * v0.0.45 source; no output of any version has been captured from a cluster.
  */
 final class DataParser {
+	/** Default version. */
 	public const DEFAULT_VERSION = 'v0.0.43';
 
+	/** Versions constant for DataParser. */
 	public const VERSIONS = ['v0.0.43', 'v0.0.44', 'v0.0.45'];
 
 	/**
@@ -45,8 +47,15 @@ final class DataParser {
 		'26.05' => ['v0.0.42', 'v0.0.43', 'v0.0.44', 'v0.0.45'],
 	];
 
+	/** Supported releases constant for DataParser. */
 	public const SUPPORTED_RELEASES = ['25.05', '25.11', '26.05'];
 
+	/**
+	 * Supported.
+	 *
+	 * @param string $version
+	 * @return bool
+	 */
 	public static function supported(string $version): bool {
 		return in_array($version, self::VERSIONS, true);
 	}
@@ -106,6 +115,12 @@ final class DataParser {
 		return $major !== null && in_array($version, self::SHIPPED[$major], true);
 	}
 
+	/**
+	 * Major.
+	 *
+	 * @param string $release
+	 * @return ?string
+	 */
 	private static function major(string $release): ?string {
 		return preg_match('/^(\d{2}\.\d{2})(?:\.|$)/', $release, $m) === 1 && in_array($m[1], self::SUPPORTED_RELEASES, true) ? $m[1] : null;
 	}

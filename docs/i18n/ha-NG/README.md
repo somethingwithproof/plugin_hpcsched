@@ -1,50 +1,52 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
-[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
+[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [Български](../bg-BG/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [Ελληνικά](../el-GR/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [ქართული](../ka-GE/README.md) | [한국어](../ko-KR/README.md) | [Latviešu](../lv-LV/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Português (Portugal)](../pt-PT/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
 <!-- translations:end -->
 
 # plugin_hpcsched
 
-Kari (plugin) na Cacti 1.2 wanda ke zana jadawalin yanayin mai tsara ayyukan HPC (batch scheduler) kusa da na'urorin da Cacti ya riga yake sa ido a kansu: zurfin layin jira (queue depth), ayyukan da ke jira da waɗanda ke gudana, dalilin da ya sa ayyuka ke jira, yanayin nodes, da yadda ake amfani da rukunoni (partitions). Slurm ne tsarin baya (backend) na farko. Thold yana ba da faɗakarwa a kan tushen bayanai da aka samu, kuma ana iya tafiyar da Maint ta hanyar nodes da aka kwashe (drained nodes) da keɓantattun lokutan gyara (maintenance reservations).
+Kari (plugin) na Cacti 1.2 (`hpcsched`, sigar `0.1.0-dev`) wanda ke zana jadawalin yanayin mai tsara ayyukan HPC (batch scheduler) kusa da na'urorin da Cacti ya riga yake sa ido a kansu: zurfin layin jira (queue depth), ayyukan da ke jira da waɗanda ke gudana, dalilin da ya sa ayyuka ke jira, yanayin nodes, amfanin rukunoni (partitions), da amfanin fair-share a matakin asusu (account). Slurm ne tsarin baya (backend) da aka aiwatar. Thold yana ba da faɗakarwa a kan tushen bayanai da aka samu, kuma mai daidaitawa na Maint na zaɓi (opt-in) yana sarrafa tagogin Cacti Maint daga nodes na lissafi na Slurm waɗanda aka kwashe (drained), suka daina aiki (down), ko aka keɓe don gyara (maintenance reservations).
 
-> **Matsayi: ana kan haɓakawa, ba a fitar da saki tukuna ba.** An haɗa Milestone 2 (tushe) a kan `main`, kuma wannan reshe yana ƙara milestone 3 (jadawalin rukunin na'urori da dalilan jira). Lambar tana shigarwa, ɗaukakawa, da cirewa ta hanyar API na kari na Cacti kuma tana ƙin PHP ƙasa da 8.2. Tana riƙe da rajistar rukunonin Slurm (clusters), kowanne an ba shi mai tattara bayanai na Cacti (poller) guda ɗaya. Mai karatu na baya (background reader) a kan babban poller yana tattara hoto guda ɗaya (snapshot) ga kowane cluster a kowane tazarar lokaci, ko dai ta hanyar gudanar da `squeue`, `scontrol`, da `sshare` tare da `--json` ko kuma ta hanyar karanta `slurmrestd` ta HTTPS, sannan ya adana adadin ayyuka ta yanayi da dalilin jira, yanayin nodes, partitions, reservations, da amfanin fair-share tare da sabuntar su (freshness). Karin yana zuwa da samfuran (templates) Cacti kuma, bisa tabbatarwar mai gudanarwa, yana ƙirƙira ko haɗa na'urar Cacti guda ɗaya ga kowane cluster tare da jadawalin ayyuka ta yanayi, ayyukan da ke jira ta dangin dalilai, nodes ta yanayi, CPUs, da amfani, ga cluster ɗin da kuma ga kowane partition, ƙari ga tsawon lokacin snapshot ɗin. Shafin bayyani mai karatu kawai yana nuna adadi ga kowane cluster tare da sabuntar su da kallon dalilan jira ga kowane cluster, kuma shafin lafiya na masu gudanarwa kawai yana nuna abin da kowace tattarawa ta dawo da shi da ko an shigar da samfuran. Kowane shafi da aiki yana bin izinin na'urori na Cacti. Tushen bayanan waɗanda Thold zai iya ba da faɗakarwa a kansu ne, amma ba a gwada haɗin Thold ko Maint tukuna ba; wannan shine milestone 4 da abin da ke gaba. Rukunin gwaje-gwaje ya ƙunshi umarnin Slurm na ƙira da martanin `slurmrestd`, kuma CI yana gwada ainihin Slurm cluster mai node shida a cikin containers kamar yadda aka bayyana a ƙasa. Mai karatun bai taɓa yin aiki a kan cluster na samarwa (production) ba tukuna. A ƙarƙashin bayanan mai sarrafawa (operator notes), wannan README yana bayyana tsarin zane ne, ba halayyar da aka fitar ba.
+> **Matsayi: ana kan haɓakawa, ba a fitar da saki tukuna ba.** Wannan reshen yana aiwatar da tushen kari, jadawalin cluster da partition, dangin dalilan jira, daidaita Slurm compute node zuwa na'urar Cacti, daidaita tagar Cacti Maint na zaɓi, taƙaitaccen fair-share a matakin asusu, gudanarwa da kwafi a kan masu tattara bayanai na nesa (remote data collectors), Configuration-as-Code (CasC) da CLI na ayyuka, da ƙugiyoyin yanayin aikin Cacti (CasC, Doctor, da MCP / Abilities API v2). Rukunin gwaje-gwaje ya ƙunshi umarnin Slurm na ƙira da martanin `slurmrestd`, kuma CI yana gwada ainihin Slurm cluster mai node shida a cikin containers. Mai karatun bai taɓa yin aiki a kan cluster na samarwa (production) ba tukuna, kuma gwajin sake kunna Thold na ƙarshe zuwa ƙarshe ba ya cikin CI tukuna.
 
 Wannan aiki ne mai zaman kansa kuma ba shi da alaƙa da aikin Cacti.
+
+## Abin da aka aiwatar
+
+- **Tsarin rayuwa da schema (v3)**: shigarwa, ɗaukakawa mai maimaituwa ba tare da matsala ba (idempotent), cirewa (tare da riƙe teburan kari ta tsohuwa), da ƙarancin PHP 8.2 yayin da ake barin wuraren shiga su kasance masu iya tantancewa a PHP 8.0. Schema v3 tana ƙara `plugin_hpcsched_node_map` da `plugin_hpcsched_maint_link` tare da teburan cluster, run, section, job-count, node-count, node, partition, reservation, da share.
+- **Tattara Slurm na karatu kawai a kan babban poller da pollers na nesa**: `poller_bottom` yana fara `poller_hpcsched.php --cluster=N` a baya a kan kowane poller (`poller_id`) don clusters masu kunnawa da aka ba shi. Kowace guduwa tana tattara snapshot guda ɗaya da aka adana a cache ga kowane cluster ta hanyar umarnin abokin ciniki (`squeue`, `scontrol`, `sshare` tare da `--json`) ko `slurmrestd` ta HTTPS (an yarda da loopback HTTP tare da gargaɗin lafiya). `INFO` yana bayyana `remote_collect:1, remote_poller:1`, kuma `replicate_out` yana kwafa bayanan `plugin_hpcsched_cluster` waɗanda ba na sirri ba zuwa masu tattara bayanai na nesa (`poller_id >= 2`); ba a taɓa karantawa ko kwafa abubuwan da ke cikin fayil ɗin token ba.
+- **Samfuran Cacti da jadawalin cluster**: yana zuwa da samfuran na'ura, bayanai, da jadawali (`templates/hpcsched-templates.xml`) da tambayar bayanai ta script-server na partition (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`). Bisa tabbatarwar mai gudanarwa, yana ƙirƙira ko haɗa na'urar Cacti guda ɗaya ga kowane cluster tare da jadawalin ayyuka ta yanayi, ayyukan da ke jira ta dangin dalilai, nodes ta yanayi, CPUs, amfani (na cluster da na kowane partition), da tsawon lokacin snapshot.
+- **Daidaita Slurm node zuwa na'ura da daidaita Cacti Maint**: mai daidaitawa mai mataki huɗu a cikin lokaci na layi (`NodeMatcher`) yana haɗa Slurm compute nodes zuwa bayanan `host` na Cacti da ke akwai (ainihin sunan host, ainihin adireshi, ainihin bayani/sunan laƙabi, ko alamar DNS ta farko don sunayen da ba IP ba) kuma yana yi wa daidaitawa da yawa ko iƙirarin na'ura sau biyu alamar `ambiguous` maimakon yin hasashe. `HostList::expand()` yana faɗaɗa jerin hosts na keɓewar Slurm (har zuwa nodes 10,000). `MaintSynchronizer` yana ƙirƙira, sabuntawa, da cire jadawalin Cacti Maint na lokaci ɗaya mallakar kari waɗanda aka bibiya a cikin `plugin_hpcsched_maint_link` don nodes da aka haɗa a cikin `DRAIN`, `DRAINING`, `DOWN`, ko keɓewar `MAINT`/`MAINTENANCE` masu aiki ba tare da canza jadawalin Maint da mai gudanarwa ya ƙirƙira ba.
+- **Taƙaitaccen fair-share a matakin asusu**: lokacin da aka kunna `collect_shares`, yana tattara layukan haɗin asusun Slurm a cikin `plugin_hpcsched_share` (yana jefar da layukan masu amfani bisa ga [ADR 0010](../../decisions/0010-bound-series-cardinality.md)). `ShareSummary` da `ShareRepository` suna lissafin adadin asusu/partition, jimlar amfani na ɗanye da mai tasiri, ƙarami/matsakaici/mafi girman abubuwan fair-share, da manyan asusai; ana nuna adadin asusai a cikin `hpcsched-get-queue-summary`.
+- **CasC da CLI na ayyuka (`cli/hpcsched.php`)**: fitar da tsarin YAML/XML, tantancewa, tsara bambanci na gwaji (dry-run diff), aiwatarwa mai buƙatar tabbatarwa, fitar da bayanin lafiya mai tsari, da daidaita Maint na zaɓi (`sync-maint --dry-run` / `--apply`).
+- **Ƙugiyoyin yanayin aiki (`setup.php`)**: `casc_register_providers`, `doctor_register_checks`, da `abilities_register`.
 
 ## Matsayin shiga
 
 | Matsayi (Realm) | Dama (Access) |
 | --- | --- |
-| HPC Scheduler View | Shafukan sa ido da ke akwai. |
-| HPC Scheduler Operator | Sa ido ƙari da shafin Ayyuka (Operations) da tabbatarwar rarrabe matsaloli (triage acknowledgments) na sirri. |
-| HPC Scheduler Admin | Damar Operator ƙari da saitunan da ayyukan gudanarwa da ke akwai. |
+| HPC Scheduler View | Bayyani na cluster na karatu kawai da dalilan jira (`hpcsched.php`). |
+| HPC Scheduler Operator | Damar View ƙari da shafin Ayyuka (`hpcsched_operator.php`) da tabbatarwar rarrabe matsaloli na sirri. |
+| HPC Scheduler Admin | Damar Operator ƙari da gudanar da cluster (`hpcsched_clusters.php`) da shafin lafiya (`hpcsched_health.php`). |
 
-Bayan kwafin fayilolin ɗaukakawa, buɗe shafin Plugins a matsayin mai gudanarwa don yin rajistar
-sabon realm ɗin. Ba da Operator realm kai tsaye a ƙarƙashin **Configuration > Users** ko ƙungiyoyin masu amfani.
-Ɗaukakawa tana riƙe da IDs da izinin View da Admin realm da ke akwai. Damar Admin
-tana gadar damar Operator, kuma damar Operator tana gadar damar View a kan kowace buƙata;
-wannan ba ya ƙara izini masu ajiya ga masu amfani ko ƙungiyoyi. Saitunan kari kuma suna buƙatar
-damar HPC Scheduler Admin ƙari ga izinin Settings na Cacti.
+Bayan kwafin fayilolin ɗaukakawa, buɗe shafin Plugins a matsayin mai gudanarwa don yin rajistar sabbin realms da ƙugiyoyi. Ba da Operator realm kai tsaye a ƙarƙashin **Configuration > Users** ko ƙungiyoyin masu amfani. Ɗaukakawa tana riƙe da IDs da izinin View da Admin realm da ke akwai. Damar Admin tana gadon damar Operator, kuma damar Operator tana gadon damar View a kowace buƙata; wannan ba ya ƙara izinin da aka adana ga masu amfani ko ƙungiyoyi. Saitunan kari suma suna buƙatar damar HPC Scheduler Admin ƙari ga izinin Settings na Cacti.
 
-Har yanzu izinin na'urorin Cacti yana iyakance layuka da ayyukan da ke samuwa ga kowane mai amfani; ana jera cluster ba tare da na'ura ba a kan shafukan gudanarwa ga kowane mai amfani mai plugin realm, amma ba a cikin kallon operator ba, waɗanda ke jera clusters da aka haɗa da na'ura kawai.
-Takardun shaida, saiti, haɗawa (mapping), gogewa da sauran sauye-sauyen gudanarwa
-suna ci gaba da kasancewa a cikin shafukan gudanarwa. Tabbatarwa (acknowledgments) suna ɗorewa ne kawai a cikin zaman
-mai amfani na yanzu, na tsawon awa ɗaya aƙalla kuma kawai yayin da wannan abin lura ya ci gaba da zama
-sabo. Sabbi ko sauyayyun abubuwan lura suna soke su. Ba sa taɓa nuna aunawa da ta gaza
-a matsayin lafiyayye ko hana faɗakarwa.
+Izinin na'urorin Cacti suna iyakance layuka da ayyukan da ke akwai ga kowane mai amfani. Cluster da aka haɗa da na'urar Cacti ana nuna shi, ana fitar da shi, kuma ana canza shi ne kawai ga masu amfani da Cacti ya ba wa izini ga wannan na'urar; haɗa na'ura shima yana buƙatar izini ga na'urar da ake nufi. Cluster da ba shi da na'ura ana jera shi a shafukan gudanarwa ga masu amfani da ke da realm ɗin kari, amma ba a cikin kallon operator ba, waɗanda ke jera clusters da aka haɗa da na'ura kawai. Cluster wanda aka goge na'urar da aka haɗa da shi yayin da aka kashe kari ana nuna shi ne kawai ga masu amfani da ke da damar HPC Scheduler Admin. Tabbatarwa tana ɗorewa ne kawai a zaman mai amfani na yanzu, na tsawon awa ɗaya a mafi yawa kuma yayin da wannan kallo guda ya kasance sabo. Sabbin abubuwan da aka gani ko waɗanda suka canza suna soke su. Ba sa taɓa yi wa auna da ya gaza alamar lafiya ko dakatar da faɗakarwa.
 
-## Bayanan mai sarrafawa na milestone 2
+## Bayanan mai sarrafawa
 
-**Mafi ƙarancin gata (Least privilege).** Karin yana karantawa kawai. Ba shi keɓantaccen mai amfani na Slurm ba tare da wani matsayin mai gudanarwa ko mai sarrafawa ba (`AdminLevel=None` a cikin `sacctmgr`). Tare da `PrivateData=jobs` (ko `nodes`, `reservations`, `usage`) a cikin `slurm.conf`, wannan mai amfani yana ganin nasa bayanan ne kawai, don haka adadin ba zai cika ba kuma karin ba zai iya gano hakan ba. Ɗaga wannan don asusun yana nufin matsayin mai sarrafawa ko mai gudanarwa, wanda kuma ke ba da damar yin sauye-sauye; wannan zaɓin ya rage ga wurin aikin. Don umarnin abokin ciniki (client commands), mai amfani na Cacti poller yana buƙatar fayilolin binary na abokin ciniki na Slurm da `slurm.conf` wanda ke isa ga mai sarrafawa (controller); hanyoyin binary cikakkun saituna ne a ƙarƙashin Configuration > Settings > HPC Scheduler. Don `slurmrestd`, URL ɗin dole ne ya zama `https://`, ko `http://` a kan adireshin loopback kawai. Ana tabbatar da takaddun shaida na TLS kuma ba a bin tura-wuri (redirects). Jerin masu masauki na slurmrestd na zaɓi a ƙarƙashin Configuration > Settings > HPC Scheduler yana iyakance masu masauki (hosts) da tashoshin jiragen ruwa (ports) da cluster zai iya ambata.
+### Tsaro, ƙarancin gata, da fayilolin token
 
-**Remote pollers.** Wannan sakin yana tattarawa ne kawai a kan babban Cacti poller. Ba a tattara cluster da aka sanya wa mai tattara bayanai na nesa (remote data collector) ba: mai karatu a can yana ƙin karɓa tare da dalilin da aka rubuta a log kuma shafin lafiya yana ambaton sunan cluster ɗin. Tattarawa ta nesa tana cikin mataki na 3.
+Karin yana karantawa ne kawai. Ba shi mai amfani na Slurm na musamman ba tare da matsayin mai gudanarwa ko mai sarrafawa ba (`AdminLevel=None` a cikin `sacctmgr`). Tare da `PrivateData=jobs` (ko `nodes`, `reservations`, `usage`) a cikin `slurm.conf`, wannan mai amfani yana ganin bayanansa ne kawai, don haka adadin ba zai cika ba kuma kari ba zai iya gano hakan ba. Ɗage wannan ga asusun yana buƙatar matakin operator ko administrator, wanda kuma yana ba da damar yin canje-canje; wannan cinikin shawarar wurin aiki ne.
 
-**Ƙwaƙwalwar ajiya (Memory).** Kowane zagayen tattarawa yana fassara amsar mai tsara ayyuka guda ɗaya a lokaci guda, wanda ke ɗaukar kusan sau 12 na girman amsar a cikin ƙwaƙwalwar PHP (an auna a kusan sau 10 don bayanan ayyuka masu kama da na Slurm, ƙari ga rubutun kanta). Zagayen yana ɗaga iyakar ƙwaƙwalwar PHP ɗinsa zuwa saitin Collection Memory (1024 MiB ta tsohuwa) kuma yana ba da damar amsoshi har zuwa (Collection Memory - 64) / 12 MiB, 80 MiB ta tsohuwa, koda lokacin da aka saita Maximum Answer Size mafi girma; shafin lafiya yana ba da gargaɗi lokacin da yake haka. Babbar amsa tana sa ɓangarenta ya gaza saboda girma da yawa, kuma zagayen da har yanzu ya ƙare masa ƙwaƙwalwa ana rubuta shi a matsayin wanda ya gaza. Babban cluster na iya buƙatar a ɗaga duka saitunan biyu; ba a auna ainihin bayanan ayyuka 100,000 ba.
+Don umarnin abokin ciniki, mai amfani na Cacti poller yana buƙatar shirye-shiryen abokin ciniki na Slurm (`squeue`, `scontrol`, da kuma `sshare` na zaɓi) da `slurm.conf` wanda ke kaiwa ga mai sarrafawa; hanyoyin shirye-shiryen saituna ne cikakku a ƙarƙashin **Configuration > Settings > HPC Scheduler**.
 
-**Fayilolin Token.** Cluster na `slurmrestd` yana ambaton sunan fayil ɗin token; ba a taɓa adana token ɗin da kansa a cikin database, nuna shi a shafi, ko rubuta shi a log ba. Fayil ɗin dole ne ya kasance a cikin ɗaya daga cikin kundayen adireshi na fayil ɗin token da aka saita a ƙarƙashin Configuration > Settings > HPC Scheduler, a isa gare shi ba tare da symbolic link ba, kuma ya zama fayil na yau da kullun mallakar mai amfani na poller wanda wannan mai amfani kawai zai iya rubutawa a ciki, yana ɗauke da layi guda: token ɗin, ko `SLURM_JWT=<token>` kamar yadda `scontrol token` ke buga shi. Ba tare da saita kundayen adireshi na token ba, babu wani cluster da zai iya amfani da `slurmrestd`. Waɗannan saituna biyu suna kan shafin Settings na Cacti, don haka Admin realm na karin kaɗai ba zai iya canza su ba; ajiye kowane kundin adireshi na token ta yadda root da mai amfani na poller kawai za su iya rubutawa a ciki. Fayil ɗin da ƙungiyar ko sauran masu amfani za su iya karantawa har yanzu ana amfani da shi, kuma shafin lafiya yana ba da gargaɗi. Shafin lafiya kuma yana ba da gargaɗi lokacin da token ɗin ya kusa ƙarewa a cikin lokacin gargaɗi da aka saita.
+Don `slurmrestd`, URL ɗin dole ne ya zama `https://`, ko `http://` a kan adireshin loopback kawai. Ana tantance takaddun shaida na TLS kuma ba a bin tura-kai (redirects). Jerin hosts na `slurmrestd` na zaɓi a ƙarƙashin **Configuration > Settings > HPC Scheduler** yana iyakance waɗanne hosts da ports ne cluster zai iya ambata.
 
-Don juya token (rotate) ba tare da lokacin da mai karatu zai ga wani ɓangare na fayil ɗin kawai ba, rubuta sabon token ɗin kusa da tsohon sannan ka sake masa suna zuwa wurin:
+Cluster na `slurmrestd` yana bayyana fayil ɗin token; ba a taɓa adana token ɗin da kansa a cikin rumbun adana bayanai, ko nuna shi a shafi, ko fitar da shi ta CasC, ko rubuta shi a cikin log ba. Dole ne fayil ɗin ya kasance a cikin ɗaya daga cikin Token File Directories da aka saita a ƙarƙashin **Configuration > Settings > HPC Scheduler**, a isa gare shi ba tare da symbolic link ba, kuma ya zama fayil na yau da kullun mallakar mai amfani na poller wanda wannan mai amfani kawai zai iya rubutawa a ciki, yana ɗauke da layi guda: token ɗin ko `SLURM_JWT=<token>` kamar yadda `scontrol token` ke bugawa. Idan ba a saita kowane rumbun adanar token ba, babu wani cluster da zai iya amfani da `slurmrestd`. Ajiye kowane rumbun adanar token ta yadda root da mai amfani na poller kawai za su iya rubutawa a ciki. Har yanzu ana amfani da fayil ɗin da ƙungiya ko sauran masu amfani za su iya karantawa, kuma shafin lafiya yana ba da gargaɗi; yana kuma ba da gargaɗi lokacin da token ɗin zai ƙare a cikin tagar gargaɗi da aka saita.
+
+Don juya token a matsayin aiki guda (atomically):
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -55,83 +57,136 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-Tattarawa ta gaba tana karanta sabon fayil ɗin. Ƙirƙirar tokens tare da `scontrol token` yana buƙatar mai gudanarwa na Slurm; gudanar da shi a inda aka ba da izini kuma ka kwafi fayil ɗin zuwa ga poller.
+Tattarawa ta gaba tana karanta sabon fayil ɗin. Ƙirƙirar tokens da `scontrol token` yana buƙatar mai gudanarwa na Slurm; gudanar da shi inda aka ba da izini sannan ka kwafa fayil ɗin zuwa poller.
 
-## Bayanan mai sarrafawa na milestone 3
+### Masu tattara bayanai na nesa
 
-**Samfura (Templates).** Shigarwa da ɗaukakawa suna shigo da samfuran na'ura, bayanai, da jadawali na HPC Scheduler kuma suna kwafin tambayar bayanai ta partition (partition data query) zuwa kundin adireshi na `resource/script_server/` na Cacti. Idan mai amfani da ya shigar da karin ba zai iya rubutawa a cikin wannan kundin adireshin ba, ko wani fayil daban mai irin wannan sunan ya riga yana wurin kuma ba karin ne ya rubuta shi ba, ko kuma sunan symbolic link ne, shigo da bayanan yana tsayawa, ana barin fayil ɗin yadda yake, kuma shafin lafiya yana faɗin abin da za a yi; Install Templates a shafin lafiya yana sake gwadawa. Kwafi iri ɗaya da aka yi da hannu ana amfani da shi amma yana kasancewa naka. Cirewa (Uninstall) yana cire fayil ɗin tambayar ne kawai idan karin ne ya rubuta shi kuma ba a canza shi ba, kuma yana riƙe samfuran, na'urorin, da jadawalan.
+`INFO` yana bayyana `remote_collect:1, remote_poller:1`. `hpcsched_poller_bottom()` yana ƙaddamar da `poller_hpcsched.php` a kan kowane poller don clusters masu kunnawa da aka ba wa wannan `poller_id`, kuma `hpcsched_replicate_out()` yana kwafa layukan `plugin_hpcsched_cluster` waɗanda ba na sirri ba zuwa pollers na nesa (`poller_id >= 2`). Dole ne fayilolin token da shirye-shiryen abokin ciniki na Slurm su kasance a wurin a kan poller na nesa da aka ba da aiki; ba a taɓa kwafa abubuwan da ke cikin token ba.
 
-**Na'urorin Cluster.** HPC Clusters > Device yana nuna abin da na'ura za ta ƙara (jadawalai, tushen bayanai, fayilolin RRD, da kiran script server a kowane poll) kafin a ƙirƙiri komai. Create Device yana ƙirƙirar na'ura mai sunan host a cikin keɓantaccen yankin `.invalid` kuma ba tare da binciken samuwa (availability check) ba; Map Device a maimakon haka yana haɗa jadawalan zuwa na'urar da ke akwai kuma yana barin saitunanta yadda suke. Kowane jadawalin cluster da kowane jadawalin partition yana da nasa tushen bayanai: shida don cluster da biyar ga kowane partition, kiran script server guda ɗaya ga kowane tushen bayanan cluster da guda ɗaya ga kowane ƙimar partition (32) a kowane poll. Partitions da aka ƙara daga baya ana jera su (indexed) lokacin da mai karatu ya gan su kuma suna samun jadawalai daga shafin New Graphs na Cacti; partition ɗin da aka cire yana daina samun poll kuma yana riƙe da jadawalansa. Goge na'urar yana cire haɗin cluster ɗin kuma yana riƙe shi.
+### Iyakokin ƙwaƙwalwar ajiya
 
-**Abin da jadawalan ke ƙidayawa.** Pending (masu jira) ba ya haɗa da ayyukan da aka riƙe (held jobs), waɗanda ke da nasu jerin. Array mai jira yana ƙidaya sauran ayyukansa da suka rage. Aiki ko node a cikin partitions da yawa yana ƙidaya sau ɗaya a cikin jadawalan cluster kuma sau ɗaya a cikin kowane partition, don haka jadawalan partition ba dole ne su haɗu su zama daidai da na cluster ba. An rarraba dalilan jira zuwa iyalai goma sha ɗaya ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); kallon dalilan jira yana jera ainihin dalilan, ciki har da waɗanda ke cikin Other. Kowane aiki yana ba da rahoton dalilin ƙarshe ne kawai da mai tsara ayyuka ya duba. Ma'aunin ƙasan amfani (utilization denominator) ya haɗa da drained, down, da sauran nodes da ba sa samuwa. Tsohon bayanai ko wanda ya gaza `U` ne, ba sifili ba; `age` yana kasancewa na lamba.
+Kowace guduwar tattarawa tana buɗe amsar mai tsarawa guda ɗaya a lokaci guda, wanda ke ɗaukar kusan ninki 12 na girman amsar a cikin ƙwaƙwalwar PHP (an auna a kusan ninki 10 don bayanan ayyuka masu siffa irin ta Slurm, ƙari ga rubutun da kansa). Mai karatun yana ɗaga iyakar ƙwaƙwalwar PHP ɗinsa zuwa saitin Collection Memory (1024 MiB ta tsohuwa) kuma yana ba da izinin amsoshi har zuwa `(Collection Memory - 64) / 12` MiB (80 MiB ta tsohuwa), ko da lokacin da aka saita Maximum Answer Size mafi girma; shafin lafiya yana gargaɗi lokacin da Maximum Answer Size ya wuce wannan iyaka da aka daidaita. Babbar amsa tana sa sashenta ya gaza saboda girma ya yi yawa, kuma guduwar da ta ƙare da ƙwaƙwalwa duk da haka tana rubuta gazawar ƙwaƙwalwa kuma tana sakin hayarta (lease) da wurin tsarinta ta hanyar shutdown handler. Manyan clusters na iya buƙatar ɗaga duka saitunan biyu; ba a auna bayanan ayyuka na gaske 100,000 ba.
 
-**Faɗakarwa (Alerting).** Thold zai iya ba da faɗakarwa a kan kowane ɗaya daga cikin waɗannan tushen bayanai; saita tsawon lokacin Thold zuwa aƙalla tazarar tattarawa guda ɗaya, kuma ka ba da faɗakarwa a kan `age` don kama mai karatu da ya tsaya. Binciken Thold na ƙarshe zuwa ƙarshe shine milestone 4.
+### Samfura, na'urorin cluster, da ƙirga jadawali
 
-**An gwada a kan ainihin fitarwar Slurm.** CI yana fara Slurm cluster mai node shida a cikin containers (26.05.5 a kan kowane canji, 25.11.8 da aka gina daga tushe a kan turawa zuwa `main`, mako-mako, da bisa buƙata) kuma yana duba yanayin nodes, keɓantaccen lokacin gyara (maintenance reservation), dalilan jira, da arrays kamar yadda karin ke fassara su, sannan ya tattara daga wannan cluster tare da umarnin karin da kuma hanyoyin sadarwa na `slurmrestd`. Tsofaffin fitarwa ana rufe su ne kawai ta hanyar abubuwan gwaji na ƙira (synthetic fixtures). Mai karatun har yanzu bai yi aiki a kan cluster na samarwa ba.
+Shigarwa da ɗaukakawa suna shigo da samfuran na'ura, bayanai, da jadawali na HPC Scheduler kuma suna kwafa tambayar bayanai ta partition zuwa rumbun adanar `resource/script_server/` na Cacti. Idan ba za a iya rubutawa a wannan rumbun adanar ba, idan akwai wani fayil daban mai suna iri ɗaya a wurin, ko kuma wurin da ake nufi symbolic link ne, shigowar tana tsayawa, tana barin fayil ɗin ba tare da taɓawa ba, kuma tana ba da rahoton yanayin a shafin lafiya inda **Install Templates** ke sake gwadawa. Cirewa tana share fayil ɗin tambaya ne kawai idan kari ne ya rubuta shi kuma ba a canza shi ba, sannan tana riƙe samfura, na'urori, da jadawalin.
 
-**Izini (Permissions).** Ana nuna cluster da ke kan na'ura, fitar da shi, da canza shi ne kawai ga masu amfani da Cacti ya ba su izinin wannan na'urar, a kan kowane shafi na kari; haɗa na'ura kuma yana buƙatar izini don na'urar da aka nufa. Cluster ba tare da na'ura ba yana bayyana ga kowa mai plugin realm. Cluster da har yanzu yake haɗe da na'urar da aka goge yayin da karin ke kashe ana nuna shi ne kawai ga masu amfani masu HPC Scheduler Admin realm, waɗanda za su iya ƙirƙira ko haɗa na'ura don shi. Samun damar jadawali na Cacti ne da kansa.
+**HPC Clusters > Device** yana duba samfotin jadawalin, tushen bayanai, fayilolin RRD, da kiran script server ga kowane bincike kafin ƙirƙirar komai. **Create Device** yana ƙirƙirar na'ura mai sunan host a cikin keɓaɓɓen yankin `.invalid` kuma ba tare da duba samuwa ba; **Map Device** yana haɗa jadawalin zuwa na'urar da ke akwai ba tare da canza saitunanta ba. Kowace jadawalin cluster da jadawalin partition tana da nata tushen bayanan: shida ga cluster da biyar ga kowane partition. Partitions da aka ƙara daga baya ana sake yi musu fihirisa ta atomatik lokacin da mai karatu ya gano canji; partitions da aka cire suna daina bincike kuma suna riƙe jadawalin su. Goge na'ura yana cire haɗin cluster (kuma yana share kowane layin `plugin_hpcsched_node_map` da ya dace) yayin da yake riƙe da bayanin cluster ɗin.
 
-## Me ya sa
+Pending yana cire ayyukan da aka riƙe (held jobs), waɗanda suke da nasu jerin. Rukunin ayyuka (job array) da ke jira yana ƙirga sauran ayyukansa. Aiki ko node a cikin partitions da yawa yana ƙirguwa sau ɗaya a cikin jadawalin cluster da sau ɗaya a kowane partition, don haka jimlar partitions ba lallai ne ta yi daidai da jimlar cluster ba. An haɗa dalilan jira zuwa iyalai goma sha ɗaya ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); kallon dalilan jira yana jera ainihin dalilan ciki har da waɗanda ke cikin `Other`. Adadin ƙasa na amfani ya haɗa da nodes da aka kwashe, waɗanda suka daina aiki, da sauran waɗanda ba sa samuwa. Bayanan da suka tsufa ko suka gaza ana ba da rahoton su a matsayin `U`, ba sifili ba; `age` yana kasancewa lamba.
 
-Masu sarrafawa waɗanda ke gudanar da Cacti sun riga suna zana jadawalin compute nodes ɗinsu. Kallon mai tsara ayyuka (scheduler) ya ɓace daga waɗannan jadawalan, wanda ke barin giɓi guda biyu:
+Don faɗakarwa, saita Thold a kan kowane tushen bayanai na cluster ko partition tare da tsawon lokaci na akalla tazarar tattarawa guda ɗaya, kuma ka saita faɗakarwa a kan `age` don gano mai karatu da ya tsaya.
 
-- **Babu "me ya sa aiki ba ya farawa".** Slurm yana rubuta dalili ga kowane aiki da ke jira. Cikakken layin jira kusa da jadawalin nodes da ke zaune ba sa aiki ba ya faɗin ko dalilin shine fifiko (priority), iyakokin albarkatu (resource limits), riƙewa (holds), dogaro (dependencies), ko drained nodes.
-- **Babu alaƙa tsakanin yanayin mai tsara ayyuka da faɗakarwa.** Thold yana ba da faɗakarwa a kan na'urar da mai gudanarwa ya riga ya kwashe (drained), kuma masu gudanarwa suna ƙirƙirar jadawalin Maint da hannu.
+## CLI da ƙugiyoyin yanayin aiki
 
-Karin yana tattara cache snapshot guda ɗaya ga kowane cluster, yana buga shi a matsayin tushen bayanai da jadawalan Cacti na yau da kullun, yana haɗa scheduler nodes zuwa na'urorin Cacti da ke akwai, kuma yana iya sanya drained nodes da maintenance reservations a cikin Maint. Yana sake amfani da izinin Cacti, masu tattara bayanai na nesa, Thold, da Maint, kuma yana karantawa ne kawai zuwa ga mai tsara ayyuka.
+### Wurin shigar mai karatu
 
-## Iyakar da aka tsara
+`hpcsched_poller_bottom()` yana fara `poller_hpcsched.php` ta atomatik; ana kuma iya gudanar da shi da hannu a kan poller da aka ba wa cluster:
 
-| Mataki | Iyaka | Milestones |
-|---|---|---|
-| 0, bincike | Jadawalin sakin Slurm, tabbatar da halayyar upstream, nauyin controller, samfuran sunayen node | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, jadawalan cluster | Zurfin layin jira, ayyukan da ke jira da waɗanda ke gudana, dalilan jira, yanayin node, amfani da partition, faɗakarwar Thold, shafin lafiya, saki | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, nodes da gyara | Haɗa node zuwa na'ura, yanayin kowane node, tagogin Maint na atomatik don drained nodes da maintenance reservations | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, lissafin amfani (accounting) | Amfanin fair-share, ƙididdigar lissafin amfani masu iyaka, masu tattara bayanai na nesa | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
 
-Ba ya cikin iyaka: kowace hanyar rubutu ga mai tsara ayyuka (submit, cancel, hold, drain, resume), injin faɗakarwa mallakar kari, injin rahoto ko biyan kuɗi (chargeback), jerin kowane mai amfani da kowane aiki. Tsarin baya na PBS Pro, OpenPBS, da LSF suna cikin bincike.
+`--force` yana aiki ko da lokacin da aka kashe kari, don gano matsala ta layin umarni.
 
-## Manufofin dacewa
+### Configuration-as-Code, lafiya, da Maint sync CLI
 
-| Bangare | Manufa |
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` yana rubuta sabbin fayiloli tare da yanayin `0600` (ko stdout) kuma yana maye gurbin hanyoyin `token_file` da aka saita da `[REDACTED]`. `plan` da `apply` suna ƙin filayen `jwt`, `secret`, da `password` a cikin layi, kuma suna riƙe hanyoyin `token_file` na gida da ke akwai lokacin da aka bayar da `[REDACTED]`. `apply` yana buƙatar ainihin `--confirm=PLAN_HASH` da `plan` ya buga.
+- `health` yana kimanta sabuntar schema, sabuntar cluster, sakamakon guduwa, samuwar Maint, da gargaɗi ba tare da tuntuɓar masu tsarawa ko karanta fayilolin token ba.
+- `sync-maint` yana farawa ta tsohuwa zuwa `--dry-run` kuma yana duba samfoti ko aiwatar da jadawalin Cacti Maint don Slurm nodes da aka haɗa a cikin `DRAIN`, `DRAINING`, `DOWN`, ko keɓewar `MAINT`/`MAINTENANCE` masu aiki (tsohon lokacin drain/down shine 3600s, tazarar sabuntawa 600s). Yana ƙin `--apply` idan babu `plugin_maint_schedules` da `plugin_maint_hosts`, kuma yana sabuntawa ko cire jadawalin da aka rubuta a cikin `plugin_hpcsched_maint_link` ne kawai.
+
+### Ƙugiyoyin yanayin aiki
+
+Lokacin da ƙarin Cacti masu dacewa ko haɗin host ke akwai, `setup.php` yana yin rajistar:
+
+- `casc_register_providers`: yana fitarwa, tantancewa, tsarawa, da aiwatar da tsarin `hpcsched` mai buƙatar tabbatarwa (`yaml` da `xml`, schema v1) tare da ɓoye sirri.
+- `doctor_register_checks`: yana ba da binciken gano matsala guda huɗu na karatu kawai (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: yana yin rajistar iyawa guda uku na karatu kawai, marasa lalacewa, kuma masu maimaituwa ba tare da matsala ba a ƙarƙashin rukunin `hpcsched`, waɗanda HPC Scheduler View realm ke sarrafawa (da izinin na'ura don taƙaitaccen cluster): `hpcsched-list-clusters`, `hpcsched-get-queue-summary`, da `hpcsched-get-health`.
+
+## Dalili
+
+Masu sarrafawa waɗanda ke gudanar da Cacti sun riga suna zana jadawalin compute nodes nasu. Kallon mai tsarawa ya ɓace daga waɗannan jadawalin, wanda ke barin giɓi biyu:
+
+- **Babu "dalilin da ya sa aiki ba ya farawa".** Slurm yana rubuta dalili ga kowane aiki da ke jira. Layin jira mai cika kusa da jadawalin nodes marasa aiki ba ya faɗin ko dalilin shine fifiko, iyakokin albarkatu, riƙewa, dogaro, ko nodes da aka kwashe.
+- **Babu alaƙa tsakanin yanayin mai tsarawa da faɗakarwa.** Thold yana ba da faɗakarwa a kan na'urar da mai gudanarwa ya riga ya kwashe, kuma masu gudanarwa suna ƙirƙirar jadawalin Maint da hannu.
+
+Karin yana tattara snapshot guda ɗaya da aka adana a cache ga kowane cluster, yana buga shi a matsayin tushen bayanai da jadawalin Cacti na yau da kullun, yana haɗa nodes na mai tsarawa zuwa na'urorin Cacti da ke akwai, kuma yana daidaita tagogin Maint masu ƙarewa mallakar kari don nodes da aka kwashe, suka daina aiki, da keɓewar gyara. Yana sake amfani da izinin Cacti, masu tattara bayanai na nesa, Thold, da Maint, kuma yana kasancewa na karatu kawai ga mai tsarawa.
+
+## Faɗin aiki da iyakoki
+
+Wajen faɗin aiki: kowace hanyar rubutu zuwa mai tsarawa (miƙawa, sokewa, riƙewa, kwashewa, ci gaba), injin faɗakarwa mallakar kari, injin rahoto ko cajin kuɗi, da jeri ga kowane mai amfani ko kowane aiki. Tsarin baya na PBS Pro, OpenPBS, da LSF bincike ne kawai.
+
+## Buƙatu da dacewa
+
+| Sashe | Manufa |
 |---|---|
-| Cacti | 1.2.31 ko na gaba, babu gyare-gyaren core |
-| PHP | 8.2 ko na gaba; `setup.php` yana ci gaba da fassaruwa a kan 8.0 don haka tsarin gudanarwa da ba a goyan baya ya sami ƙin amincewa maimakon Cacti UI da ya lalace |
-| Slurm | 25.05, 25.11, da 26.05, fitarwa uku na ƙarshe ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 25.11 da 26.05 an gwada su a kan cluster mai rai, 25.05 a kan fixtures kawai. Umarnin abokin ciniki sune tsohuwar hanyar sadarwa ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) kuma suna amfani da saitin data parser: v0.0.43 ta tsohuwa, wanda SchedMD ke cirewa a cikin 27.05, ko v0.0.44 ko v0.0.45 a kan fitarwa da ke zuwa da su. Clusters na slurmrestd suna gano sabon parser da daemon ke bayarwa |
-| Thold, Maint | Babu canjin Thold; haɗin Maint shawara ce da ke buƙatar amincewar masu kula da Maint |
+| Cacti | 1.2.31 ko na gaba (`compat = 1.2.31`), babu gyaran tushe |
+| PHP | 8.2 ko na gaba; wuraren shiga suna kasancewa masu iya tantancewa a 8.0 kuma suna ƙin kunnawa a 8.1 don haka yanayin aiki da ba a goyan baya zai sami ƙin amincewa maimakon lalacewar UI na Cacti |
+| Slurm | 25.05, 25.11, da 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); ana gwada 26.05.5 a cikin CI a kowane canji akan cluster na container mai node shida, 25.11.8 akan `main`, kowane mako, da kuma bisa buƙata, sannan 25.05 akan fixtures kawai. Umarnin abokin ciniki suna amfani da mai fassara bayanai `v0.0.43` ta tsohuwa (tare da `v0.0.44` da `v0.0.45` masu zaɓi); clusters na `slurmrestd` suna gano sabon mai fassara da daemon ke bayarwa |
+| Thold, Maint | Ba a buƙatar canjin Thold; `sync-maint` yana haɗuwa da teburan `plugin_maint_schedules` da `plugin_maint_hosts` na Cacti Maint ta hanyar amfani da teburin haɗi mallakar kari (`plugin_hpcsched_maint_link`) |
+
+## Haɓakawa da gwaji
+
+Tsarin aikin CI (`.github/workflows/plugin-ci-workflow.yml`) yana gwada PHP 8.2 zuwa 8.5 akan Cacti `release/1.2.31` da `1.2.x`, duba tsarin wuraren shiga na PHP 8.0, ƙin PHP 8.1, PHPStan, tabbatar da gettext/fassara, lasisin REUSE, duba tsarin workflow, tafiyar na'urar cluster da duba karkacewar fitar da samfuri, da kuma ainihin Slurm cluster mai node shida (`slurm-live`).
+
+Tare da tsarin gwajin Pest na Cacti da aka kulle (`CACTI_PEST_BIN`) da rumbun adana bayanai na Cacti mai yuwuwar jefarwa:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Tsarin zane
 
-- [docs/PLAN.md](../../PLAN.md) shine cikakken shirin: tsarin gine-gine, gaskiyar upstream da ya dogara a kanta (tare da tushe da jerin zato da ba a tabbatar ba a fili), haɗin node, tsarin yanayi, iyakokin tsaro, lissafin aiki, gwaji, da haɗari.
-- [docs/decisions/](../../decisions) yana ɗauke da bayanan yanke shawara na tsarin gine-gine.
-- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) yana haɗa kowane ID na buƙata zuwa batunsa (issue).
+- [docs/PLAN.md](../../PLAN.md) shine tsarin gine-gine da zane: gaskiyar asali tare da tushe, haɗa nodes, samfurin yanayi, iyakokin tsaro, lissafin inganci, gwaji, da haɗari.
+- [docs/decisions/](../../decisions/) yana riƙe da bayanan yanke shawarar gine-gine.
+- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) yana haɗa kowane ID na buƙata zuwa batunsa.
 
 ```mermaid
 flowchart LR
-    S[Mai sarrafa Slurm] -->|kira na karatu kawai, saiti daya a kowane zagaye| R[Mai karatu a kan Cacti poller da aka sanya]
-    R --> SNAP[(Teburan Snapshot)]
+    S[Mai sarrafa Slurm] -->|kira na karatu kawai, saiti ɗaya ga kowane zagaye| R[poller_hpcsched.php a kan poller da aka ba]
+    R --> SNAP[(Teburan snapshot)]
     SNAP --> SS[Shigarwar script server]
-    SS -->|poller_output| T[Thold da Maint]
-    SS --> G[Jadawalan Cacti da izini]
-    SNAP --> MAP[Hada node zuwa na'ura]
-    MAP -->|jadawalai masu mallaka da ke karewa| T
+    SS -->|poller_output| T[Thold]
+    SS --> G[Jadawali da izinin Cacti]
+    SNAP --> MAP[NodeMatcher da MaintSynchronizer]
+    MAP -->|jadawali mallaka masu ƙarewa| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor, da iyawar MCP]
 ```
 
 ## Yadda ake bin diddigin aiki
 
-- **Milestones** suna bin milestones na shirin. Kowanne yana da batun epic (epic issue) da ke jera ƙananan batutuwa da shaidar fita.
-- **Batutuwa (Issues)** an rarraba su ta alama (label): `type: requirement`, `type: research`, `type: decision`, `type: epic`. Batutuwan buƙatu suna bayyana buƙatu masu lamba da za a iya gwadawa (`REQ-AREA-NNN`) da ƙa'idodin karɓa.
-- **Alamomi (Labels)** kuma suna ɗauke da `area:`, `phase:`, `priority:`, da `status:`. Duba [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
-- [Allon aiki](https://github.com/users/somethingwithproof/projects/10) yana nuna dukkan batutuwa a fadin milestones.
+- **Milestones** suna bin milestones na tsarin. Kowannensu yana da batun epic da ke jera ƙananan batutuwa da shaidar fita.
+- **Issues** an rarraba su ta alama: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Batutuwan buƙatu suna bayyana buƙatu masu lamba da za a iya gwadawa (`REQ-AREA-NNN`) da ƙa'idodin karɓa.
+- **Labels** suma suna ɗauke da `area:`, `phase:`, `priority:`, da `status:`. Duba [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
+- [Allon aiki](https://github.com/users/somethingwithproof/projects/10) yana nuna duk batutuwa a cikin milestones.
 
 ## Ba da gudummawa
 
-Karanta [CONTRIBUTING.md](../../../CONTRIBUTING.md). Commits suna buƙatar sa hannun DCO. Tattaunawar tsarin zane tana faruwa a kan batutuwa (issues); buɗaɗɗun yanke shawara suna ɗauke da alamar `type: decision`.
+Karanta [CONTRIBUTING.md](../../../CONTRIBUTING.md). Commits suna buƙatar sa hannu na DCO (`git commit -s`). Tattaunawar zane tana faruwa a cikin batutuwa; shawarwari da ke buɗe suna ɗauke da alamar `type: decision`.
 
 ## Tsaro
 
-Bayar da rahoton raunin tsaro a asirce; duba [SECURITY.md](../../../SECURITY.md).
+Ba da rahoton raunin tsaro a asirce; duba [SECURITY.md](../../../SECURITY.md).
 
 ## Lasisi
 
-GNU General Public License v2.0, iri ɗaya da lasisin Cacti da karin sa. Duba [LICENSE](../../../LICENSE).
+GNU General Public License v2.0, lasisi iri ɗaya da Cacti da karinsa. Duba [LICENSE](../../../LICENSE).

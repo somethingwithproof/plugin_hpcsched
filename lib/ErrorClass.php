@@ -38,6 +38,11 @@ enum ErrorClass: string {
 	case Failed      = 'failed';
 	case Memory      = 'memory';
 
+	/**
+	 * Message.
+	 *
+	 * @return string
+	 */
 	public function message(): string {
 		return match ($this) {
 			self::Config      => __('configuration: a path, URL, or setting is missing or not allowed', 'hpcsched'),

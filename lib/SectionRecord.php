@@ -24,6 +24,19 @@ namespace Somethingwithproof\Hpcsched;
  * rows it holds were observed.
  */
 final readonly class SectionRecord {
+	/**
+	 * Construct a new SectionRecord instance.
+	 *
+	 * @param int $clusterId
+	 * @param Section $section
+	 * @param SectionState $state
+	 * @param ?ErrorClass $error
+	 * @param int $attemptedAt
+	 * @param int $records
+	 * @param int $observedAt
+	 * @param int $ingestedAt
+	 * @param int $interval
+	 */
 	public function __construct(
 		public int $clusterId,
 		public Section $section,

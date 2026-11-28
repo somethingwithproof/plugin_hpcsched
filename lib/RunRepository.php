@@ -27,9 +27,23 @@ namespace Somethingwithproof\Hpcsched;
  * that outlived its registration.
  */
 final class RunRepository {
+	/**
+	 * Construct a new RunRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 * @param Clock $clock
+	 */
 	public function __construct(private readonly \PDO|false $connection, private readonly Clock $clock) {
 	}
 
+	/**
+	 * Acquire.
+	 *
+	 * @param int $clusterId
+	 * @param string $holder
+	 * @param int $seconds
+	 * @return bool
+	 */
 	public function acquire(int $clusterId, string $holder, int $seconds): bool {
 		$now = $this->clock->now();
 
@@ -39,10 +53,24 @@ final class RunRepository {
 		return $this->holds($clusterId, $holder);
 	}
 
+	/**
+	 * Holds.
+	 *
+	 * @param int $clusterId
+	 * @param string $holder
+	 * @return bool
+	 */
 	public function holds(int $clusterId, string $holder): bool {
 		return Row::count(db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hpcsched_run WHERE cluster_id = ? AND holder = ? AND lease_expires >= ?', [$clusterId, $holder, $this->clock->now()], '', true, $this->connection)) === 1;
 	}
 
+	/**
+	 * Release.
+	 *
+	 * @param int $clusterId
+	 * @param string $holder
+	 * @return void
+	 */
 	public function release(int $clusterId, string $holder): void {
 		db_execute_prepared('UPDATE plugin_hpcsched_run SET lease_expires = 0 WHERE cluster_id = ? AND holder = ?', [$clusterId, $holder], true, $this->connection);
 	}
@@ -62,6 +90,12 @@ final class RunRepository {
 		], true, $this->connection);
 	}
 
+	/**
+	 * Get.
+	 *
+	 * @param int $clusterId
+	 * @return ?ClusterRun
+	 */
 	public function get(int $clusterId): ?ClusterRun {
 		$row = Row::one(db_fetch_row_prepared('SELECT * FROM plugin_hpcsched_run WHERE cluster_id = ?', [$clusterId], true, $this->connection));
 

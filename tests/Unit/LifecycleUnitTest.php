@@ -67,21 +67,35 @@ it('records a run that ran out of memory and frees its lease and process slot', 
 		->and(json_encode($GLOBALS['__hpcsched_log']))->toContain('ran out of memory');
 });
 
-it('starts no reader and reads no plugin table on a remote data collector', function () {
-	$GLOBALS['__hpcsched_db_exec'] = [];
-	$GLOBALS['__hpcsched_db_rows'] = [];
-	$GLOBALS['__hpcsched_log']     = [];
+it('schedules due clusters scoped to the active remote data collector (Phase 3)', function () {
+	$now = 1800000000;
+
+	$GLOBALS['__hpcsched_db_exec']  = [];
 	$GLOBALS['__hpcsched_db_reads'] = [];
+	$GLOBALS['__hpcsched_log']      = [];
+	$GLOBALS['__hpcsched_db_rows']  = [
+		'FROM plugin_hpcsched_cluster' => [
+			[
+				'id' => 1, 'name' => 'main-cluster', 'poller_id' => 1, 'host_id' => 0, 'admin_state' => 'enabled',
+				'transport' => 'commands', 'collect_interval' => 60, 'slurm_conf' => '', 'rest_url' => '',
+				'rest_user' => '', 'token_file' => '', 'collect_reservations' => 0, 'collect_shares' => 0,
+				'created_at' => $now - 3600, 'updated_at' => $now - 3600,
+			],
+			[
+				'id' => 2, 'name' => 'remote-cluster', 'poller_id' => 2, 'host_id' => 0, 'admin_state' => 'enabled',
+				'transport' => 'commands', 'collect_interval' => 60, 'slurm_conf' => '', 'rest_url' => '',
+				'rest_user' => '', 'token_file' => '', 'collect_reservations' => 0, 'collect_shares' => 0,
+				'created_at' => $now - 3600, 'updated_at' => $now - 3600,
+			],
+		],
+		'FROM plugin_hpcsched_run' => [],
+	];
 	$GLOBALS['config']['poller_id'] = 2;
 
 	try {
-		expect(hpcsched_on_main_poller())->toBeFalse();
-
-		hpcsched_poller_bottom();
-
-		expect($GLOBALS['__hpcsched_db_exec'])->toBe([])
-			->and($GLOBALS['__hpcsched_db_reads'])->toBe([])
-			->and($GLOBALS['__hpcsched_log'])->toBe([]);
+		expect(hpcsched_on_main_poller())->toBeFalse()
+			->and(hpcsched_due_clusters(2))->toBe([2])
+			->and(hpcsched_due_clusters(1))->toBe([1]);
 	} finally {
 		$GLOBALS['config']['poller_id'] = 1;
 	}

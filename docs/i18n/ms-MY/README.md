@@ -1,49 +1,52 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
-[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
+[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [Български](../bg-BG/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [Ελληνικά](../el-GR/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [ქართული](../ka-GE/README.md) | [한국어](../ko-KR/README.md) | [Latviešu](../lv-LV/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Português (Portugal)](../pt-PT/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
 <!-- translations:end -->
 
 # plugin_hpcsched
 
-Pemalam Cacti 1.2 yang memplotkan keadaan penjadual kelompok HPC bersebelahan dengan peranti yang sedia dipantau oleh Cacti: kedalaman baris gilir, kerja menunggu berbanding kerja berjalan, sebab kerja menunggu, keadaan nod, dan penggunaan partition. Slurm ialah bahagian belakang yang pertama. Thold memberikan amaran pada sumber data yang terhasil, dan Maint boleh dipacu oleh nod yang disalirkan serta tempahan penyelenggaraan.
+Pemalam Cacti 1.2 (`hpcsched`, versi `0.1.0-dev`) yang memplotkan keadaan penjadual kelompok HPC bersebelahan dengan peranti yang sedia dipantau oleh Cacti: kedalaman baris gilir, kerja menunggu berbanding kerja berjalan, sebab kerja menunggu, keadaan nod, penggunaan partition, dan penggunaan perkongsian saksama (fair-share) peringkat akaun. Slurm ialah bahagian belakang yang dilaksanakan. Thold memberikan amaran pada sumber data yang terhasil, dan penyegerak Maint pilihan (opt-in) memacu tetingkap Maint Cacti daripada nod pengkomputeran Slurm yang disalirkan (drained), terhenti (down), dan ditempah untuk penyelenggaraan.
 
-> **Status: dalam pembangunan, belum ada keluaran.** Pencapaian 2 (asas) telah digabungkan pada `main`, dan cabang ini menambah pencapaian 3 (graf kluster dan sebab menunggu). Kod ini dipasang, dinaik taraf, dan dinyahpasang melalui API pemalam Cacti serta menolak PHP di bawah versi 8.2. Ia menyimpan daftar kluster Slurm, yang masing-masing ditetapkan kepada satu pengumpul Cacti. Pembaca latar belakang pada pengumpul utama mengumpul satu syot kilat bagi setiap kluster bagi setiap selang, sama ada dengan menjalankan `squeue`, `scontrol`, dan `sshare` bersama `--json` atau dengan membaca `slurmrestd` melalui HTTPS, lalu menyimpan kiraan kerja mengikut keadaan dan sebab menunggu, keadaan nod, partition, tempahan, dan penggunaan perkongsian saksama berserta kesegarannya. Pemalam ini menyertakan templat Cacti dan, atas pengesahan pentadbir, mencipta atau memetakan satu peranti Cacti bagi setiap kluster dengan graf kerja mengikut keadaan, kerja menunggu mengikut keluarga sebab, nod mengikut keadaan, CPU, dan penggunaan, untuk kluster dan bagi setiap partition, serta usia syot kilat. Halaman gambaran keseluruhan baca sahaja menunjukkan kiraan bagi setiap kluster berserta kesegarannya dan paparan sebab menunggu bagi setiap kluster, manakala halaman kesihatan khusus untuk pentadbir menunjukkan hasil yang dikembalikan oleh setiap pengumpulan dan sama ada templat telah dipasang. Setiap halaman dan tindakan mematuhi kebenaran peranti Cacti. Sumber data tersebut boleh diberikan amaran oleh Thold, tetapi tiada integrasi Thold atau Maint yang telah diuji setakat ini; itu merupakan pencapaian 4 dan seterusnya. Suit ujian merangkumi arahan Slurm sintetik dan respons `slurmrestd`, dan CI turut menguji kluster Slurm enam nod sebenar dalam kontena seperti yang diterangkan di bawah. Pembaca belum lagi dijalankan terhadap kluster pengeluaran. Di bawah nota pengendali, README ini menerangkan reka bentuk, bukan tingkah laku yang telah dikeluarkan.
+> **Status: dalam pembangunan, belum ada keluaran.** Cabang ini melaksanakan asas pemalam, graf kluster dan partition, keluarga sebab menunggu, pemadanan nod pengkomputeran Slurm kepada peranti Cacti, penyegerakan tetingkap Maint Cacti pilihan, ringkasan perkongsian saksama peringkat akaun, pelaksanaan dan replikasi pengumpul data jauh, CLI Configuration-as-Code (CasC) dan operasi, serta cangkuk ekosistem Cacti (CasC, Doctor, dan MCP / Abilities API v2). Suit ujian merangkumi arahan Slurm sintetik dan respons `slurmrestd`, manakala CI menjalankan ujian terhadap kluster Slurm enam nod sebenar dalam kontena. Pembaca belum lagi dijalankan terhadap kluster pengeluaran, dan ujian ulang tayang Thold hujung ke hujung belum lagi berada dalam CI.
 
 Ini ialah projek bebas dan tidak bergabung dengan projek Cacti.
+
+## Apa yang telah dilaksanakan
+
+- **Kitaran hayat dan skema (v3)**: pemasangan, naik taraf idempoten, nyahpasang (mengekalkan jadual pemalam secara lalai), dan keperluan minimum PHP 8.2 sambil mengekalkan titik masuk supaya boleh dihuraikan pada PHP 8.0. Skema v3 menambah `plugin_hpcsched_node_map` dan `plugin_hpcsched_maint_link` bersama jadual kluster, larian, bahagian, kiraan kerja, kiraan nod, nod, partition, tempahan, dan perkongsian.
+- **Pengumpulan Slurm baca sahaja pada pengumpul utama dan jauh**: `poller_bottom` memulakan `poller_hpcsched.php --cluster=N` di latar belakang pada setiap pengumpul (`poller_id`) bagi kluster didayakan yang ditetapkan kepadanya. Setiap larian mengumpul satu syot kilat bercache bagi setiap kluster melalui arahan klien (`squeue`, `scontrol`, `sshare` dengan `--json`) atau `slurmrestd` melalui HTTPS (HTTP gelung balik dibenarkan dengan amaran kesihatan). `INFO` mengisytiharkan `remote_collect:1, remote_poller:1`, dan `replicate_out` mereplikasi takrifan `plugin_hpcsched_cluster` bukan rahsia ke pengumpul jauh (`poller_id >= 2`); kandungan fail token tidak pernah dibaca atau direplikasi.
+- **Templat Cacti dan graf kluster**: membekalkan templat peranti, data, dan graf (`templates/hpcsched-templates.xml`) serta pertanyaan data pelayan skrip partition (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`). Atas pengesahan pentadbir, ia mencipta atau memetakan satu peranti Cacti bagi setiap kluster dengan graf untuk kerja mengikut keadaan, kerja menunggu mengikut keluarga sebab, nod mengikut keadaan, CPU, penggunaan (kluster dan setiap partition), dan usia syot kilat.
+- **Pemadanan nod Slurm ke peranti dan penyegerakan Cacti Maint**: pemadan masa linear empat peringkat (`NodeMatcher`) memetakan nod pengkomputeran Slurm kepada rekod `host` Cacti sedia ada (nama hos tepat, alamat tepat, perihalan/alias tepat, atau label DNS pertama bagi nama bukan IP) dan menandakan padanan berbilang atau tuntutan peranti pendua sebagai `ambiguous` daripada meneka. `HostList::expand()` mengembangkan senarai hos tempahan Slurm (sehingga 10,000 nod). `MaintSynchronizer` mencipta, memperbaharui, dan membuang jadual Cacti Maint sekali sahaja milik pemalam yang dijejaki dalam `plugin_hpcsched_maint_link` bagi nod terpeta dalam keadaan `DRAIN`, `DRAINING`, `DOWN`, atau tempahan aktif `MAINT`/`MAINTENANCE` tanpa mengubah suai jadual Maint yang dicipta oleh pentadbir.
+- **Ringkasan perkongsian saksama peringkat akaun**: apabila `collect_shares` didayakan, mengumpul baris perkaitan akaun Slurm ke dalam `plugin_hpcsched_share` (menggugurkan baris pengguna mengikut [ADR 0010](../../decisions/0010-bound-series-cardinality.md)). `ShareSummary` dan `ShareRepository` mengira kiraan akaun/partition, jumlah penggunaan mentah dan berkesan, faktor perkongsian saksama minimum/maksimum/purata, dan akaun teratas; kiraan akaun didedahkan dalam `hpcsched-get-queue-summary`.
+- **CasC dan CLI operasi (`cli/hpcsched.php`)**: eksport konfigurasi YAML/XML, pengesahan, perancangan perbezaan dry-run, penerapan berpagar pengesahan, output kesihatan berstruktur, dan penyegerakan Maint pilihan (`sync-maint --dry-run` / `--apply`).
+- **Cangkuk ekosistem (`setup.php`)**: `casc_register_providers`, `doctor_register_checks`, dan `abilities_register`.
 
 ## Peranan akses
 
 | Alam | Akses |
 | --- | --- |
-| HPC Scheduler View | Halaman pemantauan sedia ada. |
-| HPC Scheduler Operator | Pemantauan berserta halaman Operations dan pengakuan triaj peribadi. |
-| HPC Scheduler Admin | Akses Operator berserta konfigurasi sedia ada dan tindakan pentadbiran. |
+| HPC Scheduler View | Gambaran keseluruhan kluster baca sahaja dan sebab menunggu (`hpcsched.php`). |
+| HPC Scheduler Operator | Akses View berserta halaman Operations (`hpcsched_operator.php`) dan pengakuan triaj peribadi. |
+| HPC Scheduler Admin | Akses Operator berserta pentadbiran kluster (`hpcsched_clusters.php`) dan halaman kesihatan (`hpcsched_health.php`). |
 
-Selepas menyalin fail naik taraf, buka halaman Plugins sebagai pentadbir untuk mendaftarkan
-alam baharu tersebut. Tetapkan alam Operator secara eksplisit di bawah **Configuration > Users** atau kumpulan pengguna.
-Naik taraf mengekalkan ID alam dan pemberian View serta Admin sedia ada. Akses Admin
-mewarisi akses Operator, dan akses Operator mewarisi akses View pada setiap permintaan;
-perkara ini tidak menambah pemberian tersimpan kepada pengguna atau kumpulan. Tetapan pemalam juga memerlukan
-akses HPC Scheduler Admin di samping kebenaran Settings Cacti.
+Selepas menyalin fail naik taraf, buka halaman Plugins sebagai pentadbir untuk mendaftarkan alam dan cangkuk baharu. Tetapkan alam Operator secara eksplisit di bawah **Configuration > Users** atau kumpulan pengguna. Naik taraf mengekalkan ID alam dan pemberian sedia ada bagi View dan Admin. Akses Admin mewarisi akses Operator, dan akses Operator mewarisi akses View pada setiap permintaan; ini tidak menambah pemberian tersimpan kepada pengguna atau kumpulan. Tetapan pemalam juga memerlukan akses HPC Scheduler Admin di samping kebenaran Settings Cacti.
 
-Kebenaran peranti Cacti masih mengehadkan baris dan tindakan yang tersedia bagi setiap pengguna; kluster tanpa peranti disenaraikan pada halaman pentadbiran untuk setiap pengguna dengan alam pemalam, tetapi tidak dalam paparan pengendali, yang hanya menyenaraikan kluster yang dipetakan kepada peranti.
-Kelayakan, konfigurasi, pemetaan, pemadaman dan perubahan pentadbiran lain
-kekal dalam halaman pentadbiran. Pengakuan hanya bertahan dalam sesi pengguna semasa,
-paling lama selama satu jam dan hanya selagi pemerhatian yang sama kekal
-segar. Pemerhatian baharu atau yang berubah akan membatalkannya. Ia tidak sekali-kali menandakan pengukuran yang gagal sebagai sihat atau menyekat amaran.
+Kebenaran peranti Cacti mengehadkan baris dan tindakan yang tersedia bagi setiap pengguna. Kluster yang dipetakan kepada peranti Cacti hanya dipaparkan, dieksport, dan diubah untuk pengguna yang dibenarkan oleh Cacti bagi peranti tersebut; pemetaan peranti juga memerlukan kebenaran untuk peranti sasaran. Kluster tanpa peranti disenaraikan pada halaman pentadbiran bagi pengguna yang mempunyai alam pemalam, tetapi tidak dalam paparan pengendali, yang hanya menyenaraikan kluster yang dipetakan kepada peranti. Kluster yang peranti terpetanya telah dipadam semasa pemalam dinyahdayakan hanya ditunjukkan kepada pengguna dengan akses HPC Scheduler Admin. Pengakuan hanya bertahan dalam sesi semasa pengguna, paling lama selama satu jam dan hanya selagi pemerhatian yang sama kekal segar. Pemerhatian baharu atau berubah membatalkannya. Pengakuan tidak pernah menandakan ukuran yang gagal sebagai sihat atau menyekat amaran.
 
-## Nota pengendali untuk pencapaian 2
+## Nota pengendali
 
-**Keistimewaan minimum.** Pemalam ini hanya membaca. Berikannya pengguna Slurm khusus tanpa peranan pentadbir atau pengendali (`AdminLevel=None` dalam `sacctmgr`). Dengan `PrivateData=jobs` (atau `nodes`, `reservations`, `usage`) dalam `slurm.conf`, pengguna tersebut hanya melihat rekodnya sendiri, maka kiraan menjadi tidak lengkap dan pemalam tidak dapat mengesannya. Mengangkat sekatan itu untuk akaun tersebut bermakna tahap pengendali atau pentadbir, yang turut membenarkan perubahan; tukar ganti itu adalah keputusan tapak. Untuk arahan klien, pengguna pengumpul Cacti memerlukan binari klien Slurm dan `slurm.conf` yang dapat mencapai pengawal; laluan binari ialah tetapan mutlak di bawah Configuration > Settings > HPC Scheduler. Untuk `slurmrestd`, URL mestilah `https://`, atau `http://` pada alamat gelung balik sahaja. Sijil TLS disahkan dan ubah hala tidak diikuti. Senarai hos slurmrestd pilihan di bawah Configuration > Settings > HPC Scheduler mengehadkan hos dan port yang boleh dinamakan oleh kluster.
+### Keselamatan, keistimewaan minimum, dan fail token
 
-**Pengumpul jauh.** Keluaran ini hanya mengumpul pada pengumpul utama Cacti. Kluster yang ditetapkan kepada pengumpul data jauh tidak dikumpul: pembaca di sana menolak dengan sebab yang dilogkan dan halaman kesihatan menamakan kluster tersebut. Pengumpulan jauh ialah fasa 3.
+Pemalam ini hanya membaca. Berikan pengguna Slurm khusus tanpa peranan pentadbir atau pengendali (`AdminLevel=None` dalam `sacctmgr`). Dengan `PrivateData=jobs` (atau `nodes`, `reservations`, `usage`) dalam `slurm.conf`, pengguna tersebut hanya melihat rekodnya sendiri, menyebabkan kiraan menjadi tidak lengkap dan pemalam tidak dapat mengesannya. Mengangkat sekatan itu bagi akaun tersebut memerlukan tahap pengendali atau pentadbir, yang turut membenarkan perubahan; pertukaran itu ialah keputusan pihak tapak.
 
-**Memori.** Setiap larian pengumpulan menyahkod satu jawapan penjadual pada satu masa, yang mengambil kira-kira 12 kali saiz jawapan dalam memori PHP (diukur pada kira-kira 10 kali untuk rekod kerja berbentuk seperti Slurm, ditambah teks itu sendiri). Larian ini menaikkan had memori PHP kepada tetapan Collection Memory (1024 MiB secara lalai) dan membenarkan jawapan sehingga (Collection Memory - 64) / 12 MiB, iaitu 80 MiB secara lalai, walaupun apabila Maximum Answer Size ditetapkan lebih tinggi; halaman kesihatan akan memberi amaran apabila keadaan itu berlaku. Jawapan yang lebih besar menggagalkan bahagiannya sebagai terlalu besar, dan larian yang masih kehabisan memori direkodkan sebagai gagal. Kluster besar mungkin memerlukan kedua-dua tetapan dinaikkan; 100,000 rekod kerja sebenar belum lagi diukur.
+Bagi arahan klien, pengguna pengumpul Cacti memerlukan binari klien Slurm (`squeue`, `scontrol`, dan secara pilihan `sshare`) serta `slurm.conf` yang mencapai pengawal; laluan binari ialah tetapan laluan mutlak di bawah **Configuration > Settings > HPC Scheduler**.
 
-**Fail token.** Kluster `slurmrestd` menamakan satu fail token; token itu sendiri tidak pernah disimpan dalam pangkalan data, ditunjukkan pada halaman, atau ditulis ke dalam log. Fail tersebut mestilah berada di dalam salah satu direktori fail token yang ditetapkan di bawah Configuration > Settings > HPC Scheduler, dicapai tanpa pautan simbolik, dan merupakan fail biasa milik pengguna pengumpul yang hanya boleh ditulis oleh pengguna itu, mengandungi satu baris: token tersebut, atau `SLURM_JWT=<token>` seperti yang dicetak oleh `scontrol token`. Tanpa direktori token yang ditetapkan, tiada kluster boleh menggunakan `slurmrestd`. Kedua-dua tetapan ini berada pada halaman Settings Cacti, jadi alam Admin pemalam semata-mata tidak dapat mengubahnya; pastikan setiap direktori token hanya boleh ditulis oleh root dan pengguna pengumpul. Fail yang boleh dibaca oleh kumpulan atau pengguna lain masih digunakan, dan halaman kesihatan akan memberi amaran. Halaman kesihatan juga memberi amaran apabila token tamat tempoh dalam masa amaran yang dikonfigurasikan.
+Bagi `slurmrestd`, URL mestilah `https://`, atau `http://` pada alamat gelung balik sahaja. Sijil TLS disahkan dan ubah hala tidak diikuti. Senarai hos `slurmrestd` pilihan di bawah **Configuration > Settings > HPC Scheduler** mengehadkan hos dan port yang boleh dinamakan oleh sesuatu kluster.
 
-Untuk menggilirkan token tanpa tempoh tetingkap yang menyebabkan pembaca melihat fail separa, tulis token baharu di sebelah token lama dan namakan semula ke tempatnya:
+Kluster `slurmrestd` menamakan fail token; token itu sendiri tidak pernah disimpan dalam pangkalan data, dipaparkan pada halaman, dieksport oleh CasC, atau ditulis ke dalam log. Fail tersebut mestilah berada di dalam salah satu Token File Directories yang dikonfigurasikan di bawah **Configuration > Settings > HPC Scheduler**, dicapai tanpa pautan simbolik, dan merupakan fail biasa milik pengguna pengumpul yang hanya boleh ditulis oleh pengguna tersebut, mengandungi satu baris: token tersebut atau `SLURM_JWT=<token>` seperti yang dicetak oleh `scontrol token`. Tanpa direktori token ditetapkan, tiada kluster boleh menggunakan `slurmrestd`. Pastikan setiap direktori token hanya boleh ditulis oleh root dan pengguna pengumpul. Fail yang boleh dibaca oleh kumpulan atau pengguna lain masih digunakan, dan halaman kesihatan memberi amaran; ia juga memberi amaran apabila token tamat tempoh dalam tetingkap amaran yang dikonfigurasikan.
+
+Untuk menggilirkan token secara atomik:
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -54,78 +57,131 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-Pengumpulan seterusnya akan membaca fail baharu tersebut. Penjanaan token dengan `scontrol token` memerlukan pentadbir Slurm; jalankannya di tempat yang dibenarkan dan salin fail itu ke pengumpul.
+Pengumpulan seterusnya membaca fail baharu tersebut. Menjana token dengan `scontrol token` memerlukan pentadbir Slurm; jalankannya di tempat yang dibenarkan dan salin fail itu ke pengumpul.
 
-## Nota pengendali untuk pencapaian 3
+### Pengumpul data jauh
 
-**Templat.** Pemasangan dan naik taraf mengimport templat peranti, data, dan graf HPC Scheduler serta menyalin pertanyaan data partition ke direktori `resource/script_server/` Cacti. Jika direktori tersebut tidak boleh ditulis oleh pengguna yang memasang pemalam, fail lain dengan nama yang sama sudah ada di situ dan bukan ditulis oleh pemalam, atau nama tersebut ialah pautan simbolik, import akan berhenti, fail itu dibiarkan, dan halaman kesihatan menyatakan tindakan yang perlu diambil; Install Templates pada halaman kesihatan mencuba semula. Salinan serupa yang dibuat secara manual akan digunakan tetapi kekal milik anda. Nyahpasang hanya membuang fail pertanyaan jika pemalam yang menulisnya dan ia tidak berubah, serta mengekalkan templat, peranti, dan graf.
+`INFO` mengisytiharkan `remote_collect:1, remote_poller:1`. `hpcsched_poller_bottom()` melancarkan `poller_hpcsched.php` pada setiap pengumpul bagi kluster didayakan yang ditetapkan kepada `poller_id` tersebut, dan `hpcsched_replicate_out()` mereplikasi baris `plugin_hpcsched_cluster` bukan rahsia ke pengumpul jauh (`poller_id >= 2`). Fail token dan binari klien Slurm mestilah wujud secara setempat pada pengumpul jauh yang ditetapkan; kandungan token tidak pernah direplikasi.
 
-**Peranti kluster.** HPC Clusters > Device menunjukkan perkara yang akan ditambah oleh peranti (graf, sumber data, fail RRD, dan panggilan pelayan skrip bagi setiap pengumpulan) sebelum apa-apa dicipta. Create Device mencipta peranti dengan nama hos dalam domain `.invalid` yang dikhaskan dan tanpa semakan ketersediaan; Map Device pula melampirkan graf kepada peranti sedia ada dan membiarkan tetapannya tidak berubah. Setiap graf kluster dan setiap graf partition mempunyai sumber datanya sendiri: enam untuk kluster dan lima bagi setiap partition, satu panggilan pelayan skrip bagi setiap sumber data kluster dan satu bagi setiap nilai partition (32) bagi setiap pengumpulan. Partition yang ditambah kemudian diindeks apabila pembaca melihatnya dan mendapat graf daripada halaman New Graphs Cacti; partition yang dibuang berhenti dikumpul dan mengekalkan grafnya. Memadam peranti akan menyahpeta kluster dan mengekalkannya.
+### Had memori
 
-**Apa yang dikira oleh graf.** Kerja menunggu tidak termasuk kerja yang ditahan, yang mempunyai siri tersendiri. Tatasusunan menunggu mengira baki tugasnya. Kerja atau nod dalam beberapa partition dikira sekali dalam graf kluster dan sekali dalam setiap partition, jadi graf partition tidak semestinya berjumlah sama dengan graf kluster. Sebab menunggu dikumpulkan kepada sebelas keluarga ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); paparan sebab menunggu menyenaraikan sebab mentah, termasuk yang berada dalam Other. Setiap kerja hanya melaporkan sebab terakhir yang diperiksa oleh penjadual. Penyebut penggunaan merangkumi nod yang disalirkan, tidak aktif, dan nod lain yang tidak tersedia. Data yang lapuk atau gagal ialah `U`, bukan sifar; `age` kekal berangka.
+Setiap larian pengumpulan menyahkod satu jawapan penjadual pada satu masa, yang mengambil kira-kira 12 kali saiz jawapan dalam memori PHP (diukur pada kira-kira 10 kali untuk rekod kerja berbentuk seperti Slurm, ditambah teks itu sendiri). Pembaca menaikkan had memori PHP-nya ke tetapan Collection Memory (1024 MiB secara lalai) dan membenarkan jawapan sehingga `(Collection Memory - 64) / 12` MiB (80 MiB secara lalai), walaupun apabila Maximum Answer Size ditetapkan lebih tinggi; halaman kesihatan memberi amaran apabila Maximum Answer Size melebihi had yang dipadankan itu. Jawapan yang lebih besar menggagalkan bahagiannya sebagai terlalu besar, dan larian yang masih kehabisan memori merekodkan kegagalan memori serta melepaskan pajakan dan slot prosesnya melalui pengendali penutupan. Kluster besar mungkin memerlukan kedua-dua tetapan dinaikkan; 100,000 rekod kerja sebenar belum diukur.
 
-**Pemakluman amaran.** Thold boleh memberikan amaran pada mana-mana sumber data ini; tetapkan tempoh Thold kepada sekurang-kurangnya satu selang pengumpulan, dan berikan amaran pada `age` untuk mengesan pembaca yang terhenti. Semakan Thold hujung ke hujung ialah pencapaian 4.
+### Templat, peranti kluster, dan pengiraan graf
 
-**Diuji terhadap output Slurm sebenar.** CI memulakan kluster Slurm enam nod dalam kontena (26.05.5 pada setiap perubahan, 25.11.8 dibina daripada sumber pada tolakan ke `main`, secara mingguan, dan atas permintaan) serta menyemak keadaan nod, tempahan penyelenggaraan, sebab menunggu, dan tatasusunan seperti yang dihuraikan oleh pemalam, kemudian mengumpul daripada kluster tersebut dengan arahan pemalam sendiri dan pengangkutan `slurmrestd`. Keluaran yang lebih lama hanya diliputi oleh lekapan sintetik. Pembaca masih belum dijalankan terhadap kluster pengeluaran.
+Pemasangan dan naik taraf mengimport templat peranti, data, dan graf HPC Scheduler serta menyalin pertanyaan data partition ke direktori `resource/script_server/` Cacti. Jika direktori tersebut tidak boleh ditulis, fail lain dengan nama yang sama wujud di sana, atau sasarannya ialah pautan simbolik, pengimportan berhenti, membiarkan fail tidak disentuh, dan melaporkan keadaan itu pada halaman kesihatan tempat **Install Templates** mencuba semula. Nyahpasang membuang fail pertanyaan hanya jika pemalam yang menulisnya dan ia tidak berubah, serta mengekalkan templat, peranti, dan graf.
 
-**Kebenaran.** Kluster pada peranti ditunjukkan, dieksport, dan diubah hanya untuk pengguna yang dibenarkan Cacti bagi peranti tersebut, pada setiap halaman pemalam; pemetaan peranti juga memerlukan kebenaran untuk peranti sasaran. Kluster tanpa peranti kelihatan kepada semua orang dengan alam pemalam. Kluster yang masih dipetakan kepada peranti yang telah dipadamkan semasa pemalam dinyahdayakan hanya ditunjukkan kepada pengguna dengan alam HPC Scheduler Admin, yang boleh mencipta atau memetakan peranti untuknya. Akses graf adalah milik Cacti sendiri.
+**HPC Clusters > Device** mempratonton graf, sumber data, fail RRD, dan panggilan pelayan skrip bagi setiap pengumpulan sebelum mencipta apa-apa. **Create Device** mencipta peranti dengan nama hos dalam domain terpelihara `.invalid` dan tanpa semakan ketersediaan; **Map Device** melampirkan graf kepada peranti sedia ada tanpa mengubah tetapannya. Setiap graf kluster dan graf partition mempunyai sumber datanya sendiri: enam untuk kluster dan lima bagi setiap partition. Partition yang ditambah kemudian diindeks semula secara automatik apabila pembaca mengesan perubahan; partition yang dibuang berhenti dikumpul dan mengekalkan grafnya. Memadam peranti menyahpeta kluster (dan mengosongkan mana-mana baris `plugin_hpcsched_node_map` yang sepadan) sambil mengekalkan rekod kluster.
+
+Pending mengecualikan kerja yang ditahan (held), yang mempunyai sirinya sendiri. Tatasusunan kerja menunggu mengira tugasnya yang masih berbaki. Kerja atau nod dalam berbilang partition dikira sekali dalam graf kluster dan sekali dalam setiap partition, jadi jumlah partition tidak semestinya sama dengan jumlah kluster. Sebab menunggu dikumpulkan ke dalam sebelas keluarga ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); paparan sebab menunggu menyenaraikan sebab mentah termasuk yang berada dalam `Other`. Penyebut penggunaan merangkumi nod yang disalirkan, terhenti, dan nod lain yang tidak tersedia. Data lapuk atau gagal dilaporkan sebagai `U`, tidak pernah sifar; `age` kekal berangka.
+
+Untuk amaran, konfigurasikan Thold pada mana-mana sumber data kluster atau partition dengan tempoh sekurang-kurangnya satu selang pengumpulan, dan tetapkan amaran pada `age` untuk mengesan pembaca yang terhenti.
+
+## CLI dan cangkuk ekosistem
+
+### Titik masuk pembaca
+
+`hpcsched_poller_bottom()` memulakan `poller_hpcsched.php` secara automatik; ia juga boleh dijalankan secara manual pada pengumpul yang ditetapkan untuk kluster tersebut:
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force` berjalan walaupun semasa pemalam dinyahdayakan, untuk diagnosis baris perintah.
+
+### CLI Configuration-as-Code, kesihatan, dan penyegerakan Maint
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` menulis fail baharu dengan mod `0600` (atau stdout) dan menggantikan laluan `token_file` yang dikonfigurasikan dengan `[REDACTED]`. `plan` dan `apply` menolak medan sebaris `jwt`, `secret`, dan `password`, serta mengekalkan laluan `token_file` setempat sedia ada apabila `[REDACTED]` dibekalkan. `apply` memerlukan `--confirm=PLAN_HASH` tepat yang dicetak oleh `plan`.
+- `health` menilai kesemasaan skema, kesegaran kluster, hasil larian, ketersediaan Maint, dan amaran tanpa menghubungi penjadual atau membaca fail token.
+- `sync-maint` lalai kepada `--dry-run` dan mempratonton atau menggunakan jadual Cacti Maint untuk nod Slurm terpeta dalam `DRAIN`, `DRAINING`, `DOWN`, atau tempahan aktif `MAINT`/`MAINTENANCE` (ufuk saliran/henti lalai 3600s, margin pembaharuan 600s). Ia menolak `--apply` jika `plugin_maint_schedules` dan `plugin_maint_hosts` tiada, dan hanya mengemas kini atau membuang jadual yang direkodkan dalam `plugin_hpcsched_maint_link`.
+
+### Cangkuk ekosistem
+
+Apabila pemalam Cacti atau integrasi hos yang sepadan hadir, `setup.php` mendaftarkan:
+
+- `casc_register_providers`: mengeksport, mengesahkan, merancang, dan menggunakan konfigurasi `hpcsched` (`yaml` dan `xml`, skema v1) dengan pengesahan berserta penapisan rahsia.
+- `doctor_register_checks`: menyediakan empat semakan diagnostik baca sahaja (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: mendaftarkan tiga keupayaan baca sahaja, tidak memusnahkan, idempoten di bawah kategori `hpcsched`, dikawal oleh alam HPC Scheduler View (dan kebenaran peranti bagi ringkasan kluster): `hpcsched-list-clusters`, `hpcsched-get-queue-summary`, dan `hpcsched-get-health`.
 
 ## Mengapa
 
-Pengendali yang menjalankan Cacti sudah pun memplotkan nod pengkomputeran mereka. Pandangan penjadual tiada daripada graf tersebut, yang meninggalkan dua jurang:
+Pengendali yang menjalankan Cacti sudah pun memplot graf nod pengkomputeran mereka. Pandangan penjadual tiada daripada graf tersebut, yang meninggalkan dua jurang:
 
-- **Tiada maklumat "mengapa kerja tidak bermula".** Slurm merekodkan sebab bagi setiap kerja yang menunggu. Baris gilir yang penuh bersebelahan graf nod melahu tidak menyatakan sama ada puncanya ialah keutamaan, had sumber, penahanan, kebergantungan, atau nod yang disalirkan.
-- **Tiada kaitan antara keadaan penjadual dengan pemakluman amaran.** Thold memberikan amaran pada peranti yang telah pun disalirkan oleh pentadbir, dan pentadbir mencipta jadual Maint secara manual.
+- **Tiada jawapan bagi "mengapa kerja tidak bermula".** Slurm merekodkan sebab bagi setiap kerja yang menunggu. Baris gilir penuh di sebelah graf nod melahu tidak menyatakan sama ada puncanya ialah keutamaan, had sumber, tahanan, kebergantungan, atau nod yang disalirkan.
+- **Tiada kaitan antara keadaan penjadual dengan amaran.** Thold memberi amaran pada peranti yang telah disalirkan oleh pentadbir, dan pentadbir mencipta jadual Maint secara manual.
 
-Pemalam ini mengumpul satu syot kilat bercache bagi setiap kluster, menerbitkannya sebagai sumber data dan graf Cacti biasa, memetakan nod penjadual kepada peranti Cacti sedia ada, dan boleh meletakkan nod yang disalirkan serta tempahan penyelenggaraan ke dalam Maint. Ia menggunakan semula kebenaran Cacti, pengumpul data jauh, Thold, dan Maint, serta bersifat baca sahaja terhadap penjadual.
+Pemalam ini mengumpul satu syot kilat bercache bagi setiap kluster, menerbitkannya sebagai sumber data dan graf Cacti biasa, memetakan nod penjadual kepada peranti Cacti sedia ada, dan menyegerakkan tetingkap Maint bertempoh tamat milik pemalam untuk nod yang disalirkan, terhenti, dan ditempah penyelenggaraan. Ia menggunakan semula kebenaran Cacti, pengumpul data jauh, Thold, dan Maint, serta kekal baca sahaja sepenuhnya terhadap penjadual.
 
-## Skop yang dirancang
+## Skop dan sempadan
 
-| Fasa | Skop | Pencapaian |
-|---|---|---|
-| 0, penyelidikan | Matriks keluaran Slurm, pengesahan tingkah laku huluan, beban pengawal, lekapan penamaan nod | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, graf kluster | Kedalaman baris gilir, kerja menunggu dan berjalan, sebab menunggu, keadaan nod, penggunaan partition, pemakluman amaran Thold, halaman kesihatan, keluaran | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, nod dan penyelenggaraan | Pemetaan nod ke peranti, keadaan per nod, tetingkap Maint automatik untuk nod yang disalirkan dan tempahan penyelenggaraan | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, perakaunan | Penggunaan perkongsian saksama, statistik perakaunan terhad, pengumpul data jauh | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+Di luar skop: sebarang laluan tulis penjadual (serah, batal, tahan, salir, sambung semula), enjin amaran milik pemalam, enjin pelaporan atau caj balik, dan siri mengikut pengguna atau mengikut kerja. Bahagian belakang PBS Pro, OpenPBS, dan LSF adalah untuk penyelidikan sahaja.
 
-Di luar skop: sebarang laluan tulis penjadual (hantar, batal, tahan, salir, sambung semula), enjin pemakluman amaran milik pemalam, enjin pelaporan atau caj balik, siri per pengguna dan per kerja. Bahagian belakang PBS Pro, OpenPBS, dan LSF berada dalam penyelidikan.
-
-## Sasaran keserasian
+## Keperluan dan keserasian
 
 | Komponen | Sasaran |
 |---|---|
-| Cacti | 1.2.31 atau lebih baharu, tiada tampalan teras |
-| PHP | 8.2 atau lebih baharu; `setup.php` kekal boleh dihuraikan pada 8.0 supaya masa jalan yang tidak disokong menerima penolakan dan bukannya UI Cacti yang rosak |
-| Slurm | 25.05, 25.11, dan 26.05, tiga keluaran terkini ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 25.11 dan 26.05 diuji terhadap kluster langsung, 25.05 terhadap lekapan sahaja. Arahan klien ialah pengangkutan lalai ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) dan menggunakan tetapan penghurai data: v0.0.43 secara lalai, yang dibuang oleh SchedMD dalam 27.05, atau v0.0.44 atau v0.0.45 pada keluaran yang menyertakannya. Kluster slurmrestd menemui penghurai terbaharu yang disediakan oleh daemon |
-| Thold, Maint | Tiada perubahan Thold; integrasi Maint ialah cadangan yang memerlukan persetujuan penyelenggara Maint |
+| Cacti | 1.2.31 atau lebih baharu (`compat = 1.2.31`), tiada tampalan teras |
+| PHP | 8.2 atau lebih baharu; titik masuk kekal boleh dihuraikan pada 8.0 dan menolak pengaktifan pada 8.1 supaya masa jalan yang tidak disokong mendapat penolakan dan bukannya UI Cacti yang rosak |
+| Slurm | 25.05, 25.11, dan 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 26.05.5 diuji dalam CI pada setiap perubahan terhadap kluster kontena enam nod, 25.11.8 pada `main`, mingguan, dan atas permintaan, serta 25.05 terhadap fikstur sahaja. Arahan klien lalai kepada penghurai data `v0.0.43` (dengan `v0.0.44` dan `v0.0.45` boleh dipilih); kluster `slurmrestd` menemui penghurai terbaharu yang disediakan oleh daemon |
+| Thold, Maint | Tiada perubahan Thold diperlukan; `sync-maint` berintegrasi dengan jadual `plugin_maint_schedules` dan `plugin_maint_hosts` milik Cacti Maint menggunakan jadual pautan milik pemalam (`plugin_hpcsched_maint_link`) |
+
+## Pembangunan dan ujian
+
+Aliran kerja CI (`.github/workflows/plugin-ci-workflow.yml`) menguji PHP 8.2 hingga 8.5 terhadap Cacti `release/1.2.31` dan `1.2.x`, linting titik masuk PHP 8.0, penolakan PHP 8.1, PHPStan, pengesahan gettext/terjemahan, pelesenan REUSE, linting aliran kerja, semakan aliran peranti kluster dan hanyutan eksport templat, serta kluster Slurm enam nod sebenar (`slurm-live`).
+
+Dengan abah-abah pemalam Pest kongsi terkunci milik Cacti (`CACTI_PEST_BIN`) dan pangkalan data Cacti pakai buang:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Reka bentuk
 
-- [docs/PLAN.md](../../PLAN.md) ialah pelan penuh: seni bina, fakta huluan yang menjadi sandarannya (berserta sumber dan senarai eksplisit andaian yang belum disahkan), pemetaan nod, model keadaan, sempadan keselamatan, aritmetik prestasi, pengujian, dan risiko.
-- [docs/decisions/](../../decisions) menyimpan rekod keputusan seni bina.
+- [docs/PLAN.md](../../PLAN.md) ialah pelan seni bina dan reka bentuk: fakta huluan berserta sumber, pemetaan nod, model keadaan, sempadan keselamatan, aritmetik prestasi, ujian, dan risiko.
+- [docs/decisions/](../../decisions/) menyimpan rekod keputusan seni bina.
 - [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) memetakan setiap ID keperluan kepada isunya.
 
 ```mermaid
 flowchart LR
-    S[Pengawal Slurm] -->|panggilan baca sahaja, satu set setiap kitaran| R[Pembaca pada pengumpul Cacti yang ditetapkan]
+    S[Pengawal Slurm] -->|panggilan baca sahaja, satu set setiap kitaran| R[poller_hpcsched.php pada pengumpul ditetapkan]
     R --> SNAP[(Jadual syot kilat)]
     SNAP --> SS[Input pelayan skrip]
-    SS -->|poller_output| T[Thold dan Maint]
+    SS -->|poller_output| T[Thold]
     SS --> G[Graf dan kebenaran Cacti]
-    SNAP --> MAP[Pemetaan nod ke peranti]
-    MAP -->|jadual milik yang tamat tempoh| T
+    SNAP --> MAP[NodeMatcher dan MaintSynchronizer]
+    MAP -->|jadual milik pemalam yang tamat tempoh| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor, dan keupayaan MCP]
 ```
 
 ## Cara kerja dijejaki
 
-- **Pencapaian** mengikut pencapaian pelan tersebut. Setiap satu mempunyai isu epik yang menyenaraikan sub-isu dan bukti keluarannya.
-- **Isu** ditaipkan mengikut label: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Isu keperluan menyatakan keperluan bernombor yang boleh diuji (`REQ-AREA-NNN`) dan kriteria penerimaan.
-- **Label** juga membawa `area:`, `phase:`, `priority:`, dan `status:`. Lihat [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
-- [Papan projek](https://github.com/users/somethingwithproof/projects/10) menunjukkan semua isu merentas pencapaian.
+- **Pencapaian** mengikut pencapaian dalam pelan. Setiap satu mempunyai isu epik yang menyenaraikan sub-isu dan bukti keluarnya.
+- **Isu** dikelaskan mengikut label: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Isu keperluan menyatakan keperluan bernombor dan boleh diuji (`REQ-AREA-NNN`) serta kriteria penerimaan.
+- **Label** turut membawa `area:`, `phase:`, `priority:`, dan `status:`. Lihat [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
+- [Papan projek](https://github.com/users/somethingwithproof/projects/10) memaparkan semua isu merentas pencapaian.
 
-## Penyumbangan
+## Menyumbang
 
-Baca [CONTRIBUTING.md](../../../CONTRIBUTING.md). Komit memerlukan tandatangan DCO. Perbincangan reka bentuk berlaku pada isu; keputusan terbuka membawa label `type: decision`.
+Baca [CONTRIBUTING.md](../../../CONTRIBUTING.md). Komit memerlukan tandatangan DCO (`git commit -s`). Perbincangan reka bentuk berlaku pada isu; keputusan terbuka membawa label `type: decision`.
 
 ## Keselamatan
 

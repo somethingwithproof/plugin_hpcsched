@@ -26,18 +26,42 @@ namespace Somethingwithproof\Hpcsched;
  * never by scheduler output, a token, or a response body (REQ-CRED-001).
  */
 final class Log {
+	/**
+	 * Debug.
+	 *
+	 * @param string $message
+	 * @return void
+	 */
 	public static function debug(string $message): void {
 		cacti_log('DEBUG: ' . $message, false, 'HPCSCHED', POLLER_VERBOSITY_DEBUG);
 	}
 
+	/**
+	 * Info.
+	 *
+	 * @param string $message
+	 * @return void
+	 */
 	public static function info(string $message): void {
 		cacti_log('NOTE: ' . $message, false, 'HPCSCHED', POLLER_VERBOSITY_MEDIUM);
 	}
 
+	/**
+	 * Warning.
+	 *
+	 * @param string $message
+	 * @return void
+	 */
 	public static function warning(string $message): void {
 		cacti_log('WARNING: ' . $message, false, 'HPCSCHED');
 	}
 
+	/**
+	 * Error.
+	 *
+	 * @param string $message
+	 * @return void
+	 */
 	public static function error(string $message): void {
 		cacti_log('ERROR: ' . $message, false, 'HPCSCHED');
 	}

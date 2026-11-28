@@ -39,8 +39,15 @@ namespace Somethingwithproof\Hpcsched;
  * prints it.
  */
 final class TokenFile {
+	/** Maximum bytes. */
 	public const MAX_BYTES = 16384;
 
+	/**
+	 * Path acceptable.
+	 *
+	 * @param string $path
+	 * @return bool
+	 */
 	public static function pathAcceptable(string $path): bool {
 		return $path !== '' && strlen($path) <= 255 && $path[0] === '/' && preg_match('/[\x00-\x20\x7f]/', $path) !== 1 && !str_contains($path, '/../') && !str_ends_with($path, '/..');
 	}

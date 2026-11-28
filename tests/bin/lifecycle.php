@@ -110,11 +110,20 @@ switch ($action) {
 
 		break;
 	case 'make_schema_1':
-		// What a schema 1 install has: no device column and no node count
-		// table, which core never recorded either.
+		// What a schema 1 install has: no device column, no node count
+		// table, and no phase 2 node-map/maint-link tables.
 		db_execute('ALTER TABLE plugin_hpcsched_cluster DROP KEY host_id, DROP COLUMN host_id');
 		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_node_count');
-		db_execute("DELETE FROM plugin_db_changes WHERE plugin = 'hpcsched' AND `table` = 'plugin_hpcsched_node_count'");
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_node_map');
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_maint_link');
+		db_execute("DELETE FROM plugin_db_changes WHERE plugin = 'hpcsched' AND `table` IN ('plugin_hpcsched_node_count', 'plugin_hpcsched_node_map', 'plugin_hpcsched_maint_link')");
+
+		break;
+	case 'make_schema_2':
+		// What a schema 2 (main) install has: no node-map or maint-link tables.
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_node_map');
+		db_execute('DROP TABLE IF EXISTS plugin_hpcsched_maint_link');
+		db_execute("DELETE FROM plugin_db_changes WHERE plugin = 'hpcsched' AND `table` IN ('plugin_hpcsched_node_map', 'plugin_hpcsched_maint_link')");
 
 		break;
 	case 'seed':

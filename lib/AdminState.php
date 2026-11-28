@@ -19,6 +19,9 @@
 
 namespace Somethingwithproof\Hpcsched;
 
+/**
+ * Enumeration of admin state values.
+ */
 enum AdminState: string {
 	case Enabled  = 'enabled';
 	case Disabled = 'disabled';

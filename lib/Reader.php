@@ -31,8 +31,18 @@ namespace Somethingwithproof\Hpcsched;
  * the run's token.
  */
 final class Reader {
+	/** Backoff max constant for Reader. */
 	public const BACKOFF_MAX = 600;
 
+	/**
+	 * Construct a new Reader instance.
+	 *
+	 * @param RunRepository $runs
+	 * @param SnapshotRepository $snapshots
+	 * @param Transports $transports
+	 * @param Clock $clock
+	 * @param string $holder
+	 */
 	public function __construct(
 		private readonly RunRepository $runs,
 		private readonly SnapshotRepository $snapshots,
@@ -42,6 +52,13 @@ final class Reader {
 	) {
 	}
 
+	/**
+	 * Run.
+	 *
+	 * @param Cluster $cluster
+	 * @param int $pollerInterval
+	 * @return ClusterRun
+	 */
 	public function run(Cluster $cluster, int $pollerInterval): ClusterRun {
 		$budget   = $cluster->budget($pollerInterval);
 		$interval = $cluster->effectiveInterval($pollerInterval);
@@ -66,6 +83,14 @@ final class Reader {
 		}
 	}
 
+	/**
+	 * Run leased.
+	 *
+	 * @param Cluster $cluster
+	 * @param int $budget
+	 * @param int $interval
+	 * @return ClusterRun
+	 */
 	private function runLeased(Cluster $cluster, int $budget, int $interval): ClusterRun {
 		$previous = $this->runs->get($cluster->id) ?? new ClusterRun($cluster->id);
 		$redactor = new Redactor();
@@ -140,6 +165,12 @@ final class Reader {
 		return $run;
 	}
 
+	/**
+	 * Outcome.
+	 *
+	 * @param Snapshot $snapshot
+	 * @return RunOutcome
+	 */
 	private function outcome(Snapshot $snapshot): RunOutcome {
 		$states = array_map(static fn (SectionOutcome $o): SectionState => $o->state, $snapshot->outcomes);
 		$done   = count(array_filter($states, static fn (SectionState $s): bool => $s === SectionState::Completed));
@@ -162,6 +193,13 @@ final class Reader {
 		return in_array(ErrorClass::RateLimited, $errors, true) || in_array(ErrorClass::Credential, $errors, true);
 	}
 
+	/**
+	 * Failed.
+	 *
+	 * @param Cluster $cluster
+	 * @param ErrorClass $error
+	 * @return Snapshot
+	 */
 	private function failed(Cluster $cluster, ErrorClass $error): Snapshot {
 		$outcomes = [];
 

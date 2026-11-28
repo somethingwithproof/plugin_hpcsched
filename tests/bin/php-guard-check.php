@@ -68,9 +68,9 @@ function guard_state() {
 function guard_call_shims() {
 	$nav = array('index.php:' => array('title' => 'Console'));
 
-	foreach (array('hpcsched_config_arrays', 'hpcsched_config_settings', 'hpcsched_poller_bottom') as $function) {
+	foreach (array('hpcsched_config_arrays', 'hpcsched_config_settings', 'hpcsched_poller_bottom', 'hpcsched_replicate_out', 'hpcsched_doctor_register_checks', 'hpcsched_doctor_register_debug_info', 'hpcsched_api_register_resources', 'hpcsched_casc_register_providers') as $function) {
 		if (function_exists($function)) {
-			$function();
+			$function(array());
 		}
 	}
 
@@ -111,8 +111,8 @@ if (!$supported && ($preexisting['status'] == 1 || $preexisting['hooks'] > 0)) {
 
 	if ($supported) {
 		guard_expect($state['status'] == 1, 'install and enable succeed (status ' . $state['status'] . ')');
-		guard_expect($state['tables'] === 9, 'all nine plugin tables exist (' . $state['tables'] . ')');
-		guard_expect($state['hooks'] >= 3 && $state['realms'] === 3, 'hooks and realms are registered');
+		guard_expect($state['tables'] === 11, 'all eleven plugin tables exist (' . $state['tables'] . ')');
+		guard_expect($state['hooks'] === 12 && $state['realms'] === 3, 'hooks and realms are registered');
 	} else {
 		guard_expect($state['status'] == 2, 'plugin is left as needing configuration, not enabled (status ' . $state['status'] . ')');
 		guard_expect($state['tables'] === 0 && $state['hooks'] === 0 && $state['realms'] === 0, 'no tables, hooks, or realms were created');

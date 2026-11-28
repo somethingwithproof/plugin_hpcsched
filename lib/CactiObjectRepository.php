@@ -29,9 +29,21 @@ final class CactiObjectRepository {
 	/** Tables whose rows the plugin looks up by hash. */
 	private const HASHED = ['host_template', 'data_input', 'data_template', 'graph_templates', 'snmp_query'];
 
+	/**
+	 * Construct a new CactiObjectRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 
+	/**
+	 * Id by hash.
+	 *
+	 * @param string $table
+	 * @param string $hash
+	 * @return int
+	 */
 	public function idByHash(string $table, string $hash): int {
 		if (!in_array($table, self::HASHED, true) || preg_match('/^[0-9a-f]{32}$/', $hash) !== 1) {
 			return 0;
@@ -40,14 +52,30 @@ final class CactiObjectRepository {
 		return Row::count(db_fetch_cell_prepared("SELECT id FROM `$table` WHERE hash = ? ORDER BY id LIMIT 1", [$hash], '', true, $this->connection));
 	}
 
+	/**
+	 * Graph template id.
+	 *
+	 * @param string $name
+	 * @return int
+	 */
 	public function graphTemplateId(string $name): int {
 		return $this->idByHash('graph_templates', TemplateInstaller::hash('graph_template', $name));
 	}
 
+	/**
+	 * Query id.
+	 *
+	 * @return int
+	 */
 	public function queryId(): int {
 		return $this->idByHash('snmp_query', TemplateInstaller::hash('data_query', TemplateInstaller::QUERY));
 	}
 
+	/**
+	 * Device template id.
+	 *
+	 * @return int
+	 */
 	public function deviceTemplateId(): int {
 		return $this->idByHash('host_template', TemplateInstaller::hash('host_template', TemplateInstaller::DEVICE_TEMPLATE));
 	}
@@ -59,6 +87,11 @@ final class CactiObjectRepository {
 		return Row::count(db_fetch_cell_prepared('SELECT id FROM snmp_query_graph WHERE snmp_query_id = ? AND graph_template_id = ? ORDER BY id LIMIT 1', [$queryId, $graphTemplateId], '', true, $this->connection));
 	}
 
+	/**
+	 * Default profile id.
+	 *
+	 * @return int
+	 */
 	public function defaultProfileId(): int {
 		$id = Row::count(db_fetch_cell_prepared("SELECT id FROM data_source_profiles WHERE `default` = 'on' ORDER BY id LIMIT 1", [], '', true, $this->connection));
 
@@ -118,6 +151,13 @@ final class CactiObjectRepository {
 		return Row::count(db_fetch_cell_prepared('SELECT COUNT(*) FROM graph_local WHERE host_id = ? AND graph_template_id = ? AND snmp_index = ?', [$hostId, $graphTemplateId, $index], '', true, $this->connection));
 	}
 
+	/**
+	 * Check whether query is present.
+	 *
+	 * @param int $hostId
+	 * @param int $queryId
+	 * @return bool
+	 */
 	public function hasQuery(int $hostId, int $queryId): bool {
 		return Row::count(db_fetch_cell_prepared('SELECT COUNT(*) FROM host_snmp_query WHERE host_id = ? AND snmp_query_id = ?', [$hostId, $queryId], '', true, $this->connection)) > 0;
 	}

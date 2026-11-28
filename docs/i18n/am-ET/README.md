@@ -1,40 +1,52 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
-[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
+[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [Български](../bg-BG/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [Ελληνικά](../el-GR/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [ქართული](../ka-GE/README.md) | [한국어](../ko-KR/README.md) | [Latviešu](../lv-LV/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Português (Portugal)](../pt-PT/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](../so-SO/README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
 <!-- translations:end -->
 
 # plugin_hpcsched
 
-የCacti 1.2 ተሰኪ (plugin) ሲሆን Cacti አስቀድሞ ከሚከታተላቸው መሣሪያዎች ጎን ለጎን የHPC ባች መርሐግብር አስያዥን (batch scheduler) ሁኔታ በግራፍ ያሳያል፦ የወረፋ ጥልቀት፣ በመጠባበቅ ላይ ያሉና በመሄድ ላይ ያሉ ሥራዎች፣ ሥራዎች ለምን በመጠባበቅ ላይ እንዳሉ፣ የኖድ (node) ሁኔታዎች እና የፓርቲሽን (partition) አጠቃቀም። Slurm የመጀመሪያው የጀርባ ሥርዓት (backend) ነው። Thold ከሚፈጠሩት የውሂብ ምንጮች ላይ ማንቂያዎችን ያስነሳል፣ እንዲሁም Maint በተመጠጡ (drained) ኖዶች እና በጥገና ቦታ ማስያዣዎች (maintenance reservations) ሊመራ ይችላል።
+የCacti 1.2 ተሰኪ (`hpcsched`፣ ስሪት `0.1.0-dev`) ሲሆን Cacti አስቀድሞ ከሚከታተላቸው መሣሪያዎች ጎን ለጎን የHPC ባች መርሐግብር አስያዥን ሁኔታ በግራፍ ያሳያል፦ የወረፋ ጥልቀት፣ በመጠባበቅ ላይ ያሉና በመሄድ ላይ ያሉ ሥራዎች፣ ሥራዎች ለምን በመጠባበቅ ላይ እንዳሉ፣ የኖድ ሁኔታዎች፣ የፓርቲሽን አጠቃቀም እና በመለያ ደረጃ የfair-share አጠቃቀም። Slurm የተተገበረው የጀርባ ሥርዓት ነው። Thold ከሚፈጠሩት የውሂብ ምንጮች ላይ ማንቂያዎችን ያስነሳል፣ እንዲሁም በፍላጎት የሚነቃው Maint አመሳሳይ (synchronizer) በተመጠጡ (drained)፣ በወረዱ (down) እና ለጥገና በተያዙ የSlurm ስሌት ኖዶች መሠረት የCacti Maint መስኮቶችን ያንቀሳቅሳል።
 
-> **ሁኔታ፦ በልማት ላይ፣ ገና የተለቀቀ የለም።** ምዕራፍ 2 (መሠረት) በ`main` ላይ ተዋህዷል፣ እና ይህ ቅርንጫፍ ምዕራፍ 3ን (የክላስተር ግራፎች እና የመጠባበቂያ ምክንያቶች) ያክላል። ኮዱ በCacti ተሰኪ API በኩል ይጫናል፣ ይሻሻላል እና ይራገፋል፣ እንዲሁም ከ8.2 በታች የሆነ PHP አይቀበልም። እያንዳንዳቸው ለአንድ Cacti poller የተመደቡ የSlurm ክላስተሮችን መዝገብ ይይዛል። በዋናው poller ላይ ያለ የጀርባ አንባቢ `squeue`፣ `scontrol` እና `sshare`ን ከ`--json` ጋር በማስኬድ ወይም `slurmrestd`ን በHTTPS በኩል በማንበብ በየክፍለ ጊዜው በክላስተር አንድ ቅጽበታዊ ገጽ እይታ (snapshot) ይሰበስባል፣ እና የሥራ ቆጠራዎችን በሁኔታና በመጠባበቂያ ምክንያት፣ የኖድ ሁኔታዎችን፣ ፓርቲሽኖችን፣ ቦታ ማስያዣዎችን እና የfair-share አጠቃቀምን ከትኩስነታቸው (freshness) ጋር ያከማቻል። ተሰኪው የCacti አብነቶችን (templates) ይዞ ይመጣል እና በአስተዳዳሪ ማረጋገጫ መሠረት በክላስተር አንድ የCacti መሣሪያ ይፈጥራል ወይም ያገናኛል፤ ይህም ለክላስተሩ እና ለእያንዳንዱ ፓርቲሽን በሁኔታ የተከፋፈሉ ሥራዎችን፣ በምክንያት ቤተሰብ የተከፋፈሉ በመጠባበቅ ላይ ያሉ ሥራዎችን፣ በሁኔታ የተከፋፈሉ ኖዶችን፣ CPUዎችን እና አጠቃቀምን የሚያሳዩ ግራፎችን እንዲሁም የቅጽበታዊ ገጽ እይታውን ዕድሜ ያካትታል። ለንባብ ብቻ የሆነ አጠቃላይ እይታ ገጽ በክላስተር ያሉ ቆጠራዎችን ከትኩስነታቸው ጋር እና በክላስተር ያሉ የመጠባበቂያ ምክንያቶች እይታን ያሳያል፣ እና ለአስተዳዳሪ ብቻ የሆነ የጤና ገጽ እያንዳንዱ ስብስብ ምን እንደመለሰ እና አብነቶቹ መጫናቸውን ያሳያል። እያንዳንዱ ገጽ እና እርምጃ የCactiን የመሣሪያ ፈቃዶች ይከተላል። የውሂብ ምንጮቹ Thold ማንቂያ ሊያስነሳባቸው የሚችል ናቸው፣ ነገር ግን እስካሁን ምንም የThold ወይም የMaint ውህደት አልተሞከረም፤ ያ ምዕራፍ 4 እና ከዚያ በኋላ ነው። የሙከራ ስብስቡ ሰው ሠራሽ የSlurm ትዕዛዞችን እና የ`slurmrestd` ምላሾችን ይሸፍናል፣ እና CI ከዚህ በታች እንደተገለጸው በኮንቴይነሮች ውስጥ ያለ እውነተኛ ባለ ስድስት ኖድ Slurm ክላስተርንም ይፈትሻል። አንባቢው በምርት (production) ክላስተር ላይ አልተሞከረም። ከኦፕሬተር ማስታወሻዎች በታች፣ ይህ README የሚገልጸው ንድፉን እንጂ የተለቀቀ ባህሪን አይደለም።
+> **ሁኔታ፦ በልማት ላይ፣ ገና የተለቀቀ የለም።** ይህ ቅርንጫፍ የተሰኪውን መሠረት፣ የክላስተር እና የፓርቲሽን ግራፎችን፣ የመጠባበቂያ ምክንያት ቤተሰቦችን፣ የSlurm ስሌት ኖድን ከCacti መሣሪያ ጋር ማዛመድን፣ በፍላጎት የሚነቃ የCacti Maint መስኮት ማመሳሰልን፣ በመለያ ደረጃ የfair-share ማጠቃለያዎችን፣ የርቀት ውሂብ ሰብሳቢ ማስፈጸምንና ማባዛትን፣ Configuration-as-Code (CasC) እና የክወና CLIን፣ እንዲሁም የCacti ሥነ-ምህዳር መንጠቆዎችን (CasC፣ Doctor እና MCP / Abilities API v2) ተግባራዊ ያደርጋል። የሙከራ ስብስቡ ሰው ሠራሽ የSlurm ትዕዛዞችንና የ`slurmrestd` ምላሾችን ይሸፍናል፣ እና CI በኮንቴይነሮች ውስጥ የሚሠራ ባለ ስድስት ኖድ የSlurm ክላስተርን ይፈትሻል። አንባቢው ገና በምርት (production) ክላስተር ላይ አልሠራም፣ እንዲሁም ከጫፍ እስከ ጫፍ የThold ዳግም ማጫወት (replay) ሙከራ ገና በCI ውስጥ የለም።
 
 ይህ ራሱን የቻለ ፕሮጀክት ሲሆን ከCacti ፕሮጀክት ጋር ምንም ግንኙነት የለውም።
+
+## የተተገበሩት ነገሮች
+
+- **የሕይወት ዑደት እና ስኪማ (v3)**፦ መጫን፣ idempotent ማሻሻል፣ ማራገፍ (በነባሪ የተሰኪውን ሠንጠረዦች በመያዝ)፣ እና የመግቢያ ነጥቦችን በPHP 8.0 ላይ መተንተን የሚቻል አድርጎ በመያዝ የPHP 8.2 ዝቅተኛ መስፈርት። ስኪማ v3 ከክላስተር፣ ከሩጫ፣ ከክፍል፣ ከሥራ ቆጠራ፣ ከኖድ ቆጠራ፣ ከኖድ፣ ከፓርቲሽን፣ ከቦታ ማስያዣ እና ከshare ሠንጠረዦች ጎን ለጎን `plugin_hpcsched_node_map` እና `plugin_hpcsched_maint_link`ን ያክላል።
+- **በዋናውና በርቀት pollerዎች ላይ ለንባብ ብቻ የSlurm ስብሰባ**፦ `poller_bottom` በእያንዳንዱ poller (`poller_id`) ላይ ለተመደቡለት የነቁ ክላስተሮች `poller_hpcsched.php --cluster=N`ን በጀርባ ያስጀምራል። እያንዳንዱ ሩጫ በክላስተር አንድ የተሸጎጠ ቅጽበታዊ ገጽ እይታ በደንበኛ ትዕዛዞች (`squeue`፣ `scontrol`፣ `sshare` ከ`--json` ጋር) ወይም በHTTPS በኩል `slurmrestd`ን በመጠቀም (በloopback HTTP ላይ ከጤና ማስጠንቀቂያ ጋር ይፈቀዳል) ይሰበስባል። `INFO` `remote_collect:1, remote_poller:1`ን ያውጃል፣ እና `replicate_out` ሚስጥራዊ ያልሆኑ የ`plugin_hpcsched_cluster` ፍቺዎችን ወደ ርቀት ሰብሳቢዎች (`poller_id >= 2`) ያባዛል፤ የቶከን ፋይል ይዘቶች በፍጹም አይነበቡም ወይም አይባዙም።
+- **የCacti አብነቶች እና የክላስተር ግራፎች**፦ የመሣሪያ፣ የውሂብ እና የግራፍ አብነቶችን (`templates/hpcsched-templates.xml`) እንዲሁም የፓርቲሽን script-server የውሂብ መጠይቅን (`scripts/ss_hpcsched_cluster.php`፣ `scripts/ss_hpcsched_partitions.php`) ያቀርባል። በአስተዳዳሪ ማረጋገጫ መሠረት፣ በክላስተር አንድ የCacti መሣሪያ ይፈጥራል ወይም ያዛምዳል፤ ይህም በሁኔታ የተከፋፈሉ ሥራዎችን፣ በምክንያት ቤተሰብ የተከፋፈሉ በመጠባበቅ ላይ ያሉ ሥራዎችን፣ በሁኔታ የተከፋፈሉ ኖዶችን፣ CPUዎችን፣ አጠቃቀምን (በክላስተር እና በእያንዳንዱ ፓርቲሽን) እንዲሁም የቅጽበታዊ ገጽ እይታውን ዕድሜ የሚያሳዩ ግራፎችን ያካትታል።
+- **የSlurm ኖድ-ወደ-መሣሪያ ማዛመድ እና የCacti Maint ማመሳሰል**፦ ባለ አራት እርከን መስመራዊ-ጊዜ አዛማጅ (`NodeMatcher`) የSlurm ስሌት ኖዶችን ከነባር የCacti `host` መዝገቦች ጋር ያዛምዳል (ትክክለኛ የአስተናጋጅ ስም፣ ትክክለኛ አድራሻ፣ ትክክለኛ መግለጫ/ተለዋጭ ስም፣ ወይም IP ላልሆኑ ስሞች የመጀመሪያው DNS መለያ) እና ከመገመት ይልቅ ብዙ ግጥሚያዎችን ወይም ተደጋጋሚ የመሣሪያ ጥያቄዎችን `ambiguous` ብሎ ምልክት ያደርጋል። `HostList::expand()` የSlurm ቦታ ማስያዣ የአስተናጋጅ ዝርዝሮችን (እስከ 10,000 ኖዶች) ያሰፋል። `MaintSynchronizer` በ`plugin_hpcsched_maint_link` ውስጥ ክትትል የሚደረግባቸውን በተሰኪው ባለቤትነት የተያዙ የአንድ ጊዜ የCacti Maint መርሐግብሮችን በ`DRAIN`፣ `DRAINING`፣ `DOWN`፣ ወይም ንቁ `MAINT`/`MAINTENANCE` ቦታ ማስያዣዎች ውስጥ ላሉ የተዛመዱ ኖዶች ይፈጥራል፣ ያድሳል እና ያስወግዳል፤ ይህም በአስተዳዳሪ የተፈጠሩ የMaint መርሐግብሮችን ሳይቀይር ነው።
+- **በመለያ ደረጃ የfair-share ማጠቃለያዎች**፦ `collect_shares` ሲነቃ፣ የSlurm መለያ ግንኙነት ረድፎችን ወደ `plugin_hpcsched_share` ይሰበስባል (በ[ADR 0010](../../decisions/0010-bound-series-cardinality.md) መሠረት የተጠቃሚ ረድፎችን በመጣል)። `ShareSummary` እና `ShareRepository` የመለያ/ፓርቲሽን ቆጠራዎችን፣ ጥሬ እና ውጤታማ የአጠቃቀም ድምሮችን፣ ዝቅተኛ/ከፍተኛ/አማካይ የfair-share ሁኔታዎችን እና ከፍተኛ መለያዎችን ያሰላሉ፤ የመለያ ቆጠራዎች በ`hpcsched-get-queue-summary` ውስጥ ይጋለጣሉ።
+- **CasC እና የክወና CLI (`cli/hpcsched.php`)**፦ የYAML/XML ውቅር ወደ ውጭ መላክ፣ ማረጋገጥ፣ dry-run የልዩነት ዕቅድ፣ በማረጋገጫ የተገደበ ተግባራዊ ማድረግ፣ የተዋቀረ የጤና ውጤት እና በፍላጎት የሚነቃ Maint ማመሳሰል (`sync-maint --dry-run` / `--apply`)።
+- **የሥነ-ምህዳር መንጠቆዎች (`setup.php`)**፦ `casc_register_providers`፣ `doctor_register_checks` እና `abilities_register`።
 
 ## የመዳረሻ ሚናዎች
 
 | Realm | መዳረሻ |
 | --- | --- |
-| HPC Scheduler View | ነባር የክትትል ገጾች። |
-| HPC Scheduler Operator | ክትትል እና የኦፕሬሽንስ (Operations) ገጽ እንዲሁም የግል triage ማረጋገጫዎች (acknowledgments)። |
-| HPC Scheduler Admin | የኦፕሬተር መዳረሻ እና ነባር የውቅርና የአስተዳደር እርምጃዎች። |
+| HPC Scheduler View | ለንባብ ብቻ የክላስተር አጠቃላይ እይታ እና የመጠባበቂያ ምክንያቶች (`hpcsched.php`)። |
+| HPC Scheduler Operator | የView መዳረሻ እና የክወና ገጽ (`hpcsched_operator.php`) እንዲሁም የግል triage ማረጋገጫዎች። |
+| HPC Scheduler Admin | የOperator መዳረሻ እና የክላስተር አስተዳደር (`hpcsched_clusters.php`) እንዲሁም የጤና ገጽ (`hpcsched_health.php`)። |
 
-የማሻሻያ ፋይሎችን ከቀዱ በኋላ አዲሱን realm ለመመዝገብ እንደ አስተዳዳሪ የPlugins ገጹን ይክፈቱ። የOperator realmን በ**Configuration > Users** ወይም በተጠቃሚ ቡድኖች ስር በግልጽ ይመድቡ። ማሻሻያዎች ነባሩን የView እና የAdmin realm መታወቂያዎችን እና ፈቃዶችን ይጠብቃሉ። የAdmin መዳረሻ የOperator መዳረሻን ይወርሳል፣ እና የOperator መዳረሻ በእያንዳንዱ ጥያቄ ላይ የView መዳረሻን ይወርሳል፤ ይህ በተጠቃሚዎች ወይም በቡድኖች ላይ የተከማቹ ፈቃዶችን አያክልም። የተሰኪ ቅንብሮችም ከCacti የSettings ፈቃድ በተጨማሪ የHPC Scheduler Admin መዳረሻን ይፈልጋሉ።
+የማሻሻያ ፋይሎችን ከገለበጡ በኋላ አዳዲስ realmዎችንና መንጠቆዎችን ለመመዝገብ እንደ አስተዳዳሪ የPlugins ገጹን ይክፈቱ። የOperator realmን በ**Configuration > Users** ወይም በተጠቃሚ ቡድኖች ስር በግልጽ ይመድቡ። ማሻሻያዎች ነባር የView እና Admin realm መለያዎችንና ፈቃዶችን ይጠብቃሉ። የAdmin መዳረሻ የOperator መዳረሻን ይወርሳል፣ የOperator መዳረሻም በእያንዳንዱ ጥያቄ የView መዳረሻን ይወርሳል፤ ይህ በተጠቃሚዎች ወይም በቡድኖች ላይ የተከማቹ ፈቃዶችን አይጨምርም። የተሰኪው ቅንብሮች ከCacti የSettings ፈቃድ በተጨማሪ የHPC Scheduler Admin መዳረሻንም ይፈልጋሉ።
 
-የCacti የመሣሪያ ፈቃዶች አሁንም ለእያንዳንዱ ተጠቃሚ የሚገኙትን ረድፎች እና እርምጃዎች ይገድባሉ፤ መሣሪያ የሌለው ክላስተር የተሰኪው realm ላለው ለእያንዳንዱ ተጠቃሚ በአስተዳደር ገጾች ላይ ይዘረዘራል፣ ነገር ግን ከመሣሪያ ጋር የተገናኙ ክላስተሮችን ብቻ በሚዘረዝሩት የኦፕሬተር እይታዎች ውስጥ አይታይም። ምስክርነቶች (Credentials)፣ ውቅር፣ ማገናኘት (mapping)፣ ስረዛ እና ሌሎች የአስተዳደር ለውጦች በአስተዳደር ገጾች ውስጥ ይቆያሉ። ማረጋገጫዎች (Acknowledgments) የሚቆዩት አሁን ባለው የተጠቃሚ ክፍለ ጊዜ ውስጥ ብቻ ነው፣ ቢበዛ ለአንድ ሰዓት እና ያው ምልከታ ትኩስ ሆኖ እስከቀጠለ ድረስ ብቻ። አዳዲስ ወይም የተለወጡ ምልከታዎች ውድቅ ያደርጓቸዋል። የወደቀ መለኪያን ጤናማ ብለው ምልክት አያደርጉም ወይም ማንቂያዎችን አያግዱም።
+የCacti መሣሪያ ፈቃዶች ለእያንዳንዱ ተጠቃሚ የሚገኙትን ረድፎችና እርምጃዎች ይገድባሉ። ከCacti መሣሪያ ጋር የተዛመደ ክላስተር የሚታየው፣ ወደ ውጭ የሚላከው እና የሚለወጠው Cacti ያንን መሣሪያ ለፈቀደላቸው ተጠቃሚዎች ብቻ ነው፤ መሣሪያን ማዛመድ ለዒላማው መሣሪያም ፈቃድ ይፈልጋል። መሣሪያ የሌለው ክላስተር የተሰኪው realm ላላቸው ተጠቃሚዎች በአስተዳደራዊ ገጾች ላይ ይዘረዘራል፣ ነገር ግን ከመሣሪያ ጋር የተዛመዱ ክላስተሮችን ብቻ በሚዘረዝሩ የኦፕሬተር እይታዎች ውስጥ አይታይም። ተሰኪው ተሰናክሎ ሳለ የተዛመደ መሣሪያው የተሰረዘበት ክላስተር የሚታየው የHPC Scheduler Admin መዳረሻ ላላቸው ተጠቃሚዎች ብቻ ነው። ማረጋገጫዎች የሚቆዩት በአሁኑ የተጠቃሚ ክፍለ ጊዜ ውስጥ ብቻ፣ ቢበዛ ለአንድ ሰዓት እና ያው ምልከታ ትኩስ ሆኖ እስከቆየ ድረስ ብቻ ነው። አዳዲስ ወይም የተለወጡ ምልከታዎች ውድቅ ያደርጓቸዋል። የወደቀ ልኬትን በፍጹም ጤናማ ብለው አይመድቡም ወይም ማንቂያዎችን አያፍኑም።
 
-## ለምዕራፍ 2 የኦፕሬተር ማስታወሻዎች
+## የኦፕሬተር ማስታወሻዎች
 
-**ዝቅተኛው መብት (Least privilege)።** ተሰኪው የሚያነብ ብቻ ነው። የአስተዳዳሪ ወይም የኦፕሬተር ሚና የሌለው ልዩ የSlurm ተጠቃሚ ይስጡት (በ`sacctmgr` ውስጥ `AdminLevel=None`)። በ`slurm.conf` ውስጥ `PrivateData=jobs` (ወይም `nodes`፣ `reservations`፣ `usage`) ካለ፣ ያ ተጠቃሚ የሚያየው የራሱን መዝገቦች ብቻ ነው፣ ስለዚህ ቆጠራዎቹ ያልተሟሉ ይሆናሉ እና ተሰኪው ያንን ሊያውቅ አይችልም። ይህንን ለመለያው ማንሳት ማለት የኦፕሬተር ወይም የአስተዳዳሪ ደረጃ መስጠት ማለት ሲሆን ይህም ለውጦችንም ይፈቅዳል፤ ያንን ምርጫ መወሰን የጣቢያው ኃላፊነት ነው። ለደንበኛ ትዕዛዞች፣ የCacti poller ተጠቃሚው የSlurm ደንበኛ ባይነሪዎችን እና ወደ ተቆጣጣሪው (controller) የሚደርስ `slurm.conf` ያስፈልገዋል፤ የባይነሪ ዱካዎቹ በConfiguration > Settings > HPC Scheduler ስር ፍጹም ዱካ (absolute) ቅንብሮች ናቸው። ለ`slurmrestd`፣ URLው `https://` መሆን አለበት፣ ወይም በloopback አድራሻ ላይ ብቻ `http://` መሆን ይችላል። የTLS ሰርተፊኬቶች ይረጋገጣሉ እና redirects አይከተሉም። በConfiguration > Settings > HPC Scheduler ስር ያለ አማራጭ የslurmrestd አስተናጋጅ ዝርዝር አንድ ክላስተር ሊጠራ የሚችላቸውን አስተናጋጆችና ወደቦች ይገድባል።
+### ደህንነት፣ ዝቅተኛ መብት እና የቶከን ፋይሎች
 
-**የርቀት pollerዎች (Remote pollers)።** ይህ ልቀት የሚሰበስበው በዋናው የCacti poller ላይ ብቻ ነው። ለርቀት ውሂብ ሰብሳቢ የተመደበ ክላስተር አይሰበሰብም፦ እዚያ ያለው አንባቢ በተመዘገበ ምክንያት ውድቅ ያደርጋል እና የጤና ገጹ ክላስተሩን ይጠቅሳል። የርቀት ስብስብ ደረጃ 3 ነው።
+ተሰኪው የሚያነብ ብቻ ነው። የአስተዳዳሪ ወይም የኦፕሬተር ሚና የሌለው የተለየ የSlurm ተጠቃሚ ይስጡት (በ`sacctmgr` ውስጥ `AdminLevel=None`)። በ`slurm.conf` ውስጥ `PrivateData=jobs` (ወይም `nodes`፣ `reservations`፣ `usage`) ካለ፣ ያ ተጠቃሚ የራሱን መዝገቦች ብቻ ስለሚያይ ቆጠራዎች ያልተሟሉ ይሆናሉ፣ ተሰኪውም ይህንን ማወቅ አይችልም። ለመለያው ያንን ማንሳት የኦፕሬተር ወይም የአስተዳዳሪ ደረጃ ይፈልጋል፣ ይህም ለውጦችንም ይፈቅዳል፤ ያ ውሳኔ የጣቢያው ምርጫ ነው።
 
-**ማህደረ ትውስታ (Memory)።** እያንዳንዱ የስብስብ ሩጫ በአንድ ጊዜ አንድ የመርሐግብር አስያዥ መልስ ይፈታል (decode)፣ ይህም በPHP ማህደረ ትውስታ ውስጥ የመልሱን መጠን 12 እጥፍ ያህል ይወስዳል (እንደ Slurm ላሉ የሥራ መዝገቦች ወደ 10 እጥፍ ገደማ ተለክቷል፣ ከጽሑፉ በተጨማሪ)። ሩጫው የPHP ማህደረ ትውስታ ገደቡን ወደ Collection Memory ቅንብር (በነባሪ 1024 MiB) ከፍ ያደርጋል እና Maximum Answer Size ከፍ ተደርጎ ቢቀመጥም እንኳ እስከ (Collection Memory - 64) / 12 MiB፣ በነባሪ 80 MiB ድረስ መልሶችን ይፈቅዳል፤ ይህ ሲሆን የጤና ገጹ ያስጠነቅቃል። ከዚህ የበለጠ መልስ ክፍሉን በጣም ትልቅ ነው በሚል ውድቅ ያደርጋል፣ እና አሁንም ማህደረ ትውስታው ያለቀበት ሩጫ እንደወደቀ ይመዘገባል። ትልቅ ክላስተር ሁለቱንም ቅንብሮች ከፍ ማድረግ ሊፈልግ ይችላል፤ 100,000 እውነተኛ የሥራ መዝገቦች አልተለኩም።
+ለደንበኛ ትዕዛዞች፣ የCacti poller ተጠቃሚው የSlurm ደንበኛ ባይነሪዎችን (`squeue`፣ `scontrol`፣ እና በፍላጎት `sshare`) እንዲሁም መቆጣጠሪያው ጋር የሚደርስ `slurm.conf` ያስፈልገዋል፤ የባይነሪ ዱካዎች በ**Configuration > Settings > HPC Scheduler** ስር ፍጹም (absolute) ቅንብሮች ናቸው።
 
-**የቶከን ፋይሎች (Token files)።** የ`slurmrestd` ክላስተር የቶከን ፋይልን ይሰይማል፤ ቶከኑ ራሱ በዳታቤዝ ውስጥ አይቀመጥም፣ በገጽ ላይ አይታይም፣ ወይም በመዝገብ (log) ውስጥ አይጻፍም። ፋይሉ በConfiguration > Settings > HPC Scheduler ስር ከተቀመጡት የቶከን ፋይል ማውጫዎች በአንዱ ውስጥ መገኘት አለበት፣ ያለ symbolic link መድረስ አለበት፣ እና በpoller ተጠቃሚ ባለቤትነት የተያዘና ያ ተጠቃሚ ብቻ ሊጽፍበት የሚችል መደበኛ ፋይል መሆን አለበት፤ አንድ መስመር ይይዛል፦ ቶከኑን፣ ወይም `scontrol token` እንደሚያትመው `SLURM_JWT=<token>`። ምንም የቶከን ማውጫዎች ካልተቀመጡ፣ የትኛውም ክላስተር `slurmrestd`ን መጠቀም አይችልም። እነዚህ ሁለት ቅንብሮች በCacti የSettings ገጽ ላይ ስለሆኑ፣ የተሰኪው Admin realm ብቻውን ሊለውጣቸው አይችልም፤ እያንዳንዱን የቶከን ማውጫ በroot እና በpoller ተጠቃሚ ብቻ የሚጻፍበት ያድርጉት። ቡድኑ ወይም ሌሎች ተጠቃሚዎች ሊያነቡት የሚችሉት ፋይል አሁንም ጥቅም ላይ ይውላል፣ እና የጤና ገጹ ያስጠነቅቃል። የጤና ገጹ ቶከኑ በተዋቀረው የማስጠንቀቂያ ጊዜ ውስጥ ጊዜው ሊያልፍበት ሲልም ያስጠነቅቃል።
+ለ`slurmrestd`፣ URLው `https://` መሆን አለበት፣ ወይም በloopback አድራሻ ላይ ብቻ `http://` መሆን አለበት። የTLS የምስክር ወረቀቶች ይረጋገጣሉ፣ አቅጣጫ ማዞሮችም (redirects) አይከተሉም። በ**Configuration > Settings > HPC Scheduler** ስር ያለ አማራጭ የ`slurmrestd` አስተናጋጅ ዝርዝር አንድ ክላስተር የትኞቹን አስተናጋጆችና ወደቦች መጥቀስ እንደሚችል ይገድባል።
 
-አንባቢው ከፊል ፋይል የሚያይበት የጊዜ ክፍተት ሳይኖር ቶከንን ለማዞር (rotate)፣ አዲሱን ቶከን ከአሮጌው አጠገብ ጽፈው ወደ ቦታው እንደገና ይሰይሙት (rename)፦
+አንድ የ`slurmrestd` ክላስተር የቶከን ፋይል ይጠቅሳል፤ ቶከኑ ራሱ በፍጹም በውሂብ ጎታ ውስጥ አይቀመጥም፣ በገጽ ላይ አይታይም፣ በCasC አይላክም፣ ወይም በምዝግብ ማስታወሻ ውስጥ አይጻፍም። ፋይሉ በ**Configuration > Settings > HPC Scheduler** ስር ከተዋቀሩት የToken File Directories በአንዱ ውስጥ መገኘት አለበት፣ ያለ symbolic link የሚደረስበት፣ እና በpoller ተጠቃሚ ባለቤትነት የተያዘና ያ ተጠቃሚ ብቻ ሊጽፍበት የሚችል መደበኛ ፋይል ሆኖ አንድ መስመር መያዝ አለበት፦ ቶከኑን ወይም `scontrol token` እንደሚያትመው `SLURM_JWT=<token>`ን። ምንም የቶከን ማውጫዎች ካልተዘጋጁ፣ የትኛውም ክላስተር `slurmrestd`ን መጠቀም አይችልም። እያንዳንዱን የቶከን ማውጫ በroot እና በpoller ተጠቃሚ ብቻ የሚጻፍበት ያድርጉት። በቡድን ወይም በሌሎች ተጠቃሚዎች ሊነበብ የሚችል ፋይል አሁንም ጥቅም ላይ ይውላል፣ የጤና ገጹም ያስጠነቅቃል፤ ቶከኑ በተዋቀረው የማስጠንቀቂያ ጊዜ ውስጥ የሚያበቃ ሲሆንም ያስጠነቅቃል።
+
+ቶከንን በአቶሚክ መንገድ ለመቀየር፦
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -45,78 +57,131 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-ቀጣዩ ስብስብ አዲሱን ፋይል ያነባል። በ`scontrol token` ቶከኖችን ማመንጨት የSlurm አስተዳዳሪን ይፈልጋል፤ ይህ በተፈቀደበት ቦታ ያስኪዱት እና ፋይሉን ወደ pollerው ይቅዱት።
+ቀጣዩ ስብስብ አዲሱን ፋይል ያነባል። በ`scontrol token` ቶከኖችን ማመንጨት የSlurm አስተዳዳሪ ይጠይቃል፤ በተፈቀደበት ቦታ ያስኪዱትና ፋይሉን ወደ poller ይቅዱት።
 
-## ለምዕራፍ 3 የኦፕሬተር ማስታወሻዎች
+### የርቀት ውሂብ ሰብሳቢዎች
 
-**አብነቶች (Templates)።** መጫን እና ማሻሻል የHPC Scheduler መሣሪያ፣ ውሂብ እና ግራፍ አብነቶችን ያስገባሉ እንዲሁም የፓርቲሽን ውሂብ መጠይቁን (partition data query) ወደ Cacti `resource/script_server/` ማውጫ ይቀዳሉ። ያ ማውጫ ተሰኪውን በሚጭነው ተጠቃሚ የማይጻፍበት ከሆነ፣ ተመሳሳይ ስም ያለው ሌላ ፋይል ቀድሞውኑ እዚያ ካለና በተሰኪው ያልተጻፈ ከሆነ፣ ወይም ስሙ symbolic link ከሆነ፣ ማስገባቱ ይቆማል፣ ፋይሉ ባለበት ይተዋል፣ እና የጤና ገጹ ምን ማድረግ እንዳለበት ይናገራል፤ በጤና ገጹ ላይ ያለው Install Templates እንደገና ይሞክራል። በእጅ የተሰራ ተመሳሳይ ቅጂ ጥቅም ላይ ይውላል ነገር ግን የእርስዎ ሆኖ ይቆያል። ማራገፍ (Uninstall) የመጠይቅ ፋይሉን የሚያስወግደው ተሰኪው የጻፈው ከሆነና ካልተለወጠ ብቻ ነው፣ እንዲሁም አብነቶቹን፣ መሣሪያዎቹን እና ግራፎቹን ያቆያል።
+`INFO` `remote_collect:1, remote_poller:1`ን ያውጃል። `hpcsched_poller_bottom()` በእያንዳንዱ poller ላይ ለዚያ `poller_id` የተመደቡ የነቁ ክላስተሮችን ለማስኬድ `poller_hpcsched.php`ን ያስነሳል፣ እና `hpcsched_replicate_out()` ሚስጥራዊ ያልሆኑ የ`plugin_hpcsched_cluster` ረድፎችን ወደ ርቀት pollerዎች (`poller_id >= 2`) ያባዛል። የቶከን ፋይሎች እና የSlurm ደንበኛ ባይነሪዎች በተመደበው የርቀት poller ላይ በአካባቢው መኖር አለባቸው፤ የቶከን ይዘቶች በፍጹም አይባዙም።
 
-**የክላስተር መሣሪያዎች (Cluster devices)።** HPC Clusters > Device ምንም ነገር ከመፈጠሩ በፊት አንድ መሣሪያ ምን እንደሚጨምር (ግራፎችን፣ የውሂብ ምንጮችን፣ የRRD ፋይሎችን እና በእያንዳንዱ poll የscript server ጥሪዎችን) ያሳያል። Create Device በተያዘው `.invalid` ጎራ ውስጥ የአስተናጋጅ ስም ያለው እና የመገኘት ፍተሻ (availability check) የሌለው መሣሪያ ይፈጥራል፤ Map Device ግን በምትኩ ግራፎቹን ከነባር መሣሪያ ጋር ያያይዛል እና ቅንብሮቹን እንዳሉ ይተዋቸዋል። እያንዳንዱ የክላስተር ግራፍ እና እያንዳንዱ የፓርቲሽን ግራፍ የራሱ የውሂብ ምንጭ አለው፦ ለክላስተሩ ስድስት እና በእያንዳንዱ ፓርቲሽን አምስት፣ በእያንዳንዱ የክላስተር ውሂብ ምንጭ አንድ የscript server ጥሪ እና በእያንዳንዱ poll የፓርቲሽን እሴት (32) አንድ ጥሪ። በኋላ የሚታከሉ ፓርቲሽኖች አንባቢው ሲያያቸው መረጃ ጠቋሚ (index) ይደረጋሉ እና ከCacti New Graphs ገጽ ግራፎችን ያገኛሉ፤ የተወገደ ፓርቲሽን መጠየቁን (polling) ያቆማል እና ግራፎቹን ያቆያል። መሣሪያውን መሰረዝ ክላስተሩን ያላቅቃል (unmap) እና ያቆየዋል።
+### የማህደረ ትውስታ ገደቦች
 
-**ግራፎቹ የሚቆጥሩት።** በመጠባበቅ ላይ ያሉ (Pending) የታገዱ (held) ሥራዎችን አያካትቱም፣ እነሱ የራሳቸው ተከታታይ (series) አላቸው። በመጠባበቅ ላይ ያለ ድርድር (array) የቀሩትን ተግባራቱን ይቆጥራል። በበርካታ ፓርቲሽኖች ውስጥ ያለ ሥራ ወይም ኖድ በክላስተር ግራፎች ውስጥ አንድ ጊዜ እና በእያንዳንዱ ፓርቲሽን ውስጥ አንድ ጊዜ ይቆጠራል፣ ስለዚህ የፓርቲሽን ግራፎች ተደምረው የክላስተሩን መምሰል የለባቸውም። የመጠባበቂያ ምክንያቶች በአሥራ አንድ ቤተሰቦች ተመድበዋል ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md))፤ የመጠባበቂያ ምክንያቶች እይታ በOther ውስጥ ያሉትን ጨምሮ ጥሬ ምክንያቶችን ይዘረዝራል። እያንዳንዱ ሥራ ሪፖርት የሚያደርገው መርሐግብር አስያዡ የመረመረውን የመጨረሻውን ምክንያት ብቻ ነው። የአጠቃቀም መካፈያ (denominator) የተመጠጡ (drained)፣ የወደቁ (down) እና ሌሎች የማይገኙ ኖዶችን ያካትታል። ያረጀ ወይም የወደቀ ውሂብ `U` ነው፣ በፍጹም ዜሮ አይሆንም፤ `age` ቁጥራዊ ሆኖ ይቆያል።
+እያንዳንዱ የስብስብ ሩጫ በአንድ ጊዜ አንድ የመርሐግብር አስያዥ ምላሽን ይፈታል፣ ይህም በPHP ማህደረ ትውስታ ውስጥ የምላሹን መጠን ወደ 12 እጥፍ ይወስዳል (የSlurm ዓይነት ቅርጽ ላላቸው የሥራ መዝገቦች ወደ 10 እጥፍ፣ ከጽሑፉ ጋር ተደምሮ ተለክቷል)። አንባቢው የPHP ማህደረ ትውስታ ገደቡን ወደ Collection Memory ቅንብር (በነባሪ 1024 MiB) ከፍ ያደርጋል እና Maximum Answer Size ከፍ ብሎ ቢዘጋጅም እንኳ እስከ `(Collection Memory - 64) / 12` MiB (በነባሪ 80 MiB) የሚደርሱ ምላሾችን ይፈቅዳል፤ Maximum Answer Size ከዚያ የተስተካከለ ገደብ ሲያልፍ የጤና ገጹ ያስጠነቅቃል። ከዚህ የበለጠ ትልቅ ምላሽ ክፍሉን በጣም ትልቅ ነው በማለት ያሳጣል፣ እና አሁንም ማህደረ ትውስታን የሚያሟጥጥ ሩጫ በመዝጊያ ተቆጣጣሪ (shutdown handler) አማካኝነት የማህደረ ትውስታ ውድቀትን ይመዘግባል እንዲሁም ሊዙንና የሂደት ቦታውን ይለቃል። ትላልቅ ክላስተሮች ሁለቱንም ቅንብሮች ከፍ ማድረግ ሊያስፈልጋቸው ይችላል፤ 100,000 እውነተኛ የሥራ መዝገቦች አልተለኩም።
 
-**ማንቂያ (Alerting)።** Thold ከእነዚህ የውሂብ ምንጮች በማንኛውም ላይ ማንቂያ ሊያስነሳ ይችላል፤ የThold ቆይታዎችን ቢያንስ ወደ አንድ የስብስብ ክፍለ ጊዜ ያዋቅሩ፣ እና የቆመ አንባቢን ለመያዝ በ`age` ላይ ማንቂያ ያድርጉ። ከጫፍ እስከ ጫፍ ያለው የThold ፍተሻ ምዕራፍ 4 ነው።
+### አብነቶች፣ የክላስተር መሣሪያዎች እና የግራፍ ቆጠራ
 
-**በእውነተኛ የSlurm ውጤት ላይ የተሞከረ።** CI በኮንቴይነሮች ውስጥ ባለ ስድስት ኖድ Slurm ክላስተርን ያስጀምራል (በእያንዳንዱ ለውጥ ላይ 26.05.5፣ ወደ `main` በሚገፋበት ጊዜ፣ በየሳምንቱ እና በጥያቄ ላይ ከምንጭ የተገነባ 25.11.8) እና ተሰኪው በሚተነትናቸው መሠረት የኖድ ሁኔታዎችን፣ የጥገና ቦታ ማስያዣውን፣ የመጠባበቂያ ምክንያቶችን እና ድርድሮችን (arrays) ይፈትሻል፣ ከዚያም በተሰኪው የራሱ ትዕዛዝ እና በ`slurmrestd` ማጓጓዣዎች (transports) ከዚያ ክላስተር ይሰበስባል። የቆዩ ልቀቶች የሚሸፈኑት በሰው ሠራሽ ቋሚ ሙከራዎች (synthetic fixtures) ብቻ ነው። አንባቢው አሁንም በምርት ክላስተር ላይ አልተሞከረም።
+መጫን እና ማሻሻል የHPC Scheduler መሣሪያ፣ ውሂብ እና ግራፍ አብነቶችን ያስመጣሉ እንዲሁም የፓርቲሽን ውሂብ መጠይቁን ወደ Cacti `resource/script_server/` ማውጫ ይገለብጣሉ። ያ ማውጫ ሊጻፍበት የማይችል ከሆነ፣ ተመሳሳይ ስም ያለው ሌላ ፋይል እዚያ ካለ፣ ወይም ዒላማው symbolic link ከሆነ፣ ማስመጣቱ ይቆማል፣ ፋይሉን ሳይነካ ይተዋል፣ እና ሁኔታውን በጤና ገጹ ላይ ሪፖርት ያደርጋል፤ እዚያም **Install Templates** እንደገና ይሞክራል። ማራገፍ የመጠይቅ ፋይሉን የሚያስወግደው ተሰኪው ራሱ ከጻፈውና ካልተቀየረ ብቻ ነው፣ እንዲሁም አብነቶቹን፣ መሣሪያዎቹን እና ግራፎቹን ይጠብቃል።
 
-**ፈቃዶች (Permissions)።** በመሣሪያ ላይ ያለ ክላስተር በእያንዳንዱ የተሰኪ ገጽ ላይ Cacti ያንን መሣሪያ ለሚፈቅድላቸው ተጠቃሚዎች ብቻ ይታያል፣ ወደ ውጭ ይላካል (export) እና ይለወጣል፤ መሣሪያን ማገናኘትም ለታለመው መሣሪያ ፈቃድ ይፈልጋል። መሣሪያ የሌለው ክላስተር የተሰኪው realm ላለው ለሁሉም ሰው ይታያል። ተሰኪው ተሰናክሎ (disabled) እያለ ከተሰረዘ መሣሪያ ጋር አሁንም ተገናኝቶ የቀረ ክላስተር የሚታየው የHPC Scheduler Admin realm ላላቸው ተጠቃሚዎች ብቻ ሲሆን፣ እነሱም መሣሪያ ሊፈጥሩለት ወይም ሊያገናኙለት ይችላሉ። የግራፍ መዳረሻ የCacti የራሱ ነው።
+**HPC Clusters > Device** ማንኛውንም ነገር ከመፍጠሩ በፊት በእያንዳንዱ poll የሚኖሩትን ግራፎች፣ የውሂብ ምንጮች፣ የRRD ፋይሎች እና የስክሪፕት አገልጋይ ጥሪዎች አስቀድሞ ያሳያል። **Create Device** በተያዘው `.invalid` ጎራ ውስጥ ያለ የአስተናጋጅ ስም ያለው እና የመገኘት ፍተሻ የሌለው መሣሪያ ይፈጥራል፤ **Map Device** ቅንብሮቹን ሳይለውጥ ግራፎቹን ከነባር መሣሪያ ጋር ያያይዛል። እያንዳንዱ የክላስተር ግራፍ እና የፓርቲሽን ግራፍ የራሱ የውሂብ ምንጭ አለው፦ ለክላስተሩ ስድስት እና ለእያንዳንዱ ፓርቲሽን አምስት። በኋላ የሚታከሉ ፓርቲሽኖች አንባቢው ለውጥ ሲያገኝ በራስ-ሰር እንደገና ይመዘገባሉ (reindexed)፤ የተወገዱ ፓርቲሽኖች poll መደረጋቸውን ያቆማሉ እና ግራፎቻቸውን ይይዛሉ። መሣሪያን መሰረዝ ክላስተሩን ያላቅቃል (እና የሚዛመዱ የ`plugin_hpcsched_node_map` ረድፎችን ያጸዳል)፤ የክላስተሩ መዝገብ ግን ይቀራል።
+
+በመጠባበቅ ላይ ያሉ (Pending) የራሳቸው ተከታታይ ያላቸውን የተያዙ (held) ሥራዎችን አያካትቱም። በመጠባበቅ ላይ ያለ የሥራ ድርድር (job array) ቀሪ ተግባራቱን ይቆጥራል። በብዙ ፓርቲሽኖች ውስጥ ያለ ሥራ ወይም ኖድ በክላስተር ግራፎች ውስጥ አንድ ጊዜ እና በእያንዳንዱ ፓርቲሽን ውስጥ አንድ ጊዜ ይቆጠራል፣ ስለዚህ የፓርቲሽን ድምሮች ከክላስተሩ ጠቅላላ ድምር ጋር እኩል መሆን አያስፈልጋቸውም። የመጠባበቂያ ምክንያቶች በአስራ አንድ ቤተሰቦች ተመድበዋል ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md))፤ የመጠባበቂያ ምክንያቶች እይታ በ`Other` ውስጥ ያሉትን ጨምሮ ጥሬ ምክንያቶችን ይዘረዝራል። የአጠቃቀም መካፈያ (denominator) የተመጠጡ፣ የወረዱ እና ሌሎች የማይገኙ ኖዶችን ያካትታል። ያረጀ ወይም የወደቀ ውሂብ ሁልጊዜ እንደ `U` ሪፖርት ይደረጋል እንጂ በፍጹም ዜሮ አይሆንም፤ `age` በቁጥር መልክ ይቆያል።
+
+ለማንቂያ፣ ቢያንስ የአንድ የስብስብ ክፍለ ጊዜ ቆይታ ባለው በማንኛውም የክላስተር ወይም የፓርቲሽን የውሂብ ምንጭ ላይ Tholdን ያዋቅሩ፣ እንዲሁም የቆመ አንባቢን ለመለየት በ`age` ላይ ማንቂያ ያዘጋጁ።
+
+## CLI እና የሥነ-ምህዳር መንጠቆዎች
+
+### የአንባቢው መግቢያ ነጥብ
+
+`hpcsched_poller_bottom()` `poller_hpcsched.php`ን በራስ-ሰር ያስጀምራል፤ በክላስተሩ በተመደበው poller ላይ በእጅም ሊሠራ ይችላል፦
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force` ለትዕዛዝ-መስመር ምርመራ ተሰኪው ተሰናክሎ ሳለ እንኳ ይሠራል።
+
+### Configuration-as-Code፣ ጤና እና Maint ማመሳሰያ CLI
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` አዳዲስ ፋይሎችን በ`0600` ሁነታ (ወይም ወደ stdout) ይጽፋል እና የተዋቀሩ የ`token_file` ዱካዎችን በ`[REDACTED]` ይተካል። `plan` እና `apply` በመስመር ውስጥ ያሉ `jwt`፣ `secret` እና `password` መስኮችን አይቀበሉም፣ እና `[REDACTED]` ሲሰጥ ነባር አካባቢያዊ የ`token_file` ዱካዎችን ይጠብቃሉ። `apply` በ`plan` የታተመውን ትክክለኛ `--confirm=PLAN_HASH` ይፈልጋል።
+- `health` መርሐግብር አስያዦችን ሳያገኝ ወይም የቶከን ፋይሎችን ሳያነብ የስኪማ ወቅታዊነትን፣ የክላስተር ትኩስነትን፣ የሩጫ ውጤቶችን፣ የMaint መገኘትን እና ማስጠንቀቂያዎችን ይገመግማል።
+- `sync-maint` በነባሪነት `--dry-run`ን ይጠቀማል እና በ`DRAIN`፣ `DRAINING`፣ `DOWN`፣ ወይም ንቁ `MAINT`/`MAINTENANCE` ቦታ ማስያዣዎች ውስጥ ላሉ የተዛመዱ የSlurm ኖዶች የCacti Maint መርሐግብሮችን አስቀድሞ ያሳያል ወይም ተግባራዊ ያደርጋል (ነባሪ የdrain/down አድማስ 3600 ሰከንድ፣ የእድሳት ህዳግ 600 ሰከንድ)። `plugin_maint_schedules` እና `plugin_maint_hosts` ከሌሉ `--apply`ን አይቀበልም፣ እና በ`plugin_hpcsched_maint_link` ውስጥ የተመዘገቡ መርሐግብሮችን ብቻ ያዘምናል ወይም ያስወግዳል።
+
+### የሥነ-ምህዳር መንጠቆዎች
+
+ተጓዳኝ የCacti ተሰኪዎች ወይም የአስተናጋጅ ውህደቶች ሲኖሩ፣ `setup.php` የሚከተሉትን ይመዘግባል፦
+
+- `casc_register_providers`፦ የ`hpcsched` ውቅርን (`yaml` እና `xml`፣ ስኪማ v1) ከሚስጥር መደበቅ ጋር ወደ ውጭ ይልካል፣ ያረጋግጣል፣ ያቅዳል እና በማረጋገጫ ተግባራዊ ያደርጋል።
+- `doctor_register_checks`፦ አራት ለንባብ ብቻ የሆኑ የምርመራ ፍተሻዎችን (`hpcsched.schema`፣ `hpcsched.cluster_freshness`፣ `hpcsched.token_health`፣ `hpcsched.maint_sync`) ያቀርባል።
+- `abilities_register`፦ በHPC Scheduler View realm (እና ለክላስተር ማጠቃለያዎች በመሣሪያ ፈቃዶች) የተገደቡ ሦስት ለንባብ ብቻ፣ አጥፊ ያልሆኑ እና idempotent ችሎታዎችን በ`hpcsched` ምድብ ስር ይመዘግባል፦ `hpcsched-list-clusters`፣ `hpcsched-get-queue-summary` እና `hpcsched-get-health`።
 
 ## ለምን
 
-Cactiን የሚያስኬዱ ኦፕሬተሮች አስቀድመው የኮምፒውት ኖዶቻቸውን በግራፍ ያሳያሉ። የመርሐግብር አስያዡ እይታ ከእነዚያ ግራፎች የጎደለ ሲሆን ይህም ሁለት ክፍተቶችን ይተዋል፦
+Cactiን የሚያስኬዱ ኦፕሬተሮች አስቀድመው የስሌት ኖዶቻቸውን በግራፍ ያሳያሉ። በእነዚያ ግራፎች ውስጥ የመርሐግብር አስያዡ እይታ ስለሚጎድል ሁለት ክፍተቶችን ይተዋል፦
 
-- **«ሥራ ለምን እየጀመረ አይደለም» የሚል መረጃ የለም።** Slurm በመጠባበቅ ላይ ላለ እያንዳንዱ ሥራ ምክንያት ይመዘግባል። ሥራ ከፈቱ የኖድ ግራፎች ጎን ያለ ሙሉ ወረፋ ምክንያቱ ቅድሚያ (priority)፣ የሀብት ገደቦች፣ እገዳዎች (holds)፣ ጥገኝነቶች (dependencies) ወይም የተመጠጡ ኖዶች መሆኑን አይናገርም።
-- **በመርሐግብር አስያዡ ሁኔታ እና በማንቂያ መካከል ግንኙነት የለም።** Thold አስተዳዳሪው አስቀድሞ ባመጠጠው (drained) መሣሪያ ላይ ማንቂያ ያስነሳል፣ እና አስተዳዳሪዎች የMaint መርሐግብሮችን በእጅ ይፈጥራሉ።
+- **"ሥራ ለምን እየጀመረ አይደለም" የሚል መልስ የለም።** Slurm ለእያንዳንዱ በመጠባበቅ ላይ ያለ ሥራ ምክንያት ይመዘግባል። ሥራ ከሌለባቸው የኖድ ግራፎች ጎን ለጎን የሞላ ወረፋ መኖሩ ምክንያቱ ቅድሚያ፣ የሀብት ገደብ፣ መያዝ፣ ጥገኝነት ወይም የተመጠጡ ኖዶች መሆኑን አይናገርም።
+- **በመርሐግብር አስያዥ ሁኔታ እና በማንቂያ መካከል ግንኙነት የለም።** Thold አስተዳዳሪ አስቀድሞ በመጠጠው መሣሪያ ላይ ማንቂያ ያስነሳል፣ አስተዳዳሪዎችም የMaint መርሐግብሮችን በእጅ ይፈጥራሉ።
 
-ተሰኪው በክላስተር አንድ የተሸጎጠ (cached) ቅጽበታዊ ገጽ እይታን ይሰበስባል፣ እንደ መደበኛ የCacti ውሂብ ምንጮች እና ግራፎች ያትመዋል፣ የመርሐግብር አስያዥ ኖዶችን ወደ ነባር የCacti መሣሪያዎች ያገናኛል፣ እንዲሁም የተመጠጡ ኖዶችን እና የጥገና ቦታ ማስያዣዎችን ወደ Maint ማስገባት ይችላል። የCactiን ፈቃዶች፣ የርቀት ውሂብ ሰብሳቢዎችን፣ Tholdን እና Maintን እንደገና ይጠቀማል፣ እንዲሁም ወደ መርሐግብር አስያዡ ለንባብ ብቻ ነው።
+ተሰኪው በክላስተር አንድ የተሸጎጠ ቅጽበታዊ ገጽ እይታ ይሰበስባል፣ እንደ መደበኛ የCacti ውሂብ ምንጮችና ግራፎች ያትመዋል፣ የመርሐግብር አስያዥ ኖዶችን ከነባር የCacti መሣሪያዎች ጋር ያዛምዳል፣ እንዲሁም ለተመጠጡ፣ ለወረዱ እና ለጥገና ለተያዙ ኖዶች በተሰኪው ባለቤትነት የተያዙ ጊዜያቸው የሚያበቃ የMaint መስኮቶችን ያመሳስላል። የCactiን ፈቃዶች፣ የርቀት ውሂብ ሰብሳቢዎችን፣ Tholdን እና Maintን እንደገና ይጠቀማል፣ እንዲሁም ለመርሐግብር አስያዡ በጥብቅ ለንባብ ብቻ ሆኖ ይቆያል።
 
-## የታቀደው ወሰን
+## ወሰን እና ገደቦች
 
-| ደረጃ | ወሰን | ምዕራፎች |
-|---|---|---|
-| 0፣ ምርምር | የSlurm ልቀት ማትሪክስ፣ የupstream ባህሪ ማረጋገጫ፣ የመቆጣጠሪያ (controller) ጫና፣ የኖድ ስያሜ ቋሚ ሙከራዎች (fixtures) | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1፣ የክላስተር ግራፎች | የወረፋ ጥልቀት፣ በመጠባበቅ ላይ ያሉና በመሄድ ላይ ያሉ ሥራዎች፣ የመጠባበቂያ ምክንያቶች፣ የኖድ ሁኔታዎች፣ የፓርቲሽን አጠቃቀም፣ የThold ማንቂያ፣ የጤና ገጽ፣ ልቀት | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2)፣ [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3)፣ [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2፣ ኖዶች እና ጥገና | ከኖድ ወደ መሣሪያ ማገናኘት፣ በየኖዱ ሁኔታ፣ ለተመጠጡ ኖዶችና ለጥገና ቦታ ማስያዣዎች ራስ-ሰር የMaint መስኮቶች | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3፣ የሂሳብ አያያዝ (Accounting) | የFair-share አጠቃቀም፣ የተገደቡ የሂሳብ አያያዝ ስታቲስቲክስ፣ የርቀት ውሂብ ሰብሳቢዎች | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+ከወሰን ውጭ፦ ማንኛውም የመርሐግብር አስያዥ የመጻፊያ መንገድ (ማስገባት፣ መሰረዝ፣ መያዝ፣ መምጠጥ፣ መቀጠል)፣ በተሰኪው ባለቤትነት የተያዘ የማንቂያ ሞተር፣ የሪፖርት ወይም የወጪ ማስከፈያ ሞተር፣ እና በተጠቃሚ ወይም በሥራ ደረጃ ያሉ ተከታታዮች። የPBS Pro፣ OpenPBS እና LSF የጀርባ ሥርዓቶች ለምርምር ብቻ ናቸው።
 
-ከወሰን ውጭ፦ ማንኛውም የመርሐግብር አስያዥ መጻፊያ መንገድ (ማስገባት፣ መሰረዝ፣ ማገድ፣ ማምጠጥ፣ መቀጠል)፣ በተሰኪ የተያዘ የማንቂያ ሞተር፣ የሪፖርት ወይም የክፍያ (chargeback) ሞተር፣ በየተጠቃሚውና በየሥራው ተከታታዮች። የPBS Pro፣ OpenPBS እና LSF የጀርባ ሥርዓቶች በምርምር ደረጃ ናቸው።
+## መስፈርቶች እና ተኳኋኝነት
 
-## የተኳኋኝነት ዒላማዎች
-
-| ክፍል | ዒላማ |
+| አካል | ዒላማ |
 |---|---|
-| Cacti | 1.2.31 ወይም ከዚያ በላይ፣ ምንም የዋና ክፍል (core) ማሻሻያዎች (patches) የሉም |
-| PHP | 8.2 ወይም ከዚያ በላይ፤ የማይደገፍ runtime ከተሰበረ የCacti UI ይልቅ እምቢታ እንዲያገኝ `setup.php` በ8.0 ላይ ሊተነተን (parse) የሚችል ሆኖ ይቆያል |
-| Slurm | 25.05፣ 25.11 እና 26.05፣ የቅርብ ጊዜዎቹ ሦስት ልቀቶች ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md))፤ 25.11 እና 26.05 በቀጥታ ክላስተር ላይ ተሞክረዋል፣ 25.05 በቋሚ ሙከራዎች (fixtures) ላይ ብቻ። የደንበኛ ትዕዛዞች ነባሪው ማጓጓዣ ናቸው ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) እና የውሂብ ተንታኝ (data parser) ቅንብሩን ይጠቀማሉ፦ በነባሪ v0.0.43 (SchedMD በ27.05 የሚያስወግደው)፣ ወይም እነሱን በሚያቀርቡ ልቀቶች ላይ v0.0.44 ወይም v0.0.45። የslurmrestd ክላስተሮች daemonኑ የሚያቀርበውን አዲሱን ተንታኝ ያገኛሉ |
-| Thold, Maint | የThold ለውጥ የለም፤ የMaint ውህደት የMaint ተንከባካቢዎችን ስምምነት የሚፈልግ ሃሳብ ነው |
+| Cacti | 1.2.31 ወይም ከዚያ በኋላ (`compat = 1.2.31`)፣ ምንም የኮር ጥገና የለም |
+| PHP | 8.2 ወይም ከዚያ በኋላ፤ የመግቢያ ነጥቦች በ8.0 ላይ መተንተን የሚቻሉ ሆነው ይቆያሉ እና የማይደገፍ ሩጫ ጊዜ ከተሰበረ የCacti UI ይልቅ እምቢታ እንዲያገኝ በ8.1 ላይ መንቃትን አይቀበሉም |
+| Slurm | 25.05፣ 25.11 እና 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md))፤ 26.05.5 በእያንዳንዱ ለውጥ ላይ በCI ውስጥ ከስድስት-ኖድ ኮንቴይነር ክላስተር ጋር ይፈተሻል፣ 25.11.8 በ`main` ላይ፣ በየሳምንቱ እና በጥያቄ ይፈተሻል፣ እንዲሁም 25.05 ከfixtures ጋር ብቻ ይፈተሻል። የደንበኛ ትዕዛዞች በነባሪነት የውሂብ ተንታኝ `v0.0.43`ን ይጠቀማሉ (`v0.0.44` እና `v0.0.45` መምረጥ ይቻላል)፤ የ`slurmrestd` ክላስተሮች ዴሞኑ የሚያገለግለውን አዲሱን ተንታኝ ያገኛሉ |
+| Thold፣ Maint | ምንም የThold ለውጥ አያስፈልግም፤ `sync-maint` በተሰኪው ባለቤትነት የተያዘ የግንኙነት ሠንጠረዥ (`plugin_hpcsched_maint_link`) በመጠቀም ከCacti Maint `plugin_maint_schedules` እና `plugin_maint_hosts` ሠንጠረዦች ጋር ይዋሃዳል |
+
+## ልማት እና ሙከራ
+
+የCI የሥራ ፍሰት (`.github/workflows/plugin-ci-workflow.yml`) ከCacti `release/1.2.31` እና `1.2.x` ጋር PHP 8.2 እስከ 8.5ን፣ የPHP 8.0 መግቢያ-ነጥብ lintingን፣ የPHP 8.1 እምቢታን፣ PHPStanን፣ የgettext/ትርጉም ማረጋገጫን፣ የREUSE ፈቃድ አሰጣጥን፣ የሥራ ፍሰት lintingን፣ የክላስተር መሣሪያ ፍሰትንና የአብነት ወደ ውጭ መላክ መንሸራተት ፍተሻዎችን፣ እንዲሁም ቀጥታ ባለ ስድስት ኖድ Slurm ክላስተር (`slurm-live`) ይፈትሻል።
+
+ከCacti የተቆለፈ የጋራ Pest ተሰኪ መሣሪያ (`CACTI_PEST_BIN`) እና ሊጣል የሚችል የCacti ውሂብ ጎታ ጋር፦
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## ንድፍ
 
-- [docs/PLAN.md](../../PLAN.md) ሙሉው ዕቅድ ነው፦ አርክቴክቸር፣ የሚደገፍባቸው የupstream እውነታዎች (ከምንጮች እና ካልተረጋገጡ ግምቶች ግልጽ ዝርዝር ጋር)፣ የኖድ ማገናኛ፣ የሁኔታ ሞዴል፣ የደህንነት ወሰኖች፣ የአፈጻጸም ስሌት፣ ሙከራ እና ስጋቶች።
-- [docs/decisions/](../../decisions) የአርክቴክቸር ውሳኔ መዝገቦችን ይይዛል።
-- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) እያንዳንዱን የመስፈርት መታወቂያ ከጉዳዩ (issue) ጋር ያገናኛል።
+- [docs/PLAN.md](../../PLAN.md) የሥነ-ህንጻ እና የንድፍ ዕቅድ ነው፦ ከምንጮች ጋር ያሉ የupstream እውነታዎች፣ የኖድ ማዛመድ፣ የሁኔታ ሞዴል፣ የደህንነት ገደቦች፣ የአፈጻጸም ስሌት፣ ሙከራ እና አደጋዎች።
+- [docs/decisions/](../../decisions/) የሥነ-ህንጻ ውሳኔ መዝገቦችን ይይዛል።
+- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) እያንዳንዱን የመስፈርት መለያ ከጉዳዩ (issue) ጋር ያዛምዳል።
 
 ```mermaid
 flowchart LR
-    S[Slurm ተቆጣጣሪ] -->|ለንባብ ብቻ ጥሪዎች፣ በዑደት አንድ ስብስብ| R[በተመደበው Cacti poller ላይ ያለ አንባቢ]
-    R --> SNAP[(የቅጽበታዊ ገጽ እይታ ሰንጠረዦች)]
-    SNAP --> SS[የScript server ግብዓቶች]
-    SS -->|poller_output| T[Thold እና Maint]
+    S[የSlurm መቆጣጠሪያ] -->|ለንባብ ብቻ ጥሪዎች፣ በእያንዳንዱ ዑደት አንድ ስብስብ| R[በተመደበው poller ላይ poller_hpcsched.php]
+    R --> SNAP[(የቅጽበታዊ ገጽ እይታ ሠንጠረዦች)]
+    SNAP --> SS[የስክሪፕት አገልጋይ ግብዓቶች]
+    SS -->|poller_output| T[Thold]
     SS --> G[የCacti ግራፎች እና ፈቃዶች]
-    SNAP --> MAP[ከኖድ ወደ መሣሪያ ማገናኛ]
-    MAP -->|ባለቤትነት ያላቸው፣ ጊዜያቸው የሚያልፍ መርሐግብሮች| T
+    SNAP --> MAP[NodeMatcher እና MaintSynchronizer]
+    MAP -->|ባለቤትነት የተያዘባቸው፣ ጊዜያቸው የሚያበቃ መርሐግብሮች| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator፣ Doctor እና የMCP ችሎታዎች]
 ```
 
 ## ሥራ እንዴት እንደሚከታተል
 
-- **ምዕራፎች (Milestones)** የዕቅዱን ምዕራፎች ይከተላሉ። እያንዳንዳቸው ንዑስ ጉዳዮችን እና የመውጫ ማስረጃዎችን የሚዘረዝር ኤፒክ ጉዳይ (epic issue) አላቸው።
-- **ጉዳዮች (Issues)** በመለያ (label) ተመድበዋል፦ `type: requirement`፣ `type: research`፣ `type: decision`፣ `type: epic`። የመስፈርት ጉዳዮች የተቆጠሩ፣ ሊሞከሩ የሚችሉ መስፈርቶችን (`REQ-AREA-NNN`) እና የመቀበያ መስፈርቶችን ይገልጻሉ።
-- **መለያዎች (Labels)** `area:`፣ `phase:`፣ `priority:` እና `status:`ንም ይይዛሉ። [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels)ን ይመልከቱ።
-- የ[ፕሮጀክት ሰሌዳው](https://github.com/users/somethingwithproof/projects/10) በሁሉም ምዕራፎች ውስጥ ያሉንን ሁሉንም ጉዳዮች ያሳያል።
+- **ምዕራፎች (Milestones)** የዕቅዱን ምዕራፎች ይከተላሉ። እያንዳንዱ ንዑስ ጉዳዮቹን እና የመውጫ ማስረጃውን የሚዘረዝር epic issue አለው።
+- **ጉዳዮች (Issues)** በመለያ ተከፋፍለዋል፦ `type: requirement`፣ `type: research`፣ `type: decision`፣ `type: epic`። የመስፈርት ጉዳዮች ቁጥር የተሰጣቸው፣ ሊፈተሹ የሚችሉ መስፈርቶችን (`REQ-AREA-NNN`) እና የመቀበያ መስፈርቶችን ይገልጻሉ።
+- **መለያዎች (Labels)** እንዲሁም `area:`፣ `phase:`፣ `priority:` እና `status:`ን ይይዛሉ። [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels)ን ይመልከቱ።
+- [የፕሮጀክት ሰሌዳው](https://github.com/users/somethingwithproof/projects/10) በሁሉም ምዕራፎች ውስጥ ያሉትን ሁሉንም ጉዳዮች ያሳያል።
 
-## ማበርከት
+## አስተዋጽዖ ማድረግ
 
-[CONTRIBUTING.md](../../../CONTRIBUTING.md)ን ያንብቡ። Commitቶች የDCO sign-off ያስፈልጋቸዋል። የንድፍ ውይይት በጉዳዮች ላይ ይከናወናል፤ ክፍት ውሳኔዎች የ`type: decision` መለያን ይይዛሉ።
+[CONTRIBUTING.md](../../../CONTRIBUTING.md)ን ያንብቡ። Commitዎች የDCO ፊርማ (`git commit -s`) ያስፈልጋቸዋል። የንድፍ ውይይት በጉዳዮች ላይ ይካሄዳል፤ ክፍት ውሳኔዎች `type: decision` መለያ ይይዛሉ።
 
 ## ደህንነት
 
@@ -124,4 +189,4 @@ flowchart LR
 
 ## ፈቃድ
 
-GNU General Public License v2.0፣ ልክ እንደ Cacti እና ተሰኪዎቹ ተመሳሳይ ፈቃድ። [LICENSE](../../../LICENSE)ን ይመልከቱ።
+GNU General Public License v2.0፣ ከCacti እና ከተሰኪዎቹ ጋር ተመሳሳይ ፈቃድ። [LICENSE](../../../LICENSE)ን ይመልከቱ።

@@ -28,7 +28,12 @@ namespace Somethingwithproof\Hpcsched;
 final readonly class NodeRecord {
 	/**
 	 * @param list<string> $partitions
-	 * @param list<string> $flags base state and flags
+	 * @param list<string> $flags      base state and flags
+	 * @param int          $totalGpus  total GPUs configured on the node
+	 * @param int          $allocGpus  currently allocated GPUs on the node
+	 * @param int          $totalMemMib total real memory in MiB
+	 * @param int          $allocMemMib allocated memory in MiB
+	 * @param int          $freeMemMib  free memory in MiB
 	 */
 	public function __construct(
 		public string $name,
@@ -41,9 +46,19 @@ final readonly class NodeRecord {
 		public int $reasonChangedAt,
 		public int $cpus,
 		public int $allocCpus,
+		public int $totalGpus = 0,
+		public int $allocGpus = 0,
+		public int $totalMemMib = 0,
+		public int $allocMemMib = 0,
+		public int $freeMemMib = 0,
 	) {
 	}
 
+	/**
+	 * Drained.
+	 *
+	 * @return bool
+	 */
 	public function drained(): bool {
 		return NodeState::drained($this->flags);
 	}

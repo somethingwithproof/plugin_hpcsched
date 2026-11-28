@@ -25,6 +25,13 @@ namespace Somethingwithproof\Hpcsched;
  * (REQ-CRED-002).
  */
 final readonly class Token {
+	/**
+	 * Construct a new Token instance.
+	 *
+	 * @param Secret $secret
+	 * @param TokenState $state
+	 * @param int $expires
+	 */
 	public function __construct(
 		public Secret $secret,
 		public TokenState $state,

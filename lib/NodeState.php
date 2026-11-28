@@ -49,19 +49,64 @@ enum NodeState: string {
 	 *                            scontrol's State= text split on '+'
 	 */
 	public static function fromFlags(array $flags): self {
-		$set  = self::normalize($flags);
+		return self::fromNormalizedFlags(self::normalize($flags));
+	}
+
+	/**
+	 * Classify already-normalized uppercase node state flags without
+	 * re-running normalize().
+	 *
+	 * @param list<string> $set normalized uppercase base state and flags
+	 *
+	 * @return self
+	 */
+	public static function fromNormalizedFlags(array $set): self {
 		$base = $set[0] ?? '';
 
-		return match (true) {
-			$base === 'DOWN'                                    => self::Down,
-			self::has($set, 'MAINTENANCE', 'MAINT')             => self::Maintenance,
-			self::has($set, 'DRAIN', 'FAIL')                    => in_array($base, ['ALLOCATED', 'MIXED'], true) || self::has($set, 'COMPLETING') ? self::Draining : self::Drained,
-			self::has($set, 'POWERED_DOWN')                     => self::PoweredDown,
-			$base === 'IDLE' && self::has($set, 'RESERVED', 'RES') => self::Reserved,
-			$base === 'IDLE'                                    => self::Idle,
-			$base === 'ALLOCATED'                               => self::Allocated,
-			$base === 'MIXED'                                   => self::Mixed,
-			default                                             => self::Other,
+		if ($base === 'DOWN') {
+			return self::Down;
+		}
+
+		$hasMaint      = false;
+		$hasDrain      = false;
+		$hasCompleting = false;
+		$hasPowerDown  = false;
+		$hasReserved   = false;
+
+		foreach ($set as $flag) {
+			if ($flag === 'MAINTENANCE' || $flag === 'MAINT') {
+				$hasMaint = true;
+			} elseif ($flag === 'DRAIN' || $flag === 'FAIL') {
+				$hasDrain = true;
+			} elseif ($flag === 'COMPLETING') {
+				$hasCompleting = true;
+			} elseif ($flag === 'POWERED_DOWN') {
+				$hasPowerDown = true;
+			} elseif ($flag === 'RESERVED' || $flag === 'RES') {
+				$hasReserved = true;
+			}
+		}
+
+		if ($hasMaint) {
+			return self::Maintenance;
+		}
+
+		if ($hasDrain) {
+			return ($base === 'ALLOCATED' || $base === 'MIXED' || $hasCompleting) ? self::Draining : self::Drained;
+		}
+
+		if ($hasPowerDown) {
+			return self::PoweredDown;
+		}
+
+		if ($base === 'IDLE') {
+			return $hasReserved ? self::Reserved : self::Idle;
+		}
+
+		return match ($base) {
+			'ALLOCATED' => self::Allocated,
+			'MIXED'     => self::Mixed,
+			default     => self::Other,
 		};
 	}
 
@@ -72,7 +117,13 @@ enum NodeState: string {
 	 * @param list<string> $flags
 	 */
 	public static function drained(array $flags): bool {
-		return self::has(self::normalize($flags), 'DRAIN');
+		foreach (self::normalize($flags) as $flag) {
+			if ($flag === 'DRAIN') {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -96,6 +147,11 @@ enum NodeState: string {
 		return $out;
 	}
 
+	/**
+	 * Label.
+	 *
+	 * @return string
+	 */
 	public function label(): string {
 		return match ($this) {
 			self::Idle        => __('Idle', 'hpcsched'),
@@ -109,12 +165,5 @@ enum NodeState: string {
 			self::PoweredDown => __('Powered down', 'hpcsched'),
 			self::Other       => __('Other', 'hpcsched'),
 		};
-	}
-
-	/**
-	 * @param list<string> $set
-	 */
-	private static function has(array $set, string ...$names): bool {
-		return array_intersect($set, $names) !== [];
 	}
 }

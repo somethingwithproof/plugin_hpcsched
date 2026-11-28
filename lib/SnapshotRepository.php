@@ -32,11 +32,27 @@ namespace Somethingwithproof\Hpcsched;
  * written, and the interval it was collected on (REQ-STATE-004).
  */
 final class SnapshotRepository {
+	/** Batch constant for SnapshotRepository. */
 	private const BATCH = 500;
 
+	/**
+	 * Construct a new SnapshotRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 
+	/**
+	 * Apply.
+	 *
+	 * @param int $clusterId
+	 * @param string $holder
+	 * @param int $now
+	 * @param int $interval
+	 * @param Snapshot $snapshot
+	 * @return bool
+	 */
 	public function apply(int $clusterId, string $holder, int $now, int $interval, Snapshot $snapshot): bool {
 		if (!db_begin_transaction($this->connection)) {
 			return false;

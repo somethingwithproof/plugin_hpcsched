@@ -24,6 +24,12 @@ namespace Somethingwithproof\Hpcsched;
  * check that failed; it never holds file contents or token material.
  */
 final class CredentialError extends \RuntimeException {
+	/**
+	 * Construct a new CredentialError instance.
+	 *
+	 * @param TokenState $state
+	 * @param string $reason
+	 */
 	public function __construct(public readonly TokenState $state, string $reason) {
 		parent::__construct($reason);
 	}

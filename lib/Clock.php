@@ -24,5 +24,10 @@ namespace Somethingwithproof\Hpcsched;
  * (REQ-CODE-005). Durations and deadlines inside one run use microtime().
  */
 interface Clock {
+	/**
+	 * Now.
+	 *
+	 * @return int
+	 */
 	public function now(): int;
 }

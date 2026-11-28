@@ -43,10 +43,10 @@ final class HealthWarnings {
 	/**
 	 * @return list<string>
 	 */
-	public static function for(Cluster $cluster, ?ClusterRun $run, Freshness $freshness, Settings $settings, int $pollerInterval, int $now): array {
+	public static function for(Cluster $cluster, ?ClusterRun $run, Freshness $freshness, Settings $settings, int $pollerInterval, int $now, bool $remoteEnabled = true): array {
 		$out = [];
 
-		if ($cluster->pollerId !== 1) {
+		if (!$remoteEnabled && $cluster->pollerId !== 1) {
 			$out[] = __('Assigned to poller %d, a remote data collector. This release collects only on the main poller, so the cluster is not collected; remote collection is planned for phase 3. Assign it to the main poller.', $cluster->pollerId, 'hpcsched');
 		}
 
@@ -111,6 +111,12 @@ final class HealthWarnings {
 		return $out;
 	}
 
+	/**
+	 * Host.
+	 *
+	 * @param string $url
+	 * @return string
+	 */
 	private static function host(string $url): string {
 		$host = parse_url($url, PHP_URL_HOST);
 

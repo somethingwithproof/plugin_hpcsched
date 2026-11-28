@@ -43,10 +43,22 @@ final class SlurmBackend implements Backend {
 	) {
 	}
 
+	/**
+	 * Name.
+	 *
+	 * @return string
+	 */
 	public function name(): string {
 		return 'slurm';
 	}
 
+	/**
+	 * Collect.
+	 *
+	 * @param Cluster $cluster
+	 * @param float $deadline
+	 * @return Snapshot
+	 */
 	public function collect(Cluster $cluster, float $deadline): Snapshot {
 		$started  = $this->clock->now();
 		$outcomes = [];

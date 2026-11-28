@@ -26,8 +26,16 @@ namespace Somethingwithproof\Hpcsched;
  * ago, because each run starts a little after its poller cycle.
  */
 final class Scheduler {
+	/** Due slack constant for Scheduler. */
 	public const DUE_SLACK = 30;
 
+	/**
+	 * Construct a new Scheduler instance.
+	 *
+	 * @param ClusterRepository $clusters
+	 * @param RunRepository $runs
+	 * @param Clock $clock
+	 */
 	public function __construct(
 		private readonly ClusterRepository $clusters,
 		private readonly RunRepository $runs,
@@ -35,6 +43,12 @@ final class Scheduler {
 	) {
 	}
 
+	/**
+	 * Due after.
+	 *
+	 * @param int $interval
+	 * @return int
+	 */
 	public static function dueAfter(int $interval): int {
 		return $interval - min(self::DUE_SLACK, intdiv($interval, 10));
 	}

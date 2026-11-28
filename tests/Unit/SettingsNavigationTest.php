@@ -54,7 +54,7 @@ PHP;
 	$fixture = $scratch->file('settings.php', str_replace('SETUP_PATH', $setup, $script));
 
 	try {
-		$process = proc_open([$cgi, '-q', $fixture], [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes, null, ['REDIRECT_STATUS' => '200', 'SCRIPT_FILENAME' => $fixture, 'REQUEST_METHOD' => 'GET']);
+		$process = proc_open([$cgi, '-n', '-q', $fixture], [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes, null, ['REDIRECT_STATUS' => '200', 'SCRIPT_FILENAME' => $fixture, 'REQUEST_METHOD' => 'GET']);
 		expect(is_resource($process))->toBeTrue();
 		$output = stream_get_contents($pipes[1]);
 		$error = stream_get_contents($pipes[2]);

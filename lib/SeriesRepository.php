@@ -26,6 +26,11 @@ namespace Somethingwithproof\Hpcsched;
  * snapshot tables are read (REQ-OBJ-005).
  */
 final class SeriesRepository {
+	/**
+	 * Construct a new SeriesRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 

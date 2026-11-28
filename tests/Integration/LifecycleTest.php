@@ -26,8 +26,10 @@ define('HPCSCHED_VERSION', (string) (parse_ini_file(dirname(__DIR__, 2) . '/INFO
 const HPCSCHED_TABLES = [
 	'plugin_hpcsched_cluster',
 	'plugin_hpcsched_job_count',
+	'plugin_hpcsched_maint_link',
 	'plugin_hpcsched_node',
 	'plugin_hpcsched_node_count',
+	'plugin_hpcsched_node_map',
 	'plugin_hpcsched_partition',
 	'plugin_hpcsched_reservation',
 	'plugin_hpcsched_run',
@@ -35,7 +37,7 @@ const HPCSCHED_TABLES = [
 	'plugin_hpcsched_share',
 ];
 
-const HPCSCHED_HOOKS = ['auth_alternate_realms', 'config_arrays', 'config_settings', 'device_remove', 'draw_navigation_text', 'poller_bottom'];
+const HPCSCHED_HOOKS = ['abilities_register', 'api_register_resources', 'auth_alternate_realms', 'casc_register_providers', 'config_arrays', 'config_settings', 'device_remove', 'doctor_register_checks', 'doctor_register_debug_info', 'draw_navigation_text', 'poller_bottom', 'replicate_out'];
 
 const HPCSCHED_T = 1800000000;
 
@@ -52,7 +54,7 @@ it('installs fresh with tracked tables, hooks, and three realms, leaving the plu
 
 	expect($state['plugin']['status'])->toEqual('4')
 		->and($state['plugin']['version'])->toEqual(HPCSCHED_VERSION)
-		->and($state['schema'])->toEqual('2')
+		->and($state['schema'])->toEqual('3')
 		->and(array_keys($state['tables']))->toBe(HPCSCHED_TABLES)
 		->and($state['tracked'])->toBe(HPCSCHED_TABLES)
 		->and(array_keys($state['hooks']))->toBe(HPCSCHED_HOOKS)
@@ -124,7 +126,7 @@ it('finishes an upgrade that was interrupted after creating only some tables', f
 	expect($state['result'])->toBeTrue()
 		->and(array_keys($state['tables']))->toBe(HPCSCHED_TABLES)
 		->and($state['tables']['plugin_hpcsched_cluster'])->toBe(1)
-		->and($state['schema'])->toEqual('2')
+		->and($state['schema'])->toEqual('3')
 		->and($state['plugin']['version'])->toEqual(HPCSCHED_VERSION);
 });
 
@@ -136,7 +138,7 @@ it('does not advance past a migration that did not run', function () {
 	expect($stopped['result'])->toBeTrue()
 		->and($stopped['schema'])->toEqual('0');
 
-	expect(lifecycle('upgrade')['schema'])->toEqual('2');
+	expect(lifecycle('upgrade')['schema'])->toEqual('3');
 });
 
 it('upgrades a schema 1 install, adding the device column and the node counts, keeping its clusters', function () {
@@ -151,11 +153,39 @@ it('upgrades a schema 1 install, adding the device column and the node counts, k
 	$state = lifecycle('upgrade');
 
 	expect($state['result'])->toBeTrue()
-		->and($state['schema'])->toEqual('2')
+		->and($state['schema'])->toEqual('3')
 		->and(array_keys($state['tables']))->toBe(HPCSCHED_TABLES)
 		->and($state['tracked'])->toBe(HPCSCHED_TABLES)
 		->and($state['tables']['plugin_hpcsched_cluster'])->toBe(1)
 		->and($state['columns'])->toContain('host_id');
+});
+
+it('upgrades a schema 2 (main) install to schema 3 idempotently, keeping clusters', function () {
+	lifecycle('install');
+	lifecycle('seed');
+	lifecycle('make_schema_2');
+	lifecycle('set_schema', '2');
+	lifecycle('set_version', '0.1.0');
+
+	$before = lifecycle('state');
+	expect(array_keys($before['tables']))->not->toContain('plugin_hpcsched_node_map')
+		->and(array_keys($before['tables']))->not->toContain('plugin_hpcsched_maint_link');
+
+	$first = lifecycle('upgrade');
+	expect($first['result'])->toBeTrue()
+		->and($first['schema'])->toEqual('3')
+		->and($first['plugin']['version'])->toEqual(HPCSCHED_VERSION)
+		->and(array_keys($first['tables']))->toBe(HPCSCHED_TABLES)
+		->and($first['tracked'])->toBe(HPCSCHED_TABLES)
+		->and(array_keys($first['hooks']))->toBe(HPCSCHED_HOOKS)
+		->and($first['tables']['plugin_hpcsched_cluster'])->toBe(1);
+
+	$second = lifecycle('upgrade');
+	expect($second['result'])->toBeTrue()
+		->and($second['schema'])->toEqual('3')
+		->and($second['tables']['plugin_hpcsched_cluster'])->toBe(1)
+		->and($second['tracked'])->toBe(HPCSCHED_TABLES)
+		->and($second['hooks'])->toBe($first['hooks']);
 });
 
 it('imports the templates and the query file on install, and a reinstall creates no Cacti object (REQ-OBJ-001)', function () {

@@ -29,8 +29,15 @@ namespace Somethingwithproof\Hpcsched;
  * scheduler becomes a counter key.
  */
 final class Reasons {
+	/** Unrecognized constant for Reasons. */
 	public const UNRECOGNIZED = '(unrecognized)';
 
+	/**
+	 * Name.
+	 *
+	 * @param string $reason
+	 * @return string
+	 */
 	public static function name(string $reason): string {
 		$reason = trim($reason);
 

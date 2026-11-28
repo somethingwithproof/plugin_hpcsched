@@ -28,6 +28,11 @@ namespace Somethingwithproof\Hpcsched;
  * Neither has a call that changes the scheduler.
  */
 interface SlurmTransport {
+	/**
+	 * Transport.
+	 *
+	 * @return Transport
+	 */
 	public function transport(): Transport;
 
 	/**

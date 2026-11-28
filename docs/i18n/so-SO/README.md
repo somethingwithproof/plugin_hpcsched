@@ -1,50 +1,52 @@
-<!-- Source: README.md; SHA256: 16caa3e34c4d150a7fb1018f637e200a7580330f033b485047d8413bce09abba -->
+<!-- Source: README.md; SHA256: 938114d41dbd516f9dfcd94619c4fc73ef56b4da1dd693010588a93cce250534 -->
 
 <!-- translations:start -->
-[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
+[English](../../../README.md) | [简体中文](../zh-CN/README.md) | [हिन्दी](../hi-IN/README.md) | [Español (España)](../es-ES/README.md) | [Español (Latinoamérica)](../es-419/README.md) | [العربية (السعودية)](../ar-SA/README.md) | [Afrikaans](../af-ZA/README.md) | [አማርኛ](../am-ET/README.md) | [العربية (مصر)](../ar-EG/README.md) | [العربية (المغرب)](../ar-MA/README.md) | [Български](../bg-BG/README.md) | [বাংলা](../bn-BD/README.md) | [Bosanski](../bs-BA/README.md) | [Deutsch](../de-DE/README.md) | [Ελληνικά](../el-GR/README.md) | [فارسی](../fa-IR/README.md) | [Filipino](../fil-PH/README.md) | [Français](../fr-FR/README.md) | [Français (Maroc)](../fr-MA/README.md) | [Français (Sénégal)](../fr-SN/README.md) | [Hausa](../ha-NG/README.md) | [עברית](../he-IL/README.md) | [Hrvatski](../hr-HR/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Igbo](../ig-NG/README.md) | [Italiano](../it-IT/README.md) | [日本語](../ja-JP/README.md) | [ქართული](../ka-GE/README.md) | [한국어](../ko-KR/README.md) | [Latviešu](../lv-LV/README.md) | [Malagasy](../mg-MG/README.md) | [मराठी](../mr-IN/README.md) | [Bahasa Melayu](../ms-MY/README.md) | [Nederlands](../nl-NL/README.md) | [Polski](../pl-PL/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Português (Portugal)](../pt-PT/README.md) | [Русский](../ru-RU/README.md) | [Kinyarwanda](../rw-RW/README.md) | [Soomaali](README.md) | [Српски](../sr-RS/README.md) | [Svenska](../sv-SE/README.md) | [Kiswahili](../sw-KE/README.md) | [தமிழ்](../ta-IN/README.md) | [తెలుగు](../te-IN/README.md) | [ไทย](../th-TH/README.md) | [Türkçe](../tr-TR/README.md) | [Українська](../uk-UA/README.md) | [اردو](../ur-PK/README.md) | [Tiếng Việt](../vi-VN/README.md) | [isiXhosa](../xh-ZA/README.md) | [Yorùbá](../yo-NG/README.md) | [繁體中文](../zh-TW/README.md) | [isiZulu](../zu-ZA/README.md)
 <!-- translations:end -->
 
 # plugin_hpcsched
 
-Kordhin (plugin) loogu talagalay Cacti 1.2 oo sawir-giraaf ku muujisa xaaladda jadwaleeyaha hawlaha HPC iyadoo barbar socota qalabka uu Cacti horey u kormeero: qoto-dheeraanta safka (queue depth), shaqooyinka sugaya iyo kuwa socda, sababta ay shaqooyinku u sugayaan, xaaladaha noodhadhka (node states), iyo isticmaalka qaybaha (partition utilization). Slurm waa habka dambe (backend) ee ugu horreeya. Thold waxay digniino ka soo saartaa ilaha xogta ee ka dhasha, Maint-na waxaa lagu hagi karaa noodhadhka la faarujiyay (drained nodes) iyo boos-celinta dayactirka.
+Kordhin (plugin) loogu talagalay Cacti 1.2 (`hpcsched`, nooca `0.1.0-dev`) oo sawir-giraaf ku muujisa xaaladda jadwaleeyaha hawlaha HPC iyadoo barbar socota qalabka uu Cacti horey u kormeero: qoto-dheeraanta safka, shaqooyinka sugaya iyo kuwa socda, sababta ay shaqooyinku u sugayaan, xaaladaha noodhadhka, isticmaalka qaybaha, iyo isticmaalka wadaagga caddaaladda ah (fair-share) ee heerka koontada. Slurm waa habka dambe (backend) ee la hirgeliyay. Thold waxay digniino ka soo saartaa ilaha xogta ee ka dhasha, isku-dubaridaha Maint ee ikhtiyaariga ah (opt-in) wuxuuna wadaa daaqadaha Cacti Maint ee ka yimaada noodhadhka xisaabinta Slurm ee la faarujiyay (drained), kuwa damay (down), iyo kuwa loo qoondeeyay dayactirka.
 
-> **Xaaladda: waa la horumarinayaa, weli lama sii deyn.** Marxaladda 2 (aasaaska) waxaa lagu daray laanta `main`, laantanna waxay ku daraysaa marxaladda 3 (giraafyada koox-kombuyuutarrada iyo sababaha sugitaanka). Koodhku wuxuu ku rakibmaa, ku cusboonaysiismaa, kuna tirtirmaa iyada oo loo marayo plugin API-ga Cacti, wuuna diidaa PHP ka hooseeya 8.2. Wuxuu hayaa diiwaanka koox-kombuyuutarrada (clusters) Slurm, oo mid walba loo qoondeeyay hal Cacti poller. Akhriye gadaal ka shaqeeya (background reader) oo ku jira poller-ka weyn ayaa soo ururiya hal sawir xog (snapshot) kooxkiiba muddo-wareeg kasta, isagoo adeegsanaya `squeue`, `scontrol`, iyo `sshare` oo wata `--json` ama ka akhrinaya `slurmrestd` iyadoo la marayo HTTPS, wuxuuna kaydiyaa tirada shaqooyinka iyadoo loo eegayo xaaladda iyo sababta sugitaanka, xaaladaha noodhadhka, qaybaha (partitions), boos-celinta, iyo isticmaalka wadaagga caddaaladda ah (fair-share) oo ay la socoto cusboonaantooda. Kordhintu waxay la timaaddaa qaababka (templates) Cacti, iyadoo marka maamuluhu xaqiijiyo, abuurta ama ku xidha hal qalab Cacti ah kooxkiiba oo leh giraafyada shaqooyinka xaaladooda, shaqooyinka sugaya koox-sababeedkooda, noodhadhka xaaladooda, CPU-yada, iyo isticmaalka, kooxda oo dhan iyo qayb kastaaba, oo ay u dheer tahay da'da sawirka xogta. Bog guud oo akhris-kaliya ah ayaa muujinaya tirada kooxkiiba iyo cusboonaantooda iyo aragtida sababaha sugitaanka kooxkiiba, bogga caafimaadka oo maamulka keliya u gaar ahna wuxuu muujinayaa waxa ururin kastaa soo celisay iyo haddii qaababku rakiban yihiin. Bog kasta iyo fal kasta wuxuu raacaa ogolaanshaha qalabka ee Cacti. Ilaha xogtu waa kuwo Thold ay digniin ka soo saari karto, laakiin weli lama tijaabin wax is-dhexgal ah oo Thold ama Maint ah; taasi waa marxaladda 4 iyo wixii ka dambeeya. Qaybta tijaabadu waxay dabooshaa amarada Slurm ee macmalka ah iyo jawaabaha `slurmrestd`, sidoo kale CI waxay ku tijaabisaa koox Slurm ah oo dhab ah oo ka kooban lix noodh oo ku jira weelal (containers) sida hoos lagu sharaxay. Akhriyuhu weli kuma shaqeyn koox wax-soo-saar ah (production cluster). Qoraallada hawlwadeenka ka hooseeya, README-gan wuxuu sharaxayaa naqshadda, ma aha dhaqanka la sii daayay.
+> **Xaaladda: waa la horumarinayaa, weli lama sii deyn.** Laantani waxay hirgelisaa aasaaska kordhinta, giraafyada koox-kombuyuutarrada iyo qaybaha, qoysaska sababaha sugitaanka, isku-aadinta noodhadhka xisaabinta Slurm iyo qalabka Cacti, isku-dubaridka daaqadda Cacti Maint ee ikhtiyaariga ah, soo koobista wadaagga caddaaladda ah ee heerka koontada, fulinta iyo nuqulaynta ururiyaha xogta fog, CLI-ga Configuration-as-Code (CasC) iyo hawlgallada, iyo jillaabyada nidaamka deegaanka Cacti (CasC, Doctor, iyo MCP / Abilities API v2). Qaybta tijaabadu waxay dabooshaa amarada Slurm ee macmalka ah iyo jawaabaha `slurmrestd`, CI-na waxay ku tijaabisaa koox Slurm ah oo dhab ah oo ka kooban lix noodh oo ku jira weelal (containers). Akhriyuhu weli kuma shaqeyn koox wax-soo-saar ah, tijaabada dib-u-ciyaarista Thold ee dhammaad-ka-dhammaadna weli kuma jirto CI.
 
 Kani waa mashruuc madax-bannaan mana la xidhiidho mashruuca Cacti.
+
+## Waxa la hirgeliyay
+
+- **Wareegga nolosha iyo qaab-dhismeedka xogta (v3)**: rakibid, cusboonaysiin aan wax ka beddelin natiijada (idempotent), tirtirid (iyadoo si caadi ah loo hayo jadwallada kordhinta), iyo shardi PHP 8.2 ah iyadoo meelaha laga soo galo lagu hayo kuwo lagu akhrin karo PHP 8.0. Qaabka v3 wuxuu ku daraa `plugin_hpcsched_node_map` iyo `plugin_hpcsched_maint_link` oo la socda jadwallada kooxda, orodka, qaybta, tirada shaqooyinka, tirada noodhadhka, noodhka, qaybinta (partition), boos-celinta, iyo wadaagga.
+- **Ururinta Slurm ee akhris-kaliya ee ku jirta poller-ka weyn iyo kuwa fog**: `poller_bottom` wuxuu gadaal ka bilaabaa `poller_hpcsched.php --cluster=N` poller kasta (`poller_id`) kooxaha shaqaynaya ee loo qoondeeyay. Orod kasta wuxuu soo ururiyaa hal sawir xog oo kaydsan kooxkiiba iyadoo loo marayo amarada macmiilka (`squeue`, `scontrol`, `sshare` oo wata `--json`) ama `slurmrestd` iyadoo la marayo HTTPS (loopback HTTP waa la oggol yahay iyadoo la siinayo digniin caafimaad). `INFO` waxay caddeysaa `remote_collect:1, remote_poller:1`, `replicate_out`-na wuxuu u nuqulaysaa qeexitaannada `plugin_hpcsched_cluster` ee aan sirta ahayn ururiyayaasha fog (`poller_id >= 2`); waxa ku jira faylasha token-ka weligood lama akhriyo lamana nuqulayo.
+- **Qaababka Cacti iyo giraafyada koox-kombuyuutarrada**: waxay keentaa qaababka qalabka, xogta, iyo giraafyada (`templates/hpcsched-templates.xml`) iyo weydiinta xogta script-server ee qaybaha (`scripts/ss_hpcsched_cluster.php`, `scripts/ss_hpcsched_partitions.php`). Marka maamuluhu xaqiijiyo, waxay abuurtaa ama ku xidhaa hal qalab Cacti ah kooxkiiba oo leh giraafyada shaqooyinka xaaladooda, shaqooyinka sugaya koox-sababeedkooda, noodhadhka xaaladooda, CPU-yada, isticmaalka (kooxda iyo qayb kasta), iyo da'da sawirka xogta.
+- **Isku-aadinta noodhadhka Slurm iyo qalabka iyo isku-dubaridka Cacti Maint**: isku-aadinta afar-heer ah oo waqti toosan qaadata (`NodeMatcher`) waxay noodhadhka xisaabinta Slurm ku xidhaa diiwaannada `host` ee Cacti ee jira (magaca host-ka oo sax ah, ciwaanka oo sax ah, sharraxaadda/magaca kale oo sax ah, ama summadda DNS ee ugu horreysa ee magacyada aan IP ahayn) waxayna u calaamadeysaa isku-aadisyada badan ama sheegashooyinka qalabka oo labanlaabma `ambiguous` halkii ay ka qiyaasi lahayd. `HostList::expand()` waxay ballaarisaa liisaska host-ka ee boos-celinta Slurm (ilaa 10,000 noodh). `MaintSynchronizer` waxay abuurtaa, cusboonaysiisaa, oo ka saartaa jadwallada hal-mar ah ee Cacti Maint ee ay leedahay kordhintu kuna dabagasho `plugin_hpcsched_maint_link` noodhadhka ku xidhan ee ku jira `DRAIN`, `DRAINING`, `DOWN`, ama boos-celinta firfircoon ee `MAINT`/`MAINTENANCE` iyadoon wax ka beddelin jadwallada Maint ee ay abuureen maamulayaashu.
+- **Soo koobista wadaagga caddaaladda ah (fair-share) ee heerka koontada**: marka `collect_shares` la furo, waxay ku ururisaa safafka xidhiidhka koontada Slurm gudaha `plugin_hpcsched_share` (iyadoo laga tuurayo safafka isticmaalaha sida ku cad [ADR 0010](../../decisions/0010-bound-series-cardinality.md)). `ShareSummary` iyo `ShareRepository` waxay xisaabiyaan tirada koontooyinka/qaybaha, wadarta isticmaalka ceyriinka ah iyo kan wax ku oolka ah, qodobada fair-share ee ugu yar/ugu badan/celceliska ah, iyo koontooyinka ugu sarreeya; tirada koontooyinka waxaa lagu soo bandhigaa `hpcsched-get-queue-summary`.
+- **CasC iyo CLI-ga hawlgallada (`cli/hpcsched.php`)**: dhoofinta qaabeynta YAML/XML, hubinta, qorsheynta farqiga dry-run, ku-dhaqanka ku xiran xaqiijinta, soo-saarka caafimaadka ee habaysan, iyo isku-dubaridka Maint ee ikhtiyaariga ah (`sync-maint --dry-run` / `--apply`).
+- **Jillaabyada nidaamka deegaanka (`setup.php`)**: `casc_register_providers`, `doctor_register_checks`, iyo `abilities_register`.
 
 ## Doorarka gelitaanka
 
 | Goobta (Realm) | Gelitaanka |
 | --- | --- |
-| HPC Scheduler View | Boggaga kormeerka ee jira. |
-| HPC Scheduler Operator | Kormeerka oo lagu daray bogga Hawlgallada (Operations) iyo qirashada kala-soocidda shakhsi ahaaneed. |
-| HPC Scheduler Admin | Gelitaanka Hawlwadeenka oo lagu daray qaabaynta jirta iyo tallaabooyinka maamulka. |
+| HPC Scheduler View | Guudmar kooxeed akhris-kaliya ah iyo sababaha sugitaanka (`hpcsched.php`). |
+| HPC Scheduler Operator | Gelitaanka View oo lagu daray bogga Operations (`hpcsched_operator.php`) iyo qirashada kala-soocidda shakhsi ahaaneed. |
+| HPC Scheduler Admin | Gelitaanka Operator oo lagu daray maamulka kooxaha (`hpcsched_clusters.php`) iyo bogga caafimaadka (`hpcsched_health.php`). |
 
-Marka aad koobiyeyso faylasha cusboonaysiinta, u fur bogga Plugins adigoo ah maamule si aad u diiwaangeliso
-goobta (realm) cusub. Si cad ugu qoondee goobta Operator hoosta **Configuration > Users** ama kooxaha isticmaalayaasha.
-Cusboonaysiintu waxay ilaalisaa aqoonsiyada (IDs) iyo deeqaha View iyo Admin ee jira. Gelitaanka Admin
-wuxuu dhaxlaa gelitaanka Operator, gelitaanka Operator-na wuxuu dhaxlaa gelitaanka View codsi kasta;
-tani kuma kordhiso deeqo kaydsan isticmaalayaasha ama kooxaha. Dejinta kordhintu waxay sidoo kale u baahan tahay
-gelitaanka HPC Scheduler Admin marka lagu daro ogolaanshaha Settings ee Cacti.
+Marka aad koobiyeyso faylasha cusboonaysiinta ka dib, fur bogga Plugins adigoo ah maamule si aad u diiwaangeliso goobaha cusub iyo jillaabyada. Si cad ugu qoondee goobta Operator hoosta **Configuration > Users** ama kooxaha isticmaalayaasha. Cusboonaysiintu waxay xajisaa aqoonsiyada iyo oggolaanshooyinka jira ee goobaha View iyo Admin. Gelitaanka Admin wuxuu dhaxlaa gelitaanka Operator, gelitaanka Operator-na wuxuu dhaxlaa gelitaanka View codsi kasta; tani kuma darto oggolaansho keydsan isticmaalayaasha ama kooxaha. Dejinta kordhintu waxay sidoo kale u baahan tahay gelitaanka HPC Scheduler Admin marka lagu daro oggolaanshaha Settings ee Cacti.
 
-Ogolaanshaha qalabka Cacti weli waxay xaddidaan safafka iyo tallaabooyinka u furan isticmaale kasta; koox aan qalab lahayn waxaa lagu taxaa boggaga maamulka isticmaale kasta oo leh goobta kordhinta, laakiin laguma taxo aragtiyaha hawlwadeenka, kuwaas oo taxaya oo keliya kooxaha ku xidhan qalab.
-Aqoonsiyada sirta ah, qaabaynta, isku-xidhka, tirtiridda iyo isbeddellada kale ee maamulka
-waxay ku sii jiraan boggaga maamulka. Qirashooyinku (Acknowledgments) waxay shaqeeyaan oo keliya fadhiga (session)
-hadda ee isticmaalaha, ugu badnaan hal saac iyo oo keliya inta isla indho-indheyntu ay
-cusub tahay. Indho-indheyn cusub ama isbeddeshay way burisaa. Weligood cabbir fashilmay
-kama dhigaan mid caafimaad qaba mana joojiyaan digniinaha.
+Oggolaanshaha qalabka ee Cacti wuxuu xaddidaa safafka iyo falalka uu isticmaale kasta heli karo. Koox ku xidhan qalab Cacti ah waxaa loo muujiyaa, loo dhoofiyaa, loona beddelaa oo keliya isticmaalayaasha uu Cacti u oggol yahay qalabkaas; ku xidhista qalab waxay sidoo kale u baahan tahay oggolaanshaha qalabka la beegsanayo. Koox aan qalab lahayn waxaa lagu taxaa boggaga maamulka ee isticmaalayaasha leh goobta kordhinta, laakiin kuma jirto aragtida hawlwadeenka, taas oo taxda oo keliya kooxaha ku xidhan qalab. Koox qalabkeedii ku xidhnaa la tirtiray iyadoo kordhintu damisan tahay waxaa la tusaa oo keliya isticmaalayaasha leh gelitaanka HPC Scheduler Admin. Qirashadu waxay jirtaa oo keliya fadhiga hadda jira ee isticmaalaha, ugu badnaan hal saac iyo oo keliya inta isla aragtidaasi ay weli cusub tahay. Aragtiyaha cusub ama isbeddelay way buriyaan. Weligood cabbir fashilmay uma calaamadeeyaan mid caafimaad qaba kamana hor istaagaan digniinaha.
 
-## Qoraallada hawlwadeenka ee marxaladda 2
+## Qoraallada hawlwadeenka
 
-**Mudnaanta ugu yar (Least privilege).** Kordhintu way akhrisaa oo keliya. Sii isticmaale Slurm oo gooni ah oo aan lahayn door maamule ama hawlwadeen (`AdminLevel=None` gudaha `sacctmgr`). Marka `PrivateData=jobs` (ama `nodes`, `reservations`, `usage`) ay ku jirto `slurm.conf`, isticmaalahaasi wuxuu arkaa diiwaannadiisa oo keliya, sidaas darteed tiradu ma dhammaan kordhintuna ma ogaan karto. Ka qaadista xaddidaaddaas akoonka waxay ka dhigan tahay heer hawlwadeen ama maamule, taasoo sidoo kale ogolaanaysa isbeddello; go'aanka is-dhaafsigaas waxaa iska leh goobta (site). Amarada macmiilka, isticmaalaha Cacti poller wuxuu u baahan yahay faylasha fulinta ee macmiilka Slurm iyo `slurm.conf` gaadha kantaroolaha; waddooyinka faylasha fulintu waa dejimo buuxa oo ku jira Configuration > Settings > HPC Scheduler. Wixii `slurmrestd` ah, URL-ku waa inuu noqdaa `https://`, ama `http://` oo ku jira cinwaanka loopback oo keliya. Shahaadooyinka TLS waa la xaqiijiyaa, dib-u-jihaynta (redirects) lamana raaco. Liis ikhtiyaari ah oo martigeliyeyaasha slurmrestd ah oo ku jira Configuration > Settings > HPC Scheduler ayaa xaddidaya martigeliyeyaasha iyo dekedaha (ports) ay kooxi magacaabi karto.
+### Amniga, mudnaanta ugu yar, iyo faylasha token-ka
 
-**Poller-rada fog (Remote pollers).** Sii-deyntani waxay xogta ka soo ururisaa oo keliya Cacti poller-ka weyn. Koox loo qoondeeyay xog-ururiye fog lama ururiyo: akhriyaha halkaas jooga wuu diidaa isagoo sababta ku qoraya diiwaanka (log), bogga caafimaadkuna wuxuu magacaabaa kooxda. Ururinta fog waa wajiga 3.
+Kordhintu way akhrisaa oo keliya. Sii isticmaale Slurm oo gaar ah oo aan lahayn door maamule ama hawlwadeen (`AdminLevel=None` gudaha `sacctmgr`). Haddii `PrivateData=jobs` (ama `nodes`, `reservations`, `usage`) ay ku jirto `slurm.conf`, isticmaalahaasi wuxuu arkaa oo keliya diiwaannadiisa gaarka ah, markaas tirakoobku wuxuu noqdaa mid aan dhammaystirnayn kordhintuna ma ogaan karto. Ka qaadista xaddidaaddaas ee koontada waxay u baahan tahay heer hawlwadeen ama maamule, taas oo sidoo kale oggolaanaysa isbeddello; go'aanka isku-beddelkaas waxaa leh goobta.
 
-**Xusuusta (Memory).** Wareeg kasta oo ururin ah wuxuu fasiraa hal jawaab oo jadwaleeye ah marba, taasoo qaadata ilaa 12 jeer cabbirka jawaabta xusuusta PHP (waxaa lagu cabbiray ilaa 10 jeer diiwaannada shaqada ee u qaabaysan sida Slurm, oo lagu daray qoraalka laftiisa). Wareeggu wuxuu kor u qaadaa xadka xusuusta PHP ilaa dejinta Collection Memory (1024 MiB sida caadiga ah) wuxuuna ogolaadaa jawaabaha ilaa (Collection Memory - 64) / 12 MiB, 80 MiB sida caadiga ah, xitaa marka Maximum Answer Size loo dejiyo meel ka sarreysa; bogga caafimaadku wuu ka digaa marka ay sidaas tahay. Jawaab ka weyn waxay qaybteeda u fashilantaa inay aad u weyn tahay, wareegga ay weli xusuustu ka dhamaatona waxaa loo diiwaangeliyaa inuu fashilmay. Koox weyn waxay u baahan kartaa in labada dejinba kor loo qaado; 100,000 oo diiwaanno shaqo oo dhab ah lama cabbirin.
+Amarada macmiilka, isticmaalaha Cacti poller wuxuu u baahan yahay faylasha fulinta ee macmiilka Slurm (`squeue`, `scontrol`, iyo ikhtiyaar ahaan `sshare`) iyo `slurm.conf` gaara maamulaha (controller); waddooyinka faylasha fulintu waa dejin waddo buuxda oo hoos timaadda **Configuration > Settings > HPC Scheduler**.
 
-**Faylasha Token-ka.** Koox `slurmrestd` ah waxay magacawdaa fayl token; token-ka laftiisa weligiis laguma kaydiyo kaydka xogta, laguma muujiyo bog, lagumana qoro diiwaanka. Faylku waa inuu ku dhex jiraa mid ka mid ah galalka faylka token-ka ee lagu dejiyay Configuration > Settings > HPC Scheduler, iyadoo la gaadho iyada oo aan lahayn isku-xidh astaan ah (symbolic link), waana inuu noqdaa fayl caadi ah oo uu leeyahay isticmaalaha poller-ka oo isaga keliya uu wax ku qori karo, haystana hal sadar: token-ka, ama `SLURM_JWT=<token>` sida uu `scontrol token` u daabaco. Haddii aan la dejin galal token ah, kooxina ma isticmaali karto `slurmrestd`. Labadan dejin waxay ku yaalliin bogga Settings ee Cacti, sidaas darteed goobta Admin ee kordhinta keligeed ma beddeli karto; ku hay gal kasta oo token ah mid ay wax ku qori karaan root iyo isticmaalaha poller-ka oo keliya. Fayl ay kooxdu ama isticmaalayaasha kale akhrin karaan weli waa la isticmaalaa, bogga caafimaadkuna wuu ka digaa. Bogga caafimaadku wuxuu sidoo kale ka digaa marka token-ku dhacayo gudaha wakhtiga digniinta ee la habeeyay.
+`slurmrestd` awgeed, URL-ku waa inuu ahaadaa `https://`, ama `http://` oo ku yaalla ciwaanka loopback oo keliya. Shahaadooyinka TLS waa la hubiyaa dib-u-hagidana lama raaco. Liis ikhtiyaari ah oo ah host-yada `slurmrestd` oo hoos yimaada **Configuration > Settings > HPC Scheduler** wuxuu xaddidaa host-yada iyo dekedaha (ports) ay kooxdu magacaabi karto.
 
-Si aad u beddesho (rotate) token iyada oo aan la helin daqiiqad uu akhriyuhu ku arko fayl aan dhammaystirnayn, ku qor token-ka cusub kan hore agtiisa ka dibna magac-beddel ku gee booskiisa:
+Kooxda `slurmrestd` waxay magacawdaa fayl token ah; token-ka laftiisa weligiis laguma keydiyo kaydka xogta, laguma soo bandhigo bog, laguma dhoofiyo CasC, lagumana qoro diiwaanka (log). Faylku waa inuu ku dhex jiraa mid ka mid ah Token File Directories ee lagu habeeyay **Configuration > Settings > HPC Scheduler**, lagu gaari karaa iyadoon la marin xidhiidh astaameed (symbolic link), uuna yahay fayl caadi ah oo uu leeyahay isticmaalaha poller-ka oo isticmaalahaas oo keliya qori karo, kuna jiro hal sadar: token-ka ama `SLURM_JWT=<token>` sida uu daabaco `scontrol token`. Haddii aan la dejin wax galal token ah, kooxna ma isticmaali karto `slurmrestd`. Ku hay gal kasta oo token ah mid ay qori karaan root iyo isticmaalaha poller-ka oo keliya. Fayl ay kooxdu ama isticmaalayaal kale akhrin karaan weli waa la isticmaalaa, bogga caafimaadkuna wuxuu bixiyaa digniin; sidoo kale wuxuu bixiyaa digniin marka token-ku uu dhacayo muddada digniinta ee la habeeyay gudaheeda.
+
+Si aad token-ka u beddesho si aan kala go' lahayn (atomically):
 
 ```sh
 dir=/etc/cacti/hpcsched
@@ -55,83 +57,136 @@ chmod 0600 "$tmp"
 mv -f "$tmp" "$dir/cluster1.token"
 ```
 
-Ururinta xigta waxay akhridaa faylka cusub. Soo saarista token-nada iyadoo la adeegsanayo `scontrol token` waxay u baahan tahay maamule Slurm; ku orod meesha taas laga ogol yahay oo u koobiyee faylka poller-ka.
+Ururinta xigta waxay akhridaa faylka cusub. Soo saarista token-nada iyadoo la adeegsanayo `scontrol token` waxay u baahan tahay maamule Slurm ah; ku orod meesha laga oggol yahay oo u koobiyee faylka poller-ka.
 
-## Qoraallada hawlwadeenka ee marxaladda 3
+### Ururiyayaasha xogta fog
 
-**Qaababka (Templates).** Rakibidda iyo cusboonaysiintu waxay soo dejiyaan qaababka qalabka, xogta, iyo giraafka ee HPC Scheduler waxayna u koobiyeyaan waydiinta xogta qaybta (partition data query) galka `resource/script_server/` ee Cacti. Haddii galkaas uusan wax ku qori karin isticmaalaha rakibaya kordhinta, fayl kale oo isku magac ah uu horey halkaas u yaallo oo aanay kordhintu qorin, ama magacu uu yahay isku-xidh astaan ah, soo dejintu way istaagtaa, faylka waa la dhaafaa, bogga caafimaadkuna wuxuu sheegaa waxa la samaynayo; Install Templates oo ku jira bogga caafimaadka ayaa dib u isku daya. Koobi isku mid ah oo gacanta lagu sameeyay waa la isticmaalaa laakiin adiga ayuu kuu sii jiraa. Ka-saaristu waxay tirtirtaa faylka waydiinta oo keliya haddii kordhintu qortay oo aan wax laga beddelin, waxayna ilaalisaa qaababka, qalabka, iyo giraafyada.
+`INFO` waxay caddeysaa `remote_collect:1, remote_poller:1`. `hpcsched_poller_bottom()` waxay ka furtaa `poller_hpcsched.php` poller kasta kooxaha shaqaynaya ee loo qoondeeyay `poller_id`-gaas, `hpcsched_replicate_out()`-na waxay u nuqulaysaa safafka `plugin_hpcsched_cluster` ee aan sirta ahayn poller-rada fog (`poller_id >= 2`). Faylasha token-ka iyo faylasha fulinta ee macmiilka Slurm waa inay gudaha ku jiraan poller-ka fog ee loo qoondeeyay; waxa ku jira token-ka weligood lama nuqulayo.
 
-**Qalabka koox-kombuyuutarrada.** HPC Clusters > Device wuxuu muujiyaa waxa uu qalab ku dari doono (giraafyada, ilaha xogta, faylasha RRD, iyo wicitaannada script server ee wareeg kasta) ka hor inta aan waxba la abuurin. Create Device wuxuu sameeyaa qalab leh magac martigeliye oo ku jira domain-ka gaarka loo xidhay ee `.invalid` iyada oo aan la hubin helitaankiisa; Map Device taa beddelkeeda wuxuu ku xidhaa giraafyada qalab horey u jiray wuuna dhaafaa dejimihiisa. Giraaf kasta oo koox ah iyo giraaf kasta oo qayb ah wuxuu leeyahay il xogeed u gaar ah: lix kooxda ah iyo shan qaybtiiba, hal wicitaan oo script server ah il xogeed kasta oo koox ah iyo hal qiime kasta oo qayb ah (32) wareeg kasta. Qaybaha dambe lagu daro waa la tusmeeyaa marka akhriyuhu arko waxayna giraafyo ka helaan bogga New Graphs ee Cacti; qayb laga saaro way joojisaa in xogta laga ururiyo waxayna ilaalisaa giraafyadeeda. Tirtiridda qalabku waxay ka furtaa kooxda weyna ilaalisaa.
+### Xadka xusuusta (Memory limits)
 
-**Waxa giraafyadu tiriyaan.** Sugitaanku (Pending) kama mid aha shaqooyinka la hayo (held jobs), kuwaas oo leh taxanahooda u gaarka ah. Taxane sugaya (pending array) wuxuu tiriyaa hawlihiisa hadhay. Shaqo ama noodh ku jira dhowr qaybood wuxuu hal mar ku tirsamaa giraafyada kooxda iyo hal mar qayb kasta, sidaas darteed giraafyada qaybaha uma baahna inay isku daraan kan kooxda. Sababaha sugitaanka waxaa loo kooxeeyaa kow iyo toban qoys ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); aragtida sababaha sugitaanku waxay taxdaa sababaha ceeriin, oo ay ku jiraan kuwa ku jira Other. Shaqo kastaa waxay soo warisaa oo keliya sababtii u dambaysay ee jadwaleeyuhu baadhay. Qaybiyaha hoose ee isticmaalka (utilization denominator) waxaa ku jira noodhadhka la faarujiyay, kuwa hoos u dhacay (down), iyo kuwa kale ee aan la heli karin. Xogta duugowday ama fashilantay waa `U`, weligeed ma noqoto eber; `age` wuxuu sii ahaadaa tiro.
+Orod kasta oo ururin ah wuxuu furaa hal jawaab jadwaleeye ah halkii mar, taas oo ku qaadata qiyaastii 12 jibbaar cabbirka jawaabta xusuusta PHP (lagu cabbiray qiyaastii 10 jibbaar diiwaannada shaqooyinka ee u qaabaysan sida Slurm, oo lagu daray qoraalka laftiisa). Akhriyuhu wuxuu u kordhiyaa xadka xusuusta PHP dejinta Collection Memory (1024 MiB sida caadiga ah) wuxuuna oggolaadaa jawaabo ilaa `(Collection Memory - 64) / 12` MiB (80 MiB sida caadiga ah), xitaa marka Maximum Answer Size laga dhigo mid ka sarreeya; bogga caafimaadku wuxuu bixiyaa digniin marka Maximum Answer Size uu dhaafo xadkaas ku habboon. Jawaab ka weyn waxay fashilisaa qaybteeda iyadoo loo arko inay aad u weyn tahay, orod weli ay xusuustu ka dhammaatana wuxuu diiwaangeliyaa fashil xusuuseed wuxuuna sii daayaa kiradiisa iyo booskiisa hawlgalka iyada oo loo marayo maareeyaha xidhitaanka. Kooxaha waaweyn waxay u baahan karaan in labada dejinba la kordhiyo; 100,000 diiwaanno shaqo oo dhab ah weli lama cabbirin.
 
-**Digniinaha.** Thold waxay digniin ka soo saari kartaa mid kasta oo ka mid ah ilaha xogtan; u deji muddooyinka Thold ugu yaraan hal muddo-wareeg oo ururin ah, oo ka dig `age` si aad u qabato akhriye istaagay. Hubinta Thold ee bilow-ilaa-dhammaad waa marxaladda 4.
+### Qaababka, qalabka kooxda, iyo tirinta giraafyada
 
-**Lagu tijaabiyay wax-soo-saarka dhabta ah ee Slurm.** CI waxay ku bilowdaa koox Slurm ah oo lix noodh leh gudaha weelal (26.05.5 isbeddel kasta, 25.11.8 oo laga dhisay isha marka loo riixo `main`, toddobaadle, iyo marka la codsado) waxayna hubisaa xaaladaha noodhadhka, boos-celinta dayactirka, sababaha sugitaanka, iyo taxanayaasha (arrays) sida ay kordhintu u fasirto, ka dibna waxay xogta ka soo ururisaa kooxdaas iyadoo adeegsanaysa amarka u gaarka ah kordhinta iyo hababka `slurmrestd`. Sii-deynta ka sii horreeya waxaa lagu daboolaa oo keliya tusaalooyin macmal ah. Akhriyuhu weli kuma shaqeyn koox wax-soo-saar ah.
+Rakibidda iyo cusboonaysiintu waxay soo dejiyaan qaababka qalabka, xogta, iyo giraafyada HPC Scheduler waxayna u koobiyeeyaan weydiinta xogta qaybaha galka `resource/script_server/` ee Cacti. Haddii galkaas aan wax lagu qori karin, haddii fayl kale oo isku magac ah uu halkaas ku jiro, ama haddii bartilmaameedku yahay xidhiidh astaameed, soo dejintu way joogsataa, faylka ma taabato, waxayna xaaladda ku soo wargelisaa bogga caafimaadka halkaas oo **Install Templates** mar kale isku daydo. Tirtiriddu waxay ka saartaa faylka weydiinta oo keliya haddii kordhintu qortay uusanuna isbeddelin, waxayna ilaalisaa qaababka, qalabka, iyo giraafyada.
 
-**Ogolaanshaha.** Koox ku xidhan qalab waxaa loo muujiyaa, loo dhoofiyaa, loona beddelaa oo keliya isticmaalayaasha uu Cacti u ogolaado qalabkaas, bog kasta oo kordhinta ah; ku-xidhidda qalabku waxay sidoo kale u baahan tahay ogolaanshaha qalabka la beegsanayo. Koox aan qalab lahayn way u muuqataa qof kasta oo leh goobta kordhinta. Koox weli ku xidhan qalab la tirtiray iyadoo kordhintu dansan tahay waxaa loo muujiyaa oo keliya isticmaalayaasha leh goobta HPC Scheduler Admin, kuwaas oo u abuuri kara ama u xidhi kara qalab. Gelitaanka giraafku waa kan Cacti u gaarka ah.
+**HPC Clusters > Device** waxay horey u tusisaa giraafyada, ilaha xogta, faylasha RRD, iyo wicitaannada script server ee poll kasta ka hor inta aan waxba la abuurin. **Create Device** waxay abuurtaa qalab leh magac host ah oo ku jira bogga gaarka ah ee `.invalid` oo aan lahayn hubin helitaan; **Map Device** waxay ku xidhaa giraafyada qalab jira iyadoon wax ka beddelin dejintiisa. Giraaf kasta oo kooxeed iyo giraaf qaybeedba wuxuu leeyahay isha xogtiisa gaarka ah: lix kooxda iyo shan qayb kasta. Qaybaha hadhow lagu daro waxaa si toos ah dib loogu tusmeeyaa marka akhriyuhu ogaado isbeddel; qaybaha laga saaro waxaa laga joojiyaa ururinta waxayna haystaan giraafyadooda. Tirtiridda qalabku waxay ka furtaa kooxda (waxayna nadiifisaa safafka u dhigma ee `plugin_hpcsched_node_map`) iyadoo haynaysa diiwaanka kooxda.
+
+Pending waxay ka reebtaa shaqooyinka la hayo (held), kuwaas oo leh taxanahooda gaarka ah. Taxanaha shaqo ee sugaya (job array) wuxuu tiriyaa hawlaha u hadhay. Shaqo ama noodh ku jira qaybo badan waxaa la tiriyaa hal mar giraafyada kooxda iyo hal mar qayb kasta, sidaas darteed wadarta qaybaha looma baahna inay la mid noqoto wadarta kooxda. Sababaha sugitaanka waxaa loo kooxeeyaa kow iyo toban qoys ([ADR 0011](../../decisions/0011-pending-reason-families-and-counting.md)); aragtida sababaha sugitaanku waxay taxdaa sababaha ceyriinka ah oo ay ku jiraan kuwa ku jira `Other`. Qaybiyaha hoose ee isticmaalku wuxuu ka kooban yahay noodhadhka la faarujiyay, kuwa damay, iyo noodhadhka kale ee aan la heli karin. Xogta duugowday ama fashilantay waxaa loo soo sheegaa `U`, weligeed eber ma noqoto; `age` wuxuu sii ahaadaa tiro.
+
+Digniinaha awgood, ku habeey Thold mid ka mid ah ilaha xogta ee kooxda ama qaybta muddo ah ugu yaraan hal wareeg ururin, oo digniin saar `age` si aad u ogaato akhriye joogsaday.
+
+## CLI iyo jillaabyada nidaamka deegaanka
+
+### Barta gelitaanka akhriyaha
+
+`hpcsched_poller_bottom()` waxay si toos ah u bilawdaa `poller_hpcsched.php`; sidoo kale gacanta ayaa looga ordi karaa poller-ka loo qoondeeyay kooxda:
+
+```sh
+php /path/to/cacti/plugins/hpcsched/poller_hpcsched.php --cluster=N [--force] [--debug]
+```
+
+`--force` way shaqeysaa xitaa iyadoo kordhintu damisan tahay, si loogu baaro khadka taliska.
+
+### CLI-ga Configuration-as-Code, caafimaadka, iyo isku-dubaridka Maint
+
+```sh
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php export [--format=yaml|xml] [--file=PATH]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php validate --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php plan --file=PATH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php apply --file=PATH --confirm=PLAN_HASH [--format=yaml|xml]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php health [--format=text|json]
+php /path/to/cacti/plugins/hpcsched/cli/hpcsched.php sync-maint [--dry-run | --apply] [--cluster=ID] [--format=text|json]
+```
+
+- `export` waxay faylasha cusub ku qortaa qaabka `0600` (ama stdout) waxayna ku beddeshaa waddooyinka `token_file` ee la habeeyay `[REDACTED]`. `plan` iyo `apply` waxay diidaan meelaha tooska ah ee `jwt`, `secret`, iyo `password`, waxayna ilaaliyaan waddooyinka `token_file` ee gudaha ee jira marka `[REDACTED]` la keeno. `apply` waxay u baahan tahay `--confirm=PLAN_HASH` sax ah oo ay daabacday `plan`.
+- `health` waxay qiimeysaa cusboonaanta qaab-dhismeedka xogta, cusboonaanta kooxda, natiijooyinka orodka, helitaanka Maint, iyo digniinaha iyadoon la xidhiidhin jadwaleeyayaasha ama akhrin faylasha token-ka.
+- `sync-maint` waxay si caadi ah u adeegsataa `--dry-run` waxayna tusisaa ama ku dabaqdaa jadwallada Cacti Maint noodhadhka Slurm ee ku xidhan ee ku jira `DRAIN`, `DRAINING`, `DOWN`, ama boos-celinta firfircoon ee `MAINT`/`MAINTENANCE` (muddo drain/down caadi ah 3600s, farqi cusboonaysiin 600s). Waxay diiddaa `--apply` haddii `plugin_maint_schedules` iyo `plugin_maint_hosts` ay maqan yihiin, waxayna cusboonaysiisaa ama ka saartaa oo keliya jadwallada ku diiwaangashan `plugin_hpcsched_maint_link`.
+
+### Jillaabyada nidaamka deegaanka
+
+Marka kordhinnada Cacti ama is-dhexgallada host ee u dhigma ay jiraan, `setup.php` waxay diiwaangelisaa:
+
+- `casc_register_providers`: waxay dhoofisaa, hubisaa, qorsheysaa, oo ku dhaqantaa xaqiijin qaabeynta `hpcsched` (`yaml` iyo `xml`, schema v1) iyadoo qarisa siraha.
+- `doctor_register_checks`: waxay bixisaa afar hubin baaritaan oo akhris-kaliya ah (`hpcsched.schema`, `hpcsched.cluster_freshness`, `hpcsched.token_health`, `hpcsched.maint_sync`).
+- `abilities_register`: waxay diiwaangelisaa saddex awoodood oo akhris-kaliya ah, aan waxba burburin, oo natiijo isku mid ah bixiya (idempotent) hoosta qaybta `hpcsched`, oo ay maamusho goobta HPC Scheduler View (iyo oggolaanshaha qalabka ee soo koobista kooxaha): `hpcsched-list-clusters`, `hpcsched-get-queue-summary`, iyo `hpcsched-get-health`.
 
 ## Sababta
 
-Hawlwadeennada maamula Cacti waxay horey u sawir-giraafiyaan noodhadhkooda xisaabinta. Aragtida jadwaleeyuhu way ka maqan tahay giraafyadaas, taasoo keenaysa laba daldaloolo:
+Hawlwadeennada adeegsada Cacti waxay horeyba sawir-giraaf ugu sameeyaan noodhadhkooda xisaabinta. Aragtida jadwaleeyaha ayaa ka maqan giraafyadaas, taas oo reebta laba daldaloolo:
 
-- **Ma jirto "sababta shaqadu u bilaaban weyday".** Slurm wuxuu diiwaangeliyaa sabab shaqo kasta oo sugaysa. Saf buuxa oo barbar yaalla giraafyada noodhadhka aan shaqaynayn ma sheego haddii sababtu tahay mudnaanta, xaddidaadda kheyraadka, haynta (holds), ku-tiirsanaanta, ama noodhadhka la faarujiyay.
-- **Ma jiro xidhiidh u dhexeeya xaaladda jadwaleeyaha iyo digniinaha.** Thold waxay digniin ka soo saartaa qalab uu maamuluhu horey u faarujiyay, maamulayaashuna waxay jadwallada Maint ku sameeyaan gacanta.
+- **Ma jiro "sababta shaqadu u bilaaban weyday".** Slurm wuxuu diiwaangeliyaa sabab shaqo kasta oo sugaysa. Saf buuxa oo ku xiga giraafyada noodhadhka fadhiya ma sheego haddii sababtu tahay mudnaan, xadka kheyraadka, hayn, ku-tiirsanaan, ama noodhadh la faarujiyay.
+- **Ma jiro xidhiidh u dhexeeya xaaladda jadwaleeyaha iyo digniinaha.** Thold waxay digniin ka soo saartaa qalab uu maamuluhu horey u faarujiyay, maamulayaashuna waxay gacanta ku abuuraan jadwallada Maint.
 
-Kordhintu waxay soo ururisaa hal sawir xog oo kaydsan kooxkiiba, waxay u daabacdaa sida ilaha xogta iyo giraafyada caadiga ah ee Cacti, waxay noodhadhka jadwaleeyaha ku xidhaa qalabka Cacti ee jira, waxayna gelin kartaa noodhadhka la faarujiyay iyo boos-celinta dayactirka gudaha Maint. Waxay dib u isticmaashaa ogolaanshaha Cacti, xog-ururiyeyaasha fog, Thold, iyo Maint, waana akhris-kaliya xagga jadwaleeyaha.
+Kordhintu waxay soo ururisaa hal sawir xog oo kaydsan kooxkiiba, waxay u daabacdaa sida ilaha xogta iyo giraafyada caadiga ah ee Cacti, waxay ku xidhaa noodhadhka jadwaleeyaha qalabka Cacti ee jira, waxayna isku-dubariddaa daaqadaha Maint ee dhacaya ee ay leedahay kordhintu ee loogu talagalay noodhadhka la faarujiyay, kuwa damay, iyo kuwa dayactirka loo qoondeeyay. Waxay dib u adeegsataa oggolaanshaha Cacti, ururiyayaasha xogta fog, Thold, iyo Maint, waxayna u ahaataa akhris-kaliya si adag dhanka jadwaleeyaha.
 
-## Baaxadda la qorsheeyay
+## Baaxadda iyo xuduudaha
 
-| Wajiga | Baaxadda | Marxaladaha |
-|---|---|---|
-| 0, cilmi-baadhis | Shaxda sii-deynta Slurm, xaqiijinta dhaqanka isha sare (upstream), culayska kantaroolaha, tusaalooyinka magacaabista noodhadhka | [M1](https://github.com/somethingwithproof/plugin_hpcsched/milestone/1) |
-| 1, giraafyada kooxda | Qoto-dheeraanta safka, shaqooyinka sugaya iyo kuwa socda, sababaha sugitaanka, xaaladaha noodhadhka, isticmaalka qaybaha, digniinaha Thold, bogga caafimaadka, sii-deynta | [M2](https://github.com/somethingwithproof/plugin_hpcsched/milestone/2), [M3](https://github.com/somethingwithproof/plugin_hpcsched/milestone/3), [M4](https://github.com/somethingwithproof/plugin_hpcsched/milestone/4) |
-| 2, noodhadhka iyo dayactirka | Ku-xidhidda noodhka iyo qalabka, xaaladda noodhkiiba, daaqadaha Maint ee otomaatiga ah ee noodhadhka la faarujiyay iyo boos-celinta dayactirka | [M5](https://github.com/somethingwithproof/plugin_hpcsched/milestone/5) |
-| 3, xisaabaadka | Isticmaalka wadaagga caddaaladda ah, tirakoobka xisaabaadka xaddidan, xog-ururiyeyaasha fog | [M6](https://github.com/somethingwithproof/plugin_hpcsched/milestone/6) |
+Ka baxsan baaxadda: waddo kasta oo wax ku qorta jadwaleeyaha (dirid, joojin, hayn, faaruqin, dib-u-bilaabid), matoor digniin oo ay leedahay kordhintu, matoor warbixin ama khidmad-qaadis, iyo taxanayaal ku salaysan isticmaale ama shaqo. Hababka dambe ee PBS Pro, OpenPBS, iyo LSF waa cilmi-baaris keliya.
 
-Ka baxsan baaxadda: wax kasta oo wax ku qorid ah oo ku wajahan jadwaleeyaha (dirid, joojin, hayn, faaruqin, dib-u-bilaabid), matoor digniin oo ay kordhintu leedahay, matoor warbixin ama kharash-celin, taxanayaal isticmaale-kiiba iyo shaqo-kiiba ah. Hababka dambe ee PBS Pro, OpenPBS, iyo LSF waa cilmi-baadhis.
+## Shuruudaha iyo iswaafajinta
 
-## Bartilmaameedyada is-waafaqsanaanta
-
-| Qaybta | Bartilmaameedka |
+| Qayb | Bartilmaameed |
 |---|---|
-| Cacti | 1.2.31 ama ka dambeeya, iyada oo aan wax balastar ah lagu samayn xudunta (no core patches) |
-| PHP | 8.2 ama ka dambeeya; `setup.php` wuxuu sii ahaadaa mid la akhriyi karo (parseable) oo ku jira 8.0 si deegaan-fulin aan la taageerin uu u helo diidmo halkii uu ka heli lahaa Cacti UI jaban |
-| Slurm | 25.05, 25.11, iyo 26.05, saddexda sii-deyn ee ugu dambeeyay ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 25.11 iyo 26.05 waxaa lagu tijaabiyaa koox nool, 25.05 waxaa lagu tijaabiyaa tusaalooyin macmal ah oo keliya. Amarada macmiilku waa habka gudbinta ee caadiga ah ([ADR 0012](../../decisions/0012-client-commands-default-transport.md)) waxayna isticmaalaan dejinta fasiraha xogta: v0.0.43 sida caadiga ah, kaas oo SchedMD ka saarto 27.05, ama v0.0.44 ama v0.0.45 sii-deynta la yimaadda. Kooxaha slurmrestd waxay ogaadaan fasiraha ugu cusub ee daemon-ku bixiyo |
-| Thold, Maint | Wax isbeddel ah oo Thold lagu sameeyo ma jiro; is-dhexgalka Maint waa soo jeedin u baahan ogolaanshaha ilaaliyeyaasha Maint |
+| Cacti | 1.2.31 ama ka dambeeya (`compat = 1.2.31`), wax ka beddel xudunta ma laha |
+| PHP | 8.2 ama ka dambeeya; meelaha laga soo galo waxay ku sii jiraan kuwo lagu akhrin karo 8.0 waxayna diidaan hawlgelinta 8.1 si nidaam aan la taageerin uu u helo diidmo halkii uu ka heli lahaa UI Cacti ah oo jabay |
+| Slurm | 25.05, 25.11, iyo 26.05 ([ADR 0013](../../decisions/0013-three-latest-slurm-releases.md)); 26.05.5 waxaa lagu tijaabiyaa CI isbeddel kasta iyadoo la adeegsanayo koox weelal ah oo lix noodh leh, 25.11.8 waxaa lagu tijaabiyaa `main`, toddobaadle, iyo marka la codsado, 25.05-na fixtures keliya. Amarada macmiilku waxay si caadi ah u adeegsadaan falanqeeyaha xogta `v0.0.43` (iyadoo la dooran karo `v0.0.44` iyo `v0.0.45`); kooxaha `slurmrestd` waxay ogaadaan falanqeeyaha ugu cusub ee daemon-ku bixiyo |
+| Thold, Maint | Wax isbeddel ah oo Thold loogama baahna; `sync-maint` waxay la falgashaa jadwallada `plugin_maint_schedules` iyo `plugin_maint_hosts` ee Cacti Maint iyadoo adeegsanaysa jadwal xidhiidh oo ay leedahay kordhintu (`plugin_hpcsched_maint_link`) |
+
+## Horumarinta iyo tijaabinta
+
+Socodka shaqada ee CI (`.github/workflows/plugin-ci-workflow.yml`) wuxuu tijaabiyaa PHP 8.2 ilaa 8.5 oo la socda Cacti `release/1.2.31` iyo `1.2.x`, hubinta qaabka meelaha laga soo galo ee PHP 8.0, diidmada PHP 8.1, PHPStan, xaqiijinta gettext/turjumaadda, shatiga REUSE, hubinta socodka shaqada, hubinta socodka qalabka kooxda iyo leexashada dhoofinta qaabka, iyo koox Slurm ah oo nool oo lix noodh leh (`slurm-live`).
+
+Iyadoo la adeegsanayo qalabka tijaabada Pest ee wadaagga ah ee xidhan ee Cacti (`CACTI_PEST_BIN`) iyo kaydka xogta Cacti ee la tuuri karo:
+
+```sh
+# Unit tests
+"$CACTI_PEST_BIN" --configuration=phpunit.xml
+
+# Lifecycle integration tests (disposable database only)
+CACTI_PATH=/path/to/cacti HPCSCHED_TEST_DATABASE=disposable "$CACTI_PEST_BIN" --configuration=phpunit-integration.xml
+
+# Static analysis (against Cacti 1.2.31)
+CACTI_PATH=/path/to/cacti phpstan analyse -c phpstan.neon --no-progress
+
+# Translation template, catalogs, and localized README checks
+sh locales/build_gettext.sh --check
+```
 
 ## Naqshadda
 
-- [docs/PLAN.md](../../PLAN.md) waa qorshaha buuxa: qaab-dhismeedka, xaqiiqooyinka isha sare ee uu ku tiirsan yahay (oo wata ilo iyo liis cad oo malo-awaal aan la xaqiijin ah), ku-xidhidda noodhadhka, qaabka xaaladda, xuduudaha amniga, xisaabinta waxqabadka, tijaabinta, iyo khataraha.
-- [docs/decisions/](../../decisions) waxay haysaa diiwaannada go'aannada qaab-dhismeedka.
-- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) waxay ku xidhaa aqoonsi kasta oo shuruud ah arrintiisa (issue).
+- [docs/PLAN.md](../../PLAN.md) waa qorshaha dhismaha iyo naqshadda: xaqiiqooyinka ilaha sare ee leh tixraacyo, isku-aadinta noodhadhka, qaabka xaaladda, xuduudaha amniga, xisaabta waxqabadka, tijaabinta, iyo khataraha.
+- [docs/decisions/](../../decisions/) waxaa ku jira diiwaannada go'aannada dhismaha.
+- [docs/REQUIREMENTS.md](../../REQUIREMENTS.md) wuxuu ku xidhaa aqoonsi shuruud kasta arrintiisa (issue).
 
 ```mermaid
 flowchart LR
-    S[Kantaroolaha Slurm] -->|wicitaanno akhris-kaliya ah, hal xirmo wareeg kasta| R[Akhriyaha ku jira Cacti poller-ka loo qoondeeyay]
+    S[Maamulaha Slurm] -->|wicitaanno akhris-kaliya ah, hal koox wareeg kasta| R[poller_hpcsched.php ee poller-ka loo qoondeeyay]
     R --> SNAP[(Jadwallada sawirka xogta)]
-    SNAP --> SS[Gelinta Script server]
-    SS -->|poller_output| T[Thold iyo Maint]
-    SS --> G[Giraafyada iyo ogolaanshaha Cacti]
-    SNAP --> MAP[Ku-xidhidda noodhka iyo qalabka]
-    MAP -->|jadwallo la leeyahay oo dhacaya| T
+    SNAP --> SS[Gelinta script server]
+    SS -->|poller_output| T[Thold]
+    SS --> G[Giraafyada iyo oggolaanshaha Cacti]
+    SNAP --> MAP[NodeMatcher iyo MaintSynchronizer]
+    MAP -->|jadwallada gaarka ah ee dhacaya| M[Cacti Maint]
+    SNAP --> H[HealthEvaluator, Doctor, iyo awoodaha MCP]
 ```
 
-## Sida shaqada loola socdo
+## Sida shaqada loo dabagalo
 
-- **Marxaladuhu (Milestones)** waxay raacaan marxaladaha qorshaha. Mid kasta wuxuu leeyahay arrin weyn (epic issue) oo taxaysa arrimaha hoose iyo caddaynta bixitaanka.
-- **Arrimaha (Issues)** waxaa lagu kala saaraa summado: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Arrimaha shuruuduhu waxay sheegaan shuruudo tiro leh oo la tijaabin karo (`REQ-AREA-NNN`) iyo shuruudaha aqbalidda.
-- **Summaduhu (Labels)** waxay sidoo kale sitaan `area:`, `phase:`, `priority:`, iyo `status:`. Eeg [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
-- [Guddiga mashruuca](https://github.com/users/somethingwithproof/projects/10) wuxuu muujiyaa dhammaan arrimaha marxaladaha oo dhan.
+- **Marxaladaha (Milestones)** waxay raacaan marxaladaha qorshaha. Mid kastaa wuxuu leeyahay arrin weyn (epic) oo taxaysa arrimaha hoose iyo caddaynta bixitaanka.
+- **Arrimaha (Issues)** waxaa lagu kala saaraa calaamad: `type: requirement`, `type: research`, `type: decision`, `type: epic`. Arrimaha shuruuduhu waxay sheegaan shuruudo lambaraysan oo la tijaabin karo (`REQ-AREA-NNN`) iyo shuruudaha oggolaanshaha.
+- **Calaamaduhu** waxay sidoo kale sitaan `area:`, `phase:`, `priority:`, iyo `status:`. Eeg [CONTRIBUTING.md](../../../CONTRIBUTING.md#labels).
+- [Looxa mashruuca](https://github.com/users/somethingwithproof/projects/10) wuxuu muujiyaa dhammaan arrimaha dhammaan marxaladaha.
 
-## Ka qayb-qaadashada
+## Ka qaybqaadashada
 
-Akhri [CONTRIBUTING.md](../../../CONTRIBUTING.md). Gudbinta (commits) waxay u baahan yihiin saxiixa DCO. Doodda naqshadda waxay ka dhacdaa arrimaha (issues); go'aannada furan waxay sitaan summadda `type: decision`.
+Akhri [CONTRIBUTING.md](../../../CONTRIBUTING.md). Commit-yadu waxay u baahan yihiin saxeexa DCO (`git commit -s`). Doodaha naqshaddu waxay ka dhacaan arrimaha; go'aannada furan waxay sitaan calaamadda `type: decision`.
 
 ## Amniga
 
-U soo sheeg nuglaanshaha si gaar ah; eeg [SECURITY.md](../../../SECURITY.md).
+U soo sheeg dayacanka si qarsoodi ah; eeg [SECURITY.md](../../../SECURITY.md).
 
 ## Shatiga
 
-GNU General Public License v2.0, waa isla shatiga Cacti iyo kordhinteeda. Eeg [LICENSE](../../../LICENSE).
+GNU General Public License v2.0, waa isla shatiga Cacti iyo kordhinnadiisa. Eeg [LICENSE](../../../LICENSE).

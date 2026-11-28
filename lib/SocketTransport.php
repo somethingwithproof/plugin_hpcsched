@@ -29,6 +29,7 @@ namespace Somethingwithproof\Hpcsched;
  * only for an Endpoint that already passed the loopback rule.
  */
 final class SocketTransport implements HttpTransport {
+	/** Maximum header bytes. */
 	private const MAX_HEADER_BYTES = 65536;
 
 	/**
@@ -42,6 +43,14 @@ final class SocketTransport implements HttpTransport {
 	) {
 	}
 
+	/**
+	 * Get.
+	 *
+	 * @param HttpRequest $request
+	 * @param float $deadline
+	 * @return HttpResponse
+	 * @throws TransportError
+	 */
 	public function get(HttpRequest $request, float $deadline): HttpResponse {
 		$endpoint = $request->endpoint;
 

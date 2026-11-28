@@ -23,6 +23,11 @@ namespace Somethingwithproof\Hpcsched;
  * Cacti's pollers, read for the cluster form. Read only.
  */
 final class PollerRepository {
+	/**
+	 * Construct a new PollerRepository instance.
+	 *
+	 * @param \PDO|false $connection
+	 */
 	public function __construct(private readonly \PDO|false $connection) {
 	}
 

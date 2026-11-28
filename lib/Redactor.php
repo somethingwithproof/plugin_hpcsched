@@ -28,6 +28,7 @@ namespace Somethingwithproof\Hpcsched;
  * masked. Adapted from plugin_cloud.
  */
 final class Redactor {
+	/** Mask constant for Redactor. */
 	private const MASK = '[redacted]';
 
 	/**
@@ -44,6 +45,12 @@ final class Redactor {
 	/** @var list<string> */
 	private array $known = [];
 
+	/**
+	 * Add.
+	 *
+	 * @param Secret $secret
+	 * @return void
+	 */
 	public function add(Secret $secret): void {
 		$value = $secret->reveal();
 
@@ -61,6 +68,12 @@ final class Redactor {
 		usort($this->known, static fn (string $a, string $b): int => strlen($b) <=> strlen($a));
 	}
 
+	/**
+	 * Clean.
+	 *
+	 * @param string $text
+	 * @return string
+	 */
 	public function clean(string $text): string {
 		// Every span is found in the original text and masked once at the
 		// end, so one pass cannot hide material from the next.

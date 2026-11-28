@@ -27,7 +27,9 @@ namespace Somethingwithproof\Hpcsched;
  * starts a process (tests/Security/SourceRulesTest.php).
  */
 final class CommandRunner {
+	/** Chunk constant for CommandRunner. */
 	private const CHUNK       = 65536;
+	/** Stderr keep constant for CommandRunner. */
 	private const STDERR_KEEP = 2048;
 
 	/**

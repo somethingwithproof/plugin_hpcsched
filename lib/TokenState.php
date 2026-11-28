@@ -41,6 +41,11 @@ enum TokenState: string {
 		return in_array($this, [self::Ok, self::GroupReadable, self::WorldReadable], true);
 	}
 
+	/**
+	 * Message.
+	 *
+	 * @return string
+	 */
 	public function message(): string {
 		return match ($this) {
 			self::None          => '',

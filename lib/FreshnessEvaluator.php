@@ -28,13 +28,28 @@ namespace Somethingwithproof\Hpcsched;
  * as an observation (REQ-STATE-005): only the reader's collection time does.
  */
 final class FreshnessEvaluator {
+	/** Current multiple constant for FreshnessEvaluator. */
 	public const CURRENT_MULTIPLE = 2;
+	/** Stale multiple constant for FreshnessEvaluator. */
 	public const STALE_MULTIPLE   = 3;
+	/** Skew allowance constant for FreshnessEvaluator. */
 	public const SKEW_ALLOWANCE   = 120;
 
+	/**
+	 * Construct a new FreshnessEvaluator instance.
+	 *
+	 * @param Clock $clock
+	 */
 	public function __construct(private readonly Clock $clock) {
 	}
 
+	/**
+	 * Evaluate.
+	 *
+	 * @param int $observedAt
+	 * @param int $interval
+	 * @return Freshness
+	 */
 	public function evaluate(int $observedAt, int $interval): Freshness {
 		if ($observedAt <= 0) {
 			return Freshness::Never;
